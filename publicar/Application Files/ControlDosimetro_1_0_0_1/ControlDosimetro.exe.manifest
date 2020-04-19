@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="ControlDosimetro.exe" version="1.0.0.1" publicKeyToken="710d17619979ef97" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="ControlDosimetro" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="ControlDosimetro.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          Opciones del manifiesto de Control de cuentas de usuario
+          Si desea cambiar el nivel de Control de cuentas de usuario de Windows, reemplace el 
+          nodo requestedExecutionLevel por alguno de los siguientes.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         Si desea usar la virtualización de archivos y del Registro para la 
+         compatibilidad con versiones anteriores, elimine el nodo requestedExecutionLevel.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ClosedXML.dll" size="796160">
+      <assemblyIdentity name="ClosedXML" version="0.69.1.0" publicKeyToken="FD1EB21B62AE805B" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>+7qEh7XWwF8v7Ipa208g5bzqo4mmBaWKTyF6lgZ7KxY=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ControlDosimetro.exe" size="321536">
+      <assemblyIdentity name="ControlDosimetro" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>m5KAwW4KrsX2xRGJfgqoXnB6mzvH3XO9khogBbWigO4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="dllLibreriaMysql.dll" size="14336">
+      <assemblyIdentity name="dllLibreriaMysql" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>0S8wG+pExjaJwVFNxnR/x+LWi/41vsTjFBhsNibj0j8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DocumentFormat.OpenXml.dll" size="5233512">
+      <assemblyIdentity name="DocumentFormat.OpenXml" version="2.0.5022.0" publicKeyToken="31BF3856AD364E35" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>uxjFQNbB7IDX066aU48yBebj5pXGeI5AbXk8U9UO1BU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.QualityTools.Testing.Fakes.dll" size="303680">
+      <assemblyIdentity name="Microsoft.QualityTools.Testing.Fakes" version="11.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>6H6yzKFLKItMpEBQB7pu6UC5FHIhkY9Xz0LD90osQmI=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="es\Microsoft.QualityTools.Testing.Fakes.resources.dll" size="24680">
+      <assemblyIdentity name="Microsoft.QualityTools.Testing.Fakes.resources" version="11.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="es" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>bcA41LXkzhKzjdLHuxKX5f2W30G2q5BzNf42nbKXkhU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MySql.Data.dll" size="457728">
+      <assemblyIdentity name="MySql.Data" version="6.9.8.0" publicKeyToken="C5687FC88969C44D" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>jP8v64oeMPoLcpPyDq6pEOepqe0+h3aAHY75VvgIJ9E=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="bin\Debug\ClosedXML.dll" size="796160">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>+7qEh7XWwF8v7Ipa208g5bzqo4mmBaWKTyF6lgZ7KxY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="bin\Debug\DocumentFormat.OpenXml.dll" size="5233512">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>uxjFQNbB7IDX066aU48yBebj5pXGeI5AbXk8U9UO1BU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="ControlDosimetro.exe.config" size="187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>xm4bo26HQ0LNVwz1vdPYtzhkpMnp2AI5i+f0b+OahTI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Imagen\cliente.jpg" size="1616">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>iTiujU1qBpj/UKNpLpgUxo4TVfStCMQgfjemq/IsrsQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Imagen\Detalle.png" size="49910">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>vry5CZiRc6Kb7U57Rtg3CBBvfQpZcS+xAjC85B4f6jg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Imagen\Filmica.png" size="67090">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>80OgJG3MKMLahYsdoCfaoDdnSM6Y2yEL+DaPdPl3Cs4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Imagen\Personal.png" size="68640">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>AvFd8EBNHHere9RudyOmhIb7Exschow4Cn9EksV5sJY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Imagen\REFERENCIA.png" size="6409">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>I9Nq3B7Sk7jNs5MlhzFsA0/J9EBKGVUTN3l9rS0ogFA=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=Felipe-PC\Felipe" issuerKeyHash="d1e57e7ceea332a5af1c3d44a351346692f06651" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>v1MTzu2ydh0f15eiuxFOvM48Zd5ZYTKC8eDHJob5JiA=</DigestValue></Reference></SignedInfo><SignatureValue>FArGMTYeHe4b8a5rskdeI891IH+pW3Pz+argex3U5eN+Lqw5SFlhIFGbipFXTRVF/UkGyOLfX7qiIT7epvZqTLvdFcguFREWMzA6QhZzmyNctWsEPiqKKPFSy1lrvwwRLSejTRNeOp5BLeFR3VH2uI6qmTOVNvXpEtpdQ3S/SEk=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>s2FY9o7UCBraOaL9Cy94zgzYUBJ3iHZXsOb2zjJhqQ7oiqIOuKGmo2uq69I4DzwutUXKSQnIAWXp8rirAq71lMzG0N5gTLgM2JoKdylB+zTQpI2skjh2IVvhmjhi9xrsGU9k4n8wKyQRCjFEq2wP0AFTLhWuGxE1ZbNfLoR+ga0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="2026f98626c7e0f182326159de653ccebc4e11bba297d71f1d76b2edce1353bf" Description="" Url=""><as:assemblyIdentity name="ControlDosimetro.exe" version="1.0.0.1" publicKeyToken="710d17619979ef97" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=Felipe-PC\Felipe</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>WRwRYRiaeqaMjkBNnSPaxMOV4BIqpo3OCAxZX9y3yqs=</DigestValue></Reference></SignedInfo><SignatureValue>pVAHfPwrftlmTjSFqQErpoUND1hHsAGvppbHs6oxl4Lm19dyb4oVwiJbtG39D0rj8cMR43KaghIQ2fOFixVQGwAtS0noJjwTzhqE+bfOujeUf3Jt7m7nhZ5Eg/xv06EAtF/rX8rGb53KU1ebQ5Qf9AwJyH+iFVh0ZaecS+Iif9w=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>s2FY9o7UCBraOaL9Cy94zgzYUBJ3iHZXsOb2zjJhqQ7oiqIOuKGmo2uq69I4DzwutUXKSQnIAWXp8rirAq71lMzG0N5gTLgM2JoKdylB+zTQpI2skjh2IVvhmjhi9xrsGU9k4n8wKyQRCjFEq2wP0AFTLhWuGxE1ZbNfLoR+ga0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB2TCCAUKgAwIBAgIQJwMBYxSGbYdAf+i2SAB26TANBgkqhkiG9w0BAQsFADArMSkwJwYDVQQDHiAARgBlAGwAaQBwAGUALQBQAEMAXABGAGUAbABpAHAAZTAeFw0xNjA1MDkwMjQ4MTNaFw0xNzA1MDkwODQ4MTNaMCsxKTAnBgNVBAMeIABGAGUAbABpAHAAZQAtAFAAQwBcAEYAZQBsAGkAcABlMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzYVj2jtQIGto5ov0LL3jODNhQEneIdlew5vbOMmGpDuiKog64oaaja6rr0jgPPC61RcpJCcgBZenyuKsCrvWUzMbQ3mBMuAzYmgp3KUH7NNCkjaySOHYhW+GaOGL3GuwZT2TifzArJBEKMUSrbA/QAVMuFa4bETVls18uhH6BrQIDAQABMA0GCSqGSIb3DQEBCwUAA4GBAEFKhlviS5CQOHyFptL1hD7b36KMDGmFcE6TdeYhS2kthPYxDJJ5ef8elroV4TxeBcrgZCGTNi0rXFQFY/fs+Uu0mwiqO6ppttworxdeeLM+XDpGHdTedsn5tItssNbi8QJWIzPJJD+sfrjC2jmGstqJSOxBiGwcUwOQc7H7I/6g</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

@@ -1,0 +1,788 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using dllConectorMysql;
+using dllLibreriaEvento;
+using dllLibreriaMysql;
+using System.Data.SqlClient;
+using System.Data.Sql;
+using Microsoft.Reporting.WinForms;
+
+namespace ControlDosimetro
+{
+    public partial class frmIngresoPelicula : Form
+    {
+
+        #region "Definicion variable"
+				clsConectorSqlServer Conectar = new clsConectorSqlServer();
+				clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
+            clsEventoControl ClaseEvento = new clsEventoControl();
+            int intContar=0;	
+        #endregion
+
+            public frmIngresoPelicula(Int64 intId_Cliente)
+        {
+            InitializeComponent();
+
+            //SqlCommand cmdcombo = new SqlCommand();
+            ////	SqlCommand cmdcombo = new SqlCommand();
+            //    DataSet dtcombo;			
+            //    cmdcombo.CommandText = "select 0 as Id_DetParametro, 'Seleccione' as Glosa, 0 as orden union all " +
+            //      "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 order by orden ";
+            //    cmdcombo.CommandType = CommandType.Text;
+            //    dtcombo = Conectar.Listar(cmdcombo);
+
+            //    //DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns["Estado"] as DataGridViewComboBoxColumn;
+            //    ////
+            //    //comboboxColumn.DataSource = dtcombo.Tables[0] ;
+            //    //comboboxColumn.DisplayMember = "Glosa";
+            //    //comboboxColumn.ValueMember = "Id_DetParametro";
+          
+
+		    AsignarEvento();
+		    Cargar_Cliente(intId_Cliente);
+		    Cargar_Anno();
+            grp_Ingreso.Enabled = false;
+            pnl_Progreso.Visible = false;
+            btn_cargar.Enabled = true;
+            dtp_Fecha_inicio.Text = DateTime.Now.Date.ToString(); 
+            lbl_id_cliente.Focus(); 
+        }
+
+        #region "Llamada de carga"
+
+            private void Cargar_Cliente(Int64 intCodCliente)
+				{
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandText = "select run,Razon_Social,N_Cliente_Ref,region + ','+ comuna +','+Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
+                                    "  FROM tbl_cliente c inner join [dbo].[glo_region] r on c.Id_Region=r.Id_Region inner join glo_comuna co on co.id_comuna=c.id_comuna" +
+                                    " WHERE Id_cliente= " + intCodCliente.ToString();
+					DataSet dt;
+
+					dt = Conectar.Listar(cmd);
+                    if (dt.Tables[0].Rows.Count > 0)
+                    {
+                        lbl_id_cliente.Text = intCodCliente.ToString();
+                        lbl_rut.Text = dt.Tables[0].Rows[0]["run"].ToString();
+                        lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
+                        lbl_Direccion.Text = dt.Tables[0].Rows[0]["Direccion"].ToString();
+                        btn_cargar.Enabled = true; 
+                        btn_Cargar_cliente.Enabled = false;
+                        lbl_id_cliente.Enabled = false;
+                        grp_Ingreso.Enabled = true;
+                        cbx_anno.Enabled = false;
+                        cbx_id_periodo.Enabled = false;
+                        grp_Ingreso.Enabled = true;
+                        Cargar_Sucursal();
+                        txt_Pelicula.Focus();
+                    }
+                    else
+                    {
+                        btn_Cargar_cliente.Enabled = true;
+                        btn_cargar.Enabled = false;
+                        lbl_id_cliente.Enabled = true;
+                        lbl_nombreCliente.Text = "";
+                        lbl_Direccion.Text = "";
+                        lbl_rut.Text = "";
+                        grp_Ingreso.Enabled = false;
+                        Cargar_Sucursal();
+                        if(intCodCliente != 0)
+                            MessageBox.Show("El cliente no existe");  
+
+                    }
+
+					
+
+                    //
+				}
+        private int Cantidad_InformacionCargada()
+        {
+            SqlCommand cmd = new SqlCommand();
+
+            DataSet dt;
+
+
+            cmd.CommandText = "SELECT G.[id],[id_estadodosimetro],n_documento,[n_dosimetro], Descripcion+ case when id_ref=1 then '/ref.' else '' end as Descripcion" +
+                                    " FROM ges_dosimetro_estado G inner join glo_estadodosimetro e on e.id=g.id_estadodosimetro" +
+                                    " WHERE id_cliente=" + lbl_id_cliente.Text + "  and  id_periodo=" + cbx_id_periodo.SelectedValue  + " and n_documento=" + txt_NDocumento.Text +
+                                    " and   id_ref=0 ";
+            cmd.CommandType = CommandType.Text;
+
+            dt = Conectar.Listar(cmd);
+
+            return dt.Tables[0].Rows.Count;   
+
+         }
+
+		  private void Listar_Grilla()
+		  {
+              SqlCommand cmd = new SqlCommand();
+
+				DataSet dt;
+
+
+                cmd.CommandText = "SELECT G.[id],[id_estadodosimetro],n_documento,[n_dosimetro], Descripcion+ case when id_ref=1 then '/ref.' else '' end as Descripcion" +
+                                        " FROM ges_dosimetro_estado G inner join glo_estadodosimetro e on e.id=g.id_estadodosimetro" +
+                                        " WHERE id_cliente=" + lbl_id_cliente.Text + "  and  id_periodo=" + cbx_id_periodo.SelectedValue + "";
+			  cmd.CommandType = CommandType.Text;
+	 
+			  dt = Conectar.Listar(cmd);
+			  grdDatos.DataSource = dt.Tables[0];
+		  }
+
+		  private void Cargar_Anno()
+		  {
+              SqlCommand cmd = new SqlCommand();
+
+		//	  SqlCommand cmd = new SqlCommand();
+
+			  cmd.CommandText = "pa_ObtieneAnno_sel 3";
+			  //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
+			  DataSet dt;
+			  dt = Conectar.Listar(cmd);
+
+			  cbx_anno.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
+			  cbx_anno.DataSource = dt.Tables[0];
+
+		  }
+
+		  private void Cargar_Periodo()
+		  {
+              SqlCommand cmd = new SqlCommand();
+
+		//	  SqlCommand cmd = new SqlCommand();
+
+			  cmd.CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ '°T' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text;
+			  DataSet dt;
+			  dt = Conectar.Listar(cmd);
+
+              cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
+              cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
+              cbx_id_periodo.DataSource = dt.Tables[0];
+
+              //cbx_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
+              //cbx_periodo.DataSource = dt.Tables[0];
+
+              //cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
+              //cbx_id_periodo.DataSource = dt.Tables[0];
+		  }
+
+          private void Cargar_Sucursal()
+          {
+              SqlCommand cmd = new SqlCommand();
+
+              cmd.CommandText = "select id_sucursal, direccion + ','+co.comuna as Dato " +
+                  "from [dbo].[tbl_sucursal] s " +
+                  "inner join glo_region r on r.Id_region=s.Id_Region " +
+                  "inner join glo_comuna co on co.id_comuna=s.Id_Comuna " +
+                  "where run='" + lbl_rut.Text + "' and s.id_estado=1";
+              DataSet dt;
+              dt = Conectar.Listar(cmd);
+
+              cbx_Sucursal.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
+              cbx_Sucursal.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
+              cbx_Sucursal.DataSource = dt.Tables[0];
+
+            
+
+              //cbx_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
+              //cbx_periodo.DataSource = dt.Tables[0];
+
+              //cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
+              //cbx_id_periodo.DataSource = dt.Tables[0];
+          }
+
+        private void AsignarEvento()
+        {           
+				//this.txt_Rut.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
+				//txt_Rut.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
+				//txt_Rut.Validated += new EventHandler(ClaseEvento.validarut_Validated);
+
+            txt_Pelicula.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+            txt_Pelicula.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+            txt_PeliculaHasta.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+            txt_PeliculaHasta.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+            txt_pelrefhasta.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+            txt_pelrefhasta.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+            txt_pelrefdesde.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+            txt_pelrefdesde.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+            txt_NDocumento.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+            txt_NDocumento.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+            dtp_Fecha_inicio.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+				//txt_RazonSocial.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+
+				
+        }
+
+        #endregion
+
+        #region "button"
+
+		  private void btnIngresarDosisISP_Click(object sender, EventArgs e)
+		  {
+              frmDosimetriaISP frm = new frmDosimetriaISP(Convert.ToInt64(lbl_id_cliente.Text));
+			  frm.ShowDialog(this);
+		  }
+
+
+        private void btn_Agregar_Click(object sender, EventArgs e)
+        {
+            SqlCommand cmd = new SqlCommand();
+            DataSet ds;
+
+            Int64 intFinal;
+            Int64 intInicio;
+            Int64 intFinalref;
+            Int64 intInicioref;
+            String strMensajeAdv="";
+
+
+            if (txt_pelrefdesde.Text != "")
+            {
+                if (txt_pelrefhasta.Text == "")
+                    intFinalref = Convert.ToInt64(txt_pelrefdesde.Text);
+                else
+                    intFinalref = Convert.ToInt64(txt_pelrefhasta.Text);
+
+                intInicioref = Convert.ToInt64(txt_pelrefdesde.Text);
+            }
+            else
+            {
+                intFinalref = 0;
+                intInicioref = 0;
+            }
+
+            if (txt_Pelicula.Text != "")
+            {
+                if (txt_PeliculaHasta.Text == "")
+                    intFinal = Convert.ToInt64(txt_Pelicula.Text);
+                else
+                    intFinal = Convert.ToInt64(txt_PeliculaHasta.Text);
+
+                intInicio = Convert.ToInt64(txt_Pelicula.Text);
+            }
+            else
+            {
+                intFinal = 0;
+                intInicio = 0;
+            }
+            
+
+            int intcant;
+            intcant = 0;
+            if (cbx_Sucursal.Text == "")
+            {
+                MessageBox.Show("Le falta asignar una sucursal");
+            }
+            if ((intInicioref == 0) && (intInicio==0))
+            {
+                MessageBox.Show("Ingrese  de pelicula o pelicula de referencia");
+            }
+            else
+            if ((intInicioref != 0) && (intInicioref > intFinalref))
+            {
+                MessageBox.Show("El número de pelicula de referencia hasta debe ser mayor o igual que el inicio");
+            }
+            else
+                if ((intInicio != 0) && (intInicio > intFinal))
+            {
+                MessageBox.Show("El número de pelicula hasta debe ser mayor o igual que el inicio"); 
+            }
+            else
+            {
+                if (txt_NDocumento.Text == "")
+                {
+                    MessageBox.Show("Ingrese el número el n° Documento"); 
+                }
+                else
+                    intcant = Cantidad_InformacionCargada();
+                    long intsuma;
+                    intsuma = (intFinal - intInicio)+1;
+                    if (intsuma == 0 && chk_Ref.Checked == false)
+                        intsuma = 1;
+                    else
+                    {
+                        if (chk_Ref.Checked == true)
+                            intsuma = 0;
+                    }
+
+                    if (((intsuma+intcant) >= 13)&&(intInicio !=0))
+                    {
+                        MessageBox.Show("No se puede agregar mas de 13 pelicula");
+                    }
+                    else
+                        {
+                            string strError = "";
+                            if (intInicio != 0)
+                            {
+                              
+
+                                while (intInicio <= intFinal)
+                                {
+                            //if(chk_Ref.Checked ==true)
+                            //    cmd.CommandText = "pa_Dosimetro_ins " + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue + "," + txt_NDocumento.Text + "," + intInicio.ToString() + ",'" + dtp_Fecha_inicio.Text + "','" + Clases.clsUsuario.Usuario + "',1,'" + txt_Observacion.Text + "'";
+                            //else
+                            cmd.CommandText = "pa_Dosimetro_ins " + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue + "," + txt_NDocumento.Text + "," + intInicio.ToString() + ",'" + dtp_Fecha_inicio.Text + "','" + Clases.clsUsuario.Usuario + "',0,'" + txt_Observacion.Text + "'";
+                                    cmd.CommandType = CommandType.Text;
+
+                                    // Conectar.AgregarModificarEliminar(cmd);
+
+
+                                    ds = Conectar.Listar(cmd);
+                                    if (ds.Tables[0].Rows.Count > 0)
+                                    {
+
+                                        if (ds.Tables[0].Rows[0][0].ToString() != "-1")
+                                        {                                            
+                                            //if (MessageBox.Show("Desea ingresar el dosimetro  y  tiene siguiente error" + System.Environment.NewLine + ds.Tables[0].Rows[0][1].ToString(), "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                                            //{
+                                            strMensajeAdv = strMensajeAdv + System.Environment.NewLine + ds.Tables[0].Rows[0][1].ToString();
+                                            cmd.CommandText = "pa_DosimetroForzar_ins " + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue + "," + txt_NDocumento.Text + "," + intInicio.ToString() + ",'" + dtp_Fecha_inicio.Text + "','" + Clases.clsUsuario.Usuario + "',0,'" + txt_Observacion.Text + "'";
+                                            cmd.CommandType = CommandType.Text;
+
+                                            // Conectar.AgregarModificarEliminar(cmd);
+
+
+                                            ds = Conectar.Listar(cmd);
+
+                                            if (ds.Tables[0].Rows[0][0].ToString() != "-1")
+                                            {
+                                                strError = strError + System.Environment.NewLine + ds.Tables[0].Rows[0][1].ToString();
+                                            }
+                                            //}
+                                            //else
+                                            //    strError = strError+ System.Environment.NewLine+ ds.Tables[0].Rows[0][1].ToString() ;
+                                        }
+                                    }
+                                    intInicio = intInicio + 1;
+                                }
+                                if (strError != "")
+                                {
+                                    MessageBox.Show(strError);
+                                }
+                                if (strMensajeAdv != "")
+                                {
+                                    MessageBox.Show("Tiene siguiente advertecia :" + System.Environment.NewLine +strMensajeAdv);
+                                }
+                            }
+                            if (intInicioref != 0)
+                            {
+                                while (intInicioref <= intFinalref)
+                                {
+                                    //if(chk_Ref.Checked ==true)
+                                    cmd.CommandText = "pa_Dosimetro_ins " + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue + "," + txt_NDocumento.Text + "," + intInicioref.ToString() + ",'" + dtp_Fecha_inicio.Text + "','" + Clases.clsUsuario.Usuario + "',1,'" + txt_Observacion.Text + "'";
+                            //else
+                            //cmd.CommandText = "pa_Dosimetro_ins " + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue + "," + txt_NDocumento.Text + "," + intInicio.ToString() + ",'" + dtp_Fecha_inicio.Text + "','" + Clases.clsUsuario.Usuario + "',0,'" + txt_Observacion.Text + "'";
+                            cmd.CommandType = CommandType.Text;
+
+                                    // Conectar.AgregarModificarEliminar(cmd);
+
+
+                                    ds = Conectar.Listar(cmd);
+                                    if (ds.Tables[0].Rows.Count > 0)
+                                    {
+                                        if (ds.Tables[0].Rows[0][0].ToString() != "-1")
+                                        {
+                                            //if (MessageBox.Show("Desea ingresar el dosimetro  y  tiene siguiente error" + System.Environment.NewLine + ds.Tables[0].Rows[0][1].ToString(), "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                                            //{
+                                                cmd.CommandText = "pa_DosimetroForzar_ins " + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue + "," + txt_NDocumento.Text + "," + intInicioref.ToString() + ",'" + dtp_Fecha_inicio.Text + "','" + Clases.clsUsuario.Usuario + "',1,'" + txt_Observacion.Text + "'";
+                                                cmd.CommandType = CommandType.Text;
+
+                                                // Conectar.AgregarModificarEliminar(cmd);
+
+
+                                                ds = Conectar.Listar(cmd);
+
+                                                if (ds.Tables[0].Rows[0][0].ToString() != "-1")
+                                                {
+                                                    strError = strError + System.Environment.NewLine + ds.Tables[0].Rows[0][1].ToString();
+                                                }
+                                            //}
+                                            //else
+                                            //    strError = strError + System.Environment.NewLine + ds.Tables[0].Rows[0][1].ToString();
+                                        }
+                                    }
+
+                                    intInicioref = intInicioref + 1;
+                                }
+                               
+                            }
+
+                            if (strError != "")
+                            {
+                                MessageBox.Show(strError);
+                            }
+                            //if ((intInicioref == 0) && (intFinalref==0))    
+
+                            SqlCommand cmd1 = new SqlCommand();
+                            DataSet ds1;
+                            cmd1.CommandText = "pa_DosimetroPersonal_ins " + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue + "," + cbx_Sucursal.SelectedValue + ",'" + txt_Servicio.Text + "'," + txt_NDocumento.Text + ",'" + dtp_Fecha_dev.Text.Replace("-", " de ") + "'";
+                            cmd1.CommandType = CommandType.Text;
+
+                            ds1 = Conectar.Listar(cmd1);
+
+
+
+                            if (lbl_id_cliente.Text.Trim() != "")//id_ref=0 and
+                            {
+                                cmd1.CommandText = "select cast(count(n_dosimetro) as varchar(3))cant from ges_dosimetro_estado es where  es.Id_cliente = " + lbl_id_cliente.Text + " and es.id_periodo=" + cbx_id_periodo.SelectedValue.ToString() + " and Id_sucursal=" + cbx_Sucursal.SelectedValue.ToString() + " group by Id_sucursal";
+                                cmd1.CommandType = CommandType.Text;
+
+                                ds1 = Conectar.Listar(cmd1);
+                                if (ds1.Tables[0].Rows.Count > 0)
+                                {
+                                    groupBox2.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es:" + ds1.Tables[0].Rows[0][0].ToString();
+                                }
+                                else
+                                    groupBox2.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es: 0";
+                            }
+
+                            Listar_Grilla();
+                            txt_pelrefdesde.Text = "";
+                            txt_pelrefhasta.Text = "";
+                            txt_Pelicula.Text = "";
+                            txt_PeliculaHasta.Text = "";
+                            pnl_Progreso.Visible = false;
+                        }
+
+              }
+        }		
+
+		  private void btn_Filtro_Click(object sender, EventArgs e)
+		  {
+			  //txt_ref_cliente.ReadOnly = false;
+			  //txt_Rut.ReadOnly = false;
+			  //txt_ref_cliente.Text = "";
+			  //txt_Rut.Text = "";
+			  //txt_RazonSocial.Text = "";
+			  //Listar_Cliente(0);
+			  //Listar_Personal();
+			  //txt_ref_cliente.Focus();
+		  }
+
+		  private void btn_cargar_Click(object sender, EventArgs e)
+		  {
+              if (lbl_id_cliente.Text.ToString().Trim() != "")
+              {
+                  Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));                  
+                  Listar_Grilla();
+                  SqlCommand cmd = new SqlCommand();
+
+                  DataSet dt;
+
+
+                  cmd.CommandText = "SELECT replace([fecha_termino],'/',' - ')fecha" +
+                                          " FROM conf_periodo " +
+                                          " WHERE  id_periodo=" + cbx_id_periodo.SelectedValue + " ";
+                  cmd.CommandType = CommandType.Text;
+
+                  dt = Conectar.Listar(cmd);
+                  dtp_Fecha_dev.Text = dt.Tables[0].Rows[0]["fecha"].ToString();
+                  btn_Cargar_cliente_Click(sender,e);
+                  intContar = 0;
+              }
+		  }
+
+		 private void btn_filtro_Click_1(object sender, EventArgs e)
+		 {
+			 cbx_anno.Enabled = true;
+             cbx_id_periodo.Enabled = true;
+             txt_Pelicula.Text = "";
+             txt_PeliculaHasta.Text ="";
+             txt_pelrefdesde.Text = "";
+             txt_pelrefhasta.Text = ""; 
+             Cargar_Cliente(0);
+             lbl_id_cliente.Text = "0";
+             Listar_Grilla();
+             lbl_id_cliente.Text = "";
+             btn_Cargar_cliente.Enabled = true;
+             lbl_id_cliente.Enabled = true;
+             grp_Ingreso.Enabled = false;
+             btn_cargar.Enabled = true;
+			 cbx_anno.Focus();
+             intContar = 0;
+		 }
+
+		 private void btn_Cerrar_Click(object sender, EventArgs e)
+		 {
+			 this.Close();
+		 }
+
+         private void tsmEliminar_Click(object sender, EventArgs e)
+         {
+             SqlCommand cmd = new SqlCommand();
+             DataSet ds;
+
+
+             for (int intfila = 0; intfila <= grdDatos.RowCount  - 1; intfila++)
+                 {
+                     if (grdDatos.Rows[intfila].Selected  ==true)
+                    {
+                    //cmd.CommandText = "pa_Dosimetro_del " + grdDatos.SelectedRows[intfila].Cells[0].Value.ToString() + ",'" + Clases.clsUsuario.Usuario + "'";
+                    cmd = new SqlCommand();
+                        cmd.CommandText = "pa_Dosimetro_del " + grdDatos.Rows[intfila].Cells[0].Value.ToString() + ",'" + Clases.clsUsuario.Usuario + "'";
+                         cmd.CommandType = CommandType.Text;
+
+
+                         ds = Conectar.Listar(cmd);
+
+                         if (ds.Tables[0].Rows[0]["valor"].ToString() != "-1")
+                         {
+                             if (MessageBox.Show("Esta seguro de eliminar, esta asociado en otro proceso", "mensaje", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                             {
+                                 cmd = new SqlCommand();
+                                 cmd.CommandText = "pa_DosimetroForzar_del " + grdDatos.Rows[intfila].Cells[0].Value.ToString() + ",'" + Clases.clsUsuario.Usuario + "'";
+                                 cmd.CommandType = CommandType.Text;
+
+
+                                 ds = Conectar.Listar(cmd);
+                             }
+                         }
+                     }
+                 }
+                 Listar_Grilla();             
+         }
+      
+        #endregion
+
+		  #region "combobox"
+
+		  private void cbx_anno_SelectedIndexChanged(object sender, EventArgs e)
+		  {
+			  Cargar_Periodo();
+		  }
+
+		  #endregion
+
+		  #region "grilla"
+
+		  private void grdDatos_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+		  {
+			  if (grdDatos.IsCurrentCellDirty)
+			  {
+				  grdDatos.CommitEdit(DataGridViewDataErrorContexts.Commit);
+			  }
+		  }
+
+		  private void grdDatos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+		  {
+			  if ((grdDatos.Columns[e.ColumnIndex].Name == "Controlado")||(grdDatos.Columns[e.ColumnIndex].Name == "condosis"))
+			  {
+				  DataGridViewCheckBoxCell checkCell =	(DataGridViewCheckBoxCell)grdDatos.Rows[e.RowIndex].Cells["Controlado"];
+				  DataGridViewCheckBoxCell chkcondosis = (DataGridViewCheckBoxCell)grdDatos.Rows[e.RowIndex].Cells["condosis"];
+				  DataGridViewTextBoxCell  txtvalor = (DataGridViewTextBoxCell)grdDatos.Rows[e.RowIndex].Cells["valor"];				
+				  DataGridViewComboBoxCell cbxEstado = (DataGridViewComboBoxCell)grdDatos.Rows[e.RowIndex].Cells["Estado"];
+				  if (Convert.ToInt64(checkCell.Value) == 1)
+				  {
+					  chkcondosis.ReadOnly = false;
+                      intContar = intContar + 1;
+                      groupBox2.Text = "Listado       Registro:" + intContar.ToString();
+                      
+					  if (Convert.ToInt64(chkcondosis.Value) == 1)
+					  {
+						  txtvalor.ReadOnly = false;
+						  cbxEstado.ReadOnly = true;
+						  cbxEstado.Value = 0;
+					  }
+					  else
+					  {
+						  txtvalor.ReadOnly = true;
+						  txtvalor.Value = 0.00;
+						  cbxEstado.ReadOnly = false;
+					  }
+				  }
+				  else
+				  {
+					  txtvalor.ReadOnly = true;
+					  chkcondosis.ReadOnly = true;
+					  chkcondosis.ReadOnly = true;
+					  cbxEstado.ReadOnly = true;
+                      intContar = intContar - 1;
+                      groupBox2.Text = "Listado       Registro:" + intContar.ToString();
+				  }
+			  }		  
+			  
+		  }
+
+         private void grdDatos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+          {
+              //if (e.ColumnIndex == 9) //Column ColB
+              //{
+              //    if (e.Value != null)
+              //    {
+              //        try
+              //        {
+              //            e.CellStyle.Format = "N2";
+              //        }
+              //        catch (Exception)
+              //        {
+
+              //            MessageBox.Show("Ingrese solo número");
+              //        }
+
+                      
+              //    }
+              //}
+
+//              private void dataGridView1_CellValidating(object sender,
+//    DataGridViewCellValidatingEventArgs e)
+//{
+//    dataGridView1.Rows[e.RowIndex].ErrorText = "";
+//    int newInteger;
+
+//    // Don't try to validate the 'new row' until finished 
+//    // editing since there
+//    // is not any point in validating its initial value.
+//    if (dataGridView1.Rows[e.RowIndex].IsNewRow) { return; }
+//    if (!int.TryParse(e.FormattedValue.ToString(),
+//        out newInteger) || newInteger < 0)
+//    {
+//        e.Cancel = true;
+//        dataGridView1.Rows[e.RowIndex].ErrorText = "the value must be a non-negative integer";
+//    }
+//}
+          }
+
+        #endregion
+
+         private void btn_Imprimir_Click(object sender, EventArgs e)
+         {
+
+             DataSet dt;
+             dt = RptSobre(Convert.ToInt64(lbl_id_cliente.Text));
+
+             frmreporte frm = new frmreporte(dt, dt, 2);
+             frm.Show(this);
+             //Llamado_reporte(dt);
+
+             
+         }
+
+         private void frmIngresoPelicula_Load(object sender, EventArgs e)
+         {
+
+         }
+
+         public DataSet RptSobre(Int64 id_cliente)
+         {
+             DataSet ds = new DataSet();
+             SqlCommand cmd = new SqlCommand();
+             // SqlCommand cmd = new SqlCommand();
+             //MessageBox.Show("Conectado al servidor");
+
+             cmd.CommandText = "rtpSobre " + id_cliente.ToString ();
+
+             //"SELECT * FROM " +tabla.Name.ToString();// WHERE TABLE_SCHEMA = 'bd_sistema' AND "// +
+             // "TABLE_NAME = '" + tabla.Name.ToString()    + "'";
+             cmd.CommandType = CommandType.Text ;
+
+             ds = Conectar.Listar(cmd);
+             return ds;
+         }
+
+
+         private void btn_IngresoDosimetro_Click(object sender, EventArgs e)
+         {
+             frmDosimetriaPersonal frm = new frmDosimetriaPersonal(Convert.ToInt64(lbl_id_cliente.Text.ToString()));
+             frm.Show();
+             Listar_Grilla();
+         }
+
+         private void btn_Cargar_cliente_Click(object sender, EventArgs e)
+         {
+             Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
+         }
+
+         private void lbl_Direccion_Click(object sender, EventArgs e)
+         {
+
+         }
+
+         private void label1_Click(object sender, EventArgs e)
+         {
+
+         }
+
+         private void cbx_id_periodo_SelectedIndexChanged(object sender, EventArgs e)
+         {
+
+         }
+
+         private void label6_Click(object sender, EventArgs e)
+         {
+
+         }
+
+         private void label3_Click(object sender, EventArgs e)
+         {
+
+         }
+
+         private void txt_NDocumento_AcceptsTabChanged(object sender, EventArgs e)
+         {
+             
+         }
+
+         private void txt_NDocumento_Leave(object sender, EventArgs e)
+         {
+             SqlCommand cmd = new SqlCommand();
+
+             DataSet dt;
+
+
+             cmd.CommandText = "SELECT G.[id],[id_estadodosimetro],n_documento,[n_dosimetro], Descripcion" +
+                                     " FROM ges_dosimetro_estado G inner join glo_estadodosimetro e on e.id=g.id_estadodosimetro" +
+                                     " WHERE ((id_cliente <>" + lbl_id_cliente.Text + " ) or" +
+                                      " (id_cliente =" + lbl_id_cliente.Text + "  and  id_periodo<>" + cbx_id_periodo.SelectedValue + ")) " +
+                                     " and n_documento=" + txt_NDocumento.Text;
+             cmd.CommandType = CommandType.Text;
+
+             dt = Conectar.Listar(cmd);
+
+             if (dt.Tables[0].Rows.Count > 0)
+             {
+                 MessageBox.Show("No se puede asignar el n° de documento a otro cliente  o puede estar asignado en otro periodo");
+             }
+         }
+
+         private void pctAgregarSucursal_Click(object sender, EventArgs e)
+         {
+             frmBusquedaSucursal frm = new frmBusquedaSucursal(Convert.ToInt32(lbl_id_cliente.Text));
+             frm.ShowDialog(this);
+             Cargar_Sucursal();
+         }
+
+         private void tsb_Imprimir_Click(object sender, EventArgs e)
+         {
+             frmimprimedocpel frm = new frmimprimedocpel();
+             frm.Show(this);
+         }
+
+         private void cbx_Sucursal_SelectedIndexChanged(object sender, EventArgs e)
+         {
+             SqlCommand cmd1 = new SqlCommand();
+             DataSet ds1;
+             if (lbl_id_cliente.Text.Trim() != "")
+             {
+                 cmd1.CommandText = "select cast(count(n_dosimetro) as varchar(3))cant from ges_dosimetro_estado es where id_ref=0 and es.Id_cliente = " + lbl_id_cliente.Text + " and es.id_periodo=" + cbx_id_periodo.SelectedValue.ToString() + " and Id_sucursal=" + cbx_Sucursal.SelectedValue.ToString() + " group by Id_sucursal";
+                 cmd1.CommandType = CommandType.Text;
+
+                 ds1 = Conectar.Listar(cmd1);
+                 if (ds1.Tables[0].Rows.Count > 0)
+                 {
+                     groupBox2.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es:" + ds1.Tables[0].Rows[0][0].ToString();
+                 }
+                 else
+                     groupBox2.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es: 0";
+             }
+         }
+
+        
+    }
+}

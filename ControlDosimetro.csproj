@@ -1,0 +1,999 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{09D49D89-6658-47AD-8F51-65D22E77F042}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ControlDosimetro</RootNamespace>
+    <AssemblyName>ControlDosimetro</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>F:\instalador\instaladorv4\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>true</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <UpdateUrl>http://www.xray.cl/InstalacionSoftware3/</UpdateUrl>
+    <TargetCulture>es-CL</TargetCulture>
+    <ProductName>X-Ray Dosimetro</ProductName>
+    <SuiteName>Sistema Dosimetro</SuiteName>
+    <MinimumRequiredVersion>9.0.0.11</MinimumRequiredVersion>
+    <ApplicationRevision>12</ApplicationRevision>
+    <ApplicationVersion>9.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>true</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>F44849AE3A31873FD883D7297FB128BE0FE5A2EB</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>ControlDosimetro_3_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>dosimetro.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.69.1.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="dllConectores_MBE, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Andres ardenas\libreria\libreria_produccion\dllConectores_MBE.dll</HintPath>
+    </Reference>
+    <Reference Include="dllLibreriaMysql, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dllLibreriasqlCommand\dllLibreriaMysql\bin\Debug\dllLibreriaMysql.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="GridExtension">
+      <HintPath>..\..\..\GridExtension\GridExtension\bin\Debug\GridExtension.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportViewer.WinForms.10.0.40219.1\lib\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="SpreadsheetLight, Version=3.4.11.0, Culture=neutral, PublicKeyToken=32fbb46dc1730c57, processorArchitecture=MSIL">
+      <HintPath>packages\SpreadsheetLight.3.4.11\lib\net40\SpreadsheetLight.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clases\classUsuario.cs" />
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DB_A2B812_ControlDataSet.cs">
+      <DependentUpon>DB_A2B812_ControlDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DB_A2B812_ControlDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_A2B812_ControlDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DB_A2B812_ControlDataSet1.cs">
+      <DependentUpon>DB_A2B812_ControlDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DB_A2B812_ControlDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_A2B812_ControlDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarDcto\frmGenerarISP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarDcto\frmGenerarISP.Designer.cs">
+      <DependentUpon>frmGenerarISP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Herramientas\frmCorreccionTrimestral.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Herramientas\frmCorreccionTrimestral.Designer.cs">
+      <DependentUpon>frmCorreccionTrimestral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Herramientas\frmEnvioCorreos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Herramientas\frmEnvioCorreos.Designer.cs">
+      <DependentUpon>frmEnvioCorreos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Facturacion\frmPorFacturar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturacion\frmPorFacturar.Designer.cs">
+      <DependentUpon>frmPorFacturar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAcerceDe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAcerceDe.Designer.cs">
+      <DependentUpon>frmAcerceDe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUrlVigilanciadosimetrica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUrlVigilanciadosimetrica.Designer.cs">
+      <DependentUpon>frmUrlVigilanciadosimetrica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Herramientas\frmingdocumentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Herramientas\frmingdocumentos.designer.cs">
+      <DependentUpon>frmingdocumentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Herramientas\frmCambioContrasena.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Herramientas\frmCambioContrasena.Designer.cs">
+      <DependentUpon>frmCambioContrasena.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\frmBusquedaUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmBusquedaUsuario.Designer.cs">
+      <DependentUpon>frmBusquedaUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\frmMantenedorPerfil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmMantenedorPerfil.Designer.cs">
+      <DependentUpon>frmMantenedorPerfil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\frmUsuarioMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmUsuarioMant.Designer.cs">
+      <DependentUpon>frmUsuarioMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\frmTipoDocumentoMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmTipoDocumentoMant.Designer.cs">
+      <DependentUpon>frmTipoDocumentoMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\frmSucursalMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmSucursalMant.Designer.cs">
+      <DependentUpon>frmSucursalMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\frmBusquedaSucursal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmBusquedaSucursal.Designer.cs">
+      <DependentUpon>frmBusquedaSucursal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\frmImprimirSobreMasivo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmImprimirSobreMasivo.Designer.cs">
+      <DependentUpon>frmImprimirSobreMasivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Facturacion\frmAsociarFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturacion\frmAsociarFactura.Designer.cs">
+      <DependentUpon>frmAsociarFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Facturacion\frmFacturacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturacion\frmFacturacion.designer.cs">
+      <DependentUpon>frmFacturacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\frmBusquedaTipoDoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmBusquedaTipoDoc.Designer.cs">
+      <DependentUpon>frmBusquedaTipoDoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProcEnviar\frmModuloEnviado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProcEnviar\frmModuloEnviado.Designer.cs">
+      <DependentUpon>frmModuloEnviado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecepcionTLD\frmIngresoDosisTLD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecepcionTLD\frmIngresoDosisTLD.Designer.cs">
+      <DependentUpon>frmIngresoDosisTLD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecepcionTLD\frmIngresoDosimetroTLD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecepcionTLD\frmIngresoDosimetroTLD.Designer.cs">
+      <DependentUpon>frmIngresoDosimetroTLD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecepcionTLD\frmModuloIniciarProcesoTLD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecepcionTLD\frmModuloIniciarProcesoTLD.Designer.cs">
+      <DependentUpon>frmModuloIniciarProcesoTLD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recepcion\frmOrdenTrabajoFechaRecepcion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\frmOrdenTrabajoFechaRecepcion.Designer.cs">
+      <DependentUpon>frmOrdenTrabajoFechaRecepcion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recepcion\frmOrdenTrabajoPorDocumento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\frmOrdenTrabajoPorDocumento.Designer.cs">
+      <DependentUpon>frmOrdenTrabajoPorDocumento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recepcion\frmOrdenTrabajo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\frmOrdenTrabajo.Designer.cs">
+      <DependentUpon>frmOrdenTrabajo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recepcion\frmModuloRecepcion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\frmModuloRecepcion.Designer.cs">
+      <DependentUpon>frmModuloRecepcion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recepcion\frmDosimetriaPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\frmDosimetriaPersonal.Designer.cs">
+      <DependentUpon>frmDosimetriaPersonal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recepcion\frmimprimedocpel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\frmimprimedocpel.designer.cs">
+      <DependentUpon>frmimprimedocpel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recepcion\frmRecepcionPelicula.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\frmRecepcionPelicula.Designer.cs">
+      <DependentUpon>frmRecepcionPelicula.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recepcion\frmIngresoPelicula.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\frmIngresoPelicula.Designer.cs">
+      <DependentUpon>frmIngresoPelicula.cs</DependentUpon>
+    </Compile>
+    <Compile Include="reporte\frmRptcliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reporte\frmRptcliente.Designer.cs">
+      <DependentUpon>frmRptcliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="reporte\frmRptPorEstado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reporte\frmRptPorEstado.Designer.cs">
+      <DependentUpon>frmRptPorEstado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="reporte\frmreporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reporte\frmreporte.Designer.cs">
+      <DependentUpon>frmreporte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="reporte\frmRpDosimetria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reporte\frmRpDosimetria.Designer.cs">
+      <DependentUpon>frmRpDosimetria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recepcion\frmDosimetriaISP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\frmDosimetriaISP.Designer.cs">
+      <DependentUpon>frmDosimetriaISP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recepcion\frmIngresoDosimetria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\frmIngresoDosimetria.Designer.cs">
+      <DependentUpon>frmIngresoDosimetria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\frmSeccionMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmSeccionMant.Designer.cs">
+      <DependentUpon>frmSeccionMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\frmPersonalMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmPersonalMant.Designer.cs">
+      <DependentUpon>frmPersonalMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\frmBusquedaPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmBusquedaPersonal.Designer.cs">
+      <DependentUpon>frmBusquedaPersonal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\frmObservacionCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmObservacionCliente.Designer.cs">
+      <DependentUpon>frmObservacionCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\frmReferenciaMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmReferenciaMant.Designer.cs">
+      <DependentUpon>frmReferenciaMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\frmBusquedaReferencia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmBusquedaReferencia.Designer.cs">
+      <DependentUpon>frmBusquedaReferencia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\frmEmpresaMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmEmpresaMant.Designer.cs">
+      <DependentUpon>frmEmpresaMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\frmBusquedaEmpresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmBusquedaEmpresa.Designer.cs">
+      <DependentUpon>frmBusquedaEmpresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recepcion\frmParametro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\frmParametro.Designer.cs">
+      <DependentUpon>frmParametro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\frmParametroMant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmParametroMant.Designer.cs">
+      <DependentUpon>frmParametroMant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDIPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDIPrincipal.Designer.cs">
+      <DependentUpon>MDIPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PtOpenXmlUtil.cs" />
+    <Compile Include="PtUtil.cs" />
+    <Compile Include="ReplaceBookmarkText.cs" />
+    <Compile Include="RevisionAccepter.cs" />
+    <Compile Include="sistiamc_controlDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sistiamc_controlDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="sistiamc_controlDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sistiamc_controlDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="sistiamc_controlDataSet10.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sistiamc_controlDataSet10.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="sistiamc_controlDataSet11.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sistiamc_controlDataSet11.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="sistiamc_controlDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sistiamc_controlDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="sistiamc_controlDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sistiamc_controlDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="sistiamc_controlDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sistiamc_controlDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="sistiamc_controlDataSet51.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sistiamc_controlDataSet51.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="sistiamc_controlDataSet61.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sistiamc_controlDataSet61.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="sistiamc_controlDataSet7.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sistiamc_controlDataSet7.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="sistiamc_controlDataSet8.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sistiamc_controlDataSet8.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="sistiamc_controlDataSet9.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sistiamc_controlDataSet9.xsd</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarDcto\frmGenerarISP.resx">
+      <DependentUpon>frmGenerarISP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Herramientas\frmCorreccionTrimestral.resx">
+      <DependentUpon>frmCorreccionTrimestral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Herramientas\frmEnvioCorreos.resx">
+      <DependentUpon>frmEnvioCorreos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturacion\frmPorFacturar.resx">
+      <DependentUpon>frmPorFacturar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAcerceDe.resx">
+      <DependentUpon>frmAcerceDe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUrlVigilanciadosimetrica.resx">
+      <DependentUpon>frmUrlVigilanciadosimetrica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Herramientas\frmingdocumentos.resx">
+      <DependentUpon>frmingdocumentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Herramientas\frmCambioContrasena.resx">
+      <DependentUpon>frmCambioContrasena.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmBusquedaUsuario.resx">
+      <DependentUpon>frmBusquedaUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmMantenedorPerfil.resx">
+      <DependentUpon>frmMantenedorPerfil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmUsuarioMant.resx">
+      <DependentUpon>frmUsuarioMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmTipoDocumentoMant.resx">
+      <DependentUpon>frmTipoDocumentoMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmSucursalMant.resx">
+      <DependentUpon>frmSucursalMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmBusquedaSucursal.resx">
+      <DependentUpon>frmBusquedaSucursal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProcEnviar\frmModuloEnviado.resx">
+      <DependentUpon>frmModuloEnviado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecepcionTLD\frmIngresoDosisTLD.resx">
+      <DependentUpon>frmIngresoDosisTLD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecepcionTLD\frmIngresoDosimetroTLD.resx">
+      <DependentUpon>frmIngresoDosimetroTLD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecepcionTLD\frmModuloIniciarProcesoTLD.resx">
+      <DependentUpon>frmModuloIniciarProcesoTLD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepcion\frmOrdenTrabajoFechaRecepcion.resx">
+      <DependentUpon>frmOrdenTrabajoFechaRecepcion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepcion\frmOrdenTrabajoPorDocumento.resx">
+      <DependentUpon>frmOrdenTrabajoPorDocumento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepcion\frmOrdenTrabajo.resx">
+      <DependentUpon>frmOrdenTrabajo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepcion\frmModuloRecepcion.resx">
+      <DependentUpon>frmModuloRecepcion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepcion\frmDosimetriaISP.resx">
+      <DependentUpon>frmDosimetriaISP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmImprimirSobreMasivo.resx">
+      <DependentUpon>frmImprimirSobreMasivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepcion\frmimprimedocpel.resx">
+      <DependentUpon>frmimprimedocpel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepcion\frmIngresoDosimetria.resx">
+      <DependentUpon>frmIngresoDosimetria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmSeccionMant.resx">
+      <DependentUpon>frmSeccionMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmPersonalMant.resx">
+      <DependentUpon>frmPersonalMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmBusquedaPersonal.resx">
+      <DependentUpon>frmBusquedaPersonal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmObservacionCliente.resx">
+      <DependentUpon>frmObservacionCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmReferenciaMant.resx">
+      <DependentUpon>frmReferenciaMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmBusquedaReferencia.resx">
+      <DependentUpon>frmBusquedaReferencia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmBusquedaEmpresa.resx">
+      <DependentUpon>frmBusquedaEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmEmpresaMant.resx">
+      <DependentUpon>frmEmpresaMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmBusquedaTipoDoc.resx">
+      <DependentUpon>frmBusquedaTipoDoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepcion\frmParametro.resx">
+      <DependentUpon>frmParametro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmParametroMant.resx">
+      <DependentUpon>frmParametroMant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDIPrincipal.resx">
+      <DependentUpon>MDIPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Facturacion\frmAsociarFactura.resx">
+      <DependentUpon>frmAsociarFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturacion\frmFacturacion.resx">
+      <DependentUpon>frmFacturacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepcion\frmDosimetriaPersonal.resx">
+      <DependentUpon>frmDosimetriaPersonal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepcion\frmRecepcionPelicula.resx">
+      <DependentUpon>frmRecepcionPelicula.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepcion\frmIngresoPelicula.resx">
+      <DependentUpon>frmIngresoPelicula.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reporte\frmRptcliente.resx">
+      <DependentUpon>frmRptcliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reporte\rptDosimetriaEnc.rdlc" />
+    <EmbeddedResource Include="reporte\rptDosimetriaAnualPorSucursal.rdlc" />
+    <EmbeddedResource Include="reporte\frmRptPorEstado.resx">
+      <DependentUpon>frmRptPorEstado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reporte\frmreporte.resx">
+      <DependentUpon>frmreporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reporte\frmRpDosimetria.resx">
+      <DependentUpon>frmRpDosimetria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reporte\rptDosimetria.rdlc" />
+    <EmbeddedResource Include="reporte\rptDosimetriaAnual.rdlc" />
+    <EmbeddedResource Include="reporte\rptDosimetriaEnc__.rdlc" />
+    <EmbeddedResource Include="reporte\rptDosimetriaEnc_ori.rdlc" />
+    <EmbeddedResource Include="reporte\rptEstadoDosimetro.rdlc" />
+    <EmbeddedResource Include="reporte\rptOrdenTrabajo.rdlc" />
+    <EmbeddedResource Include="reporte\rptVerificacion.rdlc" />
+    <EmbeddedResource Include="reporte\rptPorNumeroDosimetro.rdlc" />
+    <EmbeddedResource Include="reporte\rptSobre.rdlc" />
+    <EmbeddedResource Include="resplado\rptDosimetria.rdlc" />
+    <EmbeddedResource Include="resplado\rptDosimetriaEnc.rdlc" />
+    <EmbeddedResource Include="resplado\rptDosimetriaPersonal.rdlc" />
+    <EmbeddedResource Include="resplado\rptSobre.rdlc" />
+    <EmbeddedResource Include="rptDosimetria.rdlc" />
+    <EmbeddedResource Include="rptDosimetriaEnc.rdlc" />
+    <None Include="ControlDosimetro_1_TemporaryKey.pfx" />
+    <None Include="ControlDosimetro_2_TemporaryKey.pfx" />
+    <None Include="ControlDosimetro_3_TemporaryKey.pfx" />
+    <None Include="ControlDosimetro_TemporaryKey.pfx" />
+    <None Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet2.xsc">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet2.xss">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DB_A2B812_ControlDataSet.xsc">
+      <DependentUpon>DB_A2B812_ControlDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DB_A2B812_ControlDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DB_A2B812_ControlDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DB_A2B812_ControlDataSet.xss">
+      <DependentUpon>DB_A2B812_ControlDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DB_A2B812_ControlDataSet1.xsc">
+      <DependentUpon>DB_A2B812_ControlDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DB_A2B812_ControlDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DB_A2B812_ControlDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DB_A2B812_ControlDataSet1.xss">
+      <DependentUpon>DB_A2B812_ControlDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Formato\cliente.xlsx" />
+    <None Include="Formato\FICHA-X-RAY-Formato.xls" />
+    <AdditionalFiles Include="Formato\FICHA-X-RAY-Formato1.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AdditionalFiles>
+    <None Include="Formato\FormatoTLD.xlsx" />
+    <None Include="Formato\Plantillaword.docx" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="reporte\rptPorClientePersonal.rdlc" />
+    <None Include="sistiamc_controlDataSet.xsc">
+      <DependentUpon>sistiamc_controlDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>sistiamc_controlDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="sistiamc_controlDataSet.xss">
+      <DependentUpon>sistiamc_controlDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet1.xsc">
+      <DependentUpon>sistiamc_controlDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>sistiamc_controlDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="sistiamc_controlDataSet1.xss">
+      <DependentUpon>sistiamc_controlDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet10.xsc">
+      <DependentUpon>sistiamc_controlDataSet10.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet10.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>sistiamc_controlDataSet10.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="sistiamc_controlDataSet10.xss">
+      <DependentUpon>sistiamc_controlDataSet10.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet11.xsc">
+      <DependentUpon>sistiamc_controlDataSet11.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet11.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>sistiamc_controlDataSet11.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="sistiamc_controlDataSet11.xss">
+      <DependentUpon>sistiamc_controlDataSet11.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet2.xsc">
+      <DependentUpon>sistiamc_controlDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>sistiamc_controlDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="sistiamc_controlDataSet2.xss">
+      <DependentUpon>sistiamc_controlDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet3.xsc">
+      <DependentUpon>sistiamc_controlDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>sistiamc_controlDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="sistiamc_controlDataSet3.xss">
+      <DependentUpon>sistiamc_controlDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet4.xsc">
+      <DependentUpon>sistiamc_controlDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>sistiamc_controlDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="sistiamc_controlDataSet4.xss">
+      <DependentUpon>sistiamc_controlDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet51.xsc">
+      <DependentUpon>sistiamc_controlDataSet51.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet51.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>sistiamc_controlDataSet51.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="sistiamc_controlDataSet51.xss">
+      <DependentUpon>sistiamc_controlDataSet51.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet61.xsc">
+      <DependentUpon>sistiamc_controlDataSet61.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet61.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>sistiamc_controlDataSet61.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="sistiamc_controlDataSet61.xss">
+      <DependentUpon>sistiamc_controlDataSet61.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet7.xsc">
+      <DependentUpon>sistiamc_controlDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet7.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>sistiamc_controlDataSet7.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="sistiamc_controlDataSet7.xss">
+      <DependentUpon>sistiamc_controlDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet8.xsc">
+      <DependentUpon>sistiamc_controlDataSet8.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet8.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>sistiamc_controlDataSet8.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="sistiamc_controlDataSet8.xss">
+      <DependentUpon>sistiamc_controlDataSet8.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet9.xsc">
+      <DependentUpon>sistiamc_controlDataSet9.xsd</DependentUpon>
+    </None>
+    <None Include="sistiamc_controlDataSet9.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>sistiamc_controlDataSet9.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="sistiamc_controlDataSet9.xss">
+      <DependentUpon>sistiamc_controlDataSet9.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dosimetro.ico" />
+    <Content Include="Imagen\Agregar.png" />
+    <Content Include="Imagen\Buscar.png" />
+    <Content Include="Imagen\Check.bmp" />
+    <Content Include="Imagen\Check.ico" />
+    <Content Include="Imagen\Check1.bmp" />
+    <Content Include="Imagen\cliente.jpg" />
+    <Content Include="Imagen\Delete.ICO" />
+    <Content Include="Imagen\delete_32.png" />
+    <Content Include="Imagen\Detalle.png" />
+    <Content Include="Imagen\documents_32.png" />
+    <Content Include="Imagen\exit.png" />
+    <Content Include="Imagen\Filmica.png" />
+    <Content Include="Imagen\firma.jpg" />
+    <Content Include="Imagen\Limpiar.png" />
+    <Content Include="Imagen\Nueva imagen.JPG" />
+    <Content Include="Imagen\nuevo32.ico" />
+    <Content Include="Imagen\Personal.png" />
+    <Content Include="Imagen\print_32.png" />
+    <Content Include="Imagen\REFERENCIA.png" />
+    <Content Include="Imagen\regresar.png" />
+    <Content Include="Imagen\save_32.png" />
+    <None Include="Resources\CambioContrasena.PNG" />
+    <None Include="Resources\minimizar.PNG" />
+    <None Include="Resources\excel.PNG" />
+    <None Include="Resources\letracolor.png" />
+    <None Include="Resources\letra.png" />
+    <None Include="Resources\iconoNregrita.png" />
+    <None Include="Imagen\save_321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Archivo\" />
+    <Folder Include="bin\Debug\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="bin\Debug\dllLibreriaMysql.pdb">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="dllLibreriaMysql.pdb">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,KB2468871">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 y x64%29 y actualización para .NET Framework 4 %28KB2468871%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

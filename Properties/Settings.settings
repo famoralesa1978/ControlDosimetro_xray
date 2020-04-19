@@ -1,0 +1,63 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ControlDosimetro.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Publicacion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">desarrollo</Value>
+    </Setting>
+    <Setting Name="Formato" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\\formato\\</Value>
+    </Setting>
+    <Setting Name="Archivo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\\formato\\</Value>
+    </Setting>
+    <Setting Name="sistiamc_controlConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=198.38.93.11;Initial Catalog=sistiamc_control;Persist Security Info=false;User ID=sistiamc_cont;Password=usrcontrol1&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=198.38.93.11;Initial Catalog=sistiamc_control;Persist Security Info=false;User ID=sistiamc_cont;Password=usrcontrol1</Value>
+    </Setting>
+    <Setting Name="sistiamc_controlConnectionString1" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=198.38.93.11;Initial Catalog=sistiamc_control;Persist Security Info=false;User ID=sistiamc_xray;Password=usrcontrol1&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=198.38.93.11;Initial Catalog=sistiamc_control;Persist Security Info=false;User ID=sistiamc_xray;Password=usrcontrol1</Value>
+    </Setting>
+    <Setting Name="sistiamc_controlConnectionString2" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=fmorales;Initial Catalog=sistiamc_control;User ID=sa;Password=sa1234567&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=fmorales;Initial Catalog=sistiamc_control;User ID=sa;Password=sa1234567</Value>
+    </Setting>
+    <Setting Name="sistiamc_controlConnectionString3" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=fmorales;Initial Catalog=sistiamc_control;Integrated Security=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=fmorales;Initial Catalog=sistiamc_control;Integrated Security=True</Value>
+    </Setting>
+    <Setting Name="ConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=sql7001.site4now.net;Persist Security Info=True;User ID=DB_A2B812_desarrollo_admin;Password=xray2017&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=sql7001.site4now.net;Persist Security Info=True;User ID=DB_A2B812_desarrollo_admin;Password=xray2017</Value>
+    </Setting>
+    <Setting Name="DB_A2B812_ControlConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=sql7001.site4now.net;Initial Catalog=DB_A2B812_Control;User ID=DB_A2B812_control_admin;Password=xray2017&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=sql7001.site4now.net;Initial Catalog=DB_A2B812_Control;User ID=DB_A2B812_control_admin;Password=xray2017</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
