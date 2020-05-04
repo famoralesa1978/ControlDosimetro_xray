@@ -40,9 +40,10 @@
             this.btn_Cerrar = new System.Windows.Forms.Button();
             this.btn_Corregir = new System.Windows.Forms.Button();
             this.pnl_Progreso = new System.Windows.Forms.GroupBox();
-            this.btn_Entidades = new System.Windows.Forms.Button();
-            this.btn_Toes = new System.Windows.Forms.Button();
             this.btn_Dosis = new System.Windows.Forms.Button();
+            this.btn_Toes = new System.Windows.Forms.Button();
+            this.btn_Entidades = new System.Windows.Forms.Button();
+            this.lbl_Status = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.pnl_Progreso.SuspendLayout();
@@ -56,7 +57,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(5, 28);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(410, 104);
+            this.groupBox1.Size = new System.Drawing.Size(410, 89);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cargar Datos";
@@ -69,6 +70,7 @@
             this.cbx_id_periodo.Name = "cbx_id_periodo";
             this.cbx_id_periodo.Size = new System.Drawing.Size(121, 21);
             this.cbx_id_periodo.TabIndex = 43;
+            this.cbx_id_periodo.SelectedIndexChanged += new System.EventHandler(this.cbx_id_periodo_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -130,7 +132,7 @@
             // btn_Cerrar
             // 
             this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_Cerrar.Location = new System.Drawing.Point(254, 138);
+            this.btn_Cerrar.Location = new System.Drawing.Point(254, 157);
             this.btn_Cerrar.Name = "btn_Cerrar";
             this.btn_Cerrar.Size = new System.Drawing.Size(83, 23);
             this.btn_Cerrar.TabIndex = 8;
@@ -140,7 +142,7 @@
             // 
             // btn_Corregir
             // 
-            this.btn_Corregir.Location = new System.Drawing.Point(62, 136);
+            this.btn_Corregir.Location = new System.Drawing.Point(62, 155);
             this.btn_Corregir.Name = "btn_Corregir";
             this.btn_Corregir.Size = new System.Drawing.Size(126, 23);
             this.btn_Corregir.TabIndex = 9;
@@ -160,14 +162,15 @@
             this.pnl_Progreso.TabStop = false;
             this.pnl_Progreso.Text = "Descarga informe";
             // 
-            // btn_Entidades
+            // btn_Dosis
             // 
-            this.btn_Entidades.Location = new System.Drawing.Point(17, 19);
-            this.btn_Entidades.Name = "btn_Entidades";
-            this.btn_Entidades.Size = new System.Drawing.Size(100, 23);
-            this.btn_Entidades.TabIndex = 10;
-            this.btn_Entidades.Text = "ENTIDADES ";
-            this.btn_Entidades.UseVisualStyleBackColor = true;
+            this.btn_Dosis.Location = new System.Drawing.Point(242, 18);
+            this.btn_Dosis.Name = "btn_Dosis";
+            this.btn_Dosis.Size = new System.Drawing.Size(75, 23);
+            this.btn_Dosis.TabIndex = 12;
+            this.btn_Dosis.Text = "DOSIS";
+            this.btn_Dosis.UseVisualStyleBackColor = true;
+            this.btn_Dosis.Click += new System.EventHandler(this.btn_Dosis_Click);
             // 
             // btn_Toes
             // 
@@ -177,21 +180,33 @@
             this.btn_Toes.TabIndex = 11;
             this.btn_Toes.Text = "TOES";
             this.btn_Toes.UseVisualStyleBackColor = true;
+            this.btn_Toes.Click += new System.EventHandler(this.btn_Toes_Click);
             // 
-            // btn_Dosis
+            // btn_Entidades
             // 
-            this.btn_Dosis.Location = new System.Drawing.Point(242, 18);
-            this.btn_Dosis.Name = "btn_Dosis";
-            this.btn_Dosis.Size = new System.Drawing.Size(75, 23);
-            this.btn_Dosis.TabIndex = 12;
-            this.btn_Dosis.Text = "DOSIS";
-            this.btn_Dosis.UseVisualStyleBackColor = true;
+            this.btn_Entidades.Location = new System.Drawing.Point(17, 19);
+            this.btn_Entidades.Name = "btn_Entidades";
+            this.btn_Entidades.Size = new System.Drawing.Size(100, 23);
+            this.btn_Entidades.TabIndex = 10;
+            this.btn_Entidades.Text = "ENTIDADES ";
+            this.btn_Entidades.UseVisualStyleBackColor = true;
+            this.btn_Entidades.Click += new System.EventHandler(this.btn_Entidades_Click);
+            // 
+            // lbl_Status
+            // 
+            this.lbl_Status.AutoSize = true;
+            this.lbl_Status.ForeColor = System.Drawing.Color.Maroon;
+            this.lbl_Status.Location = new System.Drawing.Point(62, 124);
+            this.lbl_Status.Name = "lbl_Status";
+            this.lbl_Status.Size = new System.Drawing.Size(0, 13);
+            this.lbl_Status.TabIndex = 10;
             // 
             // frmGenerarISP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(430, 263);
+            this.Controls.Add(this.lbl_Status);
             this.Controls.Add(this.pnl_Progreso);
             this.Controls.Add(this.btn_Corregir);
             this.Controls.Add(this.btn_Cerrar);
@@ -228,5 +243,6 @@
         private System.Windows.Forms.Button btn_Dosis;
         private System.Windows.Forms.Button btn_Toes;
         private System.Windows.Forms.Button btn_Entidades;
+        private System.Windows.Forms.Label lbl_Status;
     }
 }

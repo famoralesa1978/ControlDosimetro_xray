@@ -48,7 +48,7 @@ namespace ControlDosimetro
             };
             //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
             DataSet dt;
-            dt = Conectar.Listar(cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
             cbxAnno.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
             cbxAnno.DataSource = dt.Tables[0];
@@ -62,7 +62,7 @@ namespace ControlDosimetro
                 CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ '°T' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_annoCambio.Text
             };
             DataSet dt;
-            dt = Conectar.Listar(cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
             cbx_id_periodoCambio.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
             cbx_id_periodoCambio.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -77,7 +77,7 @@ namespace ControlDosimetro
                 "FROM conf_periodo  per inner join ges_dosimetro_estado ges on per.Id_Periodo=ges.Id_Periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text + "  and id_cliente=" + lbl_id_cliente.Text + " order by mes"
             };
             DataSet dt;
-            dt = Conectar.Listar(cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
             if (dt.Tables[0].Rows.Count > 0)
             {
@@ -169,7 +169,7 @@ namespace ControlDosimetro
 
                  cmd.CommandText = "pa_CambiarNDocumentoTrimestre_upd " + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue + "," + cbx_id_periodoCambio.Text;
                  cmd.CommandType = CommandType.Text;
-                 ds = Conectar.Listar(cmd);
+                 ds = Conectar.Listar(Clases.clsBD.BD,cmd);
 
                  if (ds.Tables[0].Rows[0][0].ToString() != "-1")
                  {

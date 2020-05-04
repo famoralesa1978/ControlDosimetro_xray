@@ -21,9 +21,7 @@ namespace ControlDosimetro
         #region "Definicion variable"
         clsConectorSqlServer Conectar = new clsConectorSqlServer();
         clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-        clsEventoControl ClaseEvento = new clsEventoControl();
-
-        
+        clsEventoControl ClaseEvento = new clsEventoControl();             
 
         dllLibreriaMysql.clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
         #endregion
@@ -32,6 +30,13 @@ namespace ControlDosimetro
         {
             InitializeComponent();
             this.labelVersion.Text = String.Format("Versión {0}", AssemblyVersion);
+            Clases.clsBD.BD = "Desarrollo";
+            if (Clases.clsBD.BD == "Desarrollo")
+            {
+                this.BackColor = Color.Green;
+                this.Text = this.Text + " Desarrollo";
+            }
+                
         }
 
         #region Descriptores de acceso de atributos de ensamblado
@@ -132,7 +137,7 @@ namespace ControlDosimetro
                 cmd.CommandText = "pa_login_sel '" + txt_Usuario.Text.Trim() + "','" + Clave + "'";
                 cmd.CommandType = CommandType.Text;
 
-                ds = Conectar.Listar(cmd);
+                ds = Conectar.Listar(Clases.clsBD.BD,cmd);
 
                 if (ds.Tables[0].Rows.Count == 0)
                     MessageBox.Show("El usuario no existe");

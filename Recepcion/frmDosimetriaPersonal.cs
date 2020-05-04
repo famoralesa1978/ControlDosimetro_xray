@@ -37,7 +37,7 @@ namespace ControlDosimetro
             //    cmdcombo.CommandText = "select 0 as Id_DetParametro, 'Seleccione' as Glosa, 0 as orden union all " +
             //      "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 order by orden ";
             //    cmdcombo.CommandType = CommandType.Text;
-            //    dtcombo = Conectar.Listar(cmdcombo);
+            //    dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
 
             //    //DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns["Estado"] as DataGridViewComboBoxColumn;
             //    ////
@@ -66,7 +66,7 @@ namespace ControlDosimetro
                                     " WHERE Id_cliente= " + intCodCliente.ToString();
 					DataSet dt;
 
-					dt = Conectar.Listar(cmd);
+					dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
                     if (dt.Tables[0].Rows.Count > 0)
                     {
@@ -99,7 +99,7 @@ namespace ControlDosimetro
                                         " WHERE id_cliente=" +  lbl_id_cliente.Text + "  and  g.id_periodo=" + cbx_id_periodo.SelectedValue + " " ;
 			  cmd.CommandType = CommandType.Text;
 	 
-			  dt = Conectar.Listar(cmd);
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 			  grdDatos.DataSource = dt.Tables[0];
 
               if (dt.Tables[0].Rows.Count > 0)
@@ -150,7 +150,7 @@ namespace ControlDosimetro
 			  cmd.CommandText = "SELECT distinct Anno FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			  //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			  DataSet dt;
-			  dt = Conectar.Listar(cmd);
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
 			  cbx_anno.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			  cbx_anno.DataSource = dt.Tables[0];
@@ -166,7 +166,7 @@ namespace ControlDosimetro
               cmd.CommandText = "SELECT distinct N_Documento FROM [dbo].[ges_dosimetro_estado] WHERE id_cliente=" + lbl_id_cliente.Text + "  and  id_periodo=" + cbx_id_periodo.SelectedValue;
               //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
               DataSet dt;
-              dt = Conectar.Listar(cmd);
+              dt = Conectar.Listar(Clases.clsBD.BD,cmd);
               
               cbx_NDocumento.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
               cbx_NDocumento.DataSource = dt.Tables[0];
@@ -187,7 +187,7 @@ namespace ControlDosimetro
                                       " and n_documento=" + txt_NDocumento.Text;
               cmd.CommandType = CommandType.Text;
 
-              dt = Conectar.Listar(cmd);
+              dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
               if (dt.Tables[0].Rows.Count > 0)
               {
@@ -205,7 +205,7 @@ namespace ControlDosimetro
 
               cmd.CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ '°T' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text;
               DataSet dt;
-              dt = Conectar.Listar(cmd);
+              dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
               cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
               cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -230,7 +230,7 @@ namespace ControlDosimetro
                   "inner join glo_comuna co on co.id_comuna=s.Id_Comuna " +
                   "where run='" + lbl_rut.Text + "' and s.id_estado=1";
               DataSet dt;
-              dt = Conectar.Listar(cmd);
+              dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
               cbx_Sucursal.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
               cbx_Sucursal.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -275,7 +275,7 @@ namespace ControlDosimetro
             cmd.CommandText = "pa_DosimetroPersonal_ins " + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue + ","+ cbx_Sucursal.SelectedValue  + ",'" + txt_Servicio.Text + "'," + cbx_NDocumento.Text  + ",'" + dtp_Fecha_inicio.Text.Replace("-"," de ") + "'";
             cmd.CommandType = CommandType.Text;
 
-            ds = Conectar.Listar(cmd);
+            ds = Conectar.Listar(Clases.clsBD.BD,cmd);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     if (ds.Tables[0].Rows[0][0].ToString() != "0")
@@ -338,7 +338,7 @@ namespace ControlDosimetro
              cmd.CommandType = CommandType.Text;
             DataSet ds;
 
-            ds = Conectar.Listar(cmd);
+            ds = Conectar.Listar(Clases.clsBD.BD,cmd);
             if (ds.Tables[0].Rows.Count > 0)
             {
                 MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());    
@@ -357,7 +357,7 @@ namespace ControlDosimetro
                      SqlCommand cmd = new SqlCommand();
                      cmd.CommandText = "pa_CambiarNDocumento_upd " + cbx_NDocumento.Text + "," + txt_NDocumento.Text ;
                      cmd.CommandType = CommandType.Text;
-                     Conectar.AgregarModificarEliminar(cmd);
+                     Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
 
 
                      txt_NDocumento.Text = "";
@@ -374,7 +374,7 @@ namespace ControlDosimetro
              SqlCommand cmd = new SqlCommand();
              // SqlCommand cmd = new SqlCommand();
 
-             //// dtcombo = Conectar.Listar(cmdcombo);
+             //// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
 
             
              string strId;
@@ -391,7 +391,7 @@ namespace ControlDosimetro
 
                      cmd.CommandText = "pa_Dosimetro_upd " + strId + "," + intintId_Estado_temp.ToString() + ",'" + Clases.clsUsuario.Usuario + "','" + txt_Observacion.Text + "'" ;
                      cmd.CommandType = CommandType.Text;
-                     Conectar.AgregarModificarEliminar(cmd);
+                     Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
                
 
 
@@ -513,12 +513,12 @@ namespace ControlDosimetro
              cmd.CommandText = "rtpDosimetriaPersonal_Enc " + lbl_id_cliente.Text  + "," + cbx_id_periodo.SelectedValue + "," + cbx_NDocumento.Text;
              cmd.CommandType = CommandType.Text;
 
-             ds = Conectar.Listar(cmd);
+             ds = Conectar.Listar(Clases.clsBD.BD,cmd);
 
              cmd.CommandText = "rtpDosimetriaPersonal_det " + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue + "," + cbx_NDocumento.Text;
              cmd.CommandType = CommandType.Text;
 
-             ds2 = Conectar.Listar(cmd);
+             ds2 = Conectar.Listar(Clases.clsBD.BD,cmd);
              //pnl_sobre.Visible = true;
              frmreporte frm = new frmreporte(ds, ds2, 1);
              frm.Show(this);
@@ -548,7 +548,7 @@ namespace ControlDosimetro
              cmd.CommandText = "pa_DosimetroPersonal_sel " + lbl_id_cliente.Text   + ","+ cbx_id_periodo.SelectedValue + "," + cbx_NDocumento.Text;
              cmd.CommandType = CommandType.Text;
 
-             ds = Conectar.Listar(cmd);
+             ds = Conectar.Listar(Clases.clsBD.BD,cmd);
 
              if (ds.Tables[0].Rows.Count > 0)
              {

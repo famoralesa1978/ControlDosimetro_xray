@@ -35,7 +35,7 @@ namespace ControlDosimetro
 				cmdcombo.CommandText = "select 0 as Id_DetParametro, 'Seleccione' as Glosa, 0 as orden union all " +
 				  "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 order by orden ";
 				cmdcombo.CommandType = CommandType.Text;
-				dtcombo = Conectar.Listar(cmdcombo);
+				dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
 
 				DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns["Estado"] as DataGridViewComboBoxColumn;
 				//
@@ -65,7 +65,7 @@ namespace ControlDosimetro
 	                    " where id_estadodosimetro=12    order by PosicionDisco";
 			  cmd.CommandType = CommandType.Text;
 	 
-			  dt = Conectar.Listar(cmd);
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 			  grdDatos.DataSource = dt.Tables[0];
 
               string filterExp = "controlado = 1";
@@ -107,7 +107,7 @@ namespace ControlDosimetro
               SqlCommand cmd = new SqlCommand();
 				 // SqlCommand cmd = new SqlCommand();
 
-				  // dtcombo = Conectar.Listar(cmdcombo);
+				  // dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
 
 				  DataGridViewCheckBoxCell checkCell;
 				  DataGridViewCheckBoxCell chkcondosis;
@@ -168,11 +168,11 @@ namespace ControlDosimetro
                                                                      ",cast(" + txtvalor.Value.ToString().Replace(",", ".") + " as decimal(10,2)), " + strid_periodo + ", 0," + txtNPelicula.Value.ToString() +
                                                                       " , 1," + txtcristal1.Value.ToString() + "," + txtcristal2.Value.ToString() + ") ";
                                   cmd.CommandType = CommandType.Text;
-                                  Conectar.AgregarModificarEliminar(cmd);
+                                  Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
 
                                   cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "',''";
                                   cmd.CommandType = CommandType.Text;
-                                  Conectar.AgregarModificarEliminar(cmd);
+                                  Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
                               }
                               else
                               {
@@ -190,11 +190,11 @@ namespace ControlDosimetro
                                                                  "Cristal2=" + txtcristal2.Value.ToString() + 
                                                              " where id_dosimetro=" + strid_dosimetro;
                                       cmd.CommandType = CommandType.Text;
-                                      Conectar.AgregarModificarEliminar(cmd);
+                                      Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
 
                                       cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "',''";
                                       cmd.CommandType = CommandType.Text;
-                                      Conectar.AgregarModificarEliminar(cmd);
+                                      Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
 
                                   }
 
@@ -203,13 +203,13 @@ namespace ControlDosimetro
                                       cmd.CommandText = "delete from tbl_dosimetria " +
                                                              " where id_dosimetro=" + strid_dosimetro;
                                       cmd.CommandType = CommandType.Text;
-                                      Conectar.AgregarModificarEliminar(cmd);
+                                      Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
 
                                       //if (txtNPelicula.Value.ToString() != "")
                                       //{
                                       //    cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "',''";
                                       //      cmd.CommandType = CommandType.Text;
-                                      //      Conectar.AgregarModificarEliminar(cmd);
+                                      //      Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
                                       //}
                                       
                                   }

@@ -42,7 +42,7 @@ namespace ControlDosimetro
 
             cmd.CommandText = "pa_ListarPeriodoFechaTermino_sel";
             DataSet dt;
-            dt = Conectar.Listar(cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
             cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
             cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -57,7 +57,7 @@ namespace ControlDosimetro
             cmd.CommandText = "SELECT run,Razon_Social,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente " +
                         " FROM tbl_cliente WHERE Id_cliente= " + lbl_Id_Cliente.Text.ToString();
             DataSet dt;
-            dt = Conectar.Listar(cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
             lbl_nombre.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
             lbl_rut.Text = dt.Tables[0].Rows[0]["run"].ToString();
@@ -77,14 +77,14 @@ namespace ControlDosimetro
 						if (MessageBox.Show("Desea grabar la observación", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
 						{
 							
-							ClaseComun.Insertar(tbl_observacioncliente,ref bolResult);
+							ClaseComun.Insertar(Clases.clsBD.BD,tbl_observacioncliente,ref bolResult);
 							if (bolResult == true)
 							{
                                 SqlCommand cmd = new SqlCommand();
                                 cmd.CommandText = "update tbl_cliente_Historial set FechaTermino=" + dtp_FechaTermino.Text + " where FechaTermino is null and id_cliente=" + lbl_Id_Cliente.Text + " and run='" + lbl_rut.Text+ "'";
                                 cmd.CommandType = CommandType.Text;
 
-                                Conectar.AgregarModificarEliminar(cmd);
+                                Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
 								MessageBox.Show("Observación  Ingresada");
 								this.Close();
 							}

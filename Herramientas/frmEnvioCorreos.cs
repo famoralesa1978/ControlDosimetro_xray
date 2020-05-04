@@ -47,7 +47,7 @@ namespace ControlDosimetro
             };
             DataSet dt;
 
-					dt = Conectar.Listar(cmd);
+					dt = Conectar.Listar(Clases.clsBD.BD,cmd);
                     if (dt.Tables[0].Rows.Count > 0)
                     {
                         lbl_id_cliente.Text = intCodCliente.ToString();
@@ -165,7 +165,7 @@ namespace ControlDosimetro
                 CommandType = CommandType.Text
             };
 
-            ds = Conectar.Listar(cmd);
+            ds = Conectar.Listar(Clases.clsBD.BD,cmd);
              return ds;
          }
 
@@ -195,7 +195,7 @@ namespace ControlDosimetro
                 };
                 DataSet dt;
 
-					dt = Conectar.Listar(cmd);
+					dt = Conectar.Listar(Clases.clsBD.BD,cmd);
                     if (dt.Tables[0].Rows.Count > 0)
                     {
                         clsUtiles1.SendMailGmail(rtbCuerpo, txtNombre.Text, txtAsunto.Text, txtCorreo.Text, listBox2, dt.Tables[0].Rows[0]["Desde"].ToString(),

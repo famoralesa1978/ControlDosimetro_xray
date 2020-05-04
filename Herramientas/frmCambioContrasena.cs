@@ -39,7 +39,7 @@ namespace ControlDosimetro
             cmd.CommandText = "SELECT [Id_Usuario],[Rut],[Nombres],[Paterno],[Maternos],[Id_perfil],[Id_estado],[Usuario],[Contraseña],[Fecha_agregado],[Fecha_Modificacion]" +
                               " FROM [dbo].[tbl_Usuario] WHERE Id_Usuario= " + intCodUsuario.ToString();
 			  DataSet dt;
-			  dt = Conectar.Listar(cmd);
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
               // cbx_id_estado.SelectedValue  = cbx_id_estado.SelectedIndex;
               txt_Contraseña.Text = dt.Tables[0].Rows[0]["Contraseña"].ToString();
@@ -66,7 +66,7 @@ namespace ControlDosimetro
                 bolResult = false;
                 if (MessageBox.Show("Desea modifica la contraseña", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
                 {
-                    ClaseComun.ModificarDatos(tbl_Usuario, ref bolResult);
+                    ClaseComun.ModificarDatos(Clases.clsBD.BD,tbl_Usuario, ref bolResult);
                     if (bolResult == true)
                     {
 

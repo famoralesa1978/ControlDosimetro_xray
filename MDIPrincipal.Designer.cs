@@ -30,17 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIPrincipal));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Versión 8.0.1.0");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Versión 8.0.1.1");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Versión 8.0.1.2");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Versión 8.0.1.3");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Versión 8.0.1.5");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Versión del sistema y sus actualizaciones", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4,
-            treeNode5});
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Versión 8.0.1.0");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Versión 8.0.1.1");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Versión 8.0.1.2");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Versión 8.0.1.3");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Versión 8.0.1.5");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Versión del sistema y sus actualizaciones", new System.Windows.Forms.TreeNode[] {
+            treeNode13,
+            treeNode14,
+            treeNode15,
+            treeNode16,
+            treeNode17});
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.mnuMantenedor = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMantConfiguracionMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,6 +86,8 @@
             this.mnuFactura = new System.Windows.Forms.ToolStripMenuItem();
             this.facturaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.frmUtilidades = new System.Windows.Forms.ToolStripMenuItem();
+            this.frmUtilidadesRestablecerContrasenaCliente = new System.Windows.Forms.ToolStripMenuItem();
+            this.frmCambiaContrasena = new System.Windows.Forms.ToolStripMenuItem();
             this.frmUtilidadesEnviarCorreo = new System.Windows.Forms.ToolStripMenuItem();
             this.frmUtilidadesCambioTrimestre = new System.Windows.Forms.ToolStripMenuItem();
             this.frmUtilidadesAsociarDocumentoCliente = new System.Windows.Forms.ToolStripMenuItem();
@@ -115,6 +117,7 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.tsbPrincipal = new System.Windows.Forms.ToolStrip();
             this.tsbPrincipalCambioContraseña = new System.Windows.Forms.ToolStripButton();
+            this.tsbPrincipalCambioContraseñaCliente = new System.Windows.Forms.ToolStripButton();
             this.tsbPrincipalCliente = new System.Windows.Forms.ToolStripButton();
             this.tsbPrincipalPersonal = new System.Windows.Forms.ToolStripButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -488,6 +491,8 @@
             // frmUtilidades
             // 
             this.frmUtilidades.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.frmUtilidadesRestablecerContrasenaCliente,
+            this.frmCambiaContrasena,
             this.frmUtilidadesEnviarCorreo,
             this.frmUtilidadesCambioTrimestre,
             this.frmUtilidadesAsociarDocumentoCliente});
@@ -496,24 +501,38 @@
             this.frmUtilidades.Tag = "800";
             this.frmUtilidades.Text = "Herramientas";
             // 
+            // frmUtilidadesRestablecerContrasenaCliente
+            // 
+            this.frmUtilidadesRestablecerContrasenaCliente.Name = "frmUtilidadesRestablecerContrasenaCliente";
+            this.frmUtilidadesRestablecerContrasenaCliente.Size = new System.Drawing.Size(235, 22);
+            this.frmUtilidadesRestablecerContrasenaCliente.Text = "Restablecer contraseña Cliente";
+            this.frmUtilidadesRestablecerContrasenaCliente.Click += new System.EventHandler(this.frmUtilidadesRestablecerContrasenaCliente_Click);
+            // 
+            // frmCambiaContrasena
+            // 
+            this.frmCambiaContrasena.Name = "frmCambiaContrasena";
+            this.frmCambiaContrasena.Size = new System.Drawing.Size(235, 22);
+            this.frmCambiaContrasena.Text = "Cambiar contraseña";
+            this.frmCambiaContrasena.Click += new System.EventHandler(this.frmCambiaContrasena_Click);
+            // 
             // frmUtilidadesEnviarCorreo
             // 
             this.frmUtilidadesEnviarCorreo.Name = "frmUtilidadesEnviarCorreo";
-            this.frmUtilidadesEnviarCorreo.Size = new System.Drawing.Size(219, 22);
+            this.frmUtilidadesEnviarCorreo.Size = new System.Drawing.Size(235, 22);
             this.frmUtilidadesEnviarCorreo.Text = "Enviar Correo";
             this.frmUtilidadesEnviarCorreo.Click += new System.EventHandler(this.frmUtilidadesEnviarCorreo_Click);
             // 
             // frmUtilidadesCambioTrimestre
             // 
             this.frmUtilidadesCambioTrimestre.Name = "frmUtilidadesCambioTrimestre";
-            this.frmUtilidadesCambioTrimestre.Size = new System.Drawing.Size(219, 22);
+            this.frmUtilidadesCambioTrimestre.Size = new System.Drawing.Size(235, 22);
             this.frmUtilidadesCambioTrimestre.Text = "Cambio de Trimestre";
             this.frmUtilidadesCambioTrimestre.Click += new System.EventHandler(this.frmUtilidadesCambioTrimestre_Click);
             // 
             // frmUtilidadesAsociarDocumentoCliente
             // 
             this.frmUtilidadesAsociarDocumentoCliente.Name = "frmUtilidadesAsociarDocumentoCliente";
-            this.frmUtilidadesAsociarDocumentoCliente.Size = new System.Drawing.Size(219, 22);
+            this.frmUtilidadesAsociarDocumentoCliente.Size = new System.Drawing.Size(235, 22);
             this.frmUtilidadesAsociarDocumentoCliente.Text = "Asociar Documento Cliente";
             this.frmUtilidadesAsociarDocumentoCliente.Click += new System.EventHandler(this.frmUtilidadesAsociarDocumentoCliente_Click);
             // 
@@ -642,7 +661,7 @@
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.panel2);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.panel1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1059, 382);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1059, 368);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 24);
             this.toolStripContainer1.Name = "toolStripContainer1";
@@ -679,7 +698,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(859, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 382);
+            this.panel2.Size = new System.Drawing.Size(200, 368);
             this.panel2.TabIndex = 1;
             // 
             // panel1
@@ -688,7 +707,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 382);
+            this.panel1.Size = new System.Drawing.Size(200, 368);
             this.panel1.TabIndex = 0;
             // 
             // treeView1
@@ -696,21 +715,21 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Nodo1";
-            treeNode1.Text = "Versión 8.0.1.0";
-            treeNode2.Name = "Nodo2";
-            treeNode2.Text = "Versión 8.0.1.1";
-            treeNode3.Name = "Nodo3";
-            treeNode3.Text = "Versión 8.0.1.2";
-            treeNode4.Name = "Nodo4";
-            treeNode4.Text = "Versión 8.0.1.3";
-            treeNode5.Name = "Nodo5";
-            treeNode5.Text = "Versión 8.0.1.5";
-            treeNode6.Name = "Nodo0";
-            treeNode6.Text = "Versión del sistema y sus actualizaciones";
+            treeNode13.Name = "Nodo1";
+            treeNode13.Text = "Versión 8.0.1.0";
+            treeNode14.Name = "Nodo2";
+            treeNode14.Text = "Versión 8.0.1.1";
+            treeNode15.Name = "Nodo3";
+            treeNode15.Text = "Versión 8.0.1.2";
+            treeNode16.Name = "Nodo4";
+            treeNode16.Text = "Versión 8.0.1.3";
+            treeNode17.Name = "Nodo5";
+            treeNode17.Text = "Versión 8.0.1.5";
+            treeNode18.Name = "Nodo0";
+            treeNode18.Text = "Versión del sistema y sus actualizaciones";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode6});
-            this.treeView1.Size = new System.Drawing.Size(200, 382);
+            treeNode18});
+            this.treeView1.Size = new System.Drawing.Size(200, 368);
             this.treeView1.TabIndex = 0;
             this.treeView1.Click += new System.EventHandler(this.treeView1_Click);
             this.treeView1.DoubleClick += new System.EventHandler(this.treeView1_DoubleClick);
@@ -721,14 +740,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tsbPrincipal.Dock = System.Windows.Forms.DockStyle.None;
+            this.tsbPrincipal.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.tsbPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbPrincipalCambioContraseña,
+            this.tsbPrincipalCambioContraseñaCliente,
             this.tsbPrincipalCliente,
             this.tsbPrincipalPersonal});
             this.tsbPrincipal.Location = new System.Drawing.Point(0, 0);
             this.tsbPrincipal.Name = "tsbPrincipal";
             this.tsbPrincipal.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbPrincipal.Size = new System.Drawing.Size(1059, 25);
+            this.tsbPrincipal.Size = new System.Drawing.Size(1059, 39);
             this.tsbPrincipal.Stretch = true;
             this.tsbPrincipal.TabIndex = 2;
             // 
@@ -738,10 +759,20 @@
             this.tsbPrincipalCambioContraseña.Image = global::ControlDosimetro.Properties.Resources.CambioContrasena;
             this.tsbPrincipalCambioContraseña.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPrincipalCambioContraseña.Name = "tsbPrincipalCambioContraseña";
-            this.tsbPrincipalCambioContraseña.Size = new System.Drawing.Size(23, 22);
+            this.tsbPrincipalCambioContraseña.Size = new System.Drawing.Size(36, 36);
             this.tsbPrincipalCambioContraseña.Text = "Cambio contraseña";
             this.tsbPrincipalCambioContraseña.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.tsbPrincipalCambioContraseña.Click += new System.EventHandler(this.tsbPrincipalCambioContraseña_Click);
+            // 
+            // tsbPrincipalCambioContraseñaCliente
+            // 
+            this.tsbPrincipalCambioContraseñaCliente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbPrincipalCambioContraseñaCliente.Image = global::ControlDosimetro.Properties.Resources.CambioContrasenaCliente;
+            this.tsbPrincipalCambioContraseñaCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPrincipalCambioContraseñaCliente.Name = "tsbPrincipalCambioContraseñaCliente";
+            this.tsbPrincipalCambioContraseñaCliente.Size = new System.Drawing.Size(36, 36);
+            this.tsbPrincipalCambioContraseñaCliente.ToolTipText = "Restablecer  contraseña cliente";
+            this.tsbPrincipalCambioContraseñaCliente.Click += new System.EventHandler(this.tsbPrincipalCambioContraseñaCliente_Click);
             // 
             // tsbPrincipalCliente
             // 
@@ -749,7 +780,7 @@
             this.tsbPrincipalCliente.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrincipalCliente.Image")));
             this.tsbPrincipalCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPrincipalCliente.Name = "tsbPrincipalCliente";
-            this.tsbPrincipalCliente.Size = new System.Drawing.Size(23, 22);
+            this.tsbPrincipalCliente.Size = new System.Drawing.Size(36, 36);
             this.tsbPrincipalCliente.ToolTipText = "Cliente";
             this.tsbPrincipalCliente.Click += new System.EventHandler(this.mnuMantCliente_Click);
             // 
@@ -759,7 +790,7 @@
             this.tsbPrincipalPersonal.Image = global::ControlDosimetro.Properties.Resources.Personal;
             this.tsbPrincipalPersonal.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPrincipalPersonal.Name = "tsbPrincipalPersonal";
-            this.tsbPrincipalPersonal.Size = new System.Drawing.Size(23, 22);
+            this.tsbPrincipalPersonal.Size = new System.Drawing.Size(36, 36);
             this.tsbPrincipalPersonal.Text = "Personal";
             this.tsbPrincipalPersonal.Click += new System.EventHandler(this.mnuMantPersonal_Click);
             // 
@@ -881,6 +912,9 @@
         private System.Windows.Forms.ToolStripMenuItem frmGenerarDctoISPGenerar;
         private System.Windows.Forms.ToolStripMenuItem mnuMantConfiguracionMenu;
         private System.Windows.Forms.ToolStripButton tsbPrincipalCambioContraseña;
+        private System.Windows.Forms.ToolStripMenuItem frmCambiaContrasena;
+        private System.Windows.Forms.ToolStripMenuItem frmUtilidadesRestablecerContrasenaCliente;
+        private System.Windows.Forms.ToolStripButton tsbPrincipalCambioContraseñaCliente;
     }
 }
 

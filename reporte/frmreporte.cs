@@ -27,7 +27,7 @@ namespace ControlDosimetro
         public frmreporte(DataSet ds, DataSet ds2, int caseSwitch)
         {
             InitializeComponent();
-          // dt = ClaseComun.RptDosimetria(Convert.ToInt64(txt_NumeroCliente.Text), 0, "0", intanno);
+          // dt = ClaseComun.RptDosimetria(Clases.clsBD.BD,Convert.ToInt64(txt_NumeroCliente.Text), 0, "0", intanno);
             Llamado_reporte2Dataset(ds, ds2, caseSwitch);
           
         }
@@ -52,7 +52,7 @@ namespace ControlDosimetro
             cmdArchivo.CommandText = "" +
               "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=7 order by orden ";
             cmdArchivo.CommandType = CommandType.Text;
-            dtformato = Conectar.Listar(cmdArchivo);
+            dtformato = Conectar.Listar(Clases.clsBD.BD,cmdArchivo);
             // string targetPath = @ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text;
             string targetPath = @dtformato.Tables[0].Rows[0]["Glosa"].ToString();
             switch (caseSwitch)
@@ -92,6 +92,27 @@ namespace ControlDosimetro
                 case 5:
                     //reportViewer1.LocalReport.ReportPath = targetPath + "rptEstadoDosimetro.rdlc";
                     reportViewer1.LocalReport.ReportEmbeddedResource = "ControlDosimetro.reporte.rptVerificacion.rdlc";
+                    this.reportViewer1.LocalReport.DataSources.Clear();
+
+                    this.reportViewer1.LocalReport.DataSources.Add(datasource);
+                    break;
+                case 6:
+                    //reportViewer1.LocalReport.ReportPath = targetPath + "rptEstadoDosimetro.rdlc";
+                    reportViewer1.LocalReport.ReportEmbeddedResource = "ControlDosimetro.reporte.rptEntidades.rdlc";
+                    this.reportViewer1.LocalReport.DataSources.Clear();
+
+                    this.reportViewer1.LocalReport.DataSources.Add(datasource);
+                    break;
+                case 7:
+                    datasource = new ReportDataSource("DataSet1", ds.Tables[1]);
+                    reportViewer1.LocalReport.ReportEmbeddedResource = "ControlDosimetro.reporte.rptToes.rdlc";
+                    this.reportViewer1.LocalReport.DataSources.Clear();
+
+                    this.reportViewer1.LocalReport.DataSources.Add(datasource);
+                    break;
+                 case 8:
+                    datasource = new ReportDataSource("DataSet1", ds.Tables[2]);
+                    reportViewer1.LocalReport.ReportEmbeddedResource = "ControlDosimetro.reporte.rptDosis.rdlc";
                     this.reportViewer1.LocalReport.DataSources.Clear();
 
                     this.reportViewer1.LocalReport.DataSources.Add(datasource);

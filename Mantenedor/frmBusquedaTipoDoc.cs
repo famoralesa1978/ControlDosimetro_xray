@@ -36,7 +36,7 @@ namespace ControlDosimetro
         }
         private void Cargar_Estado()
         {
-            ClaseComun.Listar_Estado(ref cbx_id_estado, ref cbx_id_estado);
+            ClaseComun.Listar_Estado(Clases.clsBD.BD,ref cbx_id_estado, ref cbx_id_estado);
         }
 
         private void Listar_Grilla()
@@ -47,7 +47,7 @@ namespace ControlDosimetro
             cmd.CommandType = CommandType.Text;
 
             DataSet dt;
-            dt = Conectar.Listar(cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
             grdDatos.DataSource = dt.Tables[0];
         }

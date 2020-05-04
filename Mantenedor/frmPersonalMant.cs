@@ -67,7 +67,7 @@ namespace ControlDosimetro
       
         private void Cargar_Estado()
         {
-            ClaseComun.Listar_Estado(ref cbx_id_estado, ref cbx_id_estado);
+            ClaseComun.Listar_Estado(Clases.clsBD.BD,ref cbx_id_estado, ref cbx_id_estado);
         }
 
         private void Cargar_Cliente(Int64 intCodCliente)
@@ -78,7 +78,7 @@ namespace ControlDosimetro
 			  cmd.CommandText = "SELECT run,Razon_Social,N_Cliente_Ref,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
 							  " FROM tbl_cliente WHERE Id_cliente= " + intCodCliente.ToString();
 			  DataSet dt;
-			  dt = Conectar.Listar(cmd);
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 			  
 			  lbl_id_cliente.Text = intCodCliente.ToString ();
 			  lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
@@ -94,7 +94,7 @@ namespace ControlDosimetro
                             "  fecha_nac, isnull(Id_CodServicio,8) as Id_CodServicio, isnull(Id_Practica,0) as Id_Practica, isnull(Id_Cargo,0) as Id_Cargo " +
 							  " FROM tbl_personal WHERE Id_Personal= " + intCodpersonal.ToString() + " and id_cliente=" + lbl_id_cliente.Text;
 			  DataSet dt;
-			  dt = Conectar.Listar(cmd);
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
               cbx_Id_Cargo.SelectedValue = dt.Tables[0].Rows[0]["Id_Cargo"].ToString();
             cbx_Id_Practica.SelectedValue = dt.Tables[0].Rows[0]["Id_Practica"].ToString();
@@ -131,7 +131,7 @@ namespace ControlDosimetro
               cmd.CommandText = "SELECT Id_Personal,id_cliente,rut_cliente,Rut,Nombres,Paterno,Maternos,Id_Seccion,Id_estado,Fecha_inicio,fecha_termino,Usuario,Fecha_agregado,GETDATE()as Fecha_Modificacion " +
                               " FROM tbl_personal WHERE  Rut='" + strRut + "'  and rut_cliente = '" + lbl_rut_cliente.Text + "' and id_cliente=" +  lbl_id_cliente.Text   + " and id_estado=1";
 			  DataSet dt;
-			  dt = Conectar.Listar(cmd);
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
 			  if (dt.Tables[0].Rows.Count > 0)
 			  {
@@ -180,7 +180,7 @@ namespace ControlDosimetro
 			  cmd.CommandText = "SELECT seccion,id_seccion " +
 							  " FROM tbl_seccion  WHERE Id_cliente= " + lbl_id_cliente.Text.ToString() + " and id_estado=1";
 			  DataSet dt;
-			  dt = Conectar.Listar(cmd);
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
               cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
               cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
               cbx_id_seccion.DataSource = dt.Tables[0];
@@ -200,7 +200,7 @@ namespace ControlDosimetro
 
               cmd.CommandText = "select id_profesion,Profesion,orden FROM glo_profesion order by Profesion";
 			  DataSet dt;
-			  dt = Conectar.Listar(cmd);
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
               cbx_id_profesion.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
               cbx_id_profesion.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
               cbx_id_profesion.DataSource = dt.Tables[0];
@@ -215,15 +215,15 @@ namespace ControlDosimetro
 
         private void Cargar_CodServicio()
         {
-            ClaseComun.Listar_Parametro(ref cbx_Id_CodServicio, 16);
+            ClaseComun.Listar_Parametro(Clases.clsBD.BD,ref cbx_Id_CodServicio, 16);
         }
         private void Cargar_Practica()
         {
-            ClaseComun.Listar_Parametro(ref cbx_Id_Practica, 17);
+            ClaseComun.Listar_Parametro(Clases.clsBD.BD,ref cbx_Id_Practica, 17);
         }
         private void Cargar_Cargo()
         {
-            ClaseComun.Listar_Parametro(ref cbx_Id_Cargo, 18);
+            ClaseComun.Listar_Parametro(Clases.clsBD.BD,ref cbx_Id_Cargo, 18);
         }
         private void Cargar_sexo()
 		  {
@@ -232,7 +232,7 @@ namespace ControlDosimetro
               SqlCommand cmd = new SqlCommand();
 			  cmd.CommandText = "select Id_DetParametro,Glosa FROM conf_detparametro WHERE Id_Parametro=4 order by orden";
 			  DataSet dt;
-			  dt = Conectar.Listar(cmd);
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
               cbx_id_sexo.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
               cbx_id_sexo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -264,7 +264,7 @@ namespace ControlDosimetro
 												cmd.CommandText = "SELECT  requerido, validacion " +
 																		" FROM glo_configuracioncampo WHERE campo= '" + strname.Replace("txt_","")  + "'";
 
-												dt = Conectar.Listar(cmd);
+												dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 												if (dt.Tables[0].Rows.Count == 0)
 													((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 												else
@@ -364,7 +364,7 @@ namespace ControlDosimetro
                 if (btn_Grabar.Text == "Modificar")
                 {
 
-						 ClaseComun.Modificar(tbl_personal, ref bolResult);
+						 ClaseComun.Modificar(Clases.clsBD.BD,tbl_personal, ref bolResult);
 						 if (bolResult == true)
 						 {
                              if (cbx_id_estado.Text == "2")
@@ -404,7 +404,7 @@ namespace ControlDosimetro
                 }
                 else
                 {
-						 ClaseComun.Insertar(tbl_personal, ref bolResult);
+						 ClaseComun.Insertar(Clases.clsBD.BD,tbl_personal, ref bolResult);
 						 if (bolResult == true)
 						 {
 							 MessageBox.Show("Dato Guardado");

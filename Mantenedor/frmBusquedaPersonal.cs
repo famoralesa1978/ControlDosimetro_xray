@@ -57,7 +57,7 @@ namespace ControlDosimetro
             cmd.CommandType = CommandType.Text;
 
             DataSet dt;
-            dt = Conectar.Listar(cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
 				if (dt.Tables[0].Rows.Count == 0)
 				{
@@ -105,7 +105,7 @@ namespace ControlDosimetro
 
 			  //WHERE tbl_clipers.Id_Cliente=1 and id_estado=1
 			  DataSet dt;
-			  dt = Conectar.Listar(cmd);
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 			  grdDatos.DataSource = dt.Tables[0];
 
 			  if (dt.Tables[0].Rows.Count == 0)

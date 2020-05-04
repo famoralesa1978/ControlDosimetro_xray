@@ -47,7 +47,7 @@ namespace ControlDosimetro
                             " WHERE Id_cliente= " + intCodCliente.ToString();
             DataSet dt;
 
-            dt = Conectar.Listar(cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
             if (dt.Tables[0].Rows.Count > 0)
             {
                 lbl_id_cliente.Text = intCodCliente.ToString();
@@ -93,7 +93,7 @@ namespace ControlDosimetro
             cmd.CommandText = "SELECT distinct Anno FROM conf_periodo WHERE Id_TipoPeriodo=3";
             //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
             DataSet dt;
-            dt = Conectar.Listar(cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
             cbx_anno.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
             cbx_anno.DataSource = dt.Tables[0];
@@ -108,7 +108,7 @@ namespace ControlDosimetro
 
             cmd.CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ '°T' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text;
             DataSet dt;
-            dt = Conectar.Listar(cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
             cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
             cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -169,7 +169,7 @@ namespace ControlDosimetro
                 sqlcmd.Parameters.Add("@Doc_Nombre", SqlDbType.VarChar, 200).Value = nombrearchivo;
                 sqlcmd.Parameters.Add("@Doc_Archivo", SqlDbType.Image).Value = buffer;
 
-                Conectar.AgregarModificarEliminar(sqlcmd);
+                Conectar.AgregarModificarEliminar(Clases.clsBD.BD,sqlcmd);
                // sqlcmd.CommandText = "" + "VALUES (" + Convert.ToInt32(lbl_id_cliente.Text) +""+ ;   
 
                 //MostrarArchivo(buffer, Path.GetFileName(txtRutaArchivo.Text));
@@ -197,7 +197,7 @@ namespace ControlDosimetro
             cmd.CommandText = "select detalle_tipo_documento,id_tipo_doc from glo_TipoDocumentos ";
             cmd.CommandType = CommandType.Text;
 
-            ds = Conectar.Listar(cmd);
+            ds = Conectar.Listar(Clases.clsBD.BD,cmd);
             cmbTipoDocumento.DisplayMember = ds.Tables[0].Columns[0].Caption.ToString();
             cmbTipoDocumento.ValueMember = ds.Tables[0].Columns[1].Caption.ToString();
             cmbTipoDocumento.DataSource = ds.Tables[0];

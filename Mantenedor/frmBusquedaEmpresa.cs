@@ -59,7 +59,7 @@ namespace ControlDosimetro
 
 
             DataSet dt;
-            dt = Conectar.Listar(cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
             grdDatos.DataSource = dt.Tables[0];
         }
@@ -81,7 +81,7 @@ namespace ControlDosimetro
 
         private void Cargar_Estado()
         {
-            ClaseComun.Listar_Estado(ref cbx_Estado, ref cbx_Estado);
+            ClaseComun.Listar_Estado(Clases.clsBD.BD,ref cbx_Estado, ref cbx_Estado);
         }
 
         private void Configurar_Grilla()
@@ -168,7 +168,7 @@ namespace ControlDosimetro
             cmd.CommandType = CommandType.Text;
             DataSet ds;
 
-            ds = Conectar.Listar(cmd);
+            ds = Conectar.Listar(Clases.clsBD.BD,cmd);
             if (ds.Tables[0].Rows.Count > 0)
             {
                 MessageBox.Show("Cliente se dejo Inactivo,Debe ingresar una observación porque se dejo inactivo");

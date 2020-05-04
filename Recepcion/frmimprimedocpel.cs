@@ -51,17 +51,17 @@ namespace ControlDosimetro
                 cmddet.CommandText = "select distinct Id_cliente,id_periodo 	from ges_dosimetro_estado 	where N_Documento=" + lbl_NDocumento.Text; ;
                 cmddet.CommandType = CommandType.Text;
 
-                ds3 = Conectar.Listar(cmddet);
+                ds3 = Conectar.Listar(Clases.clsBD.BD,cmddet);
 
                 cmd.CommandText = "rtpDosimetriaPersonal_Enc " + ds3.Tables[0].Rows[0][0].ToString() + "," + ds3.Tables[0].Rows[0][1].ToString() + "," + lbl_NDocumento.Text;
                 cmd.CommandType = CommandType.Text;
 
-                ds = Conectar.Listar(cmd);
+                ds = Conectar.Listar(Clases.clsBD.BD,cmd);
 
                 cmd.CommandText = "rtpDosimetriaPersonal_det " + ds3.Tables[0].Rows[0][0].ToString() + "," + ds3.Tables[0].Rows[0][1].ToString() + "," + lbl_NDocumento.Text;
                 cmd.CommandType = CommandType.Text;
 
-                ds2 = Conectar.Listar(cmd);
+                ds2 = Conectar.Listar(Clases.clsBD.BD,cmd);
                 //pnl_sobre.Visible = true;
                 frmreporte frm = new frmreporte(ds, ds2, 1);
                 frm.Show(this);

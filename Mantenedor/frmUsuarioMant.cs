@@ -30,15 +30,18 @@ namespace ControlDosimetro
             AsignarEvento();
 				
             Cargar_Estado();		
-				Cargar_Perfil();
-                if (intCodUsuario == 0)
+			Cargar_Perfil();
+            if (intCodUsuario == 0)
             {
                 btn_Grabar.Text = "Grabar";
                 this.Text = "Agregar Usuario";
                 cbx_Id_estado.Enabled = false;
-					lbl_Fecha_agregado.Text = DateTime.Now.Date.ToString().Substring(1,10) ;
-					lbl_Fecha_Modificacion.Text = DateTime.Now.Date.ToString().Substring(1, 10);
-					HabDesa_Controles(true);
+				lbl_Fecha_agregado.Text = DateTime.Now.Date.ToString().Substring(1,10) ;
+				lbl_Fecha_Modificacion.Text = DateTime.Now.Date.ToString().Substring(1, 10);
+                lbl_Contraseña.Enabled = true;
+                txt_Contraseña.Enabled = true;
+                txt_Contraseña1.Enabled = true;
+				HabDesa_Controles(true);
             }
             else
             {
@@ -57,7 +60,7 @@ namespace ControlDosimetro
       
         private void Cargar_Estado()
         {
-            ClaseComun.Listar_Estado(ref cbx_Id_estado, ref cbx_Id_estado);
+            ClaseComun.Listar_Estado(Clases.clsBD.BD,ref cbx_Id_estado, ref cbx_Id_estado);
         }
 
         private void Cargar_Usuario(Int64 intCodUsuario)
@@ -68,9 +71,11 @@ namespace ControlDosimetro
             cmd.CommandText = "SELECT [Id_Usuario],[Rut],[Nombres],[Paterno],[Maternos],[Id_perfil],[Id_estado],[Usuario],[Contraseña],[Fecha_agregado],[Fecha_Modificacion]" +
                               " FROM [dbo].[tbl_Usuario] WHERE Id_Usuario= " + intCodUsuario.ToString();
 			  DataSet dt;
-			  dt = Conectar.Listar(cmd);
-
-              txt_rut.Text = dt.Tables[0].Rows[0]["Rut"].ToString();
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+            lbl_Contraseña.Enabled = false;
+            txt_Contraseña.Enabled = false;
+            txt_Contraseña1.Enabled = false;
+            txt_rut.Text = dt.Tables[0].Rows[0]["Rut"].ToString();
               txt_Nombres.Text = dt.Tables[0].Rows[0]["Nombres"].ToString();
               txt_paterno.Text = dt.Tables[0].Rows[0]["Paterno"].ToString();
               txt_Maternos.Text = dt.Tables[0].Rows[0]["Maternos"].ToString();
@@ -107,7 +112,7 @@ namespace ControlDosimetro
                 cmd.CommandText = "select Id_perfil,Descripcion FROM tbl_perfil WHERE Id_estado=1  order by Descripcion";
 
             DataSet dt;
-			  dt = Conectar.Listar(cmd);
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
               cbx_Id_perfil.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
               cbx_Id_perfil.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -133,7 +138,7 @@ namespace ControlDosimetro
 												cmd.CommandText = "SELECT  requerido, validacion " +
 																		" FROM glo_configuracioncampo WHERE campo= '" + strname.Replace("txt_","")  + "'";
 
-												dt = Conectar.Listar(cmd);
+												dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 												if (dt.Tables[0].Rows.Count == 0)
 													((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 												else
@@ -215,7 +220,7 @@ namespace ControlDosimetro
                 if (btn_Grabar.Text == "Modificar")
                 {
 
-                    ClaseComun.Modificar(tbl_Usuario, ref bolResult);
+                    ClaseComun.Modificar(Clases.clsBD.BD,tbl_Usuario, ref bolResult);
                     if (bolResult == true)
                     {
 
@@ -233,7 +238,7 @@ namespace ControlDosimetro
                 }
                 else
                 {
-                    ClaseComun.Insertar(tbl_Usuario, ref bolResult);
+                    ClaseComun.Insertar(Clases.clsBD.BD,tbl_Usuario, ref bolResult);
                     if (bolResult == true)
                     {
                         MessageBox.Show("Dato Guardado");

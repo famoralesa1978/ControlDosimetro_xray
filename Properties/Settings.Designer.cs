@@ -12,7 +12,7 @@ namespace ControlDosimetro.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -99,28 +99,6 @@ namespace ControlDosimetro.Properties {
         public string sistiamc_controlConnectionString3 {
             get {
                 return ((string)(this["sistiamc_controlConnectionString3"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=sql7001.site4now.net;Persist Security Info=True;User ID=DB_A2B812_des" +
-            "arrollo_admin;Password=xray2017")]
-        public string ConnectionString {
-            get {
-                return ((string)(this["ConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=sql7001.site4now.net;Initial Catalog=DB_A2B812_Control;User ID=DB_A2B" +
-            "812_control_admin;Password=xray2017")]
-        public string DB_A2B812_ControlConnectionString {
-            get {
-                return ((string)(this["DB_A2B812_ControlConnectionString"]));
             }
         }
     }

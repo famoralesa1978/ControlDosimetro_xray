@@ -51,7 +51,7 @@ namespace ControlDosimetro
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "',' " + this.Text + "'";
                 cmd.CommandType = CommandType.Text;
-                Conectar.AgregarModificarEliminar(cmd);				
+                Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);				
                 txt_TLD.Focus();
                 LimpiarPantalla();
                 Listar_Grilla();
@@ -78,7 +78,7 @@ namespace ControlDosimetro
                 cmd.CommandText = "pa_ListadoDatosTLD " + intintId_Estado_temp.ToString () + "," + txt_TLD.Text;
 				DataSet dt;
 
-                dt = Conectar.Listar(cmd);
+                dt = Conectar.Listar(Clases.clsBD.BD,cmd);
                 if (dt.Tables[0].Rows.Count > 0)
                 {
                     lbl_NCliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
@@ -109,7 +109,7 @@ namespace ControlDosimetro
             cmd.CommandText = "SELECT id_estadodosimetro FROM [dbo].[ges_dosimetro_estado_TLD] where id_estadodosimetro=12";
             cmd.CommandType = CommandType.Text;
 
-            dt = Conectar.Listar(cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
             if (dt.Tables[0].Rows.Count > 0)
             {
@@ -142,7 +142,7 @@ namespace ControlDosimetro
             cmd.CommandText = "pa_ListadoPorDosimetroPorIniciarTLD";
             cmd.CommandType = CommandType.Text;
 
-            dt = Conectar.Listar(cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
             grdDatos.DataSource = dt.Tables[0];
         }
 
@@ -156,7 +156,7 @@ namespace ControlDosimetro
             cmd.CommandText = "SELECT Glosa FROM conf_detparametro WHERE Id_Parametro=9";
 			  //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			  DataSet dt;
-			  dt = Conectar.Listar(cmd);
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
               nudPosicion.Maximum = Convert.ToInt16( dt.Tables[0].Rows[0][0].ToString()); 
 
         }
@@ -176,7 +176,7 @@ namespace ControlDosimetro
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "pa_DosimetroRecepcionProcesoTLD_upd " + lbl_TLD.Text + "," + intintId_Estado_temp.ToString() + ",'" + Clases.clsUsuario.Usuario + "'," + nudPosicion.Value.ToString()   + "";
             cmd.CommandType = CommandType.Text;
-            Conectar.AgregarModificarEliminar(cmd);
+            Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
             LimpiarPantalla();
             Listar_Grilla();
 
@@ -193,7 +193,7 @@ namespace ControlDosimetro
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "pa_DosimetroIniciarProcesoTLD_upd 4,'" + Clases.clsUsuario.Usuario + "'";
             cmd.CommandType = CommandType.Text;
-            Conectar.AgregarModificarEliminar(cmd);
+            Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
             LimpiarPantalla();
             Listar_Grilla();
 

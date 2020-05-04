@@ -83,7 +83,7 @@
             // 
             // txt_Contraseña
             // 
-            this.txt_Contraseña.Location = new System.Drawing.Point(78, 42);
+            this.txt_Contraseña.Location = new System.Drawing.Point(167, 68);
             this.txt_Contraseña.MaxLength = 100;
             this.txt_Contraseña.Name = "txt_Contraseña";
             this.txt_Contraseña.Size = new System.Drawing.Size(86, 20);
@@ -113,9 +113,9 @@
             this.lbl_Contraseña.AutoSize = true;
             this.lbl_Contraseña.Location = new System.Drawing.Point(11, 49);
             this.lbl_Contraseña.Name = "lbl_Contraseña";
-            this.lbl_Contraseña.Size = new System.Drawing.Size(61, 13);
+            this.lbl_Contraseña.Size = new System.Drawing.Size(93, 13);
             this.lbl_Contraseña.TabIndex = 55;
-            this.lbl_Contraseña.Text = "Contraseña";
+            this.lbl_Contraseña.Text = "Contraseña actual";
             // 
             // lbl_Id_Personal
             // 
@@ -130,9 +130,9 @@
             this.lbl_Usuario.AutoSize = true;
             this.lbl_Usuario.Location = new System.Drawing.Point(13, 22);
             this.lbl_Usuario.Name = "lbl_Usuario";
-            this.lbl_Usuario.Size = new System.Drawing.Size(93, 13);
+            this.lbl_Usuario.Size = new System.Drawing.Size(99, 13);
             this.lbl_Usuario.TabIndex = 45;
-            this.lbl_Usuario.Text = "Contraseña actual";
+            this.lbl_Usuario.Text = "Contraseña anterior";
             // 
             // btn_Grabar
             // 

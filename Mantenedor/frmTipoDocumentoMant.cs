@@ -50,7 +50,7 @@ namespace ControlDosimetro
 
                 
                 DataSet dt;
-                dt = Conectar.Listar(cmd);
+                dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
                 txt_detalle_tipo_documento.Text = dt.Tables[0].Rows[0][0].ToString();
                 txt_orden.Text = dt.Tables[0].Rows[0][2].ToString();
@@ -60,7 +60,7 @@ namespace ControlDosimetro
 
         private void Cargar_Estado()
         {
-            ClaseComun.Listar_Estado(ref cbx_id_estado, ref cbx_id_estado);
+            ClaseComun.Listar_Estado(Clases.clsBD.BD,ref cbx_id_estado, ref cbx_id_estado);
         }
 
 
@@ -73,7 +73,7 @@ namespace ControlDosimetro
                 if (btn_Grabar.Text == "Modificar")
                 {
 
-                    ClaseComun.Modificar(glo_TipoDocumentos, ref bolResult);
+                    ClaseComun.Modificar(Clases.clsBD.BD,glo_TipoDocumentos, ref bolResult);
                     if (bolResult == true)
                     {
 
@@ -86,7 +86,7 @@ namespace ControlDosimetro
                 else
                 {
 
-                    ClaseComun.Insertar(glo_TipoDocumentos, ref bolResult);
+                    ClaseComun.Insertar(Clases.clsBD.BD,glo_TipoDocumentos, ref bolResult);
                     if (bolResult == true)
                     {
 
@@ -122,7 +122,7 @@ namespace ControlDosimetro
                     cmd.CommandText = "SELECT  requerido, validacion " +
                                 " FROM glo_configuracioncampo WHERE campo= '" + strname.Replace("txt_", "") + "'";
 
-                    dt = Conectar.Listar(cmd);
+                    dt = Conectar.Listar(Clases.clsBD.BD,cmd);
                     if (dt.Tables[0].Rows.Count == 0)
                         ((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
                     else

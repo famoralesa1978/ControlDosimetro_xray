@@ -51,7 +51,7 @@ namespace ControlDosimetro
                 cmd.CommandText = "SELECT encargado,fono,email,id_estado  " +
                             " FROM tbl_encargado WHERE Id_referencia= " + intCodigo.ToString();
                 DataSet dt;
-                dt = Conectar.Listar(cmd);
+                dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
                 //txt_run.Text = dt.Tables[0].Rows[0]["run"].ToString();
                 txt_Encargado.Text = dt.Tables[0].Rows[0]["encargado"].ToString();
@@ -66,7 +66,7 @@ namespace ControlDosimetro
        
         private void Cargar_Estado()
         {
-            ClaseComun.Listar_Estado(ref cbx_id_Estado, ref cbx_id_Estado);
+            ClaseComun.Listar_Estado(Clases.clsBD.BD,ref cbx_id_Estado, ref cbx_id_Estado);
         }
 
         private void Cargar_Cliente()
@@ -78,7 +78,7 @@ namespace ControlDosimetro
             cmd.CommandText = "SELECT run,Razon_Social,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente " +
                         " FROM tbl_cliente WHERE Id_cliente= " + lbl_Id_Cliente.Text.ToString();
             DataSet dt;
-            dt = Conectar.Listar(cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
             lbl_nombre.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
         }
@@ -102,7 +102,7 @@ namespace ControlDosimetro
 					  cmd.CommandText = "SELECT  requerido, validacion " +
 								" FROM glo_configuracioncampo WHERE campo= '" + strname.Replace("txt_", "") + "'";
 
-					  dt = Conectar.Listar(cmd);
+					  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 					  if (dt.Tables[0].Rows.Count == 0)
 						  ((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 					  else
@@ -150,7 +150,7 @@ namespace ControlDosimetro
             {
                 if (btn_Grabar.Text == "Modificar")
                 {
-						 ClaseComun.Modificar(tbl_encargado, ref bolResult);
+						 ClaseComun.Modificar(Clases.clsBD.BD,tbl_encargado, ref bolResult);
 
 						 if (bolResult == true)
 						 {
@@ -160,7 +160,7 @@ namespace ControlDosimetro
                 }
                 else
                 {
-						 ClaseComun.Insertar(tbl_encargado, ref bolResult);
+						 ClaseComun.Insertar(Clases.clsBD.BD,tbl_encargado, ref bolResult);
 						 if (bolResult == true)
 						 {
 							 MessageBox.Show("Dato Guardado");

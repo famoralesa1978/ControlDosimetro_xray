@@ -17,7 +17,6 @@ namespace ControlDosimetro
 {
     public partial class MDIPrincipal : Form
     {        
-        //     private int childFormNumber = 0;
         #region "Definicion variable"
 
         clsConectorSqlServer Conectar = new clsConectorSqlServer();
@@ -45,7 +44,12 @@ namespace ControlDosimetro
 
             HabiliarDesabilitarMenu(Clases.clsUsuario.Id_perfil);
 
-            Conectar.AgregarModificarEliminar(cmd);
+            Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
+            if (Clases.clsBD.BD == "Desarrollo")
+            {
+                this.BackColor = Color.Green;
+                this.Text = this.Text + " Desarrollo";
+            }
         }
 
         private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
@@ -56,7 +60,7 @@ namespace ControlDosimetro
                 cmd.CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "','Finalizar'";
                 cmd.CommandType = CommandType.Text;
 
-                Conectar.AgregarModificarEliminar(cmd);
+                Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
                 Application.Exit();
             }
         }
@@ -260,11 +264,24 @@ namespace ControlDosimetro
 
         #region "Herramientas"
 
+        private void frmUtilidadesRestablecerContrasenaCliente_Click(object sender, EventArgs e)
+        {
+            LlamarFormularioContrasenaCliente();
+        }
+
+        private void tsbPrincipalCambioContraseñaCliente_Click(object sender, EventArgs e)
+        {
+            LlamarFormularioContrasenaCliente();
+        }
+
+        private void frmCambiaContrasena_Click(object sender, EventArgs e)
+        {
+            LlamarFormularioContrasena();
+        }
+
         private void tsbPrincipalCambioContraseña_Click(object sender, EventArgs e)
         {
-            frmCambioContrasena frm = new frmCambioContrasena();
-            Graba_log(frm.Text);
-            frm.ShowDialog(this);
+            LlamarFormularioContrasena();
         }
 
         private void frmUtilidadesEnviarCorreo_Click(object sender, EventArgs e)
@@ -290,7 +307,7 @@ namespace ControlDosimetro
 
           #endregion
 
-          #region "Proceso TLD"
+        #region "Proceso TLD"
 
           private void mnuProcesoTLDIngresoPelicula_Click(object sender, EventArgs e)
           {
@@ -325,6 +342,20 @@ namespace ControlDosimetro
 
         #region Procedimiento
 
+        private void LlamarFormularioContrasena()
+        {
+            frmCambioContrasena frm = new frmCambioContrasena();
+            Graba_log(frm.Text);
+            frm.ShowDialog(this);
+        }
+
+        private void LlamarFormularioContrasenaCliente()
+        {
+            frmRestablecerContrasenaCliente frm = new frmRestablecerContrasenaCliente();
+            Graba_log(frm.Text);
+            frm.ShowDialog(this);
+        }
+
         private void HabiliarDesabilitarMenu(int intPerfil)
         {
             if (intPerfil != 1)
@@ -339,7 +370,7 @@ namespace ControlDosimetro
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "',' " + strModulo + "'";
             cmd.CommandType = CommandType.Text;
-            Conectar.AgregarModificarEliminar(cmd);
+            Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
         }
 
         private void treeView1_Click(object sender, EventArgs e)

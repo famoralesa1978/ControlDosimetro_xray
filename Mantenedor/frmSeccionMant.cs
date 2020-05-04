@@ -46,7 +46,7 @@ namespace ControlDosimetro
 				  //cmd.CommandText = "SELECT run,Razon_Social,N_Cliente_Ref,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
 				  //				" FROM tbl_cliente WHERE Id_cliente= " + intCodCliente.ToString();
 				  //DataSet dt;
-				  //dt = Conectar.Listar(cmd);
+				  //dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
 				  //txt_rut.Text = dt.Tables[0].Rows[0]["run"].ToString();
 				  //txt_seccion.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
@@ -66,7 +66,7 @@ namespace ControlDosimetro
 
 		  private void Cargar_Estado()
 		  {
-              ClaseComun.Listar_Estado(ref cbx_id_estado, ref cbx_id_estado);
+              ClaseComun.Listar_Estado(Clases.clsBD.BD,ref cbx_id_estado, ref cbx_id_estado);
 		  }
 
           private void Cargar_Cliente(Int64 intCodCliente)
@@ -78,7 +78,7 @@ namespace ControlDosimetro
 			  cmd.CommandText = "SELECT run,Razon_Social,N_Cliente_Ref,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
 							  " FROM tbl_cliente WHERE Id_cliente= " + intCodCliente.ToString();
 			  DataSet dt;
-			  dt = Conectar.Listar(cmd);
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
 			  lbl_id_cliente.Text = intCodCliente.ToString();
 			  lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
@@ -103,7 +103,7 @@ namespace ControlDosimetro
 				  if (btn_Grabar.Text == "Modificar")
 				  {
 
-					  ClaseComun.Modificar(tbl_seccion, ref bolResult);
+					  ClaseComun.Modificar(Clases.clsBD.BD,tbl_seccion, ref bolResult);
 					  if (bolResult == true)
 					  {
 						  if (cbx_id_estado.Text == "2")
@@ -125,7 +125,7 @@ namespace ControlDosimetro
 				  }
 				  else
 				  {
-					  ClaseComun.Insertar(tbl_seccion, ref bolResult);
+					  ClaseComun.Insertar(Clases.clsBD.BD,tbl_seccion, ref bolResult);
 					  if (bolResult == true)
 					  {
 						  MessageBox.Show("Dato Guardado");

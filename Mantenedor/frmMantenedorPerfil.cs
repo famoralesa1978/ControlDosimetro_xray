@@ -54,8 +54,8 @@ namespace ControlDosimetro
         #region Procedimiento
         private void Cargar_Estado()
         {
-            ClaseComun.Listar_Estado(ref cbx_id_estado_Buscar, ref cbx_id_estado_Buscar);
-            ClaseComun.Listar_Estado(ref cbx_id_estado, ref cbx_id_estado);
+            ClaseComun.Listar_Estado(Clases.clsBD.BD,ref cbx_id_estado_Buscar, ref cbx_id_estado_Buscar);
+            ClaseComun.Listar_Estado(Clases.clsBD.BD,ref cbx_id_estado, ref cbx_id_estado);
         }
         private void LimpiarFormulario()
         {
@@ -71,7 +71,7 @@ namespace ControlDosimetro
             {
                 if ((tssEstado.Text == "Nuevo")&&(txt_Id_perfil.Text=="0"))
                 {
-                    ClaseComun.Insertar(tbl_perfil, ref bolResult);
+                    ClaseComun.Insertar(Clases.clsBD.BD,tbl_perfil, ref bolResult);
                     if (bolResult == true)
                     {
                         CargarGrilla();
@@ -81,7 +81,7 @@ namespace ControlDosimetro
                 else
                 if (tssEstado.Text == "Modificar")
                 {
-                    ClaseComun.Modificar(tbl_perfil, ref bolResult);
+                    ClaseComun.Modificar(Clases.clsBD.BD,tbl_perfil, ref bolResult);
                     if (bolResult == true)
                     {
                         CargarGrilla();
@@ -99,7 +99,7 @@ namespace ControlDosimetro
             cmd.CommandType = CommandType.Text;
 
             DataSet dt;
-            dt = Conectar.Listar(cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
             dgvGrilla.DataSource = dt.Tables[0];
         }
@@ -194,7 +194,7 @@ namespace ControlDosimetro
                 cmd.CommandType = CommandType.Text;
 
                 DataSet dt1;
-                dt1 = Conectar.Listar(cmd);
+                dt1 = Conectar.Listar(Clases.clsBD.BD,cmd);
 
                 MessageBox.Show(dt1.Tables[0].Rows[0][1].ToString());
                 if (dt1.Tables[0].Rows[0][0].ToString() == "0")

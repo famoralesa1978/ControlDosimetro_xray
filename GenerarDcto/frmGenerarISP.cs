@@ -30,7 +30,8 @@ namespace ControlDosimetro
     {
 
         #region "Definicion variable"
-            clsConectorSqlServer Conectar = new clsConectorSqlServer();
+        DataSet dt;
+        clsConectorSqlServer Conectar = new clsConectorSqlServer();
 				clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 				clsEventoControl ClaseEvento = new clsEventoControl();
 					WorkbookPart wbPart = null;
@@ -64,7 +65,7 @@ namespace ControlDosimetro
 			  cmd.CommandText = "SELECT distinct Anno FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			  //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			  DataSet dt;
-			  dt = Conectar.Listar(cmd);
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
 			  cbx_anno.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			  cbx_anno.DataSource = dt.Tables[0];
@@ -79,7 +80,7 @@ namespace ControlDosimetro
 
               cmd.CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ 'º TRI' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text;
               DataSet dt;
-              dt = Conectar.Listar(cmd);
+              dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
               cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
               cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -116,7 +117,7 @@ namespace ControlDosimetro
             cmd.CommandType = CommandType.Text;
 
             DataSet dt;
-            dt = Conectar.Listar(cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
            
             if(dt.Tables[0].Rows.Count>0)
             {//ENTIDADES,TOES,DOSIS
@@ -205,7 +206,7 @@ namespace ControlDosimetro
 
             cmd2.CommandText = "pa_GenerarArchivoISP_sel " + cbx_id_periodo.SelectedValue.ToString() ;
             cmd2.CommandType = CommandType.Text;
-            Conectar.AgregarModificarEliminar(cmd2);
+            Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd2);
             MessageBox.Show("Los datos fueron generado y esta listo para que se genere el infome");
 
               btn_Corregir.Enabled = true;
@@ -574,10 +575,47 @@ namespace ControlDosimetro
             cmd.CommandText = "rtpDosimetriaVerificar " + cbx_id_periodo.SelectedValue.ToString();
             //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
             DataSet dt;
-            dt = Conectar.Listar(cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
             return dt;
 
+        }
+
+        private void cbx_id_periodo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "pa_Sel_ArchivoISP_sel " + cbx_id_periodo.SelectedValue.ToString();
+            //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
+            
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+            if(dt != null)
+            {
+                lbl_Status.Text= dt.Tables[0].Rows.Count > 0 ? "Se ha generado los datos para descargar los archivos" : "No se ha generado los datos para este periodo";
+                btn_Entidades.Enabled = dt.Tables[0].Rows.Count > 0 ? true : false;
+                btn_Toes.Enabled = dt.Tables[1].Rows.Count > 0 ? true : false;
+                btn_Dosis.Enabled = dt.Tables[2].Rows.Count > 0 ? true : false;
+            }            
+            else
+                lbl_Status.Text =  "No se ha generado los datos para este periodo";
+        }
+
+        private void btn_Entidades_Click(object sender, EventArgs e)
+        {
+            frmreporte frm = new frmreporte(dt, null, 6);
+            frm.Show(this);
+        }
+
+        private void btn_Toes_Click(object sender, EventArgs e)
+        {
+            frmreporte frm = new frmreporte(dt, null, 7);
+            frm.Show(this);
+        }
+
+        private void btn_Dosis_Click(object sender, EventArgs e)
+        {
+            frmreporte frm = new frmreporte(dt, null, 8);
+            frm.Show(this);
         }
     }
 }

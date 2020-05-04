@@ -67,7 +67,7 @@ namespace ControlDosimetro
                 cmd.CommandText = "SELECT s.run,s.runsuc,s.razon_social,s.Direccion,s.Id_Region,s.Id_Provincia,s.Id_Comuna,s.Telefono,s.Id_estado,estado_casa_matriz " +
                             " FROM tbl_sucursal s  WHERE Id_sucursal= " + intCodigo.ToString();
                 DataSet dt;
-                dt = Conectar.Listar(cmd);
+                dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
                 txt_run.Text = dt.Tables[0].Rows[0]["run"].ToString();
               //  txt_Razon_Social.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
@@ -114,7 +114,7 @@ namespace ControlDosimetro
             cmd.CommandText = "SELECT id_cliente,run,Razon_Social,N_Cliente_Ref,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
                             " FROM tbl_cliente WHERE Id_cliente= " + intCodCliente.ToString();
             DataSet dt;
-            dt = Conectar.Listar(cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
             //lbl_id_cliente.Text = intCodCliente.ToString();
             txt_run.Text = dt.Tables[0].Rows[0]["run"].ToString();
@@ -124,24 +124,24 @@ namespace ControlDosimetro
       
         private void Cargar_Estado()
         {
-            ClaseComun.Listar_Estado(ref cbx_id_estado, ref cbx_id_estado);
+            ClaseComun.Listar_Estado(Clases.clsBD.BD,ref cbx_id_estado, ref cbx_id_estado);
         }
 
       
 
         private void Cargar_Region()
         {
-            ClaseComun.Listar_Region(ref cbx_id_region, ref cbx_id_region);
+            ClaseComun.Listar_Region(Clases.clsBD.BD,ref cbx_id_region, ref cbx_id_region);
         }
 
         private void Cargar_Provincia()
         {
-            ClaseComun.Listar_Provincia(ref cbx_id_provincia, ref cbx_id_provincia, Convert.ToInt16(cbx_id_region.SelectedValue));
+            ClaseComun.Listar_Provincia(Clases.clsBD.BD,ref cbx_id_provincia, ref cbx_id_provincia, Convert.ToInt16(cbx_id_region.SelectedValue));
         }
 
         private void Cargar_Comuna()
         {
-            ClaseComun.Listar_Comuna(ref cbx_id_comuna, ref cbx_id_comuna, Convert.ToInt16(cbx_id_region.SelectedValue), Convert.ToInt16(cbx_id_provincia.SelectedValue));
+            ClaseComun.Listar_Comuna(Clases.clsBD.BD,ref cbx_id_comuna, ref cbx_id_comuna, Convert.ToInt16(cbx_id_region.SelectedValue), Convert.ToInt16(cbx_id_provincia.SelectedValue));
         }
 
         private void AsignarEvento()
@@ -163,7 +163,7 @@ namespace ControlDosimetro
 												cmd.CommandText = "SELECT  requerido, validacion " +
 															" FROM glo_configuracioncampo WHERE campo= '" + strname.Replace("txt_","")  + "'";
 
-												dt = Conectar.Listar(cmd);
+												dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 												if (dt.Tables[0].Rows.Count == 0)
 													((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 												else
@@ -198,7 +198,7 @@ namespace ControlDosimetro
 			  cmd.CommandText = "SELECT run,Razon_Social,N_Cliente_Ref,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
 							  " FROM tbl_cliente WHERE Id_cliente= " + intCodigo.ToString();
 			  DataSet dt;
-			  dt = Conectar.Listar(cmd);
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
 			  if (dt.Tables[0].Rows.Count >0)
 				  return true;
@@ -225,7 +225,7 @@ namespace ControlDosimetro
                 if (btn_Grabar.Text == "Modificar")
                 {
 
-						 ClaseComun.Modificar(tbl_sucursal, ref bolResult);
+						 ClaseComun.Modificar(Clases.clsBD.BD,tbl_sucursal, ref bolResult);
 						 if (bolResult == true)
 						 {
                              cambia_direccion();
@@ -238,7 +238,7 @@ namespace ControlDosimetro
                 else
                 {
 						
-							 ClaseComun.Insertar(tbl_sucursal, ref bolResult);
+							 ClaseComun.Insertar(Clases.clsBD.BD,tbl_sucursal, ref bolResult);
 							 if (bolResult == true)
 							 {
 
@@ -308,7 +308,7 @@ namespace ControlDosimetro
             cmd.CommandType = CommandType.Text;
             DataSet ds;
 
-            ds = Conectar.Listar(cmd);
+            ds = Conectar.Listar(Clases.clsBD.BD,cmd);
 
         }
       

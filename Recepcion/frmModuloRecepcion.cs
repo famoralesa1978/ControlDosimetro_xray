@@ -36,7 +36,7 @@ namespace ControlDosimetro
             cmdcombo.CommandText = "select 0 as Id_DetParametro, 'Seleccione' as Glosa, 0 as orden union all " +
               "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 order by orden ";
             cmdcombo.CommandType = CommandType.Text;
-            dtcombo = Conectar.Listar(cmdcombo);
+            dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
 
             DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns["Observación"] as DataGridViewComboBoxColumn;
             //
@@ -62,7 +62,7 @@ namespace ControlDosimetro
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "',' " + this.Text + "'";
                 cmd.CommandType = CommandType.Text;
-                Conectar.AgregarModificarEliminar(cmd);
+                Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
 				Cargar_Anno();
                 lbl_nombreCliente.Text = "";
                 txt_CodCliente.Focus();
@@ -80,7 +80,7 @@ namespace ControlDosimetro
 									" FROM tbl_cliente WHERE Id_cliente= " + txt_CodCliente.Text;
 					DataSet dt;
 
-					dt = Conectar.Listar(cmd);
+					dt = Conectar.Listar(Clases.clsBD.BD,cmd);
                     if (dt.Tables[0].Rows.Count > 0)
                         lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
                     else
@@ -103,7 +103,7 @@ namespace ControlDosimetro
 
                 cmd.CommandType = CommandType.Text;
 
-                dt = Conectar.Listar(cmd);
+                dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
                 grdDatos.DataSource = dt.Tables[0];
 
@@ -131,7 +131,7 @@ namespace ControlDosimetro
         
                       cmd.CommandType = CommandType.Text ;
 	 
-			  dt = Conectar.Listar(cmd);
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
               grdDatos.DataSource = dt.Tables[0];
 
@@ -152,7 +152,7 @@ namespace ControlDosimetro
 			  cmd.CommandText = "SELECT distinct Anno FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			  //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			  DataSet dt;
-			  dt = Conectar.Listar(cmd);
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
 			  cbx_anno.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			  cbx_anno.DataSource = dt.Tables[0];
@@ -167,7 +167,7 @@ namespace ControlDosimetro
 
               cmd.CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ '°T' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text;
               DataSet dt;
-              dt = Conectar.Listar(cmd);
+              dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
               cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
               cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -206,7 +206,7 @@ namespace ControlDosimetro
             SqlCommand cmd = new SqlCommand();
             // SqlCommand cmd = new SqlCommand();
 
-            //// dtcombo = Conectar.Listar(cmdcombo);
+            //// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
 
             DataGridViewCheckBoxCell checkMarca;
             string strId;
@@ -233,7 +233,7 @@ namespace ControlDosimetro
                         cmd.CommandText = "pa_DosimetroRecepcionTLD_upd " + strId + ",1,'" + Clases.clsUsuario.Usuario + "','" + txt_Observacion.Text + "'" + ",'" + txtFechaRecepcion.Value + "',0";
                     
                     cmd.CommandType = CommandType.Text;
-                    Conectar.AgregarModificarEliminar(cmd);
+                    Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
                 }
                 else
                 {
@@ -245,7 +245,7 @@ namespace ControlDosimetro
                             cmd.CommandText = "pa_DosimetroNoRecepcionTLD_upd " + strId + ",'" + Clases.clsUsuario.Usuario + "','" + txtFechaRecepcion.Value + "','" + txt_Observacion.Text + "'," + txtObservacionid.Value.ToString() + "";
                         
                         cmd.CommandType = CommandType.Text;
-                        Conectar.AgregarModificarEliminar(cmd);
+                        Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
                     }
                 }//
 

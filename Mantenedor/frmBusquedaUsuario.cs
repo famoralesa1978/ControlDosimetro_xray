@@ -36,7 +36,7 @@ namespace ControlDosimetro
 
             private void Cargar_Estado()
             {
-                ClaseComun.Listar_Estado(ref cbx_id_estado, ref cbx_id_estado);
+                ClaseComun.Listar_Estado(Clases.clsBD.BD,ref cbx_id_estado, ref cbx_id_estado);
             }
 		  private void Listar_Usuario()
 		  {
@@ -50,7 +50,7 @@ namespace ControlDosimetro
 			  cmd.CommandType = CommandType.Text;
 
 			  DataSet dt;
-			  dt = Conectar.Listar(cmd);
+			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 			  grdDatos.DataSource = dt.Tables[0];
 
 			  if (dt.Tables[0].Rows.Count == 0)
@@ -96,7 +96,7 @@ namespace ControlDosimetro
               SqlCommand cmd = new SqlCommand();
               cmd.CommandText = "select Id_perfil,Descripcion FROM tbl_perfil WHERE Id_estado=1 order by Descripcion";
               DataSet dt;
-              dt = Conectar.Listar(cmd);
+              dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
               cbx_Id_perfil.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
               cbx_Id_perfil.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
