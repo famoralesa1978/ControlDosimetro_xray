@@ -131,6 +131,7 @@
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -229,6 +230,12 @@
     </Compile>
     <Compile Include="Herramientas\frmCambioContrasena.Designer.cs">
       <DependentUpon>frmCambioContrasena.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Herramientas\frmConfCorreo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Herramientas\frmConfCorreo.Designer.cs">
+      <DependentUpon>frmConfCorreo.cs</DependentUpon>
     </Compile>
     <Compile Include="Mantenedor\frmBusquedaUsuario.cs">
       <SubType>Form</SubType>
@@ -559,6 +566,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Herramientas\frmCambioContrasena.resx">
       <DependentUpon>frmCambioContrasena.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Herramientas\frmConfCorreo.resx">
+      <DependentUpon>frmConfCorreo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmBusquedaUsuario.resx">
       <DependentUpon>frmBusquedaUsuario.cs</DependentUpon>

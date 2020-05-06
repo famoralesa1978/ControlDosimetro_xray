@@ -30,17 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIPrincipal));
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Versión 8.0.1.0");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Versión 8.0.1.1");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Versión 8.0.1.2");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Versión 8.0.1.3");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Versión 8.0.1.5");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Versión del sistema y sus actualizaciones", new System.Windows.Forms.TreeNode[] {
-            treeNode13,
-            treeNode14,
-            treeNode15,
-            treeNode16,
-            treeNode17});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Versión 8.0.1.0");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Versión 8.0.1.1");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Versión 8.0.1.2");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Versión 8.0.1.3");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Versión 8.0.1.5");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Versión del sistema y sus actualizaciones", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode5});
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.mnuMantenedor = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMantConfiguracionMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -121,6 +121,7 @@
             this.tsbPrincipalCliente = new System.Windows.Forms.ToolStripButton();
             this.tsbPrincipalPersonal = new System.Windows.Forms.ToolStripButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.frmUtilidadesConfigurarCorreo = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -183,28 +184,28 @@
             this.mnuMantConfiguracionParametro.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
             this.mnuMantConfiguracionParametro.Size = new System.Drawing.Size(249, 22);
             this.mnuMantConfiguracionParametro.Text = "&Configuración Parametro";
-            this.mnuMantConfiguracionParametro.Click += new System.EventHandler(this.mnuMantConfiguracionParametro_Click);
+            this.mnuMantConfiguracionParametro.Click += new System.EventHandler(this.MnuMantConfiguracionParametro_Click);
             // 
             // mnuMantPerfil
             // 
             this.mnuMantPerfil.Name = "mnuMantPerfil";
             this.mnuMantPerfil.Size = new System.Drawing.Size(249, 22);
             this.mnuMantPerfil.Text = "Perfil";
-            this.mnuMantPerfil.Click += new System.EventHandler(this.mnuMantPerfil_Click);
+            this.mnuMantPerfil.Click += new System.EventHandler(this.MnuMantPerfil_Click);
             // 
             // mnuMantUsuario
             // 
             this.mnuMantUsuario.Name = "mnuMantUsuario";
             this.mnuMantUsuario.Size = new System.Drawing.Size(249, 22);
             this.mnuMantUsuario.Text = "Usuario";
-            this.mnuMantUsuario.Click += new System.EventHandler(this.mnuMantUsuario_Click);
+            this.mnuMantUsuario.Click += new System.EventHandler(this.MnuMantUsuario_Click);
             // 
             // mnuMantTipoDocumento
             // 
             this.mnuMantTipoDocumento.Name = "mnuMantTipoDocumento";
             this.mnuMantTipoDocumento.Size = new System.Drawing.Size(249, 22);
             this.mnuMantTipoDocumento.Text = "Tipo Documento";
-            this.mnuMantTipoDocumento.Click += new System.EventHandler(this.mnuMantTipoDocumento_Click);
+            this.mnuMantTipoDocumento.Click += new System.EventHandler(this.MnuMantTipoDocumento_Click);
             // 
             // toolStripSeparator2
             // 
@@ -217,21 +218,21 @@
             this.mnuMantCliente.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             this.mnuMantCliente.Size = new System.Drawing.Size(249, 22);
             this.mnuMantCliente.Text = "Cliente";
-            this.mnuMantCliente.Click += new System.EventHandler(this.mnuMantCliente_Click);
+            this.mnuMantCliente.Click += new System.EventHandler(this.MnuMantCliente_Click);
             // 
             // mnuMantSucursal
             // 
             this.mnuMantSucursal.Name = "mnuMantSucursal";
             this.mnuMantSucursal.Size = new System.Drawing.Size(249, 22);
             this.mnuMantSucursal.Text = "Sucursal";
-            this.mnuMantSucursal.Click += new System.EventHandler(this.mnuMantSucursal_Click);
+            this.mnuMantSucursal.Click += new System.EventHandler(this.MnuMantSucursal_Click);
             // 
             // mnuMantPersonal
             // 
             this.mnuMantPersonal.Name = "mnuMantPersonal";
             this.mnuMantPersonal.Size = new System.Drawing.Size(249, 22);
             this.mnuMantPersonal.Text = "Personal";
-            this.mnuMantPersonal.Click += new System.EventHandler(this.mnuMantPersonal_Click);
+            this.mnuMantPersonal.Click += new System.EventHandler(this.MnuMantPersonal_Click);
             // 
             // toolStripSeparator3
             // 
@@ -275,14 +276,14 @@
             this.mnuProcesoIngresoNpelicula.Name = "mnuProcesoIngresoNpelicula";
             this.mnuProcesoIngresoNpelicula.Size = new System.Drawing.Size(198, 22);
             this.mnuProcesoIngresoNpelicula.Text = "Ingreso N° Pelicula";
-            this.mnuProcesoIngresoNpelicula.Click += new System.EventHandler(this.mnuProcesoIngresoNpelicula_Click);
+            this.mnuProcesoIngresoNpelicula.Click += new System.EventHandler(this.MnuProcesoIngresoNpelicula_Click);
             // 
             // mnuProcesoIngresoDosimetroPersonal
             // 
             this.mnuProcesoIngresoDosimetroPersonal.Name = "mnuProcesoIngresoDosimetroPersonal";
             this.mnuProcesoIngresoDosimetroPersonal.Size = new System.Drawing.Size(198, 22);
             this.mnuProcesoIngresoDosimetroPersonal.Text = "Corrección Documento";
-            this.mnuProcesoIngresoDosimetroPersonal.Click += new System.EventHandler(this.mnuProcesoIngresoDosimetroPersonal_Click);
+            this.mnuProcesoIngresoDosimetroPersonal.Click += new System.EventHandler(this.MnuProcesoIngresoDosimetroPersonal_Click);
             // 
             // mnuProcesoEnvioDosimetro
             // 
@@ -290,7 +291,7 @@
             this.mnuProcesoEnvioDosimetro.Size = new System.Drawing.Size(198, 22);
             this.mnuProcesoEnvioDosimetro.Text = "Envio Pelicula";
             this.mnuProcesoEnvioDosimetro.Visible = false;
-            this.mnuProcesoEnvioDosimetro.Click += new System.EventHandler(this.mnuProcesoEnvioDosimetro_Click);
+            this.mnuProcesoEnvioDosimetro.Click += new System.EventHandler(this.MnuProcesoEnvioDosimetro_Click);
             // 
             // toolStripSeparator1
             // 
@@ -302,14 +303,14 @@
             this.mnuProcesoEnviado.Name = "mnuProcesoEnviado";
             this.mnuProcesoEnviado.Size = new System.Drawing.Size(198, 22);
             this.mnuProcesoEnviado.Text = "Enviado";
-            this.mnuProcesoEnviado.Click += new System.EventHandler(this.mnuProcesoEnviado_Click);
+            this.mnuProcesoEnviado.Click += new System.EventHandler(this.MnuProcesoEnviado_Click);
             // 
             // mnuProcesoRecepcion
             // 
             this.mnuProcesoRecepcion.Name = "mnuProcesoRecepcion";
             this.mnuProcesoRecepcion.Size = new System.Drawing.Size(198, 22);
             this.mnuProcesoRecepcion.Text = "Recepción";
-            this.mnuProcesoRecepcion.Click += new System.EventHandler(this.mnuProcesoRecepcion_Click);
+            this.mnuProcesoRecepcion.Click += new System.EventHandler(this.MnuProcesoRecepcion_Click);
             // 
             // mnuProcesoOrdenTrabajo
             // 
@@ -326,21 +327,21 @@
             this.mnuProcesoOrdenTrabajoVarios.Name = "mnuProcesoOrdenTrabajoVarios";
             this.mnuProcesoOrdenTrabajoVarios.Size = new System.Drawing.Size(216, 22);
             this.mnuProcesoOrdenTrabajoVarios.Text = "Cargar toda la información";
-            this.mnuProcesoOrdenTrabajoVarios.Click += new System.EventHandler(this.mnuProcesoOrdenTrabajoVarios_Click);
+            this.mnuProcesoOrdenTrabajoVarios.Click += new System.EventHandler(this.MnuProcesoOrdenTrabajoVarios_Click);
             // 
             // mnuProcesoOrdenTrabajoPorDocumento
             // 
             this.mnuProcesoOrdenTrabajoPorDocumento.Name = "mnuProcesoOrdenTrabajoPorDocumento";
             this.mnuProcesoOrdenTrabajoPorDocumento.Size = new System.Drawing.Size(216, 22);
             this.mnuProcesoOrdenTrabajoPorDocumento.Text = "Por Cliente";
-            this.mnuProcesoOrdenTrabajoPorDocumento.Click += new System.EventHandler(this.mnuProcesoOrdenTrabajoPorDocumento_Click);
+            this.mnuProcesoOrdenTrabajoPorDocumento.Click += new System.EventHandler(this.MnuProcesoOrdenTrabajoPorDocumento_Click);
             // 
             // mnuProcesoOrdenTrabajoFechaRecepcion
             // 
             this.mnuProcesoOrdenTrabajoFechaRecepcion.Name = "mnuProcesoOrdenTrabajoFechaRecepcion";
             this.mnuProcesoOrdenTrabajoFechaRecepcion.Size = new System.Drawing.Size(216, 22);
             this.mnuProcesoOrdenTrabajoFechaRecepcion.Text = "Por Fecha Recepción";
-            this.mnuProcesoOrdenTrabajoFechaRecepcion.Click += new System.EventHandler(this.mnuProcesoOrdenTrabajoFechaRecepcion_Click);
+            this.mnuProcesoOrdenTrabajoFechaRecepcion.Click += new System.EventHandler(this.MnuProcesoOrdenTrabajoFechaRecepcion_Click);
             // 
             // toolStripSeparator4
             // 
@@ -353,7 +354,7 @@
             this.mnuProcesoIngresarDosis.Size = new System.Drawing.Size(198, 22);
             this.mnuProcesoIngresarDosis.Text = "Ingresar Dosis";
             this.mnuProcesoIngresarDosis.Visible = false;
-            this.mnuProcesoIngresarDosis.Click += new System.EventHandler(this.mnuProcesoIngresarDosis_Click);
+            this.mnuProcesoIngresarDosis.Click += new System.EventHandler(this.MnuProcesoIngresarDosis_Click);
             // 
             // mnuProcesoDosisISP
             // 
@@ -367,14 +368,14 @@
             this.mnuProcesoInformeGenerado.Name = "mnuProcesoInformeGenerado";
             this.mnuProcesoInformeGenerado.Size = new System.Drawing.Size(198, 22);
             this.mnuProcesoInformeGenerado.Text = "Proceso Facturación";
-            this.mnuProcesoInformeGenerado.Click += new System.EventHandler(this.mnuProcesoInformeGenerado_Click);
+            this.mnuProcesoInformeGenerado.Click += new System.EventHandler(this.MnuProcesoInformeGenerado_Click);
             // 
             // porFacturarToolStripMenuItem
             // 
             this.porFacturarToolStripMenuItem.Name = "porFacturarToolStripMenuItem";
             this.porFacturarToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.porFacturarToolStripMenuItem.Text = "Por Facturar";
-            this.porFacturarToolStripMenuItem.Click += new System.EventHandler(this.porFacturarToolStripMenuItem_Click);
+            this.porFacturarToolStripMenuItem.Click += new System.EventHandler(this.PorFacturarToolStripMenuItem_Click);
             // 
             // mnuProcesoTLD
             // 
@@ -392,21 +393,21 @@
             this.mnuProcesoTLDIngresoPelicula.Name = "mnuProcesoTLDIngresoPelicula";
             this.mnuProcesoTLDIngresoPelicula.Size = new System.Drawing.Size(148, 22);
             this.mnuProcesoTLDIngresoPelicula.Text = "Ingreso TLD";
-            this.mnuProcesoTLDIngresoPelicula.Click += new System.EventHandler(this.mnuProcesoTLDIngresoPelicula_Click);
+            this.mnuProcesoTLDIngresoPelicula.Click += new System.EventHandler(this.MnuProcesoTLDIngresoPelicula_Click);
             // 
             // mnuProcesoTLDIniciarLectura
             // 
             this.mnuProcesoTLDIniciarLectura.Name = "mnuProcesoTLDIniciarLectura";
             this.mnuProcesoTLDIniciarLectura.Size = new System.Drawing.Size(148, 22);
             this.mnuProcesoTLDIniciarLectura.Text = "Iniciar Lectura";
-            this.mnuProcesoTLDIniciarLectura.Click += new System.EventHandler(this.mnuProcesoTLDIniciarLectura_Click);
+            this.mnuProcesoTLDIniciarLectura.Click += new System.EventHandler(this.MnuProcesoTLDIniciarLectura_Click);
             // 
             // mnuProcesoIngresarDosisTLD
             // 
             this.mnuProcesoIngresarDosisTLD.Name = "mnuProcesoIngresarDosisTLD";
             this.mnuProcesoIngresarDosisTLD.Size = new System.Drawing.Size(148, 22);
             this.mnuProcesoIngresarDosisTLD.Text = "Ingresar Dosis";
-            this.mnuProcesoIngresarDosisTLD.Click += new System.EventHandler(this.mnuProcesoIngresarDosisTLD_Click);
+            this.mnuProcesoIngresarDosisTLD.Click += new System.EventHandler(this.MnuProcesoIngresarDosisTLD_Click);
             // 
             // frmGenerarDctoISP
             // 
@@ -422,7 +423,7 @@
             this.frmGenerarDctoISPGenerar.Name = "frmGenerarDctoISPGenerar";
             this.frmGenerarDctoISPGenerar.Size = new System.Drawing.Size(115, 22);
             this.frmGenerarDctoISPGenerar.Text = "Generar";
-            this.frmGenerarDctoISPGenerar.Click += new System.EventHandler(this.frmGenerarDctoISPGenerar_Click);
+            this.frmGenerarDctoISPGenerar.Click += new System.EventHandler(this.FrmGenerarDctoISPGenerar_Click);
             // 
             // mnuReporte
             // 
@@ -440,21 +441,21 @@
             this.mnuReporteDosimetria.Name = "mnuReporteDosimetria";
             this.mnuReporteDosimetria.Size = new System.Drawing.Size(188, 22);
             this.mnuReporteDosimetria.Text = "Dosimetria";
-            this.mnuReporteDosimetria.Click += new System.EventHandler(this.mnuReporteDosimetria_Click);
+            this.mnuReporteDosimetria.Click += new System.EventHandler(this.MnuReporteDosimetria_Click);
             // 
             // mnuReporteEstadoDosimetro
             // 
             this.mnuReporteEstadoDosimetro.Name = "mnuReporteEstadoDosimetro";
             this.mnuReporteEstadoDosimetro.Size = new System.Drawing.Size(188, 22);
             this.mnuReporteEstadoDosimetro.Text = "Por Estado Dosimetro";
-            this.mnuReporteEstadoDosimetro.Click += new System.EventHandler(this.mnuReporteEstadoDosimetro_Click);
+            this.mnuReporteEstadoDosimetro.Click += new System.EventHandler(this.MnuReporteEstadoDosimetro_Click);
             // 
             // mnuReportePorCliente
             // 
             this.mnuReportePorCliente.Name = "mnuReportePorCliente";
             this.mnuReportePorCliente.Size = new System.Drawing.Size(188, 22);
             this.mnuReportePorCliente.Text = "Por Cliente";
-            this.mnuReportePorCliente.Click += new System.EventHandler(this.mnuReportePorCliente_Click);
+            this.mnuReportePorCliente.Click += new System.EventHandler(this.MnuReportePorCliente_Click);
             // 
             // mnuLink
             // 
@@ -470,7 +471,7 @@
             this.mnuLinkVigilanciaDosi.Name = "mnuLinkVigilanciaDosi";
             this.mnuLinkVigilanciaDosi.Size = new System.Drawing.Size(191, 22);
             this.mnuLinkVigilanciaDosi.Text = "Vigilancia Dosimétrica";
-            this.mnuLinkVigilanciaDosi.Click += new System.EventHandler(this.mnuLinkVigilanciaDosi_Click);
+            this.mnuLinkVigilanciaDosi.Click += new System.EventHandler(this.MnuLinkVigilanciaDosi_Click);
             // 
             // mnuFactura
             // 
@@ -486,11 +487,12 @@
             this.facturaciónToolStripMenuItem.Name = "facturaciónToolStripMenuItem";
             this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.facturaciónToolStripMenuItem.Text = "Facturación";
-            this.facturaciónToolStripMenuItem.Click += new System.EventHandler(this.facturaciónToolStripMenuItem_Click);
+            this.facturaciónToolStripMenuItem.Click += new System.EventHandler(this.FacturaciónToolStripMenuItem_Click);
             // 
             // frmUtilidades
             // 
             this.frmUtilidades.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.frmUtilidadesConfigurarCorreo,
             this.frmUtilidadesRestablecerContrasenaCliente,
             this.frmCambiaContrasena,
             this.frmUtilidadesEnviarCorreo,
@@ -506,35 +508,35 @@
             this.frmUtilidadesRestablecerContrasenaCliente.Name = "frmUtilidadesRestablecerContrasenaCliente";
             this.frmUtilidadesRestablecerContrasenaCliente.Size = new System.Drawing.Size(235, 22);
             this.frmUtilidadesRestablecerContrasenaCliente.Text = "Restablecer contraseña Cliente";
-            this.frmUtilidadesRestablecerContrasenaCliente.Click += new System.EventHandler(this.frmUtilidadesRestablecerContrasenaCliente_Click);
+            this.frmUtilidadesRestablecerContrasenaCliente.Click += new System.EventHandler(this.FrmUtilidadesRestablecerContrasenaCliente_Click);
             // 
             // frmCambiaContrasena
             // 
             this.frmCambiaContrasena.Name = "frmCambiaContrasena";
             this.frmCambiaContrasena.Size = new System.Drawing.Size(235, 22);
             this.frmCambiaContrasena.Text = "Cambiar contraseña";
-            this.frmCambiaContrasena.Click += new System.EventHandler(this.frmCambiaContrasena_Click);
+            this.frmCambiaContrasena.Click += new System.EventHandler(this.FrmCambiaContrasena_Click);
             // 
             // frmUtilidadesEnviarCorreo
             // 
             this.frmUtilidadesEnviarCorreo.Name = "frmUtilidadesEnviarCorreo";
             this.frmUtilidadesEnviarCorreo.Size = new System.Drawing.Size(235, 22);
             this.frmUtilidadesEnviarCorreo.Text = "Enviar Correo";
-            this.frmUtilidadesEnviarCorreo.Click += new System.EventHandler(this.frmUtilidadesEnviarCorreo_Click);
+            this.frmUtilidadesEnviarCorreo.Click += new System.EventHandler(this.FrmUtilidadesEnviarCorreo_Click);
             // 
             // frmUtilidadesCambioTrimestre
             // 
             this.frmUtilidadesCambioTrimestre.Name = "frmUtilidadesCambioTrimestre";
             this.frmUtilidadesCambioTrimestre.Size = new System.Drawing.Size(235, 22);
             this.frmUtilidadesCambioTrimestre.Text = "Cambio de Trimestre";
-            this.frmUtilidadesCambioTrimestre.Click += new System.EventHandler(this.frmUtilidadesCambioTrimestre_Click);
+            this.frmUtilidadesCambioTrimestre.Click += new System.EventHandler(this.FrmUtilidadesCambioTrimestre_Click);
             // 
             // frmUtilidadesAsociarDocumentoCliente
             // 
             this.frmUtilidadesAsociarDocumentoCliente.Name = "frmUtilidadesAsociarDocumentoCliente";
             this.frmUtilidadesAsociarDocumentoCliente.Size = new System.Drawing.Size(235, 22);
             this.frmUtilidadesAsociarDocumentoCliente.Text = "Asociar Documento Cliente";
-            this.frmUtilidadesAsociarDocumentoCliente.Click += new System.EventHandler(this.frmUtilidadesAsociarDocumentoCliente_Click);
+            this.frmUtilidadesAsociarDocumentoCliente.Click += new System.EventHandler(this.FrmUtilidadesAsociarDocumentoCliente_Click);
             // 
             // mnuAyuda
             // 
@@ -550,14 +552,14 @@
             this.mnuAyudaAcercaDe.Name = "mnuAyudaAcercaDe";
             this.mnuAyudaAcercaDe.Size = new System.Drawing.Size(126, 22);
             this.mnuAyudaAcercaDe.Text = "Acerca de";
-            this.mnuAyudaAcercaDe.Click += new System.EventHandler(this.mnuAyudaAcercaDe_Click);
+            this.mnuAyudaAcercaDe.Click += new System.EventHandler(this.MnuAyudaAcercaDe_Click);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
             this.salirToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
             this.salirToolStripMenuItem.Text = "Salir";
-            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.SalirToolStripMenuItem_Click);
             // 
             // contentsToolStripMenuItem
             // 
@@ -715,24 +717,24 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            treeNode13.Name = "Nodo1";
-            treeNode13.Text = "Versión 8.0.1.0";
-            treeNode14.Name = "Nodo2";
-            treeNode14.Text = "Versión 8.0.1.1";
-            treeNode15.Name = "Nodo3";
-            treeNode15.Text = "Versión 8.0.1.2";
-            treeNode16.Name = "Nodo4";
-            treeNode16.Text = "Versión 8.0.1.3";
-            treeNode17.Name = "Nodo5";
-            treeNode17.Text = "Versión 8.0.1.5";
-            treeNode18.Name = "Nodo0";
-            treeNode18.Text = "Versión del sistema y sus actualizaciones";
+            treeNode1.Name = "Nodo1";
+            treeNode1.Text = "Versión 8.0.1.0";
+            treeNode2.Name = "Nodo2";
+            treeNode2.Text = "Versión 8.0.1.1";
+            treeNode3.Name = "Nodo3";
+            treeNode3.Text = "Versión 8.0.1.2";
+            treeNode4.Name = "Nodo4";
+            treeNode4.Text = "Versión 8.0.1.3";
+            treeNode5.Name = "Nodo5";
+            treeNode5.Text = "Versión 8.0.1.5";
+            treeNode6.Name = "Nodo0";
+            treeNode6.Text = "Versión del sistema y sus actualizaciones";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode18});
+            treeNode6});
             this.treeView1.Size = new System.Drawing.Size(200, 368);
             this.treeView1.TabIndex = 0;
-            this.treeView1.Click += new System.EventHandler(this.treeView1_Click);
-            this.treeView1.DoubleClick += new System.EventHandler(this.treeView1_DoubleClick);
+            this.treeView1.Click += new System.EventHandler(this.TreeView1_Click);
+            this.treeView1.DoubleClick += new System.EventHandler(this.TreeView1_DoubleClick);
             // 
             // tsbPrincipal
             // 
@@ -762,7 +764,7 @@
             this.tsbPrincipalCambioContraseña.Size = new System.Drawing.Size(36, 36);
             this.tsbPrincipalCambioContraseña.Text = "Cambio contraseña";
             this.tsbPrincipalCambioContraseña.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.tsbPrincipalCambioContraseña.Click += new System.EventHandler(this.tsbPrincipalCambioContraseña_Click);
+            this.tsbPrincipalCambioContraseña.Click += new System.EventHandler(this.TsbPrincipalCambioContraseña_Click);
             // 
             // tsbPrincipalCambioContraseñaCliente
             // 
@@ -772,7 +774,7 @@
             this.tsbPrincipalCambioContraseñaCliente.Name = "tsbPrincipalCambioContraseñaCliente";
             this.tsbPrincipalCambioContraseñaCliente.Size = new System.Drawing.Size(36, 36);
             this.tsbPrincipalCambioContraseñaCliente.ToolTipText = "Restablecer  contraseña cliente";
-            this.tsbPrincipalCambioContraseñaCliente.Click += new System.EventHandler(this.tsbPrincipalCambioContraseñaCliente_Click);
+            this.tsbPrincipalCambioContraseñaCliente.Click += new System.EventHandler(this.TsbPrincipalCambioContraseñaCliente_Click);
             // 
             // tsbPrincipalCliente
             // 
@@ -782,7 +784,7 @@
             this.tsbPrincipalCliente.Name = "tsbPrincipalCliente";
             this.tsbPrincipalCliente.Size = new System.Drawing.Size(36, 36);
             this.tsbPrincipalCliente.ToolTipText = "Cliente";
-            this.tsbPrincipalCliente.Click += new System.EventHandler(this.mnuMantCliente_Click);
+            this.tsbPrincipalCliente.Click += new System.EventHandler(this.MnuMantCliente_Click);
             // 
             // tsbPrincipalPersonal
             // 
@@ -792,13 +794,20 @@
             this.tsbPrincipalPersonal.Name = "tsbPrincipalPersonal";
             this.tsbPrincipalPersonal.Size = new System.Drawing.Size(36, 36);
             this.tsbPrincipalPersonal.Text = "Personal";
-            this.tsbPrincipalPersonal.Click += new System.EventHandler(this.mnuMantPersonal_Click);
+            this.tsbPrincipalPersonal.Click += new System.EventHandler(this.MnuMantPersonal_Click);
             // 
             // timer1
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
+            // frmUtilidadesConfigurarCorreo
+            // 
+            this.frmUtilidadesConfigurarCorreo.Name = "frmUtilidadesConfigurarCorreo";
+            this.frmUtilidadesConfigurarCorreo.Size = new System.Drawing.Size(235, 22);
+            this.frmUtilidadesConfigurarCorreo.Text = "Configurar Correo";
+            this.frmUtilidadesConfigurarCorreo.Click += new System.EventHandler(this.FrmUtilidadesConfigurarCorreo_Click);
             // 
             // MDIPrincipal
             // 
@@ -915,6 +924,7 @@
         private System.Windows.Forms.ToolStripMenuItem frmCambiaContrasena;
         private System.Windows.Forms.ToolStripMenuItem frmUtilidadesRestablecerContrasenaCliente;
         private System.Windows.Forms.ToolStripButton tsbPrincipalCambioContraseñaCliente;
+        private System.Windows.Forms.ToolStripMenuItem frmUtilidadesConfigurarCorreo;
     }
 }
 

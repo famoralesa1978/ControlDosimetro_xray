@@ -218,7 +218,7 @@ namespace ControlDosimetro
 						((DateTimePicker)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 
 			}
-           
+            txt_Email.Validated += new EventHandler(ClaseEvento.validaEmail_Validated);
         }
 
         private bool valida_cliente(Int64 intCodigo)
