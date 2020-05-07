@@ -195,13 +195,13 @@ namespace ControlDosimetro
                 };
                 DataSet dt;
 
-					dt = Conectar.Listar(Clases.clsBD.BD,cmd);
-                    if (dt.Tables[0].Rows.Count > 0)
-                    {
-                        clsUtiles1.SendMailGmail(rtbCuerpo, txtNombre.Text, txtAsunto.Text, txtCorreo.Text, listBox2, dt.Tables[0].Rows[0]["Desde"].ToString(),
-                                dt.Tables[0].Rows[0]["Credencial"].ToString(), dt.Tables[0].Rows[0]["Clave"].ToString(), dt.Tables[0].Rows[0]["Host"].ToString(),
-                                Convert.ToInt16( dt.Tables[0].Rows[0]["Port"].ToString()));
-                    }
+				dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+                if (dt.Tables[0].Rows.Count > 0)
+                {
+                    clsUtiles1.SendMailGmail(rtbCuerpo, txtNombre.Text, txtAsunto.Text, txtCorreo.Text, listBox2, dt.Tables[0].Rows[0]["Desde"].ToString(),
+                            dt.Tables[0].Rows[0]["Credencial"].ToString(), dt.Tables[0].Rows[0]["Clave"].ToString(), dt.Tables[0].Rows[0]["Host"].ToString(),
+                            Convert.ToInt16( dt.Tables[0].Rows[0]["Port"].ToString()));
+                }
              }
          }
 

@@ -83,24 +83,37 @@ namespace ControlDosimetro
         #region "button"
         private void btn_Grabar_Click(object sender, EventArgs e)
         {
-          /*  if(verificar_Grabado()==true)
-            { 
-                Boolean bolResult;
-                bolResult = false;
-                if (MessageBox.Show("Desea modifica la contraseña", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-                {
-                    ClaseComun.ModificarDatos(tbl_Usuario, ref bolResult);
-                    if (bolResult == true)
-                    {
+            Boolean bolResult;
+            bolResult = false;
+            //     if (MessageBox.Show("Desea modifica la contraseña", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+            //    {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "pa_RestablecercontrasenaCliente_upd '" + txt_run.Text +"','" + txt_Clave.Text + "'";
+            DataSet ds=Conectar.Listar(Clases.clsBD.BD, cmd);
 
-                        MessageBox.Show("Dato modificado");
-                        if (MessageBox.Show("Desea salir del formulario", "Confirmar", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-                        {
-                            this.Close();
-                        }
+            if(ds != null)
+            {
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    SqlCommand cmd1 = new SqlCommand
+                    {
+                        CommandText = "select Desde,Credencial,Clave,Host,Port from conf_Correo"
+                    };
+                    DataSet dt;
+
+                    dt = Conectar.Listar(Clases.clsBD.BD, cmd1);
+                    if (dt.Tables[0].Rows.Count > 0)
+                    {
+                        RichTextBox rtbCuerpo = new RichTextBox();
+                        ListBox listBox2 = new ListBox();
+                        rtbCuerpo.Text = "Restablecer clave \n Usuario : " + txt_run.Text +" \n Clave:" + txt_Clave1.Text;
+
+                        clsUtiles1.SendMailGmail(rtbCuerpo,"Xray", "Restablecer clave", txt_Email.Text, listBox2, dt.Tables[0].Rows[0]["Desde"].ToString(),
+                                dt.Tables[0].Rows[0]["Credencial"].ToString(), dt.Tables[0].Rows[0]["Clave"].ToString(), dt.Tables[0].Rows[0]["Host"].ToString(),
+                                Convert.ToInt16(dt.Tables[0].Rows[0]["Port"].ToString()));
                     }
                 }
-            }*/
+            }
         }
 
         private void btn_RestablecerContrasena_Click(object sender, EventArgs e)
