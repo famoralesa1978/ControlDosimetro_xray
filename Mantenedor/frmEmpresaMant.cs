@@ -79,27 +79,52 @@ namespace ControlDosimetro
 
                 txt_Director.Text= dt.Tables[0].Rows[0]["Director"].ToString();
                 txt_Opr.Text = dt.Tables[0].Rows[0]["Opr"].ToString();
-                cbx_Id_Sector.SelectedValue = dt.Tables[0].Rows[0]["Id_Sector"].ToString();
-                cbx_Id_TipoEntidad.SelectedValue = dt.Tables[0].Rows[0]["Id_TipoEntidad"].ToString();
-                cbx_Id_TipoFuente.SelectedValue = dt.Tables[0].Rows[0]["Id_TipoFuente"].ToString();
-                cbx_id_Ministerio.SelectedValue = dt.Tables[0].Rows[0]["id_Ministerio"].ToString();
+                try
+                {
+                    cbx_Id_Sector.SelectedValue = dt.Tables[0].Rows[0]["Id_Sector"].ToString();
+                }
+                catch
+                {
+                    cbx_Id_Sector.SelectedIndex = -1;
+                }
+                try
+                {
+                    cbx_Id_TipoEntidad.SelectedValue = dt.Tables[0].Rows[0]["Id_TipoEntidad"].ToString();
+                }
+                catch
+                {
+                    cbx_Id_TipoEntidad.SelectedIndex = -1;
+                }
+                try
+                {
+                    cbx_Id_TipoFuente.SelectedValue = dt.Tables[0].Rows[0]["Id_TipoFuente"].ToString();
+                }
+                catch
+                {
+                    cbx_Id_TipoFuente.SelectedIndex = -1;
+                }
+                try
+                {
+                    cbx_id_Ministerio.SelectedValue = dt.Tables[0].Rows[0]["id_Ministerio"].ToString();
+                }
+                catch
+                {
+                    cbx_id_Ministerio.SelectedIndex = -1;
+                }
+                
                 txt_run.Text = dt.Tables[0].Rows[0]["run"].ToString();
 				txt_N_Cliente_Ref.Text = dt.Tables[0].Rows[0]["N_Cliente_Ref"].ToString();
                 txt_Razon_Social.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
                 txt_direccion.Text = dt.Tables[0].Rows[0]["Direccion"].ToString();
                 txt_telefono.Text = dt.Tables[0].Rows[0]["Telefono"].ToString();
                 cbx_id_region.SelectedValue = dt.Tables[0].Rows[0]["Id_Region"].ToString();
-               // cbx_region.SelectedIndex = cbx_id_region.SelectedIndex;
                 Cargar_Provincia();
                 cbx_id_provincia.SelectedValue = dt.Tables[0].Rows[0]["Id_Provincia"].ToString();
                 Cargar_Comuna();
-               // cbx_provincia.SelectedIndex = cbx_id_provincia.SelectedIndex;
                 cbx_id_comuna.SelectedValue  = dt.Tables[0].Rows[0]["Id_Comuna"].ToString();
-             //   cbx_comuna.SelectedIndex = cbx_id_comuna.SelectedIndex;
                 txt_Email.Text = dt.Tables[0].Rows[0]["Email"].ToString();
                 cbx_id_estado.SelectedValue = dt.Tables[0].Rows[0]["Id_estado"].ToString();
 				lbl_Estado_mod.Text = cbx_id_estado.Text; 
-               // cbx_id_estado.SelectedValue  = cbx_id_estado.SelectedIndex;
 				dtp_FechaInicio.Text = dt.Tables[0].Rows[0]["Fechainicio"].ToString();
                 cbx_id_periodo.Text = dtp_FechaInicio.Text;
                 txt_Clave.Text = dt.Tables[0].Rows[0]["clave"].ToString();
