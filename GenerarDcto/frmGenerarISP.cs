@@ -583,6 +583,7 @@ namespace ControlDosimetro
 
         private void cbx_id_periodo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             SqlCommand cmd = new SqlCommand();
 
             cmd.CommandText = "pa_Sel_ArchivoISP_sel " + cbx_id_periodo.SelectedValue.ToString();
@@ -595,9 +596,15 @@ namespace ControlDosimetro
                 btn_Entidades.Enabled = dt.Tables[0].Rows.Count > 0 ? true : false;
                 btn_Toes.Enabled = dt.Tables[1].Rows.Count > 0 ? true : false;
                 btn_Dosis.Enabled = dt.Tables[2].Rows.Count > 0 ? true : false;
-            }            
+                lbl_Status.ForeColor = dt.Tables[0].Rows.Count > 0 ? System.Drawing.Color.Green : System.Drawing.Color.Red;                 
+            }
             else
-                lbl_Status.Text =  "No se ha generado los datos para este periodo";
+            {
+                lbl_Status.Text = "No se ha generado los datos para este periodo";
+                lbl_Status.ForeColor = System.Drawing.Color.Red;
+            }
+            this.Refresh();
+            Cursor = Cursors.Default;
         }
 
         private void btn_Entidades_Click(object sender, EventArgs e)

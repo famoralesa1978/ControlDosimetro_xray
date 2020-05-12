@@ -30,7 +30,7 @@ namespace ControlDosimetro
         {
             InitializeComponent();
             this.labelVersion.Text = String.Format("Versión {0}", AssemblyVersion);
-            Clases.clsBD.BD = "Desarrollo";
+            Clases.clsBD.BD = "Prod1";
             if (Clases.clsBD.BD == "Desarrollo")
             {
                 this.BackColor = Color.Green;

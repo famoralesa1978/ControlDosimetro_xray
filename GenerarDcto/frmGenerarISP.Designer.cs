@@ -195,11 +195,12 @@
             // lbl_Status
             // 
             this.lbl_Status.AutoSize = true;
-            this.lbl_Status.ForeColor = System.Drawing.Color.Maroon;
+            this.lbl_Status.ForeColor = System.Drawing.Color.Yellow;
             this.lbl_Status.Location = new System.Drawing.Point(62, 124);
             this.lbl_Status.Name = "lbl_Status";
-            this.lbl_Status.Size = new System.Drawing.Size(0, 13);
+            this.lbl_Status.Size = new System.Drawing.Size(29, 13);
             this.lbl_Status.TabIndex = 10;
+            this.lbl_Status.Text = "mkm";
             // 
             // frmGenerarISP
             // 
