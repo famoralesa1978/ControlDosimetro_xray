@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBusquedaEmpresa));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_cargarCliente = new System.Windows.Forms.Button();
             this.txt_N_Cliente_Ref = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cbx_Estado = new System.Windows.Forms.ComboBox();
@@ -49,12 +50,13 @@
             this.cmsPopup = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsbAgregarCliente = new System.Windows.Forms.ToolStripButton();
             this.tsbAgregarReferencia = new System.Windows.Forms.ToolStripButton();
             this.tsbAgregarPersonal = new System.Windows.Forms.ToolStripButton();
             this.tsbIngresoDosimetro = new System.Windows.Forms.ToolStripButton();
             this.btnIngresarDosisISP = new System.Windows.Forms.ToolStripButton();
-            this.btn_cargarCliente = new System.Windows.Forms.Button();
-            this.tsbAgregarCliente = new System.Windows.Forms.ToolStripButton();
+            this.txt_Direccion = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -64,6 +66,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txt_Direccion);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.btn_cargarCliente);
             this.groupBox1.Controls.Add(this.txt_N_Cliente_Ref);
             this.groupBox1.Controls.Add(this.label2);
@@ -75,10 +79,23 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(0, 28);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(849, 108);
+            this.groupBox1.Size = new System.Drawing.Size(849, 128);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Busqueda Cliente";
+            // 
+            // btn_cargarCliente
+            // 
+            this.btn_cargarCliente.Image = global::ControlDosimetro.Properties.Resources.Buscar;
+            this.btn_cargarCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_cargarCliente.Location = new System.Drawing.Point(457, 76);
+            this.btn_cargarCliente.Name = "btn_cargarCliente";
+            this.btn_cargarCliente.Size = new System.Drawing.Size(111, 40);
+            this.btn_cargarCliente.TabIndex = 35;
+            this.btn_cargarCliente.Text = "Busqueda";
+            this.btn_cargarCliente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_cargarCliente.UseVisualStyleBackColor = true;
+            this.btn_cargarCliente.Click += new System.EventHandler(this.btn_Buscar_Click);
             // 
             // txt_N_Cliente_Ref
             // 
@@ -101,7 +118,7 @@
             this.cbx_Estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_Estado.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbx_Estado.FormattingEnabled = true;
-            this.cbx_Estado.Location = new System.Drawing.Point(84, 73);
+            this.cbx_Estado.Location = new System.Drawing.Point(84, 98);
             this.cbx_Estado.Name = "cbx_Estado";
             this.cbx_Estado.Size = new System.Drawing.Size(121, 21);
             this.cbx_Estado.TabIndex = 4;
@@ -109,7 +126,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(12, 76);
+            this.label11.Location = new System.Drawing.Point(12, 101);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(40, 13);
             this.label11.TabIndex = 31;
@@ -155,9 +172,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.grdDatos);
-            this.groupBox2.Location = new System.Drawing.Point(5, 142);
+            this.groupBox2.Location = new System.Drawing.Point(5, 162);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(842, 390);
+            this.groupBox2.Size = new System.Drawing.Size(842, 370);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Listado";
@@ -182,7 +199,7 @@
             this.grdDatos.Name = "grdDatos";
             this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
             this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdDatos.Size = new System.Drawing.Size(836, 371);
+            this.grdDatos.Size = new System.Drawing.Size(836, 351);
             this.grdDatos.TabIndex = 7;
             this.grdDatos.DoubleClick += new System.EventHandler(this.grdDatos_DoubleClick);
             // 
@@ -262,6 +279,17 @@
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // tsbAgregarCliente
+            // 
+            this.tsbAgregarCliente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbAgregarCliente.Image = global::ControlDosimetro.Properties.Resources.Agregar;
+            this.tsbAgregarCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAgregarCliente.Name = "tsbAgregarCliente";
+            this.tsbAgregarCliente.Size = new System.Drawing.Size(23, 22);
+            this.tsbAgregarCliente.Text = "toolStripButton1";
+            this.tsbAgregarCliente.ToolTipText = "Agregar Cliente";
+            this.tsbAgregarCliente.Click += new System.EventHandler(this.btn_Agregar_Click);
+            // 
             // tsbAgregarReferencia
             // 
             this.tsbAgregarReferencia.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -307,29 +335,22 @@
             this.btnIngresarDosisISP.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.btnIngresarDosisISP.Click += new System.EventHandler(this.btnIngresarDosisISP_Click);
             // 
-            // btn_cargarCliente
+            // txt_Direccion
             // 
-            this.btn_cargarCliente.Image = global::ControlDosimetro.Properties.Resources.Buscar;
-            this.btn_cargarCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_cargarCliente.Location = new System.Drawing.Point(527, 47);
-            this.btn_cargarCliente.Name = "btn_cargarCliente";
-            this.btn_cargarCliente.Size = new System.Drawing.Size(111, 40);
-            this.btn_cargarCliente.TabIndex = 35;
-            this.btn_cargarCliente.Text = "Busqueda";
-            this.btn_cargarCliente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_cargarCliente.UseVisualStyleBackColor = true;
-            this.btn_cargarCliente.Click += new System.EventHandler(this.btn_Buscar_Click);
+            this.txt_Direccion.Location = new System.Drawing.Point(84, 73);
+            this.txt_Direccion.MaxLength = 60;
+            this.txt_Direccion.Name = "txt_Direccion";
+            this.txt_Direccion.Size = new System.Drawing.Size(342, 20);
+            this.txt_Direccion.TabIndex = 36;
             // 
-            // tsbAgregarCliente
+            // label4
             // 
-            this.tsbAgregarCliente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbAgregarCliente.Image = global::ControlDosimetro.Properties.Resources.Agregar;
-            this.tsbAgregarCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbAgregarCliente.Name = "tsbAgregarCliente";
-            this.tsbAgregarCliente.Size = new System.Drawing.Size(23, 22);
-            this.tsbAgregarCliente.Text = "toolStripButton1";
-            this.tsbAgregarCliente.ToolTipText = "Agregar Cliente";
-            this.tsbAgregarCliente.Click += new System.EventHandler(this.btn_Agregar_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(10, 75);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 13);
+            this.label4.TabIndex = 37;
+            this.label4.Text = "Dirección";
             // 
             // frmBusquedaEmpresa
             // 
@@ -384,5 +405,7 @@
                                 private System.Windows.Forms.ToolStripMenuItem tsmEliminar;
                                 private System.Windows.Forms.Button btn_cargarCliente;
                                 private System.Windows.Forms.ToolStripButton tsbAgregarCliente;
+        private System.Windows.Forms.TextBox txt_Direccion;
+        private System.Windows.Forms.Label label4;
     }
 }

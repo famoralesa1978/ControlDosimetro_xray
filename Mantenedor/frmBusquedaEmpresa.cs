@@ -47,8 +47,8 @@ namespace ControlDosimetro
 					cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
 									"from tbl_cliente " +
 									"where run like '%" + txt_Rut.Text + "%' and razon_social like '%" + txt_RazonSocial.Text   + "%' " +
-                                    " and id_estado=" + cbx_Estado.SelectedValue + " and id_cliente =" + txt_N_Cliente_Ref.Text + " " + 
-									" order by id_cliente";
+                                    " and id_estado=" + cbx_Estado.SelectedValue + " and id_cliente =" + txt_N_Cliente_Ref.Text + " " +
+                                    " and Direccion like '%" + txt_Direccion.Text + "%' order by id_cliente";
 				else
 					cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
 									"from tbl_cliente " +
