@@ -101,9 +101,8 @@ namespace ControlDosimetro
          }
         private void MnuMantCliente_Click(object sender, EventArgs e)
         {
-		    frmBusquedaEmpresa frm = new frmBusquedaEmpresa();
-            Graba_log(frm.Text);					
-            frm.ShowDialog (this);
+		     
+            .
         }
 
 		  private void MnuMantPersonal_Click(object sender, EventArgs e)

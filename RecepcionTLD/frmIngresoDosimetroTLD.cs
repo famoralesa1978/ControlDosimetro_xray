@@ -981,5 +981,11 @@ namespace ControlDosimetro
             bs.Filter = "rut like '%" + txtRut.Text + "%'";
             grdDatos.DataSource = bs;
         }
+
+        private void btn_Cliente_Click(object sender, EventArgs e)
+        {
+            frmBusquedaEmpresa frm = new frmBusquedaEmpresa();
+            frm.Show(this);
+        }
     }
 }

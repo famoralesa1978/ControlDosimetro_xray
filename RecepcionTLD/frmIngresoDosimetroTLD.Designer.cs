@@ -71,8 +71,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
             this.grpFiltro = new System.Windows.Forms.GroupBox();
-            this.lblRut = new System.Windows.Forms.Label();
             this.txtRut = new System.Windows.Forms.TextBox();
+            this.lblRut = new System.Windows.Forms.Label();
+            this.btn_Cliente = new System.Windows.Forms.ToolStripButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.pnl_Progreso.SuspendLayout();
@@ -404,7 +405,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btn_Sucursal,
             this.btn_Excel,
-            this.tsdReporte});
+            this.tsdReporte,
+            this.btn_Cliente});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1084, 25);
@@ -445,7 +447,7 @@
             // rptDosimetria
             // 
             this.rptDosimetria.Name = "rptDosimetria";
-            this.rptDosimetria.Size = new System.Drawing.Size(131, 22);
+            this.rptDosimetria.Size = new System.Drawing.Size(180, 22);
             this.rptDosimetria.Text = "Dosimetría";
             this.rptDosimetria.Click += new System.EventHandler(this.rptDosimetria_Click);
             // 
@@ -511,6 +513,15 @@
             this.grpFiltro.TabStop = false;
             this.grpFiltro.Text = "Busqueda personal";
             // 
+            // txtRut
+            // 
+            this.txtRut.Location = new System.Drawing.Point(39, 20);
+            this.txtRut.Name = "txtRut";
+            this.txtRut.Size = new System.Drawing.Size(100, 20);
+            this.txtRut.TabIndex = 1;
+            this.txtRut.TextChanged += new System.EventHandler(this.txtRut_TextChanged);
+            this.txtRut.Enter += new System.EventHandler(this.txtRut_Enter);
+            // 
             // lblRut
             // 
             this.lblRut.AutoSize = true;
@@ -520,14 +531,15 @@
             this.lblRut.TabIndex = 0;
             this.lblRut.Text = "Rut";
             // 
-            // txtRut
+            // btn_Cliente
             // 
-            this.txtRut.Location = new System.Drawing.Point(39, 20);
-            this.txtRut.Name = "txtRut";
-            this.txtRut.Size = new System.Drawing.Size(100, 20);
-            this.txtRut.TabIndex = 1;
-            this.txtRut.TextChanged += new System.EventHandler(this.txtRut_TextChanged);
-            this.txtRut.Enter += new System.EventHandler(this.txtRut_Enter);
+            this.btn_Cliente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btn_Cliente.Image = global::ControlDosimetro.Properties.Resources.cliente;
+            this.btn_Cliente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_Cliente.Name = "btn_Cliente";
+            this.btn_Cliente.Size = new System.Drawing.Size(23, 22);
+            this.btn_Cliente.Text = "Cliente";
+            this.btn_Cliente.Click += new System.EventHandler(this.btn_Cliente_Click);
             // 
             // frmIngresoDosimetroTLD
             // 
@@ -609,5 +621,6 @@
         private System.Windows.Forms.GroupBox grpFiltro;
         private System.Windows.Forms.TextBox txtRut;
         private System.Windows.Forms.Label lblRut;
+        private System.Windows.Forms.ToolStripButton btn_Cliente;
     }
 }
