@@ -37,6 +37,7 @@ namespace ControlDosimetro
 
         private void    Listar_Cliente()
         {
+            Cursor = Cursors.WaitCursor;
 			//  SqlCommand cmd = new SqlCommand()
             SqlCommand cmd = new SqlCommand();
 
@@ -54,7 +55,7 @@ namespace ControlDosimetro
 									"from tbl_cliente " +
 									"where run like '%" + txt_Rut.Text + "%' and razon_social like '%" + txt_RazonSocial.Text + "%' " +
                                     " and id_estado=" + cbx_Estado.SelectedValue +
-									" order by id_cliente";
+                                    " and Direccion like '%" + txt_Direccion.Text + "%' order by id_cliente";
 					cmd.CommandType = CommandType.Text;
 
 
@@ -62,6 +63,7 @@ namespace ControlDosimetro
             dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
             grdDatos.DataSource = dt.Tables[0];
+            Cursor = Cursors.Default;
         }
 
         private void AsignarEvento()
@@ -96,7 +98,6 @@ namespace ControlDosimetro
         private void btn_Buscar_Click(object sender, EventArgs e)
         {
             Listar_Cliente();
-            MessageBox.Show("Busqueda Realizada");
         }
 
         private void btn_Agregar_Click(object sender, EventArgs e)
