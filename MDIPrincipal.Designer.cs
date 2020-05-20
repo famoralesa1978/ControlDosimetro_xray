@@ -86,6 +86,7 @@
             this.mnuFactura = new System.Windows.Forms.ToolStripMenuItem();
             this.facturaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.frmUtilidades = new System.Windows.Forms.ToolStripMenuItem();
+            this.frmUtilidadesConfigurarCorreo = new System.Windows.Forms.ToolStripMenuItem();
             this.frmUtilidadesRestablecerContrasenaCliente = new System.Windows.Forms.ToolStripMenuItem();
             this.frmCambiaContrasena = new System.Windows.Forms.ToolStripMenuItem();
             this.frmUtilidadesEnviarCorreo = new System.Windows.Forms.ToolStripMenuItem();
@@ -121,7 +122,8 @@
             this.tsbPrincipalCliente = new System.Windows.Forms.ToolStripButton();
             this.tsbPrincipalPersonal = new System.Windows.Forms.ToolStripButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.frmUtilidadesConfigurarCorreo = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuProcesoTLDEnviado = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuProcesoTLDRecepcion = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -381,6 +383,8 @@
             // 
             this.mnuProcesoTLD.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuProcesoTLDIngresoPelicula,
+            this.mnuProcesoTLDEnviado,
+            this.mnuProcesoTLDRecepcion,
             this.mnuProcesoTLDIniciarLectura,
             this.mnuProcesoIngresarDosisTLD});
             this.mnuProcesoTLD.Name = "mnuProcesoTLD";
@@ -391,21 +395,21 @@
             // mnuProcesoTLDIngresoPelicula
             // 
             this.mnuProcesoTLDIngresoPelicula.Name = "mnuProcesoTLDIngresoPelicula";
-            this.mnuProcesoTLDIngresoPelicula.Size = new System.Drawing.Size(148, 22);
+            this.mnuProcesoTLDIngresoPelicula.Size = new System.Drawing.Size(180, 22);
             this.mnuProcesoTLDIngresoPelicula.Text = "Ingreso TLD";
             this.mnuProcesoTLDIngresoPelicula.Click += new System.EventHandler(this.MnuProcesoTLDIngresoPelicula_Click);
             // 
             // mnuProcesoTLDIniciarLectura
             // 
             this.mnuProcesoTLDIniciarLectura.Name = "mnuProcesoTLDIniciarLectura";
-            this.mnuProcesoTLDIniciarLectura.Size = new System.Drawing.Size(148, 22);
+            this.mnuProcesoTLDIniciarLectura.Size = new System.Drawing.Size(180, 22);
             this.mnuProcesoTLDIniciarLectura.Text = "Iniciar Lectura";
             this.mnuProcesoTLDIniciarLectura.Click += new System.EventHandler(this.MnuProcesoTLDIniciarLectura_Click);
             // 
             // mnuProcesoIngresarDosisTLD
             // 
             this.mnuProcesoIngresarDosisTLD.Name = "mnuProcesoIngresarDosisTLD";
-            this.mnuProcesoIngresarDosisTLD.Size = new System.Drawing.Size(148, 22);
+            this.mnuProcesoIngresarDosisTLD.Size = new System.Drawing.Size(180, 22);
             this.mnuProcesoIngresarDosisTLD.Text = "Ingresar Dosis";
             this.mnuProcesoIngresarDosisTLD.Click += new System.EventHandler(this.MnuProcesoIngresarDosisTLD_Click);
             // 
@@ -502,6 +506,13 @@
             this.frmUtilidades.Size = new System.Drawing.Size(90, 20);
             this.frmUtilidades.Tag = "800";
             this.frmUtilidades.Text = "Herramientas";
+            // 
+            // frmUtilidadesConfigurarCorreo
+            // 
+            this.frmUtilidadesConfigurarCorreo.Name = "frmUtilidadesConfigurarCorreo";
+            this.frmUtilidadesConfigurarCorreo.Size = new System.Drawing.Size(235, 22);
+            this.frmUtilidadesConfigurarCorreo.Text = "Configurar Correo";
+            this.frmUtilidadesConfigurarCorreo.Click += new System.EventHandler(this.FrmUtilidadesConfigurarCorreo_Click);
             // 
             // frmUtilidadesRestablecerContrasenaCliente
             // 
@@ -678,7 +689,7 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(209, 41);
+            this.richTextBox1.Location = new System.Drawing.Point(209, 29);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(542, 319);
@@ -802,12 +813,19 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
-            // frmUtilidadesConfigurarCorreo
+            // mnuProcesoTLDEnviado
             // 
-            this.frmUtilidadesConfigurarCorreo.Name = "frmUtilidadesConfigurarCorreo";
-            this.frmUtilidadesConfigurarCorreo.Size = new System.Drawing.Size(235, 22);
-            this.frmUtilidadesConfigurarCorreo.Text = "Configurar Correo";
-            this.frmUtilidadesConfigurarCorreo.Click += new System.EventHandler(this.FrmUtilidadesConfigurarCorreo_Click);
+            this.mnuProcesoTLDEnviado.Name = "mnuProcesoTLDEnviado";
+            this.mnuProcesoTLDEnviado.Size = new System.Drawing.Size(180, 22);
+            this.mnuProcesoTLDEnviado.Text = "Enviado";
+            this.mnuProcesoTLDEnviado.Click += new System.EventHandler(this.MnuProcesoEnviado_Click);
+            // 
+            // mnuProcesoTLDRecepcion
+            // 
+            this.mnuProcesoTLDRecepcion.Name = "mnuProcesoTLDRecepcion";
+            this.mnuProcesoTLDRecepcion.Size = new System.Drawing.Size(180, 22);
+            this.mnuProcesoTLDRecepcion.Text = "Recepción";
+            this.mnuProcesoTLDRecepcion.Click += new System.EventHandler(this.MnuProcesoRecepcion_Click);
             // 
             // MDIPrincipal
             // 
@@ -925,6 +943,8 @@
         private System.Windows.Forms.ToolStripMenuItem frmUtilidadesRestablecerContrasenaCliente;
         private System.Windows.Forms.ToolStripButton tsbPrincipalCambioContraseñaCliente;
         private System.Windows.Forms.ToolStripMenuItem frmUtilidadesConfigurarCorreo;
+        private System.Windows.Forms.ToolStripMenuItem mnuProcesoTLDEnviado;
+        private System.Windows.Forms.ToolStripMenuItem mnuProcesoTLDRecepcion;
     }
 }
 
