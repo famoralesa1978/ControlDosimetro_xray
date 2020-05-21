@@ -65,6 +65,7 @@
             this.btn_Excel = new System.Windows.Forms.ToolStripButton();
             this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
             this.rptDosimetria = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_Cliente = new System.Windows.Forms.ToolStripButton();
             this.btn_Guardar = new System.Windows.Forms.Button();
             this.btn_Cerrar = new System.Windows.Forms.Button();
             this.btn_Corregir = new System.Windows.Forms.Button();
@@ -73,7 +74,6 @@
             this.grpFiltro = new System.Windows.Forms.GroupBox();
             this.txtRut = new System.Windows.Forms.TextBox();
             this.lblRut = new System.Windows.Forms.Label();
-            this.btn_Cliente = new System.Windows.Forms.ToolStripButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.pnl_Progreso.SuspendLayout();
@@ -403,10 +403,10 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btn_Cliente,
             this.btn_Sucursal,
             this.btn_Excel,
-            this.tsdReporte,
-            this.btn_Cliente});
+            this.tsdReporte});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1084, 25);
@@ -447,9 +447,19 @@
             // rptDosimetria
             // 
             this.rptDosimetria.Name = "rptDosimetria";
-            this.rptDosimetria.Size = new System.Drawing.Size(180, 22);
+            this.rptDosimetria.Size = new System.Drawing.Size(131, 22);
             this.rptDosimetria.Text = "Dosimetría";
             this.rptDosimetria.Click += new System.EventHandler(this.rptDosimetria_Click);
+            // 
+            // btn_Cliente
+            // 
+            this.btn_Cliente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btn_Cliente.Image = global::ControlDosimetro.Properties.Resources.cliente;
+            this.btn_Cliente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_Cliente.Name = "btn_Cliente";
+            this.btn_Cliente.Size = new System.Drawing.Size(23, 22);
+            this.btn_Cliente.Text = "Cliente";
+            this.btn_Cliente.Click += new System.EventHandler(this.btn_Cliente_Click);
             // 
             // btn_Guardar
             // 
@@ -530,16 +540,6 @@
             this.lblRut.Size = new System.Drawing.Size(24, 13);
             this.lblRut.TabIndex = 0;
             this.lblRut.Text = "Rut";
-            // 
-            // btn_Cliente
-            // 
-            this.btn_Cliente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btn_Cliente.Image = global::ControlDosimetro.Properties.Resources.cliente;
-            this.btn_Cliente.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_Cliente.Name = "btn_Cliente";
-            this.btn_Cliente.Size = new System.Drawing.Size(23, 22);
-            this.btn_Cliente.Text = "Cliente";
-            this.btn_Cliente.Click += new System.EventHandler(this.btn_Cliente_Click);
             // 
             // frmIngresoDosimetroTLD
             // 
