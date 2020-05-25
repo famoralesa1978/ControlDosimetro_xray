@@ -16,6 +16,8 @@
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>F:\instalador\instaladorv4\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -39,8 +41,6 @@
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -264,6 +264,12 @@
     </Compile>
     <Compile Include="Mantenedor\frmBusquedaUsuario.Designer.cs">
       <DependentUpon>frmBusquedaUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\frmMantenedorTipoDocumento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmMantenedorTipoDocumento.Designer.cs">
+      <DependentUpon>frmMantenedorTipoDocumento.cs</DependentUpon>
     </Compile>
     <Compile Include="Mantenedor\frmMantenedorPerfil.cs">
       <SubType>Form</SubType>
@@ -594,6 +600,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmBusquedaUsuario.resx">
       <DependentUpon>frmBusquedaUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmMantenedorTipoDocumento.resx">
+      <DependentUpon>frmMantenedorTipoDocumento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmMantenedorPerfil.resx">
       <DependentUpon>frmMantenedorPerfil.cs</DependentUpon>
