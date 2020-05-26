@@ -95,7 +95,7 @@ namespace ControlDosimetro
 
          private void MnuMantTipoDocumento_Click(object sender, EventArgs e)
          {
-             frmBusquedaTipoDoc frm = new frmBusquedaTipoDoc();
+            frmMantenedorTipoDocumento frm = new frmMantenedorTipoDocumento();
              Graba_log(frm.Text);
              frm.ShowDialog(this); 
          }

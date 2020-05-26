@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.stsEstado = new System.Windows.Forms.StatusStrip();
             this.tssDescEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssEstado = new System.Windows.Forms.ToolStripStatusLabel();
@@ -41,6 +41,7 @@
             this.pnlPrincipal = new System.Windows.Forms.Panel();
             this.gpxListado = new System.Windows.Forms.GroupBox();
             this.dgvGrilla = new System.Windows.Forms.DataGridView();
+            this.Coldetalle_tipo_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsMenuContexto = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmActualizar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -51,17 +52,18 @@
             this.btn_Buscar = new System.Windows.Forms.Button();
             this.cbx_id_estado_Buscar = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tbl_perfil = new System.Windows.Forms.GroupBox();
+            this.glo_TipoDocumentos = new System.Windows.Forms.GroupBox();
             this.btn_Minimizar = new System.Windows.Forms.Button();
             this.btn_Limpiar = new System.Windows.Forms.Button();
             this.btn_Guardar = new System.Windows.Forms.Button();
             this.cbx_id_estado = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txt_Descripcion = new System.Windows.Forms.TextBox();
-            this.lbl_Descripcion = new System.Windows.Forms.Label();
-            this.txt_Id_perfil = new System.Windows.Forms.TextBox();
-            this.lbl_Id_perfil = new System.Windows.Forms.Label();
-            this.Coldetalle_tipo_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_orden = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txt_detalle_tipo_documento = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txt_id_tipo_doc = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.stsEstado.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scPrincipal)).BeginInit();
@@ -73,7 +75,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrilla)).BeginInit();
             this.cmsMenuContexto.SuspendLayout();
             this.gpxFiltrar.SuspendLayout();
-            this.tbl_perfil.SuspendLayout();
+            this.glo_TipoDocumentos.SuspendLayout();
             this.SuspendLayout();
             // 
             // stsEstado
@@ -156,7 +158,7 @@
             // 
             // scPrincipal.Panel2
             // 
-            this.scPrincipal.Panel2.Controls.Add(this.tbl_perfil);
+            this.scPrincipal.Panel2.Controls.Add(this.glo_TipoDocumentos);
             this.scPrincipal.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.scPrincipal.Panel2MinSize = 200;
             this.scPrincipal.Size = new System.Drawing.Size(617, 242);
@@ -196,14 +198,14 @@
             this.dgvGrilla.AllowUserToDeleteRows = false;
             this.dgvGrilla.AllowUserToOrderColumns = true;
             this.dgvGrilla.AllowUserToResizeColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvGrilla.ColumnHeadersHeight = 42;
             this.dgvGrilla.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Coldetalle_tipo_documento});
@@ -217,6 +219,14 @@
             this.dgvGrilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_CellDoubleClick);
             this.dgvGrilla.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvGrilla_ColumnWidthChanged);
             this.dgvGrilla.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvGrilla_Paint);
+            // 
+            // Coldetalle_tipo_documento
+            // 
+            this.Coldetalle_tipo_documento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Coldetalle_tipo_documento.DataPropertyName = "detalle_tipo_documento";
+            this.Coldetalle_tipo_documento.HeaderText = "Nombre";
+            this.Coldetalle_tipo_documento.Name = "Coldetalle_tipo_documento";
+            this.Coldetalle_tipo_documento.ReadOnly = true;
             // 
             // cmsMenuContexto
             // 
@@ -304,24 +314,26 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Estado";
             // 
-            // tbl_perfil
+            // glo_TipoDocumentos
             // 
-            this.tbl_perfil.Controls.Add(this.btn_Minimizar);
-            this.tbl_perfil.Controls.Add(this.btn_Limpiar);
-            this.tbl_perfil.Controls.Add(this.btn_Guardar);
-            this.tbl_perfil.Controls.Add(this.cbx_id_estado);
-            this.tbl_perfil.Controls.Add(this.label4);
-            this.tbl_perfil.Controls.Add(this.txt_Descripcion);
-            this.tbl_perfil.Controls.Add(this.lbl_Descripcion);
-            this.tbl_perfil.Controls.Add(this.txt_Id_perfil);
-            this.tbl_perfil.Controls.Add(this.lbl_Id_perfil);
-            this.tbl_perfil.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbl_perfil.Location = new System.Drawing.Point(0, 0);
-            this.tbl_perfil.Name = "tbl_perfil";
-            this.tbl_perfil.Size = new System.Drawing.Size(363, 242);
-            this.tbl_perfil.TabIndex = 6;
-            this.tbl_perfil.TabStop = false;
-            this.tbl_perfil.Text = "Datos";
+            this.glo_TipoDocumentos.Controls.Add(this.cbx_id_estado);
+            this.glo_TipoDocumentos.Controls.Add(this.label4);
+            this.glo_TipoDocumentos.Controls.Add(this.txt_orden);
+            this.glo_TipoDocumentos.Controls.Add(this.label3);
+            this.glo_TipoDocumentos.Controls.Add(this.txt_detalle_tipo_documento);
+            this.glo_TipoDocumentos.Controls.Add(this.label2);
+            this.glo_TipoDocumentos.Controls.Add(this.txt_id_tipo_doc);
+            this.glo_TipoDocumentos.Controls.Add(this.label5);
+            this.glo_TipoDocumentos.Controls.Add(this.btn_Minimizar);
+            this.glo_TipoDocumentos.Controls.Add(this.btn_Limpiar);
+            this.glo_TipoDocumentos.Controls.Add(this.btn_Guardar);
+            this.glo_TipoDocumentos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.glo_TipoDocumentos.Location = new System.Drawing.Point(0, 0);
+            this.glo_TipoDocumentos.Name = "glo_TipoDocumentos";
+            this.glo_TipoDocumentos.Size = new System.Drawing.Size(363, 242);
+            this.glo_TipoDocumentos.TabIndex = 6;
+            this.glo_TipoDocumentos.TabStop = false;
+            this.glo_TipoDocumentos.Text = "Datos";
             // 
             // btn_Minimizar
             // 
@@ -370,63 +382,69 @@
             this.cbx_id_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_id_estado.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbx_id_estado.FormattingEnabled = true;
-            this.cbx_id_estado.Location = new System.Drawing.Point(88, 43);
+            this.cbx_id_estado.Location = new System.Drawing.Point(95, 100);
             this.cbx_id_estado.Name = "cbx_id_estado";
             this.cbx_id_estado.Size = new System.Drawing.Size(121, 21);
-            this.cbx_id_estado.TabIndex = 8;
+            this.cbx_id_estado.TabIndex = 21;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 46);
+            this.label4.Location = new System.Drawing.Point(10, 103);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 13);
-            this.label4.TabIndex = 12;
+            this.label4.TabIndex = 20;
             this.label4.Text = "Estado";
             // 
-            // txt_Descripcion
+            // txt_orden
             // 
-            this.txt_Descripcion.Location = new System.Drawing.Point(88, 17);
-            this.txt_Descripcion.MaxLength = 50;
-            this.txt_Descripcion.Name = "txt_Descripcion";
-            this.txt_Descripcion.Size = new System.Drawing.Size(260, 20);
-            this.txt_Descripcion.TabIndex = 7;
+            this.txt_orden.Location = new System.Drawing.Point(95, 73);
+            this.txt_orden.Name = "txt_orden";
+            this.txt_orden.Size = new System.Drawing.Size(100, 20);
+            this.txt_orden.TabIndex = 19;
             // 
-            // lbl_Descripcion
+            // label3
             // 
-            this.lbl_Descripcion.AutoSize = true;
-            this.lbl_Descripcion.Location = new System.Drawing.Point(3, 20);
-            this.lbl_Descripcion.Name = "lbl_Descripcion";
-            this.lbl_Descripcion.Size = new System.Drawing.Size(63, 13);
-            this.lbl_Descripcion.TabIndex = 10;
-            this.lbl_Descripcion.Text = "Descripción";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 76);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(36, 13);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "Orden";
             // 
-            // txt_Id_perfil
+            // txt_detalle_tipo_documento
             // 
-            this.txt_Id_perfil.Enabled = false;
-            this.txt_Id_perfil.Location = new System.Drawing.Point(88, 70);
-            this.txt_Id_perfil.Name = "txt_Id_perfil";
-            this.txt_Id_perfil.Size = new System.Drawing.Size(66, 20);
-            this.txt_Id_perfil.TabIndex = 9;
-            this.txt_Id_perfil.Visible = false;
+            this.txt_detalle_tipo_documento.Location = new System.Drawing.Point(95, 47);
+            this.txt_detalle_tipo_documento.MaxLength = 50;
+            this.txt_detalle_tipo_documento.Name = "txt_detalle_tipo_documento";
+            this.txt_detalle_tipo_documento.Size = new System.Drawing.Size(260, 20);
+            this.txt_detalle_tipo_documento.TabIndex = 17;
             // 
-            // lbl_Id_perfil
+            // label2
             // 
-            this.lbl_Id_perfil.AutoSize = true;
-            this.lbl_Id_perfil.Location = new System.Drawing.Point(3, 73);
-            this.lbl_Id_perfil.Name = "lbl_Id_perfil";
-            this.lbl_Id_perfil.Size = new System.Drawing.Size(18, 13);
-            this.lbl_Id_perfil.TabIndex = 8;
-            this.lbl_Id_perfil.Text = "ID";
-            this.lbl_Id_perfil.Visible = false;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Descripción";
             // 
-            // Coldetalle_tipo_documento
+            // txt_id_tipo_doc
             // 
-            this.Coldetalle_tipo_documento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Coldetalle_tipo_documento.DataPropertyName = "detalle_tipo_documento";
-            this.Coldetalle_tipo_documento.HeaderText = "Nombre";
-            this.Coldetalle_tipo_documento.Name = "Coldetalle_tipo_documento";
-            this.Coldetalle_tipo_documento.ReadOnly = true;
+            this.txt_id_tipo_doc.Enabled = false;
+            this.txt_id_tipo_doc.Location = new System.Drawing.Point(95, 19);
+            this.txt_id_tipo_doc.Name = "txt_id_tipo_doc";
+            this.txt_id_tipo_doc.Size = new System.Drawing.Size(66, 20);
+            this.txt_id_tipo_doc.TabIndex = 15;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(10, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(18, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "ID";
             // 
             // frmMantenedorTipoDocumento
             // 
@@ -441,7 +459,7 @@
             this.MinimumSize = new System.Drawing.Size(645, 300);
             this.Name = "frmMantenedorTipoDocumento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Mantenedor de perfil de usuario";
+            this.Text = "Mantenedor de tipo documento";
             this.Load += new System.EventHandler(this.frmMantenedorPerfil_Load);
             this.stsEstado.ResumeLayout(false);
             this.stsEstado.PerformLayout();
@@ -457,8 +475,8 @@
             this.cmsMenuContexto.ResumeLayout(false);
             this.gpxFiltrar.ResumeLayout(false);
             this.gpxFiltrar.PerformLayout();
-            this.tbl_perfil.ResumeLayout(false);
-            this.tbl_perfil.PerformLayout();
+            this.glo_TipoDocumentos.ResumeLayout(false);
+            this.glo_TipoDocumentos.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -478,13 +496,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_Buscar;
         private System.Windows.Forms.GroupBox gpxListado;
-        private System.Windows.Forms.GroupBox tbl_perfil;
-        private System.Windows.Forms.ComboBox cbx_id_estado;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txt_Descripcion;
-        private System.Windows.Forms.Label lbl_Descripcion;
-        private System.Windows.Forms.TextBox txt_Id_perfil;
-        private System.Windows.Forms.Label lbl_Id_perfil;
+        private System.Windows.Forms.GroupBox glo_TipoDocumentos;
         private System.Windows.Forms.ContextMenuStrip cmsMenuContexto;
         private System.Windows.Forms.ToolStripMenuItem tsmActualizar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
@@ -498,5 +510,13 @@
         private System.Windows.Forms.Button btn_Minimizar;
         private System.Windows.Forms.DataGridView dgvGrilla;
         private System.Windows.Forms.DataGridViewTextBoxColumn Coldetalle_tipo_documento;
+        private System.Windows.Forms.ComboBox cbx_id_estado;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txt_orden;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txt_detalle_tipo_documento;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txt_id_tipo_doc;
+        private System.Windows.Forms.Label label5;
     }
 }

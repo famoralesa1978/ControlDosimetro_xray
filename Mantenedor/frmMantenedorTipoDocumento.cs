@@ -24,12 +24,14 @@ namespace ControlDosimetro
         {
             id=0,
             detalle_tipo_documento = 1,
-            Id_estado = 2
+            Id_estado = 2,
+            orden=3
         };
 
         clsConectorSqlServer Conectar = new clsConectorSqlServer();
         clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
         clsEventoControl ClaseEvento = new clsEventoControl();
+        BindingSource bs = new BindingSource();
 
         #endregion
 
@@ -59,8 +61,9 @@ namespace ControlDosimetro
         }
         private void LimpiarFormulario()
         {
-            txt_Descripcion.Clear();
-            txt_Id_perfil.Clear();
+            txt_detalle_tipo_documento.Clear();
+            txt_id_tipo_doc.Clear();
+            txt_orden.Clear();
             cbx_id_estado.SelectedIndex = 0;            
         }
         private void Grabar()
@@ -69,9 +72,9 @@ namespace ControlDosimetro
             bolResult = false;
             if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
             {
-                if ((tssEstado.Text == "Nuevo")&&(txt_Id_perfil.Text=="0"))
+                if ((tssEstado.Text == "Nuevo")&&(txt_id_tipo_doc.Text=="0"))
                 {
-                    ClaseComun.Insertar(Clases.clsBD.BD,tbl_perfil, ref bolResult);
+                    ClaseComun.Insertar(Clases.clsBD.BD,glo_TipoDocumentos, ref bolResult);
                     if (bolResult == true)
                     {
                         CargarGrilla();
@@ -81,7 +84,7 @@ namespace ControlDosimetro
                 else
                 if (tssEstado.Text == "Modificar")
                 {
-                    ClaseComun.Modificar(Clases.clsBD.BD,tbl_perfil, ref bolResult);
+                    ClaseComun.Modificar(Clases.clsBD.BD,glo_TipoDocumentos, ref bolResult);
                     if (bolResult == true)
                     {
                         CargarGrilla();
@@ -94,34 +97,40 @@ namespace ControlDosimetro
         private void CargarGrilla()
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "select id_tipo_doc as id, detalle_tipo_documento from glo_TipoDocumentos where id_estado= " + cbx_id_estado.SelectedValue + "  order by orden";
+            cmd.CommandText = "select id_tipo_doc as id, detalle_tipo_documento,id_estado,orden from glo_TipoDocumentos where id_estado= " + cbx_id_estado.SelectedValue + "  order by orden";
 
             cmd.CommandType = CommandType.Text;
 
             DataSet dt;
             dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
-            dgvGrilla.DataSource = dt.Tables[0];
+            bs.DataSource = dt.Tables[0];
+            dgvGrilla.DataSource = bs;
+            Filtro();
         }
         private void LlamadoAModificar(int intFila)
         {
-            DataTable dt = (DataTable)dgvGrilla.DataSource;
-            DataRow currentRow = dt.Rows[intFila];
-            txt_Id_perfil.Text = currentRow[ConfGrilla.id.ToString()].ToString();
-            txt_Descripcion.Text = currentRow[ConfGrilla.detalle_tipo_documento.ToString()].ToString();
-            cbx_id_estado.SelectedValue = currentRow[ConfGrilla.Id_estado.ToString()].ToString();
+            BindingSource bs1 = new BindingSource();
+             bs1=(BindingSource)dgvGrilla.DataSource;
+            var currentRow = bs1.List[intFila];
+
+            txt_id_tipo_doc.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.id].ToString();
+            txt_detalle_tipo_documento.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.detalle_tipo_documento].ToString();          
+            txt_orden.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.orden].ToString();
+            cbx_id_estado.SelectedValue = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_estado].ToString();
             tssEstado.Text = "Modificar";
-            if (txt_Id_perfil.Text == "1")
-            {
-                btn_Guardar.Enabled = false;
-                tsbGuardar.Enabled = false;
-            }
-            else
-            {
-                btn_Guardar.Enabled = true;
-                tsbGuardar.Enabled = true;
-            }
+            btn_Guardar.Enabled = true;
+            tsbGuardar.Enabled = true;
+            
             scPrincipal.Panel2Collapsed = false;
+        }
+
+        private void Filtro()
+        {
+            bs = new BindingSource();
+            bs.DataSource = dgvGrilla.DataSource;
+            bs.Filter = Coldetalle_tipo_documento.DataPropertyName + " like '%" + txtBox.Text + "%'";
+            dgvGrilla.DataSource = bs;
         }
 
         #endregion
@@ -146,11 +155,8 @@ namespace ControlDosimetro
         }
 
         private void TextBox_Changed(object sender, EventArgs e)
-        {           
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dgvGrilla.DataSource;
-            bs.Filter ="Descripcion like '%" + (sender as TextBox).Text + "%'";
-            dgvGrilla.DataSource = bs;
+        {
+            Filtro();
         }
 
         #endregion
@@ -160,7 +166,7 @@ namespace ControlDosimetro
         {
             LimpiarFormulario();
             tssEstado.Text = "Nuevo";
-            txt_Id_perfil.Text = "0";
+            txt_id_tipo_doc.Text = "0";
         }
 
         private void btn_Buscar_Click(object sender, EventArgs e)
@@ -173,7 +179,7 @@ namespace ControlDosimetro
             Grabar();
             LimpiarFormulario();
             tssEstado.Text = "Nuevo";
-            txt_Id_perfil.Text = "0";
+            txt_id_tipo_doc.Text = "0";
         }
 
         private void btn_Minimizar_Click(object sender, EventArgs e)
@@ -225,12 +231,12 @@ namespace ControlDosimetro
                 tssEstado.Text = "Nuevo";
                 tsbGuardar.Enabled = true;
                 LimpiarFormulario();
-                txt_Id_perfil.Text = "0";
+                txt_id_tipo_doc.Text = "0";
             }
             else
             {
                 tssEstado.Text = "";
-                txt_Id_perfil.Text = "";
+                txt_id_tipo_doc.Text = "";
             }
 
         }
