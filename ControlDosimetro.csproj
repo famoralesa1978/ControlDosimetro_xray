@@ -283,12 +283,6 @@
     <Compile Include="Mantenedor\frmUsuarioMant.Designer.cs">
       <DependentUpon>frmUsuarioMant.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mantenedor\frmTipoDocumentoMant.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mantenedor\frmTipoDocumentoMant.Designer.cs">
-      <DependentUpon>frmTipoDocumentoMant.cs</DependentUpon>
-    </Compile>
     <Compile Include="Mantenedor\frmSucursalMant.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -318,12 +312,6 @@
     </Compile>
     <Compile Include="Facturacion\frmFacturacion.designer.cs">
       <DependentUpon>frmFacturacion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mantenedor\frmBusquedaTipoDoc.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mantenedor\frmBusquedaTipoDoc.Designer.cs">
-      <DependentUpon>frmBusquedaTipoDoc.cs</DependentUpon>
     </Compile>
     <Compile Include="ProcEnviar\frmModuloEnviado.cs">
       <SubType>Form</SubType>
@@ -610,9 +598,6 @@
     <EmbeddedResource Include="Mantenedor\frmUsuarioMant.resx">
       <DependentUpon>frmUsuarioMant.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mantenedor\frmTipoDocumentoMant.resx">
-      <DependentUpon>frmTipoDocumentoMant.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmSucursalMant.resx">
       <DependentUpon>frmSucursalMant.cs</DependentUpon>
     </EmbeddedResource>
@@ -678,9 +663,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmEmpresaMant.resx">
       <DependentUpon>frmEmpresaMant.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mantenedor\frmBusquedaTipoDoc.resx">
-      <DependentUpon>frmBusquedaTipoDoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Recepcion\frmParametro.resx">
       <DependentUpon>frmParametro.cs</DependentUpon>
