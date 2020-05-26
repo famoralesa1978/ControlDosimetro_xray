@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.stsEstado = new System.Windows.Forms.StatusStrip();
             this.tssDescEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssEstado = new System.Windows.Forms.ToolStripStatusLabel();
@@ -53,9 +53,6 @@
             this.cbx_id_estado_Buscar = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.glo_TipoDocumentos = new System.Windows.Forms.GroupBox();
-            this.btn_Minimizar = new System.Windows.Forms.Button();
-            this.btn_Limpiar = new System.Windows.Forms.Button();
-            this.btn_Guardar = new System.Windows.Forms.Button();
             this.cbx_id_estado = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txt_orden = new System.Windows.Forms.TextBox();
@@ -64,6 +61,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txt_id_tipo_doc = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.btn_Minimizar = new System.Windows.Forms.Button();
+            this.btn_Limpiar = new System.Windows.Forms.Button();
+            this.btn_Guardar = new System.Windows.Forms.Button();
             this.stsEstado.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scPrincipal)).BeginInit();
@@ -198,14 +198,14 @@
             this.dgvGrilla.AllowUserToDeleteRows = false;
             this.dgvGrilla.AllowUserToOrderColumns = true;
             this.dgvGrilla.AllowUserToResizeColumns = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvGrilla.ColumnHeadersHeight = 42;
             this.dgvGrilla.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Coldetalle_tipo_documento});
@@ -335,6 +335,77 @@
             this.glo_TipoDocumentos.TabStop = false;
             this.glo_TipoDocumentos.Text = "Datos";
             // 
+            // cbx_id_estado
+            // 
+            this.cbx_id_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_id_estado.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbx_id_estado.FormattingEnabled = true;
+            this.cbx_id_estado.Location = new System.Drawing.Point(97, 76);
+            this.cbx_id_estado.Name = "cbx_id_estado";
+            this.cbx_id_estado.Size = new System.Drawing.Size(121, 21);
+            this.cbx_id_estado.TabIndex = 21;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 79);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 13);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Estado";
+            // 
+            // txt_orden
+            // 
+            this.txt_orden.Location = new System.Drawing.Point(97, 49);
+            this.txt_orden.Name = "txt_orden";
+            this.txt_orden.Size = new System.Drawing.Size(100, 20);
+            this.txt_orden.TabIndex = 19;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 52);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(36, 13);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "Orden";
+            // 
+            // txt_detalle_tipo_documento
+            // 
+            this.txt_detalle_tipo_documento.Location = new System.Drawing.Point(97, 23);
+            this.txt_detalle_tipo_documento.MaxLength = 50;
+            this.txt_detalle_tipo_documento.Name = "txt_detalle_tipo_documento";
+            this.txt_detalle_tipo_documento.Size = new System.Drawing.Size(260, 20);
+            this.txt_detalle_tipo_documento.TabIndex = 17;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 26);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Descripción";
+            // 
+            // txt_id_tipo_doc
+            // 
+            this.txt_id_tipo_doc.Enabled = false;
+            this.txt_id_tipo_doc.Location = new System.Drawing.Point(97, 103);
+            this.txt_id_tipo_doc.Name = "txt_id_tipo_doc";
+            this.txt_id_tipo_doc.Size = new System.Drawing.Size(66, 20);
+            this.txt_id_tipo_doc.TabIndex = 15;
+            this.txt_id_tipo_doc.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 106);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(18, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "ID";
+            this.label5.Visible = false;
+            // 
             // btn_Minimizar
             // 
             this.btn_Minimizar.Image = global::ControlDosimetro.Properties.Resources.minimizar;
@@ -376,75 +447,6 @@
             this.btn_Guardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Guardar.UseVisualStyleBackColor = true;
             this.btn_Guardar.Click += new System.EventHandler(this.btn_Guardar_Click);
-            // 
-            // cbx_id_estado
-            // 
-            this.cbx_id_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_id_estado.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cbx_id_estado.FormattingEnabled = true;
-            this.cbx_id_estado.Location = new System.Drawing.Point(95, 100);
-            this.cbx_id_estado.Name = "cbx_id_estado";
-            this.cbx_id_estado.Size = new System.Drawing.Size(121, 21);
-            this.cbx_id_estado.TabIndex = 21;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 103);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 13);
-            this.label4.TabIndex = 20;
-            this.label4.Text = "Estado";
-            // 
-            // txt_orden
-            // 
-            this.txt_orden.Location = new System.Drawing.Point(95, 73);
-            this.txt_orden.Name = "txt_orden";
-            this.txt_orden.Size = new System.Drawing.Size(100, 20);
-            this.txt_orden.TabIndex = 19;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 76);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 13);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "Orden";
-            // 
-            // txt_detalle_tipo_documento
-            // 
-            this.txt_detalle_tipo_documento.Location = new System.Drawing.Point(95, 47);
-            this.txt_detalle_tipo_documento.MaxLength = 50;
-            this.txt_detalle_tipo_documento.Name = "txt_detalle_tipo_documento";
-            this.txt_detalle_tipo_documento.Size = new System.Drawing.Size(260, 20);
-            this.txt_detalle_tipo_documento.TabIndex = 17;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 50);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Descripción";
-            // 
-            // txt_id_tipo_doc
-            // 
-            this.txt_id_tipo_doc.Enabled = false;
-            this.txt_id_tipo_doc.Location = new System.Drawing.Point(95, 19);
-            this.txt_id_tipo_doc.Name = "txt_id_tipo_doc";
-            this.txt_id_tipo_doc.Size = new System.Drawing.Size(66, 20);
-            this.txt_id_tipo_doc.TabIndex = 15;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 22);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(18, 13);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "ID";
             // 
             // frmMantenedorTipoDocumento
             // 
