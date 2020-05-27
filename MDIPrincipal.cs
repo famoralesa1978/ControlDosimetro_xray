@@ -267,6 +267,13 @@ namespace ControlDosimetro
         #endregion
 
         #region "Herramientas"
+        private void frmUtilidadesLiberarDosimetro_Click(object sender, EventArgs e)
+        {
+            frmLiberarDosimetro frm = new frmLiberarDosimetro();
+            Graba_log(frm.Text);
+            frm.Show();
+        }
+
         private void FrmUtilidadesConfigurarCorreo_Click(object sender, EventArgs e)
         {
             FrmConfCorreo frm = new FrmConfCorreo();

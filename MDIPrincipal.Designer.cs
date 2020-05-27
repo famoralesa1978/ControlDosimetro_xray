@@ -73,6 +73,8 @@
             this.porFacturarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuProcesoTLD = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuProcesoTLDIngresoPelicula = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuProcesoTLDEnviado = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuProcesoTLDRecepcion = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuProcesoTLDIniciarLectura = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuProcesoIngresarDosisTLD = new System.Windows.Forms.ToolStripMenuItem();
             this.frmGenerarDctoISP = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,8 +124,7 @@
             this.tsbPrincipalCliente = new System.Windows.Forms.ToolStripButton();
             this.tsbPrincipalPersonal = new System.Windows.Forms.ToolStripButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.mnuProcesoTLDEnviado = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuProcesoTLDRecepcion = new System.Windows.Forms.ToolStripMenuItem();
+            this.frmUtilidadesLiberarDosimetro = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -399,6 +400,20 @@
             this.mnuProcesoTLDIngresoPelicula.Text = "Ingreso TLD";
             this.mnuProcesoTLDIngresoPelicula.Click += new System.EventHandler(this.MnuProcesoTLDIngresoPelicula_Click);
             // 
+            // mnuProcesoTLDEnviado
+            // 
+            this.mnuProcesoTLDEnviado.Name = "mnuProcesoTLDEnviado";
+            this.mnuProcesoTLDEnviado.Size = new System.Drawing.Size(180, 22);
+            this.mnuProcesoTLDEnviado.Text = "Enviado";
+            this.mnuProcesoTLDEnviado.Click += new System.EventHandler(this.MnuProcesoEnviado_Click);
+            // 
+            // mnuProcesoTLDRecepcion
+            // 
+            this.mnuProcesoTLDRecepcion.Name = "mnuProcesoTLDRecepcion";
+            this.mnuProcesoTLDRecepcion.Size = new System.Drawing.Size(180, 22);
+            this.mnuProcesoTLDRecepcion.Text = "Recepción";
+            this.mnuProcesoTLDRecepcion.Click += new System.EventHandler(this.MnuProcesoRecepcion_Click);
+            // 
             // mnuProcesoTLDIniciarLectura
             // 
             this.mnuProcesoTLDIniciarLectura.Name = "mnuProcesoTLDIniciarLectura";
@@ -425,7 +440,7 @@
             // frmGenerarDctoISPGenerar
             // 
             this.frmGenerarDctoISPGenerar.Name = "frmGenerarDctoISPGenerar";
-            this.frmGenerarDctoISPGenerar.Size = new System.Drawing.Size(115, 22);
+            this.frmGenerarDctoISPGenerar.Size = new System.Drawing.Size(180, 22);
             this.frmGenerarDctoISPGenerar.Text = "Generar";
             this.frmGenerarDctoISPGenerar.Click += new System.EventHandler(this.FrmGenerarDctoISPGenerar_Click);
             // 
@@ -489,7 +504,7 @@
             // facturaciónToolStripMenuItem
             // 
             this.facturaciónToolStripMenuItem.Name = "facturaciónToolStripMenuItem";
-            this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.facturaciónToolStripMenuItem.Text = "Facturación";
             this.facturaciónToolStripMenuItem.Click += new System.EventHandler(this.FacturaciónToolStripMenuItem_Click);
             // 
@@ -501,7 +516,8 @@
             this.frmCambiaContrasena,
             this.frmUtilidadesEnviarCorreo,
             this.frmUtilidadesCambioTrimestre,
-            this.frmUtilidadesAsociarDocumentoCliente});
+            this.frmUtilidadesAsociarDocumentoCliente,
+            this.frmUtilidadesLiberarDosimetro});
             this.frmUtilidades.Name = "frmUtilidades";
             this.frmUtilidades.Size = new System.Drawing.Size(90, 20);
             this.frmUtilidades.Tag = "800";
@@ -813,19 +829,12 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
-            // mnuProcesoTLDEnviado
+            // frmUtilidadesLiberarDosimetro
             // 
-            this.mnuProcesoTLDEnviado.Name = "mnuProcesoTLDEnviado";
-            this.mnuProcesoTLDEnviado.Size = new System.Drawing.Size(180, 22);
-            this.mnuProcesoTLDEnviado.Text = "Enviado";
-            this.mnuProcesoTLDEnviado.Click += new System.EventHandler(this.MnuProcesoEnviado_Click);
-            // 
-            // mnuProcesoTLDRecepcion
-            // 
-            this.mnuProcesoTLDRecepcion.Name = "mnuProcesoTLDRecepcion";
-            this.mnuProcesoTLDRecepcion.Size = new System.Drawing.Size(180, 22);
-            this.mnuProcesoTLDRecepcion.Text = "Recepción";
-            this.mnuProcesoTLDRecepcion.Click += new System.EventHandler(this.MnuProcesoRecepcion_Click);
+            this.frmUtilidadesLiberarDosimetro.Name = "frmUtilidadesLiberarDosimetro";
+            this.frmUtilidadesLiberarDosimetro.Size = new System.Drawing.Size(235, 22);
+            this.frmUtilidadesLiberarDosimetro.Text = "Liberar Dosimetro ";
+            this.frmUtilidadesLiberarDosimetro.Click += new System.EventHandler(this.frmUtilidadesLiberarDosimetro_Click);
             // 
             // MDIPrincipal
             // 
@@ -945,6 +954,7 @@
         private System.Windows.Forms.ToolStripMenuItem frmUtilidadesConfigurarCorreo;
         private System.Windows.Forms.ToolStripMenuItem mnuProcesoTLDEnviado;
         private System.Windows.Forms.ToolStripMenuItem mnuProcesoTLDRecepcion;
+        private System.Windows.Forms.ToolStripMenuItem frmUtilidadesLiberarDosimetro;
     }
 }
 
