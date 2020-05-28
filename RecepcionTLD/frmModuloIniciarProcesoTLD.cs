@@ -26,7 +26,7 @@ namespace ControlDosimetro
             int intintId_Estado_temp;
         #endregion
 
-            public frmModuloIniciarProcesoTLD(int intId_Estado)
+       public frmModuloIniciarProcesoTLD(int intId_Estado)
         {
             InitializeComponent();
           
@@ -115,7 +115,7 @@ namespace ControlDosimetro
             {
                 btn_Guardar.Visible = false;
                 btnIniciar.Visible = false;
-                MessageBox.Show("No  se puede agregar mas TLD, el motivo es por que el proceso de lectura se inicio");
+                MessageBox.Show("No se puede agregar mas TLD, el motivo es por que el proceso de lectura se inicio \n y no se terminado de registrar las dosis en el proceso anterior");
             }
             else
             {
