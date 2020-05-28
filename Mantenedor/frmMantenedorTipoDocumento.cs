@@ -195,7 +195,7 @@ namespace ControlDosimetro
                 DataTable dt = (DataTable)dgvGrilla.DataSource;
                 DataRow currentRow = dt.Rows[dgvGrilla.CurrentRow.Index];
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "pa_Perfil_del " + currentRow[ConfGrilla.id.ToString()].ToString();
+                cmd.CommandText = "pa_TipoDocumento_del " + currentRow[ConfGrilla.id.ToString()].ToString();
 
                 cmd.CommandType = CommandType.Text;
 
