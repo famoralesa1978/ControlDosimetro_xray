@@ -60,8 +60,8 @@ namespace ControlDosimetro
 
                 cmd.CommandText = "SELECT PosicionDisco,n_dosimetro,tld.N_Documento,p.id_cliente,p.Id_Personal,Rut,Paterno,Maternos,Nombres,isnull( d.Controlado,0)Controlado," +
                         "isnull(d.ConDosis,0)condosis,d.Dosis,isnull(d.Id_EstadoDosis,0)estadodosis, isnull(d.Id_Dosimetro,0)Id_Dosimetro,Cristal1,Cristal2,tld.id_periodo " +		
-                        " FROM tbl_personal p inner join ges_dosimetro_estado_TLD tld on p.Id_Personal=tld.Id_Personal	 " + 
-		                " left join tbl_dosimetria d on d.id_cliente=tld.id_cliente   and  d.id_personal=tld.id_personal  and   TLD=1 " +
+                        " FROM tbl_personal p inner join ges_dosimetro_estado_TLD tld on p.Id_Personal=tld.Id_Personal	 " +
+                        " left outer  join tbl_dosimetria d on N_Pelicula=n_dosimetro  and TLD=1  " +
 	                    " where id_estadodosimetro=12    order by PosicionDisco";
 			  cmd.CommandType = CommandType.Text;
 	 
@@ -367,6 +367,11 @@ namespace ControlDosimetro
            
              
          }
-                
+
+        private void btn_Cliente_Click(object sender, EventArgs e)
+        {
+            frmBusquedaEmpresa frm = new frmBusquedaEmpresa();
+            frm.Show(this);
+        }
     }
 }

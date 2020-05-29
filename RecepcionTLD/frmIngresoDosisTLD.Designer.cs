@@ -28,30 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngresoDosisTLD));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pnl_Progreso = new System.Windows.Forms.GroupBox();
             this.pgb_Barra = new System.Windows.Forms.ProgressBar();
             this.grdDatos = new System.Windows.Forms.DataGridView();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnIngresarDosisISP = new System.Windows.Forms.ToolStripButton();
-            this.btn_Guardar = new System.Windows.Forms.Button();
-            this.btn_Cerrar = new System.Windows.Forms.Button();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.integerGridColumn1 = new GridExtension.IntegerGridColumn();
-            this.integerGridColumn2 = new GridExtension.IntegerGridColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PosicionDisco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.N_Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,6 +54,23 @@
             this.Id_Dosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_periodo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tld = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnIngresarDosisISP = new System.Windows.Forms.ToolStripButton();
+            this.btn_Guardar = new System.Windows.Forms.Button();
+            this.btn_Cerrar = new System.Windows.Forms.Button();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.integerGridColumn1 = new GridExtension.IntegerGridColumn();
+            this.integerGridColumn2 = new GridExtension.IntegerGridColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_Cliente = new System.Windows.Forms.ToolStripButton();
             this.groupBox2.SuspendLayout();
             this.pnl_Progreso.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -148,9 +149,170 @@
             this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
             this.grdDatos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdDatos_KeyDown);
             // 
+            // Id_Personal
+            // 
+            this.Id_Personal.DataPropertyName = "Id_Personal";
+            this.Id_Personal.HeaderText = "Id_Personal";
+            this.Id_Personal.Name = "Id_Personal";
+            this.Id_Personal.ReadOnly = true;
+            this.Id_Personal.Visible = false;
+            this.Id_Personal.Width = 88;
+            // 
+            // PosicionDisco
+            // 
+            this.PosicionDisco.DataPropertyName = "PosicionDisco";
+            this.PosicionDisco.HeaderText = "Posición";
+            this.PosicionDisco.Name = "PosicionDisco";
+            this.PosicionDisco.ReadOnly = true;
+            this.PosicionDisco.Width = 72;
+            // 
+            // N_Cliente
+            // 
+            this.N_Cliente.DataPropertyName = "Id_Cliente";
+            this.N_Cliente.HeaderText = "N° Cliente";
+            this.N_Cliente.Name = "N_Cliente";
+            this.N_Cliente.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.N_Cliente.Width = 79;
+            // 
+            // NDocumento
+            // 
+            this.NDocumento.DataPropertyName = "N_Documento";
+            this.NDocumento.HeaderText = "N° Documento";
+            this.NDocumento.Name = "NDocumento";
+            this.NDocumento.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NDocumento.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.NDocumento.Width = 102;
+            // 
+            // n_dosimetro
+            // 
+            this.n_dosimetro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.n_dosimetro.DataPropertyName = "n_dosimetro";
+            this.n_dosimetro.HeaderText = "Nº TLD";
+            this.n_dosimetro.Name = "n_dosimetro";
+            this.n_dosimetro.ReadOnly = true;
+            this.n_dosimetro.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.n_dosimetro.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.n_dosimetro.Width = 68;
+            // 
+            // Rut
+            // 
+            this.Rut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Rut.DataPropertyName = "Rut";
+            this.Rut.HeaderText = "Rut";
+            this.Rut.Name = "Rut";
+            this.Rut.ReadOnly = true;
+            this.Rut.Width = 49;
+            // 
+            // Paterno
+            // 
+            this.Paterno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Paterno.DataPropertyName = "Paterno";
+            this.Paterno.FillWeight = 300F;
+            this.Paterno.HeaderText = "Paterno";
+            this.Paterno.Name = "Paterno";
+            this.Paterno.ReadOnly = true;
+            this.Paterno.Width = 69;
+            // 
+            // Maternos
+            // 
+            this.Maternos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Maternos.DataPropertyName = "Maternos";
+            this.Maternos.HeaderText = "Maternos";
+            this.Maternos.MinimumWidth = 150;
+            this.Maternos.Name = "Maternos";
+            this.Maternos.ReadOnly = true;
+            this.Maternos.Width = 150;
+            // 
+            // Nombres
+            // 
+            this.Nombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Nombres.DataPropertyName = "Nombres";
+            this.Nombres.HeaderText = "Nombres";
+            this.Nombres.Name = "Nombres";
+            this.Nombres.ReadOnly = true;
+            this.Nombres.Width = 74;
+            // 
+            // Controlado
+            // 
+            this.Controlado.DataPropertyName = "Controlado";
+            this.Controlado.FalseValue = "0";
+            this.Controlado.HeaderText = "Controlado";
+            this.Controlado.IndeterminateValue = "";
+            this.Controlado.Name = "Controlado";
+            this.Controlado.TrueValue = "1";
+            this.Controlado.Width = 64;
+            // 
+            // condosis
+            // 
+            this.condosis.DataPropertyName = "condosis";
+            this.condosis.FalseValue = "0";
+            this.condosis.HeaderText = "Con Dosis";
+            this.condosis.IndeterminateValue = "";
+            this.condosis.Name = "condosis";
+            this.condosis.TrueValue = "1";
+            this.condosis.Width = 61;
+            // 
+            // valor
+            // 
+            this.valor.DataPropertyName = "dosis";
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = "0";
+            this.valor.DefaultCellStyle = dataGridViewCellStyle4;
+            this.valor.HeaderText = "Valor Ingresar";
+            this.valor.Name = "valor";
+            this.valor.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.valor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.valor.Width = 97;
+            // 
+            // Estado
+            // 
+            this.Estado.DataPropertyName = "estadodosis";
+            this.Estado.HeaderText = "Estado Controlado";
+            this.Estado.Name = "Estado";
+            // 
+            // Cristal1
+            // 
+            this.Cristal1.DataPropertyName = "Cristal1";
+            this.Cristal1.HeaderText = "Cristal1";
+            this.Cristal1.Name = "Cristal1";
+            this.Cristal1.Width = 47;
+            // 
+            // Cristal2
+            // 
+            this.Cristal2.DataPropertyName = "Cristal2";
+            this.Cristal2.HeaderText = "Cristal2";
+            this.Cristal2.Name = "Cristal2";
+            this.Cristal2.Width = 47;
+            // 
+            // Id_Dosimetro
+            // 
+            this.Id_Dosimetro.DataPropertyName = "Id_Dosimetro";
+            this.Id_Dosimetro.HeaderText = "Id_Dosimetro";
+            this.Id_Dosimetro.Name = "Id_Dosimetro";
+            this.Id_Dosimetro.Visible = false;
+            this.Id_Dosimetro.Width = 94;
+            // 
+            // id_periodo
+            // 
+            this.id_periodo.DataPropertyName = "id_periodo";
+            this.id_periodo.HeaderText = "id_periodo";
+            this.id_periodo.Name = "id_periodo";
+            this.id_periodo.ReadOnly = true;
+            this.id_periodo.Visible = false;
+            this.id_periodo.Width = 81;
+            // 
+            // tld
+            // 
+            this.tld.DataPropertyName = "tld";
+            this.tld.HeaderText = "tld";
+            this.tld.Name = "tld";
+            this.tld.Visible = false;
+            this.tld.Width = 43;
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btn_Cliente,
             this.btnIngresarDosisISP});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -273,9 +435,9 @@
             // 
             this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = "0";
+            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTextBoxColumn8.FillWeight = 300F;
             this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -293,172 +455,22 @@
             // dataGridViewTextBoxColumn10
             // 
             this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = "0";
-            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = "0";
+            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             this.dataGridViewTextBoxColumn10.Width = 97;
             // 
-            // Id_Personal
+            // btn_Cliente
             // 
-            this.Id_Personal.DataPropertyName = "Id_Personal";
-            this.Id_Personal.HeaderText = "Id_Personal";
-            this.Id_Personal.Name = "Id_Personal";
-            this.Id_Personal.ReadOnly = true;
-            this.Id_Personal.Visible = false;
-            this.Id_Personal.Width = 88;
-            // 
-            // PosicionDisco
-            // 
-            this.PosicionDisco.DataPropertyName = "PosicionDisco";
-            this.PosicionDisco.HeaderText = "Posición";
-            this.PosicionDisco.Name = "PosicionDisco";
-            this.PosicionDisco.ReadOnly = true;
-            this.PosicionDisco.Width = 72;
-            // 
-            // N_Cliente
-            // 
-            this.N_Cliente.DataPropertyName = "Id_Cliente";
-            this.N_Cliente.HeaderText = "N° Cliente";
-            this.N_Cliente.Name = "N_Cliente";
-            this.N_Cliente.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.N_Cliente.Width = 79;
-            // 
-            // NDocumento
-            // 
-            this.NDocumento.DataPropertyName = "N_Documento";
-            this.NDocumento.HeaderText = "N° Documento";
-            this.NDocumento.Name = "NDocumento";
-            this.NDocumento.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.NDocumento.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.NDocumento.Width = 102;
-            // 
-            // n_dosimetro
-            // 
-            this.n_dosimetro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.n_dosimetro.DataPropertyName = "n_dosimetro";
-            this.n_dosimetro.HeaderText = "Nº TLD";
-            this.n_dosimetro.Name = "n_dosimetro";
-            this.n_dosimetro.ReadOnly = true;
-            this.n_dosimetro.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.n_dosimetro.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.n_dosimetro.Width = 68;
-            // 
-            // Rut
-            // 
-            this.Rut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Rut.DataPropertyName = "Rut";
-            this.Rut.HeaderText = "Rut";
-            this.Rut.Name = "Rut";
-            this.Rut.ReadOnly = true;
-            this.Rut.Width = 49;
-            // 
-            // Paterno
-            // 
-            this.Paterno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Paterno.DataPropertyName = "Paterno";
-            this.Paterno.FillWeight = 300F;
-            this.Paterno.HeaderText = "Paterno";
-            this.Paterno.Name = "Paterno";
-            this.Paterno.ReadOnly = true;
-            this.Paterno.Width = 69;
-            // 
-            // Maternos
-            // 
-            this.Maternos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Maternos.DataPropertyName = "Maternos";
-            this.Maternos.HeaderText = "Maternos";
-            this.Maternos.MinimumWidth = 150;
-            this.Maternos.Name = "Maternos";
-            this.Maternos.ReadOnly = true;
-            this.Maternos.Width = 150;
-            // 
-            // Nombres
-            // 
-            this.Nombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Nombres.DataPropertyName = "Nombres";
-            this.Nombres.HeaderText = "Nombres";
-            this.Nombres.Name = "Nombres";
-            this.Nombres.ReadOnly = true;
-            this.Nombres.Width = 74;
-            // 
-            // Controlado
-            // 
-            this.Controlado.DataPropertyName = "Controlado";
-            this.Controlado.FalseValue = "0";
-            this.Controlado.HeaderText = "Controlado";
-            this.Controlado.IndeterminateValue = "";
-            this.Controlado.Name = "Controlado";
-            this.Controlado.TrueValue = "1";
-            this.Controlado.Width = 64;
-            // 
-            // condosis
-            // 
-            this.condosis.DataPropertyName = "condosis";
-            this.condosis.FalseValue = "0";
-            this.condosis.HeaderText = "Con Dosis";
-            this.condosis.IndeterminateValue = "";
-            this.condosis.Name = "condosis";
-            this.condosis.TrueValue = "1";
-            this.condosis.Width = 61;
-            // 
-            // valor
-            // 
-            this.valor.DataPropertyName = "dosis";
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = "0";
-            this.valor.DefaultCellStyle = dataGridViewCellStyle1;
-            this.valor.HeaderText = "Valor Ingresar";
-            this.valor.Name = "valor";
-            this.valor.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.valor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.valor.Width = 97;
-            // 
-            // Estado
-            // 
-            this.Estado.DataPropertyName = "estadodosis";
-            this.Estado.HeaderText = "Estado Controlado";
-            this.Estado.Name = "Estado";
-            // 
-            // Cristal1
-            // 
-            this.Cristal1.DataPropertyName = "Cristal1";
-            this.Cristal1.HeaderText = "Cristal1";
-            this.Cristal1.Name = "Cristal1";
-            this.Cristal1.Width = 47;
-            // 
-            // Cristal2
-            // 
-            this.Cristal2.DataPropertyName = "Cristal2";
-            this.Cristal2.HeaderText = "Cristal2";
-            this.Cristal2.Name = "Cristal2";
-            this.Cristal2.Width = 47;
-            // 
-            // Id_Dosimetro
-            // 
-            this.Id_Dosimetro.DataPropertyName = "Id_Dosimetro";
-            this.Id_Dosimetro.HeaderText = "Id_Dosimetro";
-            this.Id_Dosimetro.Name = "Id_Dosimetro";
-            this.Id_Dosimetro.Visible = false;
-            this.Id_Dosimetro.Width = 94;
-            // 
-            // id_periodo
-            // 
-            this.id_periodo.DataPropertyName = "id_periodo";
-            this.id_periodo.HeaderText = "id_periodo";
-            this.id_periodo.Name = "id_periodo";
-            this.id_periodo.ReadOnly = true;
-            this.id_periodo.Visible = false;
-            this.id_periodo.Width = 81;
-            // 
-            // tld
-            // 
-            this.tld.DataPropertyName = "tld";
-            this.tld.HeaderText = "tld";
-            this.tld.Name = "tld";
-            this.tld.Visible = false;
-            this.tld.Width = 43;
+            this.btn_Cliente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btn_Cliente.Image = global::ControlDosimetro.Properties.Resources.cliente;
+            this.btn_Cliente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_Cliente.Name = "btn_Cliente";
+            this.btn_Cliente.Size = new System.Drawing.Size(23, 22);
+            this.btn_Cliente.Text = "Cliente";
+            this.btn_Cliente.Click += new System.EventHandler(this.btn_Cliente_Click);
             // 
             // frmIngresoDosisTLD
             // 
@@ -525,5 +537,6 @@
                                 private System.Windows.Forms.DataGridViewTextBoxColumn Id_Dosimetro;
                                 private System.Windows.Forms.DataGridViewTextBoxColumn id_periodo;
                                 private System.Windows.Forms.DataGridViewTextBoxColumn tld;
+        private System.Windows.Forms.ToolStripButton btn_Cliente;
     }
 }
