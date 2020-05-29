@@ -373,5 +373,10 @@ namespace ControlDosimetro
             frmBusquedaEmpresa frm = new frmBusquedaEmpresa();
             frm.Show(this);
         }
+
+        private void frmIngresoDosisTLD_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

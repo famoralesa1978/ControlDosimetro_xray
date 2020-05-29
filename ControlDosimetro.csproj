@@ -361,10 +361,10 @@
     <Compile Include="Recepcion\frmOrdenTrabajo.Designer.cs">
       <DependentUpon>frmOrdenTrabajo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Recepcion\frmModuloRecepcion.cs">
+    <Compile Include="RecepcionTLD\frmModuloRecepcion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Recepcion\frmModuloRecepcion.Designer.cs">
+    <Compile Include="RecepcionTLD\frmModuloRecepcion.Designer.cs">
       <DependentUpon>frmModuloRecepcion.cs</DependentUpon>
     </Compile>
     <Compile Include="Recepcion\frmDosimetriaPersonal.cs">
@@ -634,7 +634,7 @@
     <EmbeddedResource Include="Recepcion\frmOrdenTrabajo.resx">
       <DependentUpon>frmOrdenTrabajo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Recepcion\frmModuloRecepcion.resx">
+    <EmbeddedResource Include="RecepcionTLD\frmModuloRecepcion.resx">
       <DependentUpon>frmModuloRecepcion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Recepcion\frmDosimetriaISP.resx">

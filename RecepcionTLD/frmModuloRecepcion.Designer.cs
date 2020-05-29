@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbtTLD = new System.Windows.Forms.RadioButton();
+            this.rbtDosimetria = new System.Windows.Forms.RadioButton();
             this.txt_Observacion = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txt_NDocumento = new System.Windows.Forms.TextBox();
@@ -78,12 +80,12 @@
             this.btn_Guardar = new System.Windows.Forms.Button();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.rbtTLD = new System.Windows.Forms.RadioButton();
-            this.rbtDosimetria = new System.Windows.Forms.RadioButton();
+            this.btn_Cliente = new System.Windows.Forms.ToolStripButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.pnl_Progreso.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -109,6 +111,29 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dato Cliente";
+            // 
+            // rbtTLD
+            // 
+            this.rbtTLD.AutoSize = true;
+            this.rbtTLD.Location = new System.Drawing.Point(569, 12);
+            this.rbtTLD.Name = "rbtTLD";
+            this.rbtTLD.Size = new System.Drawing.Size(46, 17);
+            this.rbtTLD.TabIndex = 49;
+            this.rbtTLD.TabStop = true;
+            this.rbtTLD.Text = "TLD";
+            this.rbtTLD.UseVisualStyleBackColor = true;
+            // 
+            // rbtDosimetria
+            // 
+            this.rbtDosimetria.AutoSize = true;
+            this.rbtDosimetria.Checked = true;
+            this.rbtDosimetria.Location = new System.Drawing.Point(489, 13);
+            this.rbtDosimetria.Name = "rbtDosimetria";
+            this.rbtDosimetria.Size = new System.Drawing.Size(74, 17);
+            this.rbtDosimetria.TabIndex = 48;
+            this.rbtDosimetria.TabStop = true;
+            this.rbtDosimetria.Text = "Dosimetria";
+            this.rbtDosimetria.UseVisualStyleBackColor = true;
             // 
             // txt_Observacion
             // 
@@ -416,6 +441,8 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btn_Cliente});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(841, 25);
@@ -503,9 +530,9 @@
             // 
             this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = "0";
-            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = "0";
+            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewTextBoxColumn8.FillWeight = 300F;
             this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -523,9 +550,9 @@
             // dataGridViewTextBoxColumn10
             // 
             this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-            dataGridViewCellStyle6.Format = "N2";
-            dataGridViewCellStyle6.NullValue = "0";
-            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             this.dataGridViewTextBoxColumn10.Width = 97;
@@ -575,28 +602,15 @@
             this.label7.TabIndex = 18;
             this.label7.Text = "Estado";
             // 
-            // rbtTLD
+            // btn_Cliente
             // 
-            this.rbtTLD.AutoSize = true;
-            this.rbtTLD.Location = new System.Drawing.Point(569, 12);
-            this.rbtTLD.Name = "rbtTLD";
-            this.rbtTLD.Size = new System.Drawing.Size(46, 17);
-            this.rbtTLD.TabIndex = 49;
-            this.rbtTLD.TabStop = true;
-            this.rbtTLD.Text = "TLD";
-            this.rbtTLD.UseVisualStyleBackColor = true;
-            // 
-            // rbtDosimetria
-            // 
-            this.rbtDosimetria.AutoSize = true;
-            this.rbtDosimetria.Checked = true;
-            this.rbtDosimetria.Location = new System.Drawing.Point(489, 13);
-            this.rbtDosimetria.Name = "rbtDosimetria";
-            this.rbtDosimetria.Size = new System.Drawing.Size(74, 17);
-            this.rbtDosimetria.TabIndex = 48;
-            this.rbtDosimetria.TabStop = true;
-            this.rbtDosimetria.Text = "Dosimetria";
-            this.rbtDosimetria.UseVisualStyleBackColor = true;
+            this.btn_Cliente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btn_Cliente.Image = global::ControlDosimetro.Properties.Resources.cliente;
+            this.btn_Cliente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_Cliente.Name = "btn_Cliente";
+            this.btn_Cliente.Size = new System.Drawing.Size(23, 22);
+            this.btn_Cliente.Text = "Cliente";
+            this.btn_Cliente.Click += new System.EventHandler(this.btn_Cliente_Click);
             // 
             // frmModuloRecepcion
             // 
@@ -621,6 +635,8 @@
             this.groupBox2.PerformLayout();
             this.pnl_Progreso.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdDatos)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -678,5 +694,6 @@
                                 private System.Windows.Forms.DataGridViewComboBoxColumn Observación;
                                 private System.Windows.Forms.RadioButton rbtTLD;
                                 private System.Windows.Forms.RadioButton rbtDosimetria;
+        private System.Windows.Forms.ToolStripButton btn_Cliente;
     }
 }

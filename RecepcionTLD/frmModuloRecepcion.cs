@@ -195,6 +195,11 @@ namespace ControlDosimetro
 
         #region "button"
 
+        private void btn_Cliente_Click(object sender, EventArgs e)
+        {
+            frmBusquedaEmpresa frm = new frmBusquedaEmpresa();
+            frm.Show(this);
+        }
         private void btn_Cerrar_Click_1(object sender, EventArgs e)
         {
             //  verificar_Grabado();
@@ -445,19 +450,6 @@ namespace ControlDosimetro
              btn_Guardar.Enabled = true;
              pnl_Progreso.Visible = false;
          }
-
-      
-
-        
-
-    
-
-          
-	
-		 
-		  
-		
-
-	
+       
     }
 }
