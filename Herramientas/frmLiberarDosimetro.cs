@@ -81,10 +81,7 @@ namespace ControlDosimetro
                 cmd.CommandType = CommandType.Text;
                 ds = Conectar.Listar(Clases.clsBD.BD,cmd);
 
-                if (ds.Tables[0].Rows[0][0].ToString() != "-1")
-                {
-                    MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
-                }
+                MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());                
             }
         }
 

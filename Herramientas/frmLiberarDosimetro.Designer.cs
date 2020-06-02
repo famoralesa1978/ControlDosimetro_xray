@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grpDatosCliente = new System.Windows.Forms.GroupBox();
             this.txt_NDos = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -84,7 +84,7 @@
             this.txt_NDos.MaxLength = 10;
             this.txt_NDos.Name = "txt_NDos";
             this.txt_NDos.Size = new System.Drawing.Size(74, 20);
-            this.txt_NDos.TabIndex = 46;
+            this.txt_NDos.TabIndex = 2;
             // 
             // label1
             // 
@@ -100,7 +100,7 @@
             this.btn_filtro.Location = new System.Drawing.Point(182, 92);
             this.btn_filtro.Name = "btn_filtro";
             this.btn_filtro.Size = new System.Drawing.Size(95, 23);
-            this.btn_filtro.TabIndex = 45;
+            this.btn_filtro.TabIndex = 4;
             this.btn_filtro.Text = "Limpiar filtro";
             this.btn_filtro.UseVisualStyleBackColor = true;
             this.btn_filtro.Click += new System.EventHandler(this.Btn_filtro_Click);
@@ -118,7 +118,7 @@
             this.btn_Guardar.Location = new System.Drawing.Point(62, 92);
             this.btn_Guardar.Name = "btn_Guardar";
             this.btn_Guardar.Size = new System.Drawing.Size(114, 23);
-            this.btn_Guardar.TabIndex = 2;
+            this.btn_Guardar.TabIndex = 3;
             this.btn_Guardar.Text = "Modificar estado";
             this.btn_Guardar.UseVisualStyleBackColor = true;
             this.btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
@@ -233,9 +233,9 @@
             // 
             this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = "0";
-            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = "0";
+            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxColumn8.FillWeight = 300F;
             this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -253,9 +253,9 @@
             // dataGridViewTextBoxColumn10
             // 
             this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = "0";
+            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             this.dataGridViewTextBoxColumn10.Width = 97;
@@ -287,6 +287,7 @@
             this.MinimizeBox = false;
             this.Name = "frmLiberarDosimetro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Liberar dosimetro";
             this.grpDatosCliente.ResumeLayout(false);
             this.grpDatosCliente.PerformLayout();
             this.cmsPopup.ResumeLayout(false);
