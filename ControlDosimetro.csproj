@@ -475,10 +475,10 @@
     <Compile Include="Mantenedor\frmBusquedaEmpresa.Designer.cs">
       <DependentUpon>frmBusquedaEmpresa.cs</DependentUpon>
     </Compile>
-    <Compile Include="Recepcion\frmParametro.cs">
+    <Compile Include="Mantenedor\frmParametro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Recepcion\frmParametro.Designer.cs">
+    <Compile Include="Mantenedor\frmParametro.Designer.cs">
       <DependentUpon>frmParametro.cs</DependentUpon>
     </Compile>
     <Compile Include="Mantenedor\frmParametroMant.cs">
@@ -673,7 +673,7 @@
     <EmbeddedResource Include="Mantenedor\frmEmpresaMant.resx">
       <DependentUpon>frmEmpresaMant.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Recepcion\frmParametro.resx">
+    <EmbeddedResource Include="Mantenedor\frmParametro.resx">
       <DependentUpon>frmParametro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmParametroMant.resx">
@@ -982,22 +982,22 @@
   <ItemGroup>
     <PublishFile Include="bin\Debug\dllLibreriaMysql.pdb">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="dllLibreriaMysql.pdb">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>

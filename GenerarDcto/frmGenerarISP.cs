@@ -200,6 +200,7 @@ namespace ControlDosimetro
 
         private void btn_Corregir_Click(object sender, EventArgs e)
           {
+            Cursor = Cursors.WaitCursor;
             SqlCommand cmd2 = new SqlCommand();
 
             btn_Corregir.Enabled = false;
@@ -208,6 +209,8 @@ namespace ControlDosimetro
             cmd2.CommandType = CommandType.Text;
             Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd2);
             MessageBox.Show("Los datos fueron generado y esta listo para que se genere el infome");
+            Cursor = Cursors.Default;
+            cbx_id_periodo_SelectedIndexChanged(null,null);
 
               btn_Corregir.Enabled = true;
         }
@@ -609,20 +612,26 @@ namespace ControlDosimetro
 
         private void btn_Entidades_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             frmreporte frm = new frmreporte(dt, null, 6);
             frm.Show(this);
+            Cursor = Cursors.Default;
         }
 
         private void btn_Toes_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             frmreporte frm = new frmreporte(dt, null, 7);
             frm.Show(this);
+            Cursor = Cursors.Default;
         }
 
         private void btn_Dosis_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             frmreporte frm = new frmreporte(dt, null, 8);
             frm.Show(this);
+            Cursor = Cursors.Default;
         }
     }
 }

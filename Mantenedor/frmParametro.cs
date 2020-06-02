@@ -41,7 +41,7 @@ namespace ControlDosimetro
             //MessageBox.Show("Conectado al servidor");
 
 
-            cmd.CommandText = "select Id_parametro ,descripcion,  orden from conf_parametro where id_estado= " + cbx_EstadoId.Text.ToString() + "  order by orden";
+            cmd.CommandText = "select Id_parametro ,descripcion,  orden from conf_parametro where id_estado= " + cbx_Estado.SelectedValue.ToString() + "  order by orden";
             cmd.CommandType = CommandType.Text ;
 
             DataSet dt;
