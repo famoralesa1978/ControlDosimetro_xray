@@ -545,14 +545,7 @@ namespace ControlDosimetro
              }
              if (strn_pelicula != "")
              {
-                 view.RowFilter = "n_dosimetro not in (" + strn_pelicula.ToString() + ")";
-                 //DataRow[] foundRows;
-                 //n_dosimetro,ges_dosimetro_estado
-                 //DataTable orders = dtayuda.Tables[0].Select(expression);
-
-
-
-
+                 view.RowFilter = "n_dosimetro not in (" + strn_pelicula.ToString() + ")";               
 
                  dgvAyuda.DataSource = view; // dtayuda.Tables[0];
              }

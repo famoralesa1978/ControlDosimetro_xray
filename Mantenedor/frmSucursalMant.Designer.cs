@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.tbl_sucursal = new System.Windows.Forms.GroupBox();
+            this.chk_CasaMatriz = new System.Windows.Forms.CheckBox();
             this.txt_runsuc = new System.Windows.Forms.TextBox();
             this.lbl_runsuc = new System.Windows.Forms.Label();
             this.lbl_id_Sucursal = new System.Windows.Forms.Label();
@@ -53,12 +54,15 @@
             this.lbl_id_cliente = new System.Windows.Forms.Label();
             this.txt_run = new System.Windows.Forms.TextBox();
             this.lbl_run = new System.Windows.Forms.Label();
-            this.chk_CasaMatriz = new System.Windows.Forms.CheckBox();
+            this.lbl_Email = new System.Windows.Forms.Label();
+            this.txt_Email = new System.Windows.Forms.TextBox();
             this.tbl_sucursal.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbl_sucursal
             // 
+            this.tbl_sucursal.Controls.Add(this.lbl_Email);
+            this.tbl_sucursal.Controls.Add(this.txt_Email);
             this.tbl_sucursal.Controls.Add(this.chk_CasaMatriz);
             this.tbl_sucursal.Controls.Add(this.txt_runsuc);
             this.tbl_sucursal.Controls.Add(this.lbl_runsuc);
@@ -87,10 +91,21 @@
             this.tbl_sucursal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbl_sucursal.Location = new System.Drawing.Point(0, 0);
             this.tbl_sucursal.Name = "tbl_sucursal";
-            this.tbl_sucursal.Size = new System.Drawing.Size(491, 330);
+            this.tbl_sucursal.Size = new System.Drawing.Size(491, 355);
             this.tbl_sucursal.TabIndex = 0;
             this.tbl_sucursal.TabStop = false;
             this.tbl_sucursal.Text = "Datos";
+            // 
+            // chk_CasaMatriz
+            // 
+            this.chk_CasaMatriz.AutoSize = true;
+            this.chk_CasaMatriz.Location = new System.Drawing.Point(389, 21);
+            this.chk_CasaMatriz.Name = "chk_CasaMatriz";
+            this.chk_CasaMatriz.Size = new System.Drawing.Size(81, 17);
+            this.chk_CasaMatriz.TabIndex = 32;
+            this.chk_CasaMatriz.Text = "Casa Matriz";
+            this.chk_CasaMatriz.UseVisualStyleBackColor = true;
+            this.chk_CasaMatriz.CheckedChanged += new System.EventHandler(this.chk_CasaMatriz_CheckedChanged);
             // 
             // txt_runsuc
             // 
@@ -112,7 +127,7 @@
             // lbl_id_Sucursal
             // 
             this.lbl_id_Sucursal.AutoSize = true;
-            this.lbl_id_Sucursal.Location = new System.Drawing.Point(363, 247);
+            this.lbl_id_Sucursal.Location = new System.Drawing.Point(366, 232);
             this.lbl_id_Sucursal.Name = "lbl_id_Sucursal";
             this.lbl_id_Sucursal.Size = new System.Drawing.Size(35, 13);
             this.lbl_id_Sucursal.TabIndex = 29;
@@ -124,15 +139,15 @@
             this.cbx_id_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_id_estado.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbx_id_estado.FormattingEnabled = true;
-            this.cbx_id_estado.Location = new System.Drawing.Point(165, 255);
+            this.cbx_id_estado.Location = new System.Drawing.Point(165, 282);
             this.cbx_id_estado.Name = "cbx_id_estado";
             this.cbx_id_estado.Size = new System.Drawing.Size(121, 21);
-            this.cbx_id_estado.TabIndex = 13;
+            this.cbx_id_estado.TabIndex = 11;
             // 
             // lbl_id_estado
             // 
             this.lbl_id_estado.AutoSize = true;
-            this.lbl_id_estado.Location = new System.Drawing.Point(10, 258);
+            this.lbl_id_estado.Location = new System.Drawing.Point(10, 285);
             this.lbl_id_estado.Name = "lbl_id_estado";
             this.lbl_id_estado.Size = new System.Drawing.Size(40, 13);
             this.lbl_id_estado.TabIndex = 28;
@@ -183,20 +198,20 @@
             // 
             // btn_cerrar
             // 
-            this.btn_cerrar.Location = new System.Drawing.Point(272, 295);
+            this.btn_cerrar.Location = new System.Drawing.Point(272, 318);
             this.btn_cerrar.Name = "btn_cerrar";
             this.btn_cerrar.Size = new System.Drawing.Size(75, 23);
-            this.btn_cerrar.TabIndex = 17;
+            this.btn_cerrar.TabIndex = 13;
             this.btn_cerrar.Text = "Cerrar";
             this.btn_cerrar.UseVisualStyleBackColor = true;
             this.btn_cerrar.Click += new System.EventHandler(this.btn_cerrar_Click);
             // 
             // btn_Grabar
             // 
-            this.btn_Grabar.Location = new System.Drawing.Point(85, 295);
+            this.btn_Grabar.Location = new System.Drawing.Point(85, 318);
             this.btn_Grabar.Name = "btn_Grabar";
             this.btn_Grabar.Size = new System.Drawing.Size(75, 23);
-            this.btn_Grabar.TabIndex = 16;
+            this.btn_Grabar.TabIndex = 12;
             this.btn_Grabar.Text = "Guardar";
             this.btn_Grabar.UseVisualStyleBackColor = true;
             this.btn_Grabar.Click += new System.EventHandler(this.btn_Grabar_Click);
@@ -316,22 +331,28 @@
             this.lbl_run.TabIndex = 0;
             this.lbl_run.Text = "Rut cliente";
             // 
-            // chk_CasaMatriz
+            // lbl_Email
             // 
-            this.chk_CasaMatriz.AutoSize = true;
-            this.chk_CasaMatriz.Location = new System.Drawing.Point(389, 21);
-            this.chk_CasaMatriz.Name = "chk_CasaMatriz";
-            this.chk_CasaMatriz.Size = new System.Drawing.Size(81, 17);
-            this.chk_CasaMatriz.TabIndex = 32;
-            this.chk_CasaMatriz.Text = "Casa Matriz";
-            this.chk_CasaMatriz.UseVisualStyleBackColor = true;
-            this.chk_CasaMatriz.CheckedChanged += new System.EventHandler(this.chk_CasaMatriz_CheckedChanged);
+            this.lbl_Email.AutoSize = true;
+            this.lbl_Email.Location = new System.Drawing.Point(9, 258);
+            this.lbl_Email.Name = "lbl_Email";
+            this.lbl_Email.Size = new System.Drawing.Size(32, 13);
+            this.lbl_Email.TabIndex = 42;
+            this.lbl_Email.Text = "Email";
+            // 
+            // txt_Email
+            // 
+            this.txt_Email.Location = new System.Drawing.Point(165, 255);
+            this.txt_Email.MaxLength = 100;
+            this.txt_Email.Name = "txt_Email";
+            this.txt_Email.Size = new System.Drawing.Size(303, 20);
+            this.txt_Email.TabIndex = 10;
             // 
             // frmSucursalMant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(491, 330);
+            this.ClientSize = new System.Drawing.Size(491, 355);
             this.Controls.Add(this.tbl_sucursal);
             this.Name = "frmSucursalMant";
             this.Text = "Sucursal";
@@ -369,5 +390,7 @@
         private System.Windows.Forms.TextBox txt_runsuc;
         private System.Windows.Forms.Label lbl_runsuc;
         private System.Windows.Forms.CheckBox chk_CasaMatriz;
+        private System.Windows.Forms.Label lbl_Email;
+        private System.Windows.Forms.TextBox txt_Email;
     }
 }

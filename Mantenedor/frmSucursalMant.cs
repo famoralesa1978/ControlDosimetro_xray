@@ -64,7 +64,7 @@ namespace ControlDosimetro
                // SqlCommand cmd = new SqlCommand();
                 SqlCommand cmd = new SqlCommand();
 
-                cmd.CommandText = "SELECT s.run,s.runsuc,s.razon_social,s.Direccion,s.Id_Region,s.Id_Provincia,s.Id_Comuna,s.Telefono,s.Id_estado,estado_casa_matriz " +
+                cmd.CommandText = "SELECT s.run,s.runsuc,s.razon_social,s.Direccion,s.Id_Region,s.Id_Provincia,s.Id_Comuna,s.Telefono,s.Id_estado,estado_casa_matriz,email " +
                             " FROM tbl_sucursal s  WHERE Id_sucursal= " + intCodigo.ToString();
                 DataSet dt;
                 dt = Conectar.Listar(Clases.clsBD.BD,cmd);
@@ -91,6 +91,7 @@ namespace ControlDosimetro
                 {
                     txt_Razon_Social.Text = dt.Tables[0].Rows[0]["razon_social"].ToString();
                 }
+
                 if (dt.Tables[0].Rows[0]["runsuc"].ToString().Trim() != "")
                 {
                     txt_runsuc.Text = dt.Tables[0].Rows[0]["runsuc"].ToString();
@@ -99,8 +100,7 @@ namespace ControlDosimetro
                     txt_runsuc.Text = txt_run.Text;
 
                 txt_runsuc.Enabled = false;
-               // cbx_id_estado.SelectedValue  = cbx_id_estado.SelectedIndex;
-                
+                txt_Email.Text = dt.Tables[0].Rows[0]["email"].ToString().Trim() != "" ? dt.Tables[0].Rows[0]["email"].ToString() : "";
             }
         }
 
@@ -125,9 +125,7 @@ namespace ControlDosimetro
         private void Cargar_Estado()
         {
             ClaseComun.Listar_Estado(Clases.clsBD.BD,ref cbx_id_estado, ref cbx_id_estado);
-        }
-
-      
+        }     
 
         private void Cargar_Region()
         {
@@ -145,49 +143,49 @@ namespace ControlDosimetro
         }
 
         private void AsignarEvento()
-								{
-                                    SqlCommand cmd = new SqlCommand();
+		{
+            SqlCommand cmd = new SqlCommand();
 
-								//	SqlCommand cmd = new SqlCommand();
-									DataSet dt;
-									string strname;
-									foreach (System.Windows.Forms.Control c in tbl_sucursal.Controls )
-									{
-										//foreach (Control childc in c.Controls)
-										//{
-											if (c is TextBox)
-											{
+		//	SqlCommand cmd = new SqlCommand();
+			DataSet dt;
+			string strname;
+			foreach (System.Windows.Forms.Control c in tbl_sucursal.Controls )
+			{
+				//foreach (Control childc in c.Controls)
+				//{
+					if (c is TextBox)
+					{
 
-												strname = ((TextBox)c).Name ;
+						strname = ((TextBox)c).Name ;
 
-												cmd.CommandText = "SELECT  requerido, validacion " +
-															" FROM glo_configuracioncampo WHERE campo= '" + strname.Replace("txt_","")  + "'";
+						cmd.CommandText = "SELECT  requerido, validacion " +
+									" FROM glo_configuracioncampo WHERE campo= '" + strname.Replace("txt_","")  + "'";
 
-												dt = Conectar.Listar(Clases.clsBD.BD,cmd);
-												if (dt.Tables[0].Rows.Count == 0)
-													((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-												else
-												{
-													if (dt.Tables[0].Rows[0]["validacion"].ToString() == "rut")
-													{
-														((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
-														((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
-														((TextBox)c).Validated += new EventHandler(ClaseEvento.validarut_Validated);
-													}
-													if (dt.Tables[0].Rows[0]["validacion"].ToString() == "numerico")
-													{
-														((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-														((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-													}
-												}
-											}
-											if (c is ComboBox)											
-												((ComboBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-											if (c is DateTimePicker )
-												((DateTimePicker)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+						dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+						if (dt.Tables[0].Rows.Count == 0)
+							((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+						else
+						{
+							if (dt.Tables[0].Rows[0]["validacion"].ToString() == "rut")
+							{
+								((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
+								((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
+								((TextBox)c).Validated += new EventHandler(ClaseEvento.validarut_Validated);
+							}
+							if (dt.Tables[0].Rows[0]["validacion"].ToString() == "numerico")
+							{
+								((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+								((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+							}
+						}
+					}
+					if (c is ComboBox)											
+						((ComboBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+					if (c is DateTimePicker )
+						((DateTimePicker)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 
-									}
-           
+			}
+            txt_Email.Validated += new EventHandler(ClaseEvento.validaEmail_Validated);
         }
 
 		  private bool valida_cliente(int intCodigo)
@@ -276,7 +274,7 @@ namespace ControlDosimetro
         }
         #endregion
 
-								private void label12_Click(object sender, EventArgs e)
+		private void label12_Click(object sender, EventArgs e)
 								{
 
 								}

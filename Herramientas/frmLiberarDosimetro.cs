@@ -78,13 +78,7 @@ namespace ControlDosimetro
              {
                 string strMensaje = "";
                 int intResul = clsFunc.CambiarEstado(txt_NDoc.Text, txt_NDos.Text, ref strMensaje);
-               /* SqlCommand cmd = new SqlCommand();
-                DataSet ds;
-
-                cmd.CommandText = "pa_CambiarEstado_upd " + txt_NDoc.Text + "," + txt_NDos.Text;
-                cmd.CommandType = CommandType.Text;
-                ds = Conectar.Listar(Clases.clsBD.BD,cmd);
-                */
+           
                 MessageBox.Show(strMensaje);   
             }
         }
