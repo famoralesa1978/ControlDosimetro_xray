@@ -16,6 +16,7 @@ using Microsoft.Reporting.WinForms;
 using System.Net.Mime;
 using System.Net;
 using System.Net.Mail;
+using classFuncionesBD;
 
 namespace ControlDosimetro
 {
@@ -27,6 +28,7 @@ namespace ControlDosimetro
 				clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
             clsEventoControl ClaseEvento = new clsEventoControl();
         clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
+        clsFunciones clsFunc = new clsFunciones();
         #endregion
 
         public frmLiberarDosimetro()
@@ -74,14 +76,16 @@ namespace ControlDosimetro
             else
              if (MessageBox.Show("Esta seguro de  estado?" , "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
              {
-                SqlCommand cmd = new SqlCommand();
+                string strMensaje = "";
+                int intResul = clsFunc.CambiarEstado(txt_NDoc.Text, txt_NDos.Text, ref strMensaje);
+               /* SqlCommand cmd = new SqlCommand();
                 DataSet ds;
 
                 cmd.CommandText = "pa_CambiarEstado_upd " + txt_NDoc.Text + "," + txt_NDos.Text;
                 cmd.CommandType = CommandType.Text;
                 ds = Conectar.Listar(Clases.clsBD.BD,cmd);
-
-                MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());                
+                */
+                MessageBox.Show(strMensaje);   
             }
         }
 
