@@ -12,6 +12,7 @@ using dllLibreriaEvento;
 using dllLibreriaMysql;
 using System.Data.SqlClient;
 using System.Data.Sql;
+using classFuncionesBD;
 
 namespace ControlDosimetro
 {
@@ -22,11 +23,12 @@ namespace ControlDosimetro
 				clsConectorSqlServer Conectar = new clsConectorSqlServer();
 				clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
             clsEventoControl ClaseEvento = new clsEventoControl();
-            DataSet dtayuda;
+        clsFunciones clsFunc = new clsFunciones();
+        DataSet dtayuda;
             int intContar=0;	
         #endregion
 
-            public frmIngresoDosimetria(Int64 intId_Cliente)
+        public frmIngresoDosimetria(Int64 intId_Cliente)
         {
             InitializeComponent();
 
@@ -567,7 +569,11 @@ namespace ControlDosimetro
                  {
                      if (e.KeyCode == Keys.Delete)
                      {
-                         grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[0].Value = 0;
+                        string strMensaje = "";
+                        int intResul = clsFunc.CambiarEstado(grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[0].Value.ToString(),
+                                        grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[1].Value.ToString(), ref strMensaje);
+
+                        grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[0].Value = 0;
                          //numero de pelicula
                          grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[1].Value = 0;
                      }
