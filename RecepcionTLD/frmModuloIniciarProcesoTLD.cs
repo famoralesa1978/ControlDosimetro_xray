@@ -79,7 +79,7 @@ namespace ControlDosimetro
 				DataSet dt;
 
                 dt = Conectar.Listar(Clases.clsBD.BD,cmd);
-                if (dt.Tables[0].Rows.Count > 0)
+                if (dt.Tables[0].Rows.Count> 0)
                 {
                     lbl_NCliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
                     lbl_NombreCliente.Text = dt.Tables[0].Rows[0]["razon_social"].ToString();
