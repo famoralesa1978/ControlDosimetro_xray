@@ -21,14 +21,15 @@ namespace ControlDosimetro
         #region "Definicion variable"
         clsConectorSqlServer Conectar = new clsConectorSqlServer();
         clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-        clsEventoControl ClaseEvento = new clsEventoControl();             
-
+        clsEventoControl ClaseEvento = new clsEventoControl();
+        Color coColor;
         dllLibreriaMysql.clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
         #endregion
 
         public frmLogin()
         {
             InitializeComponent();
+            coColor = frmLogin.DefaultBackColor;
             this.labelVersion.Text = String.Format("Versión {0}", AssemblyVersion);
             Clases.clsBD.BD = "Prod1";
             if (Clases.clsBD.BD == "Desarrollo")
@@ -160,6 +161,15 @@ namespace ControlDosimetro
                         MessageBox.Show("La contraseña es incorrecta");
                 }                
             }
+        }
+
+        private void labelBD_Click(object sender, EventArgs e)
+        {
+            labelBD.Text = labelBD.Text == "Producción" ? "Desarrollo" : "Producción";
+            this.BackColor = labelBD.Text == "Producción" ? coColor : Color.Green;
+            string strbd= labelBD.Text == "Producción" ? "" : "Producción";
+            this.Text = "Sistema de control dosimetro " + strbd;
+            Clases.clsBD.BD = labelBD.Text == "Producción" ? "Prod1" : "Desarrollo";           
         }
     }
 
