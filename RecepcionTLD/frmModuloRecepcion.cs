@@ -26,7 +26,7 @@ namespace ControlDosimetro
             int intintId_Estado_temp;
         #endregion
 
-            public frmModuloRecepcion(int intId_Estado)
+        public frmModuloRecepcion(int intId_Estado)
         {
             InitializeComponent();
 
@@ -45,30 +45,30 @@ namespace ControlDosimetro
             comboboxColumn.DataSource = dtcombo.Tables[0];
            
 
-				AsignarEvento();                
-                intintId_Estado_temp = intId_Estado;
-                switch (intintId_Estado_temp)
-                {
-                    case 0:
-                        this.Text = "Recepción Dosimetros";
-                        break;
-                    case 1:
-                        this.Text = "Recepción Dosimetros";
-                        break;
-                    case 6:
-                        this.Text = "Informe Generado";
-                        break;
-                }
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "',' " + this.Text + "'";
-                cmd.CommandType = CommandType.Text;
-                Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
-				Cargar_Anno();
-                lbl_nombreCliente.Text = "";
-                txt_CodCliente.Focus();
-                pnl_Progreso.Visible = false;
-                dtp_FechaRecepcion.Text = DateTime.Now.Date.ToString(); 
-            
+			AsignarEvento();                
+            intintId_Estado_temp = intId_Estado;
+            switch (intintId_Estado_temp)
+            {
+                case 0:
+                    this.Text = "Recepción Dosimetros";
+                    break;
+                case 1:
+                    this.Text = "Recepción Dosimetros";
+                    break;
+                case 6:
+                    this.Text = "Informe Generado";
+                    break;
+            }
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "',' " + this.Text + "'";
+            cmd.CommandType = CommandType.Text;
+            Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
+			Cargar_Anno();
+            lbl_nombreCliente.Text = "";
+            txt_CodCliente.Focus();
+            pnl_Progreso.Visible = false;
+            dtp_FechaRecepcion.Text = DateTime.Now.Date.ToString();
+            btn_Guardar.Enabled = false;
         }
 
         #region "Llamada de carga"
@@ -100,19 +100,15 @@ namespace ControlDosimetro
 
                 DataSet dt;
                 cmd.CommandText = "pa_DosimetroRecepcionTLD_sel " + txt_CodCliente.Text + "," + cbx_id_periodo.SelectedValue + ",1," + intN_Documento.ToString();
-
                 cmd.CommandType = CommandType.Text;
 
                 dt = Conectar.Listar(Clases.clsBD.BD,cmd);
-
                 grdDatos.DataSource = dt.Tables[0];
-
-
+                btn_Guardar.Enabled = dt.Tables[0].Rows.Count > 0 ? true : false;
 
                 if (txt_CodCliente.Text != "0")
                     if (dt.Tables[0].Rows.Count == 0)
                         MessageBox.Show("No se ha ingresado información");
-
             }
 
           private void Listar_Grilla_Dosimetria()
