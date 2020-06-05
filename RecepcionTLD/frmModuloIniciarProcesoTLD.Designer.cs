@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btn_Guardar = new System.Windows.Forms.Button();
@@ -65,13 +65,13 @@
             this.lbl_TLD = new System.Windows.Forms.Label();
             this.nudPosicion = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnIniciar = new System.Windows.Forms.Button();
             this.grdDatos = new System.Windows.Forms.DataGridView();
             this.N_Pelicula = new GridExtension.IntegerGridColumn();
             this.Periodo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.N_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NomPersonal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnIniciar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPosicion)).BeginInit();
@@ -236,9 +236,9 @@
             // 
             this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = "0";
-            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = "0";
+            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewTextBoxColumn8.FillWeight = 300F;
             this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -256,9 +256,9 @@
             // dataGridViewTextBoxColumn10
             // 
             this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-            dataGridViewCellStyle6.Format = "N2";
-            dataGridViewCellStyle6.NullValue = "0";
-            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             this.dataGridViewTextBoxColumn10.Width = 97;
@@ -422,6 +422,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Para iniciar Proceso de lectura";
             // 
+            // btnIniciar
+            // 
+            this.btnIniciar.Location = new System.Drawing.Point(656, 45);
+            this.btnIniciar.Name = "btnIniciar";
+            this.btnIniciar.Size = new System.Drawing.Size(75, 95);
+            this.btnIniciar.TabIndex = 10;
+            this.btnIniciar.Text = "Iniciar Lectura";
+            this.btnIniciar.UseVisualStyleBackColor = true;
+            this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
+            // 
             // grdDatos
             // 
             this.grdDatos.AllowUserToAddRows = false;
@@ -487,16 +497,6 @@
             this.NomPersonal.Name = "NomPersonal";
             this.NomPersonal.ReadOnly = true;
             // 
-            // btnIniciar
-            // 
-            this.btnIniciar.Location = new System.Drawing.Point(656, 45);
-            this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(75, 95);
-            this.btnIniciar.TabIndex = 10;
-            this.btnIniciar.Text = "Iniciar Lectura";
-            this.btnIniciar.UseVisualStyleBackColor = true;
-            this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
-            // 
             // frmModuloIniciarProcesoTLD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -515,7 +515,7 @@
             this.MinimizeBox = false;
             this.Name = "frmModuloIniciarProcesoTLD";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Recepción Dosimetro";
+            this.Text = "Iniciar proceso de lectura";
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
