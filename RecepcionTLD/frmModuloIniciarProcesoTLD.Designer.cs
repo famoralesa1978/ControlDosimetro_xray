@@ -65,6 +65,7 @@
             this.lbl_TLD = new System.Windows.Forms.Label();
             this.nudPosicion = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.grdDatos = new System.Windows.Forms.DataGridView();
             this.N_Pelicula = new GridExtension.IntegerGridColumn();
@@ -76,6 +77,7 @@
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPosicion)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -413,6 +415,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.pictureBox1);
             this.groupBox2.Controls.Add(this.btnIniciar);
             this.groupBox2.Controls.Add(this.grdDatos);
             this.groupBox2.Location = new System.Drawing.Point(12, 309);
@@ -422,11 +425,20 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Para iniciar Proceso de lectura";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::ControlDosimetro.Properties.Resources.IniciarProceso;
+            this.pictureBox1.Location = new System.Drawing.Point(656, 20);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(89, 85);
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
+            // 
             // btnIniciar
             // 
-            this.btnIniciar.Location = new System.Drawing.Point(656, 45);
+            this.btnIniciar.Location = new System.Drawing.Point(655, 111);
             this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(75, 95);
+            this.btnIniciar.Size = new System.Drawing.Size(90, 43);
             this.btnIniciar.TabIndex = 10;
             this.btnIniciar.Text = "Iniciar Lectura";
             this.btnIniciar.UseVisualStyleBackColor = true;
@@ -521,6 +533,7 @@
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPosicion)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdDatos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -571,5 +584,6 @@
                                 private System.Windows.Forms.DataGridViewTextBoxColumn NCliente;
                                 private System.Windows.Forms.DataGridViewTextBoxColumn NomPersonal;
                                 private System.Windows.Forms.Button btnIniciar;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

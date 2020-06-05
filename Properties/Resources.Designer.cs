@@ -223,6 +223,16 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap IniciarProceso {
+            get {
+                object obj = ResourceManager.GetObject("IniciarProceso", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap letra {
             get {
                 object obj = ResourceManager.GetObject("letra", resourceCulture);

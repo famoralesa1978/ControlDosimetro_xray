@@ -32,10 +32,10 @@
     <TargetCulture>es-CL</TargetCulture>
     <ProductName>X-Ray Dosimetro</ProductName>
     <SuiteName>Sistema Dosimetro</SuiteName>
-    <MinimumRequiredVersion>9.0.0.15</MinimumRequiredVersion>
+    <MinimumRequiredVersion>9.0.0.16</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>instalacion.html</WebPage>
-    <ApplicationRevision>16</ApplicationRevision>
+    <ApplicationRevision>17</ApplicationRevision>
     <ApplicationVersion>9.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -967,6 +967,7 @@
     <Content Include="Imagen\REFERENCIA.png" />
     <Content Include="Imagen\regresar.png" />
     <Content Include="Imagen\save_32.png" />
+    <None Include="Resources\IniciarProceso.PNG" />
     <None Include="Resources\CambioContrasenaCliente.PNG" />
     <None Include="Resources\CambioContrasena.PNG" />
     <None Include="Resources\minimizar.PNG" />

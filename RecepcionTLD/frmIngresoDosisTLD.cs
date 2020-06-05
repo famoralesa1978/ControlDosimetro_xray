@@ -166,7 +166,8 @@ namespace ControlDosimetro
                                                          "VALUES (" + strn_cliente + "," + strid_personal + "," + txtndocumento.Value.ToString() + "," +
                                                                      checkCell.Value.ToString() + "," + chkcondosis.Value.ToString() + "," + cbxEstado.Value.ToString() +
                                                                      ",cast(" + txtvalor.Value.ToString().Replace(",", ".") + " as decimal(10,2)), " + strid_periodo + ", 0," + txtNPelicula.Value.ToString() +
-                                                                      " , 1," + txtcristal1.Value.ToString() + "," + txtcristal2.Value.ToString() + ") ";
+                                                                      " , 1, cast(" + txtcristal1.Value.ToString().Replace(",", ".") + " as decimal(10,2)) " +
+                                                                      ",cast(" + txtcristal2.Value.ToString().Replace(",", ".") + " as decimal(10,2))) ";
                                   cmd.CommandType = CommandType.Text;
                                   Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
 

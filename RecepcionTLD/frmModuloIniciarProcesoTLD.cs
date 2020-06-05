@@ -30,74 +30,77 @@ namespace ControlDosimetro
         {
             InitializeComponent();
           
-
-				AsignarEvento();                
-                intintId_Estado_temp = intId_Estado;
-                switch (intintId_Estado_temp)
-                {
-                    case 0:
-                        this.Text = "Envio Dosimetros";
-                        break;
-                    case 1:
-                        this.Text = "Recepción Dosimetros";
-                        break;
-                    case 2:
-                        this.Text = "Iniciar Proceso de Lectura";
-                        break;
-                    case 6:
-                        this.Text = "Informe Generado";
-                        break;
-                }
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "',' " + this.Text + "'";
-                cmd.CommandType = CommandType.Text;
-                Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);				
-                txt_TLD.Focus();
-                LimpiarPantalla();
-                Listar_Grilla();
-                VerificaSihayProcesoIniciado();
-                
+			AsignarEvento();                
+            intintId_Estado_temp = intId_Estado;
+            switch (intintId_Estado_temp)
+            {
+                case 0:
+                    this.Text = "Envio Dosimetros";
+                    break;
+                case 1:
+                    this.Text = "Recepción Dosimetros";
+                    break;
+                case 2:
+                    this.Text = "Iniciar Proceso de Lectura";
+                    break;
+                case 6:
+                    this.Text = "Informe Generado";
+                    break;
+            }
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "',' " + this.Text + "'";
+            cmd.CommandType = CommandType.Text;
+            Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);				
+            txt_TLD.Focus();
+            LimpiarPantalla();
+            Listar_Grilla();
+            VerificaSihayProcesoIniciado();
+            btn_Guardar.Enabled = false;
+            btnIniciar.Enabled = false;
         }
 
         #region "Llamada de carga"
 
-            private void LimpiarPantalla()
-            {
-                lbl_NCliente.Text = "";
-                lbl_NombreCliente.Text = "";
-                lbl_Periodo.Text = "";
-                lbl_TLD.Text = "";
-                nudPosicion.Value = 1;
-                lbl_NombrePersonal.Text = "";
-                btn_Guardar.Visible = false;
-            }
+        private void LimpiarPantalla()
+        {
+            lbl_NCliente.Text = "";
+            lbl_NombreCliente.Text = "";
+            lbl_Periodo.Text = "";
+            lbl_TLD.Text = "";
+            nudPosicion.Value = 1;
+            lbl_NombrePersonal.Text = "";
+            btn_Guardar.Visible = false;
+            btn_Guardar.Enabled = false;
+        }
 
         private void Cargar_TLD()
-			{
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "pa_ListadoDatosTLD " + intintId_Estado_temp.ToString () + "," + txt_TLD.Text;
-				DataSet dt;
+		{
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "pa_ListadoDatosTLD " + intintId_Estado_temp.ToString () + "," + txt_TLD.Text;
+			DataSet dt;
 
-                dt = Conectar.Listar(Clases.clsBD.BD,cmd);
-                if (dt.Tables[0].Rows.Count> 0)
-                {
-                    lbl_NCliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
-                    lbl_NombreCliente.Text = dt.Tables[0].Rows[0]["razon_social"].ToString();
-                    lbl_Periodo.Text = dt.Tables[0].Rows[0]["tri"].ToString();
-                    lbl_TLD.Text = dt.Tables[0].Rows[0]["n_dosimetro"].ToString();
-                    nudPosicion.Value = Convert.ToInt32(dt.Tables[0].Rows[0]["PosDisco"].ToString());
-                    lbl_NombrePersonal.Text = dt.Tables[0].Rows[0]["nombrecompleto"].ToString();
-                    btn_Guardar.Visible = true;
-                    txt_TLD.Text ="";
-                }
-                else
-                {
-                    LimpiarPantalla();
-                    txt_TLD.Text ="";                    
-                    MessageBox.Show("No se puede ingresar a este proceso, verifique en que estado se encuentra.");
-                }
+            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+            if (dt.Tables[0].Rows.Count> 0)
+            {
+                lbl_NCliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
+                lbl_NombreCliente.Text = dt.Tables[0].Rows[0]["razon_social"].ToString();
+                lbl_Periodo.Text = dt.Tables[0].Rows[0]["tri"].ToString();
+                lbl_TLD.Text = dt.Tables[0].Rows[0]["n_dosimetro"].ToString();
+                nudPosicion.Value = Convert.ToInt32(dt.Tables[0].Rows[0]["PosDisco"].ToString());
+                lbl_NombrePersonal.Text = dt.Tables[0].Rows[0]["nombrecompleto"].ToString();
+                btn_Guardar.Visible = true;
+                txt_TLD.Text ="";
+                btn_Guardar.Enabled = true;
+            }
+            else
+            {
+                LimpiarPantalla();
+                txt_TLD.Text ="";
+                btn_Guardar.Enabled = false;
+                MessageBox.Show("No se puede ingresar a este proceso, verifique en que estado se encuentra.");
+            }
 
-			}
+		}
 
         private void VerificaSihayProcesoIniciado()
         {
@@ -137,13 +140,12 @@ namespace ControlDosimetro
             SqlCommand cmd = new SqlCommand();
 
             DataSet dt;
-
-
             cmd.CommandText = "pa_ListadoPorDosimetroPorIniciarTLD";
             cmd.CommandType = CommandType.Text;
 
             dt = Conectar.Listar(Clases.clsBD.BD,cmd);
             grdDatos.DataSource = dt.Tables[0];
+            btnIniciar.Enabled = grdDatos.RowCount > 0 ? true : false;
         }
 
            
@@ -179,9 +181,7 @@ namespace ControlDosimetro
             Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
             LimpiarPantalla();
             Listar_Grilla();
-
         }
-
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {

@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngresoDosisTLD));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pnl_Progreso = new System.Windows.Forms.GroupBox();
             this.pgb_Barra = new System.Windows.Forms.ProgressBar();
@@ -55,6 +55,7 @@
             this.id_periodo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tld = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btn_Cliente = new System.Windows.Forms.ToolStripButton();
             this.btnIngresarDosisISP = new System.Windows.Forms.ToolStripButton();
             this.btn_Guardar = new System.Windows.Forms.Button();
             this.btn_Cerrar = new System.Windows.Forms.Button();
@@ -70,7 +71,6 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_Cliente = new System.Windows.Forms.ToolStripButton();
             this.groupBox2.SuspendLayout();
             this.pnl_Progreso.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -255,9 +255,9 @@
             // valor
             // 
             this.valor.DataPropertyName = "dosis";
-            dataGridViewCellStyle7.Format = "N2";
-            dataGridViewCellStyle7.NullValue = "0";
-            this.valor.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = "0";
+            this.valor.DefaultCellStyle = dataGridViewCellStyle1;
             this.valor.HeaderText = "Valor Ingresar";
             this.valor.Name = "valor";
             this.valor.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -319,6 +319,16 @@
             this.toolStrip1.Size = new System.Drawing.Size(1184, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btn_Cliente
+            // 
+            this.btn_Cliente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btn_Cliente.Image = global::ControlDosimetro.Properties.Resources.cliente;
+            this.btn_Cliente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_Cliente.Name = "btn_Cliente";
+            this.btn_Cliente.Size = new System.Drawing.Size(23, 22);
+            this.btn_Cliente.Text = "Cliente";
+            this.btn_Cliente.Click += new System.EventHandler(this.btn_Cliente_Click);
             // 
             // btnIngresarDosisISP
             // 
@@ -435,9 +445,9 @@
             // 
             this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-            dataGridViewCellStyle8.Format = "N2";
-            dataGridViewCellStyle8.NullValue = "0";
-            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn8.FillWeight = 300F;
             this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -455,22 +465,12 @@
             // dataGridViewTextBoxColumn10
             // 
             this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-            dataGridViewCellStyle9.Format = "N2";
-            dataGridViewCellStyle9.NullValue = "0";
-            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = "0";
+            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             this.dataGridViewTextBoxColumn10.Width = 97;
-            // 
-            // btn_Cliente
-            // 
-            this.btn_Cliente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btn_Cliente.Image = global::ControlDosimetro.Properties.Resources.cliente;
-            this.btn_Cliente.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_Cliente.Name = "btn_Cliente";
-            this.btn_Cliente.Size = new System.Drawing.Size(23, 22);
-            this.btn_Cliente.Text = "Cliente";
-            this.btn_Cliente.Click += new System.EventHandler(this.btn_Cliente_Click);
             // 
             // frmIngresoDosisTLD
             // 
