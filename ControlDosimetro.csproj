@@ -320,10 +320,10 @@
     <Compile Include="Facturacion\frmFacturacion.designer.cs">
       <DependentUpon>frmFacturacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProcEnviar\frmModuloEnviado.cs">
+    <Compile Include="RecepcionTLD\frmModuloEnviado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProcEnviar\frmModuloEnviado.Designer.cs">
+    <Compile Include="RecepcionTLD\frmModuloEnviado.Designer.cs">
       <DependentUpon>frmModuloEnviado.cs</DependentUpon>
     </Compile>
     <Compile Include="RecepcionTLD\frmIngresoDosisTLD.cs">
@@ -614,7 +614,7 @@
     <EmbeddedResource Include="Mantenedor\frmBusquedaSucursal.resx">
       <DependentUpon>frmBusquedaSucursal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProcEnviar\frmModuloEnviado.resx">
+    <EmbeddedResource Include="RecepcionTLD\frmModuloEnviado.resx">
       <DependentUpon>frmModuloEnviado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecepcionTLD\frmIngresoDosisTLD.resx">

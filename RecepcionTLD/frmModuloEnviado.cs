@@ -59,9 +59,9 @@ namespace ControlDosimetro
                 CommandType = CommandType.Text
             };
             Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
-				Cargar_Anno();
-                pnl_Progreso.Visible = false;
-            
+			Cargar_Anno();
+            pnl_Progreso.Visible = false;
+            btn_Guardar.Enabled = false;
         }
 
         #region "Llamada de carga"
@@ -91,6 +91,7 @@ namespace ControlDosimetro
 
             grdDatos.DataSource = dt.Tables[0];
             groupBox2.Text = "Listado       Registro:";
+            intContar = 0;
           }
 
 		  private void Cargar_Anno()
@@ -242,10 +243,11 @@ namespace ControlDosimetro
 				  }
 				  else
 				  {                     
-                      intContar = intContar - 1;
-                      groupBox2.Text = "Listado       Registro:" + intContar.ToString();
-				  }
-              }	
+                    intContar = intContar - 1;
+                    groupBox2.Text = "Listado       Registro:" + intContar.ToString();                    
+                  }
+                btn_Guardar.Enabled = intContar == 0 ? false : true;
+            }	
 		  }
 
          private void grdDatos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
