@@ -167,7 +167,7 @@ namespace ControlDosimetro
         {
             labelBD.Text = labelBD.Text == "Producción" ? "Desarrollo" : "Producción";
             this.BackColor = labelBD.Text == "Producción" ? coColor : Color.Green;
-            string strbd= labelBD.Text == "Producción" ? "" : "Producción";
+            string strbd= labelBD.Text == "Producción" ? "" : "Desarrollo";
             this.Text = "Sistema de control dosimetro " + strbd;
             Clases.clsBD.BD = labelBD.Text == "Producción" ? "Prod1" : "Desarrollo";           
         }

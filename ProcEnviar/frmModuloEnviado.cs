@@ -81,16 +81,17 @@ namespace ControlDosimetro
 
        private void Listar_Grilla_TLD()
 		  {
-              SqlCommand cmd = new SqlCommand();
-				DataSet dt;
-                cmd.CommandText = "pa_ListadoPorEnviarClienteTLD ";
+            SqlCommand cmd = new SqlCommand();
+			DataSet dt;
+            cmd.CommandText = "pa_ListadoPorEnviarClienteTLD ";
         
-                      cmd.CommandType = CommandType.Text ;
+                    cmd.CommandType = CommandType.Text ;
 	 
-			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+			dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
-              grdDatos.DataSource = dt.Tables[0];
-		  }
+            grdDatos.DataSource = dt.Tables[0];
+            groupBox2.Text = "Listado       Registro:";
+          }
 
 		  private void Cargar_Anno()
 		  {
@@ -113,16 +114,8 @@ namespace ControlDosimetro
           private void Cargar_Periodo()
           {
               SqlCommand cmd = new SqlCommand();
-
-              //	  SqlCommand cmd = new SqlCommand();
-
-         //     cmd.CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ '°T' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text;
               DataSet dt;
               dt = Conectar.Listar(Clases.clsBD.BD,cmd);
-
-              //cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
-             // cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
-             // cbx_id_periodo.DataSource = dt.Tables[0];
           }
 
         private void AsignarEvento()
