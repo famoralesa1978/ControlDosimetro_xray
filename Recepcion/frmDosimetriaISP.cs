@@ -95,17 +95,6 @@ namespace ControlDosimetro
               //SqlCommand cmd = new SqlCommand();
 			 
 				DataSet dt;
-
-                //cmd.CommandText = "SELECT 0 as Generar,isnull(d.enviado,0)enviado,N_pelicula, d.N_Documento,p.id_cliente,p.Id_Personal,Rut, Nombres,Paterno,Maternos, " +
-                //                        "isnull(d.ConDosis,0)condosis,d.Dosis,isnull(d.Id_EstadoDosis,0)estadodosis, isnull(d.Id_Dosimetro,0)Id_Dosimetro,id_sucursal " +
-                //                        " FROM tbl_personal p inner join tbl_dosimetria d on d.id_cliente=p.id_cliente and   p.id_personal=d.id_personal" +
-                //                        " inner join ges_DosimetriaPersonal dp on dp.N_Documento=d.N_Documento" +
-                //                        " and dp.id_periodo=" + cbx_id_periodo.SelectedValue  + " " +
-                //                        " WHERE p.id_cliente=" + lbl_id_cliente.Text + "  and Controlado=1" +
-                //                        " and (dp.Id_Sucursal =" + cbx_Sucursal.SelectedValue + " or 0=" + cbx_Sucursal.SelectedValue + ")" +
-                //                        //and p.id_estado=1
-                //        //and isnull(d.enviado,0)=0" +										
-                //                        " order by Paterno,Maternos;";
                 cmd.CommandText = " pa_DosimetroISP_Cliente_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue;
 			  cmd.CommandType = CommandType.Text;
 	 
