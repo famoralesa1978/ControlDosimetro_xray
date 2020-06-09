@@ -119,7 +119,11 @@ namespace ControlDosimetro
 
         private void btn_cargarusuario_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             Listar_Usuario();
+
+            Cursor = Cursors.Default;
         }
 
 		 

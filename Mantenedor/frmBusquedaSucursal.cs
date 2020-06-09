@@ -150,13 +150,20 @@ namespace ControlDosimetro
 
         private void btn_Agregar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             frmSucursalMant frm = new frmSucursalMant(0,Convert.ToInt64(txt_ref_cliente.Text));
 			  frm.ShowDialog(this);
               Listar_grilla();
+
+            Cursor = Cursors.Default;
         }
 
 		  private void btn_cargarCliente_Click(object sender, EventArgs e)
 		  {
+
+              Cursor = Cursors.WaitCursor;
+
 			  if(txt_ref_cliente.Text == "")
 					Listar_Cliente(0);
 			  else
@@ -167,10 +174,14 @@ namespace ControlDosimetro
 				  MessageBox.Show("El cliente puede estar inactivo o no existe");
 				  btn_Agregar.Visible = false;
 			  }
+
+              Cursor = Cursors.Default;
 		  }
 
 		  private void btn_Filtro_Click(object sender, EventArgs e)
 		  {
+              Cursor = Cursors.WaitCursor;
+
 			  txt_ref_cliente.ReadOnly = false;
 			  txt_Rut.ReadOnly = false;
 			  txt_ref_cliente.Text = "";
@@ -179,6 +190,8 @@ namespace ControlDosimetro
 			  Listar_Cliente(0);
               Listar_grilla();
 			  txt_ref_cliente.Focus();
+
+              Cursor = Cursors.Default;
 		  }
 
       
