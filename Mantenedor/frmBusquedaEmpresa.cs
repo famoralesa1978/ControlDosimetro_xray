@@ -97,7 +97,13 @@ namespace ControlDosimetro
         #region "button"
         private void btn_Buscar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             Listar_Cliente();
+
+            Cursor = Cursors.Default;
+
+
         }
 
         private void btn_Agregar_Click(object sender, EventArgs e)
