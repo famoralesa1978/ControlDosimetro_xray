@@ -12,4 +12,6 @@ namespace Clases
         public static string BD { get => strBD; set => strBD = value; }
     }
 
+    //cambiooo
+
 }
