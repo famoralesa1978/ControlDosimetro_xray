@@ -967,6 +967,11 @@
     <Content Include="Imagen\REFERENCIA.png" />
     <Content Include="Imagen\regresar.png" />
     <Content Include="Imagen\save_32.png" />
+    <Content Include="Libreria\dllConectores_MBE.dll" />
+    <Content Include="Libreria\dllConectores_MBE_desarrllo.dll" />
+    <Content Include="Libreria\dllLibreriaMysql.dll" />
+    <Content Include="Libreria\DocumentFormat.OpenXml.dll" />
+    <Content Include="Libreria\GridExtension.dll" />
     <None Include="Resources\IniciarProceso.PNG" />
     <None Include="Resources\CambioContrasenaCliente.PNG" />
     <None Include="Resources\CambioContrasena.PNG" />
