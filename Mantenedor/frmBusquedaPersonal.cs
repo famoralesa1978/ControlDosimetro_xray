@@ -147,6 +147,8 @@ namespace ControlDosimetro
 
 		  private void btn_cargarCliente_Click(object sender, EventArgs e)
 		  {
+            Cursor = Cursors.WaitCursor;
+
 			  if(txt_ref_cliente.Text == "")
 					Listar_Cliente(0);
 			  else
@@ -154,10 +156,13 @@ namespace ControlDosimetro
 
 			  if (txt_RazonSocial.Text == "")
 			  {
-				  MessageBox.Show("El cliente puede estar inactivo o no existe");
+				  MessageBox.Show("El cliente puede estar inactivo o no existe"); //este mensaje aparece con campos vacios
 				  tsb_Agregar.Visible = false;
 			  }
-		  }
+
+            Cursor = Cursors.Default;
+                                   
+        }
 
 		  private void btn_Filtro_Click(object sender, EventArgs e)
 		  {
