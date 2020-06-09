@@ -834,7 +834,7 @@
             this.frmUtilidadesLiberarDosimetro.Name = "frmUtilidadesLiberarDosimetro";
             this.frmUtilidadesLiberarDosimetro.Size = new System.Drawing.Size(235, 22);
             this.frmUtilidadesLiberarDosimetro.Text = "Liberar Dosimetro ";
-            this.frmUtilidadesLiberarDosimetro.Click += new System.EventHandler(this.frmUtilidadesLiberarDosimetro_Click);
+            this.frmUtilidadesLiberarDosimetro.Click += new System.EventHandler(this.FrmUtilidadesLiberarDosimetro_Click);
             // 
             // MDIPrincipal
             // 

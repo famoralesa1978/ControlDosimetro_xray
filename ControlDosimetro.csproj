@@ -344,6 +344,12 @@
     <Compile Include="RecepcionTLD\frmModuloIniciarProcesoTLD.Designer.cs">
       <DependentUpon>frmModuloIniciarProcesoTLD.cs</DependentUpon>
     </Compile>
+    <Compile Include="Recepcion\FrmInformeISP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\FrmInformeISP.Designer.cs">
+      <DependentUpon>FrmInformeISP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Recepcion\frmOrdenTrabajoFechaRecepcion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -625,6 +631,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RecepcionTLD\frmModuloIniciarProcesoTLD.resx">
       <DependentUpon>frmModuloIniciarProcesoTLD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepcion\FrmInformeISP.resx">
+      <DependentUpon>FrmInformeISP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Recepcion\frmOrdenTrabajoFechaRecepcion.resx">
       <DependentUpon>frmOrdenTrabajoFechaRecepcion.cs</DependentUpon>

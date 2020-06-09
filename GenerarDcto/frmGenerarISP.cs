@@ -209,10 +209,11 @@ namespace ControlDosimetro
             cmd2.CommandType = CommandType.Text;
             Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd2);
             MessageBox.Show("Los datos fueron generado y esta listo para que se genere el infome");
-            Cursor = Cursors.Default;
+            
             cbx_id_periodo_SelectedIndexChanged(null,null);
 
-              btn_Corregir.Enabled = true;
+             btn_Corregir.Enabled = true;
+            Cursor = Cursors.Default;
         }
         #endregion
 
