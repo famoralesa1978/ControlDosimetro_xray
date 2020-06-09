@@ -147,7 +147,7 @@ namespace ControlDosimetro
 
 		  private void btn_cargarCliente_Click(object sender, EventArgs e)
 		  {
-            Cursor = Cursors.WaitCursor;
+              Cursor = Cursors.WaitCursor;
 
 			  if(txt_ref_cliente.Text == "")
 					Listar_Cliente(0);
@@ -160,13 +160,15 @@ namespace ControlDosimetro
 				  tsb_Agregar.Visible = false;
 			  }
 
-            Cursor = Cursors.Default;
+              Cursor = Cursors.Default;
                                    
         }
 
 		  private void btn_Filtro_Click(object sender, EventArgs e)
 		  {
-			  txt_ref_cliente.ReadOnly = false;
+              Cursor = Cursors.WaitCursor;
+
+              txt_ref_cliente.ReadOnly = false;
 			  txt_Rut.ReadOnly = false;
 			  txt_ref_cliente.Text = "";
 			  txt_Rut.Text = "";
@@ -174,7 +176,9 @@ namespace ControlDosimetro
 			  Listar_Cliente(0);
 			  Listar_Personal();
 			  txt_ref_cliente.Focus();
-		  }
+
+              Cursor = Cursors.Default;
+        }
 
         #endregion
 
