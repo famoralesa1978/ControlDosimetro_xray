@@ -129,7 +129,7 @@ namespace ControlDosimetro
         {
             DataSet dt;
             Int64 intanno;
-
+               
 
 
             intanno = Convert.ToInt64(cbx_anno.Text);

@@ -66,7 +66,7 @@
             this.valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.id_sucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tld = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tld = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.pnl_Progreso.SuspendLayout();
@@ -460,10 +460,12 @@
             // tld
             // 
             this.tld.DataPropertyName = "tld";
-            this.tld.HeaderText = "tld";
+            this.tld.HeaderText = "TLD";
             this.tld.Name = "tld";
-            this.tld.Visible = false;
-            this.tld.Width = 43;
+            this.tld.ReadOnly = true;
+            this.tld.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.tld.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.tld.Width = 53;
             // 
             // frmDosimetriaISP
             // 
@@ -520,21 +522,21 @@
                                 private System.Windows.Forms.ComboBox cbx_Sucursal;
                                 private System.Windows.Forms.ToolStripButton btn_Sucursal;
                                 private System.Windows.Forms.Label lbl_rut_cliente;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn Id_Personal;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn N_pelicula;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn id_dosimetro;
-                                private System.Windows.Forms.DataGridViewCheckBoxColumn Generar;
-                                private System.Windows.Forms.DataGridViewCheckBoxColumn enviado;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn N_Cliente;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn NDocumento;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn Rut;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn Paterno;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn Maternos;
-                                private System.Windows.Forms.DataGridViewCheckBoxColumn condosis;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn valor;
-                                private System.Windows.Forms.DataGridViewComboBoxColumn Estado;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn id_sucursal;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn tld;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id_Personal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn N_pelicula;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_dosimetro;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Generar;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn enviado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn N_Cliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NDocumento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Rut;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Paterno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Maternos;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn condosis;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valor;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_sucursal;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn tld;
     }
 }
