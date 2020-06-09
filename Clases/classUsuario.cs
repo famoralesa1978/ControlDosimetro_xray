@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Clases
 {
-    class clsUsuario
+    class clsUsuario//prueba
     {
         private static string strusuario;
         private static string strNombre;
