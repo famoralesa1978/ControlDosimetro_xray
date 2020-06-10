@@ -345,6 +345,13 @@ namespace ControlDosimetro
             Graba_log(frm.Text);
             frm.ShowDialog(this);
           }
+
+        private void MnuProcesoTLDDosisISP_Click(object sender, EventArgs e)
+        {
+            FrmInformeISP frm = new FrmInformeISP(-1,1);
+            Graba_log(frm.Text);
+            frm.ShowDialog(this);
+        }
         #endregion
 
         #region "Generar Dcto ISP"

@@ -31,51 +31,55 @@ namespace ControlDosimetro
 
         #region "Definicion variable"
             clsConectorSqlServer Conectar = new clsConectorSqlServer();
-				clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-				clsEventoControl ClaseEvento = new clsEventoControl();
-					WorkbookPart wbPart = null;
-				SpreadsheetDocument document = null;
-		//		SpreadsheetDocument document2 = null;
-                object missing = System.Reflection.Missing.Value;
-                object strcampoMarcador;
-                const string documentRelationshipType = "http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument";
-                const string headerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.header+xml";
-                const string footerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml";
+			clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
+			clsEventoControl ClaseEvento = new clsEventoControl();
+				WorkbookPart wbPart = null;
+			SpreadsheetDocument document = null;
+	//		SpreadsheetDocument document2 = null;
+            object missing = System.Reflection.Missing.Value;
+            object strcampoMarcador;
+            const string documentRelationshipType = "http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument";
+            const string headerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.header+xml";
+            const string footerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml";
         //        XmlNamespaceManager nsManager;
 
         #endregion
 
-       public FrmInformeISP(Int64 intId_Cliente)
+       public FrmInformeISP(Int64 intId_Cliente,int TLD)
         {
             InitializeComponent();
+            Cursor = Cursors.WaitCursor;
 
-           
+            if (TLD == 1)
+                rbtTLD.Checked = true;
+            else
+                rbtDosimetro.Checked = true;
             SqlCommand cmdcombo = new SqlCommand();
-				//SqlCommand cmdcombo = new SqlCommand();
-				DataSet dtcombo;			
-				cmdcombo.CommandText = "select 0 as Id_DetParametro, 'Seleccione' as Glosa, 0 as orden union all " +
-				  "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 order by orden ";
-				cmdcombo.CommandType = CommandType.Text;
-				dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
+			//SqlCommand cmdcombo = new SqlCommand();
+			DataSet dtcombo;			
+			cmdcombo.CommandText = "select 0 as Id_DetParametro, 'Seleccione' as Glosa, 0 as orden union all " +
+				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 order by orden ";
+			cmdcombo.CommandType = CommandType.Text;
+			dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
 
-				DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns["Estado"] as DataGridViewComboBoxColumn;
-				//
-				comboboxColumn.DataSource = dtcombo.Tables[0] ;
-				comboboxColumn.DisplayMember = "Glosa";
-				comboboxColumn.ValueMember = "Id_DetParametro";
+			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns["Estado"] as DataGridViewComboBoxColumn;
+			comboboxColumn.DisplayMember = "Glosa";
+			comboboxColumn.ValueMember = "Id_DetParametro";
 
-
-				AsignarEvento();
-				Cargar_Cliente(intId_Cliente);
-				Cargar_Anno();
-                btn_Guardar.Visible = false;
-                pnl_Progreso.Visible = false;
+			AsignarEvento();
+            Cursor = Cursors.Default;
+            Cargar_Cliente(intId_Cliente);
+			Cargar_Anno();
+            btn_Guardar.Visible = false;
+            pnl_Progreso.Visible = false;
         }
 
         #region "Llamada de carga"
 
         private void Cargar_Cliente(Int64 intCodCliente)
 		{
+            Cursor = Cursors.WaitCursor;
+
             SqlCommand cmd = new SqlCommand
             {
                 CommandText = "SELECT run,Razon_Social,N_Cliente_Ref,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
@@ -84,10 +88,31 @@ namespace ControlDosimetro
             DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
-            txt_id_cliente.Text = intCodCliente.ToString();
-			lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
-            lbl_rut_cliente.Text = dt.Tables[0].Rows[0]["run"].ToString();
-		}
+            if (dt.Tables[0].Rows.Count > 0)
+            {
+                txt_id_cliente.Text = intCodCliente.ToString();
+                lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
+                lbl_rut_cliente.Text = dt.Tables[0].Rows[0]["run"].ToString();
+                btn_Mostrar.Enabled = false;
+                btn_cargar.Enabled = true;
+                btn_filtro.Enabled = true;
+                cbx_anno.Enabled = true;
+                cbx_id_periodo.Enabled = true;
+                txt_id_cliente.Enabled = false;
+            }
+            else
+            {
+                txt_id_cliente.Clear();
+                lbl_nombreCliente.Text = "";
+                lbl_rut_cliente.Text = "";
+                btn_cargar.Enabled = false;
+                btn_filtro.Enabled = false;
+                cbx_anno.Enabled = false;
+                cbx_id_periodo.Enabled = false;
+                txt_id_cliente.Enabled = true;
+            }
+            Cursor = Cursors.Default;
+        }
 
 		  private void Listar_Personal()
 		  {
@@ -122,8 +147,9 @@ namespace ControlDosimetro
 			  {
                   btn_Guardar.Visible = true;
                   grdDatos.DefaultCellStyle.BackColor = System.Drawing.Color.White; 
-                  grdDatos.DataSource = dt.Tables[0];		
-			  }
+                  grdDatos.DataSource = dt.Tables[0];
+
+            }
 		  }
 
 		  private void Cargar_Anno()
@@ -152,12 +178,6 @@ namespace ControlDosimetro
               cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
               cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
               cbx_id_periodo.DataSource = dt.Tables[0];
-
-              //cbx_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
-              //cbx_periodo.DataSource = dt.Tables[0];
-
-              //cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
-              //cbx_id_periodo.DataSource = dt.Tables[0];
           }
 
           private void Cargar_Sucursal()
@@ -183,29 +203,21 @@ namespace ControlDosimetro
           }
 
         private void AsignarEvento()
-        {           
-				//this.txt_Rut.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
-				//txt_Rut.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
-				//txt_Rut.Validated += new EventHandler(ClaseEvento.validarut_Validated);
-
-				//txt_ref_cliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-				//txt_ref_cliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-
-				//txt_RazonSocial.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-
-				
+        {    
+	        txt_id_cliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+            txt_id_cliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
         }
 
         #endregion
 
         #region "button"
       	 private void Btn_cargar_Click(object sender, EventArgs e)
-		  {
-              Cargar_Sucursal();
-			  Listar_Personal();             
-			  cbx_anno.Enabled = false;
-              cbx_id_periodo.Enabled = false;
-			  grdDatos.Focus();
+		 {          
+            Cargar_Sucursal();
+            Listar_Personal();             
+			cbx_anno.Enabled = false;
+            cbx_id_periodo.Enabled = false;
+			grdDatos.Focus();
 		  }
 
 		 private void Btn_Guardar_Click(object sender, EventArgs e)
@@ -576,10 +588,17 @@ namespace ControlDosimetro
 
 		 private void Btn_filtro_Click_1(object sender, EventArgs e)
 		 {
-			 cbx_anno.Enabled = true;
-             cbx_id_periodo.Enabled = true;
-             groupBox2.Text = "Listado";
-			 cbx_anno.Focus();  
+            txt_id_cliente.Clear();
+            lbl_nombreCliente.Text = "";
+            lbl_rut_cliente.Text = "";
+            btn_Mostrar.Enabled = true;
+            btn_cargar.Enabled = false;
+            btn_filtro.Enabled = false;
+            cbx_anno.Enabled = false;
+            cbx_id_periodo.Enabled = false;
+            txt_id_cliente.Enabled = true;
+            groupBox2.Text = "Listado";
+            txt_id_cliente.Focus();  
 		 }
 
 		 private void Btn_Cerrar_Click(object sender, EventArgs e)
@@ -655,20 +674,40 @@ namespace ControlDosimetro
 
               Listar_Personal();
           }
+
+        private void Btn_Sucursal_Click(object sender, EventArgs e)
+        {
+            frmBusquedaSucursal frm = new frmBusquedaSucursal(0);
+            frm.ShowDialog(this);
+        }
+
+        private void btn_Mostrar_Click(object sender, EventArgs e)
+        {
+            if (txt_id_cliente.Text.TrimEnd() != "")
+                Cargar_Cliente(Convert.ToInt64(txt_id_cliente.Text.ToString()));
+            else
+                MessageBox.Show("Debe poner un numero de cliente","Mensaje de error");
+        }
+
         #endregion
 
-		  #region "combobox"
+        #region "combobox"
 
-		  private void Cbx_anno_SelectedIndexChanged(object sender, EventArgs e)
+        private void Cbx_anno_SelectedIndexChanged(object sender, EventArgs e)
 		  {
 			  Cargar_Periodo();
 		  }
 
-		  #endregion
+        private void Cbx_Sucursal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+                Listar_Personal();
+        }
 
-		  #region "grilla"
+        #endregion
 
-		  private void GrdDatos_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        #region "grilla"
+
+        private void GrdDatos_CurrentCellDirtyStateChanged(object sender, EventArgs e)
 		  {
 			  if (grdDatos.IsCurrentCellDirty)
 			  {
@@ -1059,21 +1098,6 @@ namespace ControlDosimetro
               //this.grdDatos.Columns["Dosis"].ValueType = typeof(Decimal);
               //this.grdDatos.Columns["Dosis"].DefaultCellStyle.Format = "N2";
           }
-
-          private void Cbx_Sucursal_SelectedIndexChanged(object sender, EventArgs e)
-          {
-              Listar_Personal();
-          }
-
-          private void Btn_Sucursal_Click(object sender, EventArgs e)
-          {
-              frmBusquedaSucursal frm = new frmBusquedaSucursal(0);
-              frm.ShowDialog(this);
-          }
-
-          
-
-
-
-	 }
+                   
+    }
 }
