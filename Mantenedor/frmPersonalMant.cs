@@ -430,7 +430,11 @@ namespace ControlDosimetro
 
 		  private void btn_Verificar_Click(object sender, EventArgs e)
 		  {
+              Cursor = Cursors.WaitCursor;
+
 			  Cargar_PersonalPorRut(txt_rut.Text );
+
+              Cursor = Cursors.Default;
 		  }
 
 		  private void btn_Limpiar_Click(object sender, EventArgs e)
