@@ -108,9 +108,13 @@ namespace ControlDosimetro
 
         private void btn_Agregar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             frmEmpresaMant frm = new frmEmpresaMant(0);
             frm.ShowDialog(this);
             Listar_Cliente();
+
+            Cursor = Cursors.Default;
         }
 
         private void tsbAgregarReferencia_Click(object sender, EventArgs e)
