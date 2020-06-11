@@ -161,8 +161,13 @@ namespace ControlDosimetro
 
           private void btnIngresarPelicula_Click(object sender, EventArgs e)
           {
+              Cursor = Cursors.WaitCursor;
+
               frmIngresoPelicula frm = new frmIngresoPelicula(Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
               frm.ShowDialog(this);
+
+            Cursor = Cursors.Default;
+          
           }
 
         #endregion
