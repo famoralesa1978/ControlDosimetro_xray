@@ -129,8 +129,13 @@ namespace ControlDosimetro
 
 		  private void tsbAgregarPersonal_Click(object sender, EventArgs e)
 		  {
+
+              Cursor = Cursors.WaitCursor;
+
 			  frmBusquedaPersonal frm = new frmBusquedaPersonal(Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
 			  frm.ShowDialog(this);
+
+              Cursor = Cursors.Default;
 		  }
 
 		  private void tsbIngresoDosimetro_Click(object sender, EventArgs e)
