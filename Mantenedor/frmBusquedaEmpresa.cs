@@ -140,8 +140,13 @@ namespace ControlDosimetro
 
 		  private void tsbIngresoDosimetro_Click(object sender, EventArgs e)
 		  {
+
+              Cursor = Cursors.WaitCursor; 
+
 			  frmIngresoDosimetria frm = new frmIngresoDosimetria(Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
 			  frm.ShowDialog(this);
+
+              Cursor = Cursors.Default;
 		  }
 
 		  private void btnIngresarDosisISP_Click(object sender, EventArgs e)
