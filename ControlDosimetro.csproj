@@ -64,10 +64,10 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>55F8EAD6A20EAA5B23EBDA8900FDBACAF5D28C73</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>0835FC6DE3B4B8E0850E5C7D26AFFE5767A5FB95</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>ControlDosimetro_4_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>ControlDosimetro_5_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -346,6 +346,12 @@
     </Compile>
     <Compile Include="RecepcionTLD\frmModuloIniciarProcesoTLD.Designer.cs">
       <DependentUpon>frmModuloIniciarProcesoTLD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recepcion\FrmInformeISP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\FrmInformeISP.Designer.cs">
+      <DependentUpon>FrmInformeISP.cs</DependentUpon>
     </Compile>
     <Compile Include="Recepcion\frmOrdenTrabajoFechaRecepcion.cs">
       <SubType>Form</SubType>
@@ -629,6 +635,9 @@
     <EmbeddedResource Include="RecepcionTLD\frmModuloIniciarProcesoTLD.resx">
       <DependentUpon>frmModuloIniciarProcesoTLD.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Recepcion\FrmInformeISP.resx">
+      <DependentUpon>FrmInformeISP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Recepcion\frmOrdenTrabajoFechaRecepcion.resx">
       <DependentUpon>frmOrdenTrabajoFechaRecepcion.cs</DependentUpon>
     </EmbeddedResource>
@@ -747,6 +756,7 @@
     <None Include="ControlDosimetro_2_TemporaryKey.pfx" />
     <None Include="ControlDosimetro_3_TemporaryKey.pfx" />
     <None Include="ControlDosimetro_4_TemporaryKey.pfx" />
+    <None Include="ControlDosimetro_5_TemporaryKey.pfx" />
     <None Include="ControlDosimetro_TemporaryKey.pfx" />
     <None Include="DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>
@@ -799,6 +809,7 @@
     </AdditionalFiles>
     <None Include="Formato\FormatoTLD.xlsx" />
     <None Include="Formato\Plantillaword.docx" />
+    <None Include="Libreria\certificado.cer" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

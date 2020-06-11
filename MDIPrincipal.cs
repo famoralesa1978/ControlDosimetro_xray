@@ -267,7 +267,7 @@ namespace ControlDosimetro
         #endregion
 
         #region "Herramientas"
-        private void frmUtilidadesLiberarDosimetro_Click(object sender, EventArgs e)
+        private void FrmUtilidadesLiberarDosimetro_Click(object sender, EventArgs e)
         {
             frmLiberarDosimetro frm = new frmLiberarDosimetro();
             Graba_log(frm.Text);
@@ -345,6 +345,13 @@ namespace ControlDosimetro
             Graba_log(frm.Text);
             frm.ShowDialog(this);
           }
+
+        private void MnuProcesoTLDDosisISP_Click(object sender, EventArgs e)
+        {
+            FrmInformeISP frm = new FrmInformeISP(-1,1);
+            Graba_log(frm.Text);
+            frm.ShowDialog(this);
+        }
         #endregion
 
         #region "Generar Dcto ISP"
