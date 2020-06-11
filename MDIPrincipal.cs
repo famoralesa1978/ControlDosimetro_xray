@@ -350,7 +350,7 @@ namespace ControlDosimetro
         {
             FrmInformeISP frm = new FrmInformeISP(-1);
             Graba_log(frm.Text);
-            frm.ShowDialog(this);
+            frm.Show();
         }
         #endregion
 

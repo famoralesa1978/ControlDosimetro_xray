@@ -438,6 +438,7 @@
             this.btn_Guardar.TabIndex = 7;
             this.btn_Guardar.Text = "Generar Archivo ISP";
             this.btn_Guardar.UseVisualStyleBackColor = true;
+            this.btn_Guardar.Visible = false;
             this.btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
             // 
             // btn_Cerrar
@@ -516,7 +517,7 @@
             this.MinimumSize = new System.Drawing.Size(776, 464);
             this.Name = "FrmInformeISP";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Ingreso Dosimetria ISP";
+            this.Text = "Dosis ISP";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

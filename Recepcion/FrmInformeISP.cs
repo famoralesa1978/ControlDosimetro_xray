@@ -91,22 +91,64 @@ namespace ControlDosimetro
                 lbl_id_cliente.Text = intCodCliente.ToString();
                 lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
                 lbl_rut_cliente.Text = dt.Tables[0].Rows[0]["run"].ToString();
+                LimpiarFormulario(1);
             }
             else
             {
-                lbl_id_cliente.Text = "";
-                lbl_nombreCliente.Text = "";
-                lbl_rut_cliente.Text = "";
+                LimpiarFormulario(2);
             }
                     
 			
 		}
 
+        void LimpiarFormulario(int bolLimpiar)
+        {
+            if(bolLimpiar== 1)
+            {
+                lbl_id_cliente.Enabled = false;
+                btn_CargarCli.Enabled = false;
+
+                cbx_anno.Enabled = true;
+                cbx_id_periodo.Enabled = true;
+                btn_cargar.Enabled = true;
+                groupBox2.Text = "Listado";
+                groupBox2.Enabled = false;
+                cbx_Sucursal.Enabled = false;
+                btn_Corregir.Enabled = false;
+            }
+            else if(bolLimpiar == 2)
+            {
+                lbl_id_cliente.Enabled = true;
+                lbl_id_cliente.Text = "";
+                lbl_nombreCliente.Text = "";
+                lbl_rut_cliente.Text = "";
+                cbx_anno.Enabled = false;
+                cbx_id_periodo.Enabled = false;
+                btn_cargar.Enabled = false;
+                btn_CargarCli.Enabled = true;
+                groupBox2.Text = "Listado";
+                groupBox2.Enabled = false;
+                lbl_id_cliente.Text = "";
+                cbx_Sucursal.Enabled = false;
+                btn_Corregir.Enabled = false;
+                lbl_id_cliente.Focus();
+
+            }
+            else if (bolLimpiar == 3)
+            {
+                groupBox2.Enabled = false;
+                btn_Corregir.Enabled = false;
+            }
+            else if (bolLimpiar == 4)
+            {
+                groupBox2.Enabled = true;
+                btn_Corregir.Enabled = true;
+            }
+        }
+            
 		  private void Listar_Personal()
 		  {
               SqlCommand cmd = new SqlCommand();
-              //SqlCommand cmd = new SqlCommand();
-			 
 				DataSet dt;
                 cmd.CommandText = " pa_DosimetroISP_Cliente_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue;
 			  cmd.CommandType = CommandType.Text;
@@ -128,12 +170,14 @@ namespace ControlDosimetro
 			  if (dt.Tables[0].Rows.Count == 0)
 			  {
                   btn_Guardar.Visible = false;
+                LimpiarFormulario(3);
                   grdDatos.DataSource = dt.Tables[0];
 				  MessageBox.Show("No se han cargado ningun personal");				  
 			  }
 			  else
 			  {
-                  btn_Guardar.Visible = true;
+                LimpiarFormulario(4);
+                btn_Guardar.Visible = true;
                   grdDatos.DefaultCellStyle.BackColor = System.Drawing.Color.White; 
                   grdDatos.DataSource = dt.Tables[0];		
 			  }
@@ -237,11 +281,12 @@ namespace ControlDosimetro
 
 		  private void Btn_cargar_Click(object sender, EventArgs e)
 		  {
+            Cursor = Cursors.WaitCursor;
               Cargar_Sucursal();
 			  Listar_Personal();             
-			  cbx_anno.Enabled = false;
-              cbx_id_periodo.Enabled = false;
-			  grdDatos.Focus();
+			 
+            Cursor = Cursors.Default;
+            grdDatos.Focus();
 		  }
 
 		 private void Btn_Guardar_Click(object sender, EventArgs e)
@@ -620,15 +665,12 @@ namespace ControlDosimetro
              btn_Guardar.Enabled = true;
              pnl_Progreso.Visible = false;
                   
-				  Listar_Personal();
+		    Listar_Personal();
 		  }
 
 		 private void Btn_filtro_Click_1(object sender, EventArgs e)
 		 {
-			 cbx_anno.Enabled = true;
-             cbx_id_periodo.Enabled = true;
-             groupBox2.Text = "Listado";
-			 cbx_anno.Focus();  
+            LimpiarFormulario(2);           
 		 }
 
 		 private void Btn_Cerrar_Click(object sender, EventArgs e)
