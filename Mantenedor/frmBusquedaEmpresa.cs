@@ -119,8 +119,12 @@ namespace ControlDosimetro
 
         private void tsbAgregarReferencia_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             frmBusquedaReferencia frm = new frmBusquedaReferencia(Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
             frm.ShowDialog(this);
+
+            Cursor = Cursors.Default;
         }
 
 		  private void tsbAgregarPersonal_Click(object sender, EventArgs e)
