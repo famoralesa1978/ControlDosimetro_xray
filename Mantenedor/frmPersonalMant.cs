@@ -357,6 +357,8 @@ namespace ControlDosimetro
 
         private void btn_Grabar_Click(object sender, EventArgs e)
         {
+              Cursor = Cursors.WaitCursor;
+
 			  Boolean bolResult;
 			  bolResult = false;
        //     if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
@@ -416,8 +418,10 @@ namespace ControlDosimetro
                                  LimpiarControles();
 						 }
                 }
-					
-         //   }
+
+            //   }
+
+            Cursor = Cursors.Default;
             
         }
 
