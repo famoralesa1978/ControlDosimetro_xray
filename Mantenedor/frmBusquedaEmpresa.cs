@@ -151,8 +151,12 @@ namespace ControlDosimetro
 
 		  private void btnIngresarDosisISP_Click(object sender, EventArgs e)
 		  {
+              Cursor = Cursors.WaitCursor;
+
 			  frmDosimetriaISP frm = new frmDosimetriaISP(Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
 			  frm.ShowDialog(this);
+
+              Cursor = Cursors.Default;
 		  }
 
           private void btnIngresarPelicula_Click(object sender, EventArgs e)
