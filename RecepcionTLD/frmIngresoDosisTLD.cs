@@ -187,8 +187,8 @@ namespace ControlDosimetro
                                                                  "Id_Periodo=" + strid_periodo + "," +
                                                                  "N_Documento=" + txtndocumento.Value.ToString() + "," +
                                                                  "n_pelicula=" + txtNPelicula.Value.ToString() + "," +
-                                                                 "Cristal1=" + txtcristal1.Value.ToString()  + "," +
-                                                                 "Cristal2=" + txtcristal2.Value.ToString() + 
+                                                                 "Cristal1=cast(" + txtcristal1.Value.ToString().Replace(",", ".") + " as decimal(10,2)) " + "," +
+                                                                 "Cristal2=cast(" + txtcristal2.Value.ToString().Replace(",", ".") + " as decimal(10,2)) " + 
                                                              " where id_dosimetro=" + strid_dosimetro;
                                       cmd.CommandType = CommandType.Text;
                                       Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
