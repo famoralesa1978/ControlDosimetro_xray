@@ -108,39 +108,66 @@ namespace ControlDosimetro
 
         private void btn_Agregar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             frmEmpresaMant frm = new frmEmpresaMant(0);
             frm.ShowDialog(this);
             Listar_Cliente();
+
+            Cursor = Cursors.Default;
         }
 
         private void tsbAgregarReferencia_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             frmBusquedaReferencia frm = new frmBusquedaReferencia(Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
             frm.ShowDialog(this);
+
+            Cursor = Cursors.Default;
         }
 
 		  private void tsbAgregarPersonal_Click(object sender, EventArgs e)
 		  {
+
+              Cursor = Cursors.WaitCursor;
+
 			  frmBusquedaPersonal frm = new frmBusquedaPersonal(Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
 			  frm.ShowDialog(this);
+
+              Cursor = Cursors.Default;
 		  }
 
 		  private void tsbIngresoDosimetro_Click(object sender, EventArgs e)
 		  {
+
+              Cursor = Cursors.WaitCursor; 
+
 			  frmIngresoDosimetria frm = new frmIngresoDosimetria(Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
 			  frm.ShowDialog(this);
+
+              Cursor = Cursors.Default;
 		  }
 
 		  private void btnIngresarDosisISP_Click(object sender, EventArgs e)
 		  {
+              Cursor = Cursors.WaitCursor;
+
 			  frmDosimetriaISP frm = new frmDosimetriaISP(Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
 			  frm.ShowDialog(this);
+
+              Cursor = Cursors.Default;
 		  }
 
           private void btnIngresarPelicula_Click(object sender, EventArgs e)
           {
+              Cursor = Cursors.WaitCursor;
+
               frmIngresoPelicula frm = new frmIngresoPelicula(Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
               frm.ShowDialog(this);
+
+            Cursor = Cursors.Default;
+          
           }
 
         #endregion

@@ -86,9 +86,14 @@ namespace ControlDosimetro
 
         private void btn_Agregar_Click(object sender, EventArgs e)
         {
-									frmReferenciaMant frm = new frmReferenciaMant(0, lbl_Codigo.Text);
+            Cursor = Cursors.WaitCursor;
+
+			frmReferenciaMant frm = new frmReferenciaMant(0, lbl_Codigo.Text);
             frm.ShowDialog(this);
             Listar_Referencia();
+
+            Cursor = Cursors.Default;
+
         }
 
         #endregion
