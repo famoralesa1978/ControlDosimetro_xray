@@ -631,8 +631,8 @@ namespace ControlDosimetro
               DataGridViewTextBoxCell txtndocumento;
               DataGridViewTextBoxCell txtnpelicula;
               DataGridViewComboBoxCell cbxEstado;
-              DataGridViewTextBoxCell txtTLD;
-              string strn_cliente;
+            DataGridViewCheckBoxCell checkTLD;
+            string strn_cliente;
               string strid_personal;
               string strid_dosimetro;
               btn_Corregir.Enabled = false;
@@ -653,8 +653,8 @@ namespace ControlDosimetro
                   txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["n_pelicula"];
                   cbxEstado = (DataGridViewComboBoxCell)grdDatos.Rows[i].Cells["Estado"];
 
-                  txtTLD = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["tld"];
-                  strn_cliente = grdDatos.Rows[i].Cells["N_Cliente"].Value.ToString();
+                checkTLD = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["tld"];
+                strn_cliente = grdDatos.Rows[i].Cells["N_Cliente"].Value.ToString();
                   strid_personal = grdDatos.Rows[i].Cells["id_personal"].Value.ToString();
                   strid_dosimetro = grdDatos.Rows[i].Cells["id_dosimetro"].Value.ToString();
 
@@ -667,9 +667,14 @@ namespace ControlDosimetro
                       cmd.CommandType = CommandType.Text;
 
                       Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
-                    //cmd.CommandText = "pa_DosimetroDesvolverEstadoEnviadoDosimetria_upd 5,'" + Clases.clsUsuario.Usuario + "'," + strIdCliente + "," + strid_periodo;
-                    cmd2.CommandText = "pa_DevolverEstado_upd " + txtnpelicula.Value.ToString() + "," + cbxEstado.Value + ",'" + Clases.clsUsuario.Usuario +
-                                                        "',''," + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;                  
+
+                    if (checkTLD.Value.ToString() == "0")
+                        cmd2.CommandText = "pa_DevolverEstado_upd " + txtnpelicula.Value.ToString() + "," + cbxEstado.Value + ",'" + Clases.clsUsuario.Usuario +
+                                                        "',''," + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;
+                    else
+                        cmd2.CommandText = "pa_DevolverEstadoTLD_upd " + txtnpelicula.Value.ToString() + "," + cbxEstado.Value + ",'" + Clases.clsUsuario.Usuario +
+                                                        "',''," + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;
+             
                       cmd2.CommandType = CommandType.Text;
                       Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd2);
                   }
