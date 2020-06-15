@@ -103,7 +103,7 @@ namespace ControlDosimetro
         {
             frmBusquedaEmpresa frm = new frmBusquedaEmpresa();
             Graba_log(frm.Text);
-            frm.ShowDialog(this);     
+            frm.Show(this);     
         }
 
 		  private void MnuMantPersonal_Click(object sender, EventArgs e)
@@ -146,8 +146,12 @@ namespace ControlDosimetro
         #endregion
 
         #region "Proceso"
-
-
+        private void mnuProcesoDosisISP_Click(object sender, EventArgs e)
+        {
+            FrmInformeISP frm = new FrmInformeISP(-1);
+            Graba_log(frm.Text);
+            frm.Show();
+        }
 
         private void MnuLinkVigilanciaDosi_Click(object sender, EventArgs e)
           {
@@ -438,6 +442,6 @@ namespace ControlDosimetro
 
 
         #endregion
-       
+      
     }
 }
