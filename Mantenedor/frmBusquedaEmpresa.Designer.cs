@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBusquedaEmpresa));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txt_Direccion = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.btn_cargarCliente = new System.Windows.Forms.Button();
             this.txt_N_Cliente_Ref = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -55,8 +57,6 @@
             this.tsbAgregarPersonal = new System.Windows.Forms.ToolStripButton();
             this.tsbIngresoDosimetro = new System.Windows.Forms.ToolStripButton();
             this.btnIngresarDosisISP = new System.Windows.Forms.ToolStripButton();
-            this.txt_Direccion = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -83,6 +83,23 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Busqueda Cliente";
+            // 
+            // txt_Direccion
+            // 
+            this.txt_Direccion.Location = new System.Drawing.Point(84, 73);
+            this.txt_Direccion.MaxLength = 60;
+            this.txt_Direccion.Name = "txt_Direccion";
+            this.txt_Direccion.Size = new System.Drawing.Size(342, 20);
+            this.txt_Direccion.TabIndex = 36;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(10, 75);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 13);
+            this.label4.TabIndex = 37;
+            this.label4.Text = "Dirección";
             // 
             // btn_cargarCliente
             // 
@@ -335,25 +352,9 @@
             this.btnIngresarDosisISP.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.btnIngresarDosisISP.Click += new System.EventHandler(this.btnIngresarDosisISP_Click);
             // 
-            // txt_Direccion
-            // 
-            this.txt_Direccion.Location = new System.Drawing.Point(84, 73);
-            this.txt_Direccion.MaxLength = 60;
-            this.txt_Direccion.Name = "txt_Direccion";
-            this.txt_Direccion.Size = new System.Drawing.Size(342, 20);
-            this.txt_Direccion.TabIndex = 36;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 75);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 13);
-            this.label4.TabIndex = 37;
-            this.label4.Text = "Dirección";
-            // 
             // frmBusquedaEmpresa
             // 
+            this.AcceptButton = this.btn_cargarCliente;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(859, 532);

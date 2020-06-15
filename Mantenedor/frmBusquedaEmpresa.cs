@@ -27,43 +27,52 @@ namespace ControlDosimetro
         public frmBusquedaEmpresa()
         {
             InitializeComponent();
-				AsignarEvento();
+			AsignarEvento();
             Cargar_Estado();
-           // Listar_Cliente();
-            
+            HablitarBarra(false);
         }
 
         #region "Llamada de carga"
 
-        private void    Listar_Cliente()
+        private void Listar_Cliente()
         {
             Cursor = Cursors.WaitCursor;
-			//  SqlCommand cmd = new SqlCommand()
+            //  SqlCommand cmd = new SqlCommand()
             SqlCommand cmd = new SqlCommand();
 
 
             //MessageBox.Show("Conectado al servidor");
 
-				if (txt_N_Cliente_Ref.Text !="")
-					cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
-									"from tbl_cliente " +
-									"where run like '%" + txt_Rut.Text + "%' and razon_social like '%" + txt_RazonSocial.Text   + "%' " +
-                                    " and id_estado=" + cbx_Estado.SelectedValue + " and id_cliente =" + txt_N_Cliente_Ref.Text + " " +
-                                    " and Direccion like '%" + txt_Direccion.Text + "%' order by id_cliente";
-				else
-					cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
-									"from tbl_cliente " +
-									"where run like '%" + txt_Rut.Text + "%' and razon_social like '%" + txt_RazonSocial.Text + "%' " +
-                                    " and id_estado=" + cbx_Estado.SelectedValue +
-                                    " and Direccion like '%" + txt_Direccion.Text + "%' order by id_cliente";
-					cmd.CommandType = CommandType.Text;
+            if (txt_N_Cliente_Ref.Text != "")
+                cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
+                                "from tbl_cliente " +
+                                "where run like '%" + txt_Rut.Text + "%' and razon_social like '%" + txt_RazonSocial.Text + "%' " +
+                                " and id_estado=" + cbx_Estado.SelectedValue + " and id_cliente =" + txt_N_Cliente_Ref.Text + " " +
+                                " and Direccion like '%" + txt_Direccion.Text + "%' order by id_cliente";
+            else
+                cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
+                                "from tbl_cliente " +
+                                "where run like '%" + txt_Rut.Text + "%' and razon_social like '%" + txt_RazonSocial.Text + "%' " +
+                                " and id_estado=" + cbx_Estado.SelectedValue +
+                                " and Direccion like '%" + txt_Direccion.Text + "%' order by id_cliente";
+            cmd.CommandType = CommandType.Text;
 
 
             DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
             grdDatos.DataSource = dt.Tables[0];
+
+            HablitarBarra(dt.Tables[0].Rows.Count>0?true:false);
             Cursor = Cursors.Default;
+        }
+
+        void HablitarBarra(bool bolEstado)
+        {
+            tsbAgregarReferencia.Enabled = bolEstado;
+            tsbAgregarPersonal.Enabled = bolEstado;
+            tsbIngresoDosimetro.Enabled = bolEstado;
+            btnIngresarDosisISP.Enabled = bolEstado;
         }
 
         private void AsignarEvento()
@@ -73,12 +82,12 @@ namespace ControlDosimetro
             txt_Rut.Validated += new EventHandler(ClaseEvento.validarut_Validated);
 
 
-				this.txt_N_Cliente_Ref.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-				txt_N_Cliente_Ref.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+			this.txt_N_Cliente_Ref.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+			txt_N_Cliente_Ref.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
 			  
-			  txt_RazonSocial.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+			txt_RazonSocial.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 
-			  cbx_Estado.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+			cbx_Estado.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
         }
 
         private void Cargar_Estado()
