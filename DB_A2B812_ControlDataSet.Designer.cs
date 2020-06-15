@@ -9403,7 +9403,7 @@ namespace ControlDosimetro.DB_A2B812_ControlDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
+    //        this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9592,7 +9592,7 @@ namespace ControlDosimetro.DB_A2B812_ControlDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
+      //      this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9800,7 +9800,7 @@ namespace ControlDosimetro.DB_A2B812_ControlDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
+    //        this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10031,7 +10031,7 @@ namespace ControlDosimetro.DB_A2B812_ControlDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
+        //    this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10223,7 +10223,7 @@ namespace ControlDosimetro.DB_A2B812_ControlDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
+          //  this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10442,7 +10442,7 @@ namespace ControlDosimetro.DB_A2B812_ControlDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
+      //      this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10656,7 +10656,7 @@ namespace ControlDosimetro.DB_A2B812_ControlDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
+        //    this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10870,7 +10870,7 @@ namespace ControlDosimetro.DB_A2B812_ControlDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
+         //   this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11089,7 +11089,7 @@ namespace ControlDosimetro.DB_A2B812_ControlDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
+       //     this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11286,7 +11286,7 @@ namespace ControlDosimetro.DB_A2B812_ControlDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
+     //       this._connection.ConnectionString = global::ControlDosimetro.Properties.Settings.Default.DB_A2B812_ControlConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
