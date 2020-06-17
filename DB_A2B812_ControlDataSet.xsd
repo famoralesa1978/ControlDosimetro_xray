@@ -309,7 +309,7 @@
   <xs:element name="DB_A2B812_ControlDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DB_A2B812_ControlDataSet" msprop:Generator_UserDSName="DB_A2B812_ControlDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="rptOrdenTrabajo" msprop:Generator_TableClassName="rptOrdenTrabajoDataTable" msprop:Generator_TableVarName="tablerptOrdenTrabajo" msprop:Generator_TablePropName="rptOrdenTrabajo" msprop:Generator_RowDeletingName="rptOrdenTrabajoRowDeleting" msprop:Generator_RowChangingName="rptOrdenTrabajoRowChanging" msprop:Generator_RowEvHandlerName="rptOrdenTrabajoRowChangeEventHandler" msprop:Generator_RowDeletedName="rptOrdenTrabajoRowDeleted" msprop:Generator_UserTableName="rptOrdenTrabajo" msprop:Generator_RowChangedName="rptOrdenTrabajoRowChanged" msprop:Generator_RowEvArgName="rptOrdenTrabajoRowChangeEvent" msprop:Generator_RowClassName="rptOrdenTrabajoRow">
+        <xs:element name="rptOrdenTrabajo" msprop:Generator_TableClassName="rptOrdenTrabajoDataTable" msprop:Generator_TableVarName="tablerptOrdenTrabajo" msprop:Generator_RowChangedName="rptOrdenTrabajoRowChanged" msprop:Generator_TablePropName="rptOrdenTrabajo" msprop:Generator_RowDeletingName="rptOrdenTrabajoRowDeleting" msprop:Generator_RowChangingName="rptOrdenTrabajoRowChanging" msprop:Generator_RowEvHandlerName="rptOrdenTrabajoRowChangeEventHandler" msprop:Generator_RowDeletedName="rptOrdenTrabajoRowDeleted" msprop:Generator_RowClassName="rptOrdenTrabajoRow" msprop:Generator_UserTableName="rptOrdenTrabajo" msprop:Generator_RowEvArgName="rptOrdenTrabajoRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
@@ -345,7 +345,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="rtpDosimetria" msprop:Generator_TableClassName="rtpDosimetriaDataTable" msprop:Generator_TableVarName="tablertpDosimetria" msprop:Generator_TablePropName="rtpDosimetria" msprop:Generator_RowDeletingName="rtpDosimetriaRowDeleting" msprop:Generator_RowChangingName="rtpDosimetriaRowChanging" msprop:Generator_RowEvHandlerName="rtpDosimetriaRowChangeEventHandler" msprop:Generator_RowDeletedName="rtpDosimetriaRowDeleted" msprop:Generator_UserTableName="rtpDosimetria" msprop:Generator_RowChangedName="rtpDosimetriaRowChanged" msprop:Generator_RowEvArgName="rtpDosimetriaRowChangeEvent" msprop:Generator_RowClassName="rtpDosimetriaRow">
+        <xs:element name="rtpDosimetria" msprop:Generator_TableClassName="rtpDosimetriaDataTable" msprop:Generator_TableVarName="tablertpDosimetria" msprop:Generator_RowChangedName="rtpDosimetriaRowChanged" msprop:Generator_TablePropName="rtpDosimetria" msprop:Generator_RowDeletingName="rtpDosimetriaRowDeleting" msprop:Generator_RowChangingName="rtpDosimetriaRowChanging" msprop:Generator_RowEvHandlerName="rtpDosimetriaRowChangeEventHandler" msprop:Generator_RowDeletedName="rtpDosimetriaRowDeleted" msprop:Generator_RowClassName="rtpDosimetriaRow" msprop:Generator_UserTableName="rtpDosimetria" msprop:Generator_RowEvArgName="rtpDosimetriaRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id_region" msprop:Generator_ColumnVarNameInTable="columnId_region" msprop:Generator_ColumnPropNameInRow="Id_region" msprop:Generator_ColumnPropNameInTable="Id_regionColumn" msprop:Generator_UserColumnName="Id_region" type="xs:int" />
@@ -402,7 +402,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="rtpDosimetria_v2" msprop:Generator_TableClassName="rtpDosimetria_v2DataTable" msprop:Generator_TableVarName="tablertpDosimetria_v2" msprop:Generator_TablePropName="rtpDosimetria_v2" msprop:Generator_RowDeletingName="rtpDosimetria_v2RowDeleting" msprop:Generator_RowChangingName="rtpDosimetria_v2RowChanging" msprop:Generator_RowEvHandlerName="rtpDosimetria_v2RowChangeEventHandler" msprop:Generator_RowDeletedName="rtpDosimetria_v2RowDeleted" msprop:Generator_UserTableName="rtpDosimetria_v2" msprop:Generator_RowChangedName="rtpDosimetria_v2RowChanged" msprop:Generator_RowEvArgName="rtpDosimetria_v2RowChangeEvent" msprop:Generator_RowClassName="rtpDosimetria_v2Row">
+        <xs:element name="rtpDosimetria_v2" msprop:Generator_TableClassName="rtpDosimetria_v2DataTable" msprop:Generator_TableVarName="tablertpDosimetria_v2" msprop:Generator_RowChangedName="rtpDosimetria_v2RowChanged" msprop:Generator_TablePropName="rtpDosimetria_v2" msprop:Generator_RowDeletingName="rtpDosimetria_v2RowDeleting" msprop:Generator_RowChangingName="rtpDosimetria_v2RowChanging" msprop:Generator_RowEvHandlerName="rtpDosimetria_v2RowChangeEventHandler" msprop:Generator_RowDeletedName="rtpDosimetria_v2RowDeleted" msprop:Generator_RowClassName="rtpDosimetria_v2Row" msprop:Generator_UserTableName="rtpDosimetria_v2" msprop:Generator_RowEvArgName="rtpDosimetria_v2RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="anno" msprop:Generator_ColumnVarNameInTable="columnanno" msprop:Generator_ColumnPropNameInRow="anno" msprop:Generator_ColumnPropNameInTable="annoColumn" msprop:Generator_UserColumnName="anno" type="xs:int" minOccurs="0" />
@@ -416,7 +416,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="rtpDosimetriaAnual" msprop:Generator_TableClassName="rtpDosimetriaAnualDataTable" msprop:Generator_TableVarName="tablertpDosimetriaAnual" msprop:Generator_TablePropName="rtpDosimetriaAnual" msprop:Generator_RowDeletingName="rtpDosimetriaAnualRowDeleting" msprop:Generator_RowChangingName="rtpDosimetriaAnualRowChanging" msprop:Generator_RowEvHandlerName="rtpDosimetriaAnualRowChangeEventHandler" msprop:Generator_RowDeletedName="rtpDosimetriaAnualRowDeleted" msprop:Generator_UserTableName="rtpDosimetriaAnual" msprop:Generator_RowChangedName="rtpDosimetriaAnualRowChanged" msprop:Generator_RowEvArgName="rtpDosimetriaAnualRowChangeEvent" msprop:Generator_RowClassName="rtpDosimetriaAnualRow">
+        <xs:element name="rtpDosimetriaAnual" msprop:Generator_TableClassName="rtpDosimetriaAnualDataTable" msprop:Generator_TableVarName="tablertpDosimetriaAnual" msprop:Generator_RowChangedName="rtpDosimetriaAnualRowChanged" msprop:Generator_TablePropName="rtpDosimetriaAnual" msprop:Generator_RowDeletingName="rtpDosimetriaAnualRowDeleting" msprop:Generator_RowChangingName="rtpDosimetriaAnualRowChanging" msprop:Generator_RowEvHandlerName="rtpDosimetriaAnualRowChangeEventHandler" msprop:Generator_RowDeletedName="rtpDosimetriaAnualRowDeleted" msprop:Generator_RowClassName="rtpDosimetriaAnualRow" msprop:Generator_UserTableName="rtpDosimetriaAnual" msprop:Generator_RowEvArgName="rtpDosimetriaAnualRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id_cliente" msprop:Generator_ColumnVarNameInTable="columnid_cliente" msprop:Generator_ColumnPropNameInRow="id_cliente" msprop:Generator_ColumnPropNameInTable="id_clienteColumn" msprop:Generator_UserColumnName="id_cliente" type="xs:int" />
@@ -446,7 +446,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="rtpDosimetriaPersonal_det" msprop:Generator_TableClassName="rtpDosimetriaPersonal_detDataTable" msprop:Generator_TableVarName="tablertpDosimetriaPersonal_det" msprop:Generator_TablePropName="rtpDosimetriaPersonal_det" msprop:Generator_RowDeletingName="rtpDosimetriaPersonal_detRowDeleting" msprop:Generator_RowChangingName="rtpDosimetriaPersonal_detRowChanging" msprop:Generator_RowEvHandlerName="rtpDosimetriaPersonal_detRowChangeEventHandler" msprop:Generator_RowDeletedName="rtpDosimetriaPersonal_detRowDeleted" msprop:Generator_UserTableName="rtpDosimetriaPersonal_det" msprop:Generator_RowChangedName="rtpDosimetriaPersonal_detRowChanged" msprop:Generator_RowEvArgName="rtpDosimetriaPersonal_detRowChangeEvent" msprop:Generator_RowClassName="rtpDosimetriaPersonal_detRow">
+        <xs:element name="rtpDosimetriaPersonal_det" msprop:Generator_TableClassName="rtpDosimetriaPersonal_detDataTable" msprop:Generator_TableVarName="tablertpDosimetriaPersonal_det" msprop:Generator_RowChangedName="rtpDosimetriaPersonal_detRowChanged" msprop:Generator_TablePropName="rtpDosimetriaPersonal_det" msprop:Generator_RowDeletingName="rtpDosimetriaPersonal_detRowDeleting" msprop:Generator_RowChangingName="rtpDosimetriaPersonal_detRowChanging" msprop:Generator_RowEvHandlerName="rtpDosimetriaPersonal_detRowChangeEventHandler" msprop:Generator_RowDeletedName="rtpDosimetriaPersonal_detRowDeleted" msprop:Generator_RowClassName="rtpDosimetriaPersonal_detRow" msprop:Generator_UserTableName="rtpDosimetriaPersonal_det" msprop:Generator_RowEvArgName="rtpDosimetriaPersonal_detRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="n_dosimetro1" msprop:Generator_ColumnVarNameInTable="columnn_dosimetro1" msprop:Generator_ColumnPropNameInRow="n_dosimetro1" msprop:Generator_ColumnPropNameInTable="n_dosimetro1Column" msprop:Generator_UserColumnName="n_dosimetro1" minOccurs="0">
@@ -536,7 +536,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="rtpDosimetriaPersonal_Enc" msprop:Generator_TableClassName="rtpDosimetriaPersonal_EncDataTable" msprop:Generator_TableVarName="tablertpDosimetriaPersonal_Enc" msprop:Generator_TablePropName="rtpDosimetriaPersonal_Enc" msprop:Generator_RowDeletingName="rtpDosimetriaPersonal_EncRowDeleting" msprop:Generator_RowChangingName="rtpDosimetriaPersonal_EncRowChanging" msprop:Generator_RowEvHandlerName="rtpDosimetriaPersonal_EncRowChangeEventHandler" msprop:Generator_RowDeletedName="rtpDosimetriaPersonal_EncRowDeleted" msprop:Generator_UserTableName="rtpDosimetriaPersonal_Enc" msprop:Generator_RowChangedName="rtpDosimetriaPersonal_EncRowChanged" msprop:Generator_RowEvArgName="rtpDosimetriaPersonal_EncRowChangeEvent" msprop:Generator_RowClassName="rtpDosimetriaPersonal_EncRow">
+        <xs:element name="rtpDosimetriaPersonal_Enc" msprop:Generator_TableClassName="rtpDosimetriaPersonal_EncDataTable" msprop:Generator_TableVarName="tablertpDosimetriaPersonal_Enc" msprop:Generator_RowChangedName="rtpDosimetriaPersonal_EncRowChanged" msprop:Generator_TablePropName="rtpDosimetriaPersonal_Enc" msprop:Generator_RowDeletingName="rtpDosimetriaPersonal_EncRowDeleting" msprop:Generator_RowChangingName="rtpDosimetriaPersonal_EncRowChanging" msprop:Generator_RowEvHandlerName="rtpDosimetriaPersonal_EncRowChangeEventHandler" msprop:Generator_RowDeletedName="rtpDosimetriaPersonal_EncRowDeleted" msprop:Generator_RowClassName="rtpDosimetriaPersonal_EncRow" msprop:Generator_UserTableName="rtpDosimetriaPersonal_Enc" msprop:Generator_RowEvArgName="rtpDosimetriaPersonal_EncRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
@@ -609,7 +609,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="rtpEstadoDosimetro" msprop:Generator_TableClassName="rtpEstadoDosimetroDataTable" msprop:Generator_TableVarName="tablertpEstadoDosimetro" msprop:Generator_TablePropName="rtpEstadoDosimetro" msprop:Generator_RowDeletingName="rtpEstadoDosimetroRowDeleting" msprop:Generator_RowChangingName="rtpEstadoDosimetroRowChanging" msprop:Generator_RowEvHandlerName="rtpEstadoDosimetroRowChangeEventHandler" msprop:Generator_RowDeletedName="rtpEstadoDosimetroRowDeleted" msprop:Generator_UserTableName="rtpEstadoDosimetro" msprop:Generator_RowChangedName="rtpEstadoDosimetroRowChanged" msprop:Generator_RowEvArgName="rtpEstadoDosimetroRowChangeEvent" msprop:Generator_RowClassName="rtpEstadoDosimetroRow">
+        <xs:element name="rtpEstadoDosimetro" msprop:Generator_TableClassName="rtpEstadoDosimetroDataTable" msprop:Generator_TableVarName="tablertpEstadoDosimetro" msprop:Generator_RowChangedName="rtpEstadoDosimetroRowChanged" msprop:Generator_TablePropName="rtpEstadoDosimetro" msprop:Generator_RowDeletingName="rtpEstadoDosimetroRowDeleting" msprop:Generator_RowChangingName="rtpEstadoDosimetroRowChanging" msprop:Generator_RowEvHandlerName="rtpEstadoDosimetroRowChangeEventHandler" msprop:Generator_RowDeletedName="rtpEstadoDosimetroRowDeleted" msprop:Generator_RowClassName="rtpEstadoDosimetroRow" msprop:Generator_UserTableName="rtpEstadoDosimetro" msprop:Generator_RowEvArgName="rtpEstadoDosimetroRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id_cliente" msprop:Generator_ColumnVarNameInTable="columnId_cliente" msprop:Generator_ColumnPropNameInRow="Id_cliente" msprop:Generator_ColumnPropNameInTable="Id_clienteColumn" msprop:Generator_UserColumnName="Id_cliente" type="xs:int" />
@@ -647,7 +647,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="rtpListadoDosimetro" msprop:Generator_TableClassName="rtpListadoDosimetroDataTable" msprop:Generator_TableVarName="tablertpListadoDosimetro" msprop:Generator_TablePropName="rtpListadoDosimetro" msprop:Generator_RowDeletingName="rtpListadoDosimetroRowDeleting" msprop:Generator_RowChangingName="rtpListadoDosimetroRowChanging" msprop:Generator_RowEvHandlerName="rtpListadoDosimetroRowChangeEventHandler" msprop:Generator_RowDeletedName="rtpListadoDosimetroRowDeleted" msprop:Generator_UserTableName="rtpListadoDosimetro" msprop:Generator_RowChangedName="rtpListadoDosimetroRowChanged" msprop:Generator_RowEvArgName="rtpListadoDosimetroRowChangeEvent" msprop:Generator_RowClassName="rtpListadoDosimetroRow">
+        <xs:element name="rtpListadoDosimetro" msprop:Generator_TableClassName="rtpListadoDosimetroDataTable" msprop:Generator_TableVarName="tablertpListadoDosimetro" msprop:Generator_RowChangedName="rtpListadoDosimetroRowChanged" msprop:Generator_TablePropName="rtpListadoDosimetro" msprop:Generator_RowDeletingName="rtpListadoDosimetroRowDeleting" msprop:Generator_RowChangingName="rtpListadoDosimetroRowChanging" msprop:Generator_RowEvHandlerName="rtpListadoDosimetroRowChangeEventHandler" msprop:Generator_RowDeletedName="rtpListadoDosimetroRowDeleted" msprop:Generator_RowClassName="rtpListadoDosimetroRow" msprop:Generator_UserTableName="rtpListadoDosimetro" msprop:Generator_RowEvArgName="rtpListadoDosimetroRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id_cliente" msprop:Generator_ColumnVarNameInTable="columnId_cliente" msprop:Generator_ColumnPropNameInRow="Id_cliente" msprop:Generator_ColumnPropNameInTable="Id_clienteColumn" msprop:Generator_UserColumnName="Id_cliente" type="xs:int" />
@@ -685,7 +685,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="rtpSobre" msprop:Generator_TableClassName="rtpSobreDataTable" msprop:Generator_TableVarName="tablertpSobre" msprop:Generator_TablePropName="rtpSobre" msprop:Generator_RowDeletingName="rtpSobreRowDeleting" msprop:Generator_RowChangingName="rtpSobreRowChanging" msprop:Generator_RowEvHandlerName="rtpSobreRowChangeEventHandler" msprop:Generator_RowDeletedName="rtpSobreRowDeleted" msprop:Generator_UserTableName="rtpSobre" msprop:Generator_RowChangedName="rtpSobreRowChanged" msprop:Generator_RowEvArgName="rtpSobreRowChangeEvent" msprop:Generator_RowClassName="rtpSobreRow">
+        <xs:element name="rtpSobre" msprop:Generator_TableClassName="rtpSobreDataTable" msprop:Generator_TableVarName="tablertpSobre" msprop:Generator_RowChangedName="rtpSobreRowChanged" msprop:Generator_TablePropName="rtpSobre" msprop:Generator_RowDeletingName="rtpSobreRowDeleting" msprop:Generator_RowChangingName="rtpSobreRowChanging" msprop:Generator_RowEvHandlerName="rtpSobreRowChangeEventHandler" msprop:Generator_RowDeletedName="rtpSobreRowDeleted" msprop:Generator_RowClassName="rtpSobreRow" msprop:Generator_UserTableName="rtpSobre" msprop:Generator_RowEvArgName="rtpSobreRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id_cliente" msprop:Generator_ColumnVarNameInTable="columnid_cliente" msprop:Generator_ColumnPropNameInRow="id_cliente" msprop:Generator_ColumnPropNameInTable="id_clienteColumn" msprop:Generator_UserColumnName="id_cliente" type="xs:int" />
@@ -740,7 +740,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="rtpDosimetriaAnualPorSucursal" msprop:Generator_TableClassName="rtpDosimetriaAnualPorSucursalDataTable" msprop:Generator_TableVarName="tablertpDosimetriaAnualPorSucursal" msprop:Generator_RowChangedName="rtpDosimetriaAnualPorSucursalRowChanged" msprop:Generator_TablePropName="rtpDosimetriaAnualPorSucursal" msprop:Generator_RowDeletingName="rtpDosimetriaAnualPorSucursalRowDeleting" msprop:Generator_RowChangingName="rtpDosimetriaAnualPorSucursalRowChanging" msprop:Generator_RowEvHandlerName="rtpDosimetriaAnualPorSucursalRowChangeEventHandler" msprop:Generator_RowDeletedName="rtpDosimetriaAnualPorSucursalRowDeleted" msprop:Generator_RowClassName="rtpDosimetriaAnualPorSucursalRow" msprop:Generator_UserTableName="rtpDosimetriaAnualPorSucursal" msprop:Generator_RowEvArgName="rtpDosimetriaAnualPorSucursalRowChangeEvent">
+        <xs:element name="rtpDosimetriaAnualPorSucursal" msprop:Generator_TableClassName="rtpDosimetriaAnualPorSucursalDataTable" msprop:Generator_TableVarName="tablertpDosimetriaAnualPorSucursal" msprop:Generator_TablePropName="rtpDosimetriaAnualPorSucursal" msprop:Generator_RowDeletingName="rtpDosimetriaAnualPorSucursalRowDeleting" msprop:Generator_RowChangingName="rtpDosimetriaAnualPorSucursalRowChanging" msprop:Generator_RowEvHandlerName="rtpDosimetriaAnualPorSucursalRowChangeEventHandler" msprop:Generator_RowDeletedName="rtpDosimetriaAnualPorSucursalRowDeleted" msprop:Generator_UserTableName="rtpDosimetriaAnualPorSucursal" msprop:Generator_RowChangedName="rtpDosimetriaAnualPorSucursalRowChanged" msprop:Generator_RowEvArgName="rtpDosimetriaAnualPorSucursalRowChangeEvent" msprop:Generator_RowClassName="rtpDosimetriaAnualPorSucursalRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="run" msprop:Generator_ColumnVarNameInTable="columnrun" msprop:Generator_ColumnPropNameInRow="run" msprop:Generator_ColumnPropNameInTable="runColumn" msprop:Generator_UserColumnName="run">
@@ -787,7 +787,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Entidades" msprop:Generator_TableClassName="EntidadesDataTable" msprop:Generator_TableVarName="tableEntidades" msprop:Generator_TablePropName="Entidades" msprop:Generator_RowDeletingName="EntidadesRowDeleting" msprop:Generator_RowChangingName="EntidadesRowChanging" msprop:Generator_RowEvHandlerName="EntidadesRowChangeEventHandler" msprop:Generator_RowDeletedName="EntidadesRowDeleted" msprop:Generator_UserTableName="Entidades" msprop:Generator_RowChangedName="EntidadesRowChanged" msprop:Generator_RowEvArgName="EntidadesRowChangeEvent" msprop:Generator_RowClassName="EntidadesRow">
+        <xs:element name="Entidades" msprop:Generator_TableClassName="EntidadesDataTable" msprop:Generator_TableVarName="tableEntidades" msprop:Generator_RowChangedName="EntidadesRowChanged" msprop:Generator_TablePropName="Entidades" msprop:Generator_RowDeletingName="EntidadesRowDeleting" msprop:Generator_RowChangingName="EntidadesRowChanging" msprop:Generator_RowEvHandlerName="EntidadesRowChangeEventHandler" msprop:Generator_RowDeletedName="EntidadesRowDeleted" msprop:Generator_RowClassName="EntidadesRow" msprop:Generator_UserTableName="Entidades" msprop:Generator_RowEvArgName="EntidadesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Run" msprop:Generator_ColumnVarNameInTable="columnRun" msprop:Generator_ColumnPropNameInRow="Run" msprop:Generator_ColumnPropNameInTable="RunColumn" msprop:Generator_UserColumnName="Run" type="xs:string" minOccurs="0" />
@@ -807,7 +807,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TOES" msprop:Generator_TableClassName="TOESDataTable" msprop:Generator_TableVarName="tableTOES" msprop:Generator_TablePropName="TOES" msprop:Generator_RowDeletingName="TOESRowDeleting" msprop:Generator_RowChangingName="TOESRowChanging" msprop:Generator_RowEvHandlerName="TOESRowChangeEventHandler" msprop:Generator_RowDeletedName="TOESRowDeleted" msprop:Generator_UserTableName="TOES" msprop:Generator_RowChangedName="TOESRowChanged" msprop:Generator_RowEvArgName="TOESRowChangeEvent" msprop:Generator_RowClassName="TOESRow">
+        <xs:element name="TOES" msprop:Generator_TableClassName="TOESDataTable" msprop:Generator_TableVarName="tableTOES" msprop:Generator_RowChangedName="TOESRowChanged" msprop:Generator_TablePropName="TOES" msprop:Generator_RowDeletingName="TOESRowDeleting" msprop:Generator_RowChangingName="TOESRowChanging" msprop:Generator_RowEvHandlerName="TOESRowChangeEventHandler" msprop:Generator_RowDeletedName="TOESRowDeleted" msprop:Generator_RowClassName="TOESRow" msprop:Generator_UserTableName="TOES" msprop:Generator_RowEvArgName="TOESRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Run_empleado" msdata:Caption="Run" msprop:Generator_ColumnVarNameInTable="columnRun_empleado" msprop:Generator_ColumnPropNameInRow="Run_empleado" msprop:Generator_ColumnPropNameInTable="Run_empleadoColumn" msprop:Generator_UserColumnName="Run_empleado" type="xs:string" minOccurs="0" />
@@ -820,7 +820,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DOSIS" msprop:Generator_TableClassName="DOSISDataTable" msprop:Generator_TableVarName="tableDOSIS" msprop:Generator_TablePropName="DOSIS" msprop:Generator_RowDeletingName="DOSISRowDeleting" msprop:Generator_RowChangingName="DOSISRowChanging" msprop:Generator_RowEvHandlerName="DOSISRowChangeEventHandler" msprop:Generator_RowDeletedName="DOSISRowDeleted" msprop:Generator_UserTableName="DOSIS" msprop:Generator_RowChangedName="DOSISRowChanged" msprop:Generator_RowEvArgName="DOSISRowChangeEvent" msprop:Generator_RowClassName="DOSISRow">
+        <xs:element name="DOSIS" msprop:Generator_TableClassName="DOSISDataTable" msprop:Generator_TableVarName="tableDOSIS" msprop:Generator_RowChangedName="DOSISRowChanged" msprop:Generator_TablePropName="DOSIS" msprop:Generator_RowDeletingName="DOSISRowDeleting" msprop:Generator_RowChangingName="DOSISRowChanging" msprop:Generator_RowEvHandlerName="DOSISRowChangeEventHandler" msprop:Generator_RowDeletedName="DOSISRowDeleted" msprop:Generator_RowClassName="DOSISRow" msprop:Generator_UserTableName="DOSIS" msprop:Generator_RowEvArgName="DOSISRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Run_empleado" msdata:Caption="Run" msprop:Generator_ColumnVarNameInTable="columnRun_empleado" msprop:Generator_ColumnPropNameInRow="Run_empleado" msprop:Generator_ColumnPropNameInTable="Run_empleadoColumn" msprop:Generator_UserColumnName="Run_empleado" type="xs:string" minOccurs="0" />
@@ -832,6 +832,13 @@
               <xs:element name="fecha_termino" msdata:Caption="Id_Sector" msprop:Generator_ColumnVarNameInTable="columnfecha_termino" msprop:Generator_ColumnPropNameInRow="fecha_termino" msprop:Generator_ColumnPropNameInTable="fecha_terminoColumn" msprop:Generator_UserColumnName="fecha_termino" type="xs:string" minOccurs="0" />
               <xs:element name="dosis" msdata:Caption="Direccion" msprop:Generator_ColumnVarNameInTable="columndosis" msprop:Generator_ColumnPropNameInRow="dosis" msprop:Generator_ColumnPropNameInTable="dosisColumn" msprop:Generator_UserColumnName="dosis" type="xs:string" minOccurs="0" />
               <xs:element name="id_estado_dosimetro" msdata:Caption="codigo_postal" msprop:Generator_ColumnVarNameInTable="columnid_estado_dosimetro" msprop:Generator_ColumnPropNameInRow="id_estado_dosimetro" msprop:Generator_ColumnPropNameInTable="id_estado_dosimetroColumn" msprop:Generator_UserColumnName="id_estado_dosimetro" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DataColumn1" msprop:Generator_ColumnVarNameInTable="columnDataColumn1" msprop:Generator_ColumnPropNameInRow="DataColumn1" msprop:Generator_ColumnPropNameInTable="DataColumn1Column" msprop:Generator_UserColumnName="DataColumn1" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
