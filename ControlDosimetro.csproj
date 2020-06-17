@@ -539,11 +539,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>sistiamc_controlDataSet3.xsd</DependentUpon>
     </Compile>
-    <Compile Include="sistiamc_controlDataSet4.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>sistiamc_controlDataSet4.xsd</DependentUpon>
-    </Compile>
     <Compile Include="sistiamc_controlDataSet51.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -877,17 +872,6 @@
     </None>
     <None Include="sistiamc_controlDataSet3.xss">
       <DependentUpon>sistiamc_controlDataSet3.xsd</DependentUpon>
-    </None>
-    <None Include="sistiamc_controlDataSet4.xsc">
-      <DependentUpon>sistiamc_controlDataSet4.xsd</DependentUpon>
-    </None>
-    <None Include="sistiamc_controlDataSet4.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>sistiamc_controlDataSet4.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="sistiamc_controlDataSet4.xss">
-      <DependentUpon>sistiamc_controlDataSet4.xsd</DependentUpon>
     </None>
     <None Include="sistiamc_controlDataSet51.xsc">
       <DependentUpon>sistiamc_controlDataSet51.xsd</DependentUpon>
