@@ -213,7 +213,7 @@ namespace ControlDosimetro
 
         private void tsbGuardar_Click(object sender, EventArgs e)
         {
-            Grabar();
+            Grabar();  
         }
         private void tsbAgregar_Click(object sender, EventArgs e)
         {
