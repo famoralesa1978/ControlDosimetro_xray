@@ -549,11 +549,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>sistiamc_controlDataSet61.xsd</DependentUpon>
     </Compile>
-    <Compile Include="sistiamc_controlDataSet7.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>sistiamc_controlDataSet7.xsd</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -894,17 +889,6 @@
     </None>
     <None Include="sistiamc_controlDataSet61.xss">
       <DependentUpon>sistiamc_controlDataSet61.xsd</DependentUpon>
-    </None>
-    <None Include="sistiamc_controlDataSet7.xsc">
-      <DependentUpon>sistiamc_controlDataSet7.xsd</DependentUpon>
-    </None>
-    <None Include="sistiamc_controlDataSet7.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>sistiamc_controlDataSet7.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="sistiamc_controlDataSet7.xss">
-      <DependentUpon>sistiamc_controlDataSet7.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
