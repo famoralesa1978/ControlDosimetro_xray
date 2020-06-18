@@ -38,7 +38,7 @@
             this.rtpDosimetriaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.rtpDosimetriaTableAdapter = new ControlDosimetro.sistiamc_controlDataSet2TableAdapters.rtpDosimetriaTableAdapter();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.sistiamc_controlDataSet11 = new ControlDosimetro.sistiamc_controlDataSet11();
+            this.sistiamc_controlDataSet11 = new ControlDosimetro.DB_A2B812_ControlDataSet();
             this.sistiamc_controlDataSet = new ControlDosimetro.sistiamc_controlDataSet();
             this.sistiamc_controlDataSet9 = new ControlDosimetro.DB_A2B812_ControlDataSet();
             this.dataSet1 = new ControlDosimetro.DataSet1();
@@ -169,7 +169,7 @@
         private sistiamc_controlDataSet1 sistiamc_controlDataSet1;
         private System.Windows.Forms.BindingSource bindingSource1;
         private DB_A2B812_ControlDataSet sistiamc_controlDataSet9;
-        private sistiamc_controlDataSet11 sistiamc_controlDataSet11;
+        private DB_A2B812_ControlDataSet sistiamc_controlDataSet11;
         private sistiamc_controlDataSet sistiamc_controlDataSet;
         private DataSet1 dataSet1;
         private DataSet1TableAdapters.rptOrdenTrabajoTableAdapter rptOrdenTrabajoTableAdapter;
