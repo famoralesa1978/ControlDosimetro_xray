@@ -34,9 +34,9 @@
             this.sistiamc_controlDataSet1 = new ControlDosimetro.sistiamc_controlDataSet1();
             this.panel1 = new System.Windows.Forms.Panel();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.sistiamc_controlDataSet2 = new ControlDosimetro.sistiamc_controlDataSet2();
+            this.sistiamc_controlDataSet2 = new ControlDosimetro.DB_A2B812_ControlDataSet();
             this.rtpDosimetriaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.rtpDosimetriaTableAdapter = new ControlDosimetro.sistiamc_controlDataSet2TableAdapters.rtpDosimetriaTableAdapter();
+            this.rtpDosimetriaTableAdapter = new ControlDosimetro.DB_A2B812_ControlDataSet();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.sistiamc_controlDataSet11 = new ControlDosimetro.DB_A2B812_ControlDataSet();
             this.sistiamc_controlDataSet = new ControlDosimetro.sistiamc_controlDataSet();
@@ -102,7 +102,7 @@
             // 
             // rtpDosimetriaTableAdapter
             // 
-            this.rtpDosimetriaTableAdapter.ClearBeforeFill = true;
+            //this.rtpDosimetriaTableAdapter.ClearBeforeFill = true;
             // 
             // bindingSource1
             // 
@@ -163,8 +163,8 @@
         private System.Windows.Forms.Panel panel1;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.BindingSource rtpDosimetriaBindingSource;
-        private sistiamc_controlDataSet2 sistiamc_controlDataSet2;
-        private sistiamc_controlDataSet2TableAdapters.rtpDosimetriaTableAdapter rtpDosimetriaTableAdapter;
+        private DB_A2B812_ControlDataSet sistiamc_controlDataSet2;
+        private DB_A2B812_ControlDataSet rtpDosimetriaTableAdapter;
         private System.Windows.Forms.BindingSource sistiamccontrolDataSet1BindingSource;
         private sistiamc_controlDataSet1 sistiamc_controlDataSet1;
         private System.Windows.Forms.BindingSource bindingSource1;
