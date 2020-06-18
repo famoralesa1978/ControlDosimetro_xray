@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.sistiamccontrolDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sistiamc_controlDataSet1 = new ControlDosimetro.sistiamc_controlDataSet1();
+    //        this.sistiamc_controlDataSet1 = new ControlDosimetro.sistiamc_controlDataSet1();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbx_anno = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -62,7 +62,7 @@
             this.tabAnualSucursal = new System.Windows.Forms.TabPage();
             this.btnReporteAnualPorSucursal = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.sistiamccontrolDataSet1BindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sistiamc_controlDataSet1)).BeginInit();
+    //        ((System.ComponentModel.ISupportInitialize)(this.sistiamc_controlDataSet1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPorDosimetro.SuspendLayout();
@@ -78,13 +78,13 @@
             // 
             // sistiamccontrolDataSet1BindingSource
             // 
-            this.sistiamccontrolDataSet1BindingSource.DataSource = this.sistiamc_controlDataSet1;
+    //        this.sistiamccontrolDataSet1BindingSource.DataSource = this.sistiamc_controlDataSet1;
             this.sistiamccontrolDataSet1BindingSource.Position = 0;
             // 
             // sistiamc_controlDataSet1
             // 
-            this.sistiamc_controlDataSet1.DataSetName = "sistiamc_controlDataSet1";
-            this.sistiamc_controlDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+   //         this.sistiamc_controlDataSet1.DataSetName = "sistiamc_controlDataSet1";
+   //         this.sistiamc_controlDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // groupBox1
             // 
@@ -398,7 +398,7 @@
             this.Text = "frmRpDosimetria";
             this.Load += new System.EventHandler(this.frmRpDosimetria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sistiamccontrolDataSet1BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sistiamc_controlDataSet1)).EndInit();
+   //         ((System.ComponentModel.ISupportInitialize)(this.sistiamc_controlDataSet1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -443,7 +443,7 @@
         private DB_A2B812_ControlDataSet sistiamc_controlDataSet2;
         private DB_A2B812_ControlDataSet rtpDosimetriaTableAdapter;
         private System.Windows.Forms.BindingSource sistiamccontrolDataSet1BindingSource;
-        private sistiamc_controlDataSet1 sistiamc_controlDataSet1;
+     //   private sistiamc_controlDataSet1 sistiamc_controlDataSet1;
         private System.Windows.Forms.TabPage tabAnual;
         private System.Windows.Forms.Button btn_AnualCliente;
         private System.Windows.Forms.TabPage tabPorDosimetro;

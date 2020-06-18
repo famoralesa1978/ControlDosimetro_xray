@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.sistiamccontrolDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sistiamc_controlDataSet1 = new ControlDosimetro.sistiamc_controlDataSet1();
+     //       this.sistiamc_controlDataSet1 = new ControlDosimetro.sistiamc_controlDataSet1();
             this.panel1 = new System.Windows.Forms.Panel();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.sistiamc_controlDataSet2 = new ControlDosimetro.DB_A2B812_ControlDataSet();
@@ -44,7 +44,7 @@
             this.dataSet1 = new ControlDosimetro.DataSet1();
             this.rptOrdenTrabajoTableAdapter = new ControlDosimetro.DataSet1TableAdapters.rptOrdenTrabajoTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.sistiamccontrolDataSet1BindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sistiamc_controlDataSet1)).BeginInit();
+   //         ((System.ComponentModel.ISupportInitialize)(this.sistiamc_controlDataSet1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sistiamc_controlDataSet2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtpDosimetriaBindingSource)).BeginInit();
@@ -57,13 +57,13 @@
             // 
             // sistiamccontrolDataSet1BindingSource
             // 
-            this.sistiamccontrolDataSet1BindingSource.DataSource = this.sistiamc_controlDataSet1;
+      //      this.sistiamccontrolDataSet1BindingSource.DataSource = this.sistiamc_controlDataSet1;
             this.sistiamccontrolDataSet1BindingSource.Position = 0;
             // 
             // sistiamc_controlDataSet1
             // 
-            this.sistiamc_controlDataSet1.DataSetName = "sistiamc_controlDataSet1";
-            this.sistiamc_controlDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+     //       this.sistiamc_controlDataSet1.DataSetName = "sistiamc_controlDataSet1";
+     //       this.sistiamc_controlDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // panel1
             // 
@@ -145,7 +145,7 @@
             this.Text = "Reporte";
             this.Load += new System.EventHandler(this.frmRpDosimetria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sistiamccontrolDataSet1BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sistiamc_controlDataSet1)).EndInit();
+   //         ((System.ComponentModel.ISupportInitialize)(this.sistiamc_controlDataSet1)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sistiamc_controlDataSet2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtpDosimetriaBindingSource)).EndInit();
@@ -166,7 +166,7 @@
         private DB_A2B812_ControlDataSet sistiamc_controlDataSet2;
         private DB_A2B812_ControlDataSet rtpDosimetriaTableAdapter;
         private System.Windows.Forms.BindingSource sistiamccontrolDataSet1BindingSource;
-        private sistiamc_controlDataSet1 sistiamc_controlDataSet1;
+       // private sistiamc_controlDataSet1 sistiamc_controlDataSet1;
         private System.Windows.Forms.BindingSource bindingSource1;
         private DB_A2B812_ControlDataSet sistiamc_controlDataSet9;
         private DB_A2B812_ControlDataSet sistiamc_controlDataSet11;
