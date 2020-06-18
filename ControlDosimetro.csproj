@@ -189,14 +189,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DB_A2B812_ControlDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DB_A2B812_ControlDataSet1.cs">
-      <DependentUpon>DB_A2B812_ControlDataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DB_A2B812_ControlDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DB_A2B812_ControlDataSet1.xsd</DependentUpon>
-    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -731,17 +723,6 @@
     </None>
     <None Include="DB_A2B812_ControlDataSet.xss">
       <DependentUpon>DB_A2B812_ControlDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="DB_A2B812_ControlDataSet1.xsc">
-      <DependentUpon>DB_A2B812_ControlDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="DB_A2B812_ControlDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DB_A2B812_ControlDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DB_A2B812_ControlDataSet1.xss">
-      <DependentUpon>DB_A2B812_ControlDataSet1.xsd</DependentUpon>
     </None>
     <None Include="Formato\cliente.xlsx" />
     <None Include="Formato\FICHA-X-RAY-Formato.xls" />

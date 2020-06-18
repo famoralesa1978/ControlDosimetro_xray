@@ -888,6 +888,45 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="rtpListadoPorDosimetro" msprop:Generator_TableClassName="rtpListadoPorDosimetroDataTable" msprop:Generator_TableVarName="tablertpListadoPorDosimetro" msprop:Generator_TablePropName="rtpListadoPorDosimetro" msprop:Generator_RowDeletingName="rtpListadoPorDosimetroRowDeleting" msprop:Generator_RowChangingName="rtpListadoPorDosimetroRowChanging" msprop:Generator_RowEvHandlerName="rtpListadoPorDosimetroRowChangeEventHandler" msprop:Generator_RowDeletedName="rtpListadoPorDosimetroRowDeleted" msprop:Generator_UserTableName="rtpListadoPorDosimetro" msprop:Generator_RowChangedName="rtpListadoPorDosimetroRowChanged" msprop:Generator_RowEvArgName="rtpListadoPorDosimetroRowChangeEvent" msprop:Generator_RowClassName="rtpListadoPorDosimetroRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_cliente" msprop:Generator_ColumnVarNameInTable="columnid_cliente" msprop:Generator_ColumnPropNameInRow="id_cliente" msprop:Generator_ColumnPropNameInTable="id_clienteColumn" msprop:Generator_UserColumnName="id_cliente" type="xs:string" minOccurs="0" />
+              <xs:element name="razon_social" msprop:Generator_ColumnVarNameInTable="columnrazon_social" msprop:Generator_ColumnPropNameInRow="razon_social" msprop:Generator_ColumnPropNameInTable="razon_socialColumn" msprop:Generator_UserColumnName="razon_social" type="xs:string" minOccurs="0" />
+              <xs:element name="run" msprop:Generator_ColumnVarNameInTable="columnrun" msprop:Generator_ColumnPropNameInRow="run" msprop:Generator_ColumnPropNameInTable="runColumn" msprop:Generator_UserColumnName="run" type="xs:string" minOccurs="0" />
+              <xs:element name="id_periodo" msprop:Generator_ColumnVarNameInTable="columnid_periodo" msprop:Generator_ColumnPropNameInRow="id_periodo" msprop:Generator_ColumnPropNameInTable="id_periodoColumn" msprop:Generator_UserColumnName="id_periodo" type="xs:string" minOccurs="0" />
+              <xs:element name="annomesperiodo" msprop:Generator_ColumnVarNameInTable="columnannomesperiodo" msprop:Generator_ColumnPropNameInRow="annomesperiodo" msprop:Generator_ColumnPropNameInTable="annomesperiodoColumn" msprop:Generator_UserColumnName="annomesperiodo" type="xs:string" minOccurs="0" />
+              <xs:element name="N_Documento" msprop:Generator_ColumnVarNameInTable="columnN_Documento" msprop:Generator_ColumnPropNameInRow="N_Documento" msprop:Generator_ColumnPropNameInTable="N_DocumentoColumn" msprop:Generator_UserColumnName="N_Documento" type="xs:string" minOccurs="0" />
+              <xs:element name="inicio" msprop:Generator_ColumnVarNameInTable="columninicio" msprop:Generator_ColumnPropNameInRow="inicio" msprop:Generator_ColumnPropNameInTable="inicioColumn" msprop:Generator_UserColumnName="inicio" type="xs:string" minOccurs="0" />
+              <xs:element name="termino" msprop:Generator_ColumnVarNameInTable="columntermino" msprop:Generator_ColumnPropNameInRow="termino" msprop:Generator_ColumnPropNameInTable="terminoColumn" msprop:Generator_UserColumnName="termino" type="xs:string" minOccurs="0" />
+              <xs:element name="n_dosimetro" msprop:Generator_ColumnVarNameInTable="columnn_dosimetro" msprop:Generator_ColumnPropNameInRow="n_dosimetro" msprop:Generator_ColumnPropNameInTable="n_dosimetroColumn" msprop:Generator_UserColumnName="n_dosimetro" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="rtpClientePorPersonal" msprop:Generator_TableClassName="rtpClientePorPersonalDataTable" msprop:Generator_TableVarName="tablertpClientePorPersonal" msprop:Generator_TablePropName="rtpClientePorPersonal" msprop:Generator_RowDeletingName="rtpClientePorPersonalRowDeleting" msprop:Generator_RowChangingName="rtpClientePorPersonalRowChanging" msprop:Generator_RowEvHandlerName="rtpClientePorPersonalRowChangeEventHandler" msprop:Generator_RowDeletedName="rtpClientePorPersonalRowDeleted" msprop:Generator_UserTableName="rtpClientePorPersonal" msprop:Generator_RowChangedName="rtpClientePorPersonalRowChanged" msprop:Generator_RowEvArgName="rtpClientePorPersonalRowChangeEvent" msprop:Generator_RowClassName="rtpClientePorPersonalRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id_cliente" msprop:Generator_ColumnVarNameInTable="columnId_cliente" msprop:Generator_ColumnPropNameInRow="Id_cliente" msprop:Generator_ColumnPropNameInTable="Id_clienteColumn" msprop:Generator_UserColumnName="Id_cliente" type="xs:string" minOccurs="0" />
+              <xs:element name="Razon_Social" msprop:Generator_ColumnVarNameInTable="columnRazon_Social" msprop:Generator_ColumnPropNameInRow="Razon_Social" msprop:Generator_ColumnPropNameInTable="Razon_SocialColumn" msprop:Generator_UserColumnName="Razon_Social" type="xs:string" minOccurs="0" />
+              <xs:element name="Direccion" msprop:Generator_ColumnVarNameInTable="columnDireccion" msprop:Generator_ColumnPropNameInRow="Direccion" msprop:Generator_ColumnPropNameInTable="DireccionColumn" msprop:Generator_UserColumnName="Direccion" type="xs:string" minOccurs="0" />
+              <xs:element name="Rut" msprop:Generator_ColumnVarNameInTable="columnRut" msprop:Generator_ColumnPropNameInRow="Rut" msprop:Generator_ColumnPropNameInTable="RutColumn" msprop:Generator_UserColumnName="Rut" type="xs:string" minOccurs="0" />
+              <xs:element name="Nombres" msprop:Generator_ColumnVarNameInTable="columnNombres" msprop:Generator_ColumnPropNameInRow="Nombres" msprop:Generator_ColumnPropNameInTable="NombresColumn" msprop:Generator_UserColumnName="Nombres" type="xs:string" minOccurs="0" />
+              <xs:element name="Paterno" msprop:Generator_ColumnVarNameInTable="columnPaterno" msprop:Generator_ColumnPropNameInRow="Paterno" msprop:Generator_ColumnPropNameInTable="PaternoColumn" msprop:Generator_UserColumnName="Paterno" type="xs:string" minOccurs="0" />
+              <xs:element name="Maternos" msprop:Generator_ColumnVarNameInTable="columnMaternos" msprop:Generator_ColumnPropNameInRow="Maternos" msprop:Generator_ColumnPropNameInTable="MaternosColumn" msprop:Generator_UserColumnName="Maternos" type="xs:string" minOccurs="0" />
+              <xs:element name="sex" msprop:Generator_ColumnVarNameInTable="columnsex" msprop:Generator_ColumnPropNameInRow="sex" msprop:Generator_ColumnPropNameInTable="sexColumn" msprop:Generator_UserColumnName="sex" type="xs:string" minOccurs="0" />
+              <xs:element name="Fecha_Nac" msprop:Generator_ColumnVarNameInTable="columnFecha_Nac" msprop:Generator_ColumnPropNameInRow="Fecha_Nac" msprop:Generator_ColumnPropNameInTable="Fecha_NacColumn" msprop:Generator_UserColumnName="Fecha_Nac" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="rtpDosimetriaVerificar" msprop:Generator_TableClassName="rtpDosimetriaVerificarDataTable" msprop:Generator_TableVarName="tablertpDosimetriaVerificar" msprop:Generator_TablePropName="rtpDosimetriaVerificar" msprop:Generator_RowDeletingName="rtpDosimetriaVerificarRowDeleting" msprop:Generator_RowChangingName="rtpDosimetriaVerificarRowChanging" msprop:Generator_RowEvHandlerName="rtpDosimetriaVerificarRowChangeEventHandler" msprop:Generator_RowDeletedName="rtpDosimetriaVerificarRowDeleted" msprop:Generator_UserTableName="rtpDosimetriaVerificar" msprop:Generator_RowChangedName="rtpDosimetriaVerificarRowChanged" msprop:Generator_RowEvArgName="rtpDosimetriaVerificarRowChangeEvent" msprop:Generator_RowClassName="rtpDosimetriaVerificarRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id_cliente" msprop:Generator_ColumnVarNameInTable="columnId_cliente" msprop:Generator_ColumnPropNameInRow="Id_cliente" msprop:Generator_ColumnPropNameInTable="Id_clienteColumn" msprop:Generator_UserColumnName="Id_cliente" type="xs:string" minOccurs="0" />
+              <xs:element name="id_personal" msprop:Generator_ColumnVarNameInTable="columnid_personal" msprop:Generator_ColumnPropNameInRow="id_personal" msprop:Generator_ColumnPropNameInTable="id_personalColumn" msprop:Generator_UserColumnName="id_personal" type="xs:string" minOccurs="0" />
+              <xs:element name="Run_personal" msprop:Generator_ColumnVarNameInTable="columnRun_personal" msprop:Generator_ColumnPropNameInRow="Run_personal" msprop:Generator_ColumnPropNameInTable="Run_personalColumn" msprop:Generator_UserColumnName="Run_personal" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
