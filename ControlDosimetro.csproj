@@ -509,11 +509,6 @@
     <Compile Include="PtUtil.cs" />
     <Compile Include="ReplaceBookmarkText.cs" />
     <Compile Include="RevisionAccepter.cs" />
-    <Compile Include="sistiamc_controlDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>sistiamc_controlDataSet.xsd</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -767,17 +762,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="reporte\rptPorClientePersonal.rdlc" />
-    <None Include="sistiamc_controlDataSet.xsc">
-      <DependentUpon>sistiamc_controlDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="sistiamc_controlDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>sistiamc_controlDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="sistiamc_controlDataSet.xss">
-      <DependentUpon>sistiamc_controlDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
