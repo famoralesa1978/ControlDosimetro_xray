@@ -70,6 +70,8 @@ namespace ControlDosimetro
 
         private void btn_ReporteRut_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             DataSet dt;
             Int64 intanno;
 
@@ -83,6 +85,8 @@ namespace ControlDosimetro
             }
             else
                 MessageBox.Show("Debe Ingresar el Rut");
+
+            Cursor = Cursors.Default;
             
         }
 
