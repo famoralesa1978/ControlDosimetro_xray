@@ -139,7 +139,7 @@ namespace ControlDosimetro
                 Llamado_reporte(dt,"rptDosimetria.rdlc");
             }
             else
-                MessageBox.Show("Debe Ingresar el Número de cliente");
+                MessageBox.Show("Debe ingresar una región");
         }
 
         private DataSet Cargar_DosimetrioAnual()
