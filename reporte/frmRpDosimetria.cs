@@ -147,19 +147,23 @@ namespace ControlDosimetro
 
         private DataSet Cargar_DosimetrioAnual()
         {
+            Cursor = Cursors.WaitCursor;
+
             SqlCommand cmd = new SqlCommand();
 
             //  SqlCommand cmd = new SqlCommand();
-             Int64 intanno;
+            Int64 intanno;
 
             intanno = Convert.ToInt64(cbx_anno.Text);
             cmd.CommandText = "rtpDosimetriaAnual " + intanno.ToString();
             //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
             DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+            Cursor = Cursors.Default;
 
             return dt;
-
+            
         }
 
         private DataSet Cargar_DosimetrioAnualPorSucursal()
