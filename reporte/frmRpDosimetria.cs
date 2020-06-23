@@ -127,11 +127,12 @@ namespace ControlDosimetro
 
         private void btn_ReporteRegion_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             DataSet dt;
             Int64 intanno;
                
-
-
+            
             intanno = Convert.ToInt64(cbx_anno.Text);
             if (cbx_Region.Text.Trim() != "")
             {
@@ -140,6 +141,8 @@ namespace ControlDosimetro
             }
             else
                 MessageBox.Show("Debe ingresar una región");
+
+            Cursor = Cursors.Default;
         }
 
         private DataSet Cargar_DosimetrioAnual()
