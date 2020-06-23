@@ -168,6 +168,8 @@ namespace ControlDosimetro
 
         private DataSet Cargar_DosimetrioAnualPorSucursal()
         {
+            Cursor = Cursors.WaitCursor;
+
             SqlCommand cmd = new SqlCommand();
 
             //  SqlCommand cmd = new SqlCommand();
@@ -178,6 +180,8 @@ namespace ControlDosimetro
             //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
             DataSet dt;
             dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+
+            Cursor = Cursors.Default;
 
             return dt;
 
