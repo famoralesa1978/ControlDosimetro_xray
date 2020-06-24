@@ -175,7 +175,7 @@ namespace ControlDosimetro
 
         private void btn_Buscar_Click(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor:
+            Cursor = Cursors.WaitCursor;
 
             CargarGrilla();
 
