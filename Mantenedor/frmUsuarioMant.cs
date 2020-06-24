@@ -259,8 +259,13 @@ namespace ControlDosimetro
 
 		  private void btn_Limpiar_Click(object sender, EventArgs e)
 		  {
+              Cursor = Cursors.WaitCursor;
+
               verificar_Grabado();
               LimpiarControles();
+
+              Cursor = Cursors.Default;
+
 		  }
 
           void verificar_Grabado()
