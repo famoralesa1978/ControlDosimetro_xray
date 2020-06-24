@@ -69,6 +69,8 @@ namespace ControlDosimetro
 
         private void btn_Grabar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
 			  Boolean bolResult;
 			  bolResult = false;
 					if (rtb_Observacion.Text.Trim()  == "")
@@ -90,8 +92,10 @@ namespace ControlDosimetro
 							}
 
 						}
-                
-            }
+
+            Cursor = Cursors.Default;
+
+        }
 
         private void cbx_id_periodo_SelectedIndexChanged(object sender, EventArgs e)
         {
