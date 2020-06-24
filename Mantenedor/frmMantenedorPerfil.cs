@@ -158,9 +158,13 @@ namespace ControlDosimetro
         #region "boton"
         private void btn_Limpiar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             LimpiarFormulario();
             tssEstado.Text = "Nuevo";
             txt_Id_perfil.Text = "0";
+
+            Cursor = Cursors.Default;
         }
 
         private void btn_Buscar_Click(object sender, EventArgs e)
