@@ -221,7 +221,11 @@ namespace ControlDosimetro
 
         private void tsbGuardar_Click(object sender, EventArgs e)
         {
-            Grabar();  
+            Cursor = Cursors.WaitCursor;
+
+            Grabar();
+
+            Cursor = Cursors.Default;
         }
         private void tsbAgregar_Click(object sender, EventArgs e)
         {
