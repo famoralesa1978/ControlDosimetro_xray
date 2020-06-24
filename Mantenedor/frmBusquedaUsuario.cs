@@ -79,9 +79,13 @@ namespace ControlDosimetro
 
         private void btn_Agregar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             frmUsuarioMant frm = new frmUsuarioMant(0);
 			  frm.ShowDialog(this);
               Listar_Usuario();
+
+            Cursor = Cursors.Default;
         }
 
 
