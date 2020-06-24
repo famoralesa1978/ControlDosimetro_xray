@@ -99,6 +99,9 @@ namespace ControlDosimetro
 
             private void btn_Grabar_Click(object sender, EventArgs e)
             {
+
+                Cursor = Cursors.WaitCursor;
+                
                 if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
                 {
                     SqlCommand cmd = new SqlCommand();
@@ -129,6 +132,8 @@ namespace ControlDosimetro
                     }
                     this.Close();
                 }
+
+                 Cursor = Cursors.Default;
             }
 
         #endregion
