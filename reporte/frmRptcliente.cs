@@ -83,10 +83,14 @@ namespace ControlDosimetro
         }
         private void btn_ReporteNDosimetro_Click(object sender, EventArgs e)
         {
+              Cursor = Cursors.WaitCursor;
+
               DataSet dt;
 
               dt = Cargar_PorCliente();
               Llamado_reporte(dt, "rptPorClientePersonal.rdlc");
+
+              Cursor = Cursors.Default;
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)

@@ -84,7 +84,7 @@
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_Imprimir = new System.Windows.Forms.Button();
             this.btn_Cerrar = new System.Windows.Forms.Button();
-            this.sistiamc_controlDataSet111 = new ControlDosimetro.sistiamc_controlDataSet11();
+            this.sistiamc_controlDataSet111 = new ControlDosimetro.DB_A2B812_ControlDataSet();
             this.pctAgregarSucursal = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.grp_Ingreso.SuspendLayout();
@@ -726,7 +726,7 @@
                                 private System.Windows.Forms.Label lbl_rut;
                                 private System.Windows.Forms.TextBox lbl_id_cliente;
                                 private System.Windows.Forms.Label label11;
-                                private sistiamc_controlDataSet11 sistiamc_controlDataSet111;
+                                private DB_A2B812_ControlDataSet sistiamc_controlDataSet111;
                                 private System.Windows.Forms.PictureBox pctAgregarSucursal;
     }
 }

@@ -70,37 +70,41 @@ namespace ControlDosimetro
 
         private void btn_ReporteRut_Click(object sender, EventArgs e)
         {
-            DataSet dt;
-            Int64 intanno;
+            Cursor = Cursors.WaitCursor;
 
-            
+            DataSet dt;
+            Int64 intanno;                      
 
             intanno = Convert.ToInt64(cbx_anno.Text);
-            if (txt_Rut.Text.Trim() != "")
+            if(! String.IsNullOrWhiteSpace(txt_Rut.Text))
             {
                 dt = ClaseComun.RptDosimetriaPa(Clases.clsBD.BD, 0, 0, txt_Rut.Text, intanno);
                 Llamado_reporte(dt, "rptDosimetria.rdlc");
             }
             else
                 MessageBox.Show("Debe Ingresar el Rut");
+
+            Cursor = Cursors.Default;
             
         }
 
          private void btn_reporteNCliente_Click(object sender, EventArgs e)
         {
+             Cursor = Cursors.WaitCursor;
+
               DataSet dt;
               Int64 intanno;
-
-            
-
+                        
             intanno = Convert.ToInt64(cbx_anno.Text);
-            if (txt_NumeroCliente.Text.Trim() != "")
+            if (! String.IsNullOrWhiteSpace(txt_NumeroCliente.Text))
             {
                 dt = ClaseComun.RptDosimetria(Clases.clsBD.BD,Convert.ToInt64(txt_NumeroCliente.Text) ,0, "0", intanno);
                 Llamado_reporte(dt, "rptDosimetria.rdlc");
             }
             else
                 MessageBox.Show("Debe Ingresar el Número de cliente");
+
+            Cursor = Cursors.Default;
             
         }
         public void Llamado_reporte(DataSet ds,String NombreReporte)
@@ -127,40 +131,49 @@ namespace ControlDosimetro
 
         private void btn_ReporteRegion_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             DataSet dt;
             Int64 intanno;
                
-
-
+            
             intanno = Convert.ToInt64(cbx_anno.Text);
-            if (cbx_Region.Text.Trim() != "")
+            if (! String.IsNullOrWhiteSpace(cbx_Region.Text))
             {
                 dt = ClaseComun.RptDosimetria(Clases.clsBD.BD,0, Convert.ToInt64(cbx_Region.Text), "0", intanno);
                 Llamado_reporte(dt,"rptDosimetria.rdlc");
             }
             else
-                MessageBox.Show("Debe Ingresar el Número de cliente");
+                MessageBox.Show("Debe ingresar una región");
+
+            Cursor = Cursors.Default;
         }
 
         private DataSet Cargar_DosimetrioAnual()
         {
+            Cursor = Cursors.WaitCursor;
+
             SqlCommand cmd = new SqlCommand();
 
             //  SqlCommand cmd = new SqlCommand();
-             Int64 intanno;
+            Int64 intanno;
 
             intanno = Convert.ToInt64(cbx_anno.Text);
             cmd.CommandText = "rtpDosimetriaAnual " + intanno.ToString();
             //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
             DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+            dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+            Cursor = Cursors.Default;
 
             return dt;
-
+            
         }
 
         private DataSet Cargar_DosimetrioAnualPorSucursal()
         {
+            Cursor = Cursors.WaitCursor;
+
             SqlCommand cmd = new SqlCommand();
 
             //  SqlCommand cmd = new SqlCommand();
@@ -172,6 +185,8 @@ namespace ControlDosimetro
             DataSet dt;
             dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
+            Cursor = Cursors.Default;
+
             return dt;
 
         }
@@ -182,15 +197,14 @@ namespace ControlDosimetro
 
             //  SqlCommand cmd = new SqlCommand();
             Int64 intDosimetro;
+           
+                intDosimetro = Convert.ToInt64(txt_NDosimetro.Text);
+                cmd.CommandText = "rtpListadoPorDosimetro " + intDosimetro.ToString();
+                //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
+                DataSet dt;
+                dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
-            intDosimetro = Convert.ToInt64(txt_NDosimetro.Text);
-            cmd.CommandText = "rtpListadoPorDosimetro " + intDosimetro.ToString();
-            //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
-            DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
-
-            return dt;
-
+                return dt;           
         }
 
         private void btn_AnualCliente_Click(object sender, EventArgs e)
@@ -203,10 +217,20 @@ namespace ControlDosimetro
 
         private void btn_ReporteNDosimetro_Click(object sender, EventArgs e)
         {
-              DataSet dt;
+            Cursor = Cursors.WaitCursor;
 
-              dt = Cargar_PorDosimetro();
-              Llamado_reporte(dt, "rptPorNumeroDosimetro.rdlc");
+            if (!String.IsNullOrWhiteSpace(txt_NDosimetro.Text))
+            {
+                DataSet dt;
+
+                dt = Cargar_PorDosimetro();
+                Llamado_reporte(dt, "rptPorNumeroDosimetro.rdlc");
+            }
+            else
+                MessageBox.Show("Debe ingresar un valor");
+
+            Cursor = Cursors.Default;
+
         }
 
         private void btnReporteAnualPorSucursal_Click(object sender, EventArgs e)

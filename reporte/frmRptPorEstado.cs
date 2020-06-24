@@ -134,11 +134,15 @@ namespace ControlDosimetro
 
          private void btn_Reporte_Click(object sender, EventArgs e)
          {
+             Cursor = Cursors.WaitCursor;
+
              DataSet dt;
              dt = Llamadoreporte();
 
              frmreporte frm = new frmreporte(dt, dt, 3);
              frm.Show(this);
+
+            Cursor = Cursors.Default;
          }
 
          public DataSet Llamadoreporte()

@@ -4,16 +4,25 @@
 
     public partial class DB_A2B812_ControlDataSet
     {
-        partial class rtpDosimetriaAnualDataTable
+        partial class tbl_personalDataTable
         {
-        }
 
-        partial class DOSISDataTable
-        {
-        }
+            partial class tbl_clienteDataTable
+            {
+            }
 
-        partial class TOESDataTable
-        {
+            partial class rtpDosimetriaAnualDataTable
+            {
+            }
+
+            partial class DOSISDataTable
+            {
+            }
+
+            partial class TOESDataTable
+            {
+            }
         }
     }
+
 }
