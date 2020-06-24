@@ -196,8 +196,12 @@ namespace ControlDosimetro
 
         private void btn_Minimizar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             scPrincipal.Panel2Collapsed = true;
             tsbGuardar.Enabled = false;
+
+            Cursor = Cursors.Default;
         }
 
         private void tsmEliminar_Click(object sender, EventArgs e)
