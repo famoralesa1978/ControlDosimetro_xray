@@ -239,6 +239,8 @@ namespace ControlDosimetro
         }
         private void tsbAgregar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             if(scPrincipal.Panel2Collapsed==true)
                 scPrincipal.Panel2Collapsed =false;
 
@@ -255,6 +257,7 @@ namespace ControlDosimetro
                 txt_id_tipo_doc.Text = "";
             }
 
+            Cursor = Cursors.Default;
         }
 
 
