@@ -73,12 +73,10 @@ namespace ControlDosimetro
             Cursor = Cursors.WaitCursor;
 
             DataSet dt;
-            Int64 intanno;
-
-            
+            Int64 intanno;                      
 
             intanno = Convert.ToInt64(cbx_anno.Text);
-            if (txt_Rut.Text.Trim() != "")
+            if(! String.IsNullOrWhiteSpace(txt_Rut.Text))
             {
                 dt = ClaseComun.RptDosimetriaPa(Clases.clsBD.BD, 0, 0, txt_Rut.Text, intanno);
                 Llamado_reporte(dt, "rptDosimetria.rdlc");
@@ -100,7 +98,7 @@ namespace ControlDosimetro
             
 
             intanno = Convert.ToInt64(cbx_anno.Text);
-            if (txt_NumeroCliente.Text.Trim() != "")
+            if (! String.IsNullOrWhiteSpace(txt_NumeroCliente.Text))
             {
                 dt = ClaseComun.RptDosimetria(Clases.clsBD.BD,Convert.ToInt64(txt_NumeroCliente.Text) ,0, "0", intanno);
                 Llamado_reporte(dt, "rptDosimetria.rdlc");
