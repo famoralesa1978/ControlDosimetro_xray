@@ -225,6 +225,8 @@ namespace ControlDosimetro
         }
         private void tsbAgregar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             if(scPrincipal.Panel2Collapsed==true)
                 scPrincipal.Panel2Collapsed =false;
 
@@ -240,6 +242,8 @@ namespace ControlDosimetro
                 tssEstado.Text = "";
                 txt_Id_perfil.Text = "";
             }
+
+            Cursor = Cursors.Default;
 
         }
 
