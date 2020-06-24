@@ -60,8 +60,12 @@ namespace ControlDosimetro
 #region"Button"
     private void btn_Buscar_Click(object sender, EventArgs e)
     {
+        Cursor = Cursors.WaitCursor;
+
         Listar_Conf_Parametro();
         MessageBox.Show("Busqueda Realizada");
+
+        Cursor = Cursors.Default;
     }
 
     private void btn_Agregar_Click(object sender, EventArgs e)
