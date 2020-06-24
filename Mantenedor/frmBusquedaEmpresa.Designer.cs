@@ -117,6 +117,7 @@
             // txt_N_Cliente_Ref
             // 
             this.txt_N_Cliente_Ref.Location = new System.Drawing.Point(84, 17);
+            this.txt_N_Cliente_Ref.MaxLength = 10;
             this.txt_N_Cliente_Ref.Name = "txt_N_Cliente_Ref";
             this.txt_N_Cliente_Ref.Size = new System.Drawing.Size(100, 20);
             this.txt_N_Cliente_Ref.TabIndex = 1;
@@ -173,6 +174,7 @@
             this.txt_Rut.Name = "txt_Rut";
             this.txt_Rut.Size = new System.Drawing.Size(100, 20);
             this.txt_Rut.TabIndex = 2;
+            this.txt_Rut.TextChanged += new System.EventHandler(this.txt_Rut_TextChanged);
             // 
             // label1
             // 

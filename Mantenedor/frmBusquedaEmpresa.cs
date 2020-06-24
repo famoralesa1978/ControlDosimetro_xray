@@ -219,6 +219,11 @@ namespace ControlDosimetro
                 frm1.ShowDialog(this);
             }
             Listar_Cliente();
-        }		    
+        }
+
+        private void txt_Rut_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
