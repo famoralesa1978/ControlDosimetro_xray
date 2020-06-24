@@ -195,18 +195,22 @@ namespace ControlDosimetro
 				Listar_Personal();
         }
 
+
+
+
+
+
+
+
+
+
+
+
         #endregion
 
-		 
+        private void txt_Rut_TextChanged(object sender, EventArgs e)
+        {
 
-		 
-
-        
-
-        
-
-       
-
-       
+        }
     }
 }
