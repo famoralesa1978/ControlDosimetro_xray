@@ -66,10 +66,14 @@ namespace ControlDosimetro
 
     private void btn_Agregar_Click(object sender, EventArgs e)
     {
+        Cursor = Cursors.WaitCursor;
+
         frmParametroMant frm = new frmParametroMant(0);
         frm.ShowDialog (this);
         Listar_Conf_Parametro();
-        // frmParametroMant.Show();
+            // frmParametroMant.Show();
+
+        Cursor = Cursors.Default;
     }
 
 #endregion
