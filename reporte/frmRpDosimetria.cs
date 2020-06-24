@@ -197,15 +197,14 @@ namespace ControlDosimetro
 
             //  SqlCommand cmd = new SqlCommand();
             Int64 intDosimetro;
+           
+                intDosimetro = Convert.ToInt64(txt_NDosimetro.Text);
+                cmd.CommandText = "rtpListadoPorDosimetro " + intDosimetro.ToString();
+                //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
+                DataSet dt;
+                dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
-            intDosimetro = Convert.ToInt64(txt_NDosimetro.Text);
-            cmd.CommandText = "rtpListadoPorDosimetro " + intDosimetro.ToString();
-            //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
-            DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
-
-            return dt;
-
+                return dt;           
         }
 
         private void btn_AnualCliente_Click(object sender, EventArgs e)
@@ -218,10 +217,20 @@ namespace ControlDosimetro
 
         private void btn_ReporteNDosimetro_Click(object sender, EventArgs e)
         {
-              DataSet dt;
+            Cursor = Cursors.WaitCursor;
 
-              dt = Cargar_PorDosimetro();
-              Llamado_reporte(dt, "rptPorNumeroDosimetro.rdlc");
+            if (!String.IsNullOrWhiteSpace(txt_NDosimetro.Text))
+            {
+                DataSet dt;
+
+                dt = Cargar_PorDosimetro();
+                Llamado_reporte(dt, "rptPorNumeroDosimetro.rdlc");
+            }
+            else
+                MessageBox.Show("Debe ingresar un valor");
+
+            Cursor = Cursors.Default;
+
         }
 
         private void btnReporteAnualPorSucursal_Click(object sender, EventArgs e)
