@@ -253,5 +253,15 @@ namespace ControlDosimetro
                 cbx_anno.Visible = true;
             }
         }
+
+        private void txt_NumeroCliente_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_Rut_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

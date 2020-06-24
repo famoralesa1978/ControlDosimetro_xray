@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.sistiamccontrolDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-    //        this.sistiamc_controlDataSet1 = new ControlDosimetro.sistiamc_controlDataSet1();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbx_anno = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -54,15 +53,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tabAnual = new System.Windows.Forms.TabPage();
             this.btn_AnualCliente = new System.Windows.Forms.Button();
+            this.tabAnualSucursal = new System.Windows.Forms.TabPage();
+            this.btnReporteAnualPorSucursal = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.sistiamc_controlDataSet2 = new ControlDosimetro.DB_A2B812_ControlDataSet();
             this.rtpDosimetriaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.rtpDosimetriaTableAdapter = new ControlDosimetro.DB_A2B812_ControlDataSet();
-            this.tabAnualSucursal = new System.Windows.Forms.TabPage();
-            this.btnReporteAnualPorSucursal = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.sistiamccontrolDataSet1BindingSource)).BeginInit();
-    //        ((System.ComponentModel.ISupportInitialize)(this.sistiamc_controlDataSet1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPorDosimetro.SuspendLayout();
@@ -70,21 +68,12 @@
             this.tabCliente.SuspendLayout();
             this.tabRegion.SuspendLayout();
             this.tabAnual.SuspendLayout();
+            this.tabAnualSucursal.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sistiamc_controlDataSet2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtpDosimetriaBindingSource)).BeginInit();
-            this.tabAnualSucursal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rtpDosimetriaTableAdapter)).BeginInit();
             this.SuspendLayout();
-            // 
-            // sistiamccontrolDataSet1BindingSource
-            // 
-    //        this.sistiamccontrolDataSet1BindingSource.DataSource = this.sistiamc_controlDataSet1;
-            this.sistiamccontrolDataSet1BindingSource.Position = 0;
-            // 
-            // sistiamc_controlDataSet1
-            // 
-   //         this.sistiamc_controlDataSet1.DataSetName = "sistiamc_controlDataSet1";
-   //         this.sistiamc_controlDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // groupBox1
             // 
@@ -158,6 +147,7 @@
             // txt_NDosimetro
             // 
             this.txt_NDosimetro.Location = new System.Drawing.Point(91, 11);
+            this.txt_NDosimetro.MaxLength = 8;
             this.txt_NDosimetro.Name = "txt_NDosimetro";
             this.txt_NDosimetro.Size = new System.Drawing.Size(126, 20);
             this.txt_NDosimetro.TabIndex = 7;
@@ -179,7 +169,7 @@
             this.tabRut.Location = new System.Drawing.Point(4, 25);
             this.tabRut.Name = "tabRut";
             this.tabRut.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRut.Size = new System.Drawing.Size(505, 46);
+            this.tabRut.Size = new System.Drawing.Size(543, 46);
             this.tabRut.TabIndex = 0;
             this.tabRut.Text = "Por Rut";
             this.tabRut.UseVisualStyleBackColor = true;
@@ -197,9 +187,11 @@
             // txt_Rut
             // 
             this.txt_Rut.Location = new System.Drawing.Point(46, 10);
+            this.txt_Rut.MaxLength = 10;
             this.txt_Rut.Name = "txt_Rut";
             this.txt_Rut.Size = new System.Drawing.Size(126, 20);
             this.txt_Rut.TabIndex = 1;
+            this.txt_Rut.TextChanged += new System.EventHandler(this.txt_Rut_TextChanged);
             // 
             // label1
             // 
@@ -218,7 +210,7 @@
             this.tabCliente.Location = new System.Drawing.Point(4, 25);
             this.tabCliente.Name = "tabCliente";
             this.tabCliente.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCliente.Size = new System.Drawing.Size(505, 46);
+            this.tabCliente.Size = new System.Drawing.Size(543, 46);
             this.tabCliente.TabIndex = 1;
             this.tabCliente.Text = "Por Número Cliente";
             this.tabCliente.UseVisualStyleBackColor = true;
@@ -236,9 +228,11 @@
             // txt_NumeroCliente
             // 
             this.txt_NumeroCliente.Location = new System.Drawing.Point(91, 6);
+            this.txt_NumeroCliente.MaxLength = 8;
             this.txt_NumeroCliente.Name = "txt_NumeroCliente";
             this.txt_NumeroCliente.Size = new System.Drawing.Size(126, 20);
             this.txt_NumeroCliente.TabIndex = 4;
+            this.txt_NumeroCliente.TextChanged += new System.EventHandler(this.txt_NumeroCliente_TextChanged);
             // 
             // label2
             // 
@@ -256,7 +250,7 @@
             this.tabRegion.Controls.Add(this.label3);
             this.tabRegion.Location = new System.Drawing.Point(4, 25);
             this.tabRegion.Name = "tabRegion";
-            this.tabRegion.Size = new System.Drawing.Size(505, 46);
+            this.tabRegion.Size = new System.Drawing.Size(543, 46);
             this.tabRegion.TabIndex = 2;
             this.tabRegion.Text = "Por Región";
             this.tabRegion.UseVisualStyleBackColor = true;
@@ -326,45 +320,6 @@
             this.btn_AnualCliente.UseVisualStyleBackColor = true;
             this.btn_AnualCliente.Click += new System.EventHandler(this.btn_AnualCliente_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.reportViewer1);
-            this.panel1.Location = new System.Drawing.Point(3, 144);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1220, 413);
-            this.panel1.TabIndex = 2;
-            // 
-            // reportViewer1
-            // 
-            this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource1.Name = "DataSet1";
-            reportDataSource1.Value = this.sistiamccontrolDataSet1BindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "ControlDosimetro.reporte.rptDosimetria.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(1217, 413);
-            this.reportViewer1.TabIndex = 0;
-            // 
-            // sistiamc_controlDataSet2
-            // 
-            this.sistiamc_controlDataSet2.DataSetName = "sistiamc_controlDataSet2";
-            this.sistiamc_controlDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // rtpDosimetriaBindingSource
-            // 
-            this.rtpDosimetriaBindingSource.DataMember = "rtpDosimetria";
-            this.rtpDosimetriaBindingSource.DataSource = this.sistiamc_controlDataSet2;
-            // 
-            // rtpDosimetriaTableAdapter
-            // 
-            //this.rtpDosimetriaTableAdapter.ClearBeforeFill = true;
-            // 
             // tabAnualSucursal
             // 
             this.tabAnualSucursal.Controls.Add(this.btnReporteAnualPorSucursal);
@@ -386,6 +341,46 @@
             this.btnReporteAnualPorSucursal.UseVisualStyleBackColor = true;
             this.btnReporteAnualPorSucursal.Click += new System.EventHandler(this.btnReporteAnualPorSucursal_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.reportViewer1);
+            this.panel1.Location = new System.Drawing.Point(3, 144);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1220, 413);
+            this.panel1.TabIndex = 2;
+            // 
+            // reportViewer1
+            // 
+            this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            reportDataSource4.Name = "DataSet1";
+            reportDataSource4.Value = this.sistiamccontrolDataSet1BindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource4);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "ControlDosimetro.reporte.rptDosimetria.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.Size = new System.Drawing.Size(1217, 413);
+            this.reportViewer1.TabIndex = 0;
+            // 
+            // sistiamc_controlDataSet2
+            // 
+            this.sistiamc_controlDataSet2.DataSetName = "sistiamc_controlDataSet2";
+            this.sistiamc_controlDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // rtpDosimetriaBindingSource
+            // 
+            this.rtpDosimetriaBindingSource.DataMember = "rtpDosimetria";
+            this.rtpDosimetriaBindingSource.DataSource = this.sistiamc_controlDataSet2;
+            // 
+            // rtpDosimetriaTableAdapter
+            // 
+            this.rtpDosimetriaTableAdapter.DataSetName = "DB_A2B812_ControlDataSet";
+            this.rtpDosimetriaTableAdapter.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // frmRpDosimetria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -398,7 +393,6 @@
             this.Text = "frmRpDosimetria";
             this.Load += new System.EventHandler(this.frmRpDosimetria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sistiamccontrolDataSet1BindingSource)).EndInit();
-   //         ((System.ComponentModel.ISupportInitialize)(this.sistiamc_controlDataSet1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -411,10 +405,11 @@
             this.tabRegion.ResumeLayout(false);
             this.tabRegion.PerformLayout();
             this.tabAnual.ResumeLayout(false);
+            this.tabAnualSucursal.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sistiamc_controlDataSet2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtpDosimetriaBindingSource)).EndInit();
-            this.tabAnualSucursal.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.rtpDosimetriaTableAdapter)).EndInit();
             this.ResumeLayout(false);
 
         }
