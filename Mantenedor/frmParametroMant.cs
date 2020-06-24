@@ -90,7 +90,11 @@ namespace ControlDosimetro
         #region"Button"
             private void btn_Cerrar_Click(object sender, EventArgs e)
             {
+                Cursor = Cursors.WaitCursor;
+
                 this.Close();
+
+                Cursor = Cursors.Default;
             }
 
             private void btn_Grabar_Click(object sender, EventArgs e)
