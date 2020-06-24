@@ -174,10 +174,14 @@ namespace ControlDosimetro
 
         private void btn_Guardar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             Grabar();
             LimpiarFormulario();
             tssEstado.Text = "Nuevo";
             txt_Id_perfil.Text = "0";
+
+            Cursor = Cursors.Default;
         }
 
         private void btn_Minimizar_Click(object sender, EventArgs e)
