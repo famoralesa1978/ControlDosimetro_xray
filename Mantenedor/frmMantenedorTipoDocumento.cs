@@ -206,6 +206,8 @@ namespace ControlDosimetro
 
         private void tsmEliminar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             if (MessageBox.Show("¿Desea Eliminar la información?", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
             {                
                 DataTable dt = (DataTable)dgvGrilla.DataSource;
@@ -222,6 +224,8 @@ namespace ControlDosimetro
                 if (dt1.Tables[0].Rows[0][0].ToString() == "0")
                     CargarGrilla();
             }
+
+            Cursor = Cursors.Default;
         }
 
         private void tsmActualizar_Click(object sender, EventArgs e)
