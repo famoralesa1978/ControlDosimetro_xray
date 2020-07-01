@@ -201,6 +201,12 @@
     <Compile Include="GenerarDcto\frmGenerarISP.Designer.cs">
       <DependentUpon>frmGenerarISP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Herramientas\frmTraspasoPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Herramientas\frmTraspasoPersonal.designer.cs">
+      <DependentUpon>frmTraspasoPersonal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Herramientas\frmLiberarDosimetro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -506,6 +512,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarDcto\frmGenerarISP.resx">
       <DependentUpon>frmGenerarISP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Herramientas\frmTraspasoPersonal.resx">
+      <DependentUpon>frmTraspasoPersonal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Herramientas\frmLiberarDosimetro.resx">
       <DependentUpon>frmLiberarDosimetro.cs</DependentUpon>
