@@ -278,6 +278,12 @@ namespace ControlDosimetro
             frm.Show();
         }
 
+        private void frmUtilidadesTraspaso_Click(object sender, EventArgs e)
+        {
+            frmTraspasoPersonal frm = new frmTraspasoPersonal();
+            Graba_log(frm.Text);
+            frm.Show();
+        }
         private void FrmUtilidadesConfigurarCorreo_Click(object sender, EventArgs e)
         {
             FrmConfCorreo frm = new FrmConfCorreo();

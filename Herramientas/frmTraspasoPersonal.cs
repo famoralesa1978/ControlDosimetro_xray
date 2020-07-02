@@ -30,9 +30,10 @@ namespace ControlDosimetro
         private void frmTraspasoPersonal_Load(object sender, EventArgs e)
         {
         }
-        public frmTraspasoPersonal(Int64 intId_Cliente)
+        public frmTraspasoPersonal()
         {
             InitializeComponent();
+            dtgDestino.AutoGenerateColumns= dtgOrigen.AutoGenerateColumns = false;
         }
 
         private void btn_Cargar_cliente_Click(object sender, EventArgs e)
@@ -47,10 +48,12 @@ namespace ControlDosimetro
         {
             string strRut = bolOrigen == true?txt_Rut.Text: txt_RutDestino.Text;
 
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "select id_cliente,run,Razon_Social,N_Cliente_Ref,region + ','+ comuna +','+Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = "select id_cliente,run,Razon_Social,N_Cliente_Ref,region + ','+ comuna +','+Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
                             "  FROM tbl_cliente c inner join [dbo].[glo_region] r on c.Id_Region=r.Id_Region inner join glo_comuna co on co.id_comuna=c.id_comuna" +
-                            " WHERE run= '" + strRut + "'";
+                            " WHERE run= '" + strRut + "'"
+            };
             DataSet dt;
 
             dt = Conectar.Listar(Clases.clsBD.BD,cmd);
@@ -67,7 +70,19 @@ namespace ControlDosimetro
                     txt_RutDestino.Text = strRut;
                     lbl_RazonSocialDestino.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
                     lbl_Id_clienteDestino.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
-                }         
+                }
+
+                SqlCommand cmdPersonal = new SqlCommand
+                {
+                    CommandText = "pa_ListarPersonal_sel '" + strRut + "'"
+                };
+                DataSet dtPersonal;
+
+                dtPersonal = Conectar.Listar(Clases.clsBD.BD, cmdPersonal);
+                if (bolOrigen == true)
+                    dtgOrigen.DataSource = dtPersonal.Tables[0];
+                 else
+                    dtgDestino.DataSource = dtPersonal.Tables[0];
             }
             else
             {
@@ -79,7 +94,8 @@ namespace ControlDosimetro
                     lbl_Id_cliente.Text = "";
                     lbl_RazonSocial.Text = "";
                 }
-                else {
+                else
+                {
                     btn_Cargar_clienteDestino.Enabled = true;
 
                     txt_RutDestino.Enabled = true;
@@ -87,7 +103,7 @@ namespace ControlDosimetro
                     lbl_RazonSocialDestino.Text = "";
                 }
             }
-            if (lbl_Id_cliente.Text != "")
+            if ((lbl_Id_cliente.Text == "")&& (lbl_Id_clienteDestino.Text == ""))
                 MessageBox.Show("El cliente no existe");
         }
     }

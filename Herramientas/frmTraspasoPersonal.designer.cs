@@ -30,6 +30,7 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtgOrigen = new System.Windows.Forms.DataGridView();
             this.lbl_Id_cliente = new System.Windows.Forms.Label();
             this.lbl_cliente = new System.Windows.Forms.Label();
             this.lbl_RazonSocial = new System.Windows.Forms.Label();
@@ -45,14 +46,19 @@
             this.btn_Cargar_clienteDestino = new System.Windows.Forms.Button();
             this.txt_RutDestino = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ColRut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtgDestino = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgOrigen)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgDestino)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -69,13 +75,13 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
-            this.splitContainer1.Size = new System.Drawing.Size(760, 409);
-            this.splitContainer1.SplitterDistance = 356;
+            this.splitContainer1.Size = new System.Drawing.Size(762, 409);
+            this.splitContainer1.SplitterDistance = 358;
             this.splitContainer1.TabIndex = 4;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Controls.Add(this.dtgOrigen);
             this.groupBox1.Controls.Add(this.lbl_Id_cliente);
             this.groupBox1.Controls.Add(this.lbl_cliente);
             this.groupBox1.Controls.Add(this.lbl_RazonSocial);
@@ -86,10 +92,26 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(356, 409);
+            this.groupBox1.Size = new System.Drawing.Size(358, 409);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dato personal";
+            // 
+            // dtgOrigen
+            // 
+            this.dtgOrigen.AllowUserToAddRows = false;
+            this.dtgOrigen.AllowUserToDeleteRows = false;
+            this.dtgOrigen.AllowUserToResizeColumns = false;
+            this.dtgOrigen.AllowUserToResizeRows = false;
+            this.dtgOrigen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgOrigen.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColRut,
+            this.ColNombre});
+            this.dtgOrigen.Location = new System.Drawing.Point(13, 100);
+            this.dtgOrigen.Name = "dtgOrigen";
+            this.dtgOrigen.ReadOnly = true;
+            this.dtgOrigen.Size = new System.Drawing.Size(337, 248);
+            this.dtgOrigen.TabIndex = 52;
             // 
             // lbl_Id_cliente
             // 
@@ -155,6 +177,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.dtgDestino);
             this.groupBox2.Controls.Add(this.lbl_Id_clienteDestino);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.lbl_RazonSocialDestino);
@@ -232,19 +255,59 @@
             this.label6.TabIndex = 53;
             this.label6.Text = "Razon social";
             // 
-            // dataGridView1
+            // ColRut
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 100);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(326, 262);
-            this.dataGridView1.TabIndex = 52;
+            this.ColRut.DataPropertyName = "Rut";
+            this.ColRut.HeaderText = "Rut";
+            this.ColRut.Name = "ColRut";
+            this.ColRut.ReadOnly = true;
+            this.ColRut.Width = 80;
+            // 
+            // ColNombre
+            // 
+            this.ColNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColNombre.DataPropertyName = "NombreCompleto";
+            this.ColNombre.HeaderText = "Personal";
+            this.ColNombre.Name = "ColNombre";
+            this.ColNombre.ReadOnly = true;
+            // 
+            // dtgDestino
+            // 
+            this.dtgDestino.AllowUserToAddRows = false;
+            this.dtgDestino.AllowUserToDeleteRows = false;
+            this.dtgDestino.AllowUserToResizeColumns = false;
+            this.dtgDestino.AllowUserToResizeRows = false;
+            this.dtgDestino.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgDestino.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            this.dtgDestino.Location = new System.Drawing.Point(14, 100);
+            this.dtgDestino.Name = "dtgDestino";
+            this.dtgDestino.ReadOnly = true;
+            this.dtgDestino.Size = new System.Drawing.Size(374, 248);
+            this.dtgDestino.TabIndex = 59;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Rut";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Rut";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 80;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "NombreCompleto";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Personal";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // frmTraspasoPersonal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(760, 409);
+            this.ClientSize = new System.Drawing.Size(762, 409);
             this.Controls.Add(this.splitContainer1);
             this.Name = "frmTraspasoPersonal";
             this.Text = "Traspaso";
@@ -255,9 +318,10 @@
             this.splitContainer1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgOrigen)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgDestino)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -280,6 +344,11 @@
         private System.Windows.Forms.Button btn_Cargar_clienteDestino;
         private System.Windows.Forms.TextBox txt_RutDestino;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dtgOrigen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColRut;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColNombre;
+        private System.Windows.Forms.DataGridView dtgDestino;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }
