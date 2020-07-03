@@ -112,8 +112,18 @@ namespace ControlDosimetro
             }
 
             btn_Traspaso.Enabled = lbl_Id_cliente.Text != "" && lbl_Id_clienteDestino.Text != "";
-            if ((lbl_Id_cliente.Text == "")&& (lbl_Id_clienteDestino.Text == ""))
-                MessageBox.Show("El cliente no existe");
+            if (bolOrigen == true)
+            {
+                if ((lbl_Id_cliente.Text == ""))
+                    MessageBox.Show("El cliente no existe");
+            }
+            else
+            {
+                if ( (lbl_Id_clienteDestino.Text == ""))
+                    MessageBox.Show("El cliente no existe");
+            }
+                
+
         }
     }
 }
