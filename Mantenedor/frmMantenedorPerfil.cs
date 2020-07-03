@@ -169,7 +169,11 @@ namespace ControlDosimetro
 
         private void btn_Buscar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             CargarGrilla();
+
+            Cursor = Cursors.Default;
         }
 
         private void btn_Guardar_Click(object sender, EventArgs e)
@@ -186,12 +190,18 @@ namespace ControlDosimetro
 
         private void btn_Minimizar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             scPrincipal.Panel2Collapsed = true;
             tsbGuardar.Enabled = false;
+
+            Cursor = Cursors.Default;
         }
 
         private void tsmEliminar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             if (MessageBox.Show("¿Desea Eliminar la información?", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
             {                
                 DataTable dt = (DataTable)dgvGrilla.DataSource;
@@ -208,11 +218,17 @@ namespace ControlDosimetro
                 if (dt1.Tables[0].Rows[0][0].ToString() == "0")
                     CargarGrilla();
             }
+
+            Cursor = Cursors.Default;
         }
 
         private void tsmActualizar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             LlamadoAModificar(dgvGrilla.CurrentRow.Index);
+
+            Cursor = Cursors.Default;
         }
 
         #endregion
