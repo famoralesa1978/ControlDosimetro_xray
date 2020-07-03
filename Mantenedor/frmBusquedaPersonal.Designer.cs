@@ -102,7 +102,7 @@
             // txt_ref_cliente
             // 
             this.txt_ref_cliente.Location = new System.Drawing.Point(95, 17);
-            this.txt_ref_cliente.MaxLength = 10;
+            this.txt_ref_cliente.MaxLength = 4;
             this.txt_ref_cliente.Name = "txt_ref_cliente";
             this.txt_ref_cliente.Size = new System.Drawing.Size(100, 20);
             this.txt_ref_cliente.TabIndex = 1;
