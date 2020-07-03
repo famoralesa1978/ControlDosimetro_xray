@@ -230,7 +230,11 @@ namespace ControlDosimetro
 
         private void tsmActualizar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             LlamadoAModificar(dgvGrilla.CurrentRow.Index);
+
+            Cursor = Cursors.Default;
         }
 
         #endregion
