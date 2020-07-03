@@ -357,6 +357,7 @@
             // txt_orden
             // 
             this.txt_orden.Location = new System.Drawing.Point(97, 49);
+            this.txt_orden.MaxLength = 2;
             this.txt_orden.Name = "txt_orden";
             this.txt_orden.Size = new System.Drawing.Size(100, 20);
             this.txt_orden.TabIndex = 19;
