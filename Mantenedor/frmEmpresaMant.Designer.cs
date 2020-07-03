@@ -310,6 +310,7 @@
             // txt_N_Cliente_Ref
             // 
             this.txt_N_Cliente_Ref.Location = new System.Drawing.Point(167, 45);
+            this.txt_N_Cliente_Ref.MaxLength = 4;
             this.txt_N_Cliente_Ref.Name = "txt_N_Cliente_Ref";
             this.txt_N_Cliente_Ref.Size = new System.Drawing.Size(75, 20);
             this.txt_N_Cliente_Ref.TabIndex = 2;
