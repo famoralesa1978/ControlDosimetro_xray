@@ -29,6 +29,9 @@ namespace ControlDosimetro
 
         private void frmTraspasoPersonal_Load(object sender, EventArgs e)
         {
+            lbl_Id_cliente.Text = lbl_Id_clienteDestino.Text = "";
+            lbl_RazonSocial.Text = lbl_RazonSocialDestino.Text = "";
+            btn_Traspaso.Enabled = false;
         }
         public frmTraspasoPersonal()
         {
@@ -52,6 +55,10 @@ namespace ControlDosimetro
             {
                 CommandText = "select id_cliente,run,Razon_Social,N_Cliente_Ref,region + ','+ comuna +','+Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
                             "  FROM tbl_cliente c inner join [dbo].[glo_region] r on c.Id_Region=r.Id_Region inner join glo_comuna co on co.id_comuna=c.id_comuna" +
+                            " WHERE run= '" + strRut + "'" +
+                            " union" +
+                            "select id_cliente,run,Razon_Social,N_Cliente_Ref,region + ','+ comuna +','+Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
+                            "  FROM tbl_cliente_historial c inner join [dbo].[glo_region] r on c.Id_Region=r.Id_Region inner join glo_comuna co on co.id_comuna=c.id_comuna" +
                             " WHERE run= '" + strRut + "'"
             };
             DataSet dt;
@@ -103,6 +110,8 @@ namespace ControlDosimetro
                     lbl_RazonSocialDestino.Text = "";
                 }
             }
+
+            btn_Traspaso.Enabled = lbl_Id_cliente.Text != "" && lbl_Id_clienteDestino.Text != "";
             if ((lbl_Id_cliente.Text == "")&& (lbl_Id_clienteDestino.Text == ""))
                 MessageBox.Show("El cliente no existe");
         }
