@@ -125,5 +125,21 @@ namespace ControlDosimetro
                 
 
         }
+
+        private void btn_Traspaso_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "pa_Traspasopersonal_ins '" + txt_Rut.Text + "','" + txt_RutDestino.Text + "'";
+            DataSet ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+            if(ds != null){
+                if (ds.Tables[0].Rows.Count > 0)
+                    MessageBox.Show("El traspaso del personal fue exitoso");
+            }
+
+            Cursor = Cursors.Default;
+        }
     }
 }

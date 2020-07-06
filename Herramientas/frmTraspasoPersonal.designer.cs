@@ -30,6 +30,7 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_Traspaso = new System.Windows.Forms.Button();
             this.dtgOrigen = new System.Windows.Forms.DataGridView();
             this.ColRut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,7 +52,6 @@
             this.btn_Cargar_clienteDestino = new System.Windows.Forms.Button();
             this.txt_RutDestino = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.btn_Traspaso = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -98,6 +98,16 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "7";
+            // 
+            // btn_Traspaso
+            // 
+            this.btn_Traspaso.Location = new System.Drawing.Point(127, 369);
+            this.btn_Traspaso.Name = "btn_Traspaso";
+            this.btn_Traspaso.Size = new System.Drawing.Size(75, 23);
+            this.btn_Traspaso.TabIndex = 53;
+            this.btn_Traspaso.Text = "Traspaso";
+            this.btn_Traspaso.UseVisualStyleBackColor = true;
+            this.btn_Traspaso.Click += new System.EventHandler(this.btn_Traspaso_Click);
             // 
             // dtgOrigen
             // 
@@ -304,15 +314,6 @@
             this.label6.Size = new System.Drawing.Size(68, 13);
             this.label6.TabIndex = 53;
             this.label6.Text = "Razon social";
-            // 
-            // btn_Traspaso
-            // 
-            this.btn_Traspaso.Location = new System.Drawing.Point(127, 369);
-            this.btn_Traspaso.Name = "btn_Traspaso";
-            this.btn_Traspaso.Size = new System.Drawing.Size(75, 23);
-            this.btn_Traspaso.TabIndex = 53;
-            this.btn_Traspaso.Text = "Traspaso";
-            this.btn_Traspaso.UseVisualStyleBackColor = true;
             // 
             // frmTraspasoPersonal
             // 
