@@ -191,8 +191,8 @@ namespace ControlDosimetro
         private void tsmEliminar_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("¿Desea Eliminar la información?", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-            {                
-                DataTable dt = (DataTable)dgvGrilla.DataSource;
+            {
+                DataTable dt = ((DataTable)((BindingSource)((BindingSource)dgvGrilla.DataSource).DataSource).DataSource);
                 DataRow currentRow = dt.Rows[dgvGrilla.CurrentRow.Index];
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "pa_TipoDocumento_del " + currentRow[ConfGrilla.id.ToString()].ToString();
@@ -251,6 +251,11 @@ namespace ControlDosimetro
         private void dgvGrilla_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
             txtBox.Width = Coldetalle_tipo_documento.Width;
+        }
+
+        private void cmsMenuContexto_Opening(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }
