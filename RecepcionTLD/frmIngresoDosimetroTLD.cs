@@ -58,9 +58,6 @@ namespace ControlDosimetro
 			cmdcombo.CommandType = CommandType.Text;
 			dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
 
-	
-
-
 			AsignarEvento();
 		//	Cargar_Cliente(intId_Cliente);
             //   Cargar_Sucursal();
@@ -210,7 +207,11 @@ namespace ControlDosimetro
         private void AsignarEvento()
         {           
 			this.txtRut.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
-			txtRut.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);			
+			txtRut.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
+            this.txt_N_TLD.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+            txt_N_TLD.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+            lbl_id_cliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+            lbl_id_cliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
         }
 
         #endregion
@@ -363,7 +364,7 @@ namespace ControlDosimetro
 
         private void btn_Corregir_Click(object sender, EventArgs e)
           {
-              SqlCommand cmd = new SqlCommand();
+              
               SqlCommand cmd2 = new SqlCommand();
               //	  SqlCommand cmd = new SqlCommand();
               SqlCommand cmdpersonal = new SqlCommand();
@@ -389,14 +390,18 @@ namespace ControlDosimetro
               pgb_Barra.Maximum = grdDatos.RowCount;
               pnl_Progreso.Refresh();
               int intN_Dos = 0;
-              cmd.CommandText = "SELECT isnull(max([n_dosimetro]),0)n_dosimetro   FROM[dbo].[ges_dosimetro_estado_TLD]";
-              cmd.CommandType = CommandType.Text;
+            SqlCommand cmd = new SqlCommand();
+            //   cmd.CommandText = "SELECT isnull(max([n_dosimetro]),0)n_dosimetro   FROM[dbo].[ges_dosimetro_estado_TLD]";
+            cmd.CommandText = "SELECT [n_dosimetro]  FROM[dbo].[ges_dosimetro_estado_TLD] where n_dosimetro>=" + txt_N_TLD.Text;
+            cmd.CommandType = CommandType.Text;
               DataSet dt;
               dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+            DataTable dtNTld = dt.Tables[0];
 
               if (dt.Tables[0].Rows.Count > 0)
-                  intN_Dos = 1 + Int16.Parse(dt.Tables[0].Rows[0]["n_dosimetro"].ToString());
-              else
+                //     intN_Dos = 1 + Int16.Parse(dt.Tables[0].Rows[0]["n_dosimetro"].ToString());
+                intN_Dos =  Int16.Parse(txt_N_TLD.Text);
+            else
                   intN_Dos = 1;
 
               cmd.CommandText = "SELECT [N_Documento]   FROM[dbo].[ges_dosimetro_estado_TLD] where id_periodo= " + cbx_id_periodo.SelectedValue +
@@ -404,6 +409,7 @@ namespace ControlDosimetro
                                 "SELECT isnull(max([N_Documento]),0)n_dosimetro   FROM[dbo].[ges_dosimetro_estado_TLD] where " +
                                 "  Id_cliente<>" + lbl_id_cliente.Text;
               cmd.CommandType = CommandType.Text;
+
               dt = Conectar.Listar(Clases.clsBD.BD,cmd);
               int intN_Doc;
               if (dt.Tables[0].Rows.Count > 0)                  

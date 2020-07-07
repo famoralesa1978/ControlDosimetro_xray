@@ -61,11 +61,11 @@
             this.id_sucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_estadodosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btn_Cliente = new System.Windows.Forms.ToolStripButton();
             this.btn_Sucursal = new System.Windows.Forms.ToolStripButton();
             this.btn_Excel = new System.Windows.Forms.ToolStripButton();
             this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
             this.rptDosimetria = new System.Windows.Forms.ToolStripMenuItem();
-            this.btn_Cliente = new System.Windows.Forms.ToolStripButton();
             this.btn_Guardar = new System.Windows.Forms.Button();
             this.btn_Cerrar = new System.Windows.Forms.Button();
             this.btn_Corregir = new System.Windows.Forms.Button();
@@ -74,12 +74,15 @@
             this.grpFiltro = new System.Windows.Forms.GroupBox();
             this.txtRut = new System.Windows.Forms.TextBox();
             this.lblRut = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txt_N_TLD = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.pnl_Progreso.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.grpFiltro.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -229,9 +232,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.pnl_Progreso);
             this.groupBox2.Controls.Add(this.grdDatos);
-            this.groupBox2.Location = new System.Drawing.Point(5, 243);
+            this.groupBox2.Location = new System.Drawing.Point(5, 282);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1079, 322);
+            this.groupBox2.Size = new System.Drawing.Size(1079, 333);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Listado";
@@ -280,7 +283,7 @@
             this.grdDatos.Name = "grdDatos";
             this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
             this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.grdDatos.Size = new System.Drawing.Size(1073, 303);
+            this.grdDatos.Size = new System.Drawing.Size(1073, 314);
             this.grdDatos.TabIndex = 8;
             this.grdDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellContentClick);
             this.grdDatos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdDatos_CellFormatting);
@@ -413,6 +416,16 @@
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // btn_Cliente
+            // 
+            this.btn_Cliente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btn_Cliente.Image = global::ControlDosimetro.Properties.Resources.cliente;
+            this.btn_Cliente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_Cliente.Name = "btn_Cliente";
+            this.btn_Cliente.Size = new System.Drawing.Size(23, 22);
+            this.btn_Cliente.Text = "Cliente";
+            this.btn_Cliente.Click += new System.EventHandler(this.btn_Cliente_Click);
+            // 
             // btn_Sucursal
             // 
             this.btn_Sucursal.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -451,20 +464,10 @@
             this.rptDosimetria.Text = "Dosimetría";
             this.rptDosimetria.Click += new System.EventHandler(this.rptDosimetria_Click);
             // 
-            // btn_Cliente
-            // 
-            this.btn_Cliente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btn_Cliente.Image = global::ControlDosimetro.Properties.Resources.cliente;
-            this.btn_Cliente.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_Cliente.Name = "btn_Cliente";
-            this.btn_Cliente.Size = new System.Drawing.Size(23, 22);
-            this.btn_Cliente.Text = "Cliente";
-            this.btn_Cliente.Click += new System.EventHandler(this.btn_Cliente_Click);
-            // 
             // btn_Guardar
             // 
             this.btn_Guardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btn_Guardar.Location = new System.Drawing.Point(300, 572);
+            this.btn_Guardar.Location = new System.Drawing.Point(300, 622);
             this.btn_Guardar.Name = "btn_Guardar";
             this.btn_Guardar.Size = new System.Drawing.Size(139, 23);
             this.btn_Guardar.TabIndex = 7;
@@ -475,7 +478,7 @@
             // btn_Cerrar
             // 
             this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btn_Cerrar.Location = new System.Drawing.Point(472, 571);
+            this.btn_Cerrar.Location = new System.Drawing.Point(472, 621);
             this.btn_Cerrar.Name = "btn_Cerrar";
             this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
             this.btn_Cerrar.TabIndex = 8;
@@ -486,7 +489,7 @@
             // btn_Corregir
             // 
             this.btn_Corregir.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btn_Corregir.Location = new System.Drawing.Point(143, 571);
+            this.btn_Corregir.Location = new System.Drawing.Point(143, 621);
             this.btn_Corregir.Name = "btn_Corregir";
             this.btn_Corregir.Size = new System.Drawing.Size(126, 23);
             this.btn_Corregir.TabIndex = 9;
@@ -497,7 +500,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 163);
+            this.label4.Location = new System.Drawing.Point(8, 160);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 10;
@@ -507,7 +510,7 @@
             // 
             this.cbx_Sucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_Sucursal.FormattingEnabled = true;
-            this.cbx_Sucursal.Location = new System.Drawing.Point(62, 160);
+            this.cbx_Sucursal.Location = new System.Drawing.Point(62, 157);
             this.cbx_Sucursal.Name = "cbx_Sucursal";
             this.cbx_Sucursal.Size = new System.Drawing.Size(526, 21);
             this.cbx_Sucursal.TabIndex = 11;
@@ -516,9 +519,9 @@
             // 
             this.grpFiltro.Controls.Add(this.txtRut);
             this.grpFiltro.Controls.Add(this.lblRut);
-            this.grpFiltro.Location = new System.Drawing.Point(5, 187);
+            this.grpFiltro.Location = new System.Drawing.Point(8, 221);
             this.grpFiltro.Name = "grpFiltro";
-            this.grpFiltro.Size = new System.Drawing.Size(1079, 55);
+            this.grpFiltro.Size = new System.Drawing.Size(357, 55);
             this.grpFiltro.TabIndex = 12;
             this.grpFiltro.TabStop = false;
             this.grpFiltro.Text = "Busqueda personal";
@@ -541,11 +544,29 @@
             this.lblRut.TabIndex = 0;
             this.lblRut.Text = "Rut";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.txt_N_TLD);
+            this.groupBox3.Location = new System.Drawing.Point(8, 180);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(353, 43);
+            this.groupBox3.TabIndex = 13;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Asginar N° TLD ( el número que se inicia para poder asignarlo)";
+            // 
+            // txt_N_TLD
+            // 
+            this.txt_N_TLD.Location = new System.Drawing.Point(8, 15);
+            this.txt_N_TLD.Name = "txt_N_TLD";
+            this.txt_N_TLD.Size = new System.Drawing.Size(100, 20);
+            this.txt_N_TLD.TabIndex = 0;
+            // 
             // frmIngresoDosimetroTLD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1084, 603);
+            this.ClientSize = new System.Drawing.Size(1084, 653);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.grpFiltro);
             this.Controls.Add(this.cbx_Sucursal);
             this.Controls.Add(this.label4);
@@ -570,6 +591,8 @@
             this.toolStrip1.PerformLayout();
             this.grpFiltro.ResumeLayout(false);
             this.grpFiltro.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -622,5 +645,7 @@
         private System.Windows.Forms.TextBox txtRut;
         private System.Windows.Forms.Label lblRut;
         private System.Windows.Forms.ToolStripButton btn_Cliente;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox txt_N_TLD;
     }
 }
