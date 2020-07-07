@@ -131,6 +131,7 @@ namespace ControlDosimetro
                 MessageBox.Show("Debe contener usuario y contraseña");
             else
             {
+                Cursor = Cursors.WaitCursor;
                 string Clave = clsUtiles1.GenerateHashMD5(txt_Contrasena.Text.Trim());  
                 //pa_login_sel 
                 SqlCommand cmd = new SqlCommand();
@@ -159,7 +160,8 @@ namespace ControlDosimetro
                             MessageBox.Show("El usuario se encuentra desactivado");
                     else
                         MessageBox.Show("La contraseña es incorrecta");
-                }                
+                }
+                Cursor = Cursors.Default;
             }
         }
 
