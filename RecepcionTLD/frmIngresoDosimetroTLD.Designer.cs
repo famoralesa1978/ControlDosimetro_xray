@@ -232,9 +232,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.pnl_Progreso);
             this.groupBox2.Controls.Add(this.grdDatos);
-            this.groupBox2.Location = new System.Drawing.Point(5, 282);
+            this.groupBox2.Location = new System.Drawing.Point(5, 229);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1079, 333);
+            this.groupBox2.Size = new System.Drawing.Size(1079, 386);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Listado";
@@ -283,7 +283,7 @@
             this.grdDatos.Name = "grdDatos";
             this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
             this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.grdDatos.Size = new System.Drawing.Size(1073, 314);
+            this.grdDatos.Size = new System.Drawing.Size(1073, 367);
             this.grdDatos.TabIndex = 8;
             this.grdDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellContentClick);
             this.grdDatos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdDatos_CellFormatting);
@@ -519,16 +519,16 @@
             // 
             this.grpFiltro.Controls.Add(this.txtRut);
             this.grpFiltro.Controls.Add(this.lblRut);
-            this.grpFiltro.Location = new System.Drawing.Point(8, 221);
+            this.grpFiltro.Location = new System.Drawing.Point(367, 180);
             this.grpFiltro.Name = "grpFiltro";
-            this.grpFiltro.Size = new System.Drawing.Size(357, 55);
+            this.grpFiltro.Size = new System.Drawing.Size(357, 43);
             this.grpFiltro.TabIndex = 12;
             this.grpFiltro.TabStop = false;
             this.grpFiltro.Text = "Busqueda personal";
             // 
             // txtRut
             // 
-            this.txtRut.Location = new System.Drawing.Point(39, 20);
+            this.txtRut.Location = new System.Drawing.Point(38, 15);
             this.txtRut.Name = "txtRut";
             this.txtRut.Size = new System.Drawing.Size(100, 20);
             this.txtRut.TabIndex = 1;
@@ -538,7 +538,7 @@
             // lblRut
             // 
             this.lblRut.AutoSize = true;
-            this.lblRut.Location = new System.Drawing.Point(8, 20);
+            this.lblRut.Location = new System.Drawing.Point(7, 15);
             this.lblRut.Name = "lblRut";
             this.lblRut.Size = new System.Drawing.Size(24, 13);
             this.lblRut.TabIndex = 0;

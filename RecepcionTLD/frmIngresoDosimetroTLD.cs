@@ -397,13 +397,9 @@ namespace ControlDosimetro
               DataSet dt;
               dt = Conectar.Listar(Clases.clsBD.BD,cmd);
             DataTable dtNTld = dt.Tables[0];
-
-              if (dt.Tables[0].Rows.Count > 0)
-                //     intN_Dos = 1 + Int16.Parse(dt.Tables[0].Rows[0]["n_dosimetro"].ToString());
-                intN_Dos =  Int16.Parse(txt_N_TLD.Text);
-            else
-                  intN_Dos = 1;
-
+            
+             intN_Dos = Int16.Parse(txt_N_TLD.Text);
+            
               cmd.CommandText = "SELECT [N_Documento]   FROM[dbo].[ges_dosimetro_estado_TLD] where id_periodo= " + cbx_id_periodo.SelectedValue +
                                 " and Id_cliente=" + lbl_id_cliente.Text + " union all " +
                                 "SELECT isnull(max([N_Documento]),0)n_dosimetro   FROM[dbo].[ges_dosimetro_estado_TLD] where " +
@@ -434,6 +430,8 @@ namespace ControlDosimetro
 
                   if ((checkGenerar.Value.ToString() == "1") && (checkCell.Value.ToString() == "0") && (txtid_estadodosimetro.Value.ToString ()=="-1"))
                   {
+                    intN_Dos = DevolverNDosimetro(intN_Dos, dtNTld);
+                    
                       txtndocumento.Value = intN_Doc.ToString();
                       txtnpelicula.Value = intN_Dos.ToString();
                       intN_Dos = intN_Dos + 1;
@@ -447,6 +445,21 @@ namespace ControlDosimetro
 
             //  Listar_Personal();
           }
+
+        int DevolverNDosimetro(int intDosimetro, DataTable dt)
+        {
+            bool bolResul = false;
+
+            while (!bolResul)
+            {
+                dt.DefaultView.RowFilter = "n_dosimetro=" + intDosimetro.ToString();
+                bolResul = dt.DefaultView.Count > 0 ? false : true;
+                intDosimetro = dt.DefaultView.Count > 0 ? intDosimetro+1 : intDosimetro;
+            }
+            
+
+            return intDosimetro;
+        }
 
         private void btn_Excel_Click(object sender, EventArgs e)
         {
