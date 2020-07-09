@@ -72,7 +72,7 @@ namespace ControlDosimetro
                 SqlCommand cmd = new SqlCommand();
 
 					 cmd.CommandText = "SELECT run,Razon_Social,N_Cliente_Ref,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio,Email,clave,servicio, " +
-                            "Id_Sector, id_Ministerio, Director, Opr,Id_TipoEntidad " + 
+                            "Id_Sector, id_Ministerio, Director, Opr,Id_TipoEntidad,nombre_fantasia " + 
                             " FROM tbl_cliente WHERE Id_cliente= " + intCodigo.ToString();
                 DataSet dt;
                 dt = Conectar.Listar(Clases.clsBD.BD,cmd);
@@ -114,6 +114,7 @@ namespace ControlDosimetro
                 
                 txt_run.Text = dt.Tables[0].Rows[0]["run"].ToString();
 				txt_N_Cliente_Ref.Text = dt.Tables[0].Rows[0]["N_Cliente_Ref"].ToString();
+                txt_Nombre_fantasia.Text = dt.Tables[0].Rows[0]["Nombre_Fantasia"].ToString();
                 txt_Razon_Social.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
                 txt_direccion.Text = dt.Tables[0].Rows[0]["Direccion"].ToString();
                 txt_telefono.Text = dt.Tables[0].Rows[0]["Telefono"].ToString();

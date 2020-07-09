@@ -75,11 +75,15 @@
             this.lbl_id_cliente = new System.Windows.Forms.Label();
             this.txt_run = new System.Windows.Forms.TextBox();
             this.lbl_run = new System.Windows.Forms.Label();
+            this.txt_Nombre_fantasia = new System.Windows.Forms.TextBox();
+            this.lbl_Nombre_fantasia = new System.Windows.Forms.Label();
             this.tbl_cliente.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbl_cliente
             // 
+            this.tbl_cliente.Controls.Add(this.lbl_Nombre_fantasia);
+            this.tbl_cliente.Controls.Add(this.txt_Nombre_fantasia);
             this.tbl_cliente.Controls.Add(this.txt_Opr);
             this.tbl_cliente.Controls.Add(this.lbl_Opr);
             this.tbl_cliente.Controls.Add(this.txt_Director);
@@ -136,7 +140,7 @@
             // 
             // txt_Opr
             // 
-            this.txt_Opr.Location = new System.Drawing.Point(166, 392);
+            this.txt_Opr.Location = new System.Drawing.Point(166, 413);
             this.txt_Opr.MaxLength = 50;
             this.txt_Opr.Name = "txt_Opr";
             this.txt_Opr.Size = new System.Drawing.Size(313, 20);
@@ -145,7 +149,7 @@
             // lbl_Opr
             // 
             this.lbl_Opr.AutoSize = true;
-            this.lbl_Opr.Location = new System.Drawing.Point(10, 395);
+            this.lbl_Opr.Location = new System.Drawing.Point(10, 416);
             this.lbl_Opr.Name = "lbl_Opr";
             this.lbl_Opr.Size = new System.Drawing.Size(30, 13);
             this.lbl_Opr.TabIndex = 55;
@@ -153,7 +157,7 @@
             // 
             // txt_Director
             // 
-            this.txt_Director.Location = new System.Drawing.Point(166, 366);
+            this.txt_Director.Location = new System.Drawing.Point(166, 387);
             this.txt_Director.MaxLength = 50;
             this.txt_Director.Name = "txt_Director";
             this.txt_Director.Size = new System.Drawing.Size(313, 20);
@@ -162,7 +166,7 @@
             // lbl_Director
             // 
             this.lbl_Director.AutoSize = true;
-            this.lbl_Director.Location = new System.Drawing.Point(10, 369);
+            this.lbl_Director.Location = new System.Drawing.Point(10, 390);
             this.lbl_Director.Name = "lbl_Director";
             this.lbl_Director.Size = new System.Drawing.Size(44, 13);
             this.lbl_Director.TabIndex = 53;
@@ -173,7 +177,7 @@
             this.cbx_Id_Sector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_Id_Sector.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbx_Id_Sector.FormattingEnabled = true;
-            this.cbx_Id_Sector.Location = new System.Drawing.Point(166, 339);
+            this.cbx_Id_Sector.Location = new System.Drawing.Point(166, 360);
             this.cbx_Id_Sector.Name = "cbx_Id_Sector";
             this.cbx_Id_Sector.Size = new System.Drawing.Size(150, 21);
             this.cbx_Id_Sector.TabIndex = 14;
@@ -181,7 +185,7 @@
             // lbl_Id_Sector
             // 
             this.lbl_Id_Sector.AutoSize = true;
-            this.lbl_Id_Sector.Location = new System.Drawing.Point(10, 342);
+            this.lbl_Id_Sector.Location = new System.Drawing.Point(10, 363);
             this.lbl_Id_Sector.Name = "lbl_Id_Sector";
             this.lbl_Id_Sector.Size = new System.Drawing.Size(38, 13);
             this.lbl_Id_Sector.TabIndex = 51;
@@ -192,15 +196,15 @@
             this.cbx_id_Ministerio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_id_Ministerio.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbx_id_Ministerio.FormattingEnabled = true;
-            this.cbx_id_Ministerio.Location = new System.Drawing.Point(166, 312);
+            this.cbx_id_Ministerio.Location = new System.Drawing.Point(166, 333);
             this.cbx_id_Ministerio.Name = "cbx_id_Ministerio";
             this.cbx_id_Ministerio.Size = new System.Drawing.Size(150, 21);
-            this.cbx_id_Ministerio.TabIndex = 12;
+            this.cbx_id_Ministerio.TabIndex = 13;
             // 
             // lbl_id_Ministerio
             // 
             this.lbl_id_Ministerio.AutoSize = true;
-            this.lbl_id_Ministerio.Location = new System.Drawing.Point(11, 320);
+            this.lbl_id_Ministerio.Location = new System.Drawing.Point(11, 341);
             this.lbl_id_Ministerio.Name = "lbl_id_Ministerio";
             this.lbl_id_Ministerio.Size = new System.Drawing.Size(51, 13);
             this.lbl_id_Ministerio.TabIndex = 49;
@@ -211,15 +215,15 @@
             this.cbx_Id_TipoEntidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_Id_TipoEntidad.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbx_Id_TipoEntidad.FormattingEnabled = true;
-            this.cbx_Id_TipoEntidad.Location = new System.Drawing.Point(167, 285);
+            this.cbx_Id_TipoEntidad.Location = new System.Drawing.Point(167, 306);
             this.cbx_Id_TipoEntidad.Name = "cbx_Id_TipoEntidad";
             this.cbx_Id_TipoEntidad.Size = new System.Drawing.Size(150, 21);
-            this.cbx_Id_TipoEntidad.TabIndex = 11;
+            this.cbx_Id_TipoEntidad.TabIndex = 12;
             // 
             // lbl_Id_TipoEntidad
             // 
             this.lbl_Id_TipoEntidad.AutoSize = true;
-            this.lbl_Id_TipoEntidad.Location = new System.Drawing.Point(12, 293);
+            this.lbl_Id_TipoEntidad.Location = new System.Drawing.Point(12, 314);
             this.lbl_Id_TipoEntidad.Name = "lbl_Id_TipoEntidad";
             this.lbl_Id_TipoEntidad.Size = new System.Drawing.Size(67, 13);
             this.lbl_Id_TipoEntidad.TabIndex = 47;
@@ -229,7 +233,7 @@
             // 
             this.cbx_id_periodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_id_periodo.FormattingEnabled = true;
-            this.cbx_id_periodo.Location = new System.Drawing.Point(270, 473);
+            this.cbx_id_periodo.Location = new System.Drawing.Point(270, 494);
             this.cbx_id_periodo.Name = "cbx_id_periodo";
             this.cbx_id_periodo.Size = new System.Drawing.Size(121, 21);
             this.cbx_id_periodo.TabIndex = 46;
@@ -237,7 +241,7 @@
             // 
             // txt_Clave
             // 
-            this.txt_Clave.Location = new System.Drawing.Point(52, 503);
+            this.txt_Clave.Location = new System.Drawing.Point(52, 524);
             this.txt_Clave.MaxLength = 100;
             this.txt_Clave.Name = "txt_Clave";
             this.txt_Clave.Size = new System.Drawing.Size(111, 20);
@@ -247,7 +251,7 @@
             // lbl_Clave
             // 
             this.lbl_Clave.AutoSize = true;
-            this.lbl_Clave.Location = new System.Drawing.Point(12, 503);
+            this.lbl_Clave.Location = new System.Drawing.Point(12, 524);
             this.lbl_Clave.Name = "lbl_Clave";
             this.lbl_Clave.Size = new System.Drawing.Size(34, 13);
             this.lbl_Clave.TabIndex = 44;
@@ -255,7 +259,7 @@
             // 
             // txt_Clave1
             // 
-            this.txt_Clave1.Location = new System.Drawing.Point(166, 503);
+            this.txt_Clave1.Location = new System.Drawing.Point(166, 524);
             this.txt_Clave1.MaxLength = 100;
             this.txt_Clave1.Name = "txt_Clave1";
             this.txt_Clave1.Size = new System.Drawing.Size(313, 20);
@@ -264,7 +268,7 @@
             // 
             // txt_Servicio
             // 
-            this.txt_Servicio.Location = new System.Drawing.Point(166, 417);
+            this.txt_Servicio.Location = new System.Drawing.Point(166, 438);
             this.txt_Servicio.MaxLength = 100;
             this.txt_Servicio.Name = "txt_Servicio";
             this.txt_Servicio.Size = new System.Drawing.Size(313, 20);
@@ -273,7 +277,7 @@
             // lbl_Servicio
             // 
             this.lbl_Servicio.AutoSize = true;
-            this.lbl_Servicio.Location = new System.Drawing.Point(10, 420);
+            this.lbl_Servicio.Location = new System.Drawing.Point(10, 441);
             this.lbl_Servicio.Name = "lbl_Servicio";
             this.lbl_Servicio.Size = new System.Drawing.Size(45, 13);
             this.lbl_Servicio.TabIndex = 42;
@@ -283,7 +287,7 @@
             // lbl_Email
             // 
             this.lbl_Email.AutoSize = true;
-            this.lbl_Email.Location = new System.Drawing.Point(11, 264);
+            this.lbl_Email.Location = new System.Drawing.Point(11, 285);
             this.lbl_Email.Name = "lbl_Email";
             this.lbl_Email.Size = new System.Drawing.Size(32, 13);
             this.lbl_Email.TabIndex = 40;
@@ -291,16 +295,16 @@
             // 
             // txt_Email
             // 
-            this.txt_Email.Location = new System.Drawing.Point(167, 261);
+            this.txt_Email.Location = new System.Drawing.Point(167, 282);
             this.txt_Email.MaxLength = 100;
             this.txt_Email.Name = "txt_Email";
             this.txt_Email.Size = new System.Drawing.Size(303, 20);
-            this.txt_Email.TabIndex = 10;
+            this.txt_Email.TabIndex = 11;
             // 
             // lbl_Estado_mod
             // 
             this.lbl_Estado_mod.AutoSize = true;
-            this.lbl_Estado_mod.Location = new System.Drawing.Point(309, 451);
+            this.lbl_Estado_mod.Location = new System.Drawing.Point(309, 472);
             this.lbl_Estado_mod.Name = "lbl_Estado_mod";
             this.lbl_Estado_mod.Size = new System.Drawing.Size(41, 13);
             this.lbl_Estado_mod.TabIndex = 38;
@@ -319,7 +323,7 @@
             this.dtp_FechaInicio.CustomFormat = "dd/MM/yyyy";
             this.dtp_FechaInicio.Enabled = false;
             this.dtp_FechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtp_FechaInicio.Location = new System.Drawing.Point(166, 474);
+            this.dtp_FechaInicio.Location = new System.Drawing.Point(166, 495);
             this.dtp_FechaInicio.Name = "dtp_FechaInicio";
             this.dtp_FechaInicio.Size = new System.Drawing.Size(98, 20);
             this.dtp_FechaInicio.TabIndex = 19;
@@ -337,7 +341,7 @@
             // lbl_FechaInicio
             // 
             this.lbl_FechaInicio.AutoSize = true;
-            this.lbl_FechaInicio.Location = new System.Drawing.Point(11, 474);
+            this.lbl_FechaInicio.Location = new System.Drawing.Point(11, 495);
             this.lbl_FechaInicio.Name = "lbl_FechaInicio";
             this.lbl_FechaInicio.Size = new System.Drawing.Size(101, 13);
             this.lbl_FechaInicio.TabIndex = 31;
@@ -349,7 +353,7 @@
             this.cbx_id_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_id_estado.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbx_id_estado.FormattingEnabled = true;
-            this.cbx_id_estado.Location = new System.Drawing.Point(166, 443);
+            this.cbx_id_estado.Location = new System.Drawing.Point(166, 464);
             this.cbx_id_estado.Name = "cbx_id_estado";
             this.cbx_id_estado.Size = new System.Drawing.Size(121, 21);
             this.cbx_id_estado.TabIndex = 18;
@@ -357,7 +361,7 @@
             // lbl_id_estado
             // 
             this.lbl_id_estado.AutoSize = true;
-            this.lbl_id_estado.Location = new System.Drawing.Point(11, 446);
+            this.lbl_id_estado.Location = new System.Drawing.Point(11, 467);
             this.lbl_id_estado.Name = "lbl_id_estado";
             this.lbl_id_estado.Size = new System.Drawing.Size(40, 13);
             this.lbl_id_estado.TabIndex = 28;
@@ -389,10 +393,10 @@
             this.cbx_id_comuna.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_id_comuna.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbx_id_comuna.FormattingEnabled = true;
-            this.cbx_id_comuna.Location = new System.Drawing.Point(167, 209);
+            this.cbx_id_comuna.Location = new System.Drawing.Point(167, 230);
             this.cbx_id_comuna.Name = "cbx_id_comuna";
             this.cbx_id_comuna.Size = new System.Drawing.Size(303, 21);
-            this.cbx_id_comuna.TabIndex = 23;
+            this.cbx_id_comuna.TabIndex = 9;
             this.cbx_id_comuna.TabStop = false;
             // 
             // cbx_id_provincia
@@ -400,10 +404,10 @@
             this.cbx_id_provincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_id_provincia.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbx_id_provincia.FormattingEnabled = true;
-            this.cbx_id_provincia.Location = new System.Drawing.Point(167, 182);
+            this.cbx_id_provincia.Location = new System.Drawing.Point(167, 203);
             this.cbx_id_provincia.Name = "cbx_id_provincia";
             this.cbx_id_provincia.Size = new System.Drawing.Size(303, 21);
-            this.cbx_id_provincia.TabIndex = 20;
+            this.cbx_id_provincia.TabIndex = 8;
             this.cbx_id_provincia.TabStop = false;
             this.cbx_id_provincia.SelectedIndexChanged += new System.EventHandler(this.cbx_id_provincia_SelectedIndexChanged);
             // 
@@ -412,15 +416,15 @@
             this.cbx_id_region.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_id_region.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbx_id_region.FormattingEnabled = true;
-            this.cbx_id_region.Location = new System.Drawing.Point(167, 154);
+            this.cbx_id_region.Location = new System.Drawing.Point(167, 175);
             this.cbx_id_region.Name = "cbx_id_region";
             this.cbx_id_region.Size = new System.Drawing.Size(303, 21);
-            this.cbx_id_region.TabIndex = 6;
+            this.cbx_id_region.TabIndex = 7;
             this.cbx_id_region.SelectedIndexChanged += new System.EventHandler(this.cbx_id_region_SelectedIndexChanged);
             // 
             // btn_cerrar
             // 
-            this.btn_cerrar.Location = new System.Drawing.Point(275, 545);
+            this.btn_cerrar.Location = new System.Drawing.Point(275, 566);
             this.btn_cerrar.Name = "btn_cerrar";
             this.btn_cerrar.Size = new System.Drawing.Size(75, 23);
             this.btn_cerrar.TabIndex = 22;
@@ -430,7 +434,7 @@
             // 
             // btn_Grabar
             // 
-            this.btn_Grabar.Location = new System.Drawing.Point(88, 545);
+            this.btn_Grabar.Location = new System.Drawing.Point(88, 566);
             this.btn_Grabar.Name = "btn_Grabar";
             this.btn_Grabar.Size = new System.Drawing.Size(75, 23);
             this.btn_Grabar.TabIndex = 21;
@@ -451,16 +455,16 @@
             // 
             // txt_telefono
             // 
-            this.txt_telefono.Location = new System.Drawing.Point(167, 235);
+            this.txt_telefono.Location = new System.Drawing.Point(167, 256);
             this.txt_telefono.MaxLength = 15;
             this.txt_telefono.Name = "txt_telefono";
             this.txt_telefono.Size = new System.Drawing.Size(141, 20);
-            this.txt_telefono.TabIndex = 9;
+            this.txt_telefono.TabIndex = 10;
             // 
             // lbl_telefono
             // 
             this.lbl_telefono.AutoSize = true;
-            this.lbl_telefono.Location = new System.Drawing.Point(11, 238);
+            this.lbl_telefono.Location = new System.Drawing.Point(11, 259);
             this.lbl_telefono.Name = "lbl_telefono";
             this.lbl_telefono.Size = new System.Drawing.Size(49, 13);
             this.lbl_telefono.TabIndex = 14;
@@ -469,7 +473,7 @@
             // lbl_id_comuna
             // 
             this.lbl_id_comuna.AutoSize = true;
-            this.lbl_id_comuna.Location = new System.Drawing.Point(11, 212);
+            this.lbl_id_comuna.Location = new System.Drawing.Point(11, 233);
             this.lbl_id_comuna.Name = "lbl_id_comuna";
             this.lbl_id_comuna.Size = new System.Drawing.Size(46, 13);
             this.lbl_id_comuna.TabIndex = 13;
@@ -478,7 +482,7 @@
             // lbl_id_provincia
             // 
             this.lbl_id_provincia.AutoSize = true;
-            this.lbl_id_provincia.Location = new System.Drawing.Point(11, 184);
+            this.lbl_id_provincia.Location = new System.Drawing.Point(11, 205);
             this.lbl_id_provincia.Name = "lbl_id_provincia";
             this.lbl_id_provincia.Size = new System.Drawing.Size(51, 13);
             this.lbl_id_provincia.TabIndex = 12;
@@ -487,7 +491,7 @@
             // lbl_id_region
             // 
             this.lbl_id_region.AutoSize = true;
-            this.lbl_id_region.Location = new System.Drawing.Point(11, 157);
+            this.lbl_id_region.Location = new System.Drawing.Point(11, 178);
             this.lbl_id_region.Name = "lbl_id_region";
             this.lbl_id_region.Size = new System.Drawing.Size(41, 13);
             this.lbl_id_region.TabIndex = 11;
@@ -495,16 +499,16 @@
             // 
             // txt_direccion
             // 
-            this.txt_direccion.Location = new System.Drawing.Point(167, 127);
+            this.txt_direccion.Location = new System.Drawing.Point(167, 148);
             this.txt_direccion.MaxLength = 100;
             this.txt_direccion.Name = "txt_direccion";
             this.txt_direccion.Size = new System.Drawing.Size(313, 20);
-            this.txt_direccion.TabIndex = 5;
+            this.txt_direccion.TabIndex = 6;
             // 
             // lbl_direccion
             // 
             this.lbl_direccion.AutoSize = true;
-            this.lbl_direccion.Location = new System.Drawing.Point(11, 130);
+            this.lbl_direccion.Location = new System.Drawing.Point(11, 151);
             this.lbl_direccion.Name = "lbl_direccion";
             this.lbl_direccion.Size = new System.Drawing.Size(52, 13);
             this.lbl_direccion.TabIndex = 9;
@@ -512,7 +516,7 @@
             // 
             // txt_Razon_Social
             // 
-            this.txt_Razon_Social.Location = new System.Drawing.Point(167, 100);
+            this.txt_Razon_Social.Location = new System.Drawing.Point(167, 98);
             this.txt_Razon_Social.MaxLength = 60;
             this.txt_Razon_Social.Name = "txt_Razon_Social";
             this.txt_Razon_Social.Size = new System.Drawing.Size(313, 20);
@@ -560,6 +564,23 @@
             this.lbl_run.Size = new System.Drawing.Size(24, 13);
             this.lbl_run.TabIndex = 0;
             this.lbl_run.Text = "Rut";
+            // 
+            // txt_Nombre_fantasia
+            // 
+            this.txt_Nombre_fantasia.Location = new System.Drawing.Point(167, 123);
+            this.txt_Nombre_fantasia.MaxLength = 100;
+            this.txt_Nombre_fantasia.Name = "txt_Nombre_fantasia";
+            this.txt_Nombre_fantasia.Size = new System.Drawing.Size(313, 20);
+            this.txt_Nombre_fantasia.TabIndex = 5;
+            // 
+            // lbl_Nombre_fantasia
+            // 
+            this.lbl_Nombre_fantasia.AutoSize = true;
+            this.lbl_Nombre_fantasia.Location = new System.Drawing.Point(11, 126);
+            this.lbl_Nombre_fantasia.Name = "lbl_Nombre_fantasia";
+            this.lbl_Nombre_fantasia.Size = new System.Drawing.Size(84, 13);
+            this.lbl_Nombre_fantasia.TabIndex = 57;
+            this.lbl_Nombre_fantasia.Text = "Nombre fantasia";
             // 
             // frmEmpresaMant
             // 
@@ -624,5 +645,7 @@
         private System.Windows.Forms.Label lbl_Opr;
         private System.Windows.Forms.TextBox txt_Director;
         private System.Windows.Forms.Label lbl_Director;
+        private System.Windows.Forms.Label lbl_Nombre_fantasia;
+        private System.Windows.Forms.TextBox txt_Nombre_fantasia;
     }
 }
