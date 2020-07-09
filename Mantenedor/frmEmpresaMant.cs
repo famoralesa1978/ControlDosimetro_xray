@@ -361,9 +361,9 @@ namespace ControlDosimetro
 
                              SqlCommand cmd1 = new SqlCommand();
                                 cmd1.CommandText = "insert into tbl_cliente_Historial " +
-                                  "(Id_cliente,N_Cliente_Ref,run,Razon_Social,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono,Id_TipoFuente,Id_estado,FechaInicio,Email,Clave,Servicio)"+
+                                  "(Id_cliente,N_Cliente_Ref,run,Razon_Social,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono,Id_TipoFuente,Id_estado,FechaInicio,Email,Clave,Servicio,,nombre_fantasia)" +
                                   "SELECT Id_cliente,N_Cliente_Ref,run,Razon_Social,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono,Id_TipoFuente,Id_estado,FechaInicio,Email,Clave,Servicio " +
-                                  ",Id_TipoEntidad,Id_Sector,id_Ministerio,Director,Opr " +
+                                  ",Id_TipoEntidad,Id_Sector,id_Ministerio,Director,Opr,nombre_fantasia " +
                                   "FROM [dbo].[tbl_cliente] where id_cliente=" + txt_id_cliente.Text ;
                                 cmd1.CommandType = CommandType.Text;
                                 Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd1);
@@ -461,9 +461,9 @@ namespace ControlDosimetro
 
                                  SqlCommand cmd1 = new SqlCommand();
                                 cmd1.CommandText = "insert into tbl_cliente_Historial " +
-                                  "(Id_cliente,N_Cliente_Ref,run,Razon_Social,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono,Id_TipoFuente,Id_estado,FechaInicio,Email,Clave,Servicio,Id_TipoEntidad,Id_Sector,id_Ministerio,Director,Opr)" +
+                                  "(Id_cliente,N_Cliente_Ref,run,Razon_Social,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono,Id_TipoFuente,Id_estado,FechaInicio,Email,Clave,Servicio,Id_TipoEntidad,Id_Sector,id_Ministerio,Director,Opr,nombre_fantasia)" +
                                   "SELECT Id_cliente,N_Cliente_Ref,run,Razon_Social,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono,Id_TipoFuente,Id_estado,FechaInicio,Email,Clave,Servicio " +
-                                  ",Id_TipoEntidad,Id_Sector,id_Ministerio,Director,Opr " +
+                                  ",Id_TipoEntidad,Id_Sector,id_Ministerio,Director,Opr,nombre_fantasia " +
                                   "FROM [dbo].[tbl_cliente] where id_cliente=" + txt_id_cliente.Text ;
                                 cmd1.CommandType = CommandType.Text;
                                 Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd1);

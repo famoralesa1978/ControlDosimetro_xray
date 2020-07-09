@@ -49,6 +49,7 @@ namespace ControlDosimetro
         {
             InitializeComponent();
 
+
            
             SqlCommand cmdcombo = new SqlCommand();
 				//SqlCommand cmdcombo = new SqlCommand();
@@ -59,17 +60,16 @@ namespace ControlDosimetro
 			dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
 
 			AsignarEvento();
-		//	Cargar_Cliente(intId_Cliente);
-            //   Cargar_Sucursal();
 			Cargar_Anno();
             btn_Guardar.Visible = false;
             pnl_Progreso.Visible = false;
             grpFiltro.Enabled = false;
+            lbl_ValorMax.Text = "";
         }
 
         #region "Llamada de carga"
 
-                private void Cargar_Cliente(Int64 intCodCliente)
+          private void Cargar_Cliente(Int64 intCodCliente)
                 {
                     SqlCommand cmd = new SqlCommand();
                     cmd.CommandText = "select run,Razon_Social,N_Cliente_Ref,region + ','+ comuna +','+Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
@@ -232,7 +232,14 @@ namespace ControlDosimetro
               btn_Corregir.Enabled = true;
               btn_Guardar.Enabled = true;
 			  grdDatos.Focus();
-		  }
+            SqlCommand cmdValorMax = new SqlCommand();
+            DataSet dtValorMax;
+            cmdValorMax.CommandText = "select max(n_dosimetro) valor from [dbo].[ges_dosimetro_estado_TLD]";
+            cmdValorMax.CommandType = CommandType.Text;
+            dtValorMax = Conectar.Listar(Clases.clsBD.BD, cmdValorMax);
+            
+            lbl_ValorMax.Text = dtValorMax.Tables[0].Rows[0]["valor"].ToString()=="0"?"1": dtValorMax.Tables[0].Rows[0]["valor"].ToString();
+        }
 
 		 private void btn_Guardar_Click(object sender, EventArgs e)
 		  {

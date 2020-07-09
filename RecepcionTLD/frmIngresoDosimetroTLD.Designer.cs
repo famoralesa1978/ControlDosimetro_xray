@@ -76,6 +76,8 @@
             this.lblRut = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txt_N_TLD = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lbl_ValorMax = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.pnl_Progreso.SuspendLayout();
@@ -546,6 +548,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.lbl_ValorMax);
+            this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.txt_N_TLD);
             this.groupBox3.Location = new System.Drawing.Point(8, 180);
             this.groupBox3.Name = "groupBox3";
@@ -560,6 +564,24 @@
             this.txt_N_TLD.Name = "txt_N_TLD";
             this.txt_N_TLD.Size = new System.Drawing.Size(100, 20);
             this.txt_N_TLD.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(149, 21);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(120, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Último valor ingresado : ";
+            // 
+            // lbl_ValorMax
+            // 
+            this.lbl_ValorMax.AutoSize = true;
+            this.lbl_ValorMax.Location = new System.Drawing.Point(265, 22);
+            this.lbl_ValorMax.Name = "lbl_ValorMax";
+            this.lbl_ValorMax.Size = new System.Drawing.Size(35, 13);
+            this.lbl_ValorMax.TabIndex = 2;
+            this.lbl_ValorMax.Text = "label6";
             // 
             // frmIngresoDosimetroTLD
             // 
@@ -647,5 +669,7 @@
         private System.Windows.Forms.ToolStripButton btn_Cliente;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox txt_N_TLD;
+        private System.Windows.Forms.Label lbl_ValorMax;
+        private System.Windows.Forms.Label label5;
     }
 }
