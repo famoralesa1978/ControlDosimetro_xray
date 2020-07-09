@@ -49,8 +49,6 @@ namespace ControlDosimetro
         {
             InitializeComponent();
 
-
-           
             SqlCommand cmdcombo = new SqlCommand();
 				//SqlCommand cmdcombo = new SqlCommand();
 			DataSet dtcombo;			
@@ -1013,6 +1011,23 @@ namespace ControlDosimetro
         {
             frmBusquedaEmpresa frm = new frmBusquedaEmpresa();
             frm.Show(this);
+        }
+
+        private void grdDatos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((grdDatos.CurrentCell.ColumnIndex == 0))
+            {
+                if (e.KeyCode == Keys.Delete)
+                {
+                    //string strMensaje = "";
+                    //int intResul = clsFunc.CambiarEstado(grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[0].Value.ToString(),
+                    //                grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[1].Value.ToString(), ref strMensaje);
+
+                    //grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[0].Value = 0;
+                    ////numero de pelicula
+                    //grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[1].Value = 0;
+                }
+            }
         }
     }
 }

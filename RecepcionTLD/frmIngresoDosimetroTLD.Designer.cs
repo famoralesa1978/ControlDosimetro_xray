@@ -292,6 +292,7 @@
             this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
             this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
             this.grdDatos.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.grdDatos_RowStateChanged);
+            this.grdDatos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdDatos_KeyDown);
             // 
             // Id_Personal
             // 

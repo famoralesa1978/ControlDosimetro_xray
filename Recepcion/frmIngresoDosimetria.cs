@@ -557,22 +557,19 @@ namespace ControlDosimetro
 
          private void grdDatos_KeyDown(object sender, KeyEventArgs e)
          {
+            if ((grdDatos.CurrentCell.ColumnIndex == 0) || (grdDatos.CurrentCell.ColumnIndex == 1))
+            {
+                if (e.KeyCode == Keys.Delete)
+                {
+                string strMensaje = "";
+                int intResul = clsFunc.CambiarEstado(grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[0].Value.ToString(),
+                                grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[1].Value.ToString(), ref strMensaje);
 
-             if ((grdDatos.CurrentCell.ColumnIndex == 0) || (grdDatos.CurrentCell.ColumnIndex == 1))
-                 {
-                     if (e.KeyCode == Keys.Delete)
-                     {
-                        string strMensaje = "";
-                        int intResul = clsFunc.CambiarEstado(grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[0].Value.ToString(),
-                                        grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[1].Value.ToString(), ref strMensaje);
-
-                        grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[0].Value = 0;
-                         //numero de pelicula
-                         grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[1].Value = 0;
-                     }
-                 }
-           
-             
+                grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[0].Value = 0;
+                    //numero de pelicula
+                    grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[1].Value = 0;
+                }
+            }
          }
 
          private void tsmEliminarPersonal_Click(object sender, EventArgs e)
