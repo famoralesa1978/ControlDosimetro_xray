@@ -1015,17 +1015,21 @@ namespace ControlDosimetro
 
         private void grdDatos_KeyDown(object sender, KeyEventArgs e)
         {
-            if ((grdDatos.CurrentCell.ColumnIndex == 0))
+            if ((grdDatos.CurrentCell.ColumnIndex == N_pelicula.Index+2))
             {
                 if (e.KeyCode == Keys.Delete)
                 {
-                    //string strMensaje = "";
-                    //int intResul = clsFunc.CambiarEstado(grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[0].Value.ToString(),
-                    //                grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[1].Value.ToString(), ref strMensaje);
-
-                    //grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[0].Value = 0;
-                    ////numero de pelicula
-                    //grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[1].Value = 0;
+                    SqlCommand cmdValorMax = new SqlCommand();
+                    DataSet dtValorMax;
+                    cmdValorMax.CommandText = "pa_DosimetroTLD_del " + grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[2].Value.ToString() + ",'"+ Clases.clsUsuario.Usuario + "'";
+                    cmdValorMax.CommandType = CommandType.Text;
+                    dtValorMax = Conectar.Listar(Clases.clsBD.BD, cmdValorMax);
+                    if (dtValorMax.Tables[0].Rows[0][0].ToString() == "-1")
+                    {                    
+                        btn_cargar_Click(null,null);
+                    }
+                    
+                    MessageBox.Show(dtValorMax.Tables[0].Rows[0][1].ToString());
                 }
             }
         }
