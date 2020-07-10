@@ -360,11 +360,7 @@ namespace ControlDosimetro
                             Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
 
                              SqlCommand cmd1 = new SqlCommand();
-                                cmd1.CommandText = "insert into tbl_cliente_Historial " +
-                                  "(Id_cliente,N_Cliente_Ref,run,Razon_Social,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono,Id_TipoFuente,Id_estado,FechaInicio,Email,Clave,Servicio,,nombre_fantasia)" +
-                                  "SELECT Id_cliente,N_Cliente_Ref,run,Razon_Social,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono,Id_TipoFuente,Id_estado,FechaInicio,Email,Clave,Servicio " +
-                                  ",Id_TipoEntidad,Id_Sector,id_Ministerio,Director,Opr,nombre_fantasia " +
-                                  "FROM [dbo].[tbl_cliente] where id_cliente=" + txt_id_cliente.Text ;
+                                cmd1.CommandText = "pa_ClienteHistorial_ins " + txt_id_cliente.Text ;
                                 cmd1.CommandType = CommandType.Text;
                                 Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd1);
 
@@ -449,7 +445,7 @@ namespace ControlDosimetro
                             if (bolResult == true)
                             {
 
-                                MessageBox.Show("Dato Guardado y se va a generar documento de Certificado");
+                                MessageBox.Show("Dato Guardado");
 
                                 SqlCommand cmd = new SqlCommand();
                                 cmd.CommandText = "pa_Sucursal_ins '" + txt_run.Text + "','" + txt_direccion.Text + "'," + cbx_id_region.SelectedValue + "," +
@@ -460,15 +456,10 @@ namespace ControlDosimetro
 
 
                                  SqlCommand cmd1 = new SqlCommand();
-                                cmd1.CommandText = "insert into tbl_cliente_Historial " +
-                                  "(Id_cliente,N_Cliente_Ref,run,Razon_Social,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono,Id_TipoFuente,Id_estado,FechaInicio,Email,Clave,Servicio,Id_TipoEntidad,Id_Sector,id_Ministerio,Director,Opr,nombre_fantasia)" +
-                                  "SELECT Id_cliente,N_Cliente_Ref,run,Razon_Social,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono,Id_TipoFuente,Id_estado,FechaInicio,Email,Clave,Servicio " +
-                                  ",Id_TipoEntidad,Id_Sector,id_Ministerio,Director,Opr,nombre_fantasia " +
-                                  "FROM [dbo].[tbl_cliente] where id_cliente=" + txt_id_cliente.Text ;
+                                cmd1.CommandText = "pa_ClienteHistorial_ins " + txt_id_cliente.Text ;
                                 cmd1.CommandType = CommandType.Text;
                                 Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd1);
                                 
-
 
                                 SqlCommand cmdArchivo = new SqlCommand();
                                 //SqlCommand cmdcombo = new SqlCommand();
