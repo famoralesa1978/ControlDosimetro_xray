@@ -126,6 +126,7 @@ namespace ControlDosimetro
               Graba_log(frm.Text);
               frm.ShowDialog(this);
           }
+
         #endregion
 
         #region "Reportes"
@@ -442,6 +443,12 @@ namespace ControlDosimetro
 
 
         #endregion
-      
+
+        private void nuevoUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMantenedorUsuario03 frm = new frmMantenedorUsuario03();
+            Graba_log(frm.Text);
+            frm.ShowDialog(this);
+        }
     }
 }

@@ -267,6 +267,12 @@
     <Compile Include="Mantenedor\frmBusquedaUsuario.Designer.cs">
       <DependentUpon>frmBusquedaUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mantenedor\frmMantenedorUsuario03.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmMantenedorUsuario03.Designer.cs">
+      <DependentUpon>frmMantenedorUsuario03.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mantenedor\frmMantenedorTipoDocumento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -539,6 +545,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmBusquedaUsuario.resx">
       <DependentUpon>frmBusquedaUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmMantenedorUsuario03.resx">
+      <DependentUpon>frmMantenedorUsuario03.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmMantenedorTipoDocumento.resx">
       <DependentUpon>frmMantenedorTipoDocumento.cs</DependentUpon>

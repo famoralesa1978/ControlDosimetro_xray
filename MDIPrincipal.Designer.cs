@@ -126,6 +126,7 @@
             this.tsbPrincipalCliente = new System.Windows.Forms.ToolStripButton();
             this.tsbPrincipalPersonal = new System.Windows.Forms.ToolStripButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.nuevoUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -168,6 +169,7 @@
             this.mnuMantSucursal,
             this.mnuMantPersonal,
             this.toolStripSeparator3,
+            this.nuevoUsuarioToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.mnuMantenedor.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.mnuMantenedor.Name = "mnuMantenedor";
@@ -391,7 +393,7 @@
             this.mnuProcesoIngresarDosisTLD,
             this.mnuProcesoTLDDosisISP});
             this.mnuProcesoTLD.Name = "mnuProcesoTLD";
-            this.mnuProcesoTLD.Size = new System.Drawing.Size(85, 20);
+            this.mnuProcesoTLD.Size = new System.Drawing.Size(84, 20);
             this.mnuProcesoTLD.Tag = "300";
             this.mnuProcesoTLD.Text = "Proceso TLD";
             // 
@@ -449,7 +451,7 @@
             // frmGenerarDctoISPGenerar
             // 
             this.frmGenerarDctoISPGenerar.Name = "frmGenerarDctoISPGenerar";
-            this.frmGenerarDctoISPGenerar.Size = new System.Drawing.Size(115, 22);
+            this.frmGenerarDctoISPGenerar.Size = new System.Drawing.Size(180, 22);
             this.frmGenerarDctoISPGenerar.Text = "Generar";
             this.frmGenerarDctoISPGenerar.Click += new System.EventHandler(this.FrmGenerarDctoISPGenerar_Click);
             // 
@@ -845,6 +847,13 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
+            // nuevoUsuarioToolStripMenuItem
+            // 
+            this.nuevoUsuarioToolStripMenuItem.Name = "nuevoUsuarioToolStripMenuItem";
+            this.nuevoUsuarioToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.nuevoUsuarioToolStripMenuItem.Text = "NuevoUsuario";
+            this.nuevoUsuarioToolStripMenuItem.Click += new System.EventHandler(this.nuevoUsuarioToolStripMenuItem_Click);
+            // 
             // MDIPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -965,6 +974,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuProcesoTLDRecepcion;
         private System.Windows.Forms.ToolStripMenuItem frmUtilidadesLiberarDosimetro;
         private System.Windows.Forms.ToolStripMenuItem mnuProcesoTLDDosisISP;
+        private System.Windows.Forms.ToolStripMenuItem nuevoUsuarioToolStripMenuItem;
     }
 }
 
