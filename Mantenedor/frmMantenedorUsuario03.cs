@@ -52,7 +52,7 @@ namespace ControlDosimetro
             InitializeComponent();
             scPrincipal.Panel2Collapsed = true;
             Cargar_Estado();
-            //  Asignar Evento();
+            AsignarEvento();
             Cargar_Perfil();
             tsbGuardar.Enabled = false;
             dgvGrilla.AutoGenerateColumns = false; 
@@ -93,6 +93,53 @@ namespace ControlDosimetro
             Cursor = Cursors.Default;
 
         }
+
+        private void AsignarEvento()
+        {
+            cbx_Id_estado.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+            cbx_Id_perfil.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+
+            SqlCommand cmd = new SqlCommand();
+            //SqlCommand cmd = new SqlCommand();
+            DataSet dt;
+            string strname;
+            foreach (Control c in tbl_Usuario.Controls)
+            {
+                //foreach (Control childc in c.Controls)
+                //{
+                if (c is TextBox)
+                {
+
+                    strname = ((TextBox)c).Name;
+
+                    cmd.CommandText = "SELECT  requerido, validacion " +
+                                            " FROM glo_configuracioncampo WHERE campo= '" + strname.Replace("txt_", "") + "'";
+
+                    dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+                    if (dt.Tables[0].Rows.Count == 0)
+                        ((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+                    else
+                    {
+                        if (dt.Tables[0].Rows[0]["validacion"].ToString() == "rut")
+                        {
+                            ((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
+                            ((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
+                            ((TextBox)c).Validated += new EventHandler(ClaseEvento.validarut_Validated);
+                        }
+                        if (dt.Tables[0].Rows[0]["validacion"].ToString() == "numerico")
+                        {
+                            ((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+                            ((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+                        }
+                    }
+                }
+                if (c is ComboBox)
+                    ((ComboBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+                if (c is DateTimePicker)
+                    ((DateTimePicker)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+            }
+        }
+
         private void LimpiarFormulario()
         {
             
@@ -100,7 +147,7 @@ namespace ControlDosimetro
         }
         private void Grabar()
         {
-           /* Boolean bolResult;
+           Boolean bolResult;
             bolResult = false;
             if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
             {
@@ -123,7 +170,7 @@ namespace ControlDosimetro
                         MessageBox.Show("Dato modificado");
                     }
                 }
-            }  */
+            }  
         }
 
         private void CargarGrilla()
@@ -226,7 +273,7 @@ namespace ControlDosimetro
         private void btn_Guardar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            /*
+            
             Grabar();
             LimpiarFormulario();
             tssEstado.Text = "Nuevo";
@@ -234,7 +281,7 @@ namespace ControlDosimetro
 
             Cursor = Cursors.Default;
 
-    */
+    
         }
 
         private void btn_Minimizar_Click(object sender, EventArgs e)
@@ -304,12 +351,12 @@ namespace ControlDosimetro
                 tssEstado.Text = "Nuevo";
                 tsbGuardar.Enabled = true;
                 LimpiarFormulario();
-               // txt_id_tipo_doc.Text = "0";
+                txt_id_tipo_doc.Text = "0";
             }
             else
             {
                 tssEstado.Text = "";
-               // txt_id_tipo_doc.Text = "";
+                txt_id_tipo_doc.Text = "";
             }
 
             Cursor = Cursors.Default;

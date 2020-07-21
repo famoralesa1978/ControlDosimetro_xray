@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.stsEstado = new System.Windows.Forms.StatusStrip();
             this.tssDescEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssEstado = new System.Windows.Forms.ToolStripStatusLabel();
@@ -79,6 +79,7 @@
             this.lbl_Fecha_agregado = new System.Windows.Forms.Label();
             this.ColUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_id_tipo_doc = new System.Windows.Forms.TextBox();
             this.stsEstado.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scPrincipal)).BeginInit();
@@ -98,9 +99,9 @@
             this.stsEstado.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tssDescEstado,
             this.tssEstado});
-            this.stsEstado.Location = new System.Drawing.Point(0, 359);
+            this.stsEstado.Location = new System.Drawing.Point(0, 351);
             this.stsEstado.Name = "stsEstado";
-            this.stsEstado.Size = new System.Drawing.Size(755, 22);
+            this.stsEstado.Size = new System.Drawing.Size(748, 22);
             this.stsEstado.TabIndex = 0;
             this.stsEstado.Text = "statusStrip1";
             // 
@@ -125,7 +126,7 @@
             this.tsbAgregar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(755, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(748, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -176,8 +177,8 @@
             this.scPrincipal.Panel2.Controls.Add(this.tbl_Usuario);
             this.scPrincipal.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.scPrincipal.Panel2MinSize = 200;
-            this.scPrincipal.Size = new System.Drawing.Size(743, 331);
-            this.scPrincipal.SplitterDistance = 365;
+            this.scPrincipal.Size = new System.Drawing.Size(736, 323);
+            this.scPrincipal.SplitterDistance = 361;
             this.scPrincipal.TabIndex = 2;
             // 
             // pnlPrincipal
@@ -191,7 +192,7 @@
             this.pnlPrincipal.Location = new System.Drawing.Point(15, 3);
             this.pnlPrincipal.Margin = new System.Windows.Forms.Padding(6, 3, 5, 3);
             this.pnlPrincipal.Name = "pnlPrincipal";
-            this.pnlPrincipal.Size = new System.Drawing.Size(345, 325);
+            this.pnlPrincipal.Size = new System.Drawing.Size(341, 317);
             this.pnlPrincipal.TabIndex = 1;
             // 
             // gpxListado
@@ -202,7 +203,7 @@
             this.gpxListado.Controls.Add(this.dgvGrilla);
             this.gpxListado.Location = new System.Drawing.Point(3, 123);
             this.gpxListado.Name = "gpxListado";
-            this.gpxListado.Size = new System.Drawing.Size(337, 197);
+            this.gpxListado.Size = new System.Drawing.Size(333, 189);
             this.gpxListado.TabIndex = 4;
             this.gpxListado.TabStop = false;
             this.gpxListado.Text = "Listado";
@@ -213,14 +214,14 @@
             this.dgvGrilla.AllowUserToDeleteRows = false;
             this.dgvGrilla.AllowUserToOrderColumns = true;
             this.dgvGrilla.AllowUserToResizeColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvGrilla.ColumnHeadersHeight = 42;
             this.dgvGrilla.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColUsuario,
@@ -230,7 +231,7 @@
             this.dgvGrilla.Location = new System.Drawing.Point(3, 16);
             this.dgvGrilla.Name = "dgvGrilla";
             this.dgvGrilla.ReadOnly = true;
-            this.dgvGrilla.Size = new System.Drawing.Size(331, 178);
+            this.dgvGrilla.Size = new System.Drawing.Size(327, 170);
             this.dgvGrilla.TabIndex = 0;
             this.dgvGrilla.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_CellContentClick);
             this.dgvGrilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_CellDoubleClick);
@@ -289,10 +290,10 @@
             this.gpxFiltrar.Controls.Add(this.label1);
             this.gpxFiltrar.Location = new System.Drawing.Point(3, 3);
             this.gpxFiltrar.Name = "gpxFiltrar";
-            this.gpxFiltrar.Size = new System.Drawing.Size(334, 114);
+            this.gpxFiltrar.Size = new System.Drawing.Size(330, 114);
             this.gpxFiltrar.TabIndex = 0;
             this.gpxFiltrar.TabStop = false;
-            this.gpxFiltrar.Text = "Filtrar";
+            this.gpxFiltrar.Text = "Filtrar Usuario";
             // 
             // cbx_Id_perfilBuscar
             // 
@@ -342,6 +343,7 @@
             // 
             // tbl_Usuario
             // 
+            this.tbl_Usuario.Controls.Add(this.txt_id_tipo_doc);
             this.tbl_Usuario.Controls.Add(this.lbl_Fecha_agregado);
             this.tbl_Usuario.Controls.Add(this.lbl_Fecha_Modificacion);
             this.tbl_Usuario.Controls.Add(this.lbl_Id_Usuario);
@@ -368,7 +370,7 @@
             this.tbl_Usuario.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbl_Usuario.Location = new System.Drawing.Point(0, 0);
             this.tbl_Usuario.Name = "tbl_Usuario";
-            this.tbl_Usuario.Size = new System.Drawing.Size(374, 331);
+            this.tbl_Usuario.Size = new System.Drawing.Size(371, 323);
             this.tbl_Usuario.TabIndex = 6;
             this.tbl_Usuario.TabStop = false;
             this.tbl_Usuario.Text = "Datos";
@@ -530,7 +532,7 @@
             this.btn_Limpiar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_Limpiar.Image = global::ControlDosimetro.Properties.Resources.Limpiar;
             this.btn_Limpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Limpiar.Location = new System.Drawing.Point(250, 281);
+            this.btn_Limpiar.Location = new System.Drawing.Point(248, 273);
             this.btn_Limpiar.Name = "btn_Limpiar";
             this.btn_Limpiar.Size = new System.Drawing.Size(85, 40);
             this.btn_Limpiar.TabIndex = 10;
@@ -546,7 +548,7 @@
             this.btn_Guardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_Guardar.Image = global::ControlDosimetro.Properties.Resources.save_32;
             this.btn_Guardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Guardar.Location = new System.Drawing.Point(145, 281);
+            this.btn_Guardar.Location = new System.Drawing.Point(143, 273);
             this.btn_Guardar.Name = "btn_Guardar";
             this.btn_Guardar.Size = new System.Drawing.Size(87, 40);
             this.btn_Guardar.TabIndex = 9;
@@ -600,11 +602,19 @@
             this.ColNombres.Name = "ColNombres";
             this.ColNombres.ReadOnly = true;
             // 
+            // txt_id_tipo_doc
+            // 
+            this.txt_id_tipo_doc.Location = new System.Drawing.Point(27, 273);
+            this.txt_id_tipo_doc.Name = "txt_id_tipo_doc";
+            this.txt_id_tipo_doc.Size = new System.Drawing.Size(46, 20);
+            this.txt_id_tipo_doc.TabIndex = 34;
+            this.txt_id_tipo_doc.Visible = false;
+            // 
             // frmMantenedorUsuario03
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 381);
+            this.ClientSize = new System.Drawing.Size(748, 373);
             this.Controls.Add(this.scPrincipal);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.stsEstado);
@@ -687,5 +697,6 @@
         private System.Windows.Forms.Label lbl_Id_Usuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColNombres;
+        private System.Windows.Forms.TextBox txt_id_tipo_doc;
     }
 }
