@@ -148,16 +148,22 @@ namespace ControlDosimetro
             BindingSource bs1 = new BindingSource();
              bs1=(BindingSource)dgvGrilla.DataSource;
             var currentRow = bs1.List[intFila];
-            /*
-            txt_id_tipo_doc.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.id].ToString();
-            txt_detalle_tipo_documento.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.detalle_tipo_documento].ToString();          
-            txt_orden.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.orden].ToString();
-            cbx_id_estado.SelectedValue = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_estado].ToString();
+
+            btn_Guardar.Text = "Modificar";
+            lbl_Id_Usuario.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_Usuario].ToString();
+            txt_Contraseña1.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString();
+            txt_Usuario.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Usuario].ToString();
+            txt_rut.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Rut].ToString();
+            txt_Nombres.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Nombres].ToString();
+            txt_paterno.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Paterno].ToString();
+            cbx_Id_estado.SelectedValue = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_estado].ToString();
+            txt_Maternos.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Maternos].ToString();
+            cbx_Id_perfil.SelectedValue = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_perfil].ToString();
             tssEstado.Text = "Modificar";
             btn_Guardar.Enabled = true;
             tsbGuardar.Enabled = true;
-            
-            scPrincipal.Panel2Collapsed = false;  */
+
+            scPrincipal.Panel2Collapsed = false;
         }
 
         private void Filtro()
