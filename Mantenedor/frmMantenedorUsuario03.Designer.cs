@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.stsEstado = new System.Windows.Forms.StatusStrip();
             this.tssDescEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssEstado = new System.Windows.Forms.ToolStripStatusLabel();
@@ -41,7 +41,6 @@
             this.pnlPrincipal = new System.Windows.Forms.Panel();
             this.gpxListado = new System.Windows.Forms.GroupBox();
             this.dgvGrilla = new System.Windows.Forms.DataGridView();
-            this.Coldetalle_tipo_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsMenuContexto = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmActualizar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -78,7 +77,8 @@
             this.lbl_Id_Usuario = new System.Windows.Forms.Label();
             this.lbl_Fecha_Modificacion = new System.Windows.Forms.Label();
             this.lbl_Fecha_agregado = new System.Windows.Forms.Label();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stsEstado.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scPrincipal)).BeginInit();
@@ -213,18 +213,18 @@
             this.dgvGrilla.AllowUserToDeleteRows = false;
             this.dgvGrilla.AllowUserToOrderColumns = true;
             this.dgvGrilla.AllowUserToResizeColumns = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvGrilla.ColumnHeadersHeight = 42;
             this.dgvGrilla.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Coldetalle_tipo_documento,
-            this.Column1});
+            this.ColUsuario,
+            this.ColNombres});
             this.dgvGrilla.ContextMenuStrip = this.cmsMenuContexto;
             this.dgvGrilla.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvGrilla.Location = new System.Drawing.Point(3, 16);
@@ -232,17 +232,10 @@
             this.dgvGrilla.ReadOnly = true;
             this.dgvGrilla.Size = new System.Drawing.Size(331, 178);
             this.dgvGrilla.TabIndex = 0;
+            this.dgvGrilla.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_CellContentClick);
             this.dgvGrilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_CellDoubleClick);
             this.dgvGrilla.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvGrilla_ColumnWidthChanged);
             this.dgvGrilla.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvGrilla_Paint);
-            // 
-            // Coldetalle_tipo_documento
-            // 
-            this.Coldetalle_tipo_documento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Coldetalle_tipo_documento.DataPropertyName = "detalle_tipo_documento";
-            this.Coldetalle_tipo_documento.HeaderText = "Nombre";
-            this.Coldetalle_tipo_documento.Name = "Coldetalle_tipo_documento";
-            this.Coldetalle_tipo_documento.ReadOnly = true;
             // 
             // cmsMenuContexto
             // 
@@ -523,7 +516,7 @@
             // btn_Minimizar
             // 
             this.btn_Minimizar.Image = global::ControlDosimetro.Properties.Resources.minimizar;
-            this.btn_Minimizar.Location = new System.Drawing.Point(339, 0);
+            this.btn_Minimizar.Location = new System.Drawing.Point(326, 0);
             this.btn_Minimizar.Name = "btn_Minimizar";
             this.btn_Minimizar.Size = new System.Drawing.Size(38, 17);
             this.btn_Minimizar.TabIndex = 13;
@@ -579,6 +572,7 @@
             this.lbl_Fecha_Modificacion.Size = new System.Drawing.Size(35, 13);
             this.lbl_Fecha_Modificacion.TabIndex = 32;
             this.lbl_Fecha_Modificacion.Text = "label4";
+            this.lbl_Fecha_Modificacion.Visible = false;
             // 
             // lbl_Fecha_agregado
             // 
@@ -588,12 +582,23 @@
             this.lbl_Fecha_agregado.Size = new System.Drawing.Size(35, 13);
             this.lbl_Fecha_agregado.TabIndex = 33;
             this.lbl_Fecha_agregado.Text = "label5";
+            this.lbl_Fecha_agregado.Visible = false;
             // 
-            // Column1
+            // ColUsuario
             // 
-            this.Column1.HeaderText = "Usuario";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.ColUsuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColUsuario.DataPropertyName = "Usuario";
+            this.ColUsuario.HeaderText = "Usuario";
+            this.ColUsuario.Name = "ColUsuario";
+            this.ColUsuario.ReadOnly = true;
+            // 
+            // ColNombres
+            // 
+            this.ColNombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColNombres.DataPropertyName = "Nombres";
+            this.ColNombres.HeaderText = "Nombres";
+            this.ColNombres.Name = "ColNombres";
+            this.ColNombres.ReadOnly = true;
             // 
             // frmMantenedorUsuario03
             // 
@@ -657,7 +662,6 @@
         private System.Windows.Forms.Button btn_Guardar;
         private System.Windows.Forms.Button btn_Minimizar;
         private System.Windows.Forms.DataGridView dgvGrilla;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Coldetalle_tipo_documento;
         private System.Windows.Forms.ComboBox cbx_Id_perfilBuscar;
         private System.Windows.Forms.ComboBox cbx_id_estadoBuscar;
         private System.Windows.Forms.Label label2;
@@ -681,6 +685,7 @@
         private System.Windows.Forms.Label lbl_Fecha_agregado;
         private System.Windows.Forms.Label lbl_Fecha_Modificacion;
         private System.Windows.Forms.Label lbl_Id_Usuario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColUsuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColNombres;
     }
 }

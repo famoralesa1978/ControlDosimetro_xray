@@ -128,9 +128,12 @@ namespace ControlDosimetro
 
         private void CargarGrilla()
         {
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "select id_tipo_doc as id, detalle_tipo_documento,id_estado,orden from glo_TipoDocumentos where id_estado= " + cbx_id_estadoBuscar.SelectedValue + "  order by orden";
 
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT [Id_Usuario],[Rut],[Nombres],[Paterno],[Maternos],u.[Id_perfil],u.[Id_estado],[Usuario],[Contraseña],[Fecha_agregado],[Fecha_Modificacion] ,u.id_estado " +
+                                            " FROM [dbo].[tbl_Usuario] U inner join tbl_perfil p on p.id_perfil=u.id_perfil" +
+                                            " where u.id_estado=" + cbx_id_estadoBuscar.SelectedValue + " and p.id_perfil=" + cbx_Id_perfilBuscar.SelectedValue +
+                                  " order by Nombres,Paterno,Maternos";
             cmd.CommandType = CommandType.Text;
 
             DataSet dt;
@@ -161,7 +164,7 @@ namespace ControlDosimetro
         {
             bs = new BindingSource();
             bs.DataSource = dgvGrilla.DataSource;
-            bs.Filter = Coldetalle_tipo_documento.DataPropertyName + " like '%" + txtBox.Text + "%'";
+            bs.Filter = ColUsuario.DataPropertyName + " like '%" + txtBox.Text + "%'";
             dgvGrilla.DataSource = bs;
         }
 
@@ -175,7 +178,7 @@ namespace ControlDosimetro
             Point headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;                     
             txtBox.Location = new Point(headerCellLocation.X, headerCellLocation.Y+20);
             txtBox.BackColor = Color.AliceBlue;
-            txtBox.Width = Coldetalle_tipo_documento.Width;
+            txtBox.Width = ColUsuario.Width;
             txtBox.TextChanged += new EventHandler(TextBox_Changed);
             dgvGrilla.Controls.Add(txtBox);
         }
@@ -286,7 +289,7 @@ namespace ControlDosimetro
         private void tsbAgregar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            /*
+            
             if(scPrincipal.Panel2Collapsed==true)
                 scPrincipal.Panel2Collapsed =false;
 
@@ -295,13 +298,13 @@ namespace ControlDosimetro
                 tssEstado.Text = "Nuevo";
                 tsbGuardar.Enabled = true;
                 LimpiarFormulario();
-                txt_id_tipo_doc.Text = "0";
+               // txt_id_tipo_doc.Text = "0";
             }
             else
             {
                 tssEstado.Text = "";
-                txt_id_tipo_doc.Text = "";
-            }*/
+               // txt_id_tipo_doc.Text = "";
+            }
 
             Cursor = Cursors.Default;
         }
@@ -311,10 +314,15 @@ namespace ControlDosimetro
 
         private void dgvGrilla_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
-            txtBox.Width = Coldetalle_tipo_documento.Width;
+            txtBox.Width = ColUsuario.Width;
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvGrilla_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
