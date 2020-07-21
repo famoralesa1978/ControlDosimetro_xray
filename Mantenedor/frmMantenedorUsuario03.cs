@@ -163,12 +163,22 @@ namespace ControlDosimetro
                 else
                 if (tssEstado.Text == "Modificar")
                 {
-                    ClaseComun.Modificar(Clases.clsBD.BD,tbl_Usuario, ref bolResult);
-                    if (bolResult == true)
+                    if (!String.IsNullOrEmpty(txt_rut.Text) && !String.IsNullOrEmpty(txt_Maternos.Text) && !String.IsNullOrEmpty(txt_paterno.Text) && !String.IsNullOrEmpty(txt_Nombres.Text) && !String.IsNullOrEmpty(txt_Usuario.Text))
                     {
-                        CargarGrilla();
-                        MessageBox.Show("Dato modificado");
+
+                        ClaseComun.Modificar(Clases.clsBD.BD, tbl_Usuario, ref bolResult);
+                        if (bolResult == true)
+                        {
+                            CargarGrilla();
+                            MessageBox.Show("Dato modificado");
+                        }
+
                     }
+                    else
+                    {
+                        MessageBox.Show("Completar todos los datos");
+                    }
+                
                 }
             }  
         }
@@ -197,8 +207,13 @@ namespace ControlDosimetro
             var currentRow = bs1.List[intFila];
 
             btn_Guardar.Text = "Modificar";
+
+            //lbl_Contraseña.Enabled = false;
+            txt_Contraseña.Enabled = false;
+            txt_Contraseña1.Enabled = false;
+
             lbl_Id_Usuario.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_Usuario].ToString();
-            txt_Contraseña1.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString();
+           // txt_Contraseña1.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString();
             txt_Usuario.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Usuario].ToString();
             txt_rut.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Rut].ToString();
             txt_Nombres.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Nombres].ToString();
@@ -206,6 +221,22 @@ namespace ControlDosimetro
             cbx_Id_estado.SelectedValue = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_estado].ToString();
             txt_Maternos.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Maternos].ToString();
             cbx_Id_perfil.SelectedValue = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_perfil].ToString();
+
+            txt_Contraseña.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString();
+            try
+            {
+                txt_Contraseña1.Text = clsUtiles1.DecryptTripleDES(((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString());
+            }
+            catch (Exception)
+            {
+
+                txt_Contraseña1.Text = clsUtiles1.GenerateHashMD5(((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString());
+                txt_Contraseña.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString();
+            }
+
+            lbl_Fecha_Modificacion.Text = DateTime.Today.ToString().Substring(0, 9);
+            lbl_Fecha_agregado.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Fecha_agregado].ToString();
+
             tssEstado.Text = "Modificar";
             btn_Guardar.Enabled = true;
             tsbGuardar.Enabled = true;
@@ -273,11 +304,22 @@ namespace ControlDosimetro
         private void btn_Guardar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            
-            Grabar();
-            LimpiarFormulario();
-            tssEstado.Text = "Nuevo";
-            txt_id_tipo_doc.Text = "0";
+
+            AsignarEvento();
+
+            if (!String.IsNullOrEmpty(txt_rut.Text) && !String.IsNullOrEmpty(txt_Maternos.Text) && !String.IsNullOrEmpty(txt_paterno.Text) && !String.IsNullOrEmpty(txt_Nombres.Text) && !String.IsNullOrEmpty(txt_Usuario.Text))
+            {
+                Grabar();
+                LimpiarFormulario();
+                tssEstado.Text = "Nuevo";
+                txt_id_tipo_doc.Text = "0";
+
+            }
+            else {
+                MessageBox.Show("Debe Completar todos los campos");
+            }
+
+
 
             Cursor = Cursors.Default;
 
@@ -368,6 +410,11 @@ namespace ControlDosimetro
         private void dgvGrilla_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
             txtBox.Width = ColUsuario.Width;
+        }
+
+        private void txt_Contraseña1_TextChanged(object sender, EventArgs e)
+        {
+            txt_Contraseña.Text = clsUtiles1.GenerateHashMD5(txt_Contraseña1.Text);
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
