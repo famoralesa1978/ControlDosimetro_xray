@@ -162,6 +162,7 @@ namespace ControlDosimetro
             txt_rut.Focus();
 
             txt_Contraseña1.Enabled = true;
+            lbl_Id_Usuario.Text = "N° usuario";
 
             // cbx_id_estado.SelectedIndex = 0;           
         }
