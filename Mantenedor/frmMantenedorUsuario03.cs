@@ -142,8 +142,28 @@ namespace ControlDosimetro
 
         private void LimpiarFormulario()
         {
-            
-           // cbx_id_estado.SelectedIndex = 0;            
+            txt_rut.Text = "";
+            txt_paterno.Text = "";
+            txt_Nombres.Text = "";
+            txt_Maternos.Text = "";
+            txt_rut.Enabled = true;
+            cbx_Id_estado.SelectedIndex = 0;
+            cbx_Id_perfil.SelectedIndex = 0;
+           // HabDesa_Controles(false);
+            btn_Guardar.Text = "Grabar";
+            this.Text = "Agregar Personal";
+          //  lbl_Usuario.Text = Clases.clsUsuario.Usuario;
+            lbl_Fecha_agregado.Text = DateTime.Now.Date.ToString().Substring(1, 10);
+            lbl_Fecha_Modificacion.Text = DateTime.Now.Date.ToString().Substring(1, 10);
+            txt_Contraseña.Clear();
+            txt_Contraseña1.Clear();
+            cbx_Id_estado.SelectedIndex = 0;
+            txt_Usuario.Clear();
+            txt_rut.Focus();
+
+            txt_Contraseña1.Enabled = true;
+
+            // cbx_id_estado.SelectedIndex = 0;           
         }
         private void Grabar()
         {
@@ -394,6 +414,8 @@ namespace ControlDosimetro
                 tsbGuardar.Enabled = true;
                 LimpiarFormulario();
                 txt_id_tipo_doc.Text = "0";
+
+                btn_Guardar.Text = "Grabar";
             }
             else
             {
