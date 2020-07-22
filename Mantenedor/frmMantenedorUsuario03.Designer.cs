@@ -41,6 +41,8 @@
             this.pnlPrincipal = new System.Windows.Forms.Panel();
             this.gpxListado = new System.Windows.Forms.GroupBox();
             this.dgvGrilla = new System.Windows.Forms.DataGridView();
+            this.ColUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsMenuContexto = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmActualizar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -54,6 +56,10 @@
             this.btn_Buscar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tbl_Usuario = new System.Windows.Forms.GroupBox();
+            this.txt_id_tipo_doc = new System.Windows.Forms.TextBox();
+            this.lbl_Fecha_agregado = new System.Windows.Forms.Label();
+            this.lbl_Fecha_Modificacion = new System.Windows.Forms.Label();
+            this.lbl_Id_Usuario = new System.Windows.Forms.Label();
             this.cbx_Id_estado = new System.Windows.Forms.ComboBox();
             this.cbx_Id_perfil = new System.Windows.Forms.ComboBox();
             this.txt_Contraseña = new System.Windows.Forms.TextBox();
@@ -74,12 +80,6 @@
             this.btn_Minimizar = new System.Windows.Forms.Button();
             this.btn_Limpiar = new System.Windows.Forms.Button();
             this.btn_Guardar = new System.Windows.Forms.Button();
-            this.lbl_Id_Usuario = new System.Windows.Forms.Label();
-            this.lbl_Fecha_Modificacion = new System.Windows.Forms.Label();
-            this.lbl_Fecha_agregado = new System.Windows.Forms.Label();
-            this.ColUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_id_tipo_doc = new System.Windows.Forms.TextBox();
             this.stsEstado.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scPrincipal)).BeginInit();
@@ -238,6 +238,22 @@
             this.dgvGrilla.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvGrilla_ColumnWidthChanged);
             this.dgvGrilla.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvGrilla_Paint);
             // 
+            // ColUsuario
+            // 
+            this.ColUsuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColUsuario.DataPropertyName = "Usuario";
+            this.ColUsuario.HeaderText = "Usuario";
+            this.ColUsuario.Name = "ColUsuario";
+            this.ColUsuario.ReadOnly = true;
+            // 
+            // ColNombres
+            // 
+            this.ColNombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColNombres.DataPropertyName = "Nombres";
+            this.ColNombres.HeaderText = "Nombres";
+            this.ColNombres.Name = "ColNombres";
+            this.ColNombres.ReadOnly = true;
+            // 
             // cmsMenuContexto
             // 
             this.cmsMenuContexto.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -297,6 +313,7 @@
             // 
             // cbx_Id_perfilBuscar
             // 
+            this.cbx_Id_perfilBuscar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_Id_perfilBuscar.FormattingEnabled = true;
             this.cbx_Id_perfilBuscar.Location = new System.Drawing.Point(71, 64);
             this.cbx_Id_perfilBuscar.Name = "cbx_Id_perfilBuscar";
@@ -305,6 +322,7 @@
             // 
             // cbx_id_estadoBuscar
             // 
+            this.cbx_id_estadoBuscar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_id_estadoBuscar.FormattingEnabled = true;
             this.cbx_id_estadoBuscar.Location = new System.Drawing.Point(71, 32);
             this.cbx_id_estadoBuscar.Name = "cbx_id_estadoBuscar";
@@ -375,8 +393,46 @@
             this.tbl_Usuario.TabStop = false;
             this.tbl_Usuario.Text = "Datos";
             // 
+            // txt_id_tipo_doc
+            // 
+            this.txt_id_tipo_doc.Location = new System.Drawing.Point(27, 273);
+            this.txt_id_tipo_doc.Name = "txt_id_tipo_doc";
+            this.txt_id_tipo_doc.Size = new System.Drawing.Size(46, 20);
+            this.txt_id_tipo_doc.TabIndex = 34;
+            this.txt_id_tipo_doc.Visible = false;
+            // 
+            // lbl_Fecha_agregado
+            // 
+            this.lbl_Fecha_agregado.AutoSize = true;
+            this.lbl_Fecha_agregado.Location = new System.Drawing.Point(323, 177);
+            this.lbl_Fecha_agregado.Name = "lbl_Fecha_agregado";
+            this.lbl_Fecha_agregado.Size = new System.Drawing.Size(35, 13);
+            this.lbl_Fecha_agregado.TabIndex = 33;
+            this.lbl_Fecha_agregado.Text = "label5";
+            this.lbl_Fecha_agregado.Visible = false;
+            // 
+            // lbl_Fecha_Modificacion
+            // 
+            this.lbl_Fecha_Modificacion.AutoSize = true;
+            this.lbl_Fecha_Modificacion.Location = new System.Drawing.Point(323, 148);
+            this.lbl_Fecha_Modificacion.Name = "lbl_Fecha_Modificacion";
+            this.lbl_Fecha_Modificacion.Size = new System.Drawing.Size(35, 13);
+            this.lbl_Fecha_Modificacion.TabIndex = 32;
+            this.lbl_Fecha_Modificacion.Text = "label4";
+            this.lbl_Fecha_Modificacion.Visible = false;
+            // 
+            // lbl_Id_Usuario
+            // 
+            this.lbl_Id_Usuario.AutoSize = true;
+            this.lbl_Id_Usuario.Location = new System.Drawing.Point(317, 35);
+            this.lbl_Id_Usuario.Name = "lbl_Id_Usuario";
+            this.lbl_Id_Usuario.Size = new System.Drawing.Size(58, 13);
+            this.lbl_Id_Usuario.TabIndex = 31;
+            this.lbl_Id_Usuario.Text = "N° Usuario";
+            // 
             // cbx_Id_estado
             // 
+            this.cbx_Id_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_Id_estado.FormattingEnabled = true;
             this.cbx_Id_estado.Location = new System.Drawing.Point(164, 234);
             this.cbx_Id_estado.Name = "cbx_Id_estado";
@@ -385,6 +441,7 @@
             // 
             // cbx_Id_perfil
             // 
+            this.cbx_Id_perfil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_Id_perfil.FormattingEnabled = true;
             this.cbx_Id_perfil.Location = new System.Drawing.Point(164, 174);
             this.cbx_Id_perfil.Name = "cbx_Id_perfil";
@@ -406,6 +463,7 @@
             this.txt_Contraseña1.PasswordChar = '*';
             this.txt_Contraseña1.Size = new System.Drawing.Size(152, 20);
             this.txt_Contraseña1.TabIndex = 27;
+            this.txt_Contraseña1.TextChanged += new System.EventHandler(this.txt_Contraseña1_TextChanged);
             // 
             // txt_Maternos
             // 
@@ -557,59 +615,6 @@
             this.btn_Guardar.UseVisualStyleBackColor = true;
             this.btn_Guardar.Click += new System.EventHandler(this.btn_Guardar_Click);
             // 
-            // lbl_Id_Usuario
-            // 
-            this.lbl_Id_Usuario.AutoSize = true;
-            this.lbl_Id_Usuario.Location = new System.Drawing.Point(317, 35);
-            this.lbl_Id_Usuario.Name = "lbl_Id_Usuario";
-            this.lbl_Id_Usuario.Size = new System.Drawing.Size(58, 13);
-            this.lbl_Id_Usuario.TabIndex = 31;
-            this.lbl_Id_Usuario.Text = "N° Usuario";
-            // 
-            // lbl_Fecha_Modificacion
-            // 
-            this.lbl_Fecha_Modificacion.AutoSize = true;
-            this.lbl_Fecha_Modificacion.Location = new System.Drawing.Point(323, 148);
-            this.lbl_Fecha_Modificacion.Name = "lbl_Fecha_Modificacion";
-            this.lbl_Fecha_Modificacion.Size = new System.Drawing.Size(35, 13);
-            this.lbl_Fecha_Modificacion.TabIndex = 32;
-            this.lbl_Fecha_Modificacion.Text = "label4";
-            this.lbl_Fecha_Modificacion.Visible = false;
-            // 
-            // lbl_Fecha_agregado
-            // 
-            this.lbl_Fecha_agregado.AutoSize = true;
-            this.lbl_Fecha_agregado.Location = new System.Drawing.Point(323, 177);
-            this.lbl_Fecha_agregado.Name = "lbl_Fecha_agregado";
-            this.lbl_Fecha_agregado.Size = new System.Drawing.Size(35, 13);
-            this.lbl_Fecha_agregado.TabIndex = 33;
-            this.lbl_Fecha_agregado.Text = "label5";
-            this.lbl_Fecha_agregado.Visible = false;
-            // 
-            // ColUsuario
-            // 
-            this.ColUsuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColUsuario.DataPropertyName = "Usuario";
-            this.ColUsuario.HeaderText = "Usuario";
-            this.ColUsuario.Name = "ColUsuario";
-            this.ColUsuario.ReadOnly = true;
-            // 
-            // ColNombres
-            // 
-            this.ColNombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColNombres.DataPropertyName = "Nombres";
-            this.ColNombres.HeaderText = "Nombres";
-            this.ColNombres.Name = "ColNombres";
-            this.ColNombres.ReadOnly = true;
-            // 
-            // txt_id_tipo_doc
-            // 
-            this.txt_id_tipo_doc.Location = new System.Drawing.Point(27, 273);
-            this.txt_id_tipo_doc.Name = "txt_id_tipo_doc";
-            this.txt_id_tipo_doc.Size = new System.Drawing.Size(46, 20);
-            this.txt_id_tipo_doc.TabIndex = 34;
-            this.txt_id_tipo_doc.Visible = false;
-            // 
             // frmMantenedorUsuario03
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -620,8 +625,9 @@
             this.Controls.Add(this.stsEstado);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(645, 300);
+            this.MinimumSize = new System.Drawing.Size(764, 412);
             this.Name = "frmMantenedorUsuario03";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Mantenedor Usuario Nuevo 03";
             this.Load += new System.EventHandler(this.frmMantenedorUsuario03_Load);

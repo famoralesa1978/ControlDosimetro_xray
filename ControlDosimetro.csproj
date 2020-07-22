@@ -168,6 +168,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\classFuncionesGenerales.cs" />
     <Compile Include="Clases\classFuncionesBD.cs" />
     <Compile Include="Clases\classBD.cs" />
     <Compile Include="Clases\classUsuario.cs" />

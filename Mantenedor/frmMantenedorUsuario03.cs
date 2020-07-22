@@ -88,7 +88,15 @@ namespace ControlDosimetro
 
             cbx_Id_perfil.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
             cbx_Id_perfil.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
-            cbx_Id_perfil.DataSource = dt.Tables[0];
+            DataTable dtVista= dt.Tables[0];
+
+            if (Clases.clsUsuario.Id_perfil != 1)
+            {
+                dtVista.DefaultView.RowFilter = "Id_perfil>1";
+                cbx_Id_perfil.DataSource = dtVista;
+            }
+            else
+                cbx_Id_perfil.DataSource = dt.Tables[0];
 
             Cursor = Cursors.Default;
 
@@ -449,5 +457,7 @@ namespace ControlDosimetro
         {
 
         }
+
+   
     }
 }
