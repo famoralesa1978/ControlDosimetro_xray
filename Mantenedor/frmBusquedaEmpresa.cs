@@ -52,9 +52,9 @@ namespace ControlDosimetro
             else
                 cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
                                 "from tbl_cliente " +
-                                "where run like '%" + txt_Rut.Text + "%' and razon_social like '%" + txt_RazonSocial.Text + "%' " +
-                                " and id_estado=" + cbx_Estado.SelectedValue +
-                                " and Direccion like '%" + txt_Direccion.Text + "%' and nombre_fantasia like '%" +  txt_NombreFantasia.Text + "%' order by id_cliente";
+                                "where (run like '%" + txt_Rut.Text + "%' or razon_social like '%" + txt_RazonSocial.Text + "%' " +                                
+                                " or Direccion like '%" + txt_Direccion.Text + "%' or nombre_fantasia like '%" +  txt_NombreFantasia.Text + "%')" +
+                                " and id_estado=" + cbx_Estado.SelectedValue + " order by id_cliente";
             cmd.CommandType = CommandType.Text;
 
 
