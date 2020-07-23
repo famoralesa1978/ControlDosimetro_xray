@@ -322,12 +322,12 @@ namespace ControlDosimetro
         private void Btn_Limpiar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-/*
+
             LimpiarFormulario();
             tssEstado.Text = "Nuevo";
             txt_id_tipo_doc.Text = "0";
 
-            Cursor = Cursors.Default;  */
+            Cursor = Cursors.Default;  
         }
 
         private void Btn_Buscar_Click(object sender, EventArgs e)
@@ -457,10 +457,6 @@ namespace ControlDosimetro
             txt_Contraseña.Text = clsUtiles1.GenerateHashMD5(txt_Contraseña1.Text);
         }
 
-        
-
        
-
-   
     }
 }

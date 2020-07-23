@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.stsEstado = new System.Windows.Forms.StatusStrip();
             this.tssDescEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssEstado = new System.Windows.Forms.ToolStripStatusLabel();
@@ -214,14 +214,14 @@
             this.dgvGrilla.AllowUserToDeleteRows = false;
             this.dgvGrilla.AllowUserToOrderColumns = true;
             this.dgvGrilla.AllowUserToResizeColumns = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvGrilla.ColumnHeadersHeight = 42;
             this.dgvGrilla.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColUsuario,
@@ -233,7 +233,6 @@
             this.dgvGrilla.ReadOnly = true;
             this.dgvGrilla.Size = new System.Drawing.Size(327, 170);
             this.dgvGrilla.TabIndex = 0;
-           // this.dgvGrilla.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvGrilla_CellContentClick);
             this.dgvGrilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvGrilla_CellDoubleClick);
             this.dgvGrilla.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DgvGrilla_ColumnWidthChanged);
             this.dgvGrilla.Paint += new System.Windows.Forms.PaintEventHandler(this.DgvGrilla_Paint);
@@ -429,6 +428,7 @@
             this.lbl_Id_Usuario.Size = new System.Drawing.Size(58, 13);
             this.lbl_Id_Usuario.TabIndex = 31;
             this.lbl_Id_Usuario.Text = "N° Usuario";
+            this.lbl_Id_Usuario.Visible = false;
             // 
             // cbx_Id_estado
             // 
@@ -452,7 +452,7 @@
             // 
             this.txt_Contraseña.Location = new System.Drawing.Point(322, 205);
             this.txt_Contraseña.Name = "txt_Contraseña";
-            this.txt_Contraseña.Size = new System.Drawing.Size(46, 20);
+            this.txt_Contraseña.Size = new System.Drawing.Size(36, 20);
             this.txt_Contraseña.TabIndex = 28;
             this.txt_Contraseña.Visible = false;
             // 
@@ -478,7 +478,6 @@
             this.txt_paterno.Name = "txt_paterno";
             this.txt_paterno.Size = new System.Drawing.Size(152, 20);
             this.txt_paterno.TabIndex = 25;
-         //   this.txt_paterno.TextChanged += new System.EventHandler(this.TextBox4_TextChanged);
             // 
             // txt_Nombres
             // 
@@ -490,6 +489,7 @@
             // txt_rut
             // 
             this.txt_rut.Location = new System.Drawing.Point(164, 60);
+            this.txt_rut.MaxLength = 10;
             this.txt_rut.Name = "txt_rut";
             this.txt_rut.Size = new System.Drawing.Size(152, 20);
             this.txt_rut.TabIndex = 23;
@@ -576,7 +576,7 @@
             // btn_Minimizar
             // 
             this.btn_Minimizar.Image = global::ControlDosimetro.Properties.Resources.minimizar;
-            this.btn_Minimizar.Location = new System.Drawing.Point(326, 0);
+            this.btn_Minimizar.Location = new System.Drawing.Point(320, 0);
             this.btn_Minimizar.Name = "btn_Minimizar";
             this.btn_Minimizar.Size = new System.Drawing.Size(38, 17);
             this.btn_Minimizar.TabIndex = 13;

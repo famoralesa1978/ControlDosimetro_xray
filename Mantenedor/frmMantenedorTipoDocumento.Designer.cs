@@ -461,6 +461,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(645, 300);
             this.Name = "frmMantenedorTipoDocumento";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Mantenedor de tipo documento";
             this.Load += new System.EventHandler(this.frmMantenedorPerfil_Load);
