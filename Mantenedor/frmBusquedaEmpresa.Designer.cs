@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBusquedaEmpresa));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txt_NombreFantasia = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.txt_Direccion = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btn_cargarCliente = new System.Windows.Forms.Button();
@@ -57,8 +59,6 @@
             this.tsbAgregarPersonal = new System.Windows.Forms.ToolStripButton();
             this.tsbIngresoDosimetro = new System.Windows.Forms.ToolStripButton();
             this.btnIngresarDosisISP = new System.Windows.Forms.ToolStripButton();
-            this.txt_NombreFantasia = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -87,6 +87,23 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Busqueda Cliente";
+            // 
+            // txt_NombreFantasia
+            // 
+            this.txt_NombreFantasia.Location = new System.Drawing.Point(98, 65);
+            this.txt_NombreFantasia.MaxLength = 60;
+            this.txt_NombreFantasia.Name = "txt_NombreFantasia";
+            this.txt_NombreFantasia.Size = new System.Drawing.Size(342, 20);
+            this.txt_NombreFantasia.TabIndex = 38;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 65);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(84, 13);
+            this.label5.TabIndex = 39;
+            this.label5.Text = "Nombre fantasia";
             // 
             // txt_Direccion
             // 
@@ -356,23 +373,6 @@
             this.btnIngresarDosisISP.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.btnIngresarDosisISP.Click += new System.EventHandler(this.btnIngresarDosisISP_Click);
             // 
-            // txt_NombreFantasia
-            // 
-            this.txt_NombreFantasia.Location = new System.Drawing.Point(98, 65);
-            this.txt_NombreFantasia.MaxLength = 60;
-            this.txt_NombreFantasia.Name = "txt_NombreFantasia";
-            this.txt_NombreFantasia.Size = new System.Drawing.Size(342, 20);
-            this.txt_NombreFantasia.TabIndex = 38;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 65);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(84, 13);
-            this.label5.TabIndex = 39;
-            this.label5.Text = "Nombre fantasia";
-            // 
             // frmBusquedaEmpresa
             // 
             this.AcceptButton = this.btn_cargarCliente;
@@ -386,6 +386,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(776, 464);
             this.Name = "frmBusquedaEmpresa";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Busqueda Cliente";
             this.groupBox1.ResumeLayout(false);
