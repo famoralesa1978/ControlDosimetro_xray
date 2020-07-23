@@ -97,7 +97,7 @@ namespace ControlDosimetro
         private void CargarGrilla()
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "select id_tipo_doc as id, detalle_tipo_documento,id_estado,orden from glo_TipoDocumentos where id_estado= " + cbx_id_estado.SelectedValue + "  order by orden";
+            cmd.CommandText = "select id_tipo_doc as id, detalle_tipo_documento,id_estado,orden from glo_TipoDocumentos where id_estado= " + cbx_id_estado_Buscar.SelectedValue + "  order by orden";
 
             cmd.CommandType = CommandType.Text;
 
