@@ -139,7 +139,7 @@
             this.tsbGuardar.Size = new System.Drawing.Size(23, 22);
             this.tsbGuardar.Text = "toolStripButton1";
             this.tsbGuardar.ToolTipText = "Guarda la infomación";
-            this.tsbGuardar.Click += new System.EventHandler(this.tsbGuardar_Click);
+            this.tsbGuardar.Click += new System.EventHandler(this.TsbGuardar_Click);
             // 
             // toolStripSeparator1
             // 
@@ -154,7 +154,7 @@
             this.tsbAgregar.Name = "tsbAgregar";
             this.tsbAgregar.Size = new System.Drawing.Size(23, 22);
             this.tsbAgregar.Text = "Permite  Agregar un perfil de usuario";
-            this.tsbAgregar.Click += new System.EventHandler(this.tsbAgregar_Click);
+            this.tsbAgregar.Click += new System.EventHandler(this.TsbAgregar_Click);
             // 
             // scPrincipal
             // 
@@ -233,10 +233,10 @@
             this.dgvGrilla.ReadOnly = true;
             this.dgvGrilla.Size = new System.Drawing.Size(327, 170);
             this.dgvGrilla.TabIndex = 0;
-            this.dgvGrilla.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_CellContentClick);
-            this.dgvGrilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_CellDoubleClick);
-            this.dgvGrilla.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvGrilla_ColumnWidthChanged);
-            this.dgvGrilla.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvGrilla_Paint);
+           // this.dgvGrilla.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvGrilla_CellContentClick);
+            this.dgvGrilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvGrilla_CellDoubleClick);
+            this.dgvGrilla.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DgvGrilla_ColumnWidthChanged);
+            this.dgvGrilla.Paint += new System.Windows.Forms.PaintEventHandler(this.DgvGrilla_Paint);
             // 
             // ColUsuario
             // 
@@ -270,7 +270,7 @@
             this.tsmActualizar.Name = "tsmActualizar";
             this.tsmActualizar.Size = new System.Drawing.Size(160, 22);
             this.tsmActualizar.Text = "Modificar";
-            this.tsmActualizar.Click += new System.EventHandler(this.tsmActualizar_Click);
+            this.tsmActualizar.Click += new System.EventHandler(this.TsmActualizar_Click);
             // 
             // toolStripSeparator2
             // 
@@ -282,7 +282,7 @@
             this.tsmEliminar.Name = "tsmEliminar";
             this.tsmEliminar.Size = new System.Drawing.Size(160, 22);
             this.tsmEliminar.Text = "Eliminar";
-            this.tsmEliminar.Click += new System.EventHandler(this.tsmEliminar_Click);
+            this.tsmEliminar.Click += new System.EventHandler(this.TsmEliminar_Click);
             // 
             // toolStripSeparator3
             // 
@@ -348,7 +348,7 @@
             this.btn_Buscar.TabIndex = 3;
             this.btn_Buscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Buscar.UseVisualStyleBackColor = true;
-            this.btn_Buscar.Click += new System.EventHandler(this.btn_Buscar_Click);
+            this.btn_Buscar.Click += new System.EventHandler(this.Btn_Buscar_Click);
             // 
             // label1
             // 
@@ -463,7 +463,7 @@
             this.txt_Contraseña1.PasswordChar = '*';
             this.txt_Contraseña1.Size = new System.Drawing.Size(152, 20);
             this.txt_Contraseña1.TabIndex = 27;
-            this.txt_Contraseña1.TextChanged += new System.EventHandler(this.txt_Contraseña1_TextChanged);
+            this.txt_Contraseña1.TextChanged += new System.EventHandler(this.Txt_Contraseña1_TextChanged);
             // 
             // txt_Maternos
             // 
@@ -478,7 +478,7 @@
             this.txt_paterno.Name = "txt_paterno";
             this.txt_paterno.Size = new System.Drawing.Size(152, 20);
             this.txt_paterno.TabIndex = 25;
-            this.txt_paterno.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+         //   this.txt_paterno.TextChanged += new System.EventHandler(this.TextBox4_TextChanged);
             // 
             // txt_Nombres
             // 
@@ -581,7 +581,7 @@
             this.btn_Minimizar.Size = new System.Drawing.Size(38, 17);
             this.btn_Minimizar.TabIndex = 13;
             this.btn_Minimizar.UseVisualStyleBackColor = true;
-            this.btn_Minimizar.Click += new System.EventHandler(this.btn_Minimizar_Click);
+            this.btn_Minimizar.Click += new System.EventHandler(this.Btn_Minimizar_Click);
             // 
             // btn_Limpiar
             // 
@@ -597,7 +597,7 @@
             this.btn_Limpiar.Text = "Limpiar";
             this.btn_Limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Limpiar.UseVisualStyleBackColor = true;
-            this.btn_Limpiar.Click += new System.EventHandler(this.btn_Limpiar_Click);
+            this.btn_Limpiar.Click += new System.EventHandler(this.Btn_Limpiar_Click);
             // 
             // btn_Guardar
             // 
@@ -613,7 +613,7 @@
             this.btn_Guardar.Text = "Grabar";
             this.btn_Guardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Guardar.UseVisualStyleBackColor = true;
-            this.btn_Guardar.Click += new System.EventHandler(this.btn_Guardar_Click);
+            this.btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
             // 
             // frmMantenedorUsuario03
             // 
@@ -630,7 +630,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Mantenedor Usuario Nuevo 03";
-            this.Load += new System.EventHandler(this.frmMantenedorUsuario03_Load);
+            this.Load += new System.EventHandler(this.FrmMantenedorUsuario03_Load);
             this.stsEstado.ResumeLayout(false);
             this.stsEstado.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
