@@ -19,7 +19,9 @@ namespace ControlDosimetro
     {
         #region "Definicion variable"
 
-        TextBox txtBox = new TextBox();
+        TextBox txtColUsuario = new TextBox();
+        TextBox txtColNombre = new TextBox();
+        public bool bolFiltro;
         enum ConfGrilla: int
         {
             Id_Usuario = 0,
@@ -285,7 +287,12 @@ namespace ControlDosimetro
             var bs = new BindingSource();
             {
                 bs.DataSource = dgvGrilla.DataSource;
-                bs.Filter = ColUsuario.DataPropertyName + " like '%" + txtBox.Text + "%'";
+                string strFiltro = txtColUsuario.Text != "" ? ColUsuario.DataPropertyName + " like '%" + txtColUsuario.Text + "%'" : "";
+                strFiltro += strFiltro != "" && txtColNombre.Text != "" ? " and " : "";
+                strFiltro +=   txtColNombre.Text != "" ? ColNombres.DataPropertyName + " like '%" + txtColNombre.Text + "%'":"";
+
+
+                bs.Filter = strFiltro;
                 dgvGrilla.DataSource = bs;
             }
         }
@@ -298,11 +305,21 @@ namespace ControlDosimetro
         {
             int columnIndex = 0;
             Point headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;                     
-            txtBox.Location = new Point(headerCellLocation.X, headerCellLocation.Y+20);
-            txtBox.BackColor = Color.AliceBlue;
-            txtBox.Width = ColUsuario.Width;
-            txtBox.TextChanged += new EventHandler(TextBox_Changed);
-            dgvGrilla.Controls.Add(txtBox);
+            txtColUsuario.Location = new Point(headerCellLocation.X, headerCellLocation.Y+20);
+            txtColUsuario.BackColor = Color.AliceBlue;
+            txtColUsuario.Width = ColUsuario.Width;
+            txtColUsuario.Validated += new EventHandler(txtGrilla_Validated);
+            txtColUsuario.KeyPress += new KeyPressEventHandler(txtGrilla_KeyPress);
+            dgvGrilla.Controls.Add(txtColUsuario);
+
+            columnIndex = 1;
+            headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
+            txtColNombre.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
+            txtColNombre.BackColor = Color.AliceBlue;
+            txtColNombre.Width = ColNombres.Width;
+            txtColNombre.Validated += new EventHandler(txtGrilla_Validated);
+            txtColNombre.KeyPress += new KeyPressEventHandler(txtGrilla_KeyPress);
+            dgvGrilla.Controls.Add(txtColNombre);
         }
 
         private void DgvGrilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -311,12 +328,22 @@ namespace ControlDosimetro
             LlamadoAModificar(intFila);
         }
 
-        private void TextBox_Changed(object sender, EventArgs e)
+        private void txtGrilla_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Filtro();
+            bolFiltro = true;
+        }
+
+        private void txtGrilla_Validated(object sender, EventArgs e)
+        {
+            if(bolFiltro==true)
+             Filtro();
+
+            bolFiltro = false;
         }
 
         #endregion
+
+
 
         #region "boton"
         private void Btn_Limpiar_Click(object sender, EventArgs e)
@@ -346,23 +373,9 @@ namespace ControlDosimetro
             AsignarEvento();
 
             Grabar();
-           // LimpiarFormulario();
+
             tssEstado.Text = "Nuevo";
             txt_id_tipo_doc.Text = "0";
-
-            //if (!String.IsNullOrEmpty(txt_rut.Text) && !String.IsNullOrEmpty(txt_Maternos.Text) && !String.IsNullOrEmpty(txt_paterno.Text) && !String.IsNullOrEmpty(txt_Nombres.Text) && !String.IsNullOrEmpty(txt_Usuario.Text))
-            //{
-            //    Grabar();
-            //    LimpiarFormulario();
-            ////    tssEstado.Text = "Nuevo";
-            //    txt_id_tipo_doc.Text = "0";
-
-            //}
-            //else {
-            //    MessageBox.Show("Debe Completar todos los campos");
-            //}
-
-
 
             Cursor = Cursors.Default;
 
@@ -454,7 +467,8 @@ namespace ControlDosimetro
 
         private void DgvGrilla_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
-            txtBox.Width = ColUsuario.Width;
+            txtColUsuario.Width = ColUsuario.Width;
+            txtColNombre.Width = ColNombres.Width;  
         }
 
         private void Txt_Contraseña1_TextChanged(object sender, EventArgs e)
@@ -467,5 +481,6 @@ namespace ControlDosimetro
             AsignarEvento();
                
         }
+
     }
 }
