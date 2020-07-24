@@ -184,18 +184,19 @@ namespace ControlDosimetro
             bolResult = false;
             if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
             {
-                if ((tssEstado.Text == "Nuevo")&&(txt_id_tipo_doc.Text=="0"))
+                if ((tssEstado.Text == "Nuevo") && (txt_id_tipo_doc.Text == "0"))
                 {
-                    ClaseComun.Insertar(Clases.clsBD.BD,tbl_Usuario, ref bolResult);
+                    ClaseComun.Insertar(Clases.clsBD.BD, tbl_Usuario, ref bolResult);
                     if (bolResult == true)
                     {
                         CargarGrilla();
-                        MessageBox.Show("Dato Guardado");                        
+                        MessageBox.Show("Dato Guardado");
                     }
                 }
                 else
                 if (tssEstado.Text == "Modificar")
                 {
+
                     if (!String.IsNullOrEmpty(txt_rut.Text) && !String.IsNullOrEmpty(txt_Maternos.Text) && !String.IsNullOrEmpty(txt_paterno.Text) && !String.IsNullOrEmpty(txt_Nombres.Text) && !String.IsNullOrEmpty(txt_Usuario.Text))
                     {
 
@@ -209,10 +210,9 @@ namespace ControlDosimetro
                     }
                     else
                     {
-                        MessageBox.Show("Completar todos los datos");
+                        MessageBox.Show("Completar todos los datos ingresar modificación");
                     }
-                
-                }
+                }    
             }  
         }
 
@@ -345,17 +345,22 @@ namespace ControlDosimetro
 
             AsignarEvento();
 
-            if (!String.IsNullOrEmpty(txt_rut.Text) && !String.IsNullOrEmpty(txt_Maternos.Text) && !String.IsNullOrEmpty(txt_paterno.Text) && !String.IsNullOrEmpty(txt_Nombres.Text) && !String.IsNullOrEmpty(txt_Usuario.Text))
-            {
-                Grabar();
-                LimpiarFormulario();
-                tssEstado.Text = "Nuevo";
-                txt_id_tipo_doc.Text = "0";
+            Grabar();
+           // LimpiarFormulario();
+            tssEstado.Text = "Nuevo";
+            txt_id_tipo_doc.Text = "0";
 
-            }
-            else {
-                MessageBox.Show("Debe Completar todos los campos");
-            }
+            //if (!String.IsNullOrEmpty(txt_rut.Text) && !String.IsNullOrEmpty(txt_Maternos.Text) && !String.IsNullOrEmpty(txt_paterno.Text) && !String.IsNullOrEmpty(txt_Nombres.Text) && !String.IsNullOrEmpty(txt_Usuario.Text))
+            //{
+            //    Grabar();
+            //    LimpiarFormulario();
+            ////    tssEstado.Text = "Nuevo";
+            //    txt_id_tipo_doc.Text = "0";
+
+            //}
+            //else {
+            //    MessageBox.Show("Debe Completar todos los campos");
+            //}
 
 
 

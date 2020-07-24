@@ -153,7 +153,7 @@
             this.tsbAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbAgregar.Name = "tsbAgregar";
             this.tsbAgregar.Size = new System.Drawing.Size(23, 22);
-            this.tsbAgregar.Text = "Permite  Agregar un perfil de usuario";
+            this.tsbAgregar.Text = "Permite  agregar un perfil de usuario";
             this.tsbAgregar.Click += new System.EventHandler(this.TsbAgregar_Click);
             // 
             // scPrincipal
@@ -613,6 +613,7 @@
             this.btn_Guardar.Text = "Grabar";
             this.btn_Guardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Guardar.UseVisualStyleBackColor = true;
+            this.btn_Guardar.TextChanged += new System.EventHandler(this.Txt_Contraseña1_TextChanged);
             this.btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
             this.btn_Guardar.Leave += new System.EventHandler(this.confirmarRut);
             // 
