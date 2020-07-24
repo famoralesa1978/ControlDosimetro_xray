@@ -18,19 +18,19 @@ namespace ControlDosimetro
     public partial class frmBusquedaEmpresa : Form
     {
 
-        #region "Definicion variable"
-				clsConectorSqlServer Conectar = new clsConectorSqlServer();
-				clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-            clsEventoControl ClaseEvento = new clsEventoControl();
-        #endregion
+		#region "Definicion variable"
+		clsConectorSqlServer Conectar = new clsConectorSqlServer();
+		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
+				clsEventoControl ClaseEvento = new clsEventoControl();
+		#endregion
 
-        public frmBusquedaEmpresa()
-        {
-            InitializeComponent();
+		public frmBusquedaEmpresa()
+		{
+			InitializeComponent();
 			AsignarEvento();
-            Cargar_Estado();
-            HablitarBarra(false);
-        }
+			Cargar_Estado();
+			HablitarBarra(false);
+		}
 
     #region "Llamada de carga"
 
