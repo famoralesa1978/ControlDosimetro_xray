@@ -614,6 +614,7 @@
             this.btn_Guardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Guardar.UseVisualStyleBackColor = true;
             this.btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
+            this.btn_Guardar.Leave += new System.EventHandler(this.confirmarRut);
             // 
             // frmMantenedorUsuario03
             // 

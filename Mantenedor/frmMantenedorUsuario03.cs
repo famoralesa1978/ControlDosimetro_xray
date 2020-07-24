@@ -457,6 +457,10 @@ namespace ControlDosimetro
             txt_Contraseña.Text = clsUtiles1.GenerateHashMD5(txt_Contraseña1.Text);
         }
 
-       
+        private void confirmarRut(object sender, EventArgs e)
+        {
+            AsignarEvento();
+               
+        }
     }
 }
