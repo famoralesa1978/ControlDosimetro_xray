@@ -79,9 +79,13 @@ namespace ControlDosimetro
 
         private void btn_Agregar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             frmUsuarioMant frm = new frmUsuarioMant(0);
 			  frm.ShowDialog(this);
               Listar_Usuario();
+
+            Cursor = Cursors.Default;
         }
 
 
@@ -91,6 +95,7 @@ namespace ControlDosimetro
 		  }
           private void Cargar_Perfil()
           {
+              Cursor = Cursors.WaitCursor;
 
               // SqlCommand cmd = new SqlCommand();
               SqlCommand cmd = new SqlCommand();
@@ -101,6 +106,8 @@ namespace ControlDosimetro
               cbx_Id_perfil.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
               cbx_Id_perfil.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
               cbx_Id_perfil.DataSource = dt.Tables[0];
+
+              Cursor = Cursors.Default;
 
           }
 

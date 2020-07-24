@@ -15,7 +15,7 @@ using System.Data.Sql;
 
 namespace ControlDosimetro
 {
-    public partial class frmMantenedorTipoDocumento : Form
+    public partial class frmMantenedorUsuario : Form
     {
         #region "Definicion variable"
 
@@ -37,7 +37,7 @@ namespace ControlDosimetro
 
         #region "Inicio"
 
-        public frmMantenedorTipoDocumento()
+        public frmMantenedorUsuario()
         {
             InitializeComponent();
             scPrincipal.Panel2Collapsed = true;
@@ -46,7 +46,7 @@ namespace ControlDosimetro
             dgvGrilla.AutoGenerateColumns = false;
         }
 
-        private void frmMantenedorPerfil_Load(object sender, EventArgs e)
+        private void frmMantenedorUsuario_Load(object sender, EventArgs e)
         {            
             CargarGrilla();
         }
@@ -97,7 +97,7 @@ namespace ControlDosimetro
         private void CargarGrilla()
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "select id_tipo_doc as id, detalle_tipo_documento,id_estado,orden from glo_TipoDocumentos where id_estado= " + cbx_id_estado_Buscar.SelectedValue + "  order by orden";
+            cmd.CommandText = "select id_tipo_doc as id, detalle_tipo_documento,id_estado,orden from glo_TipoDocumentos where id_estado= " + cbx_id_estado.SelectedValue + "  order by orden";
 
             cmd.CommandType = CommandType.Text;
 
@@ -209,8 +209,8 @@ namespace ControlDosimetro
             Cursor = Cursors.WaitCursor;
 
             if (MessageBox.Show("¿Desea Eliminar la información?", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-            {
-                DataTable dt = ((DataTable)((BindingSource)((BindingSource)dgvGrilla.DataSource).DataSource).DataSource);
+            {                
+                DataTable dt = (DataTable)dgvGrilla.DataSource;
                 DataRow currentRow = dt.Rows[dgvGrilla.CurrentRow.Index];
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "pa_TipoDocumento_del " + currentRow[ConfGrilla.id.ToString()].ToString();
@@ -280,7 +280,7 @@ namespace ControlDosimetro
             txtBox.Width = Coldetalle_tipo_documento.Width;
         }
 
-        private void cmsMenuContexto_Opening(object sender, CancelEventArgs e)
+        private void dgvGrilla_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

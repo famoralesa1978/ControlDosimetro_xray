@@ -1,6 +1,6 @@
 ﻿namespace ControlDosimetro
 {
-    partial class frmMantenedorTipoDocumento
+    partial class frmMantenedorUsuario
     {
         /// <summary>
         /// Required designer variable.
@@ -46,7 +46,7 @@
             this.tsmActualizar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmSep3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmAsignarPermiso = new System.Windows.Forms.ToolStripMenuItem();
             this.gpxFiltrar = new System.Windows.Forms.GroupBox();
             this.btn_Buscar = new System.Windows.Forms.Button();
@@ -216,6 +216,7 @@
             this.dgvGrilla.ReadOnly = true;
             this.dgvGrilla.Size = new System.Drawing.Size(231, 141);
             this.dgvGrilla.TabIndex = 0;
+            this.dgvGrilla.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_CellContentClick);
             this.dgvGrilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_CellDoubleClick);
             this.dgvGrilla.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvGrilla_ColumnWidthChanged);
             this.dgvGrilla.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvGrilla_Paint);
@@ -234,43 +235,40 @@
             this.tsmActualizar,
             this.toolStripSeparator2,
             this.tsmEliminar,
-            this.tsmSep3,
+            this.toolStripSeparator3,
             this.tsmAsignarPermiso});
             this.cmsMenuContexto.Name = "cmsMenuContexto";
-            this.cmsMenuContexto.Size = new System.Drawing.Size(181, 104);
-            this.cmsMenuContexto.Opening += new System.ComponentModel.CancelEventHandler(this.cmsMenuContexto_Opening);
+            this.cmsMenuContexto.Size = new System.Drawing.Size(161, 82);
             // 
             // tsmActualizar
             // 
             this.tsmActualizar.Name = "tsmActualizar";
-            this.tsmActualizar.Size = new System.Drawing.Size(180, 22);
+            this.tsmActualizar.Size = new System.Drawing.Size(160, 22);
             this.tsmActualizar.Text = "Modificar";
             this.tsmActualizar.Click += new System.EventHandler(this.tsmActualizar_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(157, 6);
             // 
             // tsmEliminar
             // 
             this.tsmEliminar.Name = "tsmEliminar";
-            this.tsmEliminar.Size = new System.Drawing.Size(180, 22);
+            this.tsmEliminar.Size = new System.Drawing.Size(160, 22);
             this.tsmEliminar.Text = "Eliminar";
             this.tsmEliminar.Click += new System.EventHandler(this.tsmEliminar_Click);
             // 
-            // tsmSep3
+            // toolStripSeparator3
             // 
-            this.tsmSep3.Name = "tsmSep3";
-            this.tsmSep3.Size = new System.Drawing.Size(177, 6);
-            this.tsmSep3.Visible = false;
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(157, 6);
             // 
             // tsmAsignarPermiso
             // 
             this.tsmAsignarPermiso.Name = "tsmAsignarPermiso";
-            this.tsmAsignarPermiso.Size = new System.Drawing.Size(180, 22);
+            this.tsmAsignarPermiso.Size = new System.Drawing.Size(160, 22);
             this.tsmAsignarPermiso.Text = "Asignar permiso";
-            this.tsmAsignarPermiso.Visible = false;
             // 
             // gpxFiltrar
             // 
@@ -343,9 +341,9 @@
             this.cbx_id_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_id_estado.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbx_id_estado.FormattingEnabled = true;
-            this.cbx_id_estado.Location = new System.Drawing.Point(97, 75);
+            this.cbx_id_estado.Location = new System.Drawing.Point(97, 76);
             this.cbx_id_estado.Name = "cbx_id_estado";
-            this.cbx_id_estado.Size = new System.Drawing.Size(106, 21);
+            this.cbx_id_estado.Size = new System.Drawing.Size(121, 21);
             this.cbx_id_estado.TabIndex = 21;
             // 
             // label4
@@ -362,7 +360,7 @@
             this.txt_orden.Location = new System.Drawing.Point(97, 49);
             this.txt_orden.MaxLength = 2;
             this.txt_orden.Name = "txt_orden";
-            this.txt_orden.Size = new System.Drawing.Size(106, 20);
+            this.txt_orden.Size = new System.Drawing.Size(100, 20);
             this.txt_orden.TabIndex = 19;
             // 
             // label3
@@ -379,7 +377,7 @@
             this.txt_detalle_tipo_documento.Location = new System.Drawing.Point(97, 23);
             this.txt_detalle_tipo_documento.MaxLength = 50;
             this.txt_detalle_tipo_documento.Name = "txt_detalle_tipo_documento";
-            this.txt_detalle_tipo_documento.Size = new System.Drawing.Size(240, 20);
+            this.txt_detalle_tipo_documento.Size = new System.Drawing.Size(260, 20);
             this.txt_detalle_tipo_documento.TabIndex = 17;
             // 
             // label2
@@ -452,7 +450,7 @@
             this.btn_Guardar.UseVisualStyleBackColor = true;
             this.btn_Guardar.Click += new System.EventHandler(this.btn_Guardar_Click);
             // 
-            // frmMantenedorTipoDocumento
+            // frmMantenedorUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -463,11 +461,10 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(645, 300);
-            this.Name = "frmMantenedorTipoDocumento";
-            this.ShowInTaskbar = false;
+            this.Name = "frmMantenedorUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Mantenedor de tipo documento";
-            this.Load += new System.EventHandler(this.frmMantenedorPerfil_Load);
+            this.Load += new System.EventHandler(this.frmMantenedorUsuario_Load);
             this.stsEstado.ResumeLayout(false);
             this.stsEstado.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -508,7 +505,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmActualizar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem tsmEliminar;
-        private System.Windows.Forms.ToolStripSeparator tsmSep3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem tsmAsignarPermiso;
         private System.Windows.Forms.ToolStripStatusLabel tssDescEstado;
         private System.Windows.Forms.ToolStripStatusLabel tssEstado;

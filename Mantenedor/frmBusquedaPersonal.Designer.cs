@@ -39,8 +39,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.grdDatos = new System.Windows.Forms.DataGridView();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsb_Agregar = new System.Windows.Forms.ToolStripButton();
             this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,6 +48,8 @@
             this.Id_estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha_inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha_termino = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsb_Agregar = new System.Windows.Forms.ToolStripButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -102,6 +102,7 @@
             // txt_ref_cliente
             // 
             this.txt_ref_cliente.Location = new System.Drawing.Point(95, 17);
+            this.txt_ref_cliente.MaxLength = 4;
             this.txt_ref_cliente.Name = "txt_ref_cliente";
             this.txt_ref_cliente.Size = new System.Drawing.Size(100, 20);
             this.txt_ref_cliente.TabIndex = 1;
@@ -141,6 +142,7 @@
             this.txt_Rut.Name = "txt_Rut";
             this.txt_Rut.Size = new System.Drawing.Size(100, 20);
             this.txt_Rut.TabIndex = 2;
+            this.txt_Rut.TextChanged += new System.EventHandler(this.txt_Rut_TextChanged);
             // 
             // label1
             // 
@@ -190,27 +192,6 @@
             this.grdDatos.Size = new System.Drawing.Size(836, 335);
             this.grdDatos.TabIndex = 5;
             this.grdDatos.DoubleClick += new System.EventHandler(this.grdDatos_DoubleClick);
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsb_Agregar});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(859, 25);
-            this.toolStrip1.TabIndex = 2;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // tsb_Agregar
-            // 
-            this.tsb_Agregar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsb_Agregar.Image = global::ControlDosimetro.Properties.Resources.Agregar;
-            this.tsb_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsb_Agregar.Name = "tsb_Agregar";
-            this.tsb_Agregar.Size = new System.Drawing.Size(23, 22);
-            this.tsb_Agregar.Text = "toolStripButton1";
-            this.tsb_Agregar.ToolTipText = "Agregar Personal";
-            this.tsb_Agregar.Click += new System.EventHandler(this.btn_Agregar_Click);
             // 
             // Id_Personal
             // 
@@ -293,6 +274,27 @@
             this.Fecha_termino.Name = "Fecha_termino";
             this.Fecha_termino.ReadOnly = true;
             this.Fecha_termino.Width = 103;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsb_Agregar});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(859, 25);
+            this.toolStrip1.TabIndex = 2;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // tsb_Agregar
+            // 
+            this.tsb_Agregar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_Agregar.Image = global::ControlDosimetro.Properties.Resources.Agregar;
+            this.tsb_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_Agregar.Name = "tsb_Agregar";
+            this.tsb_Agregar.Size = new System.Drawing.Size(23, 22);
+            this.tsb_Agregar.Text = "toolStripButton1";
+            this.tsb_Agregar.ToolTipText = "Agregar Personal";
+            this.tsb_Agregar.Click += new System.EventHandler(this.btn_Agregar_Click);
             // 
             // frmBusquedaPersonal
             // 

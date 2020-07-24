@@ -207,12 +207,18 @@ namespace ControlDosimetro
 
         private void btn_cerrar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             verificar_Grabado();
             this.Close();
+
+            Cursor = Cursors.Default;
         }
 
         private void btn_Grabar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             Boolean bolResult;
             bolResult = false;
          //   if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
@@ -250,13 +256,20 @@ namespace ControlDosimetro
                             LimpiarControles();
                     }
                 }
-       //     }
+            //     }
+
+            Cursor = Cursors.Default;
         }
 
 		  private void btn_Limpiar_Click(object sender, EventArgs e)
 		  {
+              Cursor = Cursors.WaitCursor;
+
               verificar_Grabado();
               LimpiarControles();
+
+              Cursor = Cursors.Default;
+
 		  }
 
           void verificar_Grabado()
