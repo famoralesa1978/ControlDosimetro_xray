@@ -140,7 +140,7 @@ namespace ControlDosimetro
 
 	private void btn_cargarCliente_Click(object sender, EventArgs e)
 	{
-          Cursor = Cursors.WaitCursor;
+    Cursor = Cursors.WaitCursor;
 
 		if(txt_ref_cliente.Text == "")
 			Listar_Cliente(0);
@@ -202,7 +202,7 @@ namespace ControlDosimetro
 		private void tsb_Eliminar_Click(object sender, EventArgs e)
 		{
 			string strMensaje = "";
-			if(MessageBox.Show("Desea eliminar el personal","Eliminación del personal",MessageBoxButtons.OKCancel)== DialogResult.OK)
+			if(MessageBox.Show("Desea eliminar el personal?","Eliminación del personal",MessageBoxButtons.OKCancel)== DialogResult.OK)
 			{
 				for(int intFila=0; intFila< grdDatos.SelectedRows.Count; intFila++)
 				{
@@ -212,8 +212,6 @@ namespace ControlDosimetro
 					cmd.CommandType = CommandType.Text;
 					DataSet dt;
 					dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-					grdDatos.DataSource = dt.Tables[0];
-
 					if (dt.Tables[0].Rows.Count == 0)
 					{
 						MessageBox.Show("No se han cargado ningun personal");
@@ -221,12 +219,14 @@ namespace ControlDosimetro
 					else
 					{
 						if (dt.Tables[0].Rows[0][1].ToString() == "0")
-							strMensaje += grdDatos.Rows[intFila].Cells[1].Value + ",";
+							strMensaje += strMensaje==""? grdDatos.Rows[intFila].Cells[1].Value : ", "+ grdDatos.Rows[intFila].Cells[1].Value;
 					}
 				}
 
 				if (strMensaje != "")
-					MessageBox.Show("No se puede eliminar los siguiente rut, hay datos relacionados :");
+					MessageBox.Show("No se puede eliminar los siguiente rut, hay datos relacionados : \n"  + strMensaje);
+
+				btn_cargarCliente_Click(null, null);
 			}
 		}
 
