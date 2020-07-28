@@ -18,199 +18,224 @@ namespace ControlDosimetro
     public partial class frmBusquedaPersonal : Form
     {
 
-        #region "Definicion variable"
-            clsConectorSqlServer Conectar = new clsConectorSqlServer();
-				clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-            clsEventoControl ClaseEvento = new clsEventoControl();				
-        #endregion
+    #region "Definicion variable"
+        clsConectorSqlServer Conectar = new clsConectorSqlServer();
+		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
+        clsEventoControl ClaseEvento = new clsEventoControl();				
+    #endregion
 
-            public frmBusquedaPersonal(Int64 intId_Cliente)
-        {
-            InitializeComponent();
+    public frmBusquedaPersonal(Int64 intId_Cliente)
+    {
+        InitializeComponent();
 				AsignarEvento();
-            Listar_Cliente(intId_Cliente);
+        Listar_Cliente(intId_Cliente);
             
-        }
+    }
 
-        #region "Llamada de carga"
+    #region "Llamada de carga"
 
-        private void Listar_Cliente(Int64 intCliente)
-        {
-            //SqlCommand cmd = new SqlCommand();
-            SqlCommand cmd = new SqlCommand();
-            //MessageBox.Show("Conectado al servidor");
+    private void Listar_Cliente(Int64 intCliente)
+    {
+        //SqlCommand cmd = new SqlCommand();
+        SqlCommand cmd = new SqlCommand();
+        //MessageBox.Show("Conectado al servidor");
 
-				if (intCliente != 0)
-				{
-					cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
-							"from tbl_cliente " +
-							"where  (id_cliente=" + intCliente.ToString() + ") or run ='" + txt_Rut.Text + "' " +							
-							" and id_estado=1 " +
-							"order by id_cliente";
-					txt_ref_cliente.Text = intCliente.ToString();
-				}
-			  if (intCliente == 0)
-				  cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
-						  "from tbl_cliente " +
-						  "where run  ='" + txt_Rut.Text + "' " + " and id_estado=1 " +				  
-						  "order by id_cliente";
-            cmd.CommandType = CommandType.Text;
+		if (intCliente != 0)
+		{
+			cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
+					"from tbl_cliente " +
+					"where  (id_cliente=" + intCliente.ToString() + ") or run ='" + txt_Rut.Text + "' " +							
+					" and id_estado=1 " +
+					"order by id_cliente";
+			txt_ref_cliente.Text = intCliente.ToString();
+		}
+		if (intCliente == 0)
+			cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
+					"from tbl_cliente " +
+					"where run  ='" + txt_Rut.Text + "' " + " and id_estado=1 " +				  
+					"order by id_cliente";
+        cmd.CommandType = CommandType.Text;
 
-            DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+        DataSet dt;
+        dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
-				if (dt.Tables[0].Rows.Count == 0)
-				{
-					txt_ref_cliente.Text = "";
-					txt_Rut.Text = "";
-					txt_RazonSocial.Text = "";
-					tsb_Agregar.Visible = false;
-				}
-				else
-				{
-					txt_ref_cliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
-					txt_Rut.Text = dt.Tables[0].Rows[0]["run"].ToString();
-					txt_RazonSocial.Text = dt.Tables[0].Rows[0]["razon_social"].ToString();
-					txt_ref_cliente.ReadOnly = true;
-					txt_Rut.ReadOnly = true;
-					tsb_Agregar.Visible = true;
-					txt_RazonSocial.ReadOnly = true;		
-					Listar_Personal();
-				}
-        }
+		if (dt.Tables[0].Rows.Count == 0)
+		{
+			txt_ref_cliente.Text = "";
+			txt_Rut.Text = "";
+			txt_RazonSocial.Text = "";
+			tsb_Agregar.Visible = false;
+		}
+		else
+		{
+			txt_ref_cliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
+			txt_Rut.Text = dt.Tables[0].Rows[0]["run"].ToString();
+			txt_RazonSocial.Text = dt.Tables[0].Rows[0]["razon_social"].ToString();
+			txt_ref_cliente.ReadOnly = true;
+			txt_Rut.ReadOnly = true;
+			tsb_Agregar.Visible = true;
+			txt_RazonSocial.ReadOnly = true;		
+			Listar_Personal();
+		}
+    }
 
-		  private void Listar_Personal()
-		  {
-              SqlCommand cmd = new SqlCommand();
+	private void Listar_Personal()
+	{
+     SqlCommand cmd = new SqlCommand();
+		if (txt_ref_cliente.Text=="")
+              cmd.CommandText = "SELECT Id_Personal,Rut, Nombres,Paterno,Maternos,fecha_nac,Descripcion as id_estado,Fecha_inicio,fecha_termino  " +
+                                        " FROM tbl_personal P inner join glo_estado est on est.Id_estado=p.Id_estado WHERE id_cliente= 0 and" +
+                                        " rut_cliente='" + txt_Rut.Text  + "'"+
+							" order by Nombres,Paterno,Maternos";
+		else
+              cmd.CommandText = "SELECT Id_Personal,Rut, Nombres,Paterno,Maternos,fecha_nac,Descripcion  as id_estado,Fecha_inicio,fecha_termino  " +
+                                        " FROM tbl_personal P inner join glo_estado est on est.Id_estado=p.Id_estado  WHERE id_cliente= " + txt_ref_cliente.Text +
+                                          " and rut_cliente='" + txt_Rut.Text +"'" +
+							" order by Nombres,Paterno,Maternos";
+		cmd.CommandType = CommandType.Text;
+		DataSet dt;
+		dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+		grdDatos.DataSource = dt.Tables[0];
 
-			//  SqlCommand cmd = new SqlCommand();
-			  //MessageBox.Show("Conectado al servidor");
-
-			  if (txt_ref_cliente.Text=="")
-                  cmd.CommandText = "SELECT Id_Personal,Rut, Nombres,Paterno,Maternos,fecha_nac,Descripcion as id_estado,Fecha_inicio,fecha_termino  " +
-                                            " FROM tbl_personal P inner join glo_estado est on est.Id_estado=p.Id_estado WHERE id_cliente= 0 and" +
-                                            " rut_cliente='" + txt_Rut.Text  + "'"+
-								  " order by Nombres,Paterno,Maternos";
-			  else
-                  cmd.CommandText = "SELECT Id_Personal,Rut, Nombres,Paterno,Maternos,fecha_nac,Descripcion  as id_estado,Fecha_inicio,fecha_termino  " +
-                                            " FROM tbl_personal P inner join glo_estado est on est.Id_estado=p.Id_estado  WHERE id_cliente= " + txt_ref_cliente.Text +
-                                             " and rut_cliente='" + txt_Rut.Text +"'" +
-								  " order by Nombres,Paterno,Maternos";
-			  cmd.CommandType = CommandType.Text;
-
-			  //			  SELECT 
-			  //`Id_Personal`, `Rut`, `Nombres`, `Paterno`, `Maternos`, `Id_Seccion`, `Id_estado`
-			  //FROM `tbl_personal` inner join tbl_clipers
-			  //on tbl_clipers.Id_personal =tbl_personal.Id_Personal 
-
-			  //WHERE tbl_clipers.Id_Cliente=1 and id_estado=1
-			  DataSet dt;
-			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
-			  grdDatos.DataSource = dt.Tables[0];
-
-			  if (dt.Tables[0].Rows.Count == 0)
-			  {
-				  MessageBox.Show("No se han cargado ningun personal");				  
-			  }
-			  else
-			  {
-				  MessageBox.Show("Se encontraron personal asociado al cliente");				
-			  }
-		  }
+		if (dt.Tables[0].Rows.Count == 0)
+		{
+			MessageBox.Show("No se han cargado ningun personal");				  
+		}
+		else
+		{
+			MessageBox.Show("Se encontraron personal asociado al cliente");				
+		}
+	}
 		  
-        private void AsignarEvento()
-        {           
-            this.txt_Rut.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
-            txt_Rut.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
-            txt_Rut.Validated += new EventHandler(ClaseEvento.validarut_Validated);
+    private void AsignarEvento()
+    {           
+        this.txt_Rut.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
+        txt_Rut.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
+        txt_Rut.Validated += new EventHandler(ClaseEvento.validarut_Validated);
 
-				txt_ref_cliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-				txt_ref_cliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+		txt_ref_cliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+		txt_ref_cliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
 
-				txt_RazonSocial.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+		txt_RazonSocial.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 
 				
-        }
+    }
      
 
 
-        #endregion
+    #endregion
 
-        #region "button"       
+    #region "button"       
 
-        private void btn_Agregar_Click(object sender, EventArgs e)
-        {
-              Cursor = Cursors.WaitCursor;
+    private void btn_Agregar_Click(object sender, EventArgs e)
+    {
+          Cursor = Cursors.WaitCursor;
 
-			  frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), 0);
-			  frm.ShowDialog(this);
-			  Listar_Personal();
+		frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), 0);
+		frm.ShowDialog(this);
+		Listar_Personal();
 
-              Cursor = Cursors.Default;
-        }
-
-		  private void btn_cargarCliente_Click(object sender, EventArgs e)
-		  {
-              Cursor = Cursors.WaitCursor;
-
-			  if(txt_ref_cliente.Text == "")
-					Listar_Cliente(0);
-			  else
-					Listar_Cliente(Convert.ToInt64(txt_ref_cliente.Text.ToString()));
-
-			  if (txt_RazonSocial.Text == "")
-			  {
-				  MessageBox.Show("El cliente puede estar inactivo o no existe"); //este mensaje aparece con campos vacios
-				  tsb_Agregar.Visible = false;
-			  }
-
-              Cursor = Cursors.Default;
-                                   
-        }
-
-		  private void btn_Filtro_Click(object sender, EventArgs e)
-		  {
-              Cursor = Cursors.WaitCursor;
-
-              txt_ref_cliente.ReadOnly = false;
-			  txt_Rut.ReadOnly = false;
-			  txt_ref_cliente.Text = "";
-			  txt_Rut.Text = "";
-			  txt_RazonSocial.Text = "";
-			  Listar_Cliente(0);
-			  Listar_Personal();
-			  txt_ref_cliente.Focus();
-
-              Cursor = Cursors.Default;
-        }
-
-        #endregion
-
-        #region "grilla"
-
-        private void grdDatos_DoubleClick(object sender, EventArgs e)
-        {
-			  frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
-            frm.ShowDialog(this);
-				Listar_Personal();
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-        #endregion
-
-        private void txt_Rut_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+          Cursor = Cursors.Default;
     }
+
+	private void btn_cargarCliente_Click(object sender, EventArgs e)
+	{
+          Cursor = Cursors.WaitCursor;
+
+		if(txt_ref_cliente.Text == "")
+			Listar_Cliente(0);
+		else
+			Listar_Cliente(Convert.ToInt64(txt_ref_cliente.Text.ToString()));
+
+		if (txt_RazonSocial.Text == "")
+		{
+			MessageBox.Show("El cliente puede estar inactivo o no existe"); //este mensaje aparece con campos vacios
+			tsb_Agregar.Visible = false;
+		}
+
+          Cursor = Cursors.Default;
+                                   
+    }
+
+	private void btn_Filtro_Click(object sender, EventArgs e)
+	{
+          Cursor = Cursors.WaitCursor;
+
+          txt_ref_cliente.ReadOnly = false;
+		txt_Rut.ReadOnly = false;
+		txt_ref_cliente.Text = "";
+		txt_Rut.Text = "";
+		txt_RazonSocial.Text = "";
+		Listar_Cliente(0);
+		Listar_Personal();
+		txt_ref_cliente.Focus();
+
+          Cursor = Cursors.Default;
+    }
+
+    #endregion
+
+    #region "grilla"
+
+    private void grdDatos_DoubleClick(object sender, EventArgs e)
+    {
+		frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
+        frm.ShowDialog(this);
+		Listar_Personal();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+#endregion
+
+		#region Barra
+
+		private void tsb_Eliminar_Click(object sender, EventArgs e)
+		{
+			string strMensaje = "";
+			if(MessageBox.Show("Desea eliminar el personal","Eliminación del personal",MessageBoxButtons.OKCancel)== DialogResult.OK)
+			{
+				for(int intFila=0; intFila< grdDatos.SelectedRows.Count; intFila++)
+				{
+					int intIdPersonal = Convert.ToUInt16( grdDatos.Rows[intFila].Cells[0].Value);
+					SqlCommand cmd = new SqlCommand();
+					cmd.CommandText = "pa_EliminarPersonal_del " + intIdPersonal.ToString() ;
+					cmd.CommandType = CommandType.Text;
+					DataSet dt;
+					dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+					grdDatos.DataSource = dt.Tables[0];
+
+					if (dt.Tables[0].Rows.Count == 0)
+					{
+						MessageBox.Show("No se han cargado ningun personal");
+					}
+					else
+					{
+						if (dt.Tables[0].Rows[0][1].ToString() == "0")
+							strMensaje += grdDatos.Rows[intFila].Cells[1].Value + ",";
+					}
+				}
+
+				if (strMensaje != "")
+					MessageBox.Show("No se puede eliminar los siguiente rut, hay datos relacionados :");
+			}
+		}
+
+		#endregion
+
+		private void txt_Rut_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+	}
 }
