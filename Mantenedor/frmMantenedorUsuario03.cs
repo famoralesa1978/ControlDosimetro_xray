@@ -200,44 +200,48 @@ namespace ControlDosimetro
         private void LlamadoAModificar(int intFila)
         {
             BindingSource bs1 = new BindingSource();
-             bs1=(BindingSource)dgvGrilla.DataSource;
-            var currentRow = bs1.List[intFila];
+            bs1 = (BindingSource)dgvGrilla.DataSource;
 
-            btn_Guardar.Text = "Modificar";
-
-            txt_Contraseña.Enabled = false;
-            txt_Contraseña1.Enabled = false;
-
-            lbl_Id_Usuario.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_Usuario].ToString();
-            txt_Contraseña1.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString();
-            txt_Usuario.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Usuario].ToString();
-            txt_rut.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Rut].ToString();
-            txt_Nombres.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Nombres].ToString();
-            txt_paterno.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Paterno].ToString();
-            cbx_Id_estado.SelectedValue = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_estado].ToString();
-            txt_Maternos.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Maternos].ToString();
-            cbx_Id_perfil.SelectedValue = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_perfil].ToString();
-
-            txt_Contraseña.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString();
-            try
+            if (intFila >= 0)
             {
-                txt_Contraseña1.Text = clsUtiles1.DecryptTripleDES(((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString());
-            }
-            catch (Exception)
-            {
+                var currentRow = bs1.List[intFila];
 
-                txt_Contraseña1.Text = clsUtiles1.GenerateHashMD5(((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString());
+                btn_Guardar.Text = "Modificar";
+
+                txt_Contraseña.Enabled = false;
+                txt_Contraseña1.Enabled = false;
+
+                lbl_Id_Usuario.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_Usuario].ToString();
+                txt_Contraseña1.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString();
+                txt_Usuario.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Usuario].ToString();
+                txt_rut.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Rut].ToString();
+                txt_Nombres.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Nombres].ToString();
+                txt_paterno.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Paterno].ToString();
+                cbx_Id_estado.SelectedValue = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_estado].ToString();
+                txt_Maternos.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Maternos].ToString();
+                cbx_Id_perfil.SelectedValue = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_perfil].ToString();
+
                 txt_Contraseña.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString();
+                try
+                {
+                    txt_Contraseña1.Text = clsUtiles1.DecryptTripleDES(((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString());
+                }
+                catch (Exception)
+                {
+
+                    txt_Contraseña1.Text = clsUtiles1.GenerateHashMD5(((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString());
+                    txt_Contraseña.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString();
+                }
+
+                lbl_Fecha_Modificacion.Text = DateTime.Today.ToString().Substring(0, 9);
+                lbl_Fecha_agregado.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Fecha_agregado].ToString();
+
+                tssEstado.Text = "Modificar";
+                btn_Guardar.Enabled = true;
+                tsbGuardar.Enabled = true;
+
+                scPrincipal.Panel2Collapsed = false;
             }
-
-            lbl_Fecha_Modificacion.Text = DateTime.Today.ToString().Substring(0, 9);
-            lbl_Fecha_agregado.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Fecha_agregado].ToString();
-
-            tssEstado.Text = "Modificar";
-            btn_Guardar.Enabled = true;
-            tsbGuardar.Enabled = true;
-
-            scPrincipal.Panel2Collapsed = false;
         }
 
         private void Txt_Contraseña1_TextChanged(object sender, EventArgs e)
@@ -331,8 +335,8 @@ namespace ControlDosimetro
             txtColUsuario.Location = new Point(headerCellLocation.X, headerCellLocation.Y+20);
             txtColUsuario.BackColor = Color.AliceBlue;
             txtColUsuario.Width = ColUsuario.Width;
-            txtColUsuario.Validated += new EventHandler(txtGrilla_Validated);
-            txtColUsuario.KeyPress += new KeyPressEventHandler(txtGrilla_KeyPress);
+           // txtColUsuario.Validated += new EventHandler(txtGrilla_Validated);
+          //  txtColUsuario.KeyPress += new KeyPressEventHandler(txtGrilla_KeyPress);
             dgvGrilla.Controls.Add(txtColUsuario);
 
             columnIndex = 1;
@@ -340,8 +344,8 @@ namespace ControlDosimetro
             txtColNombre.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
             txtColNombre.BackColor = Color.AliceBlue;
             txtColNombre.Width = ColNombres.Width;
-            txtColNombre.Validated += new EventHandler(txtGrilla_Validated);
-            txtColNombre.KeyPress += new KeyPressEventHandler(txtGrilla_KeyPress);
+          //  txtColNombre.Validated += new EventHandler(txtGrilla_Validated);
+          //  txtColNombre.KeyPress += new KeyPressEventHandler(txtGrilla_KeyPress);
             dgvGrilla.Controls.Add(txtColNombre);
 
             columnIndex = -1;
@@ -354,7 +358,7 @@ namespace ControlDosimetro
         }
 
         private void DgvGrilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
+        {    
             int intFila = e.RowIndex;
             LlamadoAModificar(intFila);
         }
@@ -365,18 +369,18 @@ namespace ControlDosimetro
             txtColNombre.Width = ColNombres.Width;
         }
 
-        private void txtGrilla_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            bolFiltro = true;
-        }
+        //private void txtGrilla_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    bolFiltro = true;
+        //}
 
-        private void txtGrilla_Validated(object sender, EventArgs e)
-        {
-            if(bolFiltro==true)
-             Filtro();
+        //private void txtGrilla_Validated(object sender, EventArgs e)
+        //{
+        //    if(bolFiltro==true)
+        //     Filtro();
 
-            bolFiltro = false;
-        }
+        //    bolFiltro = false;
+        //}
 
         #endregion
 
