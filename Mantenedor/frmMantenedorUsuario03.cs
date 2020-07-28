@@ -335,8 +335,6 @@ namespace ControlDosimetro
             txtColUsuario.Location = new Point(headerCellLocation.X, headerCellLocation.Y+20);
             txtColUsuario.BackColor = Color.AliceBlue;
             txtColUsuario.Width = ColUsuario.Width;
-           // txtColUsuario.Validated += new EventHandler(txtGrilla_Validated);
-          //  txtColUsuario.KeyPress += new KeyPressEventHandler(txtGrilla_KeyPress);
             dgvGrilla.Controls.Add(txtColUsuario);
 
             columnIndex = 1;
@@ -344,14 +342,15 @@ namespace ControlDosimetro
             txtColNombre.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
             txtColNombre.BackColor = Color.AliceBlue;
             txtColNombre.Width = ColNombres.Width;
-          //  txtColNombre.Validated += new EventHandler(txtGrilla_Validated);
-          //  txtColNombre.KeyPress += new KeyPressEventHandler(txtGrilla_KeyPress);
             dgvGrilla.Controls.Add(txtColNombre);
 
             columnIndex = -1;
             headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
-            btnColBuscara.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
-            btnColBuscara.Text = "B";
+            btnColBuscara.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 0);
+            btnColBuscara.Image = Image.FromFile("C:\\Users\\Ara\\Source\\Repos\\famoralesa1978\\ControlDosimetro_xray\\Imagen\\Buscar.png");
+            btnColBuscara.FlatStyle = FlatStyle.Popup;
+            btnColBuscara.Height = 41;
+            btnColBuscara.Width = 41;
             btnColBuscara.Click += new EventHandler(BtnColBuscar_Click);
             //	txtBox.TextChanged += new EventHandler(TextBox_Changed);
             dgvGrilla.Controls.Add(btnColBuscara);
