@@ -312,6 +312,7 @@
             this.txt_rut.Name = "txt_rut";
             this.txt_rut.Size = new System.Drawing.Size(120, 20);
             this.txt_rut.TabIndex = 1;
+            this.txt_rut.Text = "8";
             // 
             // lbl_rut
             // 

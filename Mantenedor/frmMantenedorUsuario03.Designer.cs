@@ -493,6 +493,8 @@
             this.txt_rut.Name = "txt_rut";
             this.txt_rut.Size = new System.Drawing.Size(152, 20);
             this.txt_rut.TabIndex = 23;
+            this.txt_rut.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt_rut_KeyUp);
+            this.txt_rut.Leave += new System.EventHandler(this.txt_rut_Leave);
             // 
             // txt_Usuario
             // 
@@ -560,9 +562,9 @@
             this.lbl_rut.AutoSize = true;
             this.lbl_rut.Location = new System.Drawing.Point(24, 68);
             this.lbl_rut.Name = "lbl_rut";
-            this.lbl_rut.Size = new System.Drawing.Size(140, 13);
+            this.lbl_rut.Size = new System.Drawing.Size(36, 13);
             this.lbl_rut.TabIndex = 15;
-            this.lbl_rut.Text = "RUT  (Formato 12345678-9)";
+            this.lbl_rut.Text = "RUT  ";
             // 
             // lbl_Usuario
             // 
@@ -615,7 +617,6 @@
             this.btn_Guardar.UseVisualStyleBackColor = true;
             this.btn_Guardar.TextChanged += new System.EventHandler(this.Txt_Contraseña1_TextChanged);
             this.btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
-            this.btn_Guardar.Leave += new System.EventHandler(this.confirmarRut);
             // 
             // frmMantenedorUsuario03
             // 

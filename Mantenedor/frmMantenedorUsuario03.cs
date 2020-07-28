@@ -46,7 +46,7 @@ namespace ControlDosimetro
         clsEventoControl ClaseEvento = new clsEventoControl();
         BindingSource bs = new BindingSource();
         dllLibreriaMysql.clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
-
+        
         #endregion
 
         #region "Inicio"
@@ -131,59 +131,7 @@ namespace ControlDosimetro
         #endregion
 
         #region "Procedimiento"
-               
-        private void AsignarEvento()
-        {
-            cbx_Id_estado.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-            cbx_Id_perfil.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-
-            SqlCommand cmd = new SqlCommand();
-            //SqlCommand cmd = new SqlCommand();
-            DataSet dt;
-            string strname;
-            foreach (Control c in tbl_Usuario.Controls)
-            {
-                //foreach (Control childc in c.Controls)
-                //{
-                if (c is TextBox)
-                {
-
-                    strname = ((TextBox)c).Name;
-
-                    cmd.CommandText = "SELECT  requerido, validacion " +
-                                            " FROM glo_configuracioncampo WHERE campo= '" + strname.Replace("txt_", "") + "'";
-
-                    dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-                    if (dt.Tables[0].Rows.Count == 0)
-                        ((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-                    else
-                    {
-                        if (dt.Tables[0].Rows[0]["validacion"].ToString() == "rut")
-                        {
-                            ((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
-                            ((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
-                            ((TextBox)c).Validated += new EventHandler(ClaseEvento.validarut_Validated);
-                        }
-                        if (dt.Tables[0].Rows[0]["validacion"].ToString() == "numerico")
-                        {
-                            ((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-                            ((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-                        }
-                    }
-                }
-                if (c is ComboBox)
-                    ((ComboBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-                if (c is DateTimePicker)
-                    ((DateTimePicker)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-            }
-        }
-
-        private void confirmarRut(object sender, EventArgs e)
-        {
-            AsignarEvento();
-
-        }
-
+              
         private void LimpiarFormulario()
         {
             txt_rut.Text = "";
@@ -373,6 +321,68 @@ namespace ControlDosimetro
 
         #endregion
 
+        #region "RUT"
+
+        private void AsignarEvento()
+        {
+            cbx_Id_estado.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+            cbx_Id_perfil.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+
+            SqlCommand cmd = new SqlCommand();
+            //SqlCommand cmd = new SqlCommand();
+            DataSet dt;
+            string strname;
+            foreach (Control c in tbl_Usuario.Controls)
+            {
+                //foreach (Control childc in c.Controls)
+                //{
+                if (c is TextBox)
+                {
+                    strname = ((TextBox)c).Name;
+
+                    cmd.CommandText = "SELECT  requerido, validacion " +
+                                            " FROM glo_configuracioncampo WHERE campo= '" + strname.Replace("txt_", "") + "'";
+
+                    dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+                    if (dt.Tables[0].Rows.Count == 0)
+                        ((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+                    else
+                    {
+                        if (dt.Tables[0].Rows[0]["validacion"].ToString() == "rut")
+                        {
+                            ((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
+                            ((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
+                            ((TextBox)c).Validated += new EventHandler(ClaseEvento.validarut_Validated);
+                        }
+                        if (dt.Tables[0].Rows[0]["validacion"].ToString() == "numerico")
+                        {
+                            ((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+                            ((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+                        }
+                    }
+                }
+                if (c is ComboBox)
+                    ((ComboBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+                if (c is DateTimePicker)
+                    ((DateTimePicker)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+            }
+        }
+
+        private void txt_rut_KeyUp(object sender, KeyEventArgs e)
+        {
+            txt_rut.Text = classFuncionesGenerales.ClsValidadores.FormatearRut(txt_rut.Text);
+            txt_rut.SelectionStart = txt_rut.Text.Length;
+            txt_rut.SelectionLength = 0;
+        }
+
+        private void txt_rut_Leave(object sender, EventArgs e)
+        {
+            AsignarEvento();
+        }
+
+       
+        #endregion
+
         #region "Boton"
         private void BtnColBuscar_Click(object sender, EventArgs e)
         {
@@ -492,12 +502,15 @@ namespace ControlDosimetro
 
             Cursor = Cursors.Default;
         }
-        
+
+
+
+
+
+
+
         #endregion
 
-       
-
-     
-
+      
     }
 }
