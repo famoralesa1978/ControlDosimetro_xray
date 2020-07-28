@@ -22,6 +22,8 @@ namespace ControlDosimetro
         TextBox txtColUsuario = new TextBox();
         TextBox txtColNombre = new TextBox();
         public bool bolFiltro;
+        Button btnColBuscara = new Button();
+
         enum ConfGrilla: int
         {
             Id_Usuario = 0,
@@ -67,18 +69,18 @@ namespace ControlDosimetro
 
         #endregion
 
-        #region Procedimiento
+        #region "Llamado a carga"
+
         private void Cargar_Estado()
         {
-            ClaseComun.Listar_Estado(Clases.clsBD.BD,ref cbx_id_estadoBuscar, ref cbx_id_estadoBuscar);
-            ClaseComun.Listar_Estado(Clases.clsBD.BD,ref cbx_Id_estado, ref cbx_Id_estado);
+            ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_id_estadoBuscar, ref cbx_id_estadoBuscar);
+            ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_Id_estado, ref cbx_Id_estado);
         }
 
         private void Cargar_Perfil()
         {
             Cursor = Cursors.WaitCursor;
 
-            // SqlCommand cmd = new SqlCommand();
             SqlCommand cmd = new SqlCommand();
             {
 
@@ -103,11 +105,33 @@ namespace ControlDosimetro
                     cbx_Id_perfil.DataSource = dt.Tables[0];
 
                 Cursor = Cursors.Default;
-
             }
-
         }
 
+        private void CargarGrilla()
+        {
+
+            SqlCommand cmd = new SqlCommand();
+
+            {
+                cmd.CommandText = "SELECT [Id_Usuario],[Rut],[Nombres],[Paterno],[Maternos],u.[Id_perfil],u.[Id_estado],[Usuario],[Contraseña],[Fecha_agregado],[Fecha_Modificacion] ,u.id_estado " +
+                                                " FROM [dbo].[tbl_Usuario] U inner join tbl_perfil p on p.id_perfil=u.id_perfil" +
+                                                " where u.id_estado=" + cbx_id_estadoBuscar.SelectedValue + " and p.id_perfil=" + cbx_Id_perfilBuscar.SelectedValue +
+                                      " order by Nombres,Paterno,Maternos";
+                cmd.CommandType = CommandType.Text;
+
+                DataSet dt;
+                dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+                bs.DataSource = dt.Tables[0];
+                dgvGrilla.DataSource = bs;
+                Filtro();
+            }
+        }
+        #endregion
+
+        #region "Procedimiento"
+               
         private void AsignarEvento()
         {
             cbx_Id_estado.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
@@ -154,6 +178,12 @@ namespace ControlDosimetro
             }
         }
 
+        private void confirmarRut(object sender, EventArgs e)
+        {
+            AsignarEvento();
+
+        }
+
         private void LimpiarFormulario()
         {
             txt_rut.Text = "";
@@ -180,6 +210,7 @@ namespace ControlDosimetro
 
             // cbx_id_estado.SelectedIndex = 0;           
         }
+
         private void Grabar()
         {
            Boolean bolResult;
@@ -218,26 +249,7 @@ namespace ControlDosimetro
             }  
         }
 
-        private void CargarGrilla()
-        {
-
-            SqlCommand cmd = new SqlCommand();
-
-            {
-                cmd.CommandText = "SELECT [Id_Usuario],[Rut],[Nombres],[Paterno],[Maternos],u.[Id_perfil],u.[Id_estado],[Usuario],[Contraseña],[Fecha_agregado],[Fecha_Modificacion] ,u.id_estado " +
-                                                " FROM [dbo].[tbl_Usuario] U inner join tbl_perfil p on p.id_perfil=u.id_perfil" +
-                                                " where u.id_estado=" + cbx_id_estadoBuscar.SelectedValue + " and p.id_perfil=" + cbx_Id_perfilBuscar.SelectedValue +
-                                      " order by Nombres,Paterno,Maternos";
-                cmd.CommandType = CommandType.Text;
-
-                DataSet dt;
-                dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-                bs.DataSource = dt.Tables[0];
-                dgvGrilla.DataSource = bs;
-                Filtro();
-            }
-        }
+       
         private void LlamadoAModificar(int intFila)
         {
             BindingSource bs1 = new BindingSource();
@@ -246,12 +258,11 @@ namespace ControlDosimetro
 
             btn_Guardar.Text = "Modificar";
 
-            //lbl_Contraseña.Enabled = false;
             txt_Contraseña.Enabled = false;
             txt_Contraseña1.Enabled = false;
 
             lbl_Id_Usuario.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_Usuario].ToString();
-           // txt_Contraseña1.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString();
+            txt_Contraseña1.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString();
             txt_Usuario.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Usuario].ToString();
             txt_rut.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Rut].ToString();
             txt_Nombres.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Nombres].ToString();
@@ -282,6 +293,15 @@ namespace ControlDosimetro
             scPrincipal.Panel2Collapsed = false;
         }
 
+        private void Txt_Contraseña1_TextChanged(object sender, EventArgs e)
+        {
+            txt_Contraseña.Text = clsUtiles1.GenerateHashMD5(txt_Contraseña1.Text);
+        }
+
+        #endregion
+
+        #region "Grilla"
+
         private void Filtro()
         {
             var bs = new BindingSource();
@@ -289,17 +309,13 @@ namespace ControlDosimetro
                 bs.DataSource = dgvGrilla.DataSource;
                 string strFiltro = txtColUsuario.Text != "" ? ColUsuario.DataPropertyName + " like '%" + txtColUsuario.Text + "%'" : "";
                 strFiltro += strFiltro != "" && txtColNombre.Text != "" ? " and " : "";
-                strFiltro +=   txtColNombre.Text != "" ? ColNombres.DataPropertyName + " like '%" + txtColNombre.Text + "%'":"";
+                strFiltro += txtColNombre.Text != "" ? ColNombres.DataPropertyName + " like '%" + txtColNombre.Text + "%'" : "";
 
 
                 bs.Filter = strFiltro;
                 dgvGrilla.DataSource = bs;
             }
         }
-
-        #endregion
-
-        #region " grilla"
 
         private void DgvGrilla_Paint(object sender, PaintEventArgs e)
         {
@@ -320,12 +336,26 @@ namespace ControlDosimetro
             txtColNombre.Validated += new EventHandler(txtGrilla_Validated);
             txtColNombre.KeyPress += new KeyPressEventHandler(txtGrilla_KeyPress);
             dgvGrilla.Controls.Add(txtColNombre);
+
+            columnIndex = -1;
+            headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
+            btnColBuscara.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
+            btnColBuscara.Text = "B";
+            btnColBuscara.Click += new EventHandler(BtnColBuscar_Click);
+            //	txtBox.TextChanged += new EventHandler(TextBox_Changed);
+            dgvGrilla.Controls.Add(btnColBuscara);
         }
 
         private void DgvGrilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int intFila = e.RowIndex;
             LlamadoAModificar(intFila);
+        }
+
+        private void DgvGrilla_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            txtColUsuario.Width = ColUsuario.Width;
+            txtColNombre.Width = ColNombres.Width;
         }
 
         private void txtGrilla_KeyPress(object sender, KeyPressEventArgs e)
@@ -343,9 +373,12 @@ namespace ControlDosimetro
 
         #endregion
 
+        #region "Boton"
+        private void BtnColBuscar_Click(object sender, EventArgs e)
+        {
+            Filtro();
+        }
 
-
-        #region "boton"
         private void Btn_Limpiar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
@@ -378,8 +411,6 @@ namespace ControlDosimetro
             txt_id_tipo_doc.Text = "0";
 
             Cursor = Cursors.Default;
-
-    
         }
 
         private void Btn_Minimizar_Click(object sender, EventArgs e)
@@ -427,7 +458,7 @@ namespace ControlDosimetro
 
         #endregion
 
-        #region Barra
+        #region "Barra"
 
         private void TsbGuardar_Click(object sender, EventArgs e)
         {
@@ -461,26 +492,12 @@ namespace ControlDosimetro
 
             Cursor = Cursors.Default;
         }
-
-
+        
         #endregion
 
-        private void DgvGrilla_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
-        {
-            txtColUsuario.Width = ColUsuario.Width;
-            txtColNombre.Width = ColNombres.Width;  
-        }
+       
 
-        private void Txt_Contraseña1_TextChanged(object sender, EventArgs e)
-        {
-            txt_Contraseña.Text = clsUtiles1.GenerateHashMD5(txt_Contraseña1.Text);
-        }
-
-        private void confirmarRut(object sender, EventArgs e)
-        {
-            AsignarEvento();
-               
-        }
+     
 
     }
 }

@@ -631,7 +631,7 @@
             this.Name = "frmMantenedorUsuario03";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Mantenedor Usuario Nuevo 03";
+            this.Text = "Mantenedor Usuario";
             this.Load += new System.EventHandler(this.FrmMantenedorUsuario03_Load);
             this.stsEstado.ResumeLayout(false);
             this.stsEstado.PerformLayout();
