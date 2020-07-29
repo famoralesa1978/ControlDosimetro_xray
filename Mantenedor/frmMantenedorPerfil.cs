@@ -204,7 +204,7 @@ namespace ControlDosimetro
 
             if (MessageBox.Show("¿Desea Eliminar la información?", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
             {                
-                DataTable dt = (DataTable)dgvGrilla.DataSource;
+                DataTable dt = ((DataTable)((BindingSource)((BindingSource)dgvGrilla.DataSource).DataSource).DataSource);
                 DataRow currentRow = dt.Rows[dgvGrilla.CurrentRow.Index];
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "pa_Perfil_del " + currentRow[ConfGrilla.id.ToString()].ToString();

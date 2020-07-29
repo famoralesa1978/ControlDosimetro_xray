@@ -49,7 +49,6 @@ namespace ControlDosimetro
         {
             InitializeComponent();
 
-           
             SqlCommand cmdcombo = new SqlCommand();
 				//SqlCommand cmdcombo = new SqlCommand();
 			DataSet dtcombo;			
@@ -58,21 +57,17 @@ namespace ControlDosimetro
 			cmdcombo.CommandType = CommandType.Text;
 			dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
 
-	
-
-
 			AsignarEvento();
-		//	Cargar_Cliente(intId_Cliente);
-            //   Cargar_Sucursal();
 			Cargar_Anno();
             btn_Guardar.Visible = false;
             pnl_Progreso.Visible = false;
             grpFiltro.Enabled = false;
+            lbl_ValorMax.Text = "";
         }
 
         #region "Llamada de carga"
 
-                private void Cargar_Cliente(Int64 intCodCliente)
+          private void Cargar_Cliente(Int64 intCodCliente)
                 {
                     SqlCommand cmd = new SqlCommand();
                     cmd.CommandText = "select run,Razon_Social,N_Cliente_Ref,region + ','+ comuna +','+Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
@@ -210,7 +205,11 @@ namespace ControlDosimetro
         private void AsignarEvento()
         {           
 			this.txtRut.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
-			txtRut.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);			
+			txtRut.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
+            this.txt_N_TLD.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+            txt_N_TLD.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+            lbl_id_cliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+            lbl_id_cliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
         }
 
         #endregion
@@ -231,7 +230,14 @@ namespace ControlDosimetro
               btn_Corregir.Enabled = true;
               btn_Guardar.Enabled = true;
 			  grdDatos.Focus();
-		  }
+            SqlCommand cmdValorMax = new SqlCommand();
+            DataSet dtValorMax;
+            cmdValorMax.CommandText = "select max(n_dosimetro) valor from [dbo].[ges_dosimetro_estado_TLD]";
+            cmdValorMax.CommandType = CommandType.Text;
+            dtValorMax = Conectar.Listar(Clases.clsBD.BD, cmdValorMax);
+            
+            lbl_ValorMax.Text = dtValorMax.Tables[0].Rows[0]["valor"].ToString()=="0"?"1": dtValorMax.Tables[0].Rows[0]["valor"].ToString();
+        }
 
 		 private void btn_Guardar_Click(object sender, EventArgs e)
 		  {
@@ -363,7 +369,7 @@ namespace ControlDosimetro
 
         private void btn_Corregir_Click(object sender, EventArgs e)
           {
-              SqlCommand cmd = new SqlCommand();
+              
               SqlCommand cmd2 = new SqlCommand();
               //	  SqlCommand cmd = new SqlCommand();
               SqlCommand cmdpersonal = new SqlCommand();
@@ -389,21 +395,22 @@ namespace ControlDosimetro
               pgb_Barra.Maximum = grdDatos.RowCount;
               pnl_Progreso.Refresh();
               int intN_Dos = 0;
-              cmd.CommandText = "SELECT isnull(max([n_dosimetro]),0)n_dosimetro   FROM[dbo].[ges_dosimetro_estado_TLD]";
-              cmd.CommandType = CommandType.Text;
+            SqlCommand cmd = new SqlCommand();
+            //   cmd.CommandText = "SELECT isnull(max([n_dosimetro]),0)n_dosimetro   FROM[dbo].[ges_dosimetro_estado_TLD]";
+            cmd.CommandText = "SELECT [n_dosimetro]  FROM[dbo].[ges_dosimetro_estado_TLD] where n_dosimetro>=" + txt_N_TLD.Text;
+            cmd.CommandType = CommandType.Text;
               DataSet dt;
               dt = Conectar.Listar(Clases.clsBD.BD,cmd);
-
-              if (dt.Tables[0].Rows.Count > 0)
-                  intN_Dos = 1 + Int16.Parse(dt.Tables[0].Rows[0]["n_dosimetro"].ToString());
-              else
-                  intN_Dos = 1;
-
+            DataTable dtNTld = dt.Tables[0];
+            
+             intN_Dos = Int16.Parse(txt_N_TLD.Text);
+            
               cmd.CommandText = "SELECT [N_Documento]   FROM[dbo].[ges_dosimetro_estado_TLD] where id_periodo= " + cbx_id_periodo.SelectedValue +
                                 " and Id_cliente=" + lbl_id_cliente.Text + " union all " +
                                 "SELECT isnull(max([N_Documento]),0)n_dosimetro   FROM[dbo].[ges_dosimetro_estado_TLD] where " +
                                 "  Id_cliente<>" + lbl_id_cliente.Text;
               cmd.CommandType = CommandType.Text;
+
               dt = Conectar.Listar(Clases.clsBD.BD,cmd);
               int intN_Doc;
               if (dt.Tables[0].Rows.Count > 0)                  
@@ -428,6 +435,8 @@ namespace ControlDosimetro
 
                   if ((checkGenerar.Value.ToString() == "1") && (checkCell.Value.ToString() == "0") && (txtid_estadodosimetro.Value.ToString ()=="-1"))
                   {
+                    intN_Dos = DevolverNDosimetro(intN_Dos, dtNTld);
+                    
                       txtndocumento.Value = intN_Doc.ToString();
                       txtnpelicula.Value = intN_Dos.ToString();
                       intN_Dos = intN_Dos + 1;
@@ -441,6 +450,21 @@ namespace ControlDosimetro
 
             //  Listar_Personal();
           }
+
+        int DevolverNDosimetro(int intDosimetro, DataTable dt)
+        {
+            bool bolResul = false;
+
+            while (!bolResul)
+            {
+                dt.DefaultView.RowFilter = "n_dosimetro=" + intDosimetro.ToString();
+                bolResul = dt.DefaultView.Count > 0 ? false : true;
+                intDosimetro = dt.DefaultView.Count > 0 ? intDosimetro+1 : intDosimetro;
+            }
+            
+
+            return intDosimetro;
+        }
 
         private void btn_Excel_Click(object sender, EventArgs e)
         {
@@ -987,6 +1011,27 @@ namespace ControlDosimetro
         {
             frmBusquedaEmpresa frm = new frmBusquedaEmpresa();
             frm.Show(this);
+        }
+
+        private void grdDatos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((grdDatos.CurrentCell.ColumnIndex == N_pelicula.Index+2))
+            {
+                if (e.KeyCode == Keys.Delete)
+                {
+                    SqlCommand cmdValorMax = new SqlCommand();
+                    DataSet dtValorMax;
+                    cmdValorMax.CommandText = "pa_DosimetroTLD_del " + grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[2].Value.ToString() + ",'"+ Clases.clsUsuario.Usuario + "'";
+                    cmdValorMax.CommandType = CommandType.Text;
+                    dtValorMax = Conectar.Listar(Clases.clsBD.BD, cmdValorMax);
+                    if (dtValorMax.Tables[0].Rows[0][0].ToString() == "-1")
+                    {                    
+                        btn_cargar_Click(null,null);
+                    }
+                    
+                    MessageBox.Show(dtValorMax.Tables[0].Rows[0][1].ToString());
+                }
+            }
         }
     }
 }

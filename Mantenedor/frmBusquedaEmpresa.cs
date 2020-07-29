@@ -18,54 +18,62 @@ namespace ControlDosimetro
     public partial class frmBusquedaEmpresa : Form
     {
 
-        #region "Definicion variable"
-				clsConectorSqlServer Conectar = new clsConectorSqlServer();
-				clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-            clsEventoControl ClaseEvento = new clsEventoControl();
-        #endregion
+		#region "Definicion variable"
+		clsConectorSqlServer Conectar = new clsConectorSqlServer();
+		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
+				clsEventoControl ClaseEvento = new clsEventoControl();
+		#endregion
 
-        public frmBusquedaEmpresa()
-        {
-            InitializeComponent();
+		public frmBusquedaEmpresa()
+		{
+			InitializeComponent();
 			AsignarEvento();
-            Cargar_Estado();
-            HablitarBarra(false);
-        }
+			Cargar_Estado();
+			HablitarBarra(false);
+		}
 
-        #region "Llamada de carga"
+    #region "Llamada de carga"
 
-        private void Listar_Cliente()
-        {
-            Cursor = Cursors.WaitCursor;
-            //  SqlCommand cmd = new SqlCommand()
-            SqlCommand cmd = new SqlCommand();
+		string FormarFiltro()
+		{
+			string Filtro = "";
+
+			if (!String.IsNullOrWhiteSpace(txt_Rut.Text))
+				Filtro += Filtro != ""?  " and run like '%" + txt_Rut.Text + "%'": " run like '%" + txt_Rut.Text + "%'";
+			if (!String.IsNullOrWhiteSpace(txt_RazonSocial.Text))
+				Filtro += Filtro != "" ? " and razon_social like '%" + txt_RazonSocial.Text + "%'" : "razon_social like '%" + txt_RazonSocial.Text + "%'";
+			if (!String.IsNullOrWhiteSpace(txt_RazonSocial.Text))
+				Filtro += Filtro != "" ? " and razon_social like '%" + txt_RazonSocial.Text + "%'" : "razon_social like '%" + txt_RazonSocial.Text + "%'";
+			if (!String.IsNullOrWhiteSpace(txt_N_Cliente_Ref.Text))
+				Filtro += Filtro != "" ? " and id_cliente =" + txt_N_Cliente_Ref.Text + "":"id_cliente =" + txt_N_Cliente_Ref.Text + "";
+			if (!String.IsNullOrWhiteSpace(txt_Direccion.Text))
+				Filtro += Filtro != "" ? " and Direccion like '%" + txt_Direccion.Text + "%'"  : "Direccion like '%" + txt_Direccion.Text + "%'";
+			if (!String.IsNullOrWhiteSpace(txt_NombreFantasia.Text))
+				Filtro += Filtro != "" ? " and Nombre_fantasia like '%" + txt_NombreFantasia.Text + "%'" : "Nombre_fantasia like '%" + txt_NombreFantasia.Text + "%'";
+
+			return Filtro !=""? " and " + Filtro:  " " +Filtro;
+		}
+
+      private void Listar_Cliente()
+      {
+          Cursor = Cursors.WaitCursor;
+          //  SqlCommand cmd = new SqlCommand()
+          SqlCommand cmd = new SqlCommand();
+
+			    cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono,Nombre_fantasia " +
+                              "from tbl_cliente " +
+                              "where  id_estado=" + cbx_Estado.SelectedValue   + FormarFiltro() + " order by id_cliente";
+          cmd.CommandType = CommandType.Text;
 
 
-            //MessageBox.Show("Conectado al servidor");
+          DataSet dt;
+          dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
-            if (txt_N_Cliente_Ref.Text != "")
-                cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
-                                "from tbl_cliente " +
-                                "where run like '%" + txt_Rut.Text + "%' and razon_social like '%" + txt_RazonSocial.Text + "%' " +
-                                " and id_estado=" + cbx_Estado.SelectedValue + " and id_cliente =" + txt_N_Cliente_Ref.Text + " " +
-                                " and Direccion like '%" + txt_Direccion.Text + "%' order by id_cliente";
-            else
-                cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
-                                "from tbl_cliente " +
-                                "where run like '%" + txt_Rut.Text + "%' and razon_social like '%" + txt_RazonSocial.Text + "%' " +
-                                " and id_estado=" + cbx_Estado.SelectedValue +
-                                " and Direccion like '%" + txt_Direccion.Text + "%' order by id_cliente";
-            cmd.CommandType = CommandType.Text;
+          grdDatos.DataSource = dt.Tables[0];
 
-
-            DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-            grdDatos.DataSource = dt.Tables[0];
-
-            HablitarBarra(dt.Tables[0].Rows.Count>0?true:false);
-            Cursor = Cursors.Default;
-        }
+          HablitarBarra(dt.Tables[0].Rows.Count>0?true:false);
+          Cursor = Cursors.Default;
+      }
 
         void HablitarBarra(bool bolEstado)
         {

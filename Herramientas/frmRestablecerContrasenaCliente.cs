@@ -97,7 +97,7 @@ namespace ControlDosimetro
                 {
                     SqlCommand cmd1 = new SqlCommand
                     {
-                        CommandText = "select Desde,Credencial,Clave,Host,Port from conf_Correo"
+                        CommandText = "pa_ConfCorreo_sel"
                     };
                     DataSet dt;
 

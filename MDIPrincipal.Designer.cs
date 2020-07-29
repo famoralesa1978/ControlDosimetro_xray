@@ -30,17 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIPrincipal));
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Versión 8.0.1.0");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Versión 8.0.1.1");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Versión 8.0.1.2");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Versión 8.0.1.3");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Versión 8.0.1.5");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Versión del sistema y sus actualizaciones", new System.Windows.Forms.TreeNode[] {
-            treeNode7,
-            treeNode8,
-            treeNode9,
-            treeNode10,
-            treeNode11});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Versión 8.0.1.0");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Versión 8.0.1.1");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Versión 8.0.1.2");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Versión 8.0.1.3");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Versión 8.0.1.5");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Versión del sistema y sus actualizaciones", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode5});
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.mnuMantenedor = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMantConfiguracionMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -126,7 +126,7 @@
             this.tsbPrincipalCliente = new System.Windows.Forms.ToolStripButton();
             this.tsbPrincipalPersonal = new System.Windows.Forms.ToolStripButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.nuevoUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.frmUtilidadesTraspaso = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -169,7 +169,6 @@
             this.mnuMantSucursal,
             this.mnuMantPersonal,
             this.toolStripSeparator3,
-            this.nuevoUsuarioToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.mnuMantenedor.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.mnuMantenedor.Name = "mnuMantenedor";
@@ -393,49 +392,49 @@
             this.mnuProcesoIngresarDosisTLD,
             this.mnuProcesoTLDDosisISP});
             this.mnuProcesoTLD.Name = "mnuProcesoTLD";
-            this.mnuProcesoTLD.Size = new System.Drawing.Size(84, 20);
+            this.mnuProcesoTLD.Size = new System.Drawing.Size(85, 20);
             this.mnuProcesoTLD.Tag = "300";
             this.mnuProcesoTLD.Text = "Proceso TLD";
             // 
             // mnuProcesoTLDIngresoPelicula
             // 
             this.mnuProcesoTLDIngresoPelicula.Name = "mnuProcesoTLDIngresoPelicula";
-            this.mnuProcesoTLDIngresoPelicula.Size = new System.Drawing.Size(180, 22);
+            this.mnuProcesoTLDIngresoPelicula.Size = new System.Drawing.Size(148, 22);
             this.mnuProcesoTLDIngresoPelicula.Text = "Ingreso TLD";
             this.mnuProcesoTLDIngresoPelicula.Click += new System.EventHandler(this.MnuProcesoTLDIngresoPelicula_Click);
             // 
             // mnuProcesoTLDEnviado
             // 
             this.mnuProcesoTLDEnviado.Name = "mnuProcesoTLDEnviado";
-            this.mnuProcesoTLDEnviado.Size = new System.Drawing.Size(180, 22);
+            this.mnuProcesoTLDEnviado.Size = new System.Drawing.Size(148, 22);
             this.mnuProcesoTLDEnviado.Text = "Enviado";
             this.mnuProcesoTLDEnviado.Click += new System.EventHandler(this.MnuProcesoEnviado_Click);
             // 
             // mnuProcesoTLDRecepcion
             // 
             this.mnuProcesoTLDRecepcion.Name = "mnuProcesoTLDRecepcion";
-            this.mnuProcesoTLDRecepcion.Size = new System.Drawing.Size(180, 22);
+            this.mnuProcesoTLDRecepcion.Size = new System.Drawing.Size(148, 22);
             this.mnuProcesoTLDRecepcion.Text = "Recepción";
             this.mnuProcesoTLDRecepcion.Click += new System.EventHandler(this.MnuProcesoRecepcion_Click);
             // 
             // mnuProcesoTLDIniciarLectura
             // 
             this.mnuProcesoTLDIniciarLectura.Name = "mnuProcesoTLDIniciarLectura";
-            this.mnuProcesoTLDIniciarLectura.Size = new System.Drawing.Size(180, 22);
+            this.mnuProcesoTLDIniciarLectura.Size = new System.Drawing.Size(148, 22);
             this.mnuProcesoTLDIniciarLectura.Text = "Iniciar Lectura";
             this.mnuProcesoTLDIniciarLectura.Click += new System.EventHandler(this.MnuProcesoTLDIniciarLectura_Click);
             // 
             // mnuProcesoIngresarDosisTLD
             // 
             this.mnuProcesoIngresarDosisTLD.Name = "mnuProcesoIngresarDosisTLD";
-            this.mnuProcesoIngresarDosisTLD.Size = new System.Drawing.Size(180, 22);
+            this.mnuProcesoIngresarDosisTLD.Size = new System.Drawing.Size(148, 22);
             this.mnuProcesoIngresarDosisTLD.Text = "Ingresar Dosis";
             this.mnuProcesoIngresarDosisTLD.Click += new System.EventHandler(this.MnuProcesoIngresarDosisTLD_Click);
             // 
             // mnuProcesoTLDDosisISP
             // 
             this.mnuProcesoTLDDosisISP.Name = "mnuProcesoTLDDosisISP";
-            this.mnuProcesoTLDDosisISP.Size = new System.Drawing.Size(180, 22);
+            this.mnuProcesoTLDDosisISP.Size = new System.Drawing.Size(148, 22);
             this.mnuProcesoTLDDosisISP.Text = "Dosis ISP";
             this.mnuProcesoTLDDosisISP.Click += new System.EventHandler(this.MnuProcesoTLDDosisISP_Click);
             // 
@@ -451,7 +450,7 @@
             // frmGenerarDctoISPGenerar
             // 
             this.frmGenerarDctoISPGenerar.Name = "frmGenerarDctoISPGenerar";
-            this.frmGenerarDctoISPGenerar.Size = new System.Drawing.Size(180, 22);
+            this.frmGenerarDctoISPGenerar.Size = new System.Drawing.Size(115, 22);
             this.frmGenerarDctoISPGenerar.Text = "Generar";
             this.frmGenerarDctoISPGenerar.Click += new System.EventHandler(this.FrmGenerarDctoISPGenerar_Click);
             // 
@@ -528,7 +527,8 @@
             this.frmUtilidadesEnviarCorreo,
             this.frmUtilidadesCambioTrimestre,
             this.frmUtilidadesAsociarDocumentoCliente,
-            this.frmUtilidadesLiberarDosimetro});
+            this.frmUtilidadesLiberarDosimetro,
+            this.frmUtilidadesTraspaso});
             this.frmUtilidades.Name = "frmUtilidades";
             this.frmUtilidades.Size = new System.Drawing.Size(90, 20);
             this.frmUtilidades.Tag = "800";
@@ -762,20 +762,20 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            treeNode7.Name = "Nodo1";
-            treeNode7.Text = "Versión 8.0.1.0";
-            treeNode8.Name = "Nodo2";
-            treeNode8.Text = "Versión 8.0.1.1";
-            treeNode9.Name = "Nodo3";
-            treeNode9.Text = "Versión 8.0.1.2";
-            treeNode10.Name = "Nodo4";
-            treeNode10.Text = "Versión 8.0.1.3";
-            treeNode11.Name = "Nodo5";
-            treeNode11.Text = "Versión 8.0.1.5";
-            treeNode12.Name = "Nodo0";
-            treeNode12.Text = "Versión del sistema y sus actualizaciones";
+            treeNode1.Name = "Nodo1";
+            treeNode1.Text = "Versión 8.0.1.0";
+            treeNode2.Name = "Nodo2";
+            treeNode2.Text = "Versión 8.0.1.1";
+            treeNode3.Name = "Nodo3";
+            treeNode3.Text = "Versión 8.0.1.2";
+            treeNode4.Name = "Nodo4";
+            treeNode4.Text = "Versión 8.0.1.3";
+            treeNode5.Name = "Nodo5";
+            treeNode5.Text = "Versión 8.0.1.5";
+            treeNode6.Name = "Nodo0";
+            treeNode6.Text = "Versión del sistema y sus actualizaciones";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode12});
+            treeNode6});
             this.treeView1.Size = new System.Drawing.Size(200, 368);
             this.treeView1.TabIndex = 0;
             this.treeView1.Click += new System.EventHandler(this.TreeView1_Click);
@@ -847,12 +847,12 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
-            // nuevoUsuarioToolStripMenuItem
+            // frmUtilidadesTraspaso
             // 
-            this.nuevoUsuarioToolStripMenuItem.Name = "nuevoUsuarioToolStripMenuItem";
-            this.nuevoUsuarioToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
-            this.nuevoUsuarioToolStripMenuItem.Text = "NuevoUsuario";
-            this.nuevoUsuarioToolStripMenuItem.Click += new System.EventHandler(this.nuevoUsuarioToolStripMenuItem_Click);
+            this.frmUtilidadesTraspaso.Name = "frmUtilidadesTraspaso";
+            this.frmUtilidadesTraspaso.Size = new System.Drawing.Size(235, 22);
+            this.frmUtilidadesTraspaso.Text = "Traspaso de personal";
+            this.frmUtilidadesTraspaso.Click += new System.EventHandler(this.frmUtilidadesTraspaso_Click);
             // 
             // MDIPrincipal
             // 
@@ -974,7 +974,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuProcesoTLDRecepcion;
         private System.Windows.Forms.ToolStripMenuItem frmUtilidadesLiberarDosimetro;
         private System.Windows.Forms.ToolStripMenuItem mnuProcesoTLDDosisISP;
-        private System.Windows.Forms.ToolStripMenuItem nuevoUsuarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem frmUtilidadesTraspaso;
     }
 }
 

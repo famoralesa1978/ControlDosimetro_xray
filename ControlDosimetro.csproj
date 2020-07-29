@@ -32,10 +32,10 @@
     <TargetCulture>es-CL</TargetCulture>
     <ProductName>X-Ray Dosimetro</ProductName>
     <SuiteName>Sistema Dosimetro</SuiteName>
-    <MinimumRequiredVersion>9.0.0.18</MinimumRequiredVersion>
+    <MinimumRequiredVersion>9.0.0.20</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>instalacion.html</WebPage>
-    <ApplicationRevision>18</ApplicationRevision>
+    <ApplicationRevision>21</ApplicationRevision>
     <ApplicationVersion>9.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -202,6 +202,18 @@
     <Compile Include="GenerarDcto\frmGenerarISP.Designer.cs">
       <DependentUpon>frmGenerarISP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Herramientas\frmCambioSucursal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Herramientas\frmCambioSucursal.Designer.cs">
+      <DependentUpon>frmCambioSucursal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Herramientas\frmTraspasoPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Herramientas\frmTraspasoPersonal.designer.cs">
+      <DependentUpon>frmTraspasoPersonal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Herramientas\frmLiberarDosimetro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -268,11 +280,11 @@
     <Compile Include="Mantenedor\frmBusquedaUsuario.Designer.cs">
       <DependentUpon>frmBusquedaUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mantenedor\frmMantenedorUsuario03.cs">
+    <Compile Include="Mantenedor\frmMantenedorUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mantenedor\frmMantenedorUsuario03.Designer.cs">
-      <DependentUpon>frmMantenedorUsuario03.cs</DependentUpon>
+    <Compile Include="Mantenedor\frmMantenedorUsuario.Designer.cs">
+      <DependentUpon>frmMantenedorUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Mantenedor\frmMantenedorTipoDocumento.cs">
       <SubType>Form</SubType>
@@ -514,6 +526,12 @@
     <EmbeddedResource Include="GenerarDcto\frmGenerarISP.resx">
       <DependentUpon>frmGenerarISP.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Herramientas\frmCambioSucursal.resx">
+      <DependentUpon>frmCambioSucursal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Herramientas\frmTraspasoPersonal.resx">
+      <DependentUpon>frmTraspasoPersonal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Herramientas\frmLiberarDosimetro.resx">
       <DependentUpon>frmLiberarDosimetro.cs</DependentUpon>
     </EmbeddedResource>
@@ -547,8 +565,8 @@
     <EmbeddedResource Include="Mantenedor\frmBusquedaUsuario.resx">
       <DependentUpon>frmBusquedaUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mantenedor\frmMantenedorUsuario03.resx">
-      <DependentUpon>frmMantenedorUsuario03.cs</DependentUpon>
+    <EmbeddedResource Include="Mantenedor\frmMantenedorUsuario.resx">
+      <DependentUpon>frmMantenedorUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmMantenedorTipoDocumento.resx">
       <DependentUpon>frmMantenedorTipoDocumento.cs</DependentUpon>

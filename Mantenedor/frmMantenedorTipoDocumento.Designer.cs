@@ -46,7 +46,7 @@
             this.tsmActualizar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmSep3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmAsignarPermiso = new System.Windows.Forms.ToolStripMenuItem();
             this.gpxFiltrar = new System.Windows.Forms.GroupBox();
             this.btn_Buscar = new System.Windows.Forms.Button();
@@ -235,40 +235,43 @@
             this.tsmActualizar,
             this.toolStripSeparator2,
             this.tsmEliminar,
-            this.toolStripSeparator3,
+            this.tsmSep3,
             this.tsmAsignarPermiso});
             this.cmsMenuContexto.Name = "cmsMenuContexto";
-            this.cmsMenuContexto.Size = new System.Drawing.Size(161, 82);
+            this.cmsMenuContexto.Size = new System.Drawing.Size(181, 104);
+            this.cmsMenuContexto.Opening += new System.ComponentModel.CancelEventHandler(this.cmsMenuContexto_Opening);
             // 
             // tsmActualizar
             // 
             this.tsmActualizar.Name = "tsmActualizar";
-            this.tsmActualizar.Size = new System.Drawing.Size(160, 22);
+            this.tsmActualizar.Size = new System.Drawing.Size(180, 22);
             this.tsmActualizar.Text = "Modificar";
             this.tsmActualizar.Click += new System.EventHandler(this.tsmActualizar_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(157, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmEliminar
             // 
             this.tsmEliminar.Name = "tsmEliminar";
-            this.tsmEliminar.Size = new System.Drawing.Size(160, 22);
+            this.tsmEliminar.Size = new System.Drawing.Size(180, 22);
             this.tsmEliminar.Text = "Eliminar";
             this.tsmEliminar.Click += new System.EventHandler(this.tsmEliminar_Click);
             // 
-            // toolStripSeparator3
+            // tsmSep3
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(157, 6);
+            this.tsmSep3.Name = "tsmSep3";
+            this.tsmSep3.Size = new System.Drawing.Size(177, 6);
+            this.tsmSep3.Visible = false;
             // 
             // tsmAsignarPermiso
             // 
             this.tsmAsignarPermiso.Name = "tsmAsignarPermiso";
-            this.tsmAsignarPermiso.Size = new System.Drawing.Size(160, 22);
+            this.tsmAsignarPermiso.Size = new System.Drawing.Size(180, 22);
             this.tsmAsignarPermiso.Text = "Asignar permiso";
+            this.tsmAsignarPermiso.Visible = false;
             // 
             // gpxFiltrar
             // 
@@ -506,7 +509,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmActualizar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem tsmEliminar;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripSeparator tsmSep3;
         private System.Windows.Forms.ToolStripMenuItem tsmAsignarPermiso;
         private System.Windows.Forms.ToolStripStatusLabel tssDescEstado;
         private System.Windows.Forms.ToolStripStatusLabel tssEstado;
