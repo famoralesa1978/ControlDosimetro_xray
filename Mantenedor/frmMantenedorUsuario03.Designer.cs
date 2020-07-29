@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.stsEstado = new System.Windows.Forms.StatusStrip();
             this.tssDescEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssEstado = new System.Windows.Forms.ToolStripStatusLabel();
@@ -153,7 +153,7 @@
             this.tsbAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbAgregar.Name = "tsbAgregar";
             this.tsbAgregar.Size = new System.Drawing.Size(23, 22);
-            this.tsbAgregar.Text = "Permite  Agregar un perfil de usuario";
+            this.tsbAgregar.Text = "Permite  agregar un perfil de usuario";
             this.tsbAgregar.Click += new System.EventHandler(this.TsbAgregar_Click);
             // 
             // scPrincipal
@@ -214,14 +214,14 @@
             this.dgvGrilla.AllowUserToDeleteRows = false;
             this.dgvGrilla.AllowUserToOrderColumns = true;
             this.dgvGrilla.AllowUserToResizeColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvGrilla.ColumnHeadersHeight = 42;
             this.dgvGrilla.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColUsuario,
@@ -341,9 +341,9 @@
             // 
             this.btn_Buscar.Image = global::ControlDosimetro.Properties.Resources.Buscar;
             this.btn_Buscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Buscar.Location = new System.Drawing.Point(252, 31);
+            this.btn_Buscar.Location = new System.Drawing.Point(252, 35);
             this.btn_Buscar.Name = "btn_Buscar";
-            this.btn_Buscar.Size = new System.Drawing.Size(43, 54);
+            this.btn_Buscar.Size = new System.Drawing.Size(44, 46);
             this.btn_Buscar.TabIndex = 3;
             this.btn_Buscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Buscar.UseVisualStyleBackColor = true;
@@ -493,6 +493,8 @@
             this.txt_rut.Name = "txt_rut";
             this.txt_rut.Size = new System.Drawing.Size(152, 20);
             this.txt_rut.TabIndex = 23;
+            this.txt_rut.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt_rut_KeyUp);
+            this.txt_rut.Leave += new System.EventHandler(this.txt_rut_Leave);
             // 
             // txt_Usuario
             // 
@@ -560,9 +562,9 @@
             this.lbl_rut.AutoSize = true;
             this.lbl_rut.Location = new System.Drawing.Point(24, 68);
             this.lbl_rut.Name = "lbl_rut";
-            this.lbl_rut.Size = new System.Drawing.Size(140, 13);
+            this.lbl_rut.Size = new System.Drawing.Size(36, 13);
             this.lbl_rut.TabIndex = 15;
-            this.lbl_rut.Text = "RUT  (Formato 12345678-9)";
+            this.lbl_rut.Text = "RUT  ";
             // 
             // lbl_Usuario
             // 
@@ -613,6 +615,7 @@
             this.btn_Guardar.Text = "Grabar";
             this.btn_Guardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Guardar.UseVisualStyleBackColor = true;
+            this.btn_Guardar.TextChanged += new System.EventHandler(this.Txt_Contraseña1_TextChanged);
             this.btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
             // 
             // frmMantenedorUsuario03
@@ -629,7 +632,7 @@
             this.Name = "frmMantenedorUsuario03";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Mantenedor Usuario Nuevo 03";
+            this.Text = "Mantenedor Usuario";
             this.Load += new System.EventHandler(this.FrmMantenedorUsuario03_Load);
             this.stsEstado.ResumeLayout(false);
             this.stsEstado.PerformLayout();

@@ -126,7 +126,9 @@ namespace ControlDosimetro
         }
 
         private void btn_ingresar_Click(object sender, EventArgs e)
-        {            
+        {
+            Cursor = Cursors.WaitCursor;
+
             if (txt_Usuario.Text.Trim() == "" || txt_Contrasena.Text.Trim() == "")
                 MessageBox.Show("Debe contener usuario y contraseña");
             else
@@ -163,6 +165,7 @@ namespace ControlDosimetro
                 }
                 Cursor = Cursors.Default;
             }
+            Cursor = Cursors.Default;
         }
 
         private void labelBD_Click(object sender, EventArgs e)
