@@ -279,5 +279,10 @@ namespace ControlDosimetro
         {
             txtBox.Width = Coldetalle_tipo_documento.Width;
         }
+
+        private void scPrincipal_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
