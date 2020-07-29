@@ -158,32 +158,50 @@ namespace ControlDosimetro
         #region "boton"
         private void btn_Limpiar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             LimpiarFormulario();
             tssEstado.Text = "Nuevo";
             txt_Id_perfil.Text = "0";
+
+            Cursor = Cursors.Default;
         }
 
         private void btn_Buscar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             CargarGrilla();
+
+            Cursor = Cursors.Default;
         }
 
         private void btn_Guardar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             Grabar();
             LimpiarFormulario();
             tssEstado.Text = "Nuevo";
             txt_Id_perfil.Text = "0";
+
+            Cursor = Cursors.Default;
         }
 
         private void btn_Minimizar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             scPrincipal.Panel2Collapsed = true;
             tsbGuardar.Enabled = false;
+
+            Cursor = Cursors.Default;
         }
 
         private void tsmEliminar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             if (MessageBox.Show("¿Desea Eliminar la información?", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
             {                
                 DataTable dt = ((DataTable)((BindingSource)((BindingSource)dgvGrilla.DataSource).DataSource).DataSource);
@@ -200,11 +218,17 @@ namespace ControlDosimetro
                 if (dt1.Tables[0].Rows[0][0].ToString() == "0")
                     CargarGrilla();
             }
+
+            Cursor = Cursors.Default;
         }
 
         private void tsmActualizar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             LlamadoAModificar(dgvGrilla.CurrentRow.Index);
+
+            Cursor = Cursors.Default;
         }
 
         #endregion
@@ -213,10 +237,16 @@ namespace ControlDosimetro
 
         private void tsbGuardar_Click(object sender, EventArgs e)
         {
-            Grabar();  
+            Cursor = Cursors.WaitCursor;
+
+            Grabar();
+
+            Cursor = Cursors.Default;
         }
         private void tsbAgregar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             if(scPrincipal.Panel2Collapsed==true)
                 scPrincipal.Panel2Collapsed =false;
 
@@ -232,6 +262,8 @@ namespace ControlDosimetro
                 tssEstado.Text = "";
                 txt_Id_perfil.Text = "";
             }
+
+            Cursor = Cursors.Default;
 
         }
 

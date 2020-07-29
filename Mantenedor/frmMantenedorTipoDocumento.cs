@@ -97,7 +97,7 @@ namespace ControlDosimetro
         private void CargarGrilla()
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "select id_tipo_doc as id, detalle_tipo_documento,id_estado,orden from glo_TipoDocumentos where id_estado= " + cbx_id_estado.SelectedValue + "  order by orden";
+            cmd.CommandText = "select id_tipo_doc as id, detalle_tipo_documento,id_estado,orden from glo_TipoDocumentos where id_estado= " + cbx_id_estado_Buscar.SelectedValue + "  order by orden";
 
             cmd.CommandType = CommandType.Text;
 
@@ -164,32 +164,50 @@ namespace ControlDosimetro
         #region "boton"
         private void btn_Limpiar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             LimpiarFormulario();
             tssEstado.Text = "Nuevo";
             txt_id_tipo_doc.Text = "0";
+
+            Cursor = Cursors.Default;
         }
 
         private void btn_Buscar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             CargarGrilla();
+
+            Cursor = Cursors.Default;
         }
 
         private void btn_Guardar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             Grabar();
             LimpiarFormulario();
             tssEstado.Text = "Nuevo";
             txt_id_tipo_doc.Text = "0";
+
+            Cursor = Cursors.Default;
         }
 
         private void btn_Minimizar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             scPrincipal.Panel2Collapsed = true;
             tsbGuardar.Enabled = false;
+
+            Cursor = Cursors.Default;
         }
 
         private void tsmEliminar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             if (MessageBox.Show("¿Desea Eliminar la información?", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
             {
                 DataTable dt = ((DataTable)((BindingSource)((BindingSource)dgvGrilla.DataSource).DataSource).DataSource);
@@ -206,11 +224,17 @@ namespace ControlDosimetro
                 if (dt1.Tables[0].Rows[0][0].ToString() == "0")
                     CargarGrilla();
             }
+
+            Cursor = Cursors.Default;
         }
 
         private void tsmActualizar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             LlamadoAModificar(dgvGrilla.CurrentRow.Index);
+
+            Cursor = Cursors.Default;
         }
 
         #endregion
@@ -227,6 +251,8 @@ namespace ControlDosimetro
         }
         private void tsbAgregar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             if(scPrincipal.Panel2Collapsed==true)
                 scPrincipal.Panel2Collapsed =false;
 
@@ -243,6 +269,7 @@ namespace ControlDosimetro
                 txt_id_tipo_doc.Text = "";
             }
 
+            Cursor = Cursors.Default;
         }
 
 

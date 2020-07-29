@@ -343,9 +343,9 @@
             this.cbx_id_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_id_estado.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbx_id_estado.FormattingEnabled = true;
-            this.cbx_id_estado.Location = new System.Drawing.Point(97, 76);
+            this.cbx_id_estado.Location = new System.Drawing.Point(97, 75);
             this.cbx_id_estado.Name = "cbx_id_estado";
-            this.cbx_id_estado.Size = new System.Drawing.Size(121, 21);
+            this.cbx_id_estado.Size = new System.Drawing.Size(106, 21);
             this.cbx_id_estado.TabIndex = 21;
             // 
             // label4
@@ -360,8 +360,9 @@
             // txt_orden
             // 
             this.txt_orden.Location = new System.Drawing.Point(97, 49);
+            this.txt_orden.MaxLength = 2;
             this.txt_orden.Name = "txt_orden";
-            this.txt_orden.Size = new System.Drawing.Size(100, 20);
+            this.txt_orden.Size = new System.Drawing.Size(106, 20);
             this.txt_orden.TabIndex = 19;
             // 
             // label3
@@ -378,7 +379,7 @@
             this.txt_detalle_tipo_documento.Location = new System.Drawing.Point(97, 23);
             this.txt_detalle_tipo_documento.MaxLength = 50;
             this.txt_detalle_tipo_documento.Name = "txt_detalle_tipo_documento";
-            this.txt_detalle_tipo_documento.Size = new System.Drawing.Size(260, 20);
+            this.txt_detalle_tipo_documento.Size = new System.Drawing.Size(240, 20);
             this.txt_detalle_tipo_documento.TabIndex = 17;
             // 
             // label2
@@ -463,6 +464,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(645, 300);
             this.Name = "frmMantenedorTipoDocumento";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Mantenedor de tipo documento";
             this.Load += new System.EventHandler(this.frmMantenedorPerfil_Load);

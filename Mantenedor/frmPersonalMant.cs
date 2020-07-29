@@ -431,9 +431,13 @@ namespace ControlDosimetro
 
 		  private void btn_Agregar_Click(object sender, EventArgs e)
 		  {
+              Cursor = Cursors.WaitCursor;
+
 			  frmSeccionMant frm = new frmSeccionMant(Convert.ToInt64(lbl_id_cliente.Text ), 0);
 			  frm.ShowDialog(this);
 			  Cargar_Seccion();
+
+            Cursor = Cursors.Default;
 		  }
 
 		  private void btn_Verificar_Click(object sender, EventArgs e)

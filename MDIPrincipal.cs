@@ -122,10 +122,11 @@ namespace ControlDosimetro
 
           private void MnuMantUsuario_Click(object sender, EventArgs e)
           {
-              frmBusquedaUsuario frm = new frmBusquedaUsuario();
+              frmMantenedorUsuario frm = new frmMantenedorUsuario();
               Graba_log(frm.Text);
               frm.ShowDialog(this);
           }
+
         #endregion
 
         #region "Reportes"
@@ -448,6 +449,6 @@ namespace ControlDosimetro
 
 
         #endregion
-      
+
     }
 }

@@ -120,6 +120,7 @@
             // txt_Orden
             // 
             this.txt_Orden.Location = new System.Drawing.Point(98, 66);
+            this.txt_Orden.MaxLength = 2;
             this.txt_Orden.Name = "txt_Orden";
             this.txt_Orden.Size = new System.Drawing.Size(100, 20);
             this.txt_Orden.TabIndex = 5;
