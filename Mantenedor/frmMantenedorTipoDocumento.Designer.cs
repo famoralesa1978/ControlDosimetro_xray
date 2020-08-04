@@ -83,9 +83,9 @@
             this.stsEstado.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tssDescEstado,
             this.tssEstado});
-            this.stsEstado.Location = new System.Drawing.Point(0, 270);
+            this.stsEstado.Location = new System.Drawing.Point(0, 351);
             this.stsEstado.Name = "stsEstado";
-            this.stsEstado.Size = new System.Drawing.Size(629, 22);
+            this.stsEstado.Size = new System.Drawing.Size(748, 22);
             this.stsEstado.TabIndex = 0;
             this.stsEstado.Text = "statusStrip1";
             // 
@@ -110,7 +110,7 @@
             this.tsbAgregar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(629, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(748, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -161,8 +161,8 @@
             this.scPrincipal.Panel2.Controls.Add(this.glo_TipoDocumentos);
             this.scPrincipal.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.scPrincipal.Panel2MinSize = 200;
-            this.scPrincipal.Size = new System.Drawing.Size(617, 242);
-            this.scPrincipal.SplitterDistance = 250;
+            this.scPrincipal.Size = new System.Drawing.Size(736, 323);
+            this.scPrincipal.SplitterDistance = 361;
             this.scPrincipal.TabIndex = 2;
             // 
             // pnlPrincipal
@@ -173,10 +173,10 @@
             this.pnlPrincipal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlPrincipal.Controls.Add(this.gpxListado);
             this.pnlPrincipal.Controls.Add(this.gpxFiltrar);
-            this.pnlPrincipal.Location = new System.Drawing.Point(0, 3);
+            this.pnlPrincipal.Location = new System.Drawing.Point(15, 3);
             this.pnlPrincipal.Margin = new System.Windows.Forms.Padding(6, 3, 5, 3);
             this.pnlPrincipal.Name = "pnlPrincipal";
-            this.pnlPrincipal.Size = new System.Drawing.Size(245, 236);
+            this.pnlPrincipal.Size = new System.Drawing.Size(335, 317);
             this.pnlPrincipal.TabIndex = 1;
             // 
             // gpxListado
@@ -185,9 +185,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gpxListado.Controls.Add(this.dgvGrilla);
-            this.gpxListado.Location = new System.Drawing.Point(3, 71);
+            this.gpxListado.Location = new System.Drawing.Point(3, 98);
             this.gpxListado.Name = "gpxListado";
-            this.gpxListado.Size = new System.Drawing.Size(237, 160);
+            this.gpxListado.Size = new System.Drawing.Size(327, 214);
             this.gpxListado.TabIndex = 4;
             this.gpxListado.TabStop = false;
             this.gpxListado.Text = "Listado";
@@ -214,10 +214,11 @@
             this.dgvGrilla.Location = new System.Drawing.Point(3, 16);
             this.dgvGrilla.Name = "dgvGrilla";
             this.dgvGrilla.ReadOnly = true;
-            this.dgvGrilla.Size = new System.Drawing.Size(231, 141);
+            this.dgvGrilla.Size = new System.Drawing.Size(321, 195);
             this.dgvGrilla.TabIndex = 0;
             this.dgvGrilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_CellDoubleClick);
             this.dgvGrilla.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvGrilla_ColumnWidthChanged);
+            this.dgvGrilla.Click += new System.EventHandler(this.BtnColBuscar_Click);
             this.dgvGrilla.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvGrilla_Paint);
             // 
             // Coldetalle_tipo_documento
@@ -237,38 +238,37 @@
             this.tsmSep3,
             this.tsmAsignarPermiso});
             this.cmsMenuContexto.Name = "cmsMenuContexto";
-            this.cmsMenuContexto.Size = new System.Drawing.Size(181, 104);
-            this.cmsMenuContexto.Opening += new System.ComponentModel.CancelEventHandler(this.cmsMenuContexto_Opening);
+            this.cmsMenuContexto.Size = new System.Drawing.Size(161, 82);
             // 
             // tsmActualizar
             // 
             this.tsmActualizar.Name = "tsmActualizar";
-            this.tsmActualizar.Size = new System.Drawing.Size(180, 22);
+            this.tsmActualizar.Size = new System.Drawing.Size(160, 22);
             this.tsmActualizar.Text = "Modificar";
             this.tsmActualizar.Click += new System.EventHandler(this.tsmActualizar_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(157, 6);
             // 
             // tsmEliminar
             // 
             this.tsmEliminar.Name = "tsmEliminar";
-            this.tsmEliminar.Size = new System.Drawing.Size(180, 22);
+            this.tsmEliminar.Size = new System.Drawing.Size(160, 22);
             this.tsmEliminar.Text = "Eliminar";
             this.tsmEliminar.Click += new System.EventHandler(this.tsmEliminar_Click);
             // 
             // tsmSep3
             // 
             this.tsmSep3.Name = "tsmSep3";
-            this.tsmSep3.Size = new System.Drawing.Size(177, 6);
+            this.tsmSep3.Size = new System.Drawing.Size(157, 6);
             this.tsmSep3.Visible = false;
             // 
             // tsmAsignarPermiso
             // 
             this.tsmAsignarPermiso.Name = "tsmAsignarPermiso";
-            this.tsmAsignarPermiso.Size = new System.Drawing.Size(180, 22);
+            this.tsmAsignarPermiso.Size = new System.Drawing.Size(160, 22);
             this.tsmAsignarPermiso.Text = "Asignar permiso";
             this.tsmAsignarPermiso.Visible = false;
             // 
@@ -281,7 +281,7 @@
             this.gpxFiltrar.Controls.Add(this.label1);
             this.gpxFiltrar.Location = new System.Drawing.Point(3, 3);
             this.gpxFiltrar.Name = "gpxFiltrar";
-            this.gpxFiltrar.Size = new System.Drawing.Size(237, 62);
+            this.gpxFiltrar.Size = new System.Drawing.Size(327, 89);
             this.gpxFiltrar.TabIndex = 0;
             this.gpxFiltrar.TabStop = false;
             this.gpxFiltrar.Text = "Filtrar";
@@ -290,7 +290,7 @@
             // 
             this.btn_Buscar.Image = global::ControlDosimetro.Properties.Resources.Buscar;
             this.btn_Buscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Buscar.Location = new System.Drawing.Point(190, 13);
+            this.btn_Buscar.Location = new System.Drawing.Point(257, 24);
             this.btn_Buscar.Name = "btn_Buscar";
             this.btn_Buscar.Size = new System.Drawing.Size(46, 40);
             this.btn_Buscar.TabIndex = 3;
@@ -303,15 +303,15 @@
             this.cbx_id_estado_Buscar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_id_estado_Buscar.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbx_id_estado_Buscar.FormattingEnabled = true;
-            this.cbx_id_estado_Buscar.Location = new System.Drawing.Point(63, 24);
+            this.cbx_id_estado_Buscar.Location = new System.Drawing.Point(78, 34);
             this.cbx_id_estado_Buscar.Name = "cbx_id_estado_Buscar";
-            this.cbx_id_estado_Buscar.Size = new System.Drawing.Size(121, 21);
+            this.cbx_id_estado_Buscar.Size = new System.Drawing.Size(153, 21);
             this.cbx_id_estado_Buscar.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 27);
+            this.label1.Location = new System.Drawing.Point(22, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 2;
@@ -333,7 +333,7 @@
             this.glo_TipoDocumentos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.glo_TipoDocumentos.Location = new System.Drawing.Point(0, 0);
             this.glo_TipoDocumentos.Name = "glo_TipoDocumentos";
-            this.glo_TipoDocumentos.Size = new System.Drawing.Size(363, 242);
+            this.glo_TipoDocumentos.Size = new System.Drawing.Size(371, 323);
             this.glo_TipoDocumentos.TabIndex = 6;
             this.glo_TipoDocumentos.TabStop = false;
             this.glo_TipoDocumentos.Text = "Datos";
@@ -343,15 +343,15 @@
             this.cbx_id_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_id_estado.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbx_id_estado.FormattingEnabled = true;
-            this.cbx_id_estado.Location = new System.Drawing.Point(97, 75);
+            this.cbx_id_estado.Location = new System.Drawing.Point(131, 113);
             this.cbx_id_estado.Name = "cbx_id_estado";
-            this.cbx_id_estado.Size = new System.Drawing.Size(106, 21);
+            this.cbx_id_estado.Size = new System.Drawing.Size(155, 21);
             this.cbx_id_estado.TabIndex = 21;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 79);
+            this.label4.Location = new System.Drawing.Point(29, 117);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 13);
             this.label4.TabIndex = 20;
@@ -359,16 +359,16 @@
             // 
             // txt_orden
             // 
-            this.txt_orden.Location = new System.Drawing.Point(97, 49);
+            this.txt_orden.Location = new System.Drawing.Point(131, 87);
             this.txt_orden.MaxLength = 2;
             this.txt_orden.Name = "txt_orden";
-            this.txt_orden.Size = new System.Drawing.Size(106, 20);
+            this.txt_orden.Size = new System.Drawing.Size(155, 20);
             this.txt_orden.TabIndex = 19;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 52);
+            this.label3.Location = new System.Drawing.Point(29, 90);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(36, 13);
             this.label3.TabIndex = 18;
@@ -376,16 +376,16 @@
             // 
             // txt_detalle_tipo_documento
             // 
-            this.txt_detalle_tipo_documento.Location = new System.Drawing.Point(97, 23);
+            this.txt_detalle_tipo_documento.Location = new System.Drawing.Point(131, 61);
             this.txt_detalle_tipo_documento.MaxLength = 50;
             this.txt_detalle_tipo_documento.Name = "txt_detalle_tipo_documento";
-            this.txt_detalle_tipo_documento.Size = new System.Drawing.Size(240, 20);
+            this.txt_detalle_tipo_documento.Size = new System.Drawing.Size(155, 20);
             this.txt_detalle_tipo_documento.TabIndex = 17;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 26);
+            this.label2.Location = new System.Drawing.Point(29, 64);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 16;
@@ -394,7 +394,7 @@
             // txt_id_tipo_doc
             // 
             this.txt_id_tipo_doc.Enabled = false;
-            this.txt_id_tipo_doc.Location = new System.Drawing.Point(97, 103);
+            this.txt_id_tipo_doc.Location = new System.Drawing.Point(131, 141);
             this.txt_id_tipo_doc.Name = "txt_id_tipo_doc";
             this.txt_id_tipo_doc.Size = new System.Drawing.Size(66, 20);
             this.txt_id_tipo_doc.TabIndex = 15;
@@ -403,7 +403,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 106);
+            this.label5.Location = new System.Drawing.Point(29, 144);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(18, 13);
             this.label5.TabIndex = 14;
@@ -427,7 +427,7 @@
             this.btn_Limpiar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_Limpiar.Image = global::ControlDosimetro.Properties.Resources.Limpiar;
             this.btn_Limpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Limpiar.Location = new System.Drawing.Point(173, 192);
+            this.btn_Limpiar.Location = new System.Drawing.Point(230, 273);
             this.btn_Limpiar.Name = "btn_Limpiar";
             this.btn_Limpiar.Size = new System.Drawing.Size(85, 40);
             this.btn_Limpiar.TabIndex = 10;
@@ -443,7 +443,7 @@
             this.btn_Guardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_Guardar.Image = global::ControlDosimetro.Properties.Resources.save_32;
             this.btn_Guardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Guardar.Location = new System.Drawing.Point(44, 192);
+            this.btn_Guardar.Location = new System.Drawing.Point(114, 273);
             this.btn_Guardar.Name = "btn_Guardar";
             this.btn_Guardar.Size = new System.Drawing.Size(87, 40);
             this.btn_Guardar.TabIndex = 9;
@@ -456,13 +456,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(629, 292);
+            this.ClientSize = new System.Drawing.Size(748, 373);
             this.Controls.Add(this.scPrincipal);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.stsEstado);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(645, 300);
+            this.MinimumSize = new System.Drawing.Size(764, 412);
             this.Name = "frmMantenedorTipoDocumento";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
