@@ -80,21 +80,36 @@ namespace ControlDosimetro
             {
                 if ((tssEstado.Text == "Nuevo")&&(txt_id_tipo_doc.Text=="0"))
                 {
-                    ClaseComun.Insertar(Clases.clsBD.BD,glo_TipoDocumentos, ref bolResult);
-                    if (bolResult == true)
+
+                    if (!String.IsNullOrEmpty(txt_detalle_tipo_documento.Text) && !String.IsNullOrEmpty(txt_orden.Text))
                     {
-                        CargarGrilla();
-                        MessageBox.Show("Dato Guardado");                        
+
+                        ClaseComun.Insertar(Clases.clsBD.BD, glo_TipoDocumentos, ref bolResult);
+                        if (bolResult == true)
+                        {
+                            CargarGrilla();
+                            MessageBox.Show("Dato Guardado");
+                        }
+                    }
+                    else {
+                        MessageBox.Show("Completar todos los campos");
                     }
                 }
                 else
                 if (tssEstado.Text == "Modificar")
                 {
-                    ClaseComun.Modificar(Clases.clsBD.BD,glo_TipoDocumentos, ref bolResult);
-                    if (bolResult == true)
+                    if (!String.IsNullOrEmpty(txt_detalle_tipo_documento.Text) && !String.IsNullOrEmpty(txt_orden.Text))
                     {
-                        CargarGrilla();
-                        MessageBox.Show("Dato modificado");
+                        ClaseComun.Modificar(Clases.clsBD.BD, glo_TipoDocumentos, ref bolResult);
+                        if (bolResult == true)
+                        {
+                            CargarGrilla();
+                            MessageBox.Show("Dato modificado");
+                        }
+
+                    }
+                    else {
+                        MessageBox.Show("Completar todos los campos");
                     }
                 }
             }
@@ -127,7 +142,8 @@ namespace ControlDosimetro
             tssEstado.Text = "Modificar";
             btn_Guardar.Enabled = true;
             tsbGuardar.Enabled = true;
-            
+            btn_Guardar.Text = "Modificar";
+
             scPrincipal.Panel2Collapsed = false;
         }
 
@@ -152,8 +168,9 @@ namespace ControlDosimetro
             txtBox.Location = new Point(headerCellLocation.X, headerCellLocation.Y+20);
             txtBox.BackColor = Color.AliceBlue;
             txtBox.Width = Coldetalle_tipo_documento.Width-2;
-           // txtBox.TextChanged += new EventHandler(TextBox_Changed);
-            dgvGrilla.Controls.Add(txtBox);
+             txtBox.TextAlign = HorizontalAlignment.Left;
+                // txtBox.TextChanged += new EventHandler(TextBox_Changed);
+                dgvGrilla.Controls.Add(txtBox);
 
             columnIndex = -1;
             headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
@@ -176,14 +193,29 @@ namespace ControlDosimetro
             LlamadoAModificar(intFila);
         }
 
-        private void TextBox_Changed(object sender, EventArgs e)
+        private void dgvGrilla_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
-            Filtro();
+            txtBox.Width = Coldetalle_tipo_documento.Width - 4;
+            int columnIndex = 0;
+            Point headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
+            txtBox.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
         }
+
+        //private void TextBox_Changed(object sender, EventArgs e)
+        //{
+        //    Filtro();
+        //}
 
         #endregion
 
         #region "boton"
+        private void BtnColBuscar_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            Filtro();
+            Cursor = Cursors.Default;
+        }
+
         private void btn_Limpiar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
@@ -209,7 +241,7 @@ namespace ControlDosimetro
             Cursor = Cursors.WaitCursor;
 
             Grabar();
-            LimpiarFormulario();
+           // LimpiarFormulario();
             tssEstado.Text = "Nuevo";
             txt_id_tipo_doc.Text = "0";
 
@@ -284,6 +316,8 @@ namespace ControlDosimetro
                 tsbGuardar.Enabled = true;
                 LimpiarFormulario();
                 txt_id_tipo_doc.Text = "0";
+
+                btn_Guardar.Text = "Grabar";
             }
             else
             {
@@ -297,24 +331,9 @@ namespace ControlDosimetro
 
         #endregion
 
-        private void dgvGrilla_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
-        {
-            txtBox.Width = Coldetalle_tipo_documento.Width-4;
-            int columnIndex = 0;
-            Point headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
-            txtBox.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
-        }
+       
 
-        private void scPrincipal_Panel1_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
-
-        private void BtnColBuscar_Click(object sender, EventArgs e)
-        {
-            Cursor = Cursors.WaitCursor;
-            Filtro();
-            Cursor = Cursors.Default;
-        }
+      
     }
 }

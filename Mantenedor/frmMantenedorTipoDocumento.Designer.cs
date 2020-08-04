@@ -154,7 +154,6 @@
             this.scPrincipal.Panel1.AutoScrollMinSize = new System.Drawing.Size(200, 0);
             this.scPrincipal.Panel1.Controls.Add(this.pnlPrincipal);
             this.scPrincipal.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.scPrincipal.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.scPrincipal_Panel1_Paint);
             this.scPrincipal.Panel1MinSize = 250;
             // 
             // scPrincipal.Panel2
