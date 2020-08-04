@@ -169,7 +169,6 @@ namespace ControlDosimetro
             txtBox.BackColor = Color.AliceBlue;
             txtBox.Width = Coldetalle_tipo_documento.Width-2;
              txtBox.TextAlign = HorizontalAlignment.Left;
-                // txtBox.TextChanged += new EventHandler(TextBox_Changed);
                 dgvGrilla.Controls.Add(txtBox);
 
             columnIndex = -1;
@@ -201,11 +200,6 @@ namespace ControlDosimetro
             txtBox.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
         }
 
-        //private void TextBox_Changed(object sender, EventArgs e)
-        //{
-        //    Filtro();
-        //}
-
         #endregion
 
         #region "boton"
@@ -227,7 +221,7 @@ namespace ControlDosimetro
             Cursor = Cursors.Default;
         }
 
-        private void btn_Buscar_Click(object sender, EventArgs e)
+        private void Btn_Buscar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -236,7 +230,7 @@ namespace ControlDosimetro
             Cursor = Cursors.Default;
         }
 
-        private void btn_Guardar_Click(object sender, EventArgs e)
+        private void Btn_Guardar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -248,7 +242,7 @@ namespace ControlDosimetro
             Cursor = Cursors.Default;
         }
 
-        private void btn_Minimizar_Click(object sender, EventArgs e)
+        private void Btn_Minimizar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -258,7 +252,7 @@ namespace ControlDosimetro
             Cursor = Cursors.Default;
         }
 
-        private void tsmEliminar_Click(object sender, EventArgs e)
+        private void TsmEliminar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -282,7 +276,7 @@ namespace ControlDosimetro
             Cursor = Cursors.Default;
         }
 
-        private void tsmActualizar_Click(object sender, EventArgs e)
+        private void TsmActualizar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -330,9 +324,6 @@ namespace ControlDosimetro
 
 
         #endregion
-
-       
-
 
       
     }
