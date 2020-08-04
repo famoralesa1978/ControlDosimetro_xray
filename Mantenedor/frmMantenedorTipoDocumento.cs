@@ -20,6 +20,8 @@ namespace ControlDosimetro
         #region "Definicion variable"
 
         TextBox txtBox = new TextBox();
+        Button btnColBuscara = new Button();
+        bool bolInicializacion;
         enum ConfGrilla: int
         {
             id=0,
@@ -40,15 +42,19 @@ namespace ControlDosimetro
         public frmMantenedorTipoDocumento()
         {
             InitializeComponent();
+           
+        }
+
+        private void frmMantenedorPerfil_Load(object sender, EventArgs e)
+        {
+
             scPrincipal.Panel2Collapsed = true;
             Cargar_Estado();
             tsbGuardar.Enabled = false;
             dgvGrilla.AutoGenerateColumns = false;
-        }
-
-        private void frmMantenedorPerfil_Load(object sender, EventArgs e)
-        {            
+            bolInicializacion = true;
             CargarGrilla();
+          
         }
 
         #endregion
@@ -139,13 +145,29 @@ namespace ControlDosimetro
 
         private void dgvGrilla_Paint(object sender, PaintEventArgs e)
         {
-            int columnIndex = 0;
+            if (bolInicializacion == true)
+            {
+                int columnIndex = 0;
             Point headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;                     
             txtBox.Location = new Point(headerCellLocation.X, headerCellLocation.Y+20);
             txtBox.BackColor = Color.AliceBlue;
-            txtBox.Width = Coldetalle_tipo_documento.Width;
-            txtBox.TextChanged += new EventHandler(TextBox_Changed);
+            txtBox.Width = Coldetalle_tipo_documento.Width-2;
+           // txtBox.TextChanged += new EventHandler(TextBox_Changed);
             dgvGrilla.Controls.Add(txtBox);
+
+            columnIndex = -1;
+            headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
+            btnColBuscara.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 0);
+            btnColBuscara.Image = ControlDosimetro.Properties.Resources.Buscar;
+
+            btnColBuscara.FlatStyle = FlatStyle.Standard;
+            btnColBuscara.Height = 41;
+            btnColBuscara.Width = 41;
+            btnColBuscara.Click += new EventHandler(BtnColBuscar_Click);
+
+            dgvGrilla.Controls.Add(btnColBuscara);
+            }
+            bolInicializacion = false;
         }
 
         private void dgvGrilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -277,12 +299,22 @@ namespace ControlDosimetro
 
         private void dgvGrilla_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
-            txtBox.Width = Coldetalle_tipo_documento.Width;
+            txtBox.Width = Coldetalle_tipo_documento.Width-4;
+            int columnIndex = 0;
+            Point headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
+            txtBox.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
         }
 
         private void scPrincipal_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void BtnColBuscar_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            Filtro();
+            Cursor = Cursors.Default;
         }
     }
 }

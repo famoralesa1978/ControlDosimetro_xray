@@ -219,6 +219,7 @@
             this.dgvGrilla.TabIndex = 0;
             this.dgvGrilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_CellDoubleClick);
             this.dgvGrilla.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvGrilla_ColumnWidthChanged);
+            this.dgvGrilla.Click += new System.EventHandler(this.BtnColBuscar_Click);
             this.dgvGrilla.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvGrilla_Paint);
             // 
             // Coldetalle_tipo_documento
@@ -238,38 +239,37 @@
             this.tsmSep3,
             this.tsmAsignarPermiso});
             this.cmsMenuContexto.Name = "cmsMenuContexto";
-            this.cmsMenuContexto.Size = new System.Drawing.Size(181, 104);
-            this.cmsMenuContexto.Opening += new System.ComponentModel.CancelEventHandler(this.cmsMenuContexto_Opening);
+            this.cmsMenuContexto.Size = new System.Drawing.Size(161, 82);
             // 
             // tsmActualizar
             // 
             this.tsmActualizar.Name = "tsmActualizar";
-            this.tsmActualizar.Size = new System.Drawing.Size(180, 22);
+            this.tsmActualizar.Size = new System.Drawing.Size(160, 22);
             this.tsmActualizar.Text = "Modificar";
             this.tsmActualizar.Click += new System.EventHandler(this.tsmActualizar_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(157, 6);
             // 
             // tsmEliminar
             // 
             this.tsmEliminar.Name = "tsmEliminar";
-            this.tsmEliminar.Size = new System.Drawing.Size(180, 22);
+            this.tsmEliminar.Size = new System.Drawing.Size(160, 22);
             this.tsmEliminar.Text = "Eliminar";
             this.tsmEliminar.Click += new System.EventHandler(this.tsmEliminar_Click);
             // 
             // tsmSep3
             // 
             this.tsmSep3.Name = "tsmSep3";
-            this.tsmSep3.Size = new System.Drawing.Size(177, 6);
+            this.tsmSep3.Size = new System.Drawing.Size(157, 6);
             this.tsmSep3.Visible = false;
             // 
             // tsmAsignarPermiso
             // 
             this.tsmAsignarPermiso.Name = "tsmAsignarPermiso";
-            this.tsmAsignarPermiso.Size = new System.Drawing.Size(180, 22);
+            this.tsmAsignarPermiso.Size = new System.Drawing.Size(160, 22);
             this.tsmAsignarPermiso.Text = "Asignar permiso";
             this.tsmAsignarPermiso.Visible = false;
             // 
