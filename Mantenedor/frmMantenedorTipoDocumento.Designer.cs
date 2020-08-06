@@ -62,8 +62,8 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.txt_id_tipo_doc = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
-			this.btn_Minimizar = new System.Windows.Forms.Button();
 			this.btn_Limpiar = new System.Windows.Forms.Button();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.stsEstado.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.scPrincipal)).BeginInit();
@@ -76,6 +76,7 @@
 			this.cmsMenuContexto.SuspendLayout();
 			this.gpxFiltrar.SuspendLayout();
 			this.glo_TipoDocumentos.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// stsEstado
@@ -332,6 +333,7 @@
 			// glo_TipoDocumentos
 			// 
 			this.glo_TipoDocumentos.BackColor = System.Drawing.SystemColors.Control;
+			this.glo_TipoDocumentos.Controls.Add(this.pictureBox1);
 			this.glo_TipoDocumentos.Controls.Add(this.btn_Guardar);
 			this.glo_TipoDocumentos.Controls.Add(this.cbx_id_estado);
 			this.glo_TipoDocumentos.Controls.Add(this.label4);
@@ -341,7 +343,6 @@
 			this.glo_TipoDocumentos.Controls.Add(this.label2);
 			this.glo_TipoDocumentos.Controls.Add(this.txt_id_tipo_doc);
 			this.glo_TipoDocumentos.Controls.Add(this.label5);
-			this.glo_TipoDocumentos.Controls.Add(this.btn_Minimizar);
 			this.glo_TipoDocumentos.Controls.Add(this.btn_Limpiar);
 			this.glo_TipoDocumentos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.glo_TipoDocumentos.Location = new System.Drawing.Point(0, 0);
@@ -450,24 +451,6 @@
 			this.label5.Text = "ID";
 			this.label5.Visible = false;
 			// 
-			// btn_Minimizar
-			// 
-			this.btn_Minimizar.BackColor = System.Drawing.Color.Transparent;
-			this.btn_Minimizar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.btn_Minimizar.CausesValidation = false;
-			this.btn_Minimizar.Dock = System.Windows.Forms.DockStyle.Top;
-			this.btn_Minimizar.FlatAppearance.BorderColor = System.Drawing.Color.White;
-			this.btn_Minimizar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.btn_Minimizar.Image = global::ControlDosimetro.Properties.Resources.minimizar;
-			this.btn_Minimizar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btn_Minimizar.Location = new System.Drawing.Point(4, 19);
-			this.btn_Minimizar.Margin = new System.Windows.Forms.Padding(4, 4, 15, 4);
-			this.btn_Minimizar.Name = "btn_Minimizar";
-			this.btn_Minimizar.Size = new System.Drawing.Size(476, 21);
-			this.btn_Minimizar.TabIndex = 13;
-			this.btn_Minimizar.UseVisualStyleBackColor = true;
-			this.btn_Minimizar.Click += new System.EventHandler(this.Btn_Minimizar_Click);
-			// 
 			// btn_Limpiar
 			// 
 			this.btn_Limpiar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -484,6 +467,19 @@
 			this.btn_Limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btn_Limpiar.UseVisualStyleBackColor = true;
 			this.btn_Limpiar.Click += new System.EventHandler(this.btn_Limpiar_Click);
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pictureBox1.Image = global::ControlDosimetro.Properties.Resources.minimizar;
+			this.pictureBox1.InitialImage = global::ControlDosimetro.Properties.Resources.minimizar;
+			this.pictureBox1.Location = new System.Drawing.Point(4, 19);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(476, 27);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox1.TabIndex = 23;
+			this.pictureBox1.TabStop = false;
+			this.pictureBox1.Click += new System.EventHandler(this.Btn_Minimizar_Click);
 			// 
 			// frmMantenedorTipoDocumento
 			// 
@@ -520,6 +516,7 @@
 			this.gpxFiltrar.PerformLayout();
 			this.glo_TipoDocumentos.ResumeLayout(false);
 			this.glo_TipoDocumentos.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -549,7 +546,6 @@
         private System.Windows.Forms.ToolStripStatusLabel tssDescEstado;
         private System.Windows.Forms.ToolStripStatusLabel tssEstado;
         private System.Windows.Forms.Button btn_Limpiar;
-        private System.Windows.Forms.Button btn_Minimizar;
         private System.Windows.Forms.ComboBox cbx_id_estado;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txt_orden;
@@ -561,5 +557,6 @@
 		private System.Windows.Forms.Button btn_Guardar;
 		private System.Windows.Forms.DataGridView dgvGrilla;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Coldetalle_tipo_documento;
+		private System.Windows.Forms.PictureBox pictureBox1;
 	}
 }
