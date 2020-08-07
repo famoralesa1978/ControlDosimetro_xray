@@ -158,15 +158,15 @@
             this.scPrincipal.Panel1.AutoScrollMinSize = new System.Drawing.Size(200, 0);
             this.scPrincipal.Panel1.Controls.Add(this.pnlPrincipal);
             this.scPrincipal.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.scPrincipal.Panel1MinSize = 250;
+            this.scPrincipal.Panel1MinSize = 330;
             // 
             // scPrincipal.Panel2
             // 
             this.scPrincipal.Panel2.Controls.Add(this.glo_TipoDocumentos);
             this.scPrincipal.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.scPrincipal.Panel2MinSize = 480;
+            this.scPrincipal.Panel2MinSize = 300;
             this.scPrincipal.Size = new System.Drawing.Size(735, 323);
-            this.scPrincipal.SplitterDistance = 251;
+            this.scPrincipal.SplitterDistance = 330;
             this.scPrincipal.TabIndex = 2;
             // 
             // pnlPrincipal
@@ -178,7 +178,7 @@
             this.pnlPrincipal.Location = new System.Drawing.Point(0, 0);
             this.pnlPrincipal.Margin = new System.Windows.Forms.Padding(6, 3, 5, 3);
             this.pnlPrincipal.Name = "pnlPrincipal";
-            this.pnlPrincipal.Size = new System.Drawing.Size(251, 323);
+            this.pnlPrincipal.Size = new System.Drawing.Size(330, 323);
             this.pnlPrincipal.TabIndex = 1;
             // 
             // gpxListado
@@ -188,7 +188,7 @@
             this.gpxListado.Controls.Add(this.dgvGrilla);
             this.gpxListado.Location = new System.Drawing.Point(0, 107);
             this.gpxListado.Name = "gpxListado";
-            this.gpxListado.Size = new System.Drawing.Size(243, 214);
+            this.gpxListado.Size = new System.Drawing.Size(322, 214);
             this.gpxListado.TabIndex = 4;
             this.gpxListado.TabStop = false;
             this.gpxListado.Text = "Listado";
@@ -215,7 +215,7 @@
             this.dgvGrilla.Location = new System.Drawing.Point(3, 16);
             this.dgvGrilla.Name = "dgvGrilla";
             this.dgvGrilla.ReadOnly = true;
-            this.dgvGrilla.Size = new System.Drawing.Size(237, 195);
+            this.dgvGrilla.Size = new System.Drawing.Size(316, 195);
             this.dgvGrilla.TabIndex = 1;
             this.dgvGrilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_CellDoubleClick);
             this.dgvGrilla.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvGrilla_ColumnWidthChanged);
@@ -282,7 +282,7 @@
             this.gpxFiltrar.Controls.Add(this.label1);
             this.gpxFiltrar.Location = new System.Drawing.Point(3, 3);
             this.gpxFiltrar.Name = "gpxFiltrar";
-            this.gpxFiltrar.Size = new System.Drawing.Size(240, 89);
+            this.gpxFiltrar.Size = new System.Drawing.Size(319, 89);
             this.gpxFiltrar.TabIndex = 0;
             this.gpxFiltrar.TabStop = false;
             this.gpxFiltrar.Text = "Filtrar";
@@ -292,7 +292,7 @@
             this.btn_Buscar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_Buscar.Image = global::ControlDosimetro.Properties.Resources.Buscar;
             this.btn_Buscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Buscar.Location = new System.Drawing.Point(200, 24);
+            this.btn_Buscar.Location = new System.Drawing.Point(239, 24);
             this.btn_Buscar.Name = "btn_Buscar";
             this.btn_Buscar.Size = new System.Drawing.Size(46, 40);
             this.btn_Buscar.TabIndex = 3;
@@ -336,7 +336,7 @@
             this.glo_TipoDocumentos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.glo_TipoDocumentos.Location = new System.Drawing.Point(0, 0);
             this.glo_TipoDocumentos.Name = "glo_TipoDocumentos";
-            this.glo_TipoDocumentos.Size = new System.Drawing.Size(480, 323);
+            this.glo_TipoDocumentos.Size = new System.Drawing.Size(401, 323);
             this.glo_TipoDocumentos.TabIndex = 6;
             this.glo_TipoDocumentos.TabStop = false;
             this.glo_TipoDocumentos.Text = "Datos";
@@ -347,9 +347,9 @@
             this.pictureBox1.Image = global::ControlDosimetro.Properties.Resources.minimizar;
             this.pictureBox1.InitialImage = global::ControlDosimetro.Properties.Resources.minimizar;
             this.pictureBox1.Location = new System.Drawing.Point(3, 16);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(474, 22);
+            this.pictureBox1.Size = new System.Drawing.Size(395, 22);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 23;
             this.pictureBox1.TabStop = false;
@@ -362,7 +362,7 @@
             this.btn_Guardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_Guardar.Image = global::ControlDosimetro.Properties.Resources.save_32;
             this.btn_Guardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Guardar.Location = new System.Drawing.Point(129, 273);
+            this.btn_Guardar.Location = new System.Drawing.Point(89, 273);
             this.btn_Guardar.Name = "btn_Guardar";
             this.btn_Guardar.Size = new System.Drawing.Size(87, 40);
             this.btn_Guardar.TabIndex = 22;
@@ -450,7 +450,7 @@
             this.btn_Limpiar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_Limpiar.Image = global::ControlDosimetro.Properties.Resources.Limpiar;
             this.btn_Limpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Limpiar.Location = new System.Drawing.Point(285, 273);
+            this.btn_Limpiar.Location = new System.Drawing.Point(245, 273);
             this.btn_Limpiar.Name = "btn_Limpiar";
             this.btn_Limpiar.Size = new System.Drawing.Size(85, 40);
             this.btn_Limpiar.TabIndex = 10;
