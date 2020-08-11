@@ -19,9 +19,11 @@ namespace ControlDosimetro
     {
         #region "Definicion variable"
 
-        TextBox txtBox = new TextBox();
+        TextBox txtColMenu = new TextBox();
+        TextBox txtColTitulo = new TextBox();
         Button btnColBuscara = new Button();
         bool bolInicializacion;
+
         enum ConfGrilla: int
         {
             Id_menuWeb=0,
@@ -46,20 +48,18 @@ namespace ControlDosimetro
         public frmMantenedorWeb()
         {
             InitializeComponent();
-           
         }
 
         private void frmMantenedorPerfil_Load(object sender, EventArgs e)
         {
-
             scPrincipal.Panel2Collapsed = true;
             Cargar_Estado();
             Cargar_Menu();
+            Cargar_Clase();
             tsbGuardar.Enabled = false;
             dgvGrilla.AutoGenerateColumns = false;
             bolInicializacion = true;
             CargarGrilla();
-          
         }
 
         #endregion
@@ -75,11 +75,12 @@ namespace ControlDosimetro
         private void Cargar_Menu()
         {
             Cursor = Cursors.WaitCursor;
-
             SqlCommand cmd = new SqlCommand();
             {
 
-                cmd.CommandText = "select Id_menuWeb, Menu FROM tbl_MenuWeb WHERE Id_menu_Padre=0 order by Menu";
+                cmd.CommandText = "SELECT Id_menuWeb, Menu FROM tbl_MenuWeb WHERE Id_menu_padre=0" +
+                                   " union select -1 as Id_menuWeb, 'Selccionar' as Menu " +
+                                   "order by Id_menuWeb";
                 DataSet dt;
                 dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
@@ -87,14 +88,38 @@ namespace ControlDosimetro
                 cbx_Id_menuWeb_Buscar.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
                 cbx_Id_menuWeb_Buscar.DataSource = dt.Tables[0];
 
+                cmd.CommandText = "SELECT Id_menuWeb, Menu FROM tbl_MenuWeb WHERE Id_menu_padre=0" +
+                                   " union select 0 as Id_menuWeb, 'Menu Padre' as Menu " +
+                                   "order by Id_menuWeb";
+           
+                dt = Conectar.Listar(Clases.clsBD.BD, cmd);
                 cbx_Id_menu_Padre.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
                 cbx_Id_menu_Padre.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
+                cbx_Id_menu_Padre.DataSource = dt.Tables[0];
+                Cursor = Cursors.Default;
+            }
+        }
+
+        
+        private void Cargar_Clase() {
+
+            Cursor = Cursors.WaitCursor;
+            SqlCommand cmd = new SqlCommand();
+            {
+                cmd.CommandText = "SELECT [Id_Class],[Class],[Nombre] FROM [dbo].[glo_Class]";
+                DataSet dt;
+                dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+                cbx_Class.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
+                cbx_Class.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
+                cbx_Class.DataSource = dt.Tables[0];
 
                 DataTable dtVista = dt.Tables[0];
 
                 Cursor = Cursors.Default;
             }
         }
+
 
         #endregion
 
@@ -103,51 +128,51 @@ namespace ControlDosimetro
         private void LimpiarFormulario()
         {
             txt_Menu.Clear();
-            //cbx_Id_menu_Padre.SelectedIndex = 0;
+            cbx_Id_menu_Padre.SelectedIndex = 0;
             txt_DirUrl.Clear();
             txt_Titulo.Clear();
-            //cbx_Class.SelectedIndex = 0;
+            cbx_Class.SelectedIndex = 0;
             txt_Orden.Clear();
-           // cbx_Id_Estado.SelectedIndex = 0;
+            cbx_Id_Estado.SelectedIndex = 0;
+        }
+        private void txt_Orden_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
         private void Grabar()
         {
             Boolean bolResult;
             bolResult = false;
-            if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+            if (MessageBox.Show("¿Desea grabar la información?", "Confirmar:", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
             {
-                if ((tssEstado.Text == "Nuevo")&&(txt_Id_menuWeb.Text=="0"))
+                if ((tssEstado.Text == "Nuevo") && (lbl_Id_menuWeb.Text == "0"))
                 {
-
-                    if (!String.IsNullOrEmpty(txt_Menu.Text) )
+                    ClaseComun.Insertar(Clases.clsBD.BD, tbl_MenuWeb, ref bolResult);
+                    if (bolResult == true)
                     {
-
-                        ClaseComun.Insertar(Clases.clsBD.BD, glo_TipoDocumentos, ref bolResult);
-                        if (bolResult == true)
-                        {
-                            CargarGrilla();
-                            MessageBox.Show("Dato Guardado");
-                        }
+                        CargarGrilla();
+                        MessageBox.Show("Dato Guardado");
                     }
-                    else {
-                        MessageBox.Show("Completar todos los campos");
-                    }
-                }
+                } 
                 else
                 if (tssEstado.Text == "Modificar")
                 {
-                    if (!String.IsNullOrEmpty(txt_Menu.Text) )
+                    ClaseComun.Modificar(Clases.clsBD.BD, tbl_MenuWeb, ref bolResult);
+                    if (bolResult == true)
                     {
-                        ClaseComun.Modificar(Clases.clsBD.BD, glo_TipoDocumentos, ref bolResult);
-                        if (bolResult == true)
-                        {
-                            CargarGrilla();
-                            MessageBox.Show("Dato modificado");
-                        }
-
-                    }
-                    else {
-                        MessageBox.Show("Completar todos los campos");
+                        CargarGrilla();
+                        MessageBox.Show("Dato modificado");
                     }
                 }
             }
@@ -159,8 +184,7 @@ namespace ControlDosimetro
 
             {
                 cmd.CommandText = "SELECT [Id_menuWeb],[Menu],[Id_menu_Padre],[DirUrl],[Titulo],[Class],[Orden],[Id_Estado]" +
-                                                " FROM [dbo].[tbl_MenuWeb]" +
-                                                " where id_estado=" + cbx_Id_Estado_Buscar.SelectedValue + " and Id_menuWeb=" + cbx_Id_menuWeb_Buscar.SelectedValue + "order by Menu";
+                                                " FROM [dbo].[tbl_MenuWeb]" ;
                 cmd.CommandType = CommandType.Text;
 
                 DataSet dt;
@@ -173,31 +197,39 @@ namespace ControlDosimetro
         }
         private void LlamadoAModificar(int intFila)
         {
-            BindingSource bs1 = new BindingSource();
-             bs1=(BindingSource)dgvGrilla.DataSource;
-            var currentRow = bs1.List[intFila];
+            if (intFila >= 0)
+            {
+                BindingSource bs1 = new BindingSource();
+                bs1 = (BindingSource)dgvGrilla.DataSource;
+                var currentRow = bs1.List[intFila];
 
-            txt_Id_menuWeb.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_menuWeb].ToString();
-            txt_Menu.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Menu].ToString();          
-            txt_DirUrl.Text= ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.DirUrl].ToString();
-            txt_Titulo.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Titulo].ToString();
-            cbx_Class.SelectedValue = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Class].ToString();
-            txt_Orden.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Orden].ToString();
-            cbx_Id_Estado.SelectedValue = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_Estado].ToString();
-            tssEstado.Text = "Modificar";
-            btn_Guardar.Enabled = true;
-            tsbGuardar.Enabled = true;
-            btn_Guardar.Text = "Modificar";
+                lbl_Id_menuWeb.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_menuWeb].ToString();
+                txt_Menu.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Menu].ToString();
+                txt_DirUrl.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.DirUrl].ToString();
+                txt_Titulo.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Titulo].ToString();
+                cbx_Class.SelectedValue = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Class].ToString();
+                txt_Orden.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Orden].ToString();
+                cbx_Id_Estado.SelectedValue = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_Estado].ToString();
+                tssEstado.Text = "Modificar";
+                btn_Guardar.Enabled = true;
+                tsbGuardar.Enabled = true;
+                btn_Guardar.Text = "Modificar";
 
-            scPrincipal.Panel2Collapsed = false;
+                scPrincipal.Panel2Collapsed = false;
+            }
         }
 
         private void Filtro()
         {
-            bs = new BindingSource();
-            bs.DataSource = dgvGrilla.DataSource;
-            //bs.Filter = ColMenu.DataPropertyName + " like '%" + txtBox.Text + "%'";
-            //dgvGrilla.DataSource = bs;
+            var bs = new BindingSource();
+            {
+                bs.DataSource = dgvGrilla.DataSource;
+                string strFiltro = txtColMenu.Text != "" ? ColMenu .DataPropertyName + " like '%" + txtColMenu.Text + "%'" : "";
+                strFiltro += strFiltro != "" && txtColTitulo.Text != "" ? " and " : "";
+                strFiltro += txtColTitulo.Text != "" ? ColTitulo.DataPropertyName + " like '%" + txtColTitulo.Text + "%'" : "";
+                bs.Filter = strFiltro;
+                dgvGrilla.DataSource = bs;
+            }
         }
 
         #endregion
@@ -209,24 +241,32 @@ namespace ControlDosimetro
             if (bolInicializacion == true)
             {
                 int columnIndex = 0;
-            Point headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;                     
-            txtBox.Location = new Point(headerCellLocation.X, headerCellLocation.Y+20);
-            txtBox.BackColor = Color.AliceBlue;
-            txtBox.Width = ColMenu.Width-2;
-             txtBox.TextAlign = HorizontalAlignment.Left;
-                dgvGrilla.Controls.Add(txtBox);
+            Point headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
+                txtColMenu.Location = new Point(headerCellLocation.X, headerCellLocation.Y+20);
+                txtColMenu.BackColor = Color.AliceBlue;
+                txtColMenu.Width = ColMenu.Width-2;
+                txtColMenu.TextAlign = HorizontalAlignment.Left;
+                dgvGrilla.Controls.Add(txtColMenu);
 
-            columnIndex = -1;
-            headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
-            btnColBuscara.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 0);
-            btnColBuscara.Image = ControlDosimetro.Properties.Resources.Buscar;
+                columnIndex = 1;
+                headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex,-1, true).Location;
+                txtColTitulo.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
+                txtColTitulo.BackColor = Color.AliceBlue;
+                txtColTitulo.Width = txtColTitulo.Width-2;
+                txtColTitulo.TextAlign = HorizontalAlignment.Left;
+                dgvGrilla.Controls.Add(txtColTitulo);
 
-            btnColBuscara.FlatStyle = FlatStyle.Standard;
-            btnColBuscara.Height = 41;
-            btnColBuscara.Width = 41;
-            btnColBuscara.Click += new EventHandler(BtnColBuscar_Click);
+                columnIndex = -1;
+                headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
+                btnColBuscara.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 0);
+                btnColBuscara.Image = ControlDosimetro.Properties.Resources.Buscar;
 
-            dgvGrilla.Controls.Add(btnColBuscara);
+                btnColBuscara.FlatStyle = FlatStyle.Standard;
+                btnColBuscara.Height = 41;
+                btnColBuscara.Width = 41;
+                btnColBuscara.Click += new EventHandler(BtnColBuscar_Click);
+
+                dgvGrilla.Controls.Add(btnColBuscara);
             }
             bolInicializacion = false;
         }
@@ -239,10 +279,16 @@ namespace ControlDosimetro
 
         private void dgvGrilla_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
-            txtBox.Width = ColMenu.Width - 4;
+            txtColMenu.Width = ColMenu.Width-4;
+            txtColTitulo.Width = txtColTitulo.Width;
+
             int columnIndex = 0;
             Point headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
-            txtBox.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
+            txtColMenu.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
+
+            columnIndex = 1;
+            headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
+            txtColTitulo.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
         }
 
         #endregion
@@ -258,75 +304,42 @@ namespace ControlDosimetro
         private void btn_Limpiar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-
             LimpiarFormulario();
             tssEstado.Text = "Nuevo";
-            txt_Id_menuWeb.Text = "0";
-
+            lbl_Id_menuWeb.Text = "0";
             Cursor = Cursors.Default;
         }
 
         private void Btn_Buscar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-
             CargarGrilla();
-
             Cursor = Cursors.Default;
         }
 
         private void Btn_Guardar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-
             Grabar();
            // LimpiarFormulario();
             tssEstado.Text = "Nuevo";
-            txt_Id_menuWeb.Text = "0";
-
+            lbl_Id_menuWeb.Text = "0";
             Cursor = Cursors.Default;
         }
 
         private void Btn_Minimizar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-
             scPrincipal.Panel2Collapsed = true;
             tsbGuardar.Enabled = false;
-
             Cursor = Cursors.Default;
         }
 
-        //private void TsmEliminar_Click(object sender, EventArgs e)
-        //{
-        //    Cursor = Cursors.WaitCursor;
-
-        //    if (MessageBox.Show("¿Desea Eliminar la información?", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-        //    {                
-        //        DataTable dt = (DataTable)dgvGrilla.DataSource;
-        //        DataRow currentRow = dt.Rows[dgvGrilla.CurrentRow.Index];
-        //        SqlCommand cmd = new SqlCommand();
-        //        cmd.CommandText = "pa_TipoDocumento_del " + currentRow[ConfGrilla.id.ToString()].ToString();
-
-        //        cmd.CommandType = CommandType.Text;
-
-        //        DataSet dt1;
-        //        dt1 = Conectar.Listar(Clases.clsBD.BD,cmd);
-
-        //        MessageBox.Show(dt1.Tables[0].Rows[0][1].ToString());
-        //        if (dt1.Tables[0].Rows[0][0].ToString() == "0")
-        //            CargarGrilla();
-        //    }
-
-        //    Cursor = Cursors.Default;
-        //}
-
+    
         private void TsmActualizar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-
             LlamadoAModificar(dgvGrilla.CurrentRow.Index);
-
             Cursor = Cursors.Default;
         }
 
@@ -345,7 +358,7 @@ namespace ControlDosimetro
         private void tsbAgregar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-
+            
             if(scPrincipal.Panel2Collapsed==true)
                 scPrincipal.Panel2Collapsed =false;
 
@@ -354,14 +367,14 @@ namespace ControlDosimetro
                 tssEstado.Text = "Nuevo";
                 tsbGuardar.Enabled = true;
                 LimpiarFormulario();
-                txt_Id_menuWeb.Text = "0";
+                lbl_Id_menuWeb.Text = "0";
 
                 btn_Guardar.Text = "Grabar";
             }
             else
             {
                 tssEstado.Text = "";
-                txt_Id_menuWeb.Text = "";
+                lbl_Id_menuWeb.Text = "";
             }
 
             Cursor = Cursors.Default;
@@ -369,21 +382,11 @@ namespace ControlDosimetro
 
 
 
+
+
+
         #endregion
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_Menu_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl_Menu_Click(object sender, EventArgs e)
-        {
-
-        }
+     
     }
 }
