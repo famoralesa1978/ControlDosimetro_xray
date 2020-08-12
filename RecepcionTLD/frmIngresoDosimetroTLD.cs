@@ -31,7 +31,7 @@ namespace ControlDosimetro
             const string headerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.header+xml";
             const string footerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml";
 
-		public int Id_Menu { get; private set; }
+		public string Id_Menu { get; private set; }
 
 		public object[] Parametros
 		{
@@ -39,7 +39,7 @@ namespace ControlDosimetro
 			{
 				if (value != null)
 				{
-					Id_Menu = (int)value[0];
+					Id_Menu = value[0].ToString();
 				}
 			}
 		}

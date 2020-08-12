@@ -338,10 +338,9 @@ namespace ControlDosimetro
 
     private void MnuProcesoTLDIngresoPelicula_Click(object sender, EventArgs e)
     {
-			object[] objParams = { 301 };
+			object[] objParams = {mnuProcesoTLDIngresoPelicula.Tag.ToString()};
 
 			frmIngresoDosimetroTLD frm = new frmIngresoDosimetroTLD(0);
-			frm.Tag = "301";
 			frm.Parametros = objParams;
       Graba_log(frm.Text);
       frm.Show(this);
