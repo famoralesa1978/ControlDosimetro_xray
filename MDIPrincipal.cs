@@ -336,25 +336,29 @@ namespace ControlDosimetro
 
         #region "Proceso TLD"
 
-          private void MnuProcesoTLDIngresoPelicula_Click(object sender, EventArgs e)
-          {
-              frmIngresoDosimetroTLD frm = new frmIngresoDosimetroTLD(0);
-            Graba_log(frm.Text);
-            frm.ShowDialog(this);
-          }
+    private void MnuProcesoTLDIngresoPelicula_Click(object sender, EventArgs e)
+    {
+			object[] objParams = { 301 };
 
-          private void MnuProcesoTLDIniciarLectura_Click(object sender, EventArgs e)
-          {
-              frmModuloIniciarProcesoTLD frm = new frmModuloIniciarProcesoTLD(2);
-            Graba_log(frm.Text);
-            frm.ShowDialog(this);
-          }
+			frmIngresoDosimetroTLD frm = new frmIngresoDosimetroTLD(0);
+			frm.Tag = "301";
+			frm.Parametros = objParams;
+      Graba_log(frm.Text);
+      frm.Show(this);
+    }
 
-          private void MnuProcesoIngresarDosisTLD_Click(object sender, EventArgs e)
-          {
-              frmIngresoDosisTLD frm = new frmIngresoDosisTLD(12);
-            Graba_log(frm.Text);
-            frm.ShowDialog(this);
+        private void MnuProcesoTLDIniciarLectura_Click(object sender, EventArgs e)
+        {
+            frmModuloIniciarProcesoTLD frm = new frmModuloIniciarProcesoTLD(2);
+          Graba_log(frm.Text);
+          frm.ShowDialog(this);
+        }
+
+        private void MnuProcesoIngresarDosisTLD_Click(object sender, EventArgs e)
+        {
+            frmIngresoDosisTLD frm = new frmIngresoDosisTLD(12);
+          Graba_log(frm.Text);
+          frm.ShowDialog(this);
           }
 
         private void MnuProcesoTLDDosisISP_Click(object sender, EventArgs e)

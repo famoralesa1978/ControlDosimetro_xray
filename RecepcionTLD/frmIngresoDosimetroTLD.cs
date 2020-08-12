@@ -1,75 +1,85 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using dllConectorMysql;
+﻿using dllConectorMysql;
 using dllLibreriaEvento;
 using dllLibreriaMysql;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using System.IO;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Data.Sql;
-using OpenXmlPowerTools;
-using System.Xml;
 using DocumentFormat.OpenXml.Wordprocessing;
-using System.IO.Packaging;
-using System.Diagnostics;
+using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 
 namespace ControlDosimetro
 {
-    public partial class frmIngresoDosimetroTLD : Form
+	public partial class frmIngresoDosimetroTLD : Form
     {
 
-        #region "Definicion variable"
-            clsConectorSqlServer Conectar = new clsConectorSqlServer();
-				clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-				clsEventoControl ClaseEvento = new clsEventoControl();
-					WorkbookPart wbPart = null;
-				SpreadsheetDocument document = null;
-			//	SpreadsheetDocument document2 = null;
-                object missing = System.Reflection.Missing.Value;
-           //     object strcampoMarcador;
-                const string documentRelationshipType = "http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument";
-                const string headerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.header+xml";
-                const string footerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml";
-             //   XmlNamespaceManager nsManager;
+    #region "Definicion variable"
+        clsConectorSqlServer Conectar = new clsConectorSqlServer();
+		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
+		clsEventoControl ClaseEvento = new clsEventoControl();
+			WorkbookPart wbPart = null;
+		SpreadsheetDocument document = null;
+	//	SpreadsheetDocument document2 = null;
+            object missing = System.Reflection.Missing.Value;
+        //     object strcampoMarcador;
+            const string documentRelationshipType = "http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument";
+            const string headerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.header+xml";
+            const string footerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml";
 
-        #endregion
+		public int Id_Menu { get; private set; }
 
-       public frmIngresoDosimetroTLD(Int64 intId_Cliente)
-        {
-            InitializeComponent();
+		public object[] Parametros
+		{
+			set
+			{
+				if (value != null)
+				{
+					Id_Menu = (int)value[0];
+				}
+			}
+		}
 
-            SqlCommand cmdcombo = new SqlCommand();
-				//SqlCommand cmdcombo = new SqlCommand();
-			DataSet dtcombo;			
+		#endregion
+
+		public frmIngresoDosimetroTLD(Int64 intId_Cliente)
+    {
+      InitializeComponent();
+			AsignarEvento();
+		
+    }
+
+		private void frmIngresoDosimetroTLD_Load(object sender, EventArgs e)
+		{
+			SqlCommand cmdcombo = new SqlCommand();
+			//SqlCommand cmdcombo = new SqlCommand();
+			DataSet dtcombo;
 			cmdcombo.CommandText = "select 0 as Id_DetParametro, 'Seleccione' as Glosa, 0 as orden union all " +
 				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 order by orden ";
 			cmdcombo.CommandType = CommandType.Text;
-			dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
+			dtcombo = Conectar.Listar(Clases.clsBD.BD, cmdcombo);
 
-			AsignarEvento();
+
+
+			btn_Guardar.Visible = false;
+			pnl_Progreso.Visible = false;
+			grpFiltro.Enabled = false;
+			lbl_ValorMax.Text = "";
+			Cargar_Reporte();
 			Cargar_Anno();
-            btn_Guardar.Visible = false;
-            pnl_Progreso.Visible = false;
-            grpFiltro.Enabled = false;
-            lbl_ValorMax.Text = "";
-        }
+		}
 
-        #region "Llamada de carga"
+		#region "Llamada de carga"
 
-          private void Cargar_Cliente(Int64 intCodCliente)
-                {
-                    SqlCommand cmd = new SqlCommand();
+		private void Cargar_Cliente(Int64 intCodCliente)
+              {
+			
+
+			SqlCommand cmd = new SqlCommand();
                     cmd.CommandText = "select run,Razon_Social,N_Cliente_Ref,region + ','+ comuna +','+Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
                                     "  FROM tbl_cliente c inner join [dbo].[glo_region] r on c.Id_Region=r.Id_Region inner join glo_comuna co on co.id_comuna=c.id_comuna" +
                                     " WHERE Id_cliente= " + intCodCliente.ToString();
@@ -165,52 +175,75 @@ namespace ControlDosimetro
 
 		  }
 
-          private void Cargar_Periodo()
-          {
-            SqlCommand cmd = new SqlCommand
-            {
-                CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ 'º TRI' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text
-            };
-            DataSet dt;
-              dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+    private void Cargar_Periodo()
+    {
+      SqlCommand cmd = new SqlCommand
+      {
+          CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ 'º TRI' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text
+      };
+      DataSet dt;
+        dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
-              cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
-              cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
-              cbx_id_periodo.DataSource = dt.Tables[0];
+        cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
+        cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
+        cbx_id_periodo.DataSource = dt.Tables[0];
+    }
 
-              //cbx_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
-              //cbx_periodo.DataSource = dt.Tables[0];
+    private void Cargar_Sucursal()
+    {
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "select id_sucursal, direccion + ','+co.comuna as Dato " +
+            "from [dbo].[tbl_sucursal] s " +
+            "inner join glo_region r on r.Id_region=s.Id_Region " +
+            "inner join glo_comuna co on co.id_comuna=s.Id_Comuna " +
+            "where run='" + lbl_rut.Text + "' and s.id_estado=1";
+        DataSet dt;
+        dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
-              //cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
-              //cbx_id_periodo.DataSource = dt.Tables[0];
-          }
+        cbx_Sucursal.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
+        cbx_Sucursal.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
+        cbx_Sucursal.DataSource = dt.Tables[0];
 
-          private void Cargar_Sucursal()
-          {
-              SqlCommand cmd = new SqlCommand();
-              cmd.CommandText = "select id_sucursal, direccion + ','+co.comuna as Dato " +
-                 "from [dbo].[tbl_sucursal] s " +
-                 "inner join glo_region r on r.Id_region=s.Id_Region " +
-                 "inner join glo_comuna co on co.id_comuna=s.Id_Comuna " +
-                 "where run='" + lbl_rut.Text + "' and s.id_estado=1";
-              DataSet dt;
-              dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+    }
 
-              cbx_Sucursal.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
-              cbx_Sucursal.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
-              cbx_Sucursal.DataSource = dt.Tables[0];
+		private void Cargar_Reporte()
+		{
+			ToolStripMenuItem tsiMenu;
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "pa_ListarReporte_Sel " + Id_Menu.ToString();
+			DataSet dt;
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			if (dt == null)
+				tsdReporte.Visible = false;
+			else
+			{
+				tsdReporte.Visible = dt.Tables[0].Rows.Count==0?false:true;
+				if (dt.Tables[0].Rows.Count > 0)
+				{
+					for(int intFila=0;intFila<= dt.Tables[0].Rows.Count - 1; intFila++)
+					{
+						tsiMenu = new ToolStripMenuItem();//dt.Tables[0].Rows[intFila]["Nombre"].ToString(),null, null, rptDosimetria_Click
+						tsiMenu.Text = dt.Tables[0].Rows[intFila]["Nombre"].ToString();
+						tsiMenu.Name = dt.Tables[0].Rows[intFila]["nameMenu"].ToString();
+						tsiMenu.Tag = dt.Tables[0].Rows[intFila]["N_Reporte"].ToString();
+						tsiMenu.Click += new EventHandler(this.rptDosimetria_Click);
 
-          }
+						tsdReporte.DropDownItems.Add(tsiMenu);
+					}
+				}
+			}
+		
+		}
 
-        private void AsignarEvento()
-        {           
+		private void AsignarEvento()
+		{           
 			this.txtRut.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
 			txtRut.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
-            this.txt_N_TLD.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-            txt_N_TLD.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-            lbl_id_cliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-            lbl_id_cliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-        }
+				this.txt_N_TLD.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+				txt_N_TLD.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+				lbl_id_cliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+				lbl_id_cliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+     }
 
         #endregion
 
@@ -620,6 +653,7 @@ namespace ControlDosimetro
 		  }
 
         #endregion
+
 		 #region "Excel"
 
 		  public bool UpdateValue(string sheetName, string addressName, string value,  UInt32Value styleIndex, bool isString)
@@ -1033,5 +1067,6 @@ namespace ControlDosimetro
                 }
             }
         }
-    }
+
+	}
 }
