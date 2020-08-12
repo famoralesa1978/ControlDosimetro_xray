@@ -181,7 +181,8 @@ namespace ControlDosimetro
             {
                 cmd.CommandText = "SELECT [Id_menuWeb],[Menu],[Id_menu_Padre],[DirUrl],[Titulo],[Class],[Orden],[Id_Estado]" +
                                                 " FROM [dbo].[tbl_MenuWeb] WHERE Id_Estado=" + cbx_Id_Estado_Buscar.SelectedValue +
-                                                "order by Menu, Titulo" ;
+                                                "and Id_menu_Padre=" + cbx_Id_menuWeb_Buscar.SelectedValue + "order by Menu, Titulo";
+
                 cmd.CommandType = CommandType.Text;
 
                 DataSet dt;
@@ -202,6 +203,7 @@ namespace ControlDosimetro
 
                 lbl_Id_menuWeb.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_menuWeb].ToString();
                 txt_Menu.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Menu].ToString();
+                cbx_Id_menu_Padre.Text= ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_menu_Padre].ToString();
                 txt_DirUrl.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.DirUrl].ToString();
                 txt_Titulo.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Titulo].ToString();
                 cbx_Class.SelectedValue = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Class].ToString();
@@ -371,8 +373,28 @@ namespace ControlDosimetro
             Cursor = Cursors.Default;
         }
 
-       #endregion
 
-     
+
+        #endregion
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbx_Id_menuWeb_Buscar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbx_Id_Estado_Buscar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
