@@ -79,7 +79,7 @@ namespace ControlDosimetro
             {
 
                 cmd.CommandText = "SELECT Id_menuWeb, Menu FROM tbl_MenuWeb WHERE Id_menu_padre=0" +
-                                   " union select -1 as Id_menuWeb, 'Selccionar' as Menu " +
+                                   " union select -1 as Id_menuWeb, 'Seleccionar' as Menu " +
                                    "order by Id_menuWeb";
                 DataSet dt;
                 dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -100,7 +100,6 @@ namespace ControlDosimetro
             }
         }
 
-        
         private void Cargar_Clase() {
 
             Cursor = Cursors.WaitCursor;
@@ -115,12 +114,9 @@ namespace ControlDosimetro
                 cbx_Class.DataSource = dt.Tables[0];
 
                 DataTable dtVista = dt.Tables[0];
-
                 Cursor = Cursors.Default;
             }
         }
-
-
         #endregion
 
         #region Procedimiento
@@ -150,6 +146,7 @@ namespace ControlDosimetro
                 e.Handled = true;
             }
         }
+
         private void Grabar()
         {
             Boolean bolResult;
@@ -181,10 +178,10 @@ namespace ControlDosimetro
         private void CargarGrilla()
         {
             SqlCommand cmd = new SqlCommand();
-
             {
                 cmd.CommandText = "SELECT [Id_menuWeb],[Menu],[Id_menu_Padre],[DirUrl],[Titulo],[Class],[Orden],[Id_Estado]" +
-                                                " FROM [dbo].[tbl_MenuWeb]" ;
+                                                " FROM [dbo].[tbl_MenuWeb] WHERE Id_Estado=" + cbx_Id_Estado_Buscar.SelectedValue +
+                                                "order by Menu, Titulo" ;
                 cmd.CommandType = CommandType.Text;
 
                 DataSet dt;
@@ -214,7 +211,6 @@ namespace ControlDosimetro
                 btn_Guardar.Enabled = true;
                 tsbGuardar.Enabled = true;
                 btn_Guardar.Text = "Modificar";
-
                 scPrincipal.Panel2Collapsed = false;
             }
         }
@@ -252,7 +248,7 @@ namespace ControlDosimetro
                 headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex,-1, true).Location;
                 txtColTitulo.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
                 txtColTitulo.BackColor = Color.AliceBlue;
-                txtColTitulo.Width = txtColTitulo.Width-2;
+                txtColTitulo.Width = ColMenu.Width-1;
                 txtColTitulo.TextAlign = HorizontalAlignment.Left;
                 dgvGrilla.Controls.Add(txtColTitulo);
 
@@ -279,8 +275,8 @@ namespace ControlDosimetro
 
         private void dgvGrilla_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
-            txtColMenu.Width = ColMenu.Width-4;
-            txtColTitulo.Width = txtColTitulo.Width;
+            txtColMenu.Width = ColMenu.Width-2;
+            txtColTitulo.Width = ColTitulo.Width-2;
 
             int columnIndex = 0;
             Point headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
@@ -335,7 +331,6 @@ namespace ControlDosimetro
             Cursor = Cursors.Default;
         }
 
-    
         private void TsmActualizar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
@@ -350,15 +345,13 @@ namespace ControlDosimetro
         private void tsbGuardar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor; 
-
             Grabar();
-
             Cursor = Cursors.Default;
         }
+
         private void tsbAgregar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            
             if(scPrincipal.Panel2Collapsed==true)
                 scPrincipal.Panel2Collapsed =false;
 
@@ -368,7 +361,6 @@ namespace ControlDosimetro
                 tsbGuardar.Enabled = true;
                 LimpiarFormulario();
                 lbl_Id_menuWeb.Text = "0";
-
                 btn_Guardar.Text = "Grabar";
             }
             else
@@ -376,16 +368,10 @@ namespace ControlDosimetro
                 tssEstado.Text = "";
                 lbl_Id_menuWeb.Text = "";
             }
-
             Cursor = Cursors.Default;
         }
 
-
-
-
-
-
-        #endregion
+       #endregion
 
      
     }
