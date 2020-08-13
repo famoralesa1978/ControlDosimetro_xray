@@ -55,8 +55,8 @@ namespace ControlDosimetro
             LimpiarPantalla();
             Listar_Grilla();
             VerificaSihayProcesoIniciado();
-            btn_Guardar.Enabled = false;
-            btnIniciar.Enabled = false;
+          //  btn_Guardar.Enabled = false;
+           // btnIniciar.Enabled = false;
         }
 
         #region "Llamada de carga"
@@ -73,32 +73,32 @@ namespace ControlDosimetro
             btn_Guardar.Enabled = false;
         }
 
-        private void Cargar_TLD()
+    private void Cargar_TLD()
 		{
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "pa_ListadoDatosTLD " + intintId_Estado_temp.ToString () + "," + txt_TLD.Text;
+      SqlCommand cmd = new SqlCommand();
+      cmd.CommandText = "pa_ListadoDatosTLD " + intintId_Estado_temp.ToString () + "," + txt_TLD.Text;
 			DataSet dt;
 
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
-            if (dt.Tables[0].Rows.Count> 0)
-            {
-                lbl_NCliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
-                lbl_NombreCliente.Text = dt.Tables[0].Rows[0]["razon_social"].ToString();
-                lbl_Periodo.Text = dt.Tables[0].Rows[0]["tri"].ToString();
-                lbl_TLD.Text = dt.Tables[0].Rows[0]["n_dosimetro"].ToString();
-                nudPosicion.Value = Convert.ToInt32(dt.Tables[0].Rows[0]["PosDisco"].ToString());
-                lbl_NombrePersonal.Text = dt.Tables[0].Rows[0]["nombrecompleto"].ToString();
-                btn_Guardar.Visible = true;
-                txt_TLD.Text ="";
-                btn_Guardar.Enabled = true;
-            }
-            else
-            {
-                LimpiarPantalla();
-                txt_TLD.Text ="";
-                btn_Guardar.Enabled = false;
-                MessageBox.Show("No se puede ingresar a este proceso, verifique en que estado se encuentra.");
-            }
+      dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+      if (dt.Tables[0].Rows.Count> 0)
+      {
+          lbl_NCliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
+          lbl_NombreCliente.Text = dt.Tables[0].Rows[0]["razon_social"].ToString();
+          lbl_Periodo.Text = dt.Tables[0].Rows[0]["tri"].ToString();
+          lbl_TLD.Text = dt.Tables[0].Rows[0]["n_dosimetro"].ToString();
+          nudPosicion.Value = Convert.ToInt32(dt.Tables[0].Rows[0]["PosDisco"].ToString());
+          lbl_NombrePersonal.Text = dt.Tables[0].Rows[0]["nombrecompleto"].ToString();
+          btn_Guardar.Visible = true;
+          txt_TLD.Text ="";
+          btn_Guardar.Enabled = true;
+      }
+      else
+      {
+          LimpiarPantalla();
+          txt_TLD.Text ="";
+          btn_Guardar.Enabled = false;
+          MessageBox.Show("No se puede ingresar a este proceso, verifique en que estado se encuentra.");
+      }
 
 		}
 
