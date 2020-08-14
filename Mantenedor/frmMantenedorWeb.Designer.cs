@@ -293,7 +293,6 @@
             this.cbx_Id_menuWeb_Buscar.Name = "cbx_Id_menuWeb_Buscar";
             this.cbx_Id_menuWeb_Buscar.Size = new System.Drawing.Size(153, 21);
             this.cbx_Id_menuWeb_Buscar.TabIndex = 1;
-            this.cbx_Id_menuWeb_Buscar.SelectedIndexChanged += new System.EventHandler(this.cbx_Id_menuWeb_Buscar_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -303,7 +302,6 @@
             this.label6.Size = new System.Drawing.Size(34, 13);
             this.label6.TabIndex = 4;
             this.label6.Text = "Menu";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // btn_Buscar
             // 
@@ -327,7 +325,6 @@
             this.cbx_Id_Estado_Buscar.Name = "cbx_Id_Estado_Buscar";
             this.cbx_Id_Estado_Buscar.Size = new System.Drawing.Size(153, 21);
             this.cbx_Id_Estado_Buscar.TabIndex = 2;
-            this.cbx_Id_Estado_Buscar.SelectedIndexChanged += new System.EventHandler(this.cbx_Id_Estado_Buscar_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -337,7 +334,6 @@
             this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Estado";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // tbl_MenuWeb
             // 

@@ -88,15 +88,17 @@ namespace ControlDosimetro
                 cbx_Id_menuWeb_Buscar.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
                 cbx_Id_menuWeb_Buscar.DataSource = dt.Tables[0];
 
-                cmd.CommandText = "SELECT Id_menuWeb, Menu FROM tbl_MenuWeb WHERE Id_menu_padre=0" +
-                                   " union select 0 as Id_menuWeb, 'Menu Padre' as Menu " +
-                                   "order by Id_menuWeb";
+                cmd.CommandText = "SELECT Id_menuWeb, Menu FROM tbl_MenuWeb WHERE Id_menu_padre=0 order by Id_menuWeb";
            
                 dt = Conectar.Listar(Clases.clsBD.BD, cmd);
                 cbx_Id_menu_Padre.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
                 cbx_Id_menu_Padre.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
                 cbx_Id_menu_Padre.DataSource = dt.Tables[0];
                 Cursor = Cursors.Default;
+
+                //"SELECT Id_menuWeb, Menu FROM tbl_MenuWeb WHERE Id_menu_padre=0" +
+                //                   " union select 0 as Id_menuWeb, 'Menu Padre' as Menu " +
+                //                   "order by Id_menuWeb";
             }
         }
 
@@ -124,7 +126,7 @@ namespace ControlDosimetro
         private void LimpiarFormulario()
         {
             txt_Menu.Clear();
-            cbx_Id_menu_Padre.SelectedIndex = 0;
+            cbx_Id_menu_Padre.SelectedIndex = -1;
             txt_DirUrl.Clear();
             txt_Titulo.Clear();
             cbx_Class.SelectedIndex = 0;
@@ -181,7 +183,7 @@ namespace ControlDosimetro
             {
                 cmd.CommandText = "SELECT [Id_menuWeb],[Menu],[Id_menu_Padre],[DirUrl],[Titulo],[Class],[Orden],[Id_Estado]" +
                                                 " FROM [dbo].[tbl_MenuWeb] WHERE Id_Estado=" + cbx_Id_Estado_Buscar.SelectedValue +
-                                                "and Id_menu_Padre=" + cbx_Id_menuWeb_Buscar.SelectedValue + "order by Menu, Titulo";
+                                                "and Id_menu_Padre=" + cbx_Id_menuWeb_Buscar.SelectedValue + "order by Orden";
 
                 cmd.CommandType = CommandType.Text;
 
@@ -319,7 +321,6 @@ namespace ControlDosimetro
         {
             Cursor = Cursors.WaitCursor;
             Grabar();
-           // LimpiarFormulario();
             tssEstado.Text = "Nuevo";
             lbl_Id_menuWeb.Text = "0";
             Cursor = Cursors.Default;
@@ -377,24 +378,6 @@ namespace ControlDosimetro
 
         #endregion
 
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cbx_Id_menuWeb_Buscar_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cbx_Id_Estado_Buscar_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
+    
     }
 }
