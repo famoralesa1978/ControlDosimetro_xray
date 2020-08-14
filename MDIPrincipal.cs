@@ -455,8 +455,14 @@ namespace ControlDosimetro
         }
 
 
+
         #endregion
 
-       
+        private void MnuMantReporte_Click(object sender, EventArgs e)
+        {
+            frmMantenedorReporte frm = new frmMantenedorReporte();
+            Graba_log(frm.Text);
+            frm.ShowDialog(this);
+        }
     }
 }
