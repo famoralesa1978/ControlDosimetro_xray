@@ -88,17 +88,17 @@ namespace ControlDosimetro
                 cbx_Id_menuWeb_Buscar.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
                 cbx_Id_menuWeb_Buscar.DataSource = dt.Tables[0];
 
-                cmd.CommandText = "SELECT Id_menuWeb, Menu FROM tbl_MenuWeb WHERE Id_menu_padre=0 order by Id_menuWeb";
-           
+                cmd.CommandText =  "SELECT Id_menuWeb, Menu FROM tbl_MenuWeb WHERE Id_menu_padre=0" +
+                                                      " union select 0 as Id_menuWeb, 'Menu Padre' as Menu " +
+                                                      "order by Id_menuWeb";
+
                 dt = Conectar.Listar(Clases.clsBD.BD, cmd);
                 cbx_Id_menu_Padre.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
                 cbx_Id_menu_Padre.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
                 cbx_Id_menu_Padre.DataSource = dt.Tables[0];
                 Cursor = Cursors.Default;
 
-                //"SELECT Id_menuWeb, Menu FROM tbl_MenuWeb WHERE Id_menu_padre=0" +
-                //                   " union select 0 as Id_menuWeb, 'Menu Padre' as Menu " +
-                //                   "order by Id_menuWeb";
+               
             }
         }
 
@@ -126,7 +126,7 @@ namespace ControlDosimetro
         private void LimpiarFormulario()
         {
             txt_Menu.Clear();
-            cbx_Id_menu_Padre.SelectedIndex = -1;
+            cbx_Id_menu_Padre.SelectedIndex = 0;
             txt_DirUrl.Clear();
             txt_Titulo.Clear();
             cbx_Class.SelectedIndex = 0;
