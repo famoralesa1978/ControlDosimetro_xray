@@ -336,25 +336,28 @@ namespace ControlDosimetro
 
         #region "Proceso TLD"
 
-          private void MnuProcesoTLDIngresoPelicula_Click(object sender, EventArgs e)
-          {
-              frmIngresoDosimetroTLD frm = new frmIngresoDosimetroTLD(0);
-            Graba_log(frm.Text);
-            frm.ShowDialog(this);
-          }
+    private void MnuProcesoTLDIngresoPelicula_Click(object sender, EventArgs e)
+    {
+			object[] objParams = {mnuProcesoTLDIngresoPelicula.Tag.ToString()};
 
-          private void MnuProcesoTLDIniciarLectura_Click(object sender, EventArgs e)
-          {
-              frmModuloIniciarProcesoTLD frm = new frmModuloIniciarProcesoTLD(2);
-            Graba_log(frm.Text);
-            frm.ShowDialog(this);
-          }
+			frmIngresoDosimetroTLD frm = new frmIngresoDosimetroTLD(0);
+			frm.Parametros = objParams;
+      Graba_log(frm.Text);
+      frm.Show(this);
+    }
 
-          private void MnuProcesoIngresarDosisTLD_Click(object sender, EventArgs e)
-          {
-              frmIngresoDosisTLD frm = new frmIngresoDosisTLD(12);
-            Graba_log(frm.Text);
-            frm.ShowDialog(this);
+        private void MnuProcesoTLDIniciarLectura_Click(object sender, EventArgs e)
+        {
+            frmModuloIniciarProcesoTLD frm = new frmModuloIniciarProcesoTLD(2);
+          Graba_log(frm.Text);
+          frm.ShowDialog(this);
+        }
+
+        private void MnuProcesoIngresarDosisTLD_Click(object sender, EventArgs e)
+        {
+            frmIngresoDosisTLD frm = new frmIngresoDosisTLD(12);
+          Graba_log(frm.Text);
+          frm.ShowDialog(this);
           }
 
         private void MnuProcesoTLDDosisISP_Click(object sender, EventArgs e)
@@ -448,7 +451,52 @@ namespace ControlDosimetro
         }
 
 
-        #endregion
+		#endregion
 
-    }
+		public enum REPORTES
+		{
+			Cliente = 1,
+			Dosimetro = 2
+		}
+
+
+		static public void LlamadaReporte(int intReporte)
+		{
+			//Type enumType;
+			//int intReporte = 0;
+
+			//foreach (var value in Enum.GetValues(typeof(REPORTES)))
+			//{
+			//	Console.WriteLine("{0,3}     0x{0:X8}     {1}",
+			//			var();
+
+			//	intReporte = (int)value;
+			//	var rep = (REPORTES)value;
+
+			//}
+
+			//enumType = enumValue.GetType();
+
+			//string str
+			//	Type underlyingType = Enum.GetUnderlyingType(enumType);
+			switch (intReporte)
+			{
+				case (int)REPORTES.Cliente:
+					frmRptcliente frm1 = new frmRptcliente
+					{
+						ShowInTaskbar = false
+					};
+					frm1.Show();
+					break;
+				case (int)REPORTES.Dosimetro:
+					frmRpDosimetria frm2 = new frmRpDosimetria();
+					frm2.ShowInTaskbar = false;
+					frm2.Show();
+					break;
+			}
+
+		}
+
+
+	}
 }

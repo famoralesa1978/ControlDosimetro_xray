@@ -20,6 +20,8 @@ namespace ControlDosimetro
         #region "Definicion variable"
 
         TextBox txtBox = new TextBox();
+        Button btnColBuscara = new Button();
+        bool bolInicializacion;
         enum ConfGrilla: int
         {
             id=0,
@@ -40,15 +42,19 @@ namespace ControlDosimetro
         public frmMantenedorTipoDocumento()
         {
             InitializeComponent();
+           
+        }
+
+        private void frmMantenedorPerfil_Load(object sender, EventArgs e)
+        {
+
             scPrincipal.Panel2Collapsed = true;
             Cargar_Estado();
             tsbGuardar.Enabled = false;
             dgvGrilla.AutoGenerateColumns = false;
-        }
-
-        private void frmMantenedorPerfil_Load(object sender, EventArgs e)
-        {            
+            bolInicializacion = true;
             CargarGrilla();
+          
         }
 
         #endregion
@@ -74,21 +80,36 @@ namespace ControlDosimetro
             {
                 if ((tssEstado.Text == "Nuevo")&&(txt_id_tipo_doc.Text=="0"))
                 {
-                    ClaseComun.Insertar(Clases.clsBD.BD,glo_TipoDocumentos, ref bolResult);
-                    if (bolResult == true)
+
+                    if (!String.IsNullOrEmpty(txt_detalle_tipo_documento.Text) && !String.IsNullOrEmpty(txt_orden.Text))
                     {
-                        CargarGrilla();
-                        MessageBox.Show("Dato Guardado");                        
+
+                        ClaseComun.Insertar(Clases.clsBD.BD, glo_TipoDocumentos, ref bolResult);
+                        if (bolResult == true)
+                        {
+                            CargarGrilla();
+                            MessageBox.Show("Dato Guardado");
+                        }
+                    }
+                    else {
+                        MessageBox.Show("Completar todos los campos");
                     }
                 }
                 else
                 if (tssEstado.Text == "Modificar")
                 {
-                    ClaseComun.Modificar(Clases.clsBD.BD,glo_TipoDocumentos, ref bolResult);
-                    if (bolResult == true)
+                    if (!String.IsNullOrEmpty(txt_detalle_tipo_documento.Text) && !String.IsNullOrEmpty(txt_orden.Text))
                     {
-                        CargarGrilla();
-                        MessageBox.Show("Dato modificado");
+                        ClaseComun.Modificar(Clases.clsBD.BD, glo_TipoDocumentos, ref bolResult);
+                        if (bolResult == true)
+                        {
+                            CargarGrilla();
+                            MessageBox.Show("Dato modificado");
+                        }
+
+                    }
+                    else {
+                        MessageBox.Show("Completar todos los campos");
                     }
                 }
             }
@@ -121,7 +142,8 @@ namespace ControlDosimetro
             tssEstado.Text = "Modificar";
             btn_Guardar.Enabled = true;
             tsbGuardar.Enabled = true;
-            
+            btn_Guardar.Text = "Modificar";
+
             scPrincipal.Panel2Collapsed = false;
         }
 
@@ -139,13 +161,29 @@ namespace ControlDosimetro
 
         private void dgvGrilla_Paint(object sender, PaintEventArgs e)
         {
-            int columnIndex = 0;
+            if (bolInicializacion == true)
+            {
+                int columnIndex = 0;
             Point headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;                     
             txtBox.Location = new Point(headerCellLocation.X, headerCellLocation.Y+20);
             txtBox.BackColor = Color.AliceBlue;
-            txtBox.Width = Coldetalle_tipo_documento.Width;
-            txtBox.TextChanged += new EventHandler(TextBox_Changed);
-            dgvGrilla.Controls.Add(txtBox);
+            txtBox.Width = Coldetalle_tipo_documento.Width-2;
+             txtBox.TextAlign = HorizontalAlignment.Left;
+                dgvGrilla.Controls.Add(txtBox);
+
+            columnIndex = -1;
+            headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
+            btnColBuscara.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 0);
+            btnColBuscara.Image = ControlDosimetro.Properties.Resources.Buscar;
+
+            btnColBuscara.FlatStyle = FlatStyle.Standard;
+            btnColBuscara.Height = 41;
+            btnColBuscara.Width = 41;
+            btnColBuscara.Click += new EventHandler(BtnColBuscar_Click);
+
+            dgvGrilla.Controls.Add(btnColBuscara);
+            }
+            bolInicializacion = false;
         }
 
         private void dgvGrilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -154,14 +192,24 @@ namespace ControlDosimetro
             LlamadoAModificar(intFila);
         }
 
-        private void TextBox_Changed(object sender, EventArgs e)
+        private void dgvGrilla_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
-            Filtro();
+            txtBox.Width = Coldetalle_tipo_documento.Width - 4;
+            int columnIndex = 0;
+            Point headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
+            txtBox.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
         }
 
         #endregion
 
         #region "boton"
+        private void BtnColBuscar_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            Filtro();
+            Cursor = Cursors.Default;
+        }
+
         private void btn_Limpiar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
@@ -173,7 +221,7 @@ namespace ControlDosimetro
             Cursor = Cursors.Default;
         }
 
-        private void btn_Buscar_Click(object sender, EventArgs e)
+        private void Btn_Buscar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -182,19 +230,19 @@ namespace ControlDosimetro
             Cursor = Cursors.Default;
         }
 
-        private void btn_Guardar_Click(object sender, EventArgs e)
+        private void Btn_Guardar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
             Grabar();
-            LimpiarFormulario();
+           // LimpiarFormulario();
             tssEstado.Text = "Nuevo";
             txt_id_tipo_doc.Text = "0";
 
             Cursor = Cursors.Default;
         }
 
-        private void btn_Minimizar_Click(object sender, EventArgs e)
+        private void Btn_Minimizar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -204,13 +252,13 @@ namespace ControlDosimetro
             Cursor = Cursors.Default;
         }
 
-        private void tsmEliminar_Click(object sender, EventArgs e)
+        private void TsmEliminar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
             if (MessageBox.Show("¿Desea Eliminar la información?", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-            {
-                DataTable dt = ((DataTable)((BindingSource)((BindingSource)dgvGrilla.DataSource).DataSource).DataSource);
+            {                
+                DataTable dt = (DataTable)dgvGrilla.DataSource;
                 DataRow currentRow = dt.Rows[dgvGrilla.CurrentRow.Index];
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "pa_TipoDocumento_del " + currentRow[ConfGrilla.id.ToString()].ToString();
@@ -228,7 +276,7 @@ namespace ControlDosimetro
             Cursor = Cursors.Default;
         }
 
-        private void tsmActualizar_Click(object sender, EventArgs e)
+        private void TsmActualizar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -262,6 +310,8 @@ namespace ControlDosimetro
                 tsbGuardar.Enabled = true;
                 LimpiarFormulario();
                 txt_id_tipo_doc.Text = "0";
+
+                btn_Guardar.Text = "Grabar";
             }
             else
             {
@@ -275,14 +325,6 @@ namespace ControlDosimetro
 
         #endregion
 
-        private void dgvGrilla_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
-        {
-            txtBox.Width = Coldetalle_tipo_documento.Width;
-        }
-
-        private void cmsMenuContexto_Opening(object sender, CancelEventArgs e)
-        {
-
-        }
+      
     }
 }
