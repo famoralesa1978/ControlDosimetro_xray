@@ -413,6 +413,16 @@
             0,
             0});
 			this.nudPosicion.Location = new System.Drawing.Point(109, 135);
+			this.nudPosicion.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+			this.nudPosicion.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			this.nudPosicion.Name = "nudPosicion";
 			this.nudPosicion.ReadOnly = true;
 			this.nudPosicion.Size = new System.Drawing.Size(63, 20);

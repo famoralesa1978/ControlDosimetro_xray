@@ -26,11 +26,11 @@ namespace ControlDosimetro
             int intintId_Estado_temp;
         #endregion
 
-       public frmModuloIniciarProcesoTLD(int intId_Estado)
-        {
-            InitializeComponent();
+      public frmModuloIniciarProcesoTLD(int intId_Estado)
+      {
+				InitializeComponent();
           
-			AsignarEvento();                
+				AsignarEvento();                
             intintId_Estado_temp = intId_Estado;
             switch (intintId_Estado_temp)
             {
@@ -149,19 +149,19 @@ namespace ControlDosimetro
         }
 
            
-        private void AsignarEvento()
-        {   
-            txt_TLD.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-            txt_TLD.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-            nudPosicion.Minimum = 1;
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT Glosa FROM conf_detparametro WHERE Id_Parametro=9";
-			  //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
-			  DataSet dt;
-			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
-              nudPosicion.Maximum = Convert.ToInt16( dt.Tables[0].Rows[0][0].ToString()); 
+    private void AsignarEvento()
+    {   
+      txt_TLD.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+      txt_TLD.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+      nudPosicion.Minimum = 1;
+      SqlCommand cmd = new SqlCommand();
+      cmd.CommandText = "SELECT Glosa FROM conf_detparametro WHERE Id_Parametro=9";
+			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
+			DataSet dt;
+			dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+      nudPosicion.Maximum = Convert.ToInt16( dt.Tables[0].Rows[0][0].ToString()); 
 
-        }
+    }
 
         #endregion
 
