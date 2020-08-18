@@ -32,7 +32,7 @@
     <TargetCulture>es-CL</TargetCulture>
     <ProductName>X-Ray Dosimetro</ProductName>
     <SuiteName>Sistema Dosimetro</SuiteName>
-    <MinimumRequiredVersion>9.0.0.22</MinimumRequiredVersion>
+    <MinimumRequiredVersion>9.0.0.23</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>instalacion.html</WebPage>
     <ApplicationRevision>23</ApplicationRevision>
