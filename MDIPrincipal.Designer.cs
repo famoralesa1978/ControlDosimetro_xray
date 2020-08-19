@@ -48,12 +48,14 @@
             this.mnuMantPerfil = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMantUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMantTipoDocumento = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuMantCliente = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMantSucursal = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMantPersonal = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuProceso = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuProcesoIngresoNpelicula = new System.Windows.Forms.ToolStripMenuItem();
@@ -127,7 +129,6 @@
             this.tsbPrincipalCliente = new System.Windows.Forms.ToolStripButton();
             this.tsbPrincipalPersonal = new System.Windows.Forms.ToolStripButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.reporteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -166,13 +167,14 @@
             this.mnuMantPerfil,
             this.mnuMantUsuario,
             this.mnuMantTipoDocumento,
+            this.reporteToolStripMenuItem,
+            this.toolStripMenuItem2,
             this.toolStripSeparator2,
             this.mnuMantCliente,
             this.mnuMantSucursal,
             this.mnuMantPersonal,
             this.toolStripSeparator3,
-            this.exitToolStripMenuItem,
-            this.reporteToolStripMenuItem});
+            this.exitToolStripMenuItem});
             this.mnuMantenedor.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.mnuMantenedor.Name = "mnuMantenedor";
             this.mnuMantenedor.Size = new System.Drawing.Size(84, 20);
@@ -215,6 +217,13 @@
             this.mnuMantTipoDocumento.Text = "Tipo Documento";
             this.mnuMantTipoDocumento.Click += new System.EventHandler(this.MnuMantTipoDocumento_Click);
             // 
+            // reporteToolStripMenuItem
+            // 
+            this.reporteToolStripMenuItem.Name = "reporteToolStripMenuItem";
+            this.reporteToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.reporteToolStripMenuItem.Text = "Reporte";
+            this.reporteToolStripMenuItem.Click += new System.EventHandler(this.MnuMantReporte_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -253,6 +262,13 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
             this.exitToolStripMenuItem.Text = "&Salir";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolsStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(249, 22);
+            this.toolStripMenuItem2.Text = "Web";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.MnuMantWeb_Click);
             // 
             // helpMenu
             // 
@@ -866,13 +882,6 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
-            // reporteToolStripMenuItem
-            // 
-            this.reporteToolStripMenuItem.Name = "reporteToolStripMenuItem";
-            this.reporteToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
-            this.reporteToolStripMenuItem.Text = "Reporte";
-            this.reporteToolStripMenuItem.Click += new System.EventHandler(this.MnuMantReporte_Click);
-            // 
             // MDIPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -996,6 +1005,7 @@
         private System.Windows.Forms.ToolStripMenuItem frmUtilidadesTraspaso;
         private System.Windows.Forms.ToolStripMenuItem webToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }
 

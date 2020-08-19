@@ -127,12 +127,22 @@ namespace ControlDosimetro
               frm.ShowDialog(this);
           }
 
+        
+
+          private void MnuMantReporte_Click(object sender, EventArgs e)
+         {
+            frmMantenedorReporte frm = new frmMantenedorReporte();
+            Graba_log(frm.Text);
+            frm.ShowDialog(this);
+         }
+
         private void MnuMantWeb_Click(object sender, EventArgs e)
         {
             frmMantenedorWeb frm = new frmMantenedorWeb();
             Graba_log(frm.Text);
             frm.ShowDialog(this);
         }
+
 
         #endregion
 
@@ -456,13 +466,11 @@ namespace ControlDosimetro
 
 
 
+
+
+
         #endregion
 
-        private void MnuMantReporte_Click(object sender, EventArgs e)
-        {
-            frmMantenedorReporte frm = new frmMantenedorReporte();
-            Graba_log(frm.Text);
-            frm.ShowDialog(this);
-        }
+      
     }
 }

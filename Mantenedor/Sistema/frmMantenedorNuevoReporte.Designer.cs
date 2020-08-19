@@ -1,6 +1,6 @@
 ﻿namespace ControlDosimetro
 {
-    partial class frmMantenedorReporte
+    partial class frmMantenedorNuevoReporte
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.stsEstado = new System.Windows.Forms.StatusStrip();
             this.tssDescEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssEstado = new System.Windows.Forms.ToolStripStatusLabel();
@@ -45,18 +45,20 @@
             this.cmsMenuContexto = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmActualizar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSep3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmAsignarPermiso = new System.Windows.Forms.ToolStripMenuItem();
             this.tbl_Reporte = new System.Windows.Forms.GroupBox();
-            this.txt_N_Reporte = new System.Windows.Forms.TextBox();
+            this.txt_NameMenu = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_Guardar = new System.Windows.Forms.Button();
-            this.txt_NameMenu = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txt_N_Reporte = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txt_Nombre = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.lbl_N_Reporte = new System.Windows.Forms.Label();
             this.btn_Limpiar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.stsEstado.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scPrincipal)).BeginInit();
@@ -177,9 +179,9 @@
             this.gpxListado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gpxListado.Controls.Add(this.dgvGrilla);
-            this.gpxListado.Location = new System.Drawing.Point(0, 4);
+            this.gpxListado.Location = new System.Drawing.Point(0, 3);
             this.gpxListado.Name = "gpxListado";
-            this.gpxListado.Size = new System.Drawing.Size(322, 317);
+            this.gpxListado.Size = new System.Drawing.Size(322, 318);
             this.gpxListado.TabIndex = 4;
             this.gpxListado.TabStop = false;
             this.gpxListado.Text = "Listado";
@@ -190,14 +192,14 @@
             this.dgvGrilla.AllowUserToDeleteRows = false;
             this.dgvGrilla.AllowUserToOrderColumns = true;
             this.dgvGrilla.AllowUserToResizeColumns = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvGrilla.ColumnHeadersHeight = 42;
             this.dgvGrilla.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColNombre});
@@ -206,7 +208,7 @@
             this.dgvGrilla.Location = new System.Drawing.Point(3, 16);
             this.dgvGrilla.Name = "dgvGrilla";
             this.dgvGrilla.ReadOnly = true;
-            this.dgvGrilla.Size = new System.Drawing.Size(316, 298);
+            this.dgvGrilla.Size = new System.Drawing.Size(316, 299);
             this.dgvGrilla.TabIndex = 1;
             this.dgvGrilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_CellDoubleClick);
             this.dgvGrilla.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvGrilla_ColumnWidthChanged);
@@ -216,7 +218,7 @@
             // 
             this.ColNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ColNombre.DataPropertyName = "Nombre";
-            this.ColNombre.HeaderText = "Nombre";
+            this.ColNombre.HeaderText = "Nombres";
             this.ColNombre.Name = "ColNombre";
             this.ColNombre.ReadOnly = true;
             // 
@@ -226,10 +228,11 @@
             this.cmsMenuContexto.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmActualizar,
             this.toolStripSeparator2,
+            this.tsmEliminar,
             this.tsmSep3,
             this.tsmAsignarPermiso});
             this.cmsMenuContexto.Name = "cmsMenuContexto";
-            this.cmsMenuContexto.Size = new System.Drawing.Size(161, 60);
+            this.cmsMenuContexto.Size = new System.Drawing.Size(161, 82);
             // 
             // tsmActualizar
             // 
@@ -242,6 +245,12 @@
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(157, 6);
+            // 
+            // tsmEliminar
+            // 
+            this.tsmEliminar.Name = "tsmEliminar";
+            this.tsmEliminar.Size = new System.Drawing.Size(160, 22);
+            this.tsmEliminar.Text = "Eliminar";
             // 
             // tsmSep3
             // 
@@ -259,14 +268,15 @@
             // tbl_Reporte
             // 
             this.tbl_Reporte.BackColor = System.Drawing.SystemColors.Control;
-            this.tbl_Reporte.Controls.Add(this.txt_N_Reporte);
+            this.tbl_Reporte.Controls.Add(this.button1);
+            this.tbl_Reporte.Controls.Add(this.txt_NameMenu);
             this.tbl_Reporte.Controls.Add(this.pictureBox1);
             this.tbl_Reporte.Controls.Add(this.btn_Guardar);
-            this.tbl_Reporte.Controls.Add(this.txt_NameMenu);
+            this.tbl_Reporte.Controls.Add(this.label4);
+            this.tbl_Reporte.Controls.Add(this.txt_N_Reporte);
             this.tbl_Reporte.Controls.Add(this.label3);
             this.tbl_Reporte.Controls.Add(this.txt_Nombre);
             this.tbl_Reporte.Controls.Add(this.label2);
-            this.tbl_Reporte.Controls.Add(this.lbl_N_Reporte);
             this.tbl_Reporte.Controls.Add(this.btn_Limpiar);
             this.tbl_Reporte.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbl_Reporte.Location = new System.Drawing.Point(0, 0);
@@ -275,14 +285,15 @@
             this.tbl_Reporte.TabIndex = 6;
             this.tbl_Reporte.TabStop = false;
             this.tbl_Reporte.Text = "Datos";
+            this.tbl_Reporte.Enter += new System.EventHandler(this.tbl_Reporte_Enter);
             // 
-            // txt_N_Reporte
+            // txt_NameMenu
             // 
-            this.txt_N_Reporte.Location = new System.Drawing.Point(164, 139);
-            this.txt_N_Reporte.Name = "txt_N_Reporte";
-            this.txt_N_Reporte.ReadOnly = true;
-            this.txt_N_Reporte.Size = new System.Drawing.Size(155, 20);
-            this.txt_N_Reporte.TabIndex = 24;
+            this.txt_NameMenu.Location = new System.Drawing.Point(172, 141);
+            this.txt_NameMenu.MaxLength = 50;
+            this.txt_NameMenu.Name = "txt_NameMenu";
+            this.txt_NameMenu.Size = new System.Drawing.Size(155, 20);
+            this.txt_NameMenu.TabIndex = 24;
             // 
             // pictureBox1
             // 
@@ -292,7 +303,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(3, 16);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(395, 22);
+            this.pictureBox1.Size = new System.Drawing.Size(395, 10);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 23;
             this.pictureBox1.TabStop = false;
@@ -305,7 +316,7 @@
             this.btn_Guardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_Guardar.Image = global::ControlDosimetro.Properties.Resources.save_32;
             this.btn_Guardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Guardar.Location = new System.Drawing.Point(73, 273);
+            this.btn_Guardar.Location = new System.Drawing.Point(58, 265);
             this.btn_Guardar.Name = "btn_Guardar";
             this.btn_Guardar.Size = new System.Drawing.Size(87, 40);
             this.btn_Guardar.TabIndex = 22;
@@ -314,26 +325,37 @@
             this.btn_Guardar.UseVisualStyleBackColor = true;
             this.btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
             // 
-            // txt_NameMenu
+            // label4
             // 
-            this.txt_NameMenu.Location = new System.Drawing.Point(164, 166);
-            this.txt_NameMenu.MaxLength = 50;
-            this.txt_NameMenu.Name = "txt_NameMenu";
-            this.txt_NameMenu.Size = new System.Drawing.Size(155, 20);
-            this.txt_NameMenu.TabIndex = 19;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(70, 142);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(62, 13);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "NameMenu";
+            // 
+            // txt_N_Reporte
+            // 
+            this.txt_N_Reporte.Location = new System.Drawing.Point(172, 118);
+            this.txt_N_Reporte.MaxLength = 2;
+            this.txt_N_Reporte.Name = "txt_N_Reporte";
+            this.txt_N_Reporte.Size = new System.Drawing.Size(155, 20);
+            this.txt_N_Reporte.TabIndex = 19;
+            this.txt_N_Reporte.Visible = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(69, 173);
+            this.label3.Location = new System.Drawing.Point(70, 120);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 13);
+            this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 18;
-            this.label3.Text = "NameMenu";
+            this.label3.Text = "N° Reporte";
+            this.label3.Visible = false;
             // 
             // txt_Nombre
             // 
-            this.txt_Nombre.Location = new System.Drawing.Point(164, 112);
+            this.txt_Nombre.Location = new System.Drawing.Point(172, 95);
             this.txt_Nombre.MaxLength = 100;
             this.txt_Nombre.Name = "txt_Nombre";
             this.txt_Nombre.Size = new System.Drawing.Size(155, 20);
@@ -342,20 +364,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(69, 115);
+            this.label2.Location = new System.Drawing.Point(70, 98);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 16;
             this.label2.Text = "Nombre";
-            // 
-            // lbl_N_Reporte
-            // 
-            this.lbl_N_Reporte.AutoSize = true;
-            this.lbl_N_Reporte.Location = new System.Drawing.Point(69, 144);
-            this.lbl_N_Reporte.Name = "lbl_N_Reporte";
-            this.lbl_N_Reporte.Size = new System.Drawing.Size(59, 13);
-            this.lbl_N_Reporte.TabIndex = 14;
-            this.lbl_N_Reporte.Text = "N_Reporte";
             // 
             // btn_Limpiar
             // 
@@ -364,16 +377,32 @@
             this.btn_Limpiar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_Limpiar.Image = global::ControlDosimetro.Properties.Resources.Limpiar;
             this.btn_Limpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Limpiar.Location = new System.Drawing.Point(234, 273);
+            this.btn_Limpiar.Location = new System.Drawing.Point(159, 265);
             this.btn_Limpiar.Name = "btn_Limpiar";
-            this.btn_Limpiar.Size = new System.Drawing.Size(85, 40);
+            this.btn_Limpiar.Size = new System.Drawing.Size(87, 40);
             this.btn_Limpiar.TabIndex = 10;
             this.btn_Limpiar.Text = "Limpiar";
             this.btn_Limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Limpiar.UseVisualStyleBackColor = true;
             this.btn_Limpiar.Click += new System.EventHandler(this.btn_Limpiar_Click);
             // 
-            // frmMantenedorReporte
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button1.Image = global::ControlDosimetro.Properties.Resources.regresar;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(260, 265);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(87, 40);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Volver";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // frmMantenedorNuevoReporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -386,10 +415,10 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(764, 410);
-            this.Name = "frmMantenedorReporte";
+            this.Name = "frmMantenedorNuevoReporte";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Mantenedor Reporte";
+            this.Text = "Mantenedor de tipo documento";
             this.Load += new System.EventHandler(this.frmMantenedorPerfil_Load);
             this.stsEstado.ResumeLayout(false);
             this.stsEstado.PerformLayout();
@@ -425,20 +454,22 @@
         private System.Windows.Forms.ContextMenuStrip cmsMenuContexto;
         private System.Windows.Forms.ToolStripMenuItem tsmActualizar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem tsmEliminar;
         private System.Windows.Forms.ToolStripSeparator tsmSep3;
         private System.Windows.Forms.ToolStripMenuItem tsmAsignarPermiso;
         private System.Windows.Forms.ToolStripStatusLabel tssDescEstado;
         private System.Windows.Forms.ToolStripStatusLabel tssEstado;
         private System.Windows.Forms.Button btn_Limpiar;
-        private System.Windows.Forms.TextBox txt_NameMenu;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txt_N_Reporte;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txt_Nombre;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lbl_N_Reporte;
         private System.Windows.Forms.Button btn_Guardar;
         private System.Windows.Forms.DataGridView dgvGrilla;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox txt_NameMenu;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColNombre;
-        private System.Windows.Forms.TextBox txt_N_Reporte;
+        private System.Windows.Forms.Button button1;
     }
 }

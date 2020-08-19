@@ -15,7 +15,7 @@ using System.Data.Sql;
 
 namespace ControlDosimetro
 {
-    public partial class frmMantenedorReporte : Form
+    public partial class frmMantenedorNuevoReporte : Form
     {
         #region "Definicion variable"
 
@@ -25,8 +25,9 @@ namespace ControlDosimetro
         enum ConfGrilla: int
         {
             Nombre=0,
-            N_Reporte= 1,
-            NameMenu = 2
+            N_Reporte = 1,
+            NameManu = 2,
+            
         };
 
         clsConectorSqlServer Conectar = new clsConectorSqlServer();
@@ -38,29 +39,32 @@ namespace ControlDosimetro
 
         #region "Inicio"
 
-        public frmMantenedorReporte()
+        public frmMantenedorNuevoReporte()
         {
             InitializeComponent();
+           
         }
 
         private void frmMantenedorPerfil_Load(object sender, EventArgs e)
         {
+
             scPrincipal.Panel2Collapsed = true;
             tsbGuardar.Enabled = false;
             dgvGrilla.AutoGenerateColumns = false;
             bolInicializacion = true;
             CargarGrilla();
+          
         }
 
         #endregion
 
         #region Procedimiento
-      
+        
         private void LimpiarFormulario()
         {
             txt_Nombre.Clear();
-            txt_N_Reporte.Clear();
             txt_NameMenu.Clear();
+            txt_N_Reporte.Clear();
                     
         }
         private void Grabar()
@@ -69,27 +73,21 @@ namespace ControlDosimetro
             bolResult = false;
             if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
             {
-                if ((tssEstado.Text == "Nuevo") && (lbl_N_Reporte.Text == "0"))
+                if ((tssEstado.Text == "Nuevo") && (txt_N_Reporte.Text == "0"))
                 {
 
-                    if (!String.IsNullOrEmpty(txt_Nombre.Text) && !String.IsNullOrEmpty(txt_NameMenu.Text))
-                    {
-
-                        ClaseComun.Insertar(Clases.clsBD.BD, tbl_Reporte, ref bolResult);
+                    ClaseComun.Insertar(Clases.clsBD.BD, tbl_Reporte, ref bolResult);
                         if (bolResult == true)
                         {
                             CargarGrilla();
                             MessageBox.Show("Dato Guardado");
                         }
-                    }
-                    else {
-                        MessageBox.Show("Completar todos los campos");
-                    }
+                                      
                 }
                 else
                 if (tssEstado.Text == "Modificar")
                 {
-                    if (!String.IsNullOrEmpty(txt_Nombre.Text) && !String.IsNullOrEmpty(txt_NameMenu.Text))
+                    if (!String.IsNullOrEmpty(txt_Nombre.Text) && !String.IsNullOrEmpty(txt_N_Reporte.Text))
                     {
                         ClaseComun.Modificar(Clases.clsBD.BD, tbl_Reporte, ref bolResult);
                         if (bolResult == true)
@@ -109,7 +107,7 @@ namespace ControlDosimetro
         private void CargarGrilla()
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "select Nombre, N_Reporte, NameMenu from dbo.tbl_Reporte";
+            cmd.CommandText = "select Nombre, N_Reporte, NameMenu from tbl_Reporte order by Nombre";
 
             cmd.CommandType = CommandType.Text;
 
@@ -126,9 +124,9 @@ namespace ControlDosimetro
              bs1=(BindingSource)dgvGrilla.DataSource;
             var currentRow = bs1.List[intFila];
 
-            txt_N_Reporte.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.N_Reporte].ToString();
             txt_Nombre.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Nombre].ToString();          
-            txt_NameMenu.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.NameMenu].ToString();
+            txt_N_Reporte.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.N_Reporte].ToString();
+            txt_NameMenu.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.NameManu].ToString();
             tssEstado.Text = "Modificar";
             btn_Guardar.Enabled = true;
             tsbGuardar.Enabled = true;
@@ -158,8 +156,8 @@ namespace ControlDosimetro
             txtBox.Location = new Point(headerCellLocation.X, headerCellLocation.Y+20);
             txtBox.BackColor = Color.AliceBlue;
             txtBox.Width = ColNombre.Width-2;
-            txtBox.TextAlign = HorizontalAlignment.Left;
-            dgvGrilla.Controls.Add(txtBox);
+             txtBox.TextAlign = HorizontalAlignment.Left;
+                dgvGrilla.Controls.Add(txtBox);
 
             columnIndex = -1;
             headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
@@ -203,43 +201,48 @@ namespace ControlDosimetro
         private void btn_Limpiar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
+
             LimpiarFormulario();
             tssEstado.Text = "Nuevo";
-            lbl_N_Reporte.Text = "0";
+            txt_N_Reporte.Text = "0";
+
             Cursor = Cursors.Default;
         }
 
         private void Btn_Buscar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
+
             CargarGrilla();
+
             Cursor = Cursors.Default;
         }
 
         private void Btn_Guardar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
+
             Grabar();
            // LimpiarFormulario();
             tssEstado.Text = "Nuevo";
-            lbl_N_Reporte.Text = "0";
+            txt_N_Reporte.Text = "0";
+
             Cursor = Cursors.Default;
         }
 
         private void Btn_Minimizar_Click(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor;
-
-            scPrincipal.Panel2Collapsed = true;
-            tsbGuardar.Enabled = false;
-
-            Cursor = Cursors.Default;
+            
         }
+
+      
 
         private void TsmActualizar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
+
             LlamadoAModificar(dgvGrilla.CurrentRow.Index);
+
             Cursor = Cursors.Default;
         }
 
@@ -250,7 +253,9 @@ namespace ControlDosimetro
         private void tsbGuardar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor; 
+
             Grabar();
+
             Cursor = Cursors.Default;
         }
         private void tsbAgregar_Click(object sender, EventArgs e)
@@ -265,7 +270,7 @@ namespace ControlDosimetro
                 tssEstado.Text = "Nuevo";
                 tsbGuardar.Enabled = true;
                 LimpiarFormulario();
-                lbl_N_Reporte.Text ="0";
+                txt_N_Reporte.Text = "0";
 
                 btn_Guardar.Text = "Grabar";
             }
@@ -280,7 +285,22 @@ namespace ControlDosimetro
 
 
 
+
         #endregion
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+
+            scPrincipal.Panel2Collapsed = true;
+            tsbGuardar.Enabled = false;
+
+            Cursor = Cursors.Default;
+        }
+
+        private void tbl_Reporte_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
