@@ -98,7 +98,11 @@ namespace ControlDosimetro
                 cbx_Id_menu_Padre.DataSource = dt.Tables[0];
                 Cursor = Cursors.Default;
 
-               
+                //"SELECT Id_menuWeb, Menu FROM tbl_MenuWeb WHERE Id_menu_padre=0" +
+                //                                      " union select 0 as Id_menuWeb, 'Menu Padre' as Menu " +
+                //                                      "order by Id_menuWeb";
+
+
             }
         }
 

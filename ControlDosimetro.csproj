@@ -341,6 +341,18 @@
     <Compile Include="Facturacion\frmFacturacion.designer.cs">
       <DependentUpon>frmFacturacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mantenedor\Sistema\frmMantenedorNuevoReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\Sistema\frmMantenedorNuevoReporte.Designer.cs">
+      <DependentUpon>frmMantenedorNuevoReporte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\Sistema\frmMantenedorReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\Sistema\frmMantenedorReporte.Designer.cs">
+      <DependentUpon>frmMantenedorReporte.cs</DependentUpon>
+    </Compile>
     <Compile Include="RecepcionTLD\frmModuloEnviado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -592,6 +604,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmBusquedaSucursal.resx">
       <DependentUpon>frmBusquedaSucursal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\Sistema\frmMantenedorNuevoReporte.resx">
+      <DependentUpon>frmMantenedorNuevoReporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\Sistema\frmMantenedorReporte.resx">
+      <DependentUpon>frmMantenedorReporte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecepcionTLD\frmModuloEnviado.resx">
       <DependentUpon>frmModuloEnviado.cs</DependentUpon>
