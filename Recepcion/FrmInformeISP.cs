@@ -388,31 +388,18 @@ namespace ControlDosimetro
     // WHERE p.id_cliente=@id_cliente  and Controlado=1
     //    and (tld.Id_Sucursal =@Id_Sucursal or @Id_Sucursal=0) 
     //    and  d.id_periodo=@id_periodo 
-                if(cbx_Sucursal.SelectedValue.ToString()!="0")
-                {
-                  cmdCliente.CommandText = "SELECT distinct case when runsuc is null or runsuc ='' then c.run else runsuc end as run, " +
-                                    "case when s.Direccion is null or s.Direccion ='' then c.Direccion else s.Direccion end as Direccion," +
-                                    "case when s.Razon_Social is null or s.Razon_Social ='' then c.Razon_Social else s.Razon_Social end as Razon_Social," +
-                                    " region,Provincia,comuna,s.Telefono,s.Id_sucursal" + //N_Documento,
-                                  " FROM [dbo].[ges_DosimetriaPersonal] dos inner join tbl_cliente c on c.Id_cliente=dos.Id_cliente " +
-                                  " inner join tbl_sucursal s on s.Id_sucursal=dos.Id_Sucursal " +
-                                  " inner  join glo_region R on s.id_region=r.id_region inner join glo_provincia p on p.id_provincia=s.Id_Provincia  " +
-                                  " inner join glo_comuna co on co.Id_Comuna=s.Id_Comuna " +
-                                  "WHERE c.Id_cliente= " + lbl_id_cliente.Text + " and dos.id_periodo=" + cbx_id_periodo.SelectedValue + "" +
-                                  " and (dos.Id_Sucursal ="  + cbx_Sucursal.SelectedValue + ")";
-                }
-                else
-                {
-                    cmdCliente.CommandText = "SELECT distinct case when runsuc is null or runsuc ='' then c.run else runsuc end as run, " +
-                                    "case when s.Direccion is null or s.Direccion ='' then c.Direccion else s.Direccion end as Direccion," +
-                                    "case when s.Razon_Social is null or s.Razon_Social ='' then c.Razon_Social else s.Razon_Social end as Razon_Social," +
-                                    " region,Provincia,comuna,s.Telefono,s.Id_sucursal" + //N_Documento,
-                                  " FROM [dbo].[ges_DosimetriaPersonal] dos inner join tbl_cliente c on c.Id_cliente=dos.Id_cliente " +
-                                  " inner join tbl_sucursal s on s.Id_sucursal=dos.Id_Sucursal " +
-                                  " inner  join glo_region R on s.id_region=r.id_region inner join glo_provincia p on p.id_provincia=s.Id_Provincia  " +
-                                  " inner join glo_comuna co on co.Id_Comuna=s.Id_Comuna " +
-                                  "WHERE c.Id_cliente= " + lbl_id_cliente.Text + " and dos.id_periodo=" + cbx_id_periodo.SelectedValue + "";
-                }
+
+				cmdCliente.CommandText = "pa_DosimetroISPGenerar_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue;
+					//"SELECT distinct case when runsuc is null or runsuc ='' then c.run else runsuc end as run, " +
+					//                               "case when s.Direccion is null or s.Direccion ='' then c.Direccion else s.Direccion end as Direccion," +
+					//                               "case when s.Razon_Social is null or s.Razon_Social ='' then c.Razon_Social else s.Razon_Social end as Razon_Social," +
+					//                               " region,Provincia,comuna,s.Telefono,s.Id_sucursal" + //N_Documento,
+					//                             " FROM [dbo].[ges_DosimetriaPersonal] dos inner join tbl_cliente c on c.Id_cliente=dos.Id_cliente " +
+					//                             " inner join tbl_sucursal s on s.Id_sucursal=dos.Id_Sucursal " +
+					//                             " inner  join glo_region R on s.id_region=r.id_region inner join glo_provincia p on p.id_provincia=s.Id_Provincia  " +
+					//                             " inner join glo_comuna co on co.Id_Comuna=s.Id_Comuna " +
+					//                             "WHERE c.Id_cliente= " + lbl_id_cliente.Text + " and dos.id_periodo=" + cbx_id_periodo.SelectedValue + "";
+
 				  cmdCliente.CommandType = CommandType.Text; 
 				  DataSet dt;
 				  DataSet dtCliente;
@@ -593,7 +580,7 @@ namespace ControlDosimetro
 
                                           Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
 
-                                          cmd.CommandText = "pa_DosimetroIngreso_upd " + txtnpelicula.Value.ToString() + ",5,'" + Clases.clsUsuario.Usuario   + 
+                                          cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + txtnpelicula.Value.ToString() + ",5,'" + Clases.clsUsuario.Usuario   + 
                                                         "','',"+ cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;
                                           cmd.CommandType = CommandType.Text;
                                           Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
