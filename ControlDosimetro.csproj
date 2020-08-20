@@ -202,6 +202,12 @@
     <Compile Include="GenerarDcto\frmGenerarISP.Designer.cs">
       <DependentUpon>frmGenerarISP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Herramientas\frmCambioFecha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Herramientas\frmCambioFecha.Designer.cs">
+      <DependentUpon>frmCambioFecha.cs</DependentUpon>
+    </Compile>
     <Compile Include="Herramientas\frmCambioSucursal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -537,6 +543,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarDcto\frmGenerarISP.resx">
       <DependentUpon>frmGenerarISP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Herramientas\frmCambioFecha.resx">
+      <DependentUpon>frmCambioFecha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Herramientas\frmCambioSucursal.resx">
       <DependentUpon>frmCambioSucursal.cs</DependentUpon>

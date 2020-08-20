@@ -12,6 +12,7 @@ using dllLibreriaEvento;
 using dllLibreriaMysql;
 using System.Data.SqlClient;
 using System.Data.Sql;
+using ControlDosimetro.Herramientas;
 
 namespace ControlDosimetro
 {
@@ -349,11 +350,18 @@ namespace ControlDosimetro
               frm.ShowDialog(this);
           }
 
-          #endregion
+          private void FrmUtilidadesCambioFecha_Click(object sender, EventArgs e)
+          {
+              frmCambioFecha frm = new frmCambioFecha(0);
+              Graba_log(frm.Text);
+              frm.ShowDialog(this);
+          }
+
+        #endregion
 
         #region "Proceso TLD"
 
-          private void MnuProcesoTLDIngresoPelicula_Click(object sender, EventArgs e)
+        private void MnuProcesoTLDIngresoPelicula_Click(object sender, EventArgs e)
           {
               frmIngresoDosimetroTLD frm = new frmIngresoDosimetroTLD(0);
             Graba_log(frm.Text);
@@ -469,7 +477,10 @@ namespace ControlDosimetro
 
 
 
+
         #endregion
+
+       
 
       
     }

@@ -49,13 +49,13 @@
             this.mnuMantUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMantTipoDocumento = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuMantCliente = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMantSucursal = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMantPersonal = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuProceso = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuProcesoIngresoNpelicula = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,6 +99,7 @@
             this.frmUtilidadesAsociarDocumentoCliente = new System.Windows.Forms.ToolStripMenuItem();
             this.frmUtilidadesLiberarDosimetro = new System.Windows.Forms.ToolStripMenuItem();
             this.frmUtilidadesTraspaso = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambiarFechaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAyuda = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAyudaAcercaDe = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,6 +130,7 @@
             this.tsbPrincipalCliente = new System.Windows.Forms.ToolStripButton();
             this.tsbPrincipalPersonal = new System.Windows.Forms.ToolStripButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.fechaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -174,7 +176,8 @@
             this.mnuMantSucursal,
             this.mnuMantPersonal,
             this.toolStripSeparator3,
-            this.exitToolStripMenuItem});
+            this.exitToolStripMenuItem,
+            this.fechaToolStripMenuItem});
             this.mnuMantenedor.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.mnuMantenedor.Name = "mnuMantenedor";
             this.mnuMantenedor.Size = new System.Drawing.Size(84, 20);
@@ -224,6 +227,13 @@
             this.reporteToolStripMenuItem.Text = "Reporte";
             this.reporteToolStripMenuItem.Click += new System.EventHandler(this.MnuMantReporte_Click);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(249, 22);
+            this.toolStripMenuItem2.Text = "Web";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.MnuMantWeb_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -262,13 +272,6 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
             this.exitToolStripMenuItem.Text = "&Salir";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolsStripMenuItem_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(249, 22);
-            this.toolStripMenuItem2.Text = "Web";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.MnuMantWeb_Click);
             // 
             // helpMenu
             // 
@@ -547,7 +550,8 @@
             this.frmUtilidadesCambioTrimestre,
             this.frmUtilidadesAsociarDocumentoCliente,
             this.frmUtilidadesLiberarDosimetro,
-            this.frmUtilidadesTraspaso});
+            this.frmUtilidadesTraspaso,
+            this.cambiarFechaToolStripMenuItem});
             this.frmUtilidades.Name = "frmUtilidades";
             this.frmUtilidades.Size = new System.Drawing.Size(90, 20);
             this.frmUtilidades.Tag = "800";
@@ -608,6 +612,13 @@
             this.frmUtilidadesTraspaso.Size = new System.Drawing.Size(235, 22);
             this.frmUtilidadesTraspaso.Text = "Traspaso de personal";
             this.frmUtilidadesTraspaso.Click += new System.EventHandler(this.frmUtilidadesTraspaso_Click);
+            // 
+            // cambiarFechaToolStripMenuItem
+            // 
+            this.cambiarFechaToolStripMenuItem.Name = "cambiarFechaToolStripMenuItem";
+            this.cambiarFechaToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.cambiarFechaToolStripMenuItem.Text = "Cambiar Fecha";
+            this.cambiarFechaToolStripMenuItem.Click += new System.EventHandler(this.FrmUtilidadesCambioFecha_Click);
             // 
             // mnuAyuda
             // 
@@ -1006,6 +1017,8 @@
         private System.Windows.Forms.ToolStripMenuItem webToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem cambiarFechaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fechaToolStripMenuItem;
     }
 }
 
