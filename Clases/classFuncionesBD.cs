@@ -12,7 +12,7 @@ using System.Data;
 
 namespace classFuncionesBD
 {
-   public class clsFunciones
+   public class ClsFunciones
     {
         clsConectorSqlServer Conectar = new clsConectorSqlServer();
         public int CambiarEstado(string NDoc,string NDos, ref string mensaje)

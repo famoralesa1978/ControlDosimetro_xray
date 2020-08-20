@@ -398,35 +398,15 @@ namespace ControlDosimetro
             dtPeriodo = Conectar.Listar(Clases.clsBD.BD,cmdPeriodo);
 				 string strfecha_inicio = dtPeriodo.Tables[0].Rows[0]["fecha_inicio"].ToString();
 				 string strfecha_termino = dtPeriodo.Tables[0].Rows[0]["fecha_termino"].ToString();
-			 //**************carga cliente
-				  //SqlCommand cmdCliente = new SqlCommand();
-                  SqlCommand cmdCliente = new SqlCommand();
-
-    //         SELECT distinct 0 as Generar,isnull(d.enviado,0)enviado,N_pelicula, 
-    //    d.N_Documento,p.id_cliente,p.Id_Personal,Rut, Nombres,Paterno,Maternos, 
-    //    isnull(d.ConDosis,0)condosis,
-    //    d.Dosis,isnull(d.Id_EstadoDosis,0)estadodosis, 
-    //    isnull(d.Id_Dosimetro,0)Id_Dosimetro
-    //    ,id_sucursal,tld
-    //FROM tbl_personal p inner join ges_dosimetro_estado_TLD tld on p.Id_Personal=tld.Id_Personal	 
-    // left join tbl_dosimetria d on d.id_cliente=tld.id_cliente   and  d.id_personal=tld.id_personal  and   TLD=1  
-    // WHERE p.id_cliente=@id_cliente  and Controlado=1
-    //    and (tld.Id_Sucursal =@Id_Sucursal or @Id_Sucursal=0) 
-    //    and  d.id_periodo=@id_periodo 
-
-				cmdCliente.CommandText = "pa_DosimetroISPGenerar_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue;
-					//"SELECT distinct case when runsuc is null or runsuc ='' then c.run else runsuc end as run, " +
-					//                               "case when s.Direccion is null or s.Direccion ='' then c.Direccion else s.Direccion end as Direccion," +
-					//                               "case when s.Razon_Social is null or s.Razon_Social ='' then c.Razon_Social else s.Razon_Social end as Razon_Social," +
-					//                               " region,Provincia,comuna,s.Telefono,s.Id_sucursal" + //N_Documento,
-					//                             " FROM [dbo].[ges_DosimetriaPersonal] dos inner join tbl_cliente c on c.Id_cliente=dos.Id_cliente " +
-					//                             " inner join tbl_sucursal s on s.Id_sucursal=dos.Id_Sucursal " +
-					//                             " inner  join glo_region R on s.id_region=r.id_region inner join glo_provincia p on p.id_provincia=s.Id_Provincia  " +
-					//                             " inner join glo_comuna co on co.Id_Comuna=s.Id_Comuna " +
-					//                             "WHERE c.Id_cliente= " + lbl_id_cliente.Text + " and dos.id_periodo=" + cbx_id_periodo.SelectedValue + "";
-
-				  cmdCliente.CommandType = CommandType.Text; 
-				  DataSet dt;
+			//**************carga cliente
+			//SqlCommand cmdCliente = new SqlCommand();
+			SqlCommand cmdCliente = new SqlCommand
+			{
+				CommandText = "pa_DosimetroISPGenerar_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue,
+			
+				CommandType = CommandType.Text
+			};
+			DataSet dt;
 				  DataSet dtCliente;
 				  dt = Conectar.Listar(Clases.clsBD.BD,cmdCliente);
 
@@ -958,10 +938,12 @@ namespace ControlDosimetro
 				  }
 			  }
 
-			  cellResult = new Cell();
-			  cellResult.CellReference = address;
+			cellResult = new Cell
+			{
+				CellReference = address
+			};
 
-			  row.InsertBefore(cellResult, refCell);
+			row.InsertBefore(cellResult, refCell);
 			  return cellResult;
 		  }
 
@@ -988,12 +970,11 @@ namespace ControlDosimetro
 		  private UInt32 GetRowIndex(string address)
 		  {
 			  string rowPart;
-			  UInt32 l;
-			  UInt32 result = 0;
+			UInt32 result = 0;
 
-			  for (int i = 0; i < address.Length; i++)
+			for (int i = 0; i < address.Length; i++)
 			  {
-				  if (UInt32.TryParse(address.Substring(i, 1), out l))
+				  if (UInt32.TryParse(address.Substring(i, 1), out uint l))
 				  {
 					  rowPart = address.Substring(i, address.Length - i);
 					  if (UInt32.TryParse(rowPart, out l))
