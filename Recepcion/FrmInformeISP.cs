@@ -45,32 +45,35 @@ namespace ControlDosimetro
 
         #endregion
 
-       public FrmInformeISP(Int64 intId_Cliente)
-        {
-            InitializeComponent();
+    public FrmInformeISP(Int64 intId_Cliente)
+    {
+			InitializeComponent();
 
            
-            SqlCommand cmdcombo = new SqlCommand();
-				//SqlCommand cmdcombo = new SqlCommand();
-				DataSet dtcombo;			
-				cmdcombo.CommandText = "select 0 as Id_DetParametro, 'Seleccione' as Glosa, 0 as orden union all " +
-				  "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 order by orden ";
-				cmdcombo.CommandType = CommandType.Text;
-				dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
+      SqlCommand cmdcombo = new SqlCommand();
+			//SqlCommand cmdcombo = new SqlCommand();
+			DataSet dtcombo;			
+			cmdcombo.CommandText = "select 0 as Id_DetParametro, 'Seleccione' as Glosa, 0 as orden union all " +
+				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 order by orden ";
+			cmdcombo.CommandType = CommandType.Text;
+			dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
 
-				DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns["Estado"] as DataGridViewComboBoxColumn;
-				//
-				comboboxColumn.DataSource = dtcombo.Tables[0] ;
-				comboboxColumn.DisplayMember = "Glosa";
-				comboboxColumn.ValueMember = "Id_DetParametro";
+			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns["Estado"] as DataGridViewComboBoxColumn;
+			//
+			comboboxColumn.DataSource = dtcombo.Tables[0] ;
+			comboboxColumn.DisplayMember = "Glosa";
+			comboboxColumn.ValueMember = "Id_DetParametro";
 
 
-				AsignarEvento();
-				Cargar_Cliente(intId_Cliente);
-				Cargar_Anno();
-                btn_Guardar.Visible = false;
-                pnl_Progreso.Visible = false;
-        }
+			AsignarEvento();
+			Cargar_Cliente(intId_Cliente);
+			Cargar_Anno();
+      btn_Guardar.Visible = false;
+      pnl_Progreso.Visible = false;
+			lbl_Original.Text= RutaArchivo().Replace("\\", "/");
+			lbl_Alternativa.Text = "C:/Doc_Xray/";
+			rbtOiginal.Checked = true;
+		}
 
         #region "Llamada de carga"
 
@@ -289,6 +292,18 @@ namespace ControlDosimetro
             grdDatos.Focus();
 		  }
 
+		String RutaArchivo()
+		{
+			SqlCommand cmdArchivo = new SqlCommand();
+			DataSet dtArchivo;
+			cmdArchivo.CommandText = "" +
+				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=6 order by orden ";
+			cmdArchivo.CommandType = CommandType.Text;
+			dtArchivo = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
+			//string targetPath = @ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text;
+			return dtArchivo.Tables[0].Rows[0]["Glosa"].ToString();
+		}
+
 		 private void Btn_Guardar_Click(object sender, EventArgs e)
 		  {
               SqlCommand cmd = new SqlCommand();
@@ -312,25 +327,31 @@ namespace ControlDosimetro
 				  string strid_dosimetro;
 				  string strpath;
 				  string strpathcopiar;
-                  string strEstado;
-                  btn_Guardar.Enabled = false;
+          string strEstado;
+          btn_Guardar.Enabled = false;
 
-                  SqlCommand cmdArchivo = new SqlCommand();
-                  //SqlCommand cmdcombo = new SqlCommand();
-                  DataSet dtArchivo;
-                  cmdArchivo.CommandText = "" +
-                    "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=6 order by orden ";
-                  cmdArchivo.CommandType = CommandType.Text;
-                  dtArchivo = Conectar.Listar(Clases.clsBD.BD,cmdArchivo);
+          SqlCommand cmdArchivo = new SqlCommand();
+          DataSet dtArchivo;
+          cmdArchivo.CommandText = "" +
+            "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=6 order by orden ";
+          cmdArchivo.CommandType = CommandType.Text;
+          dtArchivo = Conectar.Listar(Clases.clsBD.BD,cmdArchivo);
 
-                  DataSet dtformato;
-                  cmdArchivo.CommandText = "" +
-                    "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=5 order by orden ";
-                  cmdArchivo.CommandType = CommandType.Text;
-                  dtformato = Conectar.Listar(Clases.clsBD.BD,cmdArchivo);
-                  //string targetPath = @ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text;
-                 string targetPath = @dtArchivo.Tables[0].Rows[0]["Glosa"].ToString() + "Cliente " + lbl_id_cliente.Text;
-                  if (!System.IO.Directory.Exists(targetPath))
+          DataSet dtformato;
+          cmdArchivo.CommandText = "" +
+            "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=5 order by orden ";
+          cmdArchivo.CommandType = CommandType.Text;
+          dtformato = Conectar.Listar(Clases.clsBD.BD,cmdArchivo);
+          //string targetPath = @ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text;
+          string targetPath ="";
+
+			if(rbtOiginal.Checked)
+				targetPath = @dtArchivo.Tables[0].Rows[0]["Glosa"].ToString() + "Cliente " + lbl_id_cliente.Text;
+			else
+				targetPath = @"C:\\Doc_Xray\\" + "Cliente " + lbl_id_cliente.Text;
+			
+
+			if (!System.IO.Directory.Exists(targetPath))
                   {
                       System.IO.Directory.CreateDirectory(targetPath);
                   }
@@ -341,23 +362,27 @@ namespace ControlDosimetro
 
                 
                 // targetPath = ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text + "\\" + cbx_anno.Text;
-                  targetPath = dtArchivo.Tables[0].Rows[0]["Glosa"].ToString() + "Cliente " + lbl_id_cliente.Text + "\\" + cbx_anno.Text;
+                  targetPath = targetPath + "\\" + cbx_anno.Text;
                   if (!System.IO.Directory.Exists(targetPath))
                   {
                       System.IO.Directory.CreateDirectory(targetPath);
                   }
 
                  // targetPath = ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text + "\\" + cbx_anno.Text + "\\" + cbx_id_periodo.Text + "\\";
-                  targetPath = dtArchivo.Tables[0].Rows[0]["Glosa"].ToString() + "Cliente " + lbl_id_cliente.Text + "\\" + cbx_anno.Text + "\\" + cbx_id_periodo.Text + "\\";
+                  targetPath = targetPath + "\\" + cbx_id_periodo.Text + "\\";
 
                   if (!System.IO.Directory.Exists(targetPath))
                   {
                       System.IO.Directory.CreateDirectory(targetPath);
                   }
-                  //Environment.CurrentDirectory = (targetPath);
-                //  Process.Start("explorer.exe" ,"root=" + targetPath.Replace("\\\\")  );
-                 // strpath =ConfigurationManager.AppSettings["Archivo"] +  "cliente.xlsx";//Application.StartupPath.ToString(); 
-                  strpath = dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "cliente.xlsx";//Application.StartupPath.ToString(); 
+			//Environment.CurrentDirectory = (targetPath);
+
+			if (rbtOiginal.Checked)
+				strpath = dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "cliente.xlsx";//Application.StartupPath.ToString(); 
+			else
+				strpath = @"C:\\Doc_Xray\\baseCliente\\Plantilla\\cliente.xlsx";
+
+			
                  
 				//**************carga periodo
 				  DataSet dtPeriodo;
@@ -405,9 +430,13 @@ namespace ControlDosimetro
 				  DataSet dtCliente;
 				  dt = Conectar.Listar(Clases.clsBD.BD,cmdCliente);
 
-				  
-             
-                  string strArchivo = dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "Plantillaword.docx";
+			string strArchivo = "";
+			if (rbtOiginal.Checked)
+				strArchivo = dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "Plantillaword.docx";
+			else
+				strArchivo = @"C:\\Doc_Xray\\baseCliente\\Plantilla\\Plantillaword.docx";
+			
+
                //   string strArchivo = ConfigurationManager.AppSettings["Archivo"] + "Plantillaword.docx";
              
                   int i;
@@ -665,34 +694,34 @@ namespace ControlDosimetro
 			 this.Close();
 		 }
 
-        private void Btn_Corregir_Click(object sender, EventArgs e)
-          {
-              SqlCommand cmd = new SqlCommand();
-              SqlCommand cmd2 = new SqlCommand();
-              //	  SqlCommand cmd = new SqlCommand();
-              SqlCommand cmdpersonal = new SqlCommand();
-              //  SqlCommand cmdpersonal = new SqlCommand();
-              SqlCommand cmdperiodo = new SqlCommand();
-              //  SqlCommand cmdperiodo = new SqlCommand();
+    private void Btn_Corregir_Click(object sender, EventArgs e)
+      {
+          SqlCommand cmd = new SqlCommand();
+          SqlCommand cmd2 = new SqlCommand();
+          //	  SqlCommand cmd = new SqlCommand();
+          SqlCommand cmdpersonal = new SqlCommand();
+          //  SqlCommand cmdpersonal = new SqlCommand();
+          SqlCommand cmdperiodo = new SqlCommand();
+          //  SqlCommand cmdperiodo = new SqlCommand();
 
-              // dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
-              DataGridViewCheckBoxCell checkGenerar;
-              DataGridViewCheckBoxCell checkCell;
-              DataGridViewCheckBoxCell chkcondosis;
-              DataGridViewTextBoxCell txtvalor;
-              DataGridViewTextBoxCell txtndocumento;
-              DataGridViewTextBoxCell txtnpelicula;
-              DataGridViewComboBoxCell cbxEstado;
-              DataGridViewCheckBoxCell checkTLD;
-              string strn_cliente;
-              string strid_personal;
-              string strid_dosimetro;
-              btn_Corregir.Enabled = false;
+          // dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
+          DataGridViewCheckBoxCell checkGenerar;
+          DataGridViewCheckBoxCell checkCell;
+          DataGridViewCheckBoxCell chkcondosis;
+          DataGridViewTextBoxCell txtvalor;
+          DataGridViewTextBoxCell txtndocumento;
+          DataGridViewTextBoxCell txtnpelicula;
+          DataGridViewComboBoxCell cbxEstado;
+          DataGridViewCheckBoxCell checkTLD;
+          string strn_cliente;
+          string strid_personal;
+          string strid_dosimetro;
+          btn_Corregir.Enabled = false;
           
-              pnl_Progreso.Visible = true;
-              pgb_Barra.Minimum = 0;
-              pgb_Barra.Maximum = grdDatos.RowCount;
-              pnl_Progreso.Refresh();
+          pnl_Progreso.Visible = true;
+          pgb_Barra.Minimum = 0;
+          pgb_Barra.Maximum = grdDatos.RowCount;
+          pnl_Progreso.Refresh();
               for (int i = 0; i <= grdDatos.RowCount - 1; i++)
               {
                   pgb_Barra.Value = i + 1;
@@ -980,171 +1009,171 @@ namespace ControlDosimetro
 
 		 #endregion
 
-          public static void WDAddTable(string fileName, string[] data1, string[] data2, string[] data3, string[] data4)
-          {
-              using (var document = WordprocessingDocument.Open(fileName, true))
-              {
+        public static void WDAddTable(string fileName, string[] data1, string[] data2, string[] data3, string[] data4)
+        {
+            using (var document = WordprocessingDocument.Open(fileName, true))
+            {
 
-                  var doc = document.MainDocumentPart.Document;
+                var doc = document.MainDocumentPart.Document;
 
-                  //DocumentFormat.OpenXml.Wordprocessing.Table table = doc.Body.Elements<DocumentFormat.OpenXml.Wordprocessing.Table>().Where<>.
-                  DocumentFormat.OpenXml.Wordprocessing.Table table = doc.Body.Elements<DocumentFormat.OpenXml.Wordprocessing.Table>().ElementAtOrDefault(2) ;
+                //DocumentFormat.OpenXml.Wordprocessing.Table table = doc.Body.Elements<DocumentFormat.OpenXml.Wordprocessing.Table>().Where<>.
+                DocumentFormat.OpenXml.Wordprocessing.Table table = doc.Body.Elements<DocumentFormat.OpenXml.Wordprocessing.Table>().ElementAtOrDefault(2) ;
                       
-                  //    new DocumentFormat.OpenXml.Wordprocessing.Table().First() ;
+                //    new DocumentFormat.OpenXml.Wordprocessing.Table().First() ;
 
-                  //Table table =
-                  //  doc.MainDocumentPart.Document.Body.Elements<Table>().First();
+                //Table table =
+                //  doc.MainDocumentPart.Document.Body.Elements<Table>().First();
 
-                  TableProperties props = new TableProperties(
-                    new TableBorders(
-                      new DocumentFormat.OpenXml.Wordprocessing.TopBorder
-                      {
-                          Val = new EnumValue<BorderValues>(BorderValues.None),
-                          Size = 9
-                      },
-                      new DocumentFormat.OpenXml.Wordprocessing.BottomBorder
-                      {
-                          Val = new EnumValue<BorderValues>(BorderValues.None),
-                          Size = 9
-                      },
-                      new DocumentFormat.OpenXml.Wordprocessing.LeftBorder
-                      {
-                          Val = new EnumValue<BorderValues>(BorderValues.None),
-                          Size = 9
-                      },
-                      new DocumentFormat.OpenXml.Wordprocessing.RightBorder
-                      {
-                          Val = new EnumValue<BorderValues>(BorderValues.None),
-                          Size = 9
-                      },
-                      new InsideHorizontalBorder
-                      {
-                          Val = new EnumValue<BorderValues>(BorderValues.None),
-                          Size = 9
-                      },
-                      new InsideVerticalBorder
-                      {
-                          Val = new EnumValue<BorderValues>(BorderValues.None ),
-                          Size = 9
-                      }));
-                  table.AppendChild<TableProperties>(props);
+                TableProperties props = new TableProperties(
+                  new TableBorders(
+                    new DocumentFormat.OpenXml.Wordprocessing.TopBorder
+                    {
+                        Val = new EnumValue<BorderValues>(BorderValues.None),
+                        Size = 9
+                    },
+                    new DocumentFormat.OpenXml.Wordprocessing.BottomBorder
+                    {
+                        Val = new EnumValue<BorderValues>(BorderValues.None),
+                        Size = 9
+                    },
+                    new DocumentFormat.OpenXml.Wordprocessing.LeftBorder
+                    {
+                        Val = new EnumValue<BorderValues>(BorderValues.None),
+                        Size = 9
+                    },
+                    new DocumentFormat.OpenXml.Wordprocessing.RightBorder
+                    {
+                        Val = new EnumValue<BorderValues>(BorderValues.None),
+                        Size = 9
+                    },
+                    new InsideHorizontalBorder
+                    {
+                        Val = new EnumValue<BorderValues>(BorderValues.None),
+                        Size = 9
+                    },
+                    new InsideVerticalBorder
+                    {
+                        Val = new EnumValue<BorderValues>(BorderValues.None ),
+                        Size = 9
+                    }));
+                table.AppendChild<TableProperties>(props);
 
-                  for (var i = 0; i <= data1.GetUpperBound(0); i++)
-                  {
-                      var tr = new TableRow(new TableWidth { Type = TableWidthUnitValues.Auto });
-                      var tc2 = new TableCell();
-                      var tc3 = new TableCell();
-                      var tc4 = new TableCell();
-                      //for (var j = 0; j <= data.GetUpperBound(1); j++)
-                      //{
-                          var tc = new TableCell();                                                
-                          // Assume you want columns that are automatically sized.
-                          if (i == 0)
-                          {
+                for (var i = 0; i <= data1.GetUpperBound(0); i++)
+                {
+                    var tr = new TableRow(new TableWidth { Type = TableWidthUnitValues.Auto });
+                    var tc2 = new TableCell();
+                    var tc3 = new TableCell();
+                    var tc4 = new TableCell();
+                    //for (var j = 0; j <= data.GetUpperBound(1); j++)
+                    //{
+                        var tc = new TableCell();                                                
+                        // Assume you want columns that are automatically sized.
+                        if (i == 0)
+                        {
 
 
 
-                              tc.Append(new TableCellProperties(
-                                                         new TableCellWidth { Type = TableWidthUnitValues.Auto  },
-                                                         new DocumentFormat.OpenXml.Wordprocessing.Bold(),
-                                                         new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
-                                                         new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" },
-                                                         new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data1[i])),
-                                                              new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" })
-                                                         ));
-
-                              tr.Append(tc);
-
-                             
-
-                              tc2.Append(new TableCellProperties(
-                            new TableCellWidth { Type = TableWidthUnitValues.Dxa ,Width ="350" },
-                                                         new DocumentFormat.OpenXml.Wordprocessing.Bold(),
-                                                         new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" }
-                                                         ));
-
-                              tc3.Append(new TableCellProperties(
-                           new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "600" },
-                           new DocumentFormat.OpenXml.Wordprocessing.Bold(),
-                                                         new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" }
-                                                         ));
-                          }
-                          else
-                          {
-                              tc.Append(new TableCellProperties(
-                                                         new TableCellWidth { Type = TableWidthUnitValues.Auto  },
-                                                         new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
-                                                         new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" },
-                                                         new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data1[i])),
-                                                              new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" })
-                                                         ));
-
-                              tr.Append(tc);
-
-                           
-
-                              tc2.Append(new TableCellProperties(
-                            new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "350" },
-                                                         new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" }
-                                                         ));
-
-                              tc3.Append(new TableCellProperties(
-                           new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "600" },
-                                                         new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" }
-                                                         ));
-                          }
-                          //tc.Append(new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data1[i]))),
-                          //    new TableCellProperties(
-                          //                              new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "500" },
-                          //                               new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" }
-                          //                               )
-                          //    );
-                          //tr.Append(tc);
-
-                        
-                          tc2.Append(new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data2[i]))));
-                          // Assume you want columns that are automatically sized.
-                          tr.Append(tc2);
-
-                          
-                          tc3.Append(new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data3[i]))));
-                          // Assume you want columns that are automatically sized.
-                         
-                          tr.Append(tc3);
-
-                          tc4.Append(new TableCellProperties(
-                                                        new TableCellWidth { Type = TableWidthUnitValues.Auto },
+                            tc.Append(new TableCellProperties(
+                                                        new TableCellWidth { Type = TableWidthUnitValues.Auto  },
                                                         new DocumentFormat.OpenXml.Wordprocessing.Bold(),
                                                         new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
                                                         new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" },
-                                                        new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data4[i])))
+                                                        new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data1[i])),
+                                                            new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" })
                                                         ));
 
-                          tr.Append(tc4);
-                     // }
-                      table.Append(tr);
-                  }
-                //  doc.Body.Append(table);
-                  doc.Save();
-              }
-          }
+                            tr.Append(tc);
 
-          private void GrdDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-          {
+                             
 
-          }
+                            tc2.Append(new TableCellProperties(
+                          new TableCellWidth { Type = TableWidthUnitValues.Dxa ,Width ="350" },
+                                                        new DocumentFormat.OpenXml.Wordprocessing.Bold(),
+                                                        new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" }
+                                                        ));
 
-          private void GrdDatos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-          {
+                            tc3.Append(new TableCellProperties(
+                          new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "600" },
+                          new DocumentFormat.OpenXml.Wordprocessing.Bold(),
+                                                        new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" }
+                                                        ));
+                        }
+                        else
+                        {
+                            tc.Append(new TableCellProperties(
+                                                        new TableCellWidth { Type = TableWidthUnitValues.Auto  },
+                                                        new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
+                                                        new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" },
+                                                        new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data1[i])),
+                                                            new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" })
+                                                        ));
+
+                            tr.Append(tc);
+
+                           
+
+                            tc2.Append(new TableCellProperties(
+                          new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "350" },
+                                                        new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" }
+                                                        ));
+
+                            tc3.Append(new TableCellProperties(
+                          new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "600" },
+                                                        new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" }
+                                                        ));
+                        }
+                        //tc.Append(new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data1[i]))),
+                        //    new TableCellProperties(
+                        //                              new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "500" },
+                        //                               new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" }
+                        //                               )
+                        //    );
+                        //tr.Append(tc);
+
+                        
+                        tc2.Append(new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data2[i]))));
+                        // Assume you want columns that are automatically sized.
+                        tr.Append(tc2);
+
+                          
+                        tc3.Append(new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data3[i]))));
+                        // Assume you want columns that are automatically sized.
+                         
+                        tr.Append(tc3);
+
+                        tc4.Append(new TableCellProperties(
+                                                      new TableCellWidth { Type = TableWidthUnitValues.Auto },
+                                                      new DocumentFormat.OpenXml.Wordprocessing.Bold(),
+                                                      new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
+                                                      new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" },
+                                                      new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data4[i])))
+                                                      ));
+
+                        tr.Append(tc4);
+                    // }
+                    table.Append(tr);
+                }
+              //  doc.Body.Append(table);
+                doc.Save();
+            }
+        }
+
+        private void GrdDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void GrdDatos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
            
-              //this.grdDatos.Columns["Dosis"].ValueType = typeof(Decimal);
-              //this.grdDatos.Columns["Dosis"].DefaultCellStyle.Format = "N2";
-          }
+            //this.grdDatos.Columns["Dosis"].ValueType = typeof(Decimal);
+            //this.grdDatos.Columns["Dosis"].DefaultCellStyle.Format = "N2";
+        }
 
-          private void Cbx_Sucursal_SelectedIndexChanged(object sender, EventArgs e)
-          {
-              Listar_Personal();
-          }
-     
-    }
+        private void Cbx_Sucursal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Listar_Personal();
+        }
+
+	}
 }
