@@ -14,7 +14,7 @@ namespace classFuncionesGenerales
 {
    public class ClsValidadores
     {
-        clsConectorSqlServer Conectar = new clsConectorSqlServer();
+		readonly clsConectorSqlServer Conectar = new clsConectorSqlServer();
       
                  
             public static string FormatearRut(string rut)
@@ -29,11 +29,10 @@ namespace classFuncionesGenerales
                 {
                     string rutTemporal;
                     string dv;
-                    Int64 rutNumerico;
 
-                    rut = rut.Replace("-", "").Replace(".", "");
+				rut = rut.Replace("-", "").Replace(".", "");
 
-                    if (rut.Length == 1)
+				if (rut.Length == 1)
                     {
                         rutFormateado = rut;
                     }
@@ -42,7 +41,7 @@ namespace classFuncionesGenerales
                         rutTemporal = rut.Substring(0, rut.Length - 1);
                         dv = rut.Substring(rut.Length - 1, 1);
 
-                        if (!Int64.TryParse(rutTemporal, out rutNumerico))
+                        if (!Int64.TryParse(rutTemporal, out long rutNumerico))
                         {
                             rutNumerico = 0;
                         }
