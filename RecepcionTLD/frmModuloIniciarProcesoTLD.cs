@@ -26,52 +26,52 @@ namespace ControlDosimetro
             int intintId_Estado_temp;
         #endregion
 
-      public frmModuloIniciarProcesoTLD(int intId_Estado)
-      {
-				InitializeComponent();
+  public frmModuloIniciarProcesoTLD(int intId_Estado)
+  {
+		InitializeComponent();
           
-				AsignarEvento();                
-            intintId_Estado_temp = intId_Estado;
-            switch (intintId_Estado_temp)
-            {
-                case 0:
-                    this.Text = "Envio Dosimetros";
-                    break;
-                case 1:
-                    this.Text = "Recepción Dosimetros";
-                    break;
-                case 2:
-                    this.Text = "Iniciar Proceso de Lectura";
-                    break;
-                case 6:
-                    this.Text = "Informe Generado";
-                    break;
-            }
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "',' " + this.Text + "'";
-            cmd.CommandType = CommandType.Text;
-            Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);				
-            txt_TLD.Focus();
-            LimpiarPantalla();
-            Listar_Grilla();
-            VerificaSihayProcesoIniciado();
-          //  btn_Guardar.Enabled = false;
-           // btnIniciar.Enabled = false;
-        }
-
-        #region "Llamada de carga"
-
-        private void LimpiarPantalla()
+		AsignarEvento();                
+        intintId_Estado_temp = intId_Estado;
+        switch (intintId_Estado_temp)
         {
-            lbl_NCliente.Text = "";
-            lbl_NombreCliente.Text = "";
-            lbl_Periodo.Text = "";
-            lbl_TLD.Text = "";
-            nudPosicion.Value = 1;
-            lbl_NombrePersonal.Text = "";
-            btn_Guardar.Visible = false;
-            btn_Guardar.Enabled = false;
+            case 0:
+                this.Text = "Envio Dosimetros";
+                break;
+            case 1:
+                this.Text = "Recepción Dosimetros";
+                break;
+            case 2:
+                this.Text = "Iniciar Proceso de Lectura";
+                break;
+            case 6:
+                this.Text = "Informe Generado";
+                break;
         }
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "',' " + this.Text + "'";
+        cmd.CommandType = CommandType.Text;
+        Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);				
+        txt_TLD.Focus();
+        LimpiarPantalla();
+        Listar_Grilla();
+        VerificaSihayProcesoIniciado();
+      //  btn_Guardar.Enabled = false;
+        // btnIniciar.Enabled = false;
+    }
+
+    #region "Llamada de carga"
+
+    private void LimpiarPantalla()
+    {
+        lbl_NCliente.Text = "";
+        lbl_NombreCliente.Text = "";
+        lbl_Periodo.Text = "";
+        lbl_TLD.Text = "";
+        nudPosicion.Value = 1;
+        lbl_NombrePersonal.Text = "";
+        btn_Guardar.Visible = false;
+        btn_Guardar.Enabled = false;
+    }
 
     private void Cargar_TLD()
 		{
@@ -102,51 +102,51 @@ namespace ControlDosimetro
 
 		}
 
-        private void VerificaSihayProcesoIniciado()
+    private void VerificaSihayProcesoIniciado()
+    {
+        SqlCommand cmd = new SqlCommand();
+
+        DataSet dt;
+
+
+        cmd.CommandText = "SELECT id_estadodosimetro FROM [dbo].[ges_dosimetro_estado_TLD] where id_estadodosimetro=12";
+        cmd.CommandType = CommandType.Text;
+
+        dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+
+        if (dt.Tables[0].Rows.Count > 0)
         {
-            SqlCommand cmd = new SqlCommand();
-
-            DataSet dt;
-
-
-            cmd.CommandText = "SELECT id_estadodosimetro FROM [dbo].[ges_dosimetro_estado_TLD] where id_estadodosimetro=12";
-            cmd.CommandType = CommandType.Text;
-
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
-
-            if (dt.Tables[0].Rows.Count > 0)
-            {
-                btn_Guardar.Visible = false;
-                btnIniciar.Visible = false;
-                MessageBox.Show("No se puede agregar mas TLD, el motivo es por que el proceso de lectura se inicio \n y no se terminado de registrar las dosis en el proceso anterior");
-            }
-            else
-            {
-                btn_Guardar.Visible = true;
-                btnIniciar.Visible = true;
-            }
-
-  //--verifica que no puede ingresarantes de 45 minutos
-  //SELECT fecha_mod  
-  //    ,DATEADD(minute,45,fecha_mod) mas45
-  //FROM [dbo].[ges_dosimetro_estado_TLD]
-  //where
-  // getdate()< DATEADD(minute,45,fecha_mod) and id_estadodosimetro=12
+            btn_Guardar.Visible = false;
+            btnIniciar.Visible = false;
+            MessageBox.Show("No se puede agregar mas TLD, el motivo es por que el proceso de lectura se inicio \n y no se terminado de registrar las dosis en el proceso anterior");
+        }
+        else
+        {
+            btn_Guardar.Visible = true;
+            btnIniciar.Visible = true;
         }
 
+//--verifica que no puede ingresarantes de 45 minutos
+//SELECT fecha_mod  
+//    ,DATEADD(minute,45,fecha_mod) mas45
+//FROM [dbo].[ges_dosimetro_estado_TLD]
+//where
+// getdate()< DATEADD(minute,45,fecha_mod) and id_estadodosimetro=12
+    }
 
-        private void Listar_Grilla()
-        {
-            SqlCommand cmd = new SqlCommand();
 
-            DataSet dt;
-            cmd.CommandText = "pa_ListadoPorDosimetroPorIniciarTLD";
-            cmd.CommandType = CommandType.Text;
+    private void Listar_Grilla()
+    {
+        SqlCommand cmd = new SqlCommand();
 
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
-            grdDatos.DataSource = dt.Tables[0];
-            btnIniciar.Enabled = grdDatos.RowCount > 0 ? true : false;
-        }
+        DataSet dt;
+        cmd.CommandText = "pa_ListadoPorDosimetroPorIniciarTLD";
+        cmd.CommandType = CommandType.Text;
+
+        dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+        grdDatos.DataSource = dt.Tables[0];
+        btnIniciar.Enabled = grdDatos.RowCount > 0 ? true : false;
+    }
 
            
     private void AsignarEvento()

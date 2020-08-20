@@ -149,7 +149,7 @@ namespace ControlDosimetro
         #region "Proceso"
         private void mnuProcesoDosisISP_Click(object sender, EventArgs e)
         {
-            FrmInformeISP frm = new FrmInformeISP(-1);
+						frmDosimetriaISP frm = new frmDosimetriaISP(-1);
             Graba_log(frm.Text);
             frm.Show();
         }
@@ -346,26 +346,26 @@ namespace ControlDosimetro
       frm.Show(this);
     }
 
-        private void MnuProcesoTLDIniciarLectura_Click(object sender, EventArgs e)
-        {
-            frmModuloIniciarProcesoTLD frm = new frmModuloIniciarProcesoTLD(2);
-          Graba_log(frm.Text);
-          frm.ShowDialog(this);
-        }
+    private void MnuProcesoTLDIniciarLectura_Click(object sender, EventArgs e)
+    {
+        frmModuloIniciarProcesoTLD frm = new frmModuloIniciarProcesoTLD(2);
+      Graba_log(frm.Text);
+      frm.ShowDialog(this);
+    }
 
-        private void MnuProcesoIngresarDosisTLD_Click(object sender, EventArgs e)
-        {
-            frmIngresoDosisTLD frm = new frmIngresoDosisTLD(12);
-          Graba_log(frm.Text);
-          frm.ShowDialog(this);
-          }
+    private void MnuProcesoIngresarDosisTLD_Click(object sender, EventArgs e)
+    {
+        frmIngresoDosisTLD frm = new frmIngresoDosisTLD(12);
+      Graba_log(frm.Text);
+      frm.ShowDialog(this);
+      }
 
-        private void MnuProcesoTLDDosisISP_Click(object sender, EventArgs e)
-        {
-            FrmInformeISP frm = new FrmInformeISP(-1);
-            Graba_log(frm.Text);
-            frm.Show();
-        }
+    private void MnuProcesoTLDDosisISP_Click(object sender, EventArgs e)
+    {
+        FrmInformeISP frm = new FrmInformeISP(-1);
+        Graba_log(frm.Text);
+        frm.Show();
+    }
         #endregion
 
         #region "Generar Dcto ISP"

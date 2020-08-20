@@ -25,27 +25,27 @@ namespace ControlDosimetro
             int intContar=0;	
         #endregion
 
-            public frmIngresoDosisTLD(Int64 intId_Cliente)
-        {
-            InitializeComponent();
+    public frmIngresoDosisTLD(Int64 intId_Cliente)
+    {
+        InitializeComponent();
 
-            SqlCommand cmdcombo = new SqlCommand();
-			//	SqlCommand cmdcombo = new SqlCommand();
-				DataSet dtcombo;			
-				cmdcombo.CommandText = "select 0 as Id_DetParametro, 'Seleccione' as Glosa, 0 as orden union all " +
-				  "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 order by orden ";
-				cmdcombo.CommandType = CommandType.Text;
-				dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
+        SqlCommand cmdcombo = new SqlCommand();
+	//	SqlCommand cmdcombo = new SqlCommand();
+			DataSet dtcombo;			
+			cmdcombo.CommandText = "select 0 as Id_DetParametro, 'Seleccione' as Glosa, 0 as orden union all " +
+				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 order by orden ";
+			cmdcombo.CommandType = CommandType.Text;
+			dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
 
-				DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns["Estado"] as DataGridViewComboBoxColumn;
-				//
-				comboboxColumn.DataSource = dtcombo.Tables[0] ;
-				comboboxColumn.DisplayMember = "Glosa";
-				comboboxColumn.ValueMember = "Id_DetParametro";
-				AsignarEvento();
-                Listar_Personal();
-                pnl_Progreso.Visible = false;
-        }
+			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns["Estado"] as DataGridViewComboBoxColumn;
+			//
+			comboboxColumn.DataSource = dtcombo.Tables[0] ;
+			comboboxColumn.DisplayMember = "Glosa";
+			comboboxColumn.ValueMember = "Id_DetParametro";
+			AsignarEvento();
+			Listar_Personal();
+			pnl_Progreso.Visible = false;
+    }
 
         #region "Llamada de carga"
         

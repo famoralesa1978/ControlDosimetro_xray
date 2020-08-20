@@ -1,6 +1,6 @@
 ﻿namespace ControlDosimetro
 {
-    partial class frmMantenedorTipoDocumento
+    partial class frmMantenedorNuevoReporte
     {
         /// <summary>
         /// Required designer variable.
@@ -41,29 +41,24 @@
             this.pnlPrincipal = new System.Windows.Forms.Panel();
             this.gpxListado = new System.Windows.Forms.GroupBox();
             this.dgvGrilla = new System.Windows.Forms.DataGridView();
-            this.Coldetalle_tipo_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsMenuContexto = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmActualizar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSep3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmAsignarPermiso = new System.Windows.Forms.ToolStripMenuItem();
-            this.gpxFiltrar = new System.Windows.Forms.GroupBox();
-            this.btn_Buscar = new System.Windows.Forms.Button();
-            this.cbx_id_estado_Buscar = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.glo_TipoDocumentos = new System.Windows.Forms.GroupBox();
+            this.tbl_Reporte = new System.Windows.Forms.GroupBox();
+            this.txt_NameMenu = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_Guardar = new System.Windows.Forms.Button();
-            this.cbx_id_estado = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txt_orden = new System.Windows.Forms.TextBox();
+            this.txt_N_Reporte = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txt_detalle_tipo_documento = new System.Windows.Forms.TextBox();
+            this.txt_Nombre = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txt_id_tipo_doc = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.btn_Limpiar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.stsEstado.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scPrincipal)).BeginInit();
@@ -74,8 +69,7 @@
             this.gpxListado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrilla)).BeginInit();
             this.cmsMenuContexto.SuspendLayout();
-            this.gpxFiltrar.SuspendLayout();
-            this.glo_TipoDocumentos.SuspendLayout();
+            this.tbl_Reporte.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -162,7 +156,7 @@
             // 
             // scPrincipal.Panel2
             // 
-            this.scPrincipal.Panel2.Controls.Add(this.glo_TipoDocumentos);
+            this.scPrincipal.Panel2.Controls.Add(this.tbl_Reporte);
             this.scPrincipal.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.scPrincipal.Panel2MinSize = 300;
             this.scPrincipal.Size = new System.Drawing.Size(735, 323);
@@ -173,7 +167,6 @@
             // 
             this.pnlPrincipal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlPrincipal.Controls.Add(this.gpxListado);
-            this.pnlPrincipal.Controls.Add(this.gpxFiltrar);
             this.pnlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPrincipal.Location = new System.Drawing.Point(0, 0);
             this.pnlPrincipal.Margin = new System.Windows.Forms.Padding(6, 3, 5, 3);
@@ -186,9 +179,9 @@
             this.gpxListado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gpxListado.Controls.Add(this.dgvGrilla);
-            this.gpxListado.Location = new System.Drawing.Point(0, 107);
+            this.gpxListado.Location = new System.Drawing.Point(0, 3);
             this.gpxListado.Name = "gpxListado";
-            this.gpxListado.Size = new System.Drawing.Size(322, 214);
+            this.gpxListado.Size = new System.Drawing.Size(322, 318);
             this.gpxListado.TabIndex = 4;
             this.gpxListado.TabStop = false;
             this.gpxListado.Text = "Listado";
@@ -209,25 +202,25 @@
             this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvGrilla.ColumnHeadersHeight = 42;
             this.dgvGrilla.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Coldetalle_tipo_documento});
+            this.ColNombre});
             this.dgvGrilla.ContextMenuStrip = this.cmsMenuContexto;
             this.dgvGrilla.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvGrilla.Location = new System.Drawing.Point(3, 16);
             this.dgvGrilla.Name = "dgvGrilla";
             this.dgvGrilla.ReadOnly = true;
-            this.dgvGrilla.Size = new System.Drawing.Size(316, 195);
+            this.dgvGrilla.Size = new System.Drawing.Size(316, 299);
             this.dgvGrilla.TabIndex = 1;
             this.dgvGrilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_CellDoubleClick);
             this.dgvGrilla.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvGrilla_ColumnWidthChanged);
             this.dgvGrilla.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvGrilla_Paint);
             // 
-            // Coldetalle_tipo_documento
+            // ColNombre
             // 
-            this.Coldetalle_tipo_documento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Coldetalle_tipo_documento.DataPropertyName = "detalle_tipo_documento";
-            this.Coldetalle_tipo_documento.HeaderText = "Nombres";
-            this.Coldetalle_tipo_documento.Name = "Coldetalle_tipo_documento";
-            this.Coldetalle_tipo_documento.ReadOnly = true;
+            this.ColNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColNombre.DataPropertyName = "Nombre";
+            this.ColNombre.HeaderText = "Nombres";
+            this.ColNombre.Name = "ColNombre";
+            this.ColNombre.ReadOnly = true;
             // 
             // cmsMenuContexto
             // 
@@ -258,7 +251,6 @@
             this.tsmEliminar.Name = "tsmEliminar";
             this.tsmEliminar.Size = new System.Drawing.Size(160, 22);
             this.tsmEliminar.Text = "Eliminar";
-            this.tsmEliminar.Click += new System.EventHandler(this.TsmEliminar_Click);
             // 
             // tsmSep3
             // 
@@ -273,73 +265,35 @@
             this.tsmAsignarPermiso.Text = "Asignar permiso";
             this.tsmAsignarPermiso.Visible = false;
             // 
-            // gpxFiltrar
+            // tbl_Reporte
             // 
-            this.gpxFiltrar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpxFiltrar.Controls.Add(this.btn_Buscar);
-            this.gpxFiltrar.Controls.Add(this.cbx_id_estado_Buscar);
-            this.gpxFiltrar.Controls.Add(this.label1);
-            this.gpxFiltrar.Location = new System.Drawing.Point(3, 3);
-            this.gpxFiltrar.Name = "gpxFiltrar";
-            this.gpxFiltrar.Size = new System.Drawing.Size(319, 89);
-            this.gpxFiltrar.TabIndex = 0;
-            this.gpxFiltrar.TabStop = false;
-            this.gpxFiltrar.Text = "Filtrar";
+            this.tbl_Reporte.BackColor = System.Drawing.SystemColors.Control;
+            this.tbl_Reporte.Controls.Add(this.button1);
+            this.tbl_Reporte.Controls.Add(this.txt_NameMenu);
+            this.tbl_Reporte.Controls.Add(this.pictureBox1);
+            this.tbl_Reporte.Controls.Add(this.btn_Guardar);
+            this.tbl_Reporte.Controls.Add(this.label4);
+            this.tbl_Reporte.Controls.Add(this.txt_N_Reporte);
+            this.tbl_Reporte.Controls.Add(this.label3);
+            this.tbl_Reporte.Controls.Add(this.txt_Nombre);
+            this.tbl_Reporte.Controls.Add(this.label2);
+            this.tbl_Reporte.Controls.Add(this.btn_Limpiar);
+            this.tbl_Reporte.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbl_Reporte.Location = new System.Drawing.Point(0, 0);
+            this.tbl_Reporte.Name = "tbl_Reporte";
+            this.tbl_Reporte.Size = new System.Drawing.Size(401, 323);
+            this.tbl_Reporte.TabIndex = 6;
+            this.tbl_Reporte.TabStop = false;
+            this.tbl_Reporte.Text = "Datos";
+            this.tbl_Reporte.Enter += new System.EventHandler(this.tbl_Reporte_Enter);
             // 
-            // btn_Buscar
+            // txt_NameMenu
             // 
-            this.btn_Buscar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_Buscar.Image = global::ControlDosimetro.Properties.Resources.Buscar;
-            this.btn_Buscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Buscar.Location = new System.Drawing.Point(239, 24);
-            this.btn_Buscar.Name = "btn_Buscar";
-            this.btn_Buscar.Size = new System.Drawing.Size(46, 40);
-            this.btn_Buscar.TabIndex = 3;
-            this.btn_Buscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_Buscar.UseVisualStyleBackColor = true;
-            this.btn_Buscar.Click += new System.EventHandler(this.Btn_Buscar_Click);
-            // 
-            // cbx_id_estado_Buscar
-            // 
-            this.cbx_id_estado_Buscar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_id_estado_Buscar.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cbx_id_estado_Buscar.FormattingEnabled = true;
-            this.cbx_id_estado_Buscar.Location = new System.Drawing.Point(78, 34);
-            this.cbx_id_estado_Buscar.Name = "cbx_id_estado_Buscar";
-            this.cbx_id_estado_Buscar.Size = new System.Drawing.Size(153, 21);
-            this.cbx_id_estado_Buscar.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Estado";
-            // 
-            // glo_TipoDocumentos
-            // 
-            this.glo_TipoDocumentos.BackColor = System.Drawing.SystemColors.Control;
-            this.glo_TipoDocumentos.Controls.Add(this.pictureBox1);
-            this.glo_TipoDocumentos.Controls.Add(this.btn_Guardar);
-            this.glo_TipoDocumentos.Controls.Add(this.cbx_id_estado);
-            this.glo_TipoDocumentos.Controls.Add(this.label4);
-            this.glo_TipoDocumentos.Controls.Add(this.txt_orden);
-            this.glo_TipoDocumentos.Controls.Add(this.label3);
-            this.glo_TipoDocumentos.Controls.Add(this.txt_detalle_tipo_documento);
-            this.glo_TipoDocumentos.Controls.Add(this.label2);
-            this.glo_TipoDocumentos.Controls.Add(this.txt_id_tipo_doc);
-            this.glo_TipoDocumentos.Controls.Add(this.label5);
-            this.glo_TipoDocumentos.Controls.Add(this.btn_Limpiar);
-            this.glo_TipoDocumentos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.glo_TipoDocumentos.Location = new System.Drawing.Point(0, 0);
-            this.glo_TipoDocumentos.Name = "glo_TipoDocumentos";
-            this.glo_TipoDocumentos.Size = new System.Drawing.Size(401, 323);
-            this.glo_TipoDocumentos.TabIndex = 6;
-            this.glo_TipoDocumentos.TabStop = false;
-            this.glo_TipoDocumentos.Text = "Datos";
+            this.txt_NameMenu.Location = new System.Drawing.Point(172, 141);
+            this.txt_NameMenu.MaxLength = 50;
+            this.txt_NameMenu.Name = "txt_NameMenu";
+            this.txt_NameMenu.Size = new System.Drawing.Size(155, 20);
+            this.txt_NameMenu.TabIndex = 24;
             // 
             // pictureBox1
             // 
@@ -349,7 +303,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(3, 16);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(395, 22);
+            this.pictureBox1.Size = new System.Drawing.Size(395, 10);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 23;
             this.pictureBox1.TabStop = false;
@@ -362,7 +316,7 @@
             this.btn_Guardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_Guardar.Image = global::ControlDosimetro.Properties.Resources.save_32;
             this.btn_Guardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Guardar.Location = new System.Drawing.Point(89, 273);
+            this.btn_Guardar.Location = new System.Drawing.Point(58, 265);
             this.btn_Guardar.Name = "btn_Guardar";
             this.btn_Guardar.Size = new System.Drawing.Size(87, 40);
             this.btn_Guardar.TabIndex = 22;
@@ -371,77 +325,50 @@
             this.btn_Guardar.UseVisualStyleBackColor = true;
             this.btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
             // 
-            // cbx_id_estado
-            // 
-            this.cbx_id_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_id_estado.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cbx_id_estado.FormattingEnabled = true;
-            this.cbx_id_estado.Location = new System.Drawing.Point(131, 113);
-            this.cbx_id_estado.Name = "cbx_id_estado";
-            this.cbx_id_estado.Size = new System.Drawing.Size(155, 21);
-            this.cbx_id_estado.TabIndex = 21;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(29, 117);
+            this.label4.Location = new System.Drawing.Point(70, 142);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 13);
+            this.label4.Size = new System.Drawing.Size(62, 13);
             this.label4.TabIndex = 20;
-            this.label4.Text = "Estado";
+            this.label4.Text = "NameMenu";
             // 
-            // txt_orden
+            // txt_N_Reporte
             // 
-            this.txt_orden.Location = new System.Drawing.Point(131, 87);
-            this.txt_orden.MaxLength = 2;
-            this.txt_orden.Name = "txt_orden";
-            this.txt_orden.Size = new System.Drawing.Size(155, 20);
-            this.txt_orden.TabIndex = 19;
+            this.txt_N_Reporte.Location = new System.Drawing.Point(172, 118);
+            this.txt_N_Reporte.MaxLength = 2;
+            this.txt_N_Reporte.Name = "txt_N_Reporte";
+            this.txt_N_Reporte.Size = new System.Drawing.Size(155, 20);
+            this.txt_N_Reporte.TabIndex = 19;
+            this.txt_N_Reporte.Visible = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 90);
+            this.label3.Location = new System.Drawing.Point(70, 120);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 13);
+            this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 18;
-            this.label3.Text = "Orden";
+            this.label3.Text = "N° Reporte";
+            this.label3.Visible = false;
             // 
-            // txt_detalle_tipo_documento
+            // txt_Nombre
             // 
-            this.txt_detalle_tipo_documento.Location = new System.Drawing.Point(131, 61);
-            this.txt_detalle_tipo_documento.MaxLength = 50;
-            this.txt_detalle_tipo_documento.Name = "txt_detalle_tipo_documento";
-            this.txt_detalle_tipo_documento.Size = new System.Drawing.Size(155, 20);
-            this.txt_detalle_tipo_documento.TabIndex = 17;
+            this.txt_Nombre.Location = new System.Drawing.Point(172, 95);
+            this.txt_Nombre.MaxLength = 100;
+            this.txt_Nombre.Name = "txt_Nombre";
+            this.txt_Nombre.Size = new System.Drawing.Size(155, 20);
+            this.txt_Nombre.TabIndex = 17;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 64);
+            this.label2.Location = new System.Drawing.Point(70, 98);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 16;
-            this.label2.Text = "Descripción";
-            // 
-            // txt_id_tipo_doc
-            // 
-            this.txt_id_tipo_doc.Enabled = false;
-            this.txt_id_tipo_doc.Location = new System.Drawing.Point(131, 141);
-            this.txt_id_tipo_doc.Name = "txt_id_tipo_doc";
-            this.txt_id_tipo_doc.Size = new System.Drawing.Size(66, 20);
-            this.txt_id_tipo_doc.TabIndex = 15;
-            this.txt_id_tipo_doc.Visible = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(29, 144);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(18, 13);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "ID";
-            this.label5.Visible = false;
+            this.label2.Text = "Nombre";
             // 
             // btn_Limpiar
             // 
@@ -450,16 +377,32 @@
             this.btn_Limpiar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_Limpiar.Image = global::ControlDosimetro.Properties.Resources.Limpiar;
             this.btn_Limpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Limpiar.Location = new System.Drawing.Point(245, 273);
+            this.btn_Limpiar.Location = new System.Drawing.Point(159, 265);
             this.btn_Limpiar.Name = "btn_Limpiar";
-            this.btn_Limpiar.Size = new System.Drawing.Size(85, 40);
+            this.btn_Limpiar.Size = new System.Drawing.Size(87, 40);
             this.btn_Limpiar.TabIndex = 10;
             this.btn_Limpiar.Text = "Limpiar";
             this.btn_Limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Limpiar.UseVisualStyleBackColor = true;
             this.btn_Limpiar.Click += new System.EventHandler(this.btn_Limpiar_Click);
             // 
-            // frmMantenedorTipoDocumento
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button1.Image = global::ControlDosimetro.Properties.Resources.regresar;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(260, 265);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(87, 40);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Volver";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // frmMantenedorNuevoReporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -472,7 +415,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(764, 410);
-            this.Name = "frmMantenedorTipoDocumento";
+            this.Name = "frmMantenedorNuevoReporte";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mantenedor de tipo documento";
@@ -489,10 +432,8 @@
             this.gpxListado.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrilla)).EndInit();
             this.cmsMenuContexto.ResumeLayout(false);
-            this.gpxFiltrar.ResumeLayout(false);
-            this.gpxFiltrar.PerformLayout();
-            this.glo_TipoDocumentos.ResumeLayout(false);
-            this.glo_TipoDocumentos.PerformLayout();
+            this.tbl_Reporte.ResumeLayout(false);
+            this.tbl_Reporte.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -508,12 +449,8 @@
         private System.Windows.Forms.Panel pnlPrincipal;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tsbAgregar;
-        private System.Windows.Forms.GroupBox gpxFiltrar;
-        private System.Windows.Forms.ComboBox cbx_id_estado_Buscar;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btn_Buscar;
         private System.Windows.Forms.GroupBox gpxListado;
-        private System.Windows.Forms.GroupBox glo_TipoDocumentos;
+        private System.Windows.Forms.GroupBox tbl_Reporte;
         private System.Windows.Forms.ContextMenuStrip cmsMenuContexto;
         private System.Windows.Forms.ToolStripMenuItem tsmActualizar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
@@ -523,17 +460,16 @@
         private System.Windows.Forms.ToolStripStatusLabel tssDescEstado;
         private System.Windows.Forms.ToolStripStatusLabel tssEstado;
         private System.Windows.Forms.Button btn_Limpiar;
-        private System.Windows.Forms.ComboBox cbx_id_estado;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txt_orden;
+        private System.Windows.Forms.TextBox txt_N_Reporte;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txt_detalle_tipo_documento;
+        private System.Windows.Forms.TextBox txt_Nombre;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txt_id_tipo_doc;
-        private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.Button btn_Guardar;
-		private System.Windows.Forms.DataGridView dgvGrilla;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Coldetalle_tipo_documento;
-		private System.Windows.Forms.PictureBox pictureBox1;
-	}
+        private System.Windows.Forms.Button btn_Guardar;
+        private System.Windows.Forms.DataGridView dgvGrilla;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox txt_NameMenu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColNombre;
+        private System.Windows.Forms.Button button1;
+    }
 }
