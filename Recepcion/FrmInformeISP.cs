@@ -1011,7 +1011,7 @@ namespace ControlDosimetro
                     {
                         Val = new EnumValue<BorderValues>(BorderValues.None),
                         Size = 9
-                    },
+                    },   
                     new DocumentFormat.OpenXml.Wordprocessing.BottomBorder
                     {
                         Val = new EnumValue<BorderValues>(BorderValues.None),
