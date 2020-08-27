@@ -235,6 +235,8 @@ namespace ControlDosimetro
 		
 		}
 
+
+
 		private void AsignarEvento()
 		{           
 			this.txtRut.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);

@@ -145,7 +145,7 @@ Se agrego la Fecha de nacimiento al personal y se agrego un reporte de cliente p
   <data name="tsbPrincipalCliente.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAE8AAABPCAYAAACqNJiGAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAACq7SURBVHhe1XwFeFRZuu28N32nu7F4UvFKKqm4u7sTIcEJ
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAACq7SURBVHhe1XwFeFRZuu28N32nu7F4UvFKKqm4u7sTIcEJ
         7q5JIEIEghNI0CDBHRpp3J3GHZrggRAh7sq6/96VMMy8aZjvcmu+1/tjUZWqk3P2Xmf9tvc++Quk3BrR
         isr6euAT/WumD1rZp02obylETWsemlGC5sYmlOcDzx60YO/B55iefggDhm1GdO9tCOm5EqG9V2L4xN1Y
         lfMA129Xoaj4ExrrW+hcjXSuGtTVlfBzspNXVlayC7DLoaKymr+XVpM6eYwvNpC6mlrJG0JzUwO9tKLx

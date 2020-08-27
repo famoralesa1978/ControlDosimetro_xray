@@ -72,7 +72,6 @@
 			this.mnuProcesoInformeGenerado = new System.Windows.Forms.ToolStripMenuItem();
 			this.porFacturarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuProcesoTLD = new System.Windows.Forms.ToolStripMenuItem();
-			this.mnuProcesoTLDIngresoPelicula = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuProcesoTLDEnviado = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuProcesoTLDRecepcion = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuProcesoTLDIniciarLectura = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,18 +87,6 @@
 			this.mnuLinkVigilanciaDosi = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuFactura = new System.Windows.Forms.ToolStripMenuItem();
 			this.facturaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.frmUtilidades = new System.Windows.Forms.ToolStripMenuItem();
-			this.frmUtilidadesConfigurarCorreo = new System.Windows.Forms.ToolStripMenuItem();
-			this.frmUtilidadesRestablecerContrasenaCliente = new System.Windows.Forms.ToolStripMenuItem();
-			this.frmCambiaContrasena = new System.Windows.Forms.ToolStripMenuItem();
-			this.frmUtilidadesEnviarCorreo = new System.Windows.Forms.ToolStripMenuItem();
-			this.frmUtilidadesCambioTrimestre = new System.Windows.Forms.ToolStripMenuItem();
-			this.frmUtilidadesAsociarDocumentoCliente = new System.Windows.Forms.ToolStripMenuItem();
-			this.frmUtilidadesLiberarDosimetro = new System.Windows.Forms.ToolStripMenuItem();
-			this.frmUtilidadesTraspaso = new System.Windows.Forms.ToolStripMenuItem();
-			this.mnuAyuda = new System.Windows.Forms.ToolStripMenuItem();
-			this.mnuAyudaAcercaDe = new System.Windows.Forms.ToolStripMenuItem();
-			this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.contentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.indexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -147,14 +134,10 @@
             this.frmGenerarDctoISP,
             this.mnuReporte,
             this.mnuLink,
-            this.mnuFactura,
-            this.frmUtilidades,
-            this.mnuAyuda,
-            this.salirToolStripMenuItem});
+            this.mnuFactura});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
-			this.menuStrip.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-			this.menuStrip.Size = new System.Drawing.Size(1412, 28);
+			this.menuStrip.Size = new System.Drawing.Size(1059, 24);
 			this.menuStrip.TabIndex = 0;
 			this.menuStrip.Text = "MenuStrip";
 			// 
@@ -174,14 +157,14 @@
             this.exitToolStripMenuItem});
 			this.mnuMantenedor.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
 			this.mnuMantenedor.Name = "mnuMantenedor";
-			this.mnuMantenedor.Size = new System.Drawing.Size(102, 24);
+			this.mnuMantenedor.Size = new System.Drawing.Size(84, 20);
 			this.mnuMantenedor.Tag = "100";
 			this.mnuMantenedor.Text = "&Mantenedor";
 			// 
 			// mnuMantConfiguracionMenu
 			// 
 			this.mnuMantConfiguracionMenu.Name = "mnuMantConfiguracionMenu";
-			this.mnuMantConfiguracionMenu.Size = new System.Drawing.Size(299, 26);
+			this.mnuMantConfiguracionMenu.Size = new System.Drawing.Size(249, 22);
 			this.mnuMantConfiguracionMenu.Text = "Menu";
 			// 
 			// mnuMantConfiguracionParametro
@@ -189,74 +172,74 @@
 			this.mnuMantConfiguracionParametro.ImageTransparentColor = System.Drawing.Color.Black;
 			this.mnuMantConfiguracionParametro.Name = "mnuMantConfiguracionParametro";
 			this.mnuMantConfiguracionParametro.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-			this.mnuMantConfiguracionParametro.Size = new System.Drawing.Size(299, 26);
+			this.mnuMantConfiguracionParametro.Size = new System.Drawing.Size(249, 22);
 			this.mnuMantConfiguracionParametro.Text = "&Configuración Parametro";
 			this.mnuMantConfiguracionParametro.Click += new System.EventHandler(this.MnuMantConfiguracionParametro_Click);
 			// 
 			// mnuMantPerfil
 			// 
 			this.mnuMantPerfil.Name = "mnuMantPerfil";
-			this.mnuMantPerfil.Size = new System.Drawing.Size(299, 26);
+			this.mnuMantPerfil.Size = new System.Drawing.Size(249, 22);
 			this.mnuMantPerfil.Text = "Perfil";
 			this.mnuMantPerfil.Click += new System.EventHandler(this.MnuMantPerfil_Click);
 			// 
 			// mnuMantUsuario
 			// 
 			this.mnuMantUsuario.Name = "mnuMantUsuario";
-			this.mnuMantUsuario.Size = new System.Drawing.Size(299, 26);
+			this.mnuMantUsuario.Size = new System.Drawing.Size(249, 22);
 			this.mnuMantUsuario.Text = "Usuario";
 			this.mnuMantUsuario.Click += new System.EventHandler(this.MnuMantUsuario_Click);
 			// 
 			// mnuMantTipoDocumento
 			// 
 			this.mnuMantTipoDocumento.Name = "mnuMantTipoDocumento";
-			this.mnuMantTipoDocumento.Size = new System.Drawing.Size(299, 26);
+			this.mnuMantTipoDocumento.Size = new System.Drawing.Size(249, 22);
 			this.mnuMantTipoDocumento.Text = "Tipo Documento";
 			this.mnuMantTipoDocumento.Click += new System.EventHandler(this.MnuMantTipoDocumento_Click);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(296, 6);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(246, 6);
 			// 
 			// mnuMantCliente
 			// 
 			this.mnuMantCliente.Name = "mnuMantCliente";
 			this.mnuMantCliente.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-			this.mnuMantCliente.Size = new System.Drawing.Size(299, 26);
+			this.mnuMantCliente.Size = new System.Drawing.Size(249, 22);
 			this.mnuMantCliente.Text = "Cliente";
 			this.mnuMantCliente.Click += new System.EventHandler(this.MnuMantCliente_Click);
 			// 
 			// mnuMantSucursal
 			// 
 			this.mnuMantSucursal.Name = "mnuMantSucursal";
-			this.mnuMantSucursal.Size = new System.Drawing.Size(299, 26);
+			this.mnuMantSucursal.Size = new System.Drawing.Size(249, 22);
 			this.mnuMantSucursal.Text = "Sucursal";
 			this.mnuMantSucursal.Click += new System.EventHandler(this.MnuMantSucursal_Click);
 			// 
 			// mnuMantPersonal
 			// 
 			this.mnuMantPersonal.Name = "mnuMantPersonal";
-			this.mnuMantPersonal.Size = new System.Drawing.Size(299, 26);
+			this.mnuMantPersonal.Size = new System.Drawing.Size(249, 22);
 			this.mnuMantPersonal.Text = "Personal";
 			this.mnuMantPersonal.Click += new System.EventHandler(this.MnuMantPersonal_Click);
 			// 
 			// toolStripSeparator3
 			// 
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			this.toolStripSeparator3.Size = new System.Drawing.Size(296, 6);
+			this.toolStripSeparator3.Size = new System.Drawing.Size(246, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(299, 26);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
 			this.exitToolStripMenuItem.Text = "&Salir";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolsStripMenuItem_Click);
 			// 
 			// helpMenu
 			// 
 			this.helpMenu.Name = "helpMenu";
-			this.helpMenu.Size = new System.Drawing.Size(12, 24);
+			this.helpMenu.Size = new System.Drawing.Size(12, 20);
 			// 
 			// mnuProceso
 			// 
@@ -274,28 +257,28 @@
             this.mnuProcesoInformeGenerado,
             this.porFacturarToolStripMenuItem});
 			this.mnuProceso.Name = "mnuProceso";
-			this.mnuProceso.Size = new System.Drawing.Size(73, 24);
+			this.mnuProceso.Size = new System.Drawing.Size(61, 20);
 			this.mnuProceso.Tag = "200";
 			this.mnuProceso.Text = "Proceso";
 			// 
 			// mnuProcesoIngresoNpelicula
 			// 
 			this.mnuProcesoIngresoNpelicula.Name = "mnuProcesoIngresoNpelicula";
-			this.mnuProcesoIngresoNpelicula.Size = new System.Drawing.Size(237, 26);
+			this.mnuProcesoIngresoNpelicula.Size = new System.Drawing.Size(198, 22);
 			this.mnuProcesoIngresoNpelicula.Text = "Ingreso N° Pelicula";
 			this.mnuProcesoIngresoNpelicula.Click += new System.EventHandler(this.MnuProcesoIngresoNpelicula_Click);
 			// 
 			// mnuProcesoIngresoDosimetroPersonal
 			// 
 			this.mnuProcesoIngresoDosimetroPersonal.Name = "mnuProcesoIngresoDosimetroPersonal";
-			this.mnuProcesoIngresoDosimetroPersonal.Size = new System.Drawing.Size(237, 26);
+			this.mnuProcesoIngresoDosimetroPersonal.Size = new System.Drawing.Size(198, 22);
 			this.mnuProcesoIngresoDosimetroPersonal.Text = "Corrección Documento";
 			this.mnuProcesoIngresoDosimetroPersonal.Click += new System.EventHandler(this.MnuProcesoIngresoDosimetroPersonal_Click);
 			// 
 			// mnuProcesoEnvioDosimetro
 			// 
 			this.mnuProcesoEnvioDosimetro.Name = "mnuProcesoEnvioDosimetro";
-			this.mnuProcesoEnvioDosimetro.Size = new System.Drawing.Size(237, 26);
+			this.mnuProcesoEnvioDosimetro.Size = new System.Drawing.Size(198, 22);
 			this.mnuProcesoEnvioDosimetro.Text = "Envio Pelicula";
 			this.mnuProcesoEnvioDosimetro.Visible = false;
 			this.mnuProcesoEnvioDosimetro.Click += new System.EventHandler(this.MnuProcesoEnvioDosimetro_Click);
@@ -303,19 +286,19 @@
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(234, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(195, 6);
 			// 
 			// mnuProcesoEnviado
 			// 
 			this.mnuProcesoEnviado.Name = "mnuProcesoEnviado";
-			this.mnuProcesoEnviado.Size = new System.Drawing.Size(237, 26);
+			this.mnuProcesoEnviado.Size = new System.Drawing.Size(198, 22);
 			this.mnuProcesoEnviado.Text = "Enviado";
 			this.mnuProcesoEnviado.Click += new System.EventHandler(this.MnuProcesoEnviado_Click);
 			// 
 			// mnuProcesoRecepcion
 			// 
 			this.mnuProcesoRecepcion.Name = "mnuProcesoRecepcion";
-			this.mnuProcesoRecepcion.Size = new System.Drawing.Size(237, 26);
+			this.mnuProcesoRecepcion.Size = new System.Drawing.Size(198, 22);
 			this.mnuProcesoRecepcion.Text = "Recepción";
 			this.mnuProcesoRecepcion.Click += new System.EventHandler(this.MnuProcesoRecepcion_Click);
 			// 
@@ -326,39 +309,39 @@
             this.mnuProcesoOrdenTrabajoPorDocumento,
             this.mnuProcesoOrdenTrabajoFechaRecepcion});
 			this.mnuProcesoOrdenTrabajo.Name = "mnuProcesoOrdenTrabajo";
-			this.mnuProcesoOrdenTrabajo.Size = new System.Drawing.Size(237, 26);
+			this.mnuProcesoOrdenTrabajo.Size = new System.Drawing.Size(198, 22);
 			this.mnuProcesoOrdenTrabajo.Text = "Orden de Trabajo";
 			// 
 			// mnuProcesoOrdenTrabajoVarios
 			// 
 			this.mnuProcesoOrdenTrabajoVarios.Name = "mnuProcesoOrdenTrabajoVarios";
-			this.mnuProcesoOrdenTrabajoVarios.Size = new System.Drawing.Size(263, 26);
+			this.mnuProcesoOrdenTrabajoVarios.Size = new System.Drawing.Size(216, 22);
 			this.mnuProcesoOrdenTrabajoVarios.Text = "Cargar toda la información";
 			this.mnuProcesoOrdenTrabajoVarios.Click += new System.EventHandler(this.MnuProcesoOrdenTrabajoVarios_Click);
 			// 
 			// mnuProcesoOrdenTrabajoPorDocumento
 			// 
 			this.mnuProcesoOrdenTrabajoPorDocumento.Name = "mnuProcesoOrdenTrabajoPorDocumento";
-			this.mnuProcesoOrdenTrabajoPorDocumento.Size = new System.Drawing.Size(263, 26);
+			this.mnuProcesoOrdenTrabajoPorDocumento.Size = new System.Drawing.Size(216, 22);
 			this.mnuProcesoOrdenTrabajoPorDocumento.Text = "Por Cliente";
 			this.mnuProcesoOrdenTrabajoPorDocumento.Click += new System.EventHandler(this.MnuProcesoOrdenTrabajoPorDocumento_Click);
 			// 
 			// mnuProcesoOrdenTrabajoFechaRecepcion
 			// 
 			this.mnuProcesoOrdenTrabajoFechaRecepcion.Name = "mnuProcesoOrdenTrabajoFechaRecepcion";
-			this.mnuProcesoOrdenTrabajoFechaRecepcion.Size = new System.Drawing.Size(263, 26);
+			this.mnuProcesoOrdenTrabajoFechaRecepcion.Size = new System.Drawing.Size(216, 22);
 			this.mnuProcesoOrdenTrabajoFechaRecepcion.Text = "Por Fecha Recepción";
 			this.mnuProcesoOrdenTrabajoFechaRecepcion.Click += new System.EventHandler(this.MnuProcesoOrdenTrabajoFechaRecepcion_Click);
 			// 
 			// toolStripSeparator4
 			// 
 			this.toolStripSeparator4.Name = "toolStripSeparator4";
-			this.toolStripSeparator4.Size = new System.Drawing.Size(234, 6);
+			this.toolStripSeparator4.Size = new System.Drawing.Size(195, 6);
 			// 
 			// mnuProcesoIngresarDosis
 			// 
 			this.mnuProcesoIngresarDosis.Name = "mnuProcesoIngresarDosis";
-			this.mnuProcesoIngresarDosis.Size = new System.Drawing.Size(237, 26);
+			this.mnuProcesoIngresarDosis.Size = new System.Drawing.Size(198, 22);
 			this.mnuProcesoIngresarDosis.Text = "Ingresar Dosis";
 			this.mnuProcesoIngresarDosis.Visible = false;
 			this.mnuProcesoIngresarDosis.Click += new System.EventHandler(this.MnuProcesoIngresarDosis_Click);
@@ -366,78 +349,69 @@
 			// mnuProcesoDosisISP
 			// 
 			this.mnuProcesoDosisISP.Name = "mnuProcesoDosisISP";
-			this.mnuProcesoDosisISP.Size = new System.Drawing.Size(237, 26);
+			this.mnuProcesoDosisISP.Size = new System.Drawing.Size(198, 22);
 			this.mnuProcesoDosisISP.Text = "Dosis ISP";
 			this.mnuProcesoDosisISP.Click += new System.EventHandler(this.mnuProcesoDosisISP_Click);
 			// 
 			// mnuProcesoInformeGenerado
 			// 
 			this.mnuProcesoInformeGenerado.Name = "mnuProcesoInformeGenerado";
-			this.mnuProcesoInformeGenerado.Size = new System.Drawing.Size(237, 26);
+			this.mnuProcesoInformeGenerado.Size = new System.Drawing.Size(198, 22);
 			this.mnuProcesoInformeGenerado.Text = "Proceso Facturación";
 			this.mnuProcesoInformeGenerado.Click += new System.EventHandler(this.MnuProcesoInformeGenerado_Click);
 			// 
 			// porFacturarToolStripMenuItem
 			// 
 			this.porFacturarToolStripMenuItem.Name = "porFacturarToolStripMenuItem";
-			this.porFacturarToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
+			this.porFacturarToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
 			this.porFacturarToolStripMenuItem.Text = "Por Facturar";
 			this.porFacturarToolStripMenuItem.Click += new System.EventHandler(this.PorFacturarToolStripMenuItem_Click);
 			// 
 			// mnuProcesoTLD
 			// 
 			this.mnuProcesoTLD.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuProcesoTLDIngresoPelicula,
             this.mnuProcesoTLDEnviado,
             this.mnuProcesoTLDRecepcion,
             this.mnuProcesoTLDIniciarLectura,
             this.mnuProcesoIngresarDosisTLD,
             this.mnuProcesoTLDDosisISP});
 			this.mnuProcesoTLD.Name = "mnuProcesoTLD";
-			this.mnuProcesoTLD.Size = new System.Drawing.Size(103, 24);
+			this.mnuProcesoTLD.Size = new System.Drawing.Size(84, 20);
 			this.mnuProcesoTLD.Tag = "300";
 			this.mnuProcesoTLD.Text = "Proceso TLD";
-			// 
-			// mnuProcesoTLDIngresoPelicula
-			// 
-			this.mnuProcesoTLDIngresoPelicula.Name = "mnuProcesoTLDIngresoPelicula";
-			this.mnuProcesoTLDIngresoPelicula.Size = new System.Drawing.Size(216, 26);
-			this.mnuProcesoTLDIngresoPelicula.Tag = "301";
-			this.mnuProcesoTLDIngresoPelicula.Text = "Ingreso TLD";
-			this.mnuProcesoTLDIngresoPelicula.Click += new System.EventHandler(this.MnuProcesoTLDIngresoPelicula_Click);
 			// 
 			// mnuProcesoTLDEnviado
 			// 
 			this.mnuProcesoTLDEnviado.Name = "mnuProcesoTLDEnviado";
-			this.mnuProcesoTLDEnviado.Size = new System.Drawing.Size(216, 26);
+			this.mnuProcesoTLDEnviado.Size = new System.Drawing.Size(148, 22);
 			this.mnuProcesoTLDEnviado.Text = "Enviado";
 			this.mnuProcesoTLDEnviado.Click += new System.EventHandler(this.MnuProcesoEnviado_Click);
 			// 
 			// mnuProcesoTLDRecepcion
 			// 
 			this.mnuProcesoTLDRecepcion.Name = "mnuProcesoTLDRecepcion";
-			this.mnuProcesoTLDRecepcion.Size = new System.Drawing.Size(216, 26);
+			this.mnuProcesoTLDRecepcion.Size = new System.Drawing.Size(148, 22);
 			this.mnuProcesoTLDRecepcion.Text = "Recepción";
 			this.mnuProcesoTLDRecepcion.Click += new System.EventHandler(this.MnuProcesoRecepcion_Click);
 			// 
 			// mnuProcesoTLDIniciarLectura
 			// 
 			this.mnuProcesoTLDIniciarLectura.Name = "mnuProcesoTLDIniciarLectura";
-			this.mnuProcesoTLDIniciarLectura.Size = new System.Drawing.Size(216, 26);
+			this.mnuProcesoTLDIniciarLectura.Size = new System.Drawing.Size(148, 22);
 			this.mnuProcesoTLDIniciarLectura.Text = "Iniciar Lectura";
 			this.mnuProcesoTLDIniciarLectura.Click += new System.EventHandler(this.MnuProcesoTLDIniciarLectura_Click);
 			// 
 			// mnuProcesoIngresarDosisTLD
 			// 
 			this.mnuProcesoIngresarDosisTLD.Name = "mnuProcesoIngresarDosisTLD";
-			this.mnuProcesoIngresarDosisTLD.Size = new System.Drawing.Size(216, 26);
+			this.mnuProcesoIngresarDosisTLD.Size = new System.Drawing.Size(148, 22);
 			this.mnuProcesoIngresarDosisTLD.Text = "Ingresar Dosis";
 			this.mnuProcesoIngresarDosisTLD.Click += new System.EventHandler(this.MnuProcesoIngresarDosisTLD_Click);
 			// 
 			// mnuProcesoTLDDosisISP
 			// 
 			this.mnuProcesoTLDDosisISP.Name = "mnuProcesoTLDDosisISP";
-			this.mnuProcesoTLDDosisISP.Size = new System.Drawing.Size(216, 26);
+			this.mnuProcesoTLDDosisISP.Size = new System.Drawing.Size(148, 22);
 			this.mnuProcesoTLDDosisISP.Text = "Dosis ISP";
 			this.mnuProcesoTLDDosisISP.Click += new System.EventHandler(this.MnuProcesoTLDDosisISP_Click);
 			// 
@@ -446,14 +420,14 @@
 			this.frmGenerarDctoISP.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.frmGenerarDctoISPGenerar});
 			this.frmGenerarDctoISP.Name = "frmGenerarDctoISP";
-			this.frmGenerarDctoISP.Size = new System.Drawing.Size(133, 24);
+			this.frmGenerarDctoISP.Size = new System.Drawing.Size(107, 20);
 			this.frmGenerarDctoISP.Tag = "400";
 			this.frmGenerarDctoISP.Text = "Generar Dcto ISP";
 			// 
 			// frmGenerarDctoISPGenerar
 			// 
 			this.frmGenerarDctoISPGenerar.Name = "frmGenerarDctoISPGenerar";
-			this.frmGenerarDctoISPGenerar.Size = new System.Drawing.Size(136, 26);
+			this.frmGenerarDctoISPGenerar.Size = new System.Drawing.Size(115, 22);
 			this.frmGenerarDctoISPGenerar.Text = "Generar";
 			this.frmGenerarDctoISPGenerar.Click += new System.EventHandler(this.FrmGenerarDctoISPGenerar_Click);
 			// 
@@ -464,28 +438,28 @@
             this.mnuReporteEstadoDosimetro,
             this.mnuReportePorCliente});
 			this.mnuReporte.Name = "mnuReporte";
-			this.mnuReporte.Size = new System.Drawing.Size(74, 24);
+			this.mnuReporte.Size = new System.Drawing.Size(60, 20);
 			this.mnuReporte.Tag = "500";
 			this.mnuReporte.Text = "Reporte";
 			// 
 			// mnuReporteDosimetria
 			// 
 			this.mnuReporteDosimetria.Name = "mnuReporteDosimetria";
-			this.mnuReporteDosimetria.Size = new System.Drawing.Size(228, 26);
+			this.mnuReporteDosimetria.Size = new System.Drawing.Size(188, 22);
 			this.mnuReporteDosimetria.Text = "Dosimetria";
 			this.mnuReporteDosimetria.Click += new System.EventHandler(this.MnuReporteDosimetria_Click);
 			// 
 			// mnuReporteEstadoDosimetro
 			// 
 			this.mnuReporteEstadoDosimetro.Name = "mnuReporteEstadoDosimetro";
-			this.mnuReporteEstadoDosimetro.Size = new System.Drawing.Size(228, 26);
+			this.mnuReporteEstadoDosimetro.Size = new System.Drawing.Size(188, 22);
 			this.mnuReporteEstadoDosimetro.Text = "Por Estado Dosimetro";
 			this.mnuReporteEstadoDosimetro.Click += new System.EventHandler(this.MnuReporteEstadoDosimetro_Click);
 			// 
 			// mnuReportePorCliente
 			// 
 			this.mnuReportePorCliente.Name = "mnuReportePorCliente";
-			this.mnuReportePorCliente.Size = new System.Drawing.Size(228, 26);
+			this.mnuReportePorCliente.Size = new System.Drawing.Size(188, 22);
 			this.mnuReportePorCliente.Text = "Por Cliente";
 			this.mnuReportePorCliente.Click += new System.EventHandler(this.MnuReportePorCliente_Click);
 			// 
@@ -494,14 +468,14 @@
 			this.mnuLink.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuLinkVigilanciaDosi});
 			this.mnuLink.Name = "mnuLink";
-			this.mnuLink.Size = new System.Drawing.Size(47, 24);
+			this.mnuLink.Size = new System.Drawing.Size(41, 20);
 			this.mnuLink.Tag = "600";
 			this.mnuLink.Text = "Link";
 			// 
 			// mnuLinkVigilanciaDosi
 			// 
 			this.mnuLinkVigilanciaDosi.Name = "mnuLinkVigilanciaDosi";
-			this.mnuLinkVigilanciaDosi.Size = new System.Drawing.Size(233, 26);
+			this.mnuLinkVigilanciaDosi.Size = new System.Drawing.Size(191, 22);
 			this.mnuLinkVigilanciaDosi.Text = "Vigilancia Dosimétrica";
 			this.mnuLinkVigilanciaDosi.Click += new System.EventHandler(this.MnuLinkVigilanciaDosi_Click);
 			// 
@@ -510,111 +484,16 @@
 			this.mnuFactura.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.facturaciónToolStripMenuItem});
 			this.mnuFactura.Name = "mnuFactura";
-			this.mnuFactura.Size = new System.Drawing.Size(74, 24);
+			this.mnuFactura.Size = new System.Drawing.Size(63, 20);
 			this.mnuFactura.Tag = "700";
 			this.mnuFactura.Text = "Facturas";
 			// 
 			// facturaciónToolStripMenuItem
 			// 
 			this.facturaciónToolStripMenuItem.Name = "facturaciónToolStripMenuItem";
-			this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
+			this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.facturaciónToolStripMenuItem.Text = "Facturación";
 			this.facturaciónToolStripMenuItem.Click += new System.EventHandler(this.FacturaciónToolStripMenuItem_Click);
-			// 
-			// frmUtilidades
-			// 
-			this.frmUtilidades.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.frmUtilidadesConfigurarCorreo,
-            this.frmUtilidadesRestablecerContrasenaCliente,
-            this.frmCambiaContrasena,
-            this.frmUtilidadesEnviarCorreo,
-            this.frmUtilidadesCambioTrimestre,
-            this.frmUtilidadesAsociarDocumentoCliente,
-            this.frmUtilidadesLiberarDosimetro,
-            this.frmUtilidadesTraspaso});
-			this.frmUtilidades.Name = "frmUtilidades";
-			this.frmUtilidades.Size = new System.Drawing.Size(110, 24);
-			this.frmUtilidades.Tag = "800";
-			this.frmUtilidades.Text = "Herramientas";
-			// 
-			// frmUtilidadesConfigurarCorreo
-			// 
-			this.frmUtilidadesConfigurarCorreo.Name = "frmUtilidadesConfigurarCorreo";
-			this.frmUtilidadesConfigurarCorreo.Size = new System.Drawing.Size(287, 26);
-			this.frmUtilidadesConfigurarCorreo.Text = "Configurar Correo";
-			this.frmUtilidadesConfigurarCorreo.Click += new System.EventHandler(this.FrmUtilidadesConfigurarCorreo_Click);
-			// 
-			// frmUtilidadesRestablecerContrasenaCliente
-			// 
-			this.frmUtilidadesRestablecerContrasenaCliente.Name = "frmUtilidadesRestablecerContrasenaCliente";
-			this.frmUtilidadesRestablecerContrasenaCliente.Size = new System.Drawing.Size(287, 26);
-			this.frmUtilidadesRestablecerContrasenaCliente.Text = "Restablecer contraseña Cliente";
-			this.frmUtilidadesRestablecerContrasenaCliente.Click += new System.EventHandler(this.FrmUtilidadesRestablecerContrasenaCliente_Click);
-			// 
-			// frmCambiaContrasena
-			// 
-			this.frmCambiaContrasena.Name = "frmCambiaContrasena";
-			this.frmCambiaContrasena.Size = new System.Drawing.Size(287, 26);
-			this.frmCambiaContrasena.Text = "Cambiar contraseña";
-			this.frmCambiaContrasena.Click += new System.EventHandler(this.FrmCambiaContrasena_Click);
-			// 
-			// frmUtilidadesEnviarCorreo
-			// 
-			this.frmUtilidadesEnviarCorreo.Name = "frmUtilidadesEnviarCorreo";
-			this.frmUtilidadesEnviarCorreo.Size = new System.Drawing.Size(287, 26);
-			this.frmUtilidadesEnviarCorreo.Text = "Enviar Correo";
-			this.frmUtilidadesEnviarCorreo.Click += new System.EventHandler(this.FrmUtilidadesEnviarCorreo_Click);
-			// 
-			// frmUtilidadesCambioTrimestre
-			// 
-			this.frmUtilidadesCambioTrimestre.Name = "frmUtilidadesCambioTrimestre";
-			this.frmUtilidadesCambioTrimestre.Size = new System.Drawing.Size(287, 26);
-			this.frmUtilidadesCambioTrimestre.Text = "Cambio de Trimestre";
-			this.frmUtilidadesCambioTrimestre.Click += new System.EventHandler(this.FrmUtilidadesCambioTrimestre_Click);
-			// 
-			// frmUtilidadesAsociarDocumentoCliente
-			// 
-			this.frmUtilidadesAsociarDocumentoCliente.Name = "frmUtilidadesAsociarDocumentoCliente";
-			this.frmUtilidadesAsociarDocumentoCliente.Size = new System.Drawing.Size(287, 26);
-			this.frmUtilidadesAsociarDocumentoCliente.Text = "Asociar Documento Cliente";
-			this.frmUtilidadesAsociarDocumentoCliente.Click += new System.EventHandler(this.FrmUtilidadesAsociarDocumentoCliente_Click);
-			// 
-			// frmUtilidadesLiberarDosimetro
-			// 
-			this.frmUtilidadesLiberarDosimetro.Name = "frmUtilidadesLiberarDosimetro";
-			this.frmUtilidadesLiberarDosimetro.Size = new System.Drawing.Size(287, 26);
-			this.frmUtilidadesLiberarDosimetro.Text = "Liberar Dosimetro ";
-			this.frmUtilidadesLiberarDosimetro.Click += new System.EventHandler(this.FrmUtilidadesLiberarDosimetro_Click);
-			// 
-			// frmUtilidadesTraspaso
-			// 
-			this.frmUtilidadesTraspaso.Name = "frmUtilidadesTraspaso";
-			this.frmUtilidadesTraspaso.Size = new System.Drawing.Size(287, 26);
-			this.frmUtilidadesTraspaso.Text = "Traspaso de personal";
-			this.frmUtilidadesTraspaso.Click += new System.EventHandler(this.frmUtilidadesTraspaso_Click);
-			// 
-			// mnuAyuda
-			// 
-			this.mnuAyuda.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuAyudaAcercaDe});
-			this.mnuAyuda.Name = "mnuAyuda";
-			this.mnuAyuda.Size = new System.Drawing.Size(63, 24);
-			this.mnuAyuda.Tag = "900";
-			this.mnuAyuda.Text = "Ayuda";
-			// 
-			// mnuAyudaAcercaDe
-			// 
-			this.mnuAyudaAcercaDe.Name = "mnuAyudaAcercaDe";
-			this.mnuAyudaAcercaDe.Size = new System.Drawing.Size(150, 26);
-			this.mnuAyudaAcercaDe.Text = "Acerca de";
-			this.mnuAyudaAcercaDe.Click += new System.EventHandler(this.MnuAyudaAcercaDe_Click);
-			// 
-			// salirToolStripMenuItem
-			// 
-			this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-			this.salirToolStripMenuItem.Size = new System.Drawing.Size(50, 24);
-			this.salirToolStripMenuItem.Text = "Salir";
-			this.salirToolStripMenuItem.Click += new System.EventHandler(this.SalirToolStripMenuItem_Click);
 			// 
 			// contentsToolStripMenuItem
 			// 
@@ -652,56 +531,55 @@
             this.tstNombre,
             this.toolStripStatusLabel4,
             this.stsHora});
-			this.statusStrip.Location = new System.Drawing.Point(0, 533);
+			this.statusStrip.Location = new System.Drawing.Point(0, 431);
 			this.statusStrip.Name = "statusStrip";
-			this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-			this.statusStrip.Size = new System.Drawing.Size(1412, 25);
+			this.statusStrip.Size = new System.Drawing.Size(1059, 22);
 			this.statusStrip.TabIndex = 0;
 			// 
 			// toolStripStatusLabel1
 			// 
 			this.toolStripStatusLabel1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
 			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-			this.toolStripStatusLabel1.Size = new System.Drawing.Size(63, 20);
+			this.toolStripStatusLabel1.Size = new System.Drawing.Size(51, 17);
 			this.toolStripStatusLabel1.Text = "Usuario";
 			// 
 			// tstUsuario
 			// 
 			this.tstUsuario.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
 			this.tstUsuario.Name = "tstUsuario";
-			this.tstUsuario.Size = new System.Drawing.Size(123, 20);
+			this.tstUsuario.Size = new System.Drawing.Size(99, 17);
 			this.tstUsuario.Text = "Nombre Usuario";
 			// 
 			// toolStripStatusLabel2
 			// 
 			this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-			this.toolStripStatusLabel2.Size = new System.Drawing.Size(13, 20);
+			this.toolStripStatusLabel2.Size = new System.Drawing.Size(10, 17);
 			this.toolStripStatusLabel2.Text = "|";
 			// 
 			// toolStripStatusLabel3
 			// 
 			this.toolStripStatusLabel3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
 			this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-			this.toolStripStatusLabel3.Size = new System.Drawing.Size(72, 20);
+			this.toolStripStatusLabel3.Size = new System.Drawing.Size(58, 17);
 			this.toolStripStatusLabel3.Text = "Nombre :";
 			// 
 			// tstNombre
 			// 
 			this.tstNombre.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
 			this.tstNombre.Name = "tstNombre";
-			this.tstNombre.Size = new System.Drawing.Size(123, 20);
+			this.tstNombre.Size = new System.Drawing.Size(99, 17);
 			this.tstNombre.Text = "Nombre Usuario";
 			// 
 			// toolStripStatusLabel4
 			// 
 			this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-			this.toolStripStatusLabel4.Size = new System.Drawing.Size(13, 20);
+			this.toolStripStatusLabel4.Size = new System.Drawing.Size(10, 17);
 			this.toolStripStatusLabel4.Text = "|";
 			// 
 			// stsHora
 			// 
 			this.stsHora.Name = "stsHora";
-			this.stsHora.Size = new System.Drawing.Size(0, 20);
+			this.stsHora.Size = new System.Drawing.Size(0, 17);
 			this.stsHora.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.stsHora.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
 			// 
@@ -720,13 +598,11 @@
 			this.toolStripContainer1.ContentPanel.Controls.Add(this.label1);
 			this.toolStripContainer1.ContentPanel.Controls.Add(this.panel2);
 			this.toolStripContainer1.ContentPanel.Controls.Add(this.panel1);
-			this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1412, 466);
+			this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1059, 368);
 			this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.toolStripContainer1.Location = new System.Drawing.Point(0, 28);
-			this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.toolStripContainer1.Location = new System.Drawing.Point(0, 24);
 			this.toolStripContainer1.Name = "toolStripContainer1";
-			this.toolStripContainer1.Size = new System.Drawing.Size(1412, 505);
+			this.toolStripContainer1.Size = new System.Drawing.Size(1059, 407);
 			this.toolStripContainer1.TabIndex = 3;
 			this.toolStripContainer1.Text = "toolStripContainer1";
 			// 
@@ -737,11 +613,10 @@
 			// 
 			// richTextBox1
 			// 
-			this.richTextBox1.Location = new System.Drawing.Point(279, 36);
-			this.richTextBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.richTextBox1.Location = new System.Drawing.Point(209, 29);
 			this.richTextBox1.Name = "richTextBox1";
 			this.richTextBox1.ReadOnly = true;
-			this.richTextBox1.Size = new System.Drawing.Size(721, 392);
+			this.richTextBox1.Size = new System.Drawing.Size(542, 319);
 			this.richTextBox1.TabIndex = 3;
 			this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
 			// 
@@ -749,20 +624,18 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(275, 16);
-			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label1.Location = new System.Drawing.Point(206, 13);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(208, 17);
+			this.label1.Size = new System.Drawing.Size(163, 13);
 			this.label1.TabIndex = 2;
 			this.label1.Text = "Actualizaciones del sistema";
 			// 
 			// panel2
 			// 
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-			this.panel2.Location = new System.Drawing.Point(1145, 0);
-			this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.panel2.Location = new System.Drawing.Point(859, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(267, 466);
+			this.panel2.Size = new System.Drawing.Size(200, 368);
 			this.panel2.TabIndex = 1;
 			// 
 			// panel1
@@ -770,16 +643,14 @@
 			this.panel1.Controls.Add(this.treeView1);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
 			this.panel1.Location = new System.Drawing.Point(0, 0);
-			this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(267, 466);
+			this.panel1.Size = new System.Drawing.Size(200, 368);
 			this.panel1.TabIndex = 0;
 			// 
 			// treeView1
 			// 
 			this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.treeView1.Location = new System.Drawing.Point(0, 0);
-			this.treeView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.treeView1.Name = "treeView1";
 			treeNode1.Name = "Nodo1";
 			treeNode1.Text = "Versión 8.0.1.0";
@@ -795,7 +666,7 @@
 			treeNode6.Text = "Versión del sistema y sus actualizaciones";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode6});
-			this.treeView1.Size = new System.Drawing.Size(267, 466);
+			this.treeView1.Size = new System.Drawing.Size(200, 368);
 			this.treeView1.TabIndex = 0;
 			this.treeView1.Click += new System.EventHandler(this.TreeView1_Click);
 			this.treeView1.DoubleClick += new System.EventHandler(this.TreeView1_DoubleClick);
@@ -815,7 +686,7 @@
 			this.tsbPrincipal.Location = new System.Drawing.Point(0, 0);
 			this.tsbPrincipal.Name = "tsbPrincipal";
 			this.tsbPrincipal.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.tsbPrincipal.Size = new System.Drawing.Size(1412, 39);
+			this.tsbPrincipal.Size = new System.Drawing.Size(1059, 39);
 			this.tsbPrincipal.Stretch = true;
 			this.tsbPrincipal.TabIndex = 2;
 			// 
@@ -868,16 +739,14 @@
 			// 
 			// MDIPrincipal
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1412, 558);
-			this.ControlBox = false;
+			this.ClientSize = new System.Drawing.Size(1059, 453);
 			this.Controls.Add(this.toolStripContainer1);
 			this.Controls.Add(this.statusStrip);
 			this.Controls.Add(this.menuStrip);
 			this.IsMdiContainer = true;
 			this.MainMenuStrip = this.menuStrip;
-			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.Name = "MDIPrincipal";
 			this.Text = "Sistema de control dosimetro";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -926,8 +795,6 @@
           private System.Windows.Forms.ToolStripMenuItem mnuReporteDosimetria;
           private System.Windows.Forms.ToolStripMenuItem mnuLink;
           private System.Windows.Forms.ToolStripMenuItem mnuLinkVigilanciaDosi;
-          private System.Windows.Forms.ToolStripMenuItem mnuAyuda;
-          private System.Windows.Forms.ToolStripMenuItem mnuAyudaAcercaDe;
           private System.Windows.Forms.ToolStripMenuItem mnuProceso;
           private System.Windows.Forms.ToolStripMenuItem mnuProcesoRecepcion;
           private System.Windows.Forms.ToolStripMenuItem mnuProcesoEnvioDosimetro;
@@ -942,11 +809,7 @@
           private System.Windows.Forms.ToolStripMenuItem mnuMantSucursal;
           private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
           private System.Windows.Forms.ToolStripMenuItem mnuProcesoIngresoDosimetroPersonal;
-          private System.Windows.Forms.ToolStripMenuItem frmUtilidades;
-          private System.Windows.Forms.ToolStripMenuItem frmUtilidadesEnviarCorreo;
-          private System.Windows.Forms.ToolStripMenuItem frmUtilidadesCambioTrimestre;
           private System.Windows.Forms.ToolStripMenuItem mnuMantTipoDocumento;
-          private System.Windows.Forms.ToolStripMenuItem frmUtilidadesAsociarDocumentoCliente;
           private System.Windows.Forms.ToolStripMenuItem mnuMantPerfil;
           private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
           private System.Windows.Forms.ToolStripMenuItem mnuMantUsuario;
@@ -960,11 +823,9 @@
           private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
           private System.Windows.Forms.ToolStripStatusLabel stsHora;
           private System.Windows.Forms.Timer timer1;
-          private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
           private System.Windows.Forms.ToolStripMenuItem mnuProcesoOrdenTrabajoVarios;
           private System.Windows.Forms.ToolStripMenuItem mnuProcesoOrdenTrabajoPorDocumento;
           private System.Windows.Forms.ToolStripMenuItem mnuProcesoTLD;
-          private System.Windows.Forms.ToolStripMenuItem mnuProcesoTLDIngresoPelicula;
           private System.Windows.Forms.ToolStripMenuItem mnuProcesoOrdenTrabajoFechaRecepcion;
           private System.Windows.Forms.RichTextBox richTextBox1;
           private System.Windows.Forms.Label label1;
@@ -979,15 +840,10 @@
         private System.Windows.Forms.ToolStripMenuItem frmGenerarDctoISPGenerar;
         private System.Windows.Forms.ToolStripMenuItem mnuMantConfiguracionMenu;
         private System.Windows.Forms.ToolStripButton tsbPrincipalCambioContraseña;
-        private System.Windows.Forms.ToolStripMenuItem frmCambiaContrasena;
-        private System.Windows.Forms.ToolStripMenuItem frmUtilidadesRestablecerContrasenaCliente;
         private System.Windows.Forms.ToolStripButton tsbPrincipalCambioContraseñaCliente;
-        private System.Windows.Forms.ToolStripMenuItem frmUtilidadesConfigurarCorreo;
         private System.Windows.Forms.ToolStripMenuItem mnuProcesoTLDEnviado;
         private System.Windows.Forms.ToolStripMenuItem mnuProcesoTLDRecepcion;
-        private System.Windows.Forms.ToolStripMenuItem frmUtilidadesLiberarDosimetro;
         private System.Windows.Forms.ToolStripMenuItem mnuProcesoTLDDosisISP;
-        private System.Windows.Forms.ToolStripMenuItem frmUtilidadesTraspaso;
     }
 }
 

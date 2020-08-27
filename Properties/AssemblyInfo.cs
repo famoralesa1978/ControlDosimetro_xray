@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Este sistema  su funcionalidad principal es ingresar la dosis al personal y generar el excel para isp y reporte para el  usuario. Ademas el reporte ingresado por cliente")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("X-Ray Ltda.")]
-[assembly: AssemblyProduct("ControlDosimetro  prueba")]
+[assembly: AssemblyProduct("ControlDosimetro")]
 [assembly: AssemblyCopyright("Copyright")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
