@@ -27,7 +27,18 @@ namespace ControlDosimetro
 
 		public enum MENU
 		{
-			Ingreso_TLD							=	301,
+			Ingreso_TLD							=	301, 
+			EnviadoTLD							=	302,
+			RecepcionTLD						=	303,
+			IniciarLectura						=	304,
+			IngresarDosisTLD					=	305,
+			DosisISPTLD							=	306,
+
+			GenerarDctoISP						=	401,
+
+			repDosimetria						=	501,
+			repEstadoDosimetro				=	502,
+			repCliente							=	503,
 
 			Herramientas						=	800,
 			ConfigurarCorreo					=	801,
@@ -41,6 +52,7 @@ namespace ControlDosimetro
 
 			Ayuda									=	900,
 			AcercaDe								=	901,
+
 			Salir									=	1000
 		}
 
@@ -171,27 +183,10 @@ namespace ControlDosimetro
 
 		#endregion
 
-		#region "Reportes"
-		private void MnuReporteDosimetria_Click(object sender, EventArgs e)
-		{
-			frmRpDosimetria frm = new frmRpDosimetria();
-			Graba_log(frm.Text);
-			frm.Show(this);
-		}
-
-		private void MnuReportePorCliente_Click(object sender, EventArgs e)
-		{
-			frmRptcliente frm = new frmRptcliente();
-			Graba_log(frm.Text);
-			frm.Show(this);
-		}
-
-		#endregion
-
 		#region "Proceso"
 		private void mnuProcesoDosisISP_Click(object sender, EventArgs e)
 		{
-			frmDosimetriaISP frm = new frmDosimetriaISP(-1);
+			frmDosimetriaISP frm = new frmDosimetriaISP(0);
 			Graba_log(frm.Text);
 			frm.Show();
 		}
@@ -269,13 +264,6 @@ namespace ControlDosimetro
 
 		}
 
-		private void MnuReporteEstadoDosimetro_Click(object sender, EventArgs e)
-		{
-			frmRptPorEstado frm = new frmRptPorEstado();
-			Graba_log(frm.Text);
-			frm.Show();
-		}
-
 		private void MnuProcesoIngresoNpelicula_Click(object sender, EventArgs e)
 		{
 			frmIngresoPelicula frm = new frmIngresoPelicula(0);
@@ -304,39 +292,6 @@ namespace ControlDosimetro
 			frm.ShowDialog(this);
 		}
 
-		#endregion
-
-		#region "Proceso TLD"
-
-		private void MnuProcesoTLDIniciarLectura_Click(object sender, EventArgs e)
-		{
-			frmModuloIniciarProcesoTLD frm = new frmModuloIniciarProcesoTLD(2);
-			Graba_log(frm.Text);
-			frm.ShowDialog(this);
-		}
-
-		private void MnuProcesoIngresarDosisTLD_Click(object sender, EventArgs e)
-		{
-			frmIngresoDosisTLD frm = new frmIngresoDosisTLD(12);
-			Graba_log(frm.Text);
-			frm.ShowDialog(this);
-		}
-
-		private void MnuProcesoTLDDosisISP_Click(object sender, EventArgs e)
-		{
-			FrmInformeISP frm = new FrmInformeISP(-1);
-			Graba_log(frm.Text);
-			frm.Show();
-		}
-		#endregion
-
-		#region "Generar Dcto ISP"
-		private void FrmGenerarDctoISPGenerar_Click(object sender, EventArgs e)
-		{
-			frmGenerarISP frm = new frmGenerarISP();
-			Graba_log(frm.Text);
-			frm.ShowDialog(this);
-		}
 		#endregion
 
 		#region Procedimiento
@@ -369,13 +324,13 @@ namespace ControlDosimetro
 				CommandText = "pa_MenuPrivilegio_sel " + Clases.clsUsuario.Id_perfil.ToString(),
 				CommandType = CommandType.Text
 			};
-			DataSet ds= Conectar.Listar(Clases.clsBD.BD, cmd);
+			DataSet ds = Conectar.Listar(Clases.clsBD.BD, cmd);
 
 			if (ds == null)
 				menuStrip.Visible = false;
 			else
 			{
-				menuStrip.Items.Clear();
+				//menuStrip.Items.Clear();
 				menuStrip.Visible = ds.Tables[0].Rows.Count == 0 ? false : true;
 				if (ds.Tables[0].Rows.Count > 0)
 				{
@@ -386,12 +341,12 @@ namespace ControlDosimetro
 						tsiMenu.Text = ds.Tables[0].Rows[intFila]["Menu"].ToString();
 						tsiMenu.Name = ds.Tables[0].Rows[intFila]["nameMenu"].ToString();
 						tsiMenu.Tag = ds.Tables[0].Rows[intFila]["Id_Menu"].ToString();
-						
+
 
 						if ((bool)ds.Tables[0].Rows[intFila]["EventoClick"] == true)
 							tsiMenu.Click += new EventHandler(this.Cargamenu_Click);
 						else
-							Cargar_Submenu( ref tsiMenu, ds.Tables[1], Convert.ToInt16(ds.Tables[0].Rows[intFila]["Id_Menu"].ToString()));
+							Cargar_Submenu(ref tsiMenu, ds.Tables[1], Convert.ToInt16(ds.Tables[0].Rows[intFila]["Id_Menu"].ToString()));
 						menuStrip.Items.Add(tsiMenu);
 					}
 				}
@@ -426,6 +381,8 @@ namespace ControlDosimetro
 			Form objFrm;
 			switch (intMenu)
 			{
+
+
 				#region "ProcesoTLD"
 				case (int)MENU.Ingreso_TLD:
 					 objFrm = new frmIngresoDosimetroTLD(0)
@@ -433,6 +390,96 @@ namespace ControlDosimetro
 						ShowInTaskbar = false,
 						 StartPosition = FormStartPosition.CenterScreen,
 						 Parametros = objParams
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show();
+					break;
+				case (int)MENU.EnviadoTLD:
+					objFrm = new frmModuloEnviado(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show();
+					break;
+				case (int)MENU.RecepcionTLD:
+					objFrm = new frmModuloRecepcion(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show();
+					break;
+				case (int)MENU.IniciarLectura:
+					objFrm = new frmModuloIniciarProcesoTLD(2)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show();
+					break;
+				case (int)MENU.IngresarDosisTLD:
+					objFrm = new frmIngresoDosisTLD(12)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show();
+					break;
+				case (int)MENU.DosisISPTLD:
+					objFrm = new FrmInformeISP(-1)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show();
+					break;
+
+				#endregion
+
+				#region "Generar Dcto ISP"
+
+				case (int)MENU.GenerarDctoISP:
+					objFrm = new frmGenerarISP()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show();
+					break;
+
+					#endregion
+
+				#region "Reporte"
+				case (int)MENU.repDosimetria:
+					objFrm = new frmRpDosimetria()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show();
+					break;
+				case (int)MENU.repEstadoDosimetro:
+					objFrm = new frmRptPorEstado()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show();
+					break;
+				case (int)MENU.repCliente:
+					objFrm = new frmRptcliente()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
 					objFrm.Show();
