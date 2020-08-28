@@ -186,7 +186,7 @@ namespace ControlDosimetro
 		#region "Proceso"
 		private void mnuProcesoDosisISP_Click(object sender, EventArgs e)
 		{
-			frmDosimetriaISP frm = new frmDosimetriaISP(0);
+			frmDosimetriaISP frm = new frmDosimetriaISP(-1);
 			Graba_log(frm.Text);
 			frm.Show();
 		}
