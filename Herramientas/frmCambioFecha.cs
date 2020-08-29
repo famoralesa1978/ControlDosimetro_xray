@@ -31,6 +31,7 @@ namespace ControlDosimetro.Herramientas
             InitializeComponent();
 
             AsignarEvento();
+            Cargar_Fecha();
             dtp_FechaDestino.Enabled = false;
             lbl_FechaDestino.Enabled = false;
             btn_Guardar.Enabled = false;
@@ -39,6 +40,7 @@ namespace ControlDosimetro.Herramientas
             lbl_FechaDestino.Visible = false;
             btn_Guardar.Visible = false;
             btn_Modificar.Visible = false;
+            cbx_id_periodo.Visible = false;
         }
 
         #endregion
@@ -82,12 +84,27 @@ namespace ControlDosimetro.Herramientas
             lbl_id_cliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
         }
 
+        private void Cargar_Fecha()
+        {
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "SELECT Fecha_Inicio FROM conf_periodo Order by id_periodo desc";
+            DataSet dt;
+            dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+            cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
+            cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
+            cbx_id_periodo.DataSource = dt.Tables[0];
+            dtp_FechaDestino.Text = cbx_id_periodo.Text;
+        }
+
         private void LimpiarControl()
         {
 
             lbl_id_cliente.Text = "";
             lbl_nombrecliente.Text = "Razón Social";
             lbl_run.Text = "12345678-9";
+            dtp_FechaInicio.Value = DateTime.Now;
             dtp_FechaInicio.Enabled = true;
             dtp_FechaDestino.Enabled = false;
             lbl_FechaDestino.Enabled = false;
@@ -97,6 +114,7 @@ namespace ControlDosimetro.Herramientas
             lbl_FechaDestino.Visible = false;
             btn_Guardar.Visible = false;
             btn_Modificar.Visible = false;
+            cbx_id_periodo.Visible = false;
         }
 
         #endregion
@@ -123,18 +141,19 @@ namespace ControlDosimetro.Herramientas
         {
             Cursor = Cursors.WaitCursor;
             dtp_FechaInicio.Enabled = false;
-            dtp_FechaDestino.Enabled = true;
+            dtp_FechaDestino.Enabled = false;
             lbl_FechaDestino.Enabled = true;
             btn_Guardar.Enabled = true;
             dtp_FechaDestino.Visible = true;
             lbl_FechaDestino.Visible = true;
             btn_Guardar.Visible = true;
+            cbx_id_periodo.Visible = true;
             Cursor = Cursors.Default;
         }
 
         private void btn_Guardar_Click(object sender, EventArgs e)
         {
-            string fecha = dtp_FechaDestino.Value.ToShortDateString();
+            //string fecha = dtp_FechaDestino.Value.ToShortDateString();
 
             SqlCommand cmd = new SqlCommand();
             DataSet ds;
@@ -156,6 +175,12 @@ namespace ControlDosimetro.Herramientas
 
         }
 
+        private void btn_Limpiar_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            LimpiarControl();
+            Cursor = Cursors.Default;
+        }
 
         #endregion
 
@@ -166,6 +191,11 @@ namespace ControlDosimetro.Herramientas
             DateTime fecha = dtp_FechaDestino.Value;
         }
 
-      
+        private void cbx_id_periodo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dtp_FechaDestino.Text = cbx_id_periodo.Text;
+        }
+
+  
     }
 }

@@ -42,11 +42,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbx_id_periodo = new System.Windows.Forms.ComboBox();
+            this.btn_Limpiar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btn_Limpiar);
+            this.groupBox1.Controls.Add(this.cbx_id_periodo);
             this.groupBox1.Controls.Add(this.btn_Guardar);
             this.groupBox1.Controls.Add(this.dtp_FechaDestino);
             this.groupBox1.Controls.Add(this.lbl_FechaDestino);
@@ -69,9 +73,9 @@
             // 
             // btn_Guardar
             // 
-            this.btn_Guardar.Location = new System.Drawing.Point(215, 157);
+            this.btn_Guardar.Location = new System.Drawing.Point(282, 162);
             this.btn_Guardar.Name = "btn_Guardar";
-            this.btn_Guardar.Size = new System.Drawing.Size(88, 23);
+            this.btn_Guardar.Size = new System.Drawing.Size(95, 23);
             this.btn_Guardar.TabIndex = 12;
             this.btn_Guardar.Text = "Guardar";
             this.btn_Guardar.UseVisualStyleBackColor = true;
@@ -81,15 +85,15 @@
             // 
             this.dtp_FechaDestino.CustomFormat = "dd/MM/yyyy";
             this.dtp_FechaDestino.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtp_FechaDestino.Location = new System.Drawing.Point(108, 157);
+            this.dtp_FechaDestino.Location = new System.Drawing.Point(93, 163);
             this.dtp_FechaDestino.Name = "dtp_FechaDestino";
-            this.dtp_FechaDestino.Size = new System.Drawing.Size(101, 20);
+            this.dtp_FechaDestino.Size = new System.Drawing.Size(82, 20);
             this.dtp_FechaDestino.TabIndex = 11;
             // 
             // lbl_FechaDestino
             // 
             this.lbl_FechaDestino.AutoSize = true;
-            this.lbl_FechaDestino.Location = new System.Drawing.Point(23, 163);
+            this.lbl_FechaDestino.Location = new System.Drawing.Point(8, 163);
             this.lbl_FechaDestino.Name = "lbl_FechaDestino";
             this.lbl_FechaDestino.Size = new System.Drawing.Size(79, 13);
             this.lbl_FechaDestino.TabIndex = 10;
@@ -97,9 +101,9 @@
             // 
             // btn_Modificar
             // 
-            this.btn_Modificar.Location = new System.Drawing.Point(215, 126);
+            this.btn_Modificar.Location = new System.Drawing.Point(181, 134);
             this.btn_Modificar.Name = "btn_Modificar";
-            this.btn_Modificar.Size = new System.Drawing.Size(88, 23);
+            this.btn_Modificar.Size = new System.Drawing.Size(95, 23);
             this.btn_Modificar.TabIndex = 9;
             this.btn_Modificar.Text = "Modificar";
             this.btn_Modificar.UseVisualStyleBackColor = true;
@@ -108,7 +112,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 134);
+            this.label4.Location = new System.Drawing.Point(8, 134);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 13);
             this.label4.TabIndex = 8;
@@ -118,15 +122,15 @@
             // 
             this.dtp_FechaInicio.CustomFormat = "dd/MM/yyyy";
             this.dtp_FechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtp_FechaInicio.Location = new System.Drawing.Point(108, 126);
+            this.dtp_FechaInicio.Location = new System.Drawing.Point(93, 134);
             this.dtp_FechaInicio.Name = "dtp_FechaInicio";
-            this.dtp_FechaInicio.Size = new System.Drawing.Size(101, 20);
+            this.dtp_FechaInicio.Size = new System.Drawing.Size(82, 20);
             this.dtp_FechaInicio.TabIndex = 7;
             // 
             // lbl_nombrecliente
             // 
             this.lbl_nombrecliente.AutoSize = true;
-            this.lbl_nombrecliente.Location = new System.Drawing.Point(108, 78);
+            this.lbl_nombrecliente.Location = new System.Drawing.Point(93, 76);
             this.lbl_nombrecliente.Name = "lbl_nombrecliente";
             this.lbl_nombrecliente.Size = new System.Drawing.Size(70, 13);
             this.lbl_nombrecliente.TabIndex = 6;
@@ -134,9 +138,9 @@
             // 
             // btn_CargarCliente
             // 
-            this.btn_CargarCliente.Location = new System.Drawing.Point(215, 47);
+            this.btn_CargarCliente.Location = new System.Drawing.Point(181, 44);
             this.btn_CargarCliente.Name = "btn_CargarCliente";
-            this.btn_CargarCliente.Size = new System.Drawing.Size(88, 23);
+            this.btn_CargarCliente.Size = new System.Drawing.Size(95, 23);
             this.btn_CargarCliente.TabIndex = 5;
             this.btn_CargarCliente.Text = "Cargar Cliente";
             this.btn_CargarCliente.UseVisualStyleBackColor = true;
@@ -144,16 +148,16 @@
             // 
             // lbl_id_cliente
             // 
-            this.lbl_id_cliente.Location = new System.Drawing.Point(108, 47);
+            this.lbl_id_cliente.Location = new System.Drawing.Point(93, 44);
             this.lbl_id_cliente.MaxLength = 10;
             this.lbl_id_cliente.Name = "lbl_id_cliente";
-            this.lbl_id_cliente.Size = new System.Drawing.Size(91, 20);
+            this.lbl_id_cliente.Size = new System.Drawing.Size(82, 20);
             this.lbl_id_cliente.TabIndex = 4;
             // 
             // lbl_run
             // 
             this.lbl_run.AutoSize = true;
-            this.lbl_run.Location = new System.Drawing.Point(108, 102);
+            this.lbl_run.Location = new System.Drawing.Point(93, 105);
             this.lbl_run.Name = "lbl_run";
             this.lbl_run.Size = new System.Drawing.Size(64, 13);
             this.lbl_run.TabIndex = 3;
@@ -162,7 +166,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 105);
+            this.label3.Location = new System.Drawing.Point(8, 105);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 2;
@@ -171,7 +175,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 76);
+            this.label2.Location = new System.Drawing.Point(8, 76);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 1;
@@ -180,11 +184,30 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 47);
+            this.label1.Location = new System.Drawing.Point(8, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "N° Cliente:";
+            // 
+            // cbx_id_periodo
+            // 
+            this.cbx_id_periodo.FormattingEnabled = true;
+            this.cbx_id_periodo.Location = new System.Drawing.Point(182, 162);
+            this.cbx_id_periodo.Name = "cbx_id_periodo";
+            this.cbx_id_periodo.Size = new System.Drawing.Size(94, 21);
+            this.cbx_id_periodo.TabIndex = 13;
+            this.cbx_id_periodo.SelectedIndexChanged += new System.EventHandler(this.cbx_id_periodo_SelectedIndexChanged);
+            // 
+            // btn_Limpiar
+            // 
+            this.btn_Limpiar.Location = new System.Drawing.Point(282, 44);
+            this.btn_Limpiar.Name = "btn_Limpiar";
+            this.btn_Limpiar.Size = new System.Drawing.Size(95, 23);
+            this.btn_Limpiar.TabIndex = 14;
+            this.btn_Limpiar.Text = "Limpiar";
+            this.btn_Limpiar.UseVisualStyleBackColor = true;
+            this.btn_Limpiar.Click += new System.EventHandler(this.btn_Limpiar_Click);
             // 
             // frmCambioFecha
             // 
@@ -217,5 +240,7 @@
         private System.Windows.Forms.Button btn_Guardar;
         private System.Windows.Forms.DateTimePicker dtp_FechaDestino;
         private System.Windows.Forms.Label lbl_FechaDestino;
+        private System.Windows.Forms.ComboBox cbx_id_periodo;
+        private System.Windows.Forms.Button btn_Limpiar;
     }
 }
