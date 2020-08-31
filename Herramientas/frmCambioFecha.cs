@@ -100,11 +100,12 @@ namespace ControlDosimetro.Herramientas
             dtp_FechaDestino.Text = cbx_id_periodo.Text;
         }
 
-        private void Cargar_FechaTermino(Int64 intCodCliente)
+        private void Cargar_FechaTermino(string intCodCliente, string fechaInicio)
         {
             SqlCommand cmd = new SqlCommand();
-
-            cmd.CommandText = "Select FechaTermino FROM tbl_observacioncliente where id_cliente = " + intCodCliente.ToString();
+            
+            cmd.CommandText = "Select FechaTermino FROM tbl_observacioncliente where id_cliente = " + intCodCliente.ToString() + "and FechaInicio = '" + dtp_FechaInicio.Text+"'";
+            cmd.CommandType = CommandType.Text;
             DataSet dt;
             dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
@@ -115,6 +116,7 @@ namespace ControlDosimetro.Herramientas
             }
             else {
                 dtp_FechaTermino.Text = "No asignada";
+                btn_ModificarTermino.Visible = false;
             }
 
         }
@@ -178,7 +180,7 @@ namespace ControlDosimetro.Herramientas
             if (!String.IsNullOrEmpty(lbl_id_cliente.Text) && (Convert.ToInt64(lbl_id_cliente.Text)) != 0)
             {
                 Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
-                Cargar_FechaTermino(Convert.ToInt64(lbl_id_cliente.Text));
+                Cargar_FechaTermino(lbl_id_cliente.Text, dtp_FechaInicio.Text);
             }
             else
             {
@@ -204,10 +206,11 @@ namespace ControlDosimetro.Herramientas
         {
             Cursor = Cursors.WaitCursor;
 
-            dtp_FechaDestinoTermino.Visible = true;
-            cbx_id_periodoTermino.Visible = true;
-            btn_GuardarTermino.Visible = true;
-            dtp_FechaDestinoTermino.Text = cbx_id_periodoTermino.Text;
+                dtp_FechaDestinoTermino.Visible = true;
+                cbx_id_periodoTermino.Visible = true;
+                btn_GuardarTermino.Visible = true;
+                dtp_FechaDestinoTermino.Text = cbx_id_periodoTermino.Text;
+            
             Cursor = Cursors.Default;
         }
 
@@ -234,7 +237,39 @@ namespace ControlDosimetro.Herramientas
         }
         private void btn_GuardarTermino_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+            //    Boolean bolResult;
+            //    bolResult = false;
 
+            //    if (MessageBox.Show("Desea modificar?", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+            //    {
+
+            //        ClaseComun.Insertar(Clases.clsBD.BD, tbl_observacioncliente, ref bolResult);
+            //        //    //if (bolResult == true)
+            //        //    //{
+            //        //    //    SqlCommand cmd = new SqlCommand();
+            //        //    //    cmd.CommandText = "update tbl_cliente_Historial set FechaTermino=" + dtp_FechaTermino.Text + " where FechaTermino is null and id_cliente=" + lbl_Id_Cliente.Text + " and run='" + lbl_rut.Text + "'";
+            //        //    //    cmd.CommandType = CommandType.Text;
+
+            //        //    //    Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+            //        //    //    MessageBox.Show("Observación  Ingresada");
+            //        //    //    this.Close();
+            //        //    //}
+
+            //    }
+
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "Update tbl_observacioncliente set FechaTermino='" + dtp_FechaDestinoTermino.Text + "' where id_cliente = " + lbl_id_cliente.Text + "and FechaInicio = '" + dtp_FechaInicio.Text + "'";
+            cmd.CommandType = CommandType.Text;
+            DataSet dt;
+            dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+            MessageBox.Show("Fecha de Término modificada");
+
+            LimpiarControl();
+
+            Cursor = Cursors.Default;
         }
 
         private void btn_Limpiar_Click(object sender, EventArgs e)
@@ -257,14 +292,6 @@ namespace ControlDosimetro.Herramientas
             dtp_FechaDestinoTermino.Text = cbx_id_periodoTermino.Text;
         }
 
-        private void lbl_id_cliente_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+      
     }
 }
