@@ -289,10 +289,9 @@
             // 
             // btn_Buscar
             // 
-            this.btn_Buscar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_Buscar.Image = global::ControlDosimetro.Properties.Resources.Buscar;
             this.btn_Buscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Buscar.Location = new System.Drawing.Point(239, 24);
+            this.btn_Buscar.Location = new System.Drawing.Point(243, 24);
             this.btn_Buscar.Name = "btn_Buscar";
             this.btn_Buscar.Size = new System.Drawing.Size(46, 40);
             this.btn_Buscar.TabIndex = 3;
@@ -305,7 +304,7 @@
             this.cbx_id_estado_Buscar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_id_estado_Buscar.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbx_id_estado_Buscar.FormattingEnabled = true;
-            this.cbx_id_estado_Buscar.Location = new System.Drawing.Point(78, 34);
+            this.cbx_id_estado_Buscar.Location = new System.Drawing.Point(68, 34);
             this.cbx_id_estado_Buscar.Name = "cbx_id_estado_Buscar";
             this.cbx_id_estado_Buscar.Size = new System.Drawing.Size(153, 21);
             this.cbx_id_estado_Buscar.TabIndex = 2;

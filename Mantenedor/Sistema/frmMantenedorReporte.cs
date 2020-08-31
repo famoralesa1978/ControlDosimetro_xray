@@ -50,6 +50,7 @@ namespace ControlDosimetro
             dgvGrilla.AutoGenerateColumns = false;
             bolInicializacion = true;
             CargarGrilla();
+            AsignarEvento();
         }
 
         #endregion
@@ -63,13 +64,19 @@ namespace ControlDosimetro
             txt_NameMenu.Clear();
                     
         }
+
+        private void AsignarEvento() {
+
+            txt_N_Reporte.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+            txt_N_Reporte.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+        }
         private void Grabar()
         {
             Boolean bolResult;
             bolResult = false;
             if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
             {
-                if ((tssEstado.Text == "Nuevo") && (lbl_N_Reporte.Text == "0"))
+                if (tssEstado.Text == "Nuevo")
                 {
 
                     if (!String.IsNullOrEmpty(txt_Nombre.Text) && !String.IsNullOrEmpty(txt_NameMenu.Text))
@@ -205,7 +212,7 @@ namespace ControlDosimetro
             Cursor = Cursors.WaitCursor;
             LimpiarFormulario();
             tssEstado.Text = "Nuevo";
-            lbl_N_Reporte.Text = "0";
+           // lbl_N_Reporte.Text = "0";
             Cursor = Cursors.Default;
         }
 
@@ -222,7 +229,7 @@ namespace ControlDosimetro
             Grabar();
            // LimpiarFormulario();
             tssEstado.Text = "Nuevo";
-            lbl_N_Reporte.Text = "0";
+          //  lbl_N_Reporte.Text = "0";
             Cursor = Cursors.Default;
         }
 
@@ -265,8 +272,7 @@ namespace ControlDosimetro
                 tssEstado.Text = "Nuevo";
                 tsbGuardar.Enabled = true;
                 LimpiarFormulario();
-                lbl_N_Reporte.Text ="0";
-
+                
                 btn_Guardar.Text = "Grabar";
             }
             else
