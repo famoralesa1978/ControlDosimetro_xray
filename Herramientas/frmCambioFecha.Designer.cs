@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbl_observacioncliente = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dtp_FechaDestino = new System.Windows.Forms.Label();
             this.dtp_FechaInicio = new System.Windows.Forms.Label();
@@ -37,7 +37,7 @@
             this.lbl_FechaDestino = new System.Windows.Forms.Label();
             this.btn_Modificar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.ppp = new System.Windows.Forms.Panel();
             this.dtp_FechaDestinoTermino = new System.Windows.Forms.Label();
             this.lbl_FechaDestinoTermino = new System.Windows.Forms.Label();
             this.btn_GuardarTermino = new System.Windows.Forms.Button();
@@ -53,29 +53,29 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.tbl_observacioncliente.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.ppp.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // tbl_observacioncliente
             // 
-            this.groupBox1.Controls.Add(this.panel2);
-            this.groupBox1.Controls.Add(this.panel1);
-            this.groupBox1.Controls.Add(this.btn_Limpiar);
-            this.groupBox1.Controls.Add(this.lbl_nombrecliente);
-            this.groupBox1.Controls.Add(this.btn_CargarCliente);
-            this.groupBox1.Controls.Add(this.lbl_id_cliente);
-            this.groupBox1.Controls.Add(this.lbl_run);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(1, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(405, 330);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos";
+            this.tbl_observacioncliente.Controls.Add(this.panel2);
+            this.tbl_observacioncliente.Controls.Add(this.btn_Limpiar);
+            this.tbl_observacioncliente.Controls.Add(this.lbl_nombrecliente);
+            this.tbl_observacioncliente.Controls.Add(this.btn_CargarCliente);
+            this.tbl_observacioncliente.Controls.Add(this.lbl_id_cliente);
+            this.tbl_observacioncliente.Controls.Add(this.lbl_run);
+            this.tbl_observacioncliente.Controls.Add(this.label3);
+            this.tbl_observacioncliente.Controls.Add(this.label2);
+            this.tbl_observacioncliente.Controls.Add(this.label1);
+            this.tbl_observacioncliente.Controls.Add(this.ppp);
+            this.tbl_observacioncliente.Location = new System.Drawing.Point(1, 3);
+            this.tbl_observacioncliente.Name = "tbl_observacioncliente";
+            this.tbl_observacioncliente.Size = new System.Drawing.Size(405, 330);
+            this.tbl_observacioncliente.TabIndex = 0;
+            this.tbl_observacioncliente.TabStop = false;
+            this.tbl_observacioncliente.Text = "Datos";
             // 
             // panel2
             // 
@@ -91,16 +91,15 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(389, 83);
             this.panel2.TabIndex = 16;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // dtp_FechaDestino
             // 
             this.dtp_FechaDestino.AutoSize = true;
             this.dtp_FechaDestino.Location = new System.Drawing.Point(82, 56);
             this.dtp_FechaDestino.Name = "dtp_FechaDestino";
-            this.dtp_FechaDestino.Size = new System.Drawing.Size(71, 13);
+            this.dtp_FechaDestino.Size = new System.Drawing.Size(43, 13);
             this.dtp_FechaDestino.TabIndex = 28;
-            this.dtp_FechaDestino.Text = "No Habilitada";
+            this.dtp_FechaDestino.Text = "Destino";
             // 
             // dtp_FechaInicio
             // 
@@ -164,20 +163,20 @@
             this.label4.TabIndex = 22;
             this.label4.Text = "Fecha Inicio:";
             // 
-            // panel1
+            // ppp
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.dtp_FechaDestinoTermino);
-            this.panel1.Controls.Add(this.lbl_FechaDestinoTermino);
-            this.panel1.Controls.Add(this.btn_GuardarTermino);
-            this.panel1.Controls.Add(this.dtp_FechaTermino);
-            this.panel1.Controls.Add(this.btn_ModificarTermino);
-            this.panel1.Controls.Add(this.cbx_id_periodoTermino);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Location = new System.Drawing.Point(6, 238);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(389, 81);
-            this.panel1.TabIndex = 15;
+            this.ppp.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ppp.Controls.Add(this.dtp_FechaDestinoTermino);
+            this.ppp.Controls.Add(this.lbl_FechaDestinoTermino);
+            this.ppp.Controls.Add(this.btn_GuardarTermino);
+            this.ppp.Controls.Add(this.dtp_FechaTermino);
+            this.ppp.Controls.Add(this.btn_ModificarTermino);
+            this.ppp.Controls.Add(this.cbx_id_periodoTermino);
+            this.ppp.Controls.Add(this.label5);
+            this.ppp.Location = new System.Drawing.Point(6, 238);
+            this.ppp.Name = "ppp";
+            this.ppp.Size = new System.Drawing.Size(389, 81);
+            this.ppp.TabIndex = 15;
             // 
             // dtp_FechaDestinoTermino
             // 
@@ -292,12 +291,11 @@
             this.lbl_id_cliente.Name = "lbl_id_cliente";
             this.lbl_id_cliente.Size = new System.Drawing.Size(62, 20);
             this.lbl_id_cliente.TabIndex = 4;
-            this.lbl_id_cliente.TextChanged += new System.EventHandler(this.lbl_id_cliente_TextChanged);
             // 
             // lbl_run
             // 
             this.lbl_run.AutoSize = true;
-            this.lbl_run.Location = new System.Drawing.Point(90, 124);
+            this.lbl_run.Location = new System.Drawing.Point(90, 119);
             this.lbl_run.Name = "lbl_run";
             this.lbl_run.Size = new System.Drawing.Size(64, 13);
             this.lbl_run.TabIndex = 3;
@@ -306,7 +304,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 124);
+            this.label3.Location = new System.Drawing.Point(8, 119);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(33, 13);
             this.label3.TabIndex = 2;
@@ -333,25 +331,25 @@
             // frmCambioFecha
             // 
             this.ClientSize = new System.Drawing.Size(409, 341);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.tbl_observacioncliente);
             this.MaximumSize = new System.Drawing.Size(425, 380);
             this.MinimumSize = new System.Drawing.Size(425, 380);
             this.Name = "frmCambioFecha";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modificar Fecha";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.tbl_observacioncliente.ResumeLayout(false);
+            this.tbl_observacioncliente.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.ppp.ResumeLayout(false);
+            this.ppp.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox tbl_observacioncliente;
         private System.Windows.Forms.Button btn_CargarCliente;
         private System.Windows.Forms.TextBox lbl_id_cliente;
         private System.Windows.Forms.Label lbl_run;
@@ -368,7 +366,7 @@
         private System.Windows.Forms.Label lbl_FechaDestino;
         private System.Windows.Forms.Button btn_Modificar;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel ppp;
         private System.Windows.Forms.Label dtp_FechaDestinoTermino;
         private System.Windows.Forms.Label lbl_FechaDestinoTermino;
         private System.Windows.Forms.Button btn_GuardarTermino;
