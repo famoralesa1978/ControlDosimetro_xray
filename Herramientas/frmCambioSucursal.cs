@@ -43,22 +43,33 @@ namespace ControlDosimetro
 		private void Cargar_Documento(Int64 intNDocumento)
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "select P.Id_cliente,run,Razon_Social " +
+			cmd.CommandText = "select P.Id_cliente,run,Razon_Social,Id_sucursal " +
 								 "  FROM ges_DosimetriaPersonal P inner join tbl_cliente C on P.Id_cliente=C.Id_cliente WHERE N_Documento= " + intNDocumento.ToString();
 			DataSet dt;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-			if (dt.Tables[0].Rows.Count > 0)
+			if (dt.Tables[0].Rows.Count == 1)
 			{
 				lbl_NCliente.Text = dt.Tables[0].Rows[0]["Id_cliente"].ToString();
 				lbl_NombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
 				Cargar_Sucursal(dt.Tables[0].Rows[0]["run"].ToString());
-				Sucursal_Actual(intNDocumento);
+				cbx_SucActual.SelectedValue = dt.Tables[0].Rows[0]["Id_sucursal"];
 				btn_Cargar.Enabled = false;
 				txt_NDoc.Enabled = false;
 				btn_Guardar.Enabled = true;
 			}
 			else
+			if (dt.Tables[0].Rows.Count > 1)
+			{
+				lbl_NCliente.Text = "";
+				lbl_NombreCliente.Text = "";
+				btn_Guardar.Enabled = false;
+
+				MessageBox.Show("Existe mas cliente con el mismo N° documento");
+
+			}
+			else
+			if (dt.Tables[0].Rows.Count == 0)
 			{
 				lbl_NCliente.Text = "";
 				lbl_NombreCliente.Text = "";
@@ -77,36 +88,19 @@ namespace ControlDosimetro
 				 "from [dbo].[tbl_sucursal] s " +
 				 "inner join glo_region r on r.Id_region=s.Id_Region " +
 				 "inner join glo_comuna co on co.id_comuna=s.Id_Comuna " +
-				 "where run='" + rut + "' and s.id_estado=1";
+				 "where run='" + rut + "'";
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
+			DataSet dtCopia;
+			dtCopia = dt.Copy();
 			cbx_SucActual.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
 			cbx_SucActual.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_SucActual.DataSource = dt.Tables[0];
 
-			cbx_SucCambio.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
-			cbx_SucCambio.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
-			cbx_SucCambio.DataSource = dt.Tables[0];
+			cbx_SucCambio.DisplayMember = dtCopia.Tables[0].Columns[1].Caption.ToString();
+			cbx_SucCambio.ValueMember = dtCopia.Tables[0].Columns[0].Caption.ToString();
+			cbx_SucCambio.DataSource = dtCopia.Tables[0];
 		}
-
-		private void Sucursal_Actual(Int64 intNDocumento)
-		{
-			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "select Id_Sucursal " +
-								 "  FROM ges_DosimetriaPersonal P WHERE N_Documento= " + intNDocumento.ToString();
-			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-			if (dt.Tables[0].Rows.Count > 0)
-			{
-				cbx_SucActual.SelectedValue = dt.Tables[0].Rows[0]["Id_Sucursal"].ToString();
-			}
-			else
-			{
-				cbx_SucActual.SelectedValue = -1;
-			}
-		}
-
 
 		private void AsignarEvento()
 		{
@@ -126,7 +120,7 @@ namespace ControlDosimetro
 		{
 			SqlCommand cmd = new SqlCommand();
 			DataSet ds;
-			string strParametro = String.Format("{0},{1},{2}'", txt_NDoc.Text, cbx_SucActual.SelectedValue, cbx_SucCambio.SelectedValue);
+			string strParametro = String.Format("{0},{1},{2}", txt_NDoc.Text, cbx_SucActual.SelectedValue, cbx_SucCambio.SelectedValue);
 			cmd.CommandText = "pa_ModificarSucursal_upd " + strParametro;
 			cmd.CommandType = CommandType.Text;
 

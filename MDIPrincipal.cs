@@ -61,6 +61,7 @@ namespace ControlDosimetro
 			AsociarDocumentoCliente			=	806,
 			LiberarDosimetro					=	807,
 			TraspasoPersonal					=	808,
+			CambioSucursal						=	809,
 
 			Ayuda									=	900,
 			AcercaDe								=	901,
@@ -416,15 +417,15 @@ namespace ControlDosimetro
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
 					break;
-					#endregion
-			
+				#endregion
+
 				#region "ProcesoTLD 300"
 				case (int)MENU.Ingreso_TLD:
-					 objFrm = new frmIngresoDosimetroTLD(0)
+					objFrm = new frmIngresoDosimetroTLD(0)
 					{
 						ShowInTaskbar = false,
-						 StartPosition = FormStartPosition.CenterScreen,
-						 Parametros = objParams
+						StartPosition = FormStartPosition.CenterScreen,
+						Parametros = objParams
 					};
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
@@ -489,7 +490,7 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 
-					#endregion
+				#endregion
 
 				#region "Reporte 500"
 				case (int)MENU.repDosimetria:
@@ -568,7 +569,7 @@ namespace ControlDosimetro
 					};
 					Graba_log(objFrm.Text);
 					objFrm.ShowDialog(this);
-					
+
 					break;
 				case (int)MENU.AsociarDocumentoCliente:
 					objFrm = new frmingdocumentos(0)
@@ -578,7 +579,7 @@ namespace ControlDosimetro
 					};
 					Graba_log(objFrm.Text);
 					objFrm.ShowDialog(this);
-					
+
 					break;
 				case (int)MENU.LiberarDosimetro:
 					objFrm = new frmLiberarDosimetro()
@@ -587,7 +588,7 @@ namespace ControlDosimetro
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
-					objFrm.ShowDialog(this);					
+					objFrm.ShowDialog(this);
 					break;
 				case (int)MENU.TraspasoPersonal:
 					objFrm = new frmTraspasoPersonal()
@@ -597,9 +598,18 @@ namespace ControlDosimetro
 					};
 					Graba_log(objFrm.Text);
 					objFrm.ShowDialog(this);
-					break;				
-					#endregion
-		
+					break;
+				case (int)MENU.CambioSucursal:
+					objFrm = new frmCambioSucursal()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.ShowDialog(this);
+					break;
+				#endregion
+
 				#region "Acerca De 900"
 				case (int)MENU.AcercaDe:
 					objFrm = new frmAcerceDe
