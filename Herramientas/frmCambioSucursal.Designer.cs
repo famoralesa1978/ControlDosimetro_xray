@@ -29,9 +29,17 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.grpDatosCliente = new System.Windows.Forms.GroupBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.cbx_SucActual = new System.Windows.Forms.ComboBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.btn_Cargar = new System.Windows.Forms.Button();
+			this.lbl_NombreCliente = new System.Windows.Forms.Label();
+			this.lbl_NCliente = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
 			this.btn_filtro = new System.Windows.Forms.Button();
 			this.txt_NDoc = new System.Windows.Forms.TextBox();
 			this.btn_Guardar = new System.Windows.Forms.Button();
@@ -56,14 +64,6 @@
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.btn_EliminarSeleccion = new System.Windows.Forms.ToolStripMenuItem();
-			this.label1 = new System.Windows.Forms.Label();
-			this.lbl_NCliente = new System.Windows.Forms.Label();
-			this.lbl_NombreCliente = new System.Windows.Forms.Label();
-			this.btn_Cargar = new System.Windows.Forms.Button();
-			this.label3 = new System.Windows.Forms.Label();
-			this.cbx_SucActual = new System.Windows.Forms.ComboBox();
-			this.label4 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
 			this.cbx_SucCambio = new System.Windows.Forms.ComboBox();
 			this.grpDatosCliente.SuspendLayout();
 			this.cmsPopup.SuspendLayout();
@@ -85,21 +85,99 @@
 			this.grpDatosCliente.Controls.Add(this.txt_NDoc);
 			this.grpDatosCliente.Controls.Add(this.btn_Guardar);
 			this.grpDatosCliente.Controls.Add(this.label2);
-			this.grpDatosCliente.Location = new System.Drawing.Point(7, 34);
-			this.grpDatosCliente.Margin = new System.Windows.Forms.Padding(4);
+			this.grpDatosCliente.Location = new System.Drawing.Point(5, 28);
 			this.grpDatosCliente.Name = "grpDatosCliente";
-			this.grpDatosCliente.Padding = new System.Windows.Forms.Padding(4);
-			this.grpDatosCliente.Size = new System.Drawing.Size(576, 262);
+			this.grpDatosCliente.Size = new System.Drawing.Size(432, 213);
 			this.grpDatosCliente.TabIndex = 1;
 			this.grpDatosCliente.TabStop = false;
 			this.grpDatosCliente.Text = "Dato ";
 			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(16, 123);
+			this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(48, 13);
+			this.label5.TabIndex = 42;
+			this.label5.Text = "Sucursal";
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(14, 97);
+			this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(97, 13);
+			this.label4.TabIndex = 41;
+			this.label4.Text = "Sucursal a modicar";
+			// 
+			// cbx_SucActual
+			// 
+			this.cbx_SucActual.Enabled = false;
+			this.cbx_SucActual.FormattingEnabled = true;
+			this.cbx_SucActual.Location = new System.Drawing.Point(109, 63);
+			this.cbx_SucActual.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.cbx_SucActual.Name = "cbx_SucActual";
+			this.cbx_SucActual.Size = new System.Drawing.Size(317, 21);
+			this.cbx_SucActual.TabIndex = 40;
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(12, 69);
+			this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(80, 13);
+			this.label3.TabIndex = 39;
+			this.label3.Text = "Sucursal actual";
+			// 
+			// btn_Cargar
+			// 
+			this.btn_Cargar.Location = new System.Drawing.Point(187, 15);
+			this.btn_Cargar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.btn_Cargar.Name = "btn_Cargar";
+			this.btn_Cargar.Size = new System.Drawing.Size(57, 20);
+			this.btn_Cargar.TabIndex = 38;
+			this.btn_Cargar.Text = "Cargar";
+			this.btn_Cargar.UseVisualStyleBackColor = true;
+			this.btn_Cargar.Click += new System.EventHandler(this.btn_Cargar_Click);
+			// 
+			// lbl_NombreCliente
+			// 
+			this.lbl_NombreCliente.AutoSize = true;
+			this.lbl_NombreCliente.Location = new System.Drawing.Point(142, 41);
+			this.lbl_NombreCliente.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.lbl_NombreCliente.Name = "lbl_NombreCliente";
+			this.lbl_NombreCliente.Size = new System.Drawing.Size(79, 13);
+			this.lbl_NombreCliente.TabIndex = 37;
+			this.lbl_NombreCliente.Text = "Nombre Cliente";
+			// 
+			// lbl_NCliente
+			// 
+			this.lbl_NCliente.AutoSize = true;
+			this.lbl_NCliente.Location = new System.Drawing.Point(109, 41);
+			this.lbl_NCliente.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.lbl_NCliente.Name = "lbl_NCliente";
+			this.lbl_NCliente.Size = new System.Drawing.Size(29, 13);
+			this.lbl_NCliente.TabIndex = 36;
+			this.lbl_NCliente.Text = "Num";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(12, 41);
+			this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(39, 13);
+			this.label1.TabIndex = 35;
+			this.label1.Text = "Cliente";
+			// 
 			// btn_filtro
 			// 
-			this.btn_filtro.Location = new System.Drawing.Point(268, 207);
-			this.btn_filtro.Margin = new System.Windows.Forms.Padding(4);
+			this.btn_filtro.Location = new System.Drawing.Point(201, 168);
 			this.btn_filtro.Name = "btn_filtro";
-			this.btn_filtro.Size = new System.Drawing.Size(127, 28);
+			this.btn_filtro.Size = new System.Drawing.Size(95, 23);
 			this.btn_filtro.TabIndex = 4;
 			this.btn_filtro.Text = "Limpiar filtro";
 			this.btn_filtro.UseVisualStyleBackColor = true;
@@ -107,19 +185,17 @@
 			// 
 			// txt_NDoc
 			// 
-			this.txt_NDoc.Location = new System.Drawing.Point(145, 21);
-			this.txt_NDoc.Margin = new System.Windows.Forms.Padding(4);
+			this.txt_NDoc.Location = new System.Drawing.Point(109, 17);
 			this.txt_NDoc.MaxLength = 10;
 			this.txt_NDoc.Name = "txt_NDoc";
-			this.txt_NDoc.Size = new System.Drawing.Size(97, 22);
+			this.txt_NDoc.Size = new System.Drawing.Size(74, 20);
 			this.txt_NDoc.TabIndex = 1;
 			// 
 			// btn_Guardar
 			// 
-			this.btn_Guardar.Location = new System.Drawing.Point(108, 207);
-			this.btn_Guardar.Margin = new System.Windows.Forms.Padding(4);
+			this.btn_Guardar.Location = new System.Drawing.Point(81, 168);
 			this.btn_Guardar.Name = "btn_Guardar";
-			this.btn_Guardar.Size = new System.Drawing.Size(152, 28);
+			this.btn_Guardar.Size = new System.Drawing.Size(114, 23);
 			this.btn_Guardar.TabIndex = 3;
 			this.btn_Guardar.Text = "Modificar sucursal";
 			this.btn_Guardar.UseVisualStyleBackColor = true;
@@ -128,10 +204,9 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(16, 25);
-			this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label2.Location = new System.Drawing.Point(12, 20);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(102, 17);
+			this.label2.Size = new System.Drawing.Size(78, 13);
 			this.label2.TabIndex = 34;
 			this.label2.Text = "N°  documento";
 			// 
@@ -141,19 +216,19 @@
 			this.cmsPopup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmEliminar});
 			this.cmsPopup.Name = "contextMenuStrip1";
-			this.cmsPopup.Size = new System.Drawing.Size(70, 26);
+			this.cmsPopup.Size = new System.Drawing.Size(68, 26);
 			// 
 			// tsmEliminar
 			// 
 			this.tsmEliminar.Name = "tsmEliminar";
-			this.tsmEliminar.Size = new System.Drawing.Size(69, 22);
+			this.tsmEliminar.Size = new System.Drawing.Size(67, 22);
 			// 
 			// toolStrip1
 			// 
 			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(595, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(446, 25);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -238,9 +313,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle7.Format = "N2";
-			dataGridViewCellStyle7.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle7;
+			dataGridViewCellStyle3.Format = "N2";
+			dataGridViewCellStyle3.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle3;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -258,9 +333,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle8.Format = "N2";
-			dataGridViewCellStyle8.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle8;
+			dataGridViewCellStyle4.Format = "N2";
+			dataGridViewCellStyle4.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle4;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -275,103 +350,30 @@
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btn_EliminarSeleccion});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(70, 26);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(68, 26);
 			// 
 			// btn_EliminarSeleccion
 			// 
 			this.btn_EliminarSeleccion.Name = "btn_EliminarSeleccion";
-			this.btn_EliminarSeleccion.Size = new System.Drawing.Size(69, 22);
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(16, 51);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(51, 17);
-			this.label1.TabIndex = 35;
-			this.label1.Text = "Cliente";
-			// 
-			// lbl_NCliente
-			// 
-			this.lbl_NCliente.AutoSize = true;
-			this.lbl_NCliente.Location = new System.Drawing.Point(145, 51);
-			this.lbl_NCliente.Name = "lbl_NCliente";
-			this.lbl_NCliente.Size = new System.Drawing.Size(37, 17);
-			this.lbl_NCliente.TabIndex = 36;
-			this.lbl_NCliente.Text = "Num";
-			// 
-			// lbl_NombreCliente
-			// 
-			this.lbl_NombreCliente.AutoSize = true;
-			this.lbl_NombreCliente.Location = new System.Drawing.Point(189, 51);
-			this.lbl_NombreCliente.Name = "lbl_NombreCliente";
-			this.lbl_NombreCliente.Size = new System.Drawing.Size(105, 17);
-			this.lbl_NombreCliente.TabIndex = 37;
-			this.lbl_NombreCliente.Text = "Nombre Cliente";
-			// 
-			// btn_Cargar
-			// 
-			this.btn_Cargar.Location = new System.Drawing.Point(249, 19);
-			this.btn_Cargar.Name = "btn_Cargar";
-			this.btn_Cargar.Size = new System.Drawing.Size(76, 25);
-			this.btn_Cargar.TabIndex = 38;
-			this.btn_Cargar.Text = "Cargar";
-			this.btn_Cargar.UseVisualStyleBackColor = true;
-			this.btn_Cargar.Click += new System.EventHandler(this.btn_Cargar_Click);
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(16, 85);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(105, 17);
-			this.label3.TabIndex = 39;
-			this.label3.Text = "Sucursal actual";
-			// 
-			// cbx_SucActual
-			// 
-			this.cbx_SucActual.Enabled = false;
-			this.cbx_SucActual.FormattingEnabled = true;
-			this.cbx_SucActual.Location = new System.Drawing.Point(145, 78);
-			this.cbx_SucActual.Name = "cbx_SucActual";
-			this.cbx_SucActual.Size = new System.Drawing.Size(421, 24);
-			this.cbx_SucActual.TabIndex = 40;
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(19, 119);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(129, 17);
-			this.label4.TabIndex = 41;
-			this.label4.Text = "Sucursal a modicar";
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(22, 151);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(63, 17);
-			this.label5.TabIndex = 42;
-			this.label5.Text = "Sucursal";
+			this.btn_EliminarSeleccion.Size = new System.Drawing.Size(67, 22);
 			// 
 			// cbx_SucCambio
 			// 
+			this.cbx_SucCambio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_SucCambio.FormattingEnabled = true;
-			this.cbx_SucCambio.Location = new System.Drawing.Point(145, 151);
+			this.cbx_SucCambio.Location = new System.Drawing.Point(109, 123);
 			this.cbx_SucCambio.Name = "cbx_SucCambio";
-			this.cbx_SucCambio.Size = new System.Drawing.Size(421, 24);
+			this.cbx_SucCambio.Size = new System.Drawing.Size(317, 21);
 			this.cbx_SucCambio.TabIndex = 43;
 			// 
 			// frmCambioSucursal
 			// 
 			this.AcceptButton = this.btn_Cargar;
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(595, 307);
+			this.ClientSize = new System.Drawing.Size(446, 249);
 			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this.grpDatosCliente);
-			this.Margin = new System.Windows.Forms.Padding(4);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "frmCambioSucursal";
@@ -420,8 +422,8 @@
 		private System.Windows.Forms.Button btn_Cargar;
 		private System.Windows.Forms.ComboBox cbx_SucActual;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.ComboBox cbx_SucCambio;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.ComboBox cbx_SucCambio;
 	}
 }
