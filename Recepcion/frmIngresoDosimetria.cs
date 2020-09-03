@@ -23,7 +23,7 @@ namespace ControlDosimetro
 				clsConectorSqlServer Conectar = new clsConectorSqlServer();
 				clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
             clsEventoControl ClaseEvento = new clsEventoControl();
-        clsFunciones clsFunc = new clsFunciones();
+        ClsFunciones clsFunc = new ClsFunciones();
         DataSet dtayuda;
             int intContar=0;	
         #endregion
