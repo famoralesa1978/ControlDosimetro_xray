@@ -36,6 +36,8 @@ namespace ControlDosimetro
 			ProcOrTrabTodas					=	208,
 			ProcOrTrabPorCliente				=	209,
 			ProcOrTrabPorFechaRecepcion	=	210,
+			ProcIngresarDosisCliente		=  213,
+			ProcIngresarDosisDos				=  214,
 
 			Ingreso_TLD							=	301, 
 			EnviadoTLD							=	302,
@@ -43,6 +45,7 @@ namespace ControlDosimetro
 			IniciarLectura						=	304,
 			IngresarDosisTLD					=	305,
 			DosisISPTLD							=	306,
+		
 
 			GenerarDctoISP						=	401,
 
@@ -417,6 +420,25 @@ namespace ControlDosimetro
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
 					break;
+				case (int)MENU.ProcIngresarDosisCliente:
+					objFrm = new frmIngresoDosimetria(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.ProcIngresarDosisDos:
+					objFrm = new frmIngresoDosimetriaDos(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+
 				#endregion
 
 				#region "ProcesoTLD 300"

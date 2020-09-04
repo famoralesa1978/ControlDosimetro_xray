@@ -389,6 +389,12 @@
     <Compile Include="Recepcion\FrmInformeISP.Designer.cs">
       <DependentUpon>FrmInformeISP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Recepcion\frmIngresoDosimetriaDos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\frmIngresoDosimetriaDos.Designer.cs">
+      <DependentUpon>frmIngresoDosimetriaDos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Recepcion\frmOrdenTrabajoFechaRecepcion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -634,6 +640,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Recepcion\FrmInformeISP.resx">
       <DependentUpon>FrmInformeISP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepcion\frmIngresoDosimetriaDos.resx">
+      <DependentUpon>frmIngresoDosimetriaDos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Recepcion\frmOrdenTrabajoFechaRecepcion.resx">
       <DependentUpon>frmOrdenTrabajoFechaRecepcion.cs</DependentUpon>
