@@ -29,24 +29,18 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngresoDosimetriaDos));
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.lbl_rut_cliente = new System.Windows.Forms.Label();
 			this.btn_filtro = new System.Windows.Forms.Button();
 			this.btn_cargar = new System.Windows.Forms.Button();
 			this.cbx_id_periodo = new System.Windows.Forms.ComboBox();
 			this.lbl_nombreCliente = new System.Windows.Forms.Label();
-			this.lbl_id_cliente = new System.Windows.Forms.Label();
-			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.btn_Agregar = new System.Windows.Forms.Button();
 			this.btn_Buscar = new System.Windows.Forms.Button();
-			this.txt_nombres = new System.Windows.Forms.TextBox();
-			this.txt_rut = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.cbx_anno = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
@@ -99,8 +93,10 @@
 			this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.label7 = new System.Windows.Forms.Label();
+			this.txt_id_cliente = new System.Windows.Forms.TextBox();
+			this.label4 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
-			this.groupBox3.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.grp_ingreso.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvAyuda)).BeginInit();
@@ -112,20 +108,23 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.label4);
+			this.groupBox1.Controls.Add(this.btn_Buscar);
+			this.groupBox1.Controls.Add(this.btn_Agregar);
+			this.groupBox1.Controls.Add(this.txt_id_cliente);
+			this.groupBox1.Controls.Add(this.label7);
 			this.groupBox1.Controls.Add(this.lbl_rut_cliente);
 			this.groupBox1.Controls.Add(this.btn_filtro);
 			this.groupBox1.Controls.Add(this.btn_cargar);
 			this.groupBox1.Controls.Add(this.cbx_id_periodo);
 			this.groupBox1.Controls.Add(this.lbl_nombreCliente);
-			this.groupBox1.Controls.Add(this.lbl_id_cliente);
-			this.groupBox1.Controls.Add(this.groupBox3);
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Controls.Add(this.cbx_anno);
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Location = new System.Drawing.Point(5, 28);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(844, 170);
+			this.groupBox1.Size = new System.Drawing.Size(844, 199);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Dato Cliente";
@@ -133,7 +132,7 @@
 			// lbl_rut_cliente
 			// 
 			this.lbl_rut_cliente.AutoSize = true;
-			this.lbl_rut_cliente.Location = new System.Drawing.Point(358, 20);
+			this.lbl_rut_cliente.Location = new System.Drawing.Point(77, 64);
 			this.lbl_rut_cliente.Name = "lbl_rut_cliente";
 			this.lbl_rut_cliente.Size = new System.Drawing.Size(53, 13);
 			this.lbl_rut_cliente.TabIndex = 45;
@@ -142,7 +141,7 @@
 			// 
 			// btn_filtro
 			// 
-			this.btn_filtro.Location = new System.Drawing.Point(297, 67);
+			this.btn_filtro.Location = new System.Drawing.Point(290, 118);
 			this.btn_filtro.Name = "btn_filtro";
 			this.btn_filtro.Size = new System.Drawing.Size(95, 23);
 			this.btn_filtro.TabIndex = 44;
@@ -152,7 +151,7 @@
 			// 
 			// btn_cargar
 			// 
-			this.btn_cargar.Location = new System.Drawing.Point(216, 67);
+			this.btn_cargar.Location = new System.Drawing.Point(186, 15);
 			this.btn_cargar.Name = "btn_cargar";
 			this.btn_cargar.Size = new System.Drawing.Size(75, 23);
 			this.btn_cargar.TabIndex = 3;
@@ -164,7 +163,7 @@
 			// 
 			this.cbx_id_periodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_id_periodo.FormattingEnabled = true;
-			this.cbx_id_periodo.Location = new System.Drawing.Point(87, 67);
+			this.cbx_id_periodo.Location = new System.Drawing.Point(80, 118);
 			this.cbx_id_periodo.Name = "cbx_id_periodo";
 			this.cbx_id_periodo.Size = new System.Drawing.Size(121, 21);
 			this.cbx_id_periodo.TabIndex = 43;
@@ -172,39 +171,15 @@
 			// lbl_nombreCliente
 			// 
 			this.lbl_nombreCliente.AutoSize = true;
-			this.lbl_nombreCliente.Location = new System.Drawing.Point(146, 19);
+			this.lbl_nombreCliente.Location = new System.Drawing.Point(77, 43);
 			this.lbl_nombreCliente.Name = "lbl_nombreCliente";
-			this.lbl_nombreCliente.Size = new System.Drawing.Size(35, 13);
+			this.lbl_nombreCliente.Size = new System.Drawing.Size(76, 13);
 			this.lbl_nombreCliente.TabIndex = 42;
-			this.lbl_nombreCliente.Text = "label1";
-			// 
-			// lbl_id_cliente
-			// 
-			this.lbl_id_cliente.AutoSize = true;
-			this.lbl_id_cliente.Location = new System.Drawing.Point(92, 20);
-			this.lbl_id_cliente.Name = "lbl_id_cliente";
-			this.lbl_id_cliente.Size = new System.Drawing.Size(35, 13);
-			this.lbl_id_cliente.TabIndex = 41;
-			this.lbl_id_cliente.Text = "label1";
-			// 
-			// groupBox3
-			// 
-			this.groupBox3.Controls.Add(this.btn_Agregar);
-			this.groupBox3.Controls.Add(this.btn_Buscar);
-			this.groupBox3.Controls.Add(this.txt_nombres);
-			this.groupBox3.Controls.Add(this.txt_rut);
-			this.groupBox3.Controls.Add(this.label5);
-			this.groupBox3.Controls.Add(this.label4);
-			this.groupBox3.Location = new System.Drawing.Point(7, 96);
-			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(571, 73);
-			this.groupBox3.TabIndex = 38;
-			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "Busqueda";
+			this.lbl_nombreCliente.Text = "NombreCliente";
 			// 
 			// btn_Agregar
 			// 
-			this.btn_Agregar.Location = new System.Drawing.Point(239, 15);
+			this.btn_Agregar.Location = new System.Drawing.Point(640, 20);
 			this.btn_Agregar.Name = "btn_Agregar";
 			this.btn_Agregar.Size = new System.Drawing.Size(106, 23);
 			this.btn_Agregar.TabIndex = 7;
@@ -214,7 +189,7 @@
 			// 
 			// btn_Buscar
 			// 
-			this.btn_Buscar.Location = new System.Drawing.Point(354, 15);
+			this.btn_Buscar.Location = new System.Drawing.Point(640, 59);
 			this.btn_Buscar.Name = "btn_Buscar";
 			this.btn_Buscar.Size = new System.Drawing.Size(75, 23);
 			this.btn_Buscar.TabIndex = 6;
@@ -223,46 +198,10 @@
 			this.btn_Buscar.Visible = false;
 			this.btn_Buscar.Click += new System.EventHandler(this.btn_Buscar_Click);
 			// 
-			// txt_nombres
-			// 
-			this.txt_nombres.Location = new System.Drawing.Point(80, 44);
-			this.txt_nombres.MaxLength = 200;
-			this.txt_nombres.Name = "txt_nombres";
-			this.txt_nombres.Size = new System.Drawing.Size(485, 20);
-			this.txt_nombres.TabIndex = 5;
-			this.txt_nombres.TextChanged += new System.EventHandler(this.txt_nombres_TextChanged);
-			// 
-			// txt_rut
-			// 
-			this.txt_rut.Location = new System.Drawing.Point(80, 17);
-			this.txt_rut.MaxLength = 10;
-			this.txt_rut.Name = "txt_rut";
-			this.txt_rut.Size = new System.Drawing.Size(100, 20);
-			this.txt_rut.TabIndex = 4;
-			this.txt_rut.TextChanged += new System.EventHandler(this.txt_rut_TextChanged);
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(10, 47);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(49, 13);
-			this.label5.TabIndex = 1;
-			this.label5.Text = "Nombres";
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(7, 20);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(24, 13);
-			this.label4.TabIndex = 0;
-			this.label4.Text = "Rut";
-			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(12, 72);
+			this.label1.Location = new System.Drawing.Point(5, 123);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(42, 13);
 			this.label1.TabIndex = 36;
@@ -272,7 +211,7 @@
 			// 
 			this.cbx_anno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_anno.FormattingEnabled = true;
-			this.cbx_anno.Location = new System.Drawing.Point(87, 42);
+			this.cbx_anno.Location = new System.Drawing.Point(80, 93);
 			this.cbx_anno.Name = "cbx_anno";
 			this.cbx_anno.Size = new System.Drawing.Size(121, 21);
 			this.cbx_anno.TabIndex = 1;
@@ -290,7 +229,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(12, 45);
+			this.label3.Location = new System.Drawing.Point(5, 96);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(26, 13);
 			this.label3.TabIndex = 4;
@@ -304,9 +243,9 @@
 			this.groupBox2.Controls.Add(this.grp_ingreso);
 			this.groupBox2.Controls.Add(this.pnl_Progreso);
 			this.groupBox2.Controls.Add(this.grdDatos);
-			this.groupBox2.Location = new System.Drawing.Point(5, 204);
+			this.groupBox2.Location = new System.Drawing.Point(5, 230);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(1179, 364);
+			this.groupBox2.Size = new System.Drawing.Size(1179, 338);
 			this.groupBox2.TabIndex = 6;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Listado";
@@ -457,7 +396,7 @@
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-			this.grdDatos.Size = new System.Drawing.Size(1173, 345);
+			this.grdDatos.Size = new System.Drawing.Size(1173, 319);
 			this.grdDatos.TabIndex = 8;
 			this.grdDatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellClick);
 			this.grdDatos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellDoubleClick);
@@ -572,9 +511,9 @@
 			// valor
 			// 
 			this.valor.DataPropertyName = "dosis";
-			dataGridViewCellStyle1.Format = "N2";
-			dataGridViewCellStyle1.NullValue = "0";
-			this.valor.DefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle4.Format = "N2";
+			dataGridViewCellStyle4.NullValue = "0";
+			this.valor.DefaultCellStyle = dataGridViewCellStyle4;
 			this.valor.HeaderText = "Valor Ingresar";
 			this.valor.Name = "valor";
 			this.valor.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -755,9 +694,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle2.Format = "N2";
-			dataGridViewCellStyle2.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle5.Format = "N2";
+			dataGridViewCellStyle5.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle5;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -775,12 +714,37 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle3.Format = "N2";
-			dataGridViewCellStyle3.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle6.Format = "N2";
+			dataGridViewCellStyle6.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle6;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(12, 43);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(44, 13);
+			this.label7.TabIndex = 46;
+			this.label7.Text = "Nombre";
+			// 
+			// txt_id_cliente
+			// 
+			this.txt_id_cliente.Location = new System.Drawing.Point(80, 17);
+			this.txt_id_cliente.Name = "txt_id_cliente";
+			this.txt_id_cliente.Size = new System.Drawing.Size(100, 20);
+			this.txt_id_cliente.TabIndex = 48;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(12, 64);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(24, 13);
+			this.label4.TabIndex = 49;
+			this.label4.Text = "Rut";
 			// 
 			// frmIngresoDosimetriaDos
 			// 
@@ -800,8 +764,6 @@
 			this.Text = "Ingreso Dosimetria por dosimetro";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
-			this.groupBox3.ResumeLayout(false);
-			this.groupBox3.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
 			this.grp_ingreso.ResumeLayout(false);
 			this.grp_ingreso.PerformLayout();
@@ -826,15 +788,9 @@
           private System.Windows.Forms.Label label2;
 								private System.Windows.Forms.Label label1;
 								private System.Windows.Forms.ComboBox cbx_anno;
-								private System.Windows.Forms.GroupBox groupBox3;
-								private System.Windows.Forms.Label label5;
-								private System.Windows.Forms.Label label4;
-								private System.Windows.Forms.TextBox txt_rut;
-								private System.Windows.Forms.TextBox txt_nombres;
 								private System.Windows.Forms.Button btn_Buscar;
 								private System.Windows.Forms.Button btn_Agregar;
 								private System.Windows.Forms.Label lbl_nombreCliente;
-								private System.Windows.Forms.Label lbl_id_cliente;
 								private System.Windows.Forms.ComboBox cbx_id_periodo;
 								private System.Windows.Forms.Button btn_cargar;
 								private System.Windows.Forms.Button btn_Guardar;
@@ -884,5 +840,8 @@
                                 private System.Windows.Forms.ToolStripDropDownButton btn_reporte;
                                 private System.Windows.Forms.ToolStripMenuItem estadoDosimetroToolStripMenuItem;
                                 private System.Windows.Forms.ToolStripMenuItem tsmModificarPersonal;
-    }
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.TextBox txt_id_cliente;
+		private System.Windows.Forms.Label label4;
+	}
 }
