@@ -20,6 +20,7 @@ namespace ControlDosimetro
 	{
 
 		#region "Definicion variable"
+		Clases.ClassEvento clsEvt = new Clases.ClassEvento();
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
@@ -48,8 +49,8 @@ namespace ControlDosimetro
 
 
 			AsignarEvento();
-			//Cargar_Cliente(intId_Cliente);
 			Cargar_Anno();
+			btn_LimpiarFiltro(null, null);
 			pnl_Progreso.Visible = false;
 			grp_ingreso.Visible = false;
 
@@ -59,8 +60,15 @@ namespace ControlDosimetro
 
 		private void Cargar_Cliente()
 		{
-			classFuncionesBD.ClsFunciones func = new ClsFunciones();
-			func.Cargar_Cliente(Convert.ToInt64(txt_id_cliente.Text.ToString()),ref lbl_rut_cliente, ref lbl_nombreCliente);
+			clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(txt_id_cliente.Text.ToString()),
+							ref lbl_rut_cliente, ref lbl_nombreCliente);
+			if (lbl_rut_cliente.Text.Trim() == "")
+			{
+				btn_cargar.Enabled = true;
+				btn_Agregar.Enabled = false;
+			}
+			else
+				btn_cargar.Enabled = false;
 		}
 
 		private void Listar_Personal()
@@ -143,7 +151,6 @@ namespace ControlDosimetro
 
 		private void AsignarEvento()
 		{
-			Clases.ClassEvento clsEvt = new Clases.ClassEvento();
 			clsEvt.AsignarNumero(ref txt_id_cliente);
 			clsEvt.AsignarNumero(ref txt_NDocumento);
 		}
@@ -168,17 +175,6 @@ namespace ControlDosimetro
 
 		}
 
-		private void btn_Filtro_Click(object sender, EventArgs e)
-		{
-			//txt_ref_cliente.ReadOnly = false;
-			//txt_Rut.ReadOnly = false;
-			//txt_ref_cliente.Text = "";
-			//txt_Rut.Text = "";
-			//txt_RazonSocial.Text = "";
-			//Listar_Cliente(0);
-			//Listar_Personal();
-			//txt_ref_cliente.Focus();
-		}
 
 		private void btn_cargar_Click(object sender, EventArgs e)
 		{
@@ -302,11 +298,18 @@ namespace ControlDosimetro
 			pnl_Progreso.Visible = false;
 		}
 
-		private void btn_filtro_Click_1(object sender, EventArgs e)
+		private void btn_LimpiarFiltro(object sender, EventArgs e)
 		{
 			cbx_anno.Enabled = true;
 			cbx_id_periodo.Enabled = true;
 			cbx_anno.Focus();
+			lbl_nombreCliente.Text = "";
+			lbl_rut_cliente.Text = "";
+			txt_id_cliente.Text = "-1";
+			btn_cargar_Click(null,null);
+			txt_id_cliente.Clear();
+			txt_id_cliente.Focus();
+			btn_cargar.Enabled = true;
 			intContar = 0;
 		}
 

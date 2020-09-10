@@ -45,7 +45,7 @@ namespace classFuncionesBD
 			return Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString());
 		}
 
-		public void Cargar_Cliente(Int64 intCodCliente, ref Label Rut, ref Label RazonSocial)
+		public void Cargar_Cliente(int intPeriodo,Int64 intCodCliente, ref Label Rut, ref Label RazonSocial)
 		{
 			DataSet ds;
 
@@ -54,8 +54,7 @@ namespace classFuncionesBD
 			{
 				//	SqlCommand cmd = new SqlCommand();
 
-				CommandText = "SELECT run,Razon_Social,N_Cliente_Ref,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
-								 " FROM tbl_cliente WHERE Id_cliente= " + intCodCliente.ToString()
+				CommandText = "pa_ObtieneCliente_sel  " + intPeriodo.ToString() + "," + intCodCliente.ToString()
 			};
 			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
 
@@ -68,6 +67,8 @@ namespace classFuncionesBD
 			{
 				RazonSocial.Text = "";
 				Rut.Text = "";
+				if(intCodCliente != -1)
+					MessageBox.Show(ControlDosimetro.Properties.Resources.msgClientePeriodoError, ControlDosimetro.Properties.Resources.msgCaptionError,MessageBoxButtons.OKCancel,MessageBoxIcon.Error);
 			}
 		}
 

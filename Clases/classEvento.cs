@@ -23,6 +23,7 @@ namespace Clases
 		{
 			textbox.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
 			textbox.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+			textbox.MaxLength = 9;
 		}
 
     }
