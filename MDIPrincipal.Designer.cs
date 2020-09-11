@@ -30,30 +30,18 @@
         {
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIPrincipal));
-			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Versión 8.0.1.0");
-			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Versión 8.0.1.1");
-			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Versión 8.0.1.2");
-			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Versión 8.0.1.3");
-			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Versión 8.0.1.5");
-			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Versión del sistema y sus actualizaciones", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4,
-            treeNode5});
+			System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Versión 8.0.1.0");
+			System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Versión 8.0.1.1");
+			System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Versión 8.0.1.2");
+			System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Versión 8.0.1.3");
+			System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Versión 8.0.1.5");
+			System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Versión del sistema y sus actualizaciones", new System.Windows.Forms.TreeNode[] {
+            treeNode7,
+            treeNode8,
+            treeNode9,
+            treeNode10,
+            treeNode11});
 			this.menuStrip = new System.Windows.Forms.MenuStrip();
-			this.mnuMantenedor = new System.Windows.Forms.ToolStripMenuItem();
-			this.mnuMantConfiguracionMenu = new System.Windows.Forms.ToolStripMenuItem();
-			this.mnuMantConfiguracionParametro = new System.Windows.Forms.ToolStripMenuItem();
-			this.mnuMantPerfil = new System.Windows.Forms.ToolStripMenuItem();
-			this.mnuMantUsuario = new System.Windows.Forms.ToolStripMenuItem();
-			this.mnuMantTipoDocumento = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-			this.mnuMantCliente = new System.Windows.Forms.ToolStripMenuItem();
-			this.mnuMantSucursal = new System.Windows.Forms.ToolStripMenuItem();
-			this.mnuMantPersonal = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuProceso = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuProcesoIngresarDosis = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuProcesoDosisISP = new System.Windows.Forms.ToolStripMenuItem();
@@ -101,7 +89,6 @@
 			// 
 			this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuMantenedor,
             this.mnuProceso,
             this.mnuFactura});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
@@ -109,101 +96,6 @@
 			this.menuStrip.Size = new System.Drawing.Size(1059, 24);
 			this.menuStrip.TabIndex = 0;
 			this.menuStrip.Text = "MenuStrip";
-			// 
-			// mnuMantenedor
-			// 
-			this.mnuMantenedor.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuMantConfiguracionMenu,
-            this.mnuMantConfiguracionParametro,
-            this.mnuMantPerfil,
-            this.mnuMantUsuario,
-            this.mnuMantTipoDocumento,
-            this.toolStripSeparator2,
-            this.mnuMantCliente,
-            this.mnuMantSucursal,
-            this.mnuMantPersonal,
-            this.toolStripSeparator3,
-            this.exitToolStripMenuItem});
-			this.mnuMantenedor.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
-			this.mnuMantenedor.Name = "mnuMantenedor";
-			this.mnuMantenedor.Size = new System.Drawing.Size(84, 20);
-			this.mnuMantenedor.Tag = "100";
-			this.mnuMantenedor.Text = "&Mantenedor";
-			// 
-			// mnuMantConfiguracionMenu
-			// 
-			this.mnuMantConfiguracionMenu.Name = "mnuMantConfiguracionMenu";
-			this.mnuMantConfiguracionMenu.Size = new System.Drawing.Size(249, 22);
-			this.mnuMantConfiguracionMenu.Text = "Menu";
-			// 
-			// mnuMantConfiguracionParametro
-			// 
-			this.mnuMantConfiguracionParametro.ImageTransparentColor = System.Drawing.Color.Black;
-			this.mnuMantConfiguracionParametro.Name = "mnuMantConfiguracionParametro";
-			this.mnuMantConfiguracionParametro.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-			this.mnuMantConfiguracionParametro.Size = new System.Drawing.Size(249, 22);
-			this.mnuMantConfiguracionParametro.Text = "&Configuración Parametro";
-			this.mnuMantConfiguracionParametro.Click += new System.EventHandler(this.MnuMantConfiguracionParametro_Click);
-			// 
-			// mnuMantPerfil
-			// 
-			this.mnuMantPerfil.Name = "mnuMantPerfil";
-			this.mnuMantPerfil.Size = new System.Drawing.Size(249, 22);
-			this.mnuMantPerfil.Text = "Perfil";
-			this.mnuMantPerfil.Click += new System.EventHandler(this.MnuMantPerfil_Click);
-			// 
-			// mnuMantUsuario
-			// 
-			this.mnuMantUsuario.Name = "mnuMantUsuario";
-			this.mnuMantUsuario.Size = new System.Drawing.Size(249, 22);
-			this.mnuMantUsuario.Text = "Usuario";
-			this.mnuMantUsuario.Click += new System.EventHandler(this.MnuMantUsuario_Click);
-			// 
-			// mnuMantTipoDocumento
-			// 
-			this.mnuMantTipoDocumento.Name = "mnuMantTipoDocumento";
-			this.mnuMantTipoDocumento.Size = new System.Drawing.Size(249, 22);
-			this.mnuMantTipoDocumento.Text = "Tipo Documento";
-			this.mnuMantTipoDocumento.Click += new System.EventHandler(this.MnuMantTipoDocumento_Click);
-			// 
-			// toolStripSeparator2
-			// 
-			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(246, 6);
-			// 
-			// mnuMantCliente
-			// 
-			this.mnuMantCliente.Name = "mnuMantCliente";
-			this.mnuMantCliente.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-			this.mnuMantCliente.Size = new System.Drawing.Size(249, 22);
-			this.mnuMantCliente.Text = "Cliente";
-			this.mnuMantCliente.Click += new System.EventHandler(this.MnuMantCliente_Click);
-			// 
-			// mnuMantSucursal
-			// 
-			this.mnuMantSucursal.Name = "mnuMantSucursal";
-			this.mnuMantSucursal.Size = new System.Drawing.Size(249, 22);
-			this.mnuMantSucursal.Text = "Sucursal";
-			this.mnuMantSucursal.Click += new System.EventHandler(this.MnuMantSucursal_Click);
-			// 
-			// mnuMantPersonal
-			// 
-			this.mnuMantPersonal.Name = "mnuMantPersonal";
-			this.mnuMantPersonal.Size = new System.Drawing.Size(249, 22);
-			this.mnuMantPersonal.Text = "Personal";
-			this.mnuMantPersonal.Click += new System.EventHandler(this.MnuMantPersonal_Click);
-			// 
-			// toolStripSeparator3
-			// 
-			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			this.toolStripSeparator3.Size = new System.Drawing.Size(246, 6);
-			// 
-			// exitToolStripMenuItem
-			// 
-			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
-			this.exitToolStripMenuItem.Text = "&Salir";
-			this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolsStripMenuItem_Click);
 			// 
 			// mnuProceso
 			// 
@@ -255,11 +147,12 @@
 			this.mnuFactura.Size = new System.Drawing.Size(63, 20);
 			this.mnuFactura.Tag = "700";
 			this.mnuFactura.Text = "Facturas";
+			this.mnuFactura.Visible = false;
 			// 
 			// facturaciónToolStripMenuItem
 			// 
 			this.facturaciónToolStripMenuItem.Name = "facturaciónToolStripMenuItem";
-			this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
 			this.facturaciónToolStripMenuItem.Text = "Facturación";
 			this.facturaciónToolStripMenuItem.Click += new System.EventHandler(this.FacturaciónToolStripMenuItem_Click);
 			// 
@@ -420,20 +313,20 @@
 			this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.treeView1.Location = new System.Drawing.Point(0, 0);
 			this.treeView1.Name = "treeView1";
-			treeNode1.Name = "Nodo1";
-			treeNode1.Text = "Versión 8.0.1.0";
-			treeNode2.Name = "Nodo2";
-			treeNode2.Text = "Versión 8.0.1.1";
-			treeNode3.Name = "Nodo3";
-			treeNode3.Text = "Versión 8.0.1.2";
-			treeNode4.Name = "Nodo4";
-			treeNode4.Text = "Versión 8.0.1.3";
-			treeNode5.Name = "Nodo5";
-			treeNode5.Text = "Versión 8.0.1.5";
-			treeNode6.Name = "Nodo0";
-			treeNode6.Text = "Versión del sistema y sus actualizaciones";
+			treeNode7.Name = "Nodo1";
+			treeNode7.Text = "Versión 8.0.1.0";
+			treeNode8.Name = "Nodo2";
+			treeNode8.Text = "Versión 8.0.1.1";
+			treeNode9.Name = "Nodo3";
+			treeNode9.Text = "Versión 8.0.1.2";
+			treeNode10.Name = "Nodo4";
+			treeNode10.Text = "Versión 8.0.1.3";
+			treeNode11.Name = "Nodo5";
+			treeNode11.Text = "Versión 8.0.1.5";
+			treeNode12.Name = "Nodo0";
+			treeNode12.Text = "Versión del sistema y sus actualizaciones";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode6});
+            treeNode12});
 			this.treeView1.Size = new System.Drawing.Size(200, 368);
 			this.treeView1.TabIndex = 0;
 			this.treeView1.Click += new System.EventHandler(this.TreeView1_Click);
@@ -476,6 +369,7 @@
 			this.tsbPrincipalCambioContraseñaCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbPrincipalCambioContraseñaCliente.Name = "tsbPrincipalCambioContraseñaCliente";
 			this.tsbPrincipalCambioContraseñaCliente.Size = new System.Drawing.Size(36, 36);
+			this.tsbPrincipalCambioContraseñaCliente.Text = "Restablecer";
 			this.tsbPrincipalCambioContraseñaCliente.ToolTipText = "Restablecer  contraseña cliente";
 			this.tsbPrincipalCambioContraseñaCliente.Click += new System.EventHandler(this.TsbPrincipalCambioContraseñaCliente_Click);
 			// 
@@ -486,8 +380,9 @@
 			this.tsbPrincipalCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbPrincipalCliente.Name = "tsbPrincipalCliente";
 			this.tsbPrincipalCliente.Size = new System.Drawing.Size(36, 36);
+			this.tsbPrincipalCliente.Text = "Cliente";
 			this.tsbPrincipalCliente.ToolTipText = "Cliente";
-			this.tsbPrincipalCliente.Click += new System.EventHandler(this.MnuMantCliente_Click);
+			this.tsbPrincipalCliente.Click += new System.EventHandler(this.tsbPrincipal_Click);
 			// 
 			// tsbPrincipalPersonal
 			// 
@@ -497,7 +392,7 @@
 			this.tsbPrincipalPersonal.Name = "tsbPrincipalPersonal";
 			this.tsbPrincipalPersonal.Size = new System.Drawing.Size(36, 36);
 			this.tsbPrincipalPersonal.Text = "Personal";
-			this.tsbPrincipalPersonal.Click += new System.EventHandler(this.MnuMantPersonal_Click);
+			this.tsbPrincipalPersonal.Click += new System.EventHandler(this.tsbPrincipal_Click);
 			// 
 			// timer1
 			// 
@@ -541,14 +436,9 @@
 
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.StatusStrip statusStrip;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mnuMantenedor;
-        private System.Windows.Forms.ToolStripMenuItem mnuMantConfiguracionParametro;
-        private System.Windows.Forms.ToolStripMenuItem mnuMantCliente;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem contentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem indexToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
@@ -556,7 +446,6 @@
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.ToolStrip tsbPrincipal;
         private System.Windows.Forms.ToolStripButton tsbPrincipalCliente;
-		  private System.Windows.Forms.ToolStripMenuItem mnuMantPersonal;
 		  private System.Windows.Forms.ToolStripButton tsbPrincipalPersonal;
           private System.Windows.Forms.ToolStripMenuItem mnuProceso;
           private System.Windows.Forms.ToolStripMenuItem mnuProcesoInformeGenerado;
@@ -565,11 +454,6 @@
           private System.Windows.Forms.ToolStripMenuItem facturaciónToolStripMenuItem;
           private System.Windows.Forms.ToolStripMenuItem mnuProcesoIngresarDosis;
           private System.Windows.Forms.ToolStripMenuItem mnuProcesoDosisISP;
-          private System.Windows.Forms.ToolStripMenuItem mnuMantSucursal;
-          private System.Windows.Forms.ToolStripMenuItem mnuMantTipoDocumento;
-          private System.Windows.Forms.ToolStripMenuItem mnuMantPerfil;
-          private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-          private System.Windows.Forms.ToolStripMenuItem mnuMantUsuario;
           private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
           private System.Windows.Forms.ToolStripStatusLabel tstUsuario;
           private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
@@ -583,7 +467,6 @@
           private System.Windows.Forms.Panel panel2;
           private System.Windows.Forms.Panel panel1;
           private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.ToolStripMenuItem mnuMantConfiguracionMenu;
         private System.Windows.Forms.ToolStripButton tsbPrincipalCambioContraseña;
         private System.Windows.Forms.ToolStripButton tsbPrincipalCambioContraseñaCliente;
 	}
