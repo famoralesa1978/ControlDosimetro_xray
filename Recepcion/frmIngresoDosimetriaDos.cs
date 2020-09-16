@@ -25,6 +25,7 @@ namespace ControlDosimetro
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
 		ClsFunciones clsFunc = new ClsFunciones();
+		classFuncionesBD.ClsFunciones func = new ClsFunciones();
 		DataSet dtayuda;
 		int intContar = 0;
 		#endregion
@@ -60,15 +61,35 @@ namespace ControlDosimetro
 
 		private void Cargar_Cliente()
 		{
-			clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(txt_id_cliente.Text.ToString()),
-							ref lbl_rut_cliente, ref lbl_nombreCliente);
-			if (lbl_rut_cliente.Text.Trim() == "")
+			Cursor = Cursors.WaitCursor;
+			clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(txt_id_cliente.Text.ToString()), ref lbl_rut_cliente, ref lbl_nombreCliente);
+			SqlCommand cmdcombo = new SqlCommand();
+			DataSet dtcombo;
+			cmdcombo.CommandText = "pa_IngresoDosimetroPorDosimetro_sel " + cbx_id_periodo.SelectedValue + "," + txt_id_cliente.Text + ",12";
+			cmdcombo.CommandType = CommandType.Text;
+			dtcombo = Conectar.Listar(Clases.clsBD.BD, cmdcombo);
+
+			if (dtcombo.Tables[0].Rows.Count == 1)
 			{
 				btn_cargar.Enabled = true;
 				btn_Agregar.Enabled = false;
-			}
+				MessageBox.Show(ControlDosimetro.Properties.Resources.msgNoExisteError, ControlDosimetro.Properties.Resources.msgCaptionError,MessageBoxButtons.OK,MessageBoxIcon.Error);
+				btn_LimpiarFiltro(null, null);
+			}				
 			else
+			if (dtcombo.Tables[0].Rows.Count >1)
+			{
 				btn_cargar.Enabled = false;
+				btn_Agregar.Enabled = true;
+				grp_Detalle.Enabled = true;
+				btn_Guardar.Enabled = true;
+				cbx_anno.Enabled = false;
+				cbx_id_periodo.Enabled = false;
+				txt_id_cliente.Enabled = false;
+				cbx_NDocumento.DataSource = dtcombo.Tables[0];
+			}
+
+			Cursor = Cursors.Default;
 		}
 
 		private void Listar_Personal()
@@ -178,12 +199,8 @@ namespace ControlDosimetro
 
 		private void btn_cargar_Click(object sender, EventArgs e)
 		{
+			if (txt_id_cliente.Text !="-1")
 			Cargar_Cliente();
-			//Listar_Personal();
-			//cbx_anno.Enabled = false;
-			//cbx_id_periodo.Enabled = false;
-			//grdDatos.Focus();
-			//intContar = 0;
 		}
 
 		private void btn_Guardar_Click(object sender, EventArgs e)
@@ -302,6 +319,7 @@ namespace ControlDosimetro
 		{
 			cbx_anno.Enabled = true;
 			cbx_id_periodo.Enabled = true;
+			txt_id_cliente.Enabled = true;
 			cbx_anno.Focus();
 			lbl_nombreCliente.Text = "";
 			lbl_rut_cliente.Text = "";
@@ -309,6 +327,8 @@ namespace ControlDosimetro
 			btn_cargar_Click(null,null);
 			txt_id_cliente.Clear();
 			txt_id_cliente.Focus();
+			grp_Detalle.Enabled = false;
+			btn_Guardar.Enabled = false;
 			btn_cargar.Enabled = true;
 			intContar = 0;
 		}

@@ -211,4 +211,7 @@
   <data name="msgClientePeriodoError" xml:space="preserve">
     <value>El cliente no corresponde para este periodo</value>
   </data>
+  <data name="msgNoExisteError" xml:space="preserve">
+    <value>No existe información a cargar</value>
+  </data>
 </root>

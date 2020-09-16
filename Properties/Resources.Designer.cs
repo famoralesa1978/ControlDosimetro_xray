@@ -289,6 +289,15 @@ namespace ControlDosimetro.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a No existe información a cargar.
+        /// </summary>
+        public static string msgNoExisteError {
+            get {
+                return ResourceManager.GetString("msgNoExisteError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
         /// </summary>
         public static System.Drawing.Icon nuevo32 {

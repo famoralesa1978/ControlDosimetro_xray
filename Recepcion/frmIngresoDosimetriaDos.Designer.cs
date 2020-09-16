@@ -30,13 +30,12 @@
         {
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngresoDosimetriaDos));
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.btn_Buscar = new System.Windows.Forms.Button();
-			this.btn_Agregar = new System.Windows.Forms.Button();
 			this.txt_id_cliente = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.lbl_rut_cliente = new System.Windows.Forms.Label();
@@ -48,6 +47,7 @@
 			this.cbx_anno = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
+			this.btn_Agregar = new System.Windows.Forms.Button();
 			this.cmsPopup = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmEliminarPersonal = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmModificarPersonal = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,7 +69,7 @@
 			this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.grp_Detalle = new System.Windows.Forms.GroupBox();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.grp_ingreso = new System.Windows.Forms.GroupBox();
@@ -98,13 +98,13 @@
 			this.condosis = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.valor = new GridExtension.RealGridColumn();
 			this.Estado = new System.Windows.Forms.DataGridViewComboBoxColumn();
-			this.label5 = new System.Windows.Forms.Label();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.cbx_NDocumento = new System.Windows.Forms.ComboBox();
+			this.label5 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.cmsPopup.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
-			this.groupBox3.SuspendLayout();
+			this.grp_Detalle.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.grp_ingreso.SuspendLayout();
@@ -155,16 +155,6 @@
 			this.btn_Buscar.UseVisualStyleBackColor = true;
 			this.btn_Buscar.Visible = false;
 			this.btn_Buscar.Click += new System.EventHandler(this.btn_Buscar_Click);
-			// 
-			// btn_Agregar
-			// 
-			this.btn_Agregar.Location = new System.Drawing.Point(333, 3);
-			this.btn_Agregar.Name = "btn_Agregar";
-			this.btn_Agregar.Size = new System.Drawing.Size(106, 23);
-			this.btn_Agregar.TabIndex = 7;
-			this.btn_Agregar.Text = "Agregar personal";
-			this.btn_Agregar.UseVisualStyleBackColor = true;
-			this.btn_Agregar.Click += new System.EventHandler(this.btn_Agregar_Click);
 			// 
 			// txt_id_cliente
 			// 
@@ -265,6 +255,16 @@
 			this.label3.Size = new System.Drawing.Size(26, 13);
 			this.label3.TabIndex = 4;
 			this.label3.Text = "Año";
+			// 
+			// btn_Agregar
+			// 
+			this.btn_Agregar.Location = new System.Drawing.Point(331, 3);
+			this.btn_Agregar.Name = "btn_Agregar";
+			this.btn_Agregar.Size = new System.Drawing.Size(106, 23);
+			this.btn_Agregar.TabIndex = 7;
+			this.btn_Agregar.Text = "Agregar personal";
+			this.btn_Agregar.UseVisualStyleBackColor = true;
+			this.btn_Agregar.Click += new System.EventHandler(this.btn_Agregar_Click);
 			// 
 			// cmsPopup
 			// 
@@ -434,9 +434,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle4.Format = "N2";
-			dataGridViewCellStyle4.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle7.Format = "N2";
+			dataGridViewCellStyle7.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle7;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -454,22 +454,22 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle5.Format = "N2";
-			dataGridViewCellStyle5.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle5;
+			dataGridViewCellStyle8.Format = "N2";
+			dataGridViewCellStyle8.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle8;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
 			// 
-			// groupBox3
+			// grp_Detalle
 			// 
-			this.groupBox3.Controls.Add(this.tableLayoutPanel1);
-			this.groupBox3.Location = new System.Drawing.Point(5, 171);
-			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(1176, 397);
-			this.groupBox3.TabIndex = 9;
-			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "Detalle";
+			this.grp_Detalle.Controls.Add(this.tableLayoutPanel1);
+			this.grp_Detalle.Location = new System.Drawing.Point(5, 171);
+			this.grp_Detalle.Name = "grp_Detalle";
+			this.grp_Detalle.Size = new System.Drawing.Size(1176, 397);
+			this.grp_Detalle.TabIndex = 9;
+			this.grp_Detalle.TabStop = false;
+			this.grp_Detalle.Text = "Detalle";
 			// 
 			// tableLayoutPanel1
 			// 
@@ -754,9 +754,9 @@
 			// valor
 			// 
 			this.valor.DataPropertyName = "dosis";
-			dataGridViewCellStyle6.Format = "N2";
-			dataGridViewCellStyle6.NullValue = "0";
-			this.valor.DefaultCellStyle = dataGridViewCellStyle6;
+			dataGridViewCellStyle9.Format = "N2";
+			dataGridViewCellStyle9.NullValue = "0";
+			this.valor.DefaultCellStyle = dataGridViewCellStyle9;
 			this.valor.HeaderText = "Valor Ingresar";
 			this.valor.Name = "valor";
 			this.valor.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -769,22 +769,12 @@
 			this.Estado.HeaderText = "Estado Controlado";
 			this.Estado.Name = "Estado";
 			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(3, 0);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(109, 13);
-			this.label5.TabIndex = 8;
-			this.label5.Text = "Buscar n° documento";
-			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
 			// tableLayoutPanel2
 			// 
 			this.tableLayoutPanel2.ColumnCount = 3;
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.39394F));
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.60606F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 333F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 335F));
 			this.tableLayoutPanel2.Controls.Add(this.cbx_NDocumento, 1, 0);
 			this.tableLayoutPanel2.Controls.Add(this.btn_Agregar, 2, 0);
 			this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
@@ -798,19 +788,31 @@
 			// 
 			// cbx_NDocumento
 			// 
+			this.cbx_NDocumento.DisplayMember = "NDoc";
 			this.cbx_NDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_NDocumento.FormattingEnabled = true;
-			this.cbx_NDocumento.Location = new System.Drawing.Point(133, 3);
+			this.cbx_NDocumento.Location = new System.Drawing.Point(132, 3);
 			this.cbx_NDocumento.Name = "cbx_NDocumento";
 			this.cbx_NDocumento.Size = new System.Drawing.Size(170, 21);
 			this.cbx_NDocumento.TabIndex = 50;
+			this.cbx_NDocumento.ValueMember = "N_Documento";
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(3, 0);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(109, 13);
+			this.label5.TabIndex = 8;
+			this.label5.Text = "Buscar n° documento";
+			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// frmIngresoDosimetriaDos
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1184, 606);
-			this.Controls.Add(this.groupBox3);
+			this.Controls.Add(this.grp_Detalle);
 			this.Controls.Add(this.btn_Cerrar);
 			this.Controls.Add(this.btn_Guardar);
 			this.Controls.Add(this.toolStrip1);
@@ -826,7 +828,7 @@
 			this.cmsPopup.ResumeLayout(false);
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
-			this.groupBox3.ResumeLayout(false);
+			this.grp_Detalle.ResumeLayout(false);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
 			this.grp_ingreso.ResumeLayout(false);
@@ -879,7 +881,7 @@
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.TextBox txt_id_cliente;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.GroupBox groupBox3;
+		private System.Windows.Forms.GroupBox grp_Detalle;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.GroupBox grp_ingreso;
