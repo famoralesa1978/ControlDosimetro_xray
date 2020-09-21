@@ -59,7 +59,7 @@ namespace ControlDosimetro
 
 		#region "Llamada de carga"
 
-		private void Cargar_Cliente()
+		private void Cargar_Datos()
 		{
 			Cursor = Cursors.WaitCursor;
 			clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(txt_id_cliente.Text.ToString()), ref lbl_rut_cliente, ref lbl_nombreCliente);
@@ -87,6 +87,7 @@ namespace ControlDosimetro
 				cbx_id_periodo.Enabled = false;
 				txt_id_cliente.Enabled = false;
 				cbx_NDocumento.DataSource = dtcombo.Tables[0];
+				grdDatos.DataSource = dtcombo.Tables[1];
 			}
 
 			Cursor = Cursors.Default;
@@ -200,7 +201,7 @@ namespace ControlDosimetro
 		private void btn_cargar_Click(object sender, EventArgs e)
 		{
 			if (txt_id_cliente.Text !="-1")
-			Cargar_Cliente();
+				Cargar_Datos();
 		}
 
 		private void btn_Guardar_Click(object sender, EventArgs e)
