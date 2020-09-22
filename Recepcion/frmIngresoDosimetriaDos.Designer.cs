@@ -30,9 +30,9 @@
         {
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngresoDosimetriaDos));
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.btn_Buscar = new System.Windows.Forms.Button();
@@ -72,25 +72,18 @@
 			this.grp_Detalle = new System.Windows.Forms.GroupBox();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.grp_ingreso = new System.Windows.Forms.GroupBox();
-			this.lbl_fila = new System.Windows.Forms.Label();
-			this.btn_ocultar = new System.Windows.Forms.Button();
-			this.dgvAyuda = new System.Windows.Forms.DataGridView();
-			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.N_PeliculaAyuda = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.n_documentoAyuda = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.btn_BuscarDosimetro = new System.Windows.Forms.Button();
-			this.txt_NDocumento = new System.Windows.Forms.TextBox();
-			this.label6 = new System.Windows.Forms.Label();
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
+			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+			this.cbx_NDocumento = new System.Windows.Forms.ComboBox();
+			this.label5 = new System.Windows.Forms.Label();
 			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.id_dosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.N_Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.NDocumento = new GridExtension.IntegerGridColumn();
 			this.N_Pelicula = new GridExtension.IntegerGridColumn();
-			this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colRut = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Paterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Maternos = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -98,17 +91,12 @@
 			this.condosis = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.valor = new GridExtension.RealGridColumn();
 			this.Estado = new System.Windows.Forms.DataGridViewComboBoxColumn();
-			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-			this.cbx_NDocumento = new System.Windows.Forms.ComboBox();
-			this.label5 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.cmsPopup.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.grp_Detalle.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
-			this.grp_ingreso.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dgvAyuda)).BeginInit();
 			this.pnl_Progreso.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -258,7 +246,7 @@
 			// 
 			// btn_Agregar
 			// 
-			this.btn_Agregar.Location = new System.Drawing.Point(331, 3);
+			this.btn_Agregar.Location = new System.Drawing.Point(329, 3);
 			this.btn_Agregar.Name = "btn_Agregar";
 			this.btn_Agregar.Size = new System.Drawing.Size(106, 23);
 			this.btn_Agregar.TabIndex = 7;
@@ -434,9 +422,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle7.Format = "N2";
-			dataGridViewCellStyle7.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle7;
+			dataGridViewCellStyle1.Format = "N2";
+			dataGridViewCellStyle1.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -454,9 +442,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle8.Format = "N2";
-			dataGridViewCellStyle8.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle8;
+			dataGridViewCellStyle2.Format = "N2";
+			dataGridViewCellStyle2.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -492,7 +480,6 @@
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox2.Controls.Add(this.grp_ingreso);
 			this.groupBox2.Controls.Add(this.pnl_Progreso);
 			this.groupBox2.Controls.Add(this.grdDatos);
 			this.groupBox2.Location = new System.Drawing.Point(3, 41);
@@ -501,104 +488,6 @@
 			this.groupBox2.TabIndex = 7;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Listado por documento";
-			// 
-			// grp_ingreso
-			// 
-			this.grp_ingreso.Controls.Add(this.lbl_fila);
-			this.grp_ingreso.Controls.Add(this.btn_ocultar);
-			this.grp_ingreso.Controls.Add(this.dgvAyuda);
-			this.grp_ingreso.Controls.Add(this.btn_BuscarDosimetro);
-			this.grp_ingreso.Controls.Add(this.txt_NDocumento);
-			this.grp_ingreso.Controls.Add(this.label6);
-			this.grp_ingreso.Location = new System.Drawing.Point(429, 76);
-			this.grp_ingreso.Name = "grp_ingreso";
-			this.grp_ingreso.Size = new System.Drawing.Size(353, 260);
-			this.grp_ingreso.TabIndex = 11;
-			this.grp_ingreso.TabStop = false;
-			this.grp_ingreso.Text = "Ingreso Datos";
-			// 
-			// lbl_fila
-			// 
-			this.lbl_fila.AutoSize = true;
-			this.lbl_fila.Location = new System.Drawing.Point(293, 20);
-			this.lbl_fila.Name = "lbl_fila";
-			this.lbl_fila.Size = new System.Drawing.Size(35, 13);
-			this.lbl_fila.TabIndex = 17;
-			this.lbl_fila.Text = "label7";
-			this.lbl_fila.Visible = false;
-			// 
-			// btn_ocultar
-			// 
-			this.btn_ocultar.Location = new System.Drawing.Point(9, 231);
-			this.btn_ocultar.Name = "btn_ocultar";
-			this.btn_ocultar.Size = new System.Drawing.Size(75, 23);
-			this.btn_ocultar.TabIndex = 16;
-			this.btn_ocultar.Text = "Ocultar";
-			this.btn_ocultar.UseVisualStyleBackColor = true;
-			// 
-			// dgvAyuda
-			// 
-			this.dgvAyuda.AllowUserToAddRows = false;
-			this.dgvAyuda.AllowUserToDeleteRows = false;
-			this.dgvAyuda.AllowUserToResizeColumns = false;
-			this.dgvAyuda.AllowUserToResizeRows = false;
-			this.dgvAyuda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvAyuda.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.N_PeliculaAyuda,
-            this.n_documentoAyuda});
-			this.dgvAyuda.Location = new System.Drawing.Point(9, 59);
-			this.dgvAyuda.Name = "dgvAyuda";
-			this.dgvAyuda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvAyuda.Size = new System.Drawing.Size(338, 170);
-			this.dgvAyuda.TabIndex = 15;
-			// 
-			// Id
-			// 
-			this.Id.DataPropertyName = "Id";
-			this.Id.HeaderText = "Id";
-			this.Id.Name = "Id";
-			this.Id.ReadOnly = true;
-			this.Id.Visible = false;
-			// 
-			// N_PeliculaAyuda
-			// 
-			this.N_PeliculaAyuda.DataPropertyName = "n_dosimetro";
-			this.N_PeliculaAyuda.HeaderText = "N° Pelicula";
-			this.N_PeliculaAyuda.Name = "N_PeliculaAyuda";
-			this.N_PeliculaAyuda.ReadOnly = true;
-			// 
-			// n_documentoAyuda
-			// 
-			this.n_documentoAyuda.DataPropertyName = "N_documento";
-			this.n_documentoAyuda.HeaderText = "N° Documento";
-			this.n_documentoAyuda.Name = "n_documentoAyuda";
-			this.n_documentoAyuda.ReadOnly = true;
-			// 
-			// btn_BuscarDosimetro
-			// 
-			this.btn_BuscarDosimetro.Location = new System.Drawing.Point(211, 21);
-			this.btn_BuscarDosimetro.Name = "btn_BuscarDosimetro";
-			this.btn_BuscarDosimetro.Size = new System.Drawing.Size(75, 23);
-			this.btn_BuscarDosimetro.TabIndex = 14;
-			this.btn_BuscarDosimetro.Text = "Buscar";
-			this.btn_BuscarDosimetro.UseVisualStyleBackColor = true;
-			// 
-			// txt_NDocumento
-			// 
-			this.txt_NDocumento.Location = new System.Drawing.Point(90, 21);
-			this.txt_NDocumento.Name = "txt_NDocumento";
-			this.txt_NDocumento.Size = new System.Drawing.Size(100, 20);
-			this.txt_NDocumento.TabIndex = 13;
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(6, 29);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(77, 13);
-			this.label6.TabIndex = 12;
-			this.label6.Text = "N° Documento";
 			// 
 			// pnl_Progreso
 			// 
@@ -631,7 +520,7 @@
             this.N_Cliente,
             this.NDocumento,
             this.N_Pelicula,
-            this.Rut,
+            this.colRut,
             this.Paterno,
             this.Maternos,
             this.Nombres,
@@ -647,6 +536,45 @@
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
 			this.grdDatos.Size = new System.Drawing.Size(1158, 315);
 			this.grdDatos.TabIndex = 8;
+			this.grdDatos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellDoubleClick);
+			// 
+			// tableLayoutPanel2
+			// 
+			this.tableLayoutPanel2.ColumnCount = 3;
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.39394F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.60606F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 337F));
+			this.tableLayoutPanel2.Controls.Add(this.cbx_NDocumento, 1, 0);
+			this.tableLayoutPanel2.Controls.Add(this.btn_Agregar, 2, 0);
+			this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
+			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+			this.tableLayoutPanel2.RowCount = 1;
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(664, 32);
+			this.tableLayoutPanel2.TabIndex = 8;
+			// 
+			// cbx_NDocumento
+			// 
+			this.cbx_NDocumento.DisplayMember = "NDoc";
+			this.cbx_NDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_NDocumento.FormattingEnabled = true;
+			this.cbx_NDocumento.Location = new System.Drawing.Point(131, 3);
+			this.cbx_NDocumento.Name = "cbx_NDocumento";
+			this.cbx_NDocumento.Size = new System.Drawing.Size(170, 21);
+			this.cbx_NDocumento.TabIndex = 50;
+			this.cbx_NDocumento.ValueMember = "N_Documento";
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(3, 0);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(109, 13);
+			this.label5.TabIndex = 8;
+			this.label5.Text = "Buscar n° documento";
+			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// Id_Personal
 			// 
@@ -662,6 +590,7 @@
 			this.id_dosimetro.DataPropertyName = "id_dosimetro";
 			this.id_dosimetro.HeaderText = "Id_dosimetro";
 			this.id_dosimetro.Name = "id_dosimetro";
+			this.id_dosimetro.ReadOnly = true;
 			this.id_dosimetro.Visible = false;
 			this.id_dosimetro.Width = 92;
 			// 
@@ -670,6 +599,7 @@
 			this.N_Cliente.DataPropertyName = "Id_Cliente";
 			this.N_Cliente.HeaderText = "N° Cliente";
 			this.N_Cliente.Name = "N_Cliente";
+			this.N_Cliente.ReadOnly = true;
 			this.N_Cliente.Resizable = System.Windows.Forms.DataGridViewTriState.True;
 			this.N_Cliente.Width = 79;
 			// 
@@ -678,6 +608,7 @@
 			this.NDocumento.DataPropertyName = "N_Documento";
 			this.NDocumento.HeaderText = "N° Documento";
 			this.NDocumento.Name = "NDocumento";
+			this.NDocumento.ReadOnly = true;
 			this.NDocumento.Resizable = System.Windows.Forms.DataGridViewTriState.True;
 			this.NDocumento.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
 			this.NDocumento.Width = 102;
@@ -693,14 +624,14 @@
 			this.N_Pelicula.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
 			this.N_Pelicula.Width = 84;
 			// 
-			// Rut
+			// colRut
 			// 
-			this.Rut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-			this.Rut.DataPropertyName = "Rut";
-			this.Rut.HeaderText = "Rut";
-			this.Rut.Name = "Rut";
-			this.Rut.ReadOnly = true;
-			this.Rut.Width = 49;
+			this.colRut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.colRut.DataPropertyName = "Rut";
+			this.colRut.HeaderText = "Rut";
+			this.colRut.Name = "colRut";
+			this.colRut.ReadOnly = true;
+			this.colRut.Width = 49;
 			// 
 			// Paterno
 			// 
@@ -754,9 +685,9 @@
 			// valor
 			// 
 			this.valor.DataPropertyName = "dosis";
-			dataGridViewCellStyle9.Format = "N2";
-			dataGridViewCellStyle9.NullValue = "0";
-			this.valor.DefaultCellStyle = dataGridViewCellStyle9;
+			dataGridViewCellStyle3.Format = "N2";
+			dataGridViewCellStyle3.NullValue = "0";
+			this.valor.DefaultCellStyle = dataGridViewCellStyle3;
 			this.valor.HeaderText = "Valor Ingresar";
 			this.valor.Name = "valor";
 			this.valor.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -768,44 +699,6 @@
 			this.Estado.DataPropertyName = "estadodosis";
 			this.Estado.HeaderText = "Estado Controlado";
 			this.Estado.Name = "Estado";
-			// 
-			// tableLayoutPanel2
-			// 
-			this.tableLayoutPanel2.ColumnCount = 3;
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.39394F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.60606F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 335F));
-			this.tableLayoutPanel2.Controls.Add(this.cbx_NDocumento, 1, 0);
-			this.tableLayoutPanel2.Controls.Add(this.btn_Agregar, 2, 0);
-			this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
-			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-			this.tableLayoutPanel2.RowCount = 1;
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(664, 32);
-			this.tableLayoutPanel2.TabIndex = 8;
-			// 
-			// cbx_NDocumento
-			// 
-			this.cbx_NDocumento.DisplayMember = "NDoc";
-			this.cbx_NDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_NDocumento.FormattingEnabled = true;
-			this.cbx_NDocumento.Location = new System.Drawing.Point(132, 3);
-			this.cbx_NDocumento.Name = "cbx_NDocumento";
-			this.cbx_NDocumento.Size = new System.Drawing.Size(170, 21);
-			this.cbx_NDocumento.TabIndex = 50;
-			this.cbx_NDocumento.ValueMember = "N_Documento";
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(3, 0);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(109, 13);
-			this.label5.TabIndex = 8;
-			this.label5.Text = "Buscar n° documento";
-			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// frmIngresoDosimetriaDos
 			// 
@@ -831,9 +724,6 @@
 			this.grp_Detalle.ResumeLayout(false);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
-			this.grp_ingreso.ResumeLayout(false);
-			this.grp_ingreso.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dgvAyuda)).EndInit();
 			this.pnl_Progreso.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).EndInit();
 			this.tableLayoutPanel2.ResumeLayout(false);
@@ -884,25 +774,18 @@
 		private System.Windows.Forms.GroupBox grp_Detalle;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 		private System.Windows.Forms.GroupBox groupBox2;
-		private System.Windows.Forms.GroupBox grp_ingreso;
-		private System.Windows.Forms.Label lbl_fila;
-		private System.Windows.Forms.Button btn_ocultar;
-		private System.Windows.Forms.DataGridView dgvAyuda;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-		private System.Windows.Forms.DataGridViewTextBoxColumn N_PeliculaAyuda;
-		private System.Windows.Forms.DataGridViewTextBoxColumn n_documentoAyuda;
-		private System.Windows.Forms.Button btn_BuscarDosimetro;
-		private System.Windows.Forms.TextBox txt_NDocumento;
-		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.GroupBox pnl_Progreso;
 		private System.Windows.Forms.ProgressBar pgb_Barra;
 		private System.Windows.Forms.DataGridView grdDatos;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+		private System.Windows.Forms.ComboBox cbx_NDocumento;
+		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Id_Personal;
 		private System.Windows.Forms.DataGridViewTextBoxColumn id_dosimetro;
 		private System.Windows.Forms.DataGridViewTextBoxColumn N_Cliente;
 		private GridExtension.IntegerGridColumn NDocumento;
 		private GridExtension.IntegerGridColumn N_Pelicula;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Rut;
+		private System.Windows.Forms.DataGridViewTextBoxColumn colRut;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Paterno;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Maternos;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
@@ -910,8 +793,5 @@
 		private System.Windows.Forms.DataGridViewCheckBoxColumn condosis;
 		private GridExtension.RealGridColumn valor;
 		private System.Windows.Forms.DataGridViewComboBoxColumn Estado;
-		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-		private System.Windows.Forms.ComboBox cbx_NDocumento;
-		private System.Windows.Forms.Label label5;
 	}
 }

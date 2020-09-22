@@ -168,6 +168,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Busqueda\frmAyudaPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Busqueda\frmAyudaPersonal.Designer.cs">
+      <DependentUpon>frmAyudaPersonal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Clases\classEvento.cs" />
     <Compile Include="Clases\classFuncionesGenerales.cs" />
     <Compile Include="Clases\classFuncionesBD.cs" />
@@ -552,6 +558,9 @@
     <Compile Include="PtUtil.cs" />
     <Compile Include="ReplaceBookmarkText.cs" />
     <Compile Include="RevisionAccepter.cs" />
+    <EmbeddedResource Include="Busqueda\frmAyudaPersonal.resx">
+      <DependentUpon>frmAyudaPersonal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>

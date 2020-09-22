@@ -53,7 +53,6 @@ namespace ControlDosimetro
 			Cargar_Anno();
 			btn_LimpiarFiltro(null, null);
 			pnl_Progreso.Visible = false;
-			grp_ingreso.Visible = false;
 
 		}
 
@@ -174,7 +173,6 @@ namespace ControlDosimetro
 		private void AsignarEvento()
 		{
 			clsEvt.AsignarNumero(ref txt_id_cliente);
-			clsEvt.AsignarNumero(ref txt_NDocumento);
 		}
 
 		#endregion
@@ -467,11 +465,10 @@ namespace ControlDosimetro
 		{
 			if (e.ColumnIndex != -1)
 			{
-				if ((grdDatos.Columns[e.ColumnIndex].Name == "NDocumento") || (grdDatos.Columns[e.ColumnIndex].Name == "N_Pelicula"))
+				if (grdDatos.Columns[e.ColumnIndex].Name == colRut.Name) 
 				{
-					lbl_fila.Text = Convert.ToString(e.RowIndex);
-					CargarAyuda();
-					grp_ingreso.Visible = true;
+					frmAyudaPersonal frm = new frmAyudaPersonal(Convert.ToInt64( txt_id_cliente.Text));
+					frm.ShowDialog();
 				}
 			}
 		}
@@ -480,8 +477,8 @@ namespace ControlDosimetro
 
 		private void btn_ocultar_Click(object sender, EventArgs e)
 		{
-			grp_ingreso.Visible = false;
-			grdDatos.Focus();
+			//grp_ingreso.Visible = false;
+			//grdDatos.Focus();
 		}
 
 		private void btn_BuscarDosimetro_Click(object sender, EventArgs e)
@@ -492,71 +489,71 @@ namespace ControlDosimetro
 		private void dgvAyuda_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
 		{
 			//numero de documento
-			grdDatos.Rows[Convert.ToInt32(lbl_fila.Text)].Cells[0].Value = dgvAyuda.Rows[e.RowIndex].Cells[1].Value;
-			//numero de pelicula
-			grdDatos.Rows[Convert.ToInt32(lbl_fila.Text)].Cells[1].Value = dgvAyuda.Rows[e.RowIndex].Cells[2].Value;
-			grdDatos.Rows[Convert.ToInt32(lbl_fila.Text)].Cells[11].Value = 5;
-			grdDatos.Rows[Convert.ToInt32(lbl_fila.Text)].Cells[8].Value = 1;
-			grp_ingreso.Visible = false;
-			grdDatos.Focus();
+			//grdDatos.Rows[Convert.ToInt32(lbl_fila.Text)].Cells[0].Value = dgvAyuda.Rows[e.RowIndex].Cells[1].Value;
+			////numero de pelicula
+			//grdDatos.Rows[Convert.ToInt32(lbl_fila.Text)].Cells[1].Value = dgvAyuda.Rows[e.RowIndex].Cells[2].Value;
+			//grdDatos.Rows[Convert.ToInt32(lbl_fila.Text)].Cells[11].Value = 5;
+			//grdDatos.Rows[Convert.ToInt32(lbl_fila.Text)].Cells[8].Value = 1;
+			//grp_ingreso.Visible = false;
+			//grdDatos.Focus();
 		}
 
 		void CargarAyuda()
 		{
-			SqlCommand cmd = new SqlCommand();
+			//SqlCommand cmd = new SqlCommand();
 
 
 
-			Int64 intNDocumento;
+			//Int64 intNDocumento;
 
-			if (txt_NDocumento.Text == "")
-				intNDocumento = 0;
-			else
-				intNDocumento = Convert.ToInt64(txt_NDocumento.Text);
-
-
-			cmd.CommandText = "pa_AyudaDosimetro_sel " + txt_id_cliente.Text + "," + cbx_id_periodo.SelectedValue + ",12," + intNDocumento.ToString();
-			cmd.CommandType = CommandType.Text;
-
-			dtayuda = Conectar.Listar(Clases.clsBD.BD, cmd);
-			//  string expression;
-			string strn_pelicula;
-			strn_pelicula = "";
-			//    expression = "";
-			DataGridViewTextBoxCell txtNPelicula;
-			DataView view = new DataView(dtayuda.Tables[0]);
-			for (int i = 0; i <= grdDatos.RowCount - 1; i++)
-			{
-
-				txtNPelicula = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["N_Pelicula"];
-				if (txtNPelicula.Value.ToString() != "")
-				{
-					if (strn_pelicula != "")
-					{
-						strn_pelicula = strn_pelicula + "," + txtNPelicula.Value.ToString();
-					}
-					else
-						strn_pelicula = txtNPelicula.Value.ToString();
+			//if (txt_NDocumento.Text == "")
+			//	intNDocumento = 0;
+			//else
+			//	intNDocumento = Convert.ToInt64(txt_NDocumento.Text);
 
 
-					//   view.RowFilter = "n_dosimetro <> " + txtNPelicula.Value.ToString(); // MyValue here is a column name
+			//cmd.CommandText = "pa_AyudaDosimetro_sel " + txt_id_cliente.Text + "," + cbx_id_periodo.SelectedValue + ",12," + intNDocumento.ToString();
+			//cmd.CommandType = CommandType.Text;
 
-					// Delete these rows.
-					//foreach (DataRowView row in view)
-					//{
-					//    row.Delete();
-					//}
-					//dtayuda.Tables[0].Select("n_dosimetro  in (" + strn_pelicula.ToString() + ")").D;
-				}
-			}
-			if (strn_pelicula != "")
-			{
-				view.RowFilter = "n_dosimetro not in (" + strn_pelicula.ToString() + ")";
+			//dtayuda = Conectar.Listar(Clases.clsBD.BD, cmd);
+			////  string expression;
+			//string strn_pelicula;
+			//strn_pelicula = "";
+			////    expression = "";
+			//DataGridViewTextBoxCell txtNPelicula;
+			//DataView view = new DataView(dtayuda.Tables[0]);
+			//for (int i = 0; i <= grdDatos.RowCount - 1; i++)
+			//{
 
-				dgvAyuda.DataSource = view; // dtayuda.Tables[0];
-			}
-			else
-				dgvAyuda.DataSource = dtayuda.Tables[0];
+			//	txtNPelicula = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["N_Pelicula"];
+			//	if (txtNPelicula.Value.ToString() != "")
+			//	{
+			//		if (strn_pelicula != "")
+			//		{
+			//			strn_pelicula = strn_pelicula + "," + txtNPelicula.Value.ToString();
+			//		}
+			//		else
+			//			strn_pelicula = txtNPelicula.Value.ToString();
+
+
+			//		//   view.RowFilter = "n_dosimetro <> " + txtNPelicula.Value.ToString(); // MyValue here is a column name
+
+			//		// Delete these rows.
+			//		//foreach (DataRowView row in view)
+			//		//{
+			//		//    row.Delete();
+			//		//}
+			//		//dtayuda.Tables[0].Select("n_dosimetro  in (" + strn_pelicula.ToString() + ")").D;
+			//	}
+			//}
+			//if (strn_pelicula != "")
+			//{
+			//	view.RowFilter = "n_dosimetro not in (" + strn_pelicula.ToString() + ")";
+
+			//	dgvAyuda.DataSource = view; // dtayuda.Tables[0];
+			//}
+			//else
+			//	dgvAyuda.DataSource = dtayuda.Tables[0];
 
 
 		}
