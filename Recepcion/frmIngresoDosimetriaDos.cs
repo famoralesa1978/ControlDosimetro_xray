@@ -469,6 +469,9 @@ namespace ControlDosimetro
 				{
 					frmAyudaPersonal frm = new frmAyudaPersonal(Convert.ToInt64( txt_id_cliente.Text));
 					frm.ShowDialog();
+
+//					Clases.ClassPersonal clsPersonal= frm.clsPersonal;
+
 				}
 			}
 		}

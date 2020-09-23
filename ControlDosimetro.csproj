@@ -179,6 +179,7 @@
     <Compile Include="Clases\classFuncionesBD.cs" />
     <Compile Include="Clases\classBD.cs" />
     <Compile Include="Clases\ClassFormReporte.cs" />
+    <Compile Include="Clases\classPersonal.cs" />
     <Compile Include="Clases\classUsuario.cs" />
     <Compile Include="DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>

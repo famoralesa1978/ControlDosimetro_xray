@@ -26,6 +26,20 @@ namespace Clases
 			textbox.MaxLength = 9;
 		}
 
-    }
+		public void AsignarRut(ref TextBox textbox)
+		{
+			textbox.MaxLength = 10;
+
+			textbox.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
+			textbox.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
+			textbox.Validated += new EventHandler(ClaseEvento.validarut_Validated);
+		}
+
+		public void AsignarKeyPress(ref TextBox textbox)
+		{
+			textbox.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+		}
+
+	}
 
 }
