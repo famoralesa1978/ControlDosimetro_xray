@@ -83,6 +83,12 @@ namespace ControlDosimetro
 				txt_RazonSocial.ReadOnly = true;
 				Listar_Personal();
 			}
+
+			Clases.ClsPersonal.Id_Personal = 0;
+			Clases.ClsPersonal.Materno = "";
+			Clases.ClsPersonal.Nombres = "";
+			Clases.ClsPersonal.Paterno ="";
+			Clases.ClsPersonal.Rut = "";
 		}
 
 		private void Listar_Personal()
@@ -172,20 +178,25 @@ namespace ControlDosimetro
 
 		#region "grilla"
 
-		private void grdDatos_DoubleClick(object sender, EventArgs e)
+		private void grdDatos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
 		{
-			Clases.ClsPersonal.Id_Personal = 1;
-			Clases.ClsPersonal.Materno = "";
-			Clases.ClsPersonal.Nombres = "";
-			Clases.ClsPersonal.Paterno= "";
-			Clases.ClsPersonal.Rut = "";
+			if (e.RowIndex > -1)
+			{
+				Clases.ClsPersonal.Id_Personal = (int)grdDatos.Rows[e.RowIndex].Cells[0].Value;
+				Clases.ClsPersonal.Materno = grdDatos.Rows[e.RowIndex].Cells[4].Value.ToString();
+				Clases.ClsPersonal.Nombres = grdDatos.Rows[e.RowIndex].Cells[2].Value.ToString();
+				Clases.ClsPersonal.Paterno = grdDatos.Rows[e.RowIndex].Cells[3].Value.ToString();
+				Clases.ClsPersonal.Rut = grdDatos.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+				DialogResult = System.Windows.Forms.DialogResult.OK;
+			}
 		}
+
 
 		#endregion
 
 		#region Barra
 
 		#endregion
-
 	}
 }

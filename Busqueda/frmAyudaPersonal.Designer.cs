@@ -192,7 +192,7 @@
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.grdDatos.Size = new System.Drawing.Size(836, 335);
 			this.grdDatos.TabIndex = 5;
-			this.grdDatos.DoubleClick += new System.EventHandler(this.grdDatos_DoubleClick);
+			this.grdDatos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellDoubleClick);
 			// 
 			// Id_Personal
 			// 
