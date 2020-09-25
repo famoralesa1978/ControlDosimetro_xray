@@ -28,12 +28,14 @@ namespace ControlDosimetro
 		classFuncionesBD.ClsFunciones func = new ClsFunciones();
 		DataSet dtayuda;
 		int intContar = 0;
+		bool bolDesdeinicio;
+
 		#endregion
 
 		public frmIngresoDosimetriaDos(Int64 intId_Cliente)
 		{
 			InitializeComponent();
-
+			bolDesdeinicio = true;
 			SqlCommand cmdcombo = new SqlCommand();
 			//	SqlCommand cmdcombo = new SqlCommand();
 			DataSet dtcombo;
@@ -51,9 +53,10 @@ namespace ControlDosimetro
 
 			AsignarEvento();
 			Cargar_Anno();
+			grdDatos.AutoGenerateColumns = false;
 			btn_LimpiarFiltro(null, null);
 			pnl_Progreso.Visible = false;
-
+			bolDesdeinicio = false;
 		}
 
 		#region "Llamada de carga"
@@ -198,8 +201,13 @@ namespace ControlDosimetro
 
 		private void btn_cargar_Click(object sender, EventArgs e)
 		{
-			if (txt_id_cliente.Text !="-1")
-				Cargar_Datos();
+			if (bolDesdeinicio == false)
+			{
+				if ((txt_id_cliente.Text != "-1") && (!String.IsNullOrEmpty(txt_id_cliente.Text)))
+					Cargar_Datos();
+				else
+					MessageBox.Show(ControlDosimetro.Properties.Resources.msgErrorFaltaCliente, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		private void btn_Guardar_Click(object sender, EventArgs e)
@@ -470,8 +478,11 @@ namespace ControlDosimetro
 					frmAyudaPersonal frm = new frmAyudaPersonal(Convert.ToInt64( txt_id_cliente.Text));
 					frm.ShowDialog();
 
-//					Clases.ClassPersonal clsPersonal= frm.clsPersonal;
-
+					grdDatos.Rows[e.RowIndex].Cells[0].Value= Clases.ClsPersonal.Id_Personal;
+					grdDatos.Rows[e.RowIndex].Cells[5].Value = Clases.ClsPersonal.Rut;
+					grdDatos.Rows[e.RowIndex].Cells[6].Value = Clases.ClsPersonal.Paterno;
+					grdDatos.Rows[e.RowIndex].Cells[7].Value = Clases.ClsPersonal.Materno;
+					grdDatos.Rows[e.RowIndex].Cells[8].Value = Clases.ClsPersonal.Nombres;
 				}
 			}
 		}

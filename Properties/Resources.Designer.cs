@@ -289,6 +289,15 @@ namespace ControlDosimetro.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Falta ingresar el número de  cliente.
+        /// </summary>
+        public static string msgErrorFaltaCliente {
+            get {
+                return ResourceManager.GetString("msgErrorFaltaCliente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a No existe información a cargar.
         /// </summary>
         public static string msgNoExisteError {

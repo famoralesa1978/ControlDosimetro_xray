@@ -214,4 +214,7 @@
   <data name="msgNoExisteError" xml:space="preserve">
     <value>No existe información a cargar</value>
   </data>
+  <data name="msgErrorFaltaCliente" xml:space="preserve">
+    <value>Falta ingresar el número de  cliente</value>
+  </data>
 </root>
