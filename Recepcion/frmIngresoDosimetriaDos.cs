@@ -574,7 +574,7 @@ namespace ControlDosimetro
 
 		private void grdDatos_KeyDown(object sender, KeyEventArgs e)
 		{
-			if ((grdDatos.CurrentCell.ColumnIndex == 0) || (grdDatos.CurrentCell.ColumnIndex == 1))
+			if(grdDatos.CurrentCell.RowIndex >= 0)
 			{
 				if (e.KeyCode == Keys.Delete)
 				{
@@ -590,6 +590,10 @@ namespace ControlDosimetro
 					grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[8].Value = "";
 				}
 			}
+			//if ((grdDatos.CurrentCell.ColumnIndex == 0) || (grdDatos.CurrentCell.ColumnIndex == 1))
+			//{
+				
+			//}
 		}
 
 		private void tsmEliminarPersonal_Click(object sender, EventArgs e)
