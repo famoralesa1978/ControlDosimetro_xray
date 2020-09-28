@@ -584,7 +584,10 @@ namespace ControlDosimetro
 
 					grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[0].Value = 0;
 					//numero de pelicula
-					grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[1].Value = 0;
+					grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[5].Value = "";
+					grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[6].Value = "";
+					grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[7].Value = "";
+					grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[8].Value = "";
 				}
 			}
 		}

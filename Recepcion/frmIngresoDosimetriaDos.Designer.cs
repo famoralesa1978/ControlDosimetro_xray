@@ -246,7 +246,7 @@
 			// 
 			// btn_Agregar
 			// 
-			this.btn_Agregar.Location = new System.Drawing.Point(328, 3);
+			this.btn_Agregar.Location = new System.Drawing.Point(326, 3);
 			this.btn_Agregar.Name = "btn_Agregar";
 			this.btn_Agregar.Size = new System.Drawing.Size(106, 23);
 			this.btn_Agregar.TabIndex = 7;
@@ -537,6 +537,9 @@
 			this.grdDatos.Size = new System.Drawing.Size(1158, 315);
 			this.grdDatos.TabIndex = 8;
 			this.grdDatos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellDoubleClick);
+			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
+			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
+			this.grdDatos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdDatos_KeyDown);
 			// 
 			// Id_Personal
 			// 
@@ -667,7 +670,7 @@
 			this.tableLayoutPanel2.ColumnCount = 3;
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.39394F));
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.60606F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 338F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 340F));
 			this.tableLayoutPanel2.Controls.Add(this.cbx_NDocumento, 1, 0);
 			this.tableLayoutPanel2.Controls.Add(this.btn_Agregar, 2, 0);
 			this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
@@ -684,7 +687,7 @@
 			this.cbx_NDocumento.DisplayMember = "NDoc";
 			this.cbx_NDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_NDocumento.FormattingEnabled = true;
-			this.cbx_NDocumento.Location = new System.Drawing.Point(131, 3);
+			this.cbx_NDocumento.Location = new System.Drawing.Point(130, 3);
 			this.cbx_NDocumento.Name = "cbx_NDocumento";
 			this.cbx_NDocumento.Size = new System.Drawing.Size(170, 21);
 			this.cbx_NDocumento.TabIndex = 50;
