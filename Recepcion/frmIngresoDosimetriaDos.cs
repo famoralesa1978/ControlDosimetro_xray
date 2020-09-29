@@ -27,6 +27,7 @@ namespace ControlDosimetro
 		ClsFunciones clsFunc = new ClsFunciones();
 		classFuncionesBD.ClsFunciones func = new ClsFunciones();
 		DataSet dtayuda;
+		DataTable dtGrilla;
 		int intContar = 0;
 		bool bolDesdeinicio;
 
@@ -88,8 +89,9 @@ namespace ControlDosimetro
 				cbx_anno.Enabled = false;
 				cbx_id_periodo.Enabled = false;
 				txt_id_cliente.Enabled = false;
+				dtGrilla=dtcombo.Tables[1];
 				cbx_NDocumento.DataSource = dtcombo.Tables[0];
-				grdDatos.DataSource = dtcombo.Tables[1];
+				
 			}
 
 			Cursor = Cursors.Default;
@@ -206,6 +208,7 @@ namespace ControlDosimetro
 				if ((txt_id_cliente.Text != "-1") && (!String.IsNullOrEmpty(txt_id_cliente.Text)))
 					Cargar_Datos();
 				else
+					if(String.IsNullOrEmpty(txt_id_cliente.Text))
 					MessageBox.Show(ControlDosimetro.Properties.Resources.msgErrorFaltaCliente, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
@@ -334,6 +337,7 @@ namespace ControlDosimetro
 			btn_cargar_Click(null,null);
 			txt_id_cliente.Clear();
 			txt_id_cliente.Focus();
+			grdDatos.DataSource=null;
 			grp_Detalle.Enabled = false;
 			btn_Guardar.Enabled = false;
 			btn_cargar.Enabled = true;
@@ -355,6 +359,11 @@ namespace ControlDosimetro
 			grdDatos.DataSource = bs;
 		}
 
+		private void btn_BuscarDosimetro_Click(object sender, EventArgs e)
+		{
+			CargarAyuda();
+		}
+
 		void verificar_Grabado()
 		{
 
@@ -372,9 +381,44 @@ namespace ControlDosimetro
 			Cargar_Periodo();
 		}
 
+		private void cbx_NDocumento_SelectedValueChanged(object sender, EventArgs e)
+		{
+			if (!bolDesdeinicio)
+			{
+				DataView dv = dtGrilla.DefaultView;
+				dv.RowFilter = (int)cbx_NDocumento.SelectedValue == 0 ? "" : "n_documento=" + (int)cbx_NDocumento.SelectedValue;
+				grdDatos.DataSource = dv;
+			}
+
+		}
+
 		#endregion
 
 		#region "grilla"
+
+		private void grdDatos_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (grdDatos.CurrentCell.RowIndex >= 0)
+			{
+				if (e.KeyCode == Keys.Delete)
+				{
+					string strMensaje = "";
+					int intResul = clsFunc.CambiarEstado(grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[0].Value.ToString(),
+										 grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[1].Value.ToString(), ref strMensaje);
+
+					grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[0].Value = 0;
+					//numero de pelicula
+					grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[5].Value = "";
+					grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[6].Value = "";
+					grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[7].Value = "";
+					grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[8].Value = "";
+				}
+			}
+			//if ((grdDatos.CurrentCell.ColumnIndex == 0) || (grdDatos.CurrentCell.ColumnIndex == 1))
+			//{
+
+			//}
+		}
 
 		private void grdDatos_CurrentCellDirtyStateChanged(object sender, EventArgs e)
 		{
@@ -489,16 +533,37 @@ namespace ControlDosimetro
 
 		#endregion
 
-		private void btn_ocultar_Click(object sender, EventArgs e)
+		#region "Barra"
+
+		private void tsmEliminarPersonal_Click(object sender, EventArgs e)
 		{
-			//grp_ingreso.Visible = false;
-			//grdDatos.Focus();
+			SqlCommand cmd = new SqlCommand();
+			DataSet ds;
+
+			cmd.CommandText = "pa_Personal_del " + grdDatos.SelectedCells[1].Value + "," + grdDatos.SelectedCells[0].Value;// + ",'" + Clases.clsUsuario.Usuario + "'";
+			cmd = new SqlCommand();
+			//        cmd.CommandText = "pa_Dosimetro_del " + grdDatos.Rows[intfila].Cells[0].Value.ToString() + ",'" + Clases.clsUsuario.Usuario + "'";
+			cmd.CommandType = CommandType.Text;
+
+
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+
+			Listar_Personal();
 		}
 
-		private void btn_BuscarDosimetro_Click(object sender, EventArgs e)
+		private void tsmModificarPersonal_Click(object sender, EventArgs e)
 		{
-			CargarAyuda();
+			verificar_Grabado();
+			string strn_cliente;
+			string strid_personal;
+			strn_cliente = grdDatos.Rows[Convert.ToInt16(grdDatos.CurrentRow.Index)].Cells["N_Cliente"].Value.ToString();
+			strid_personal = grdDatos.Rows[Convert.ToInt16(grdDatos.CurrentRow.Index)].Cells["id_personal"].Value.ToString();
+			frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(strn_cliente), Convert.ToInt64(strid_personal));
+			frm.ShowDialog(this);
+			Listar_Personal();
 		}
+
 
 		private void dgvAyuda_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
 		{
@@ -511,6 +576,9 @@ namespace ControlDosimetro
 			//grp_ingreso.Visible = false;
 			//grdDatos.Focus();
 		}
+
+
+		#endregion
 
 		void CargarAyuda()
 		{
@@ -572,70 +640,7 @@ namespace ControlDosimetro
 
 		}
 
-		private void grdDatos_KeyDown(object sender, KeyEventArgs e)
-		{
-			if(grdDatos.CurrentCell.RowIndex >= 0)
-			{
-				if (e.KeyCode == Keys.Delete)
-				{
-					string strMensaje = "";
-					int intResul = clsFunc.CambiarEstado(grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[0].Value.ToString(),
-										 grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[1].Value.ToString(), ref strMensaje);
 
-					grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[0].Value = 0;
-					//numero de pelicula
-					grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[5].Value = "";
-					grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[6].Value = "";
-					grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[7].Value = "";
-					grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[8].Value = "";
-				}
-			}
-			//if ((grdDatos.CurrentCell.ColumnIndex == 0) || (grdDatos.CurrentCell.ColumnIndex == 1))
-			//{
-				
-			//}
-		}
-
-		private void tsmEliminarPersonal_Click(object sender, EventArgs e)
-		{
-			SqlCommand cmd = new SqlCommand();
-			DataSet ds;
-
-
-			//for (int intfila = 0; intfila <= grdDatos.RowCount - 1; intfila++)
-			//{
-			//    if (grdDatos.Rows[intfila].Selected == true)
-			//    {
-			cmd.CommandText = "pa_Personal_del " + grdDatos.SelectedCells[1].Value + "," + grdDatos.SelectedCells[0].Value;// + ",'" + Clases.clsUsuario.Usuario + "'";
-			cmd = new SqlCommand();
-			//        cmd.CommandText = "pa_Dosimetro_del " + grdDatos.Rows[intfila].Cells[0].Value.ToString() + ",'" + Clases.clsUsuario.Usuario + "'";
-			cmd.CommandType = CommandType.Text;
-
-
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
-			//    }
-			//}
-
-
-			////if (ds.Tables[0].Rows.Count > 0)
-			////{
-			////    MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
-			////}
-
-			Listar_Personal();
-		}
-
-		private void tsmModificarPersonal_Click(object sender, EventArgs e)
-		{
-			verificar_Grabado();
-			string strn_cliente;
-			string strid_personal;
-			strn_cliente = grdDatos.Rows[Convert.ToInt16(grdDatos.CurrentRow.Index)].Cells["N_Cliente"].Value.ToString();
-			strid_personal = grdDatos.Rows[Convert.ToInt16(grdDatos.CurrentRow.Index)].Cells["id_personal"].Value.ToString();
-			frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(strn_cliente), Convert.ToInt64(strid_personal));
-			frm.ShowDialog(this);
-			Listar_Personal();
-		}
-
+	
 	}
 }

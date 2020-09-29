@@ -246,7 +246,7 @@
 			// 
 			// btn_Agregar
 			// 
-			this.btn_Agregar.Location = new System.Drawing.Point(326, 3);
+			this.btn_Agregar.Location = new System.Drawing.Point(325, 3);
 			this.btn_Agregar.Name = "btn_Agregar";
 			this.btn_Agregar.Size = new System.Drawing.Size(106, 23);
 			this.btn_Agregar.TabIndex = 7;
@@ -670,7 +670,7 @@
 			this.tableLayoutPanel2.ColumnCount = 3;
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.39394F));
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.60606F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 340F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 341F));
 			this.tableLayoutPanel2.Controls.Add(this.cbx_NDocumento, 1, 0);
 			this.tableLayoutPanel2.Controls.Add(this.btn_Agregar, 2, 0);
 			this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
@@ -692,6 +692,7 @@
 			this.cbx_NDocumento.Size = new System.Drawing.Size(170, 21);
 			this.cbx_NDocumento.TabIndex = 50;
 			this.cbx_NDocumento.ValueMember = "N_Documento";
+			this.cbx_NDocumento.SelectedValueChanged += new System.EventHandler(this.cbx_NDocumento_SelectedValueChanged);
 			// 
 			// label5
 			// 
