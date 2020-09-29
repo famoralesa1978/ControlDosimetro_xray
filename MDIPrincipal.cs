@@ -60,6 +60,8 @@ namespace ControlDosimetro
 			repDosimetria						=	501,
 			repEstadoDosimetro				=	502,
 			repCliente							=	503,
+			repConsultaTLD						=  505,
+
 
 			LinkVigDosimetrica				=	601,
 
@@ -83,7 +85,8 @@ namespace ControlDosimetro
 		public enum REPORTES
 		{
 			Cliente = 1,
-			Dosimetro = 2
+			Dosimetro = 2,
+			ListadoTLD
 		}
 
 
@@ -568,6 +571,9 @@ namespace ControlDosimetro
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
 					break;
+				case (int)MENU.repConsultaTLD:
+					CargarReporteListadoTLD();
+					break;
 				#endregion
 
 				#region "link 600"
@@ -934,6 +940,9 @@ namespace ControlDosimetro
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
 					break;
+				case (int)MENU.repConsultaTLD:
+					CargarReporteListadoTLD();
+					break;
 				#endregion
 
 				#region "link 600"
@@ -1063,9 +1072,30 @@ namespace ControlDosimetro
 					frm2.ShowInTaskbar = false;
 					frm2.Show();
 					break;
+				case (int)REPORTES.ListadoTLD:
+					CargarReporteListadoTLD();
+					
+					break;
 			}
 
 		}
+
+		static public void CargarReporteListadoTLD()
+		{
+			clsConectorSqlServer Conectar = new clsConectorSqlServer();
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "rtpListaIngresoTLD";
+			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
+			DataSet ds;
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+
+			frmreporte frm3 = new frmreporte(ds, null, 9);
+			frm3.ShowInTaskbar = false;
+			frm3.Show();
+		}
+
+
 
 
 		private void Timer1_Tick(object sender, EventArgs e)
