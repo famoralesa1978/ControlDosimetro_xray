@@ -360,7 +360,7 @@
 			this.tsbPrincipalCambioContraseña.Size = new System.Drawing.Size(36, 36);
 			this.tsbPrincipalCambioContraseña.Text = "Cambio contraseña";
 			this.tsbPrincipalCambioContraseña.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-			this.tsbPrincipalCambioContraseña.Click += new System.EventHandler(this.TsbPrincipalCambioContraseña_Click);
+			this.tsbPrincipalCambioContraseña.Click += new System.EventHandler(this.tsbPrincipal_Click);
 			// 
 			// tsbPrincipalCambioContraseñaCliente
 			// 
@@ -371,7 +371,7 @@
 			this.tsbPrincipalCambioContraseñaCliente.Size = new System.Drawing.Size(36, 36);
 			this.tsbPrincipalCambioContraseñaCliente.Text = "Restablecer";
 			this.tsbPrincipalCambioContraseñaCliente.ToolTipText = "Restablecer  contraseña cliente";
-			this.tsbPrincipalCambioContraseñaCliente.Click += new System.EventHandler(this.TsbPrincipalCambioContraseñaCliente_Click);
+			this.tsbPrincipalCambioContraseñaCliente.Click += new System.EventHandler(this.tsbPrincipal_Click);
 			// 
 			// tsbPrincipalCliente
 			// 

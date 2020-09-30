@@ -1156,11 +1156,13 @@ namespace ControlDosimetro
 		private void tsbPrincipal_Click(object sender, EventArgs e)
 		{
 			if (((ToolStripButton)sender).Text == "Cliente")
-				Cargamenu((int)MENU.MantUsuario);
+				Cargamenu((int)MENU.MantCliente);
 			if (((ToolStripButton)sender).Text == "Personal")
 				Cargamenu((int)MENU.MantPersonal);
-			//if (((ToolStripButton)sender).Text == "Restablecer")
-			//	Cargamenu((int)MENU.MantPersonal);
+			if (((ToolStripButton)sender).Text == "Cambio contraseña")
+				Cargamenu((int)MENU.Cambiarcontraseña);
+			if (((ToolStripButton)sender).Text == "Restablecer")
+				LlamarFormularioContrasenaCliente();;
 		}
 	}
 }
