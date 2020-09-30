@@ -361,7 +361,7 @@ namespace ControlDosimetro
 
 		private void btn_BuscarDosimetro_Click(object sender, EventArgs e)
 		{
-			CargarAyuda();
+			//CargarAyuda();
 		}
 
 		void verificar_Grabado()
@@ -579,68 +579,6 @@ namespace ControlDosimetro
 
 
 		#endregion
-
-		void CargarAyuda()
-		{
-			//SqlCommand cmd = new SqlCommand();
-
-
-
-			//Int64 intNDocumento;
-
-			//if (txt_NDocumento.Text == "")
-			//	intNDocumento = 0;
-			//else
-			//	intNDocumento = Convert.ToInt64(txt_NDocumento.Text);
-
-
-			//cmd.CommandText = "pa_AyudaDosimetro_sel " + txt_id_cliente.Text + "," + cbx_id_periodo.SelectedValue + ",12," + intNDocumento.ToString();
-			//cmd.CommandType = CommandType.Text;
-
-			//dtayuda = Conectar.Listar(Clases.clsBD.BD, cmd);
-			////  string expression;
-			//string strn_pelicula;
-			//strn_pelicula = "";
-			////    expression = "";
-			//DataGridViewTextBoxCell txtNPelicula;
-			//DataView view = new DataView(dtayuda.Tables[0]);
-			//for (int i = 0; i <= grdDatos.RowCount - 1; i++)
-			//{
-
-			//	txtNPelicula = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["N_Pelicula"];
-			//	if (txtNPelicula.Value.ToString() != "")
-			//	{
-			//		if (strn_pelicula != "")
-			//		{
-			//			strn_pelicula = strn_pelicula + "," + txtNPelicula.Value.ToString();
-			//		}
-			//		else
-			//			strn_pelicula = txtNPelicula.Value.ToString();
-
-
-			//		//   view.RowFilter = "n_dosimetro <> " + txtNPelicula.Value.ToString(); // MyValue here is a column name
-
-			//		// Delete these rows.
-			//		//foreach (DataRowView row in view)
-			//		//{
-			//		//    row.Delete();
-			//		//}
-			//		//dtayuda.Tables[0].Select("n_dosimetro  in (" + strn_pelicula.ToString() + ")").D;
-			//	}
-			//}
-			//if (strn_pelicula != "")
-			//{
-			//	view.RowFilter = "n_dosimetro not in (" + strn_pelicula.ToString() + ")";
-
-			//	dgvAyuda.DataSource = view; // dtayuda.Tables[0];
-			//}
-			//else
-			//	dgvAyuda.DataSource = dtayuda.Tables[0];
-
-
-		}
-
-
 	
 	}
 }
