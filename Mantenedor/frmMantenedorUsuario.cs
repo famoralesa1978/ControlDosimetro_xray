@@ -52,9 +52,9 @@ namespace ControlDosimetro
 
         #region "Inicio"
 
-    public frmMantenedorUsuario()
-    {
-      InitializeComponent();
+        public frmMantenedorUsuario()
+        {
+            InitializeComponent();
      
 		}
 
@@ -110,6 +110,14 @@ namespace ControlDosimetro
                 Cursor = Cursors.Default;
             }
         }
+
+        private void AsignarEvento() {
+
+            cbx_Id_estado.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+            cbx_Id_perfil.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+          
+        }
+
 
         private void CargarGrilla()
         {
@@ -256,11 +264,9 @@ namespace ControlDosimetro
 
         #region "RUT"
 
-        private void AsignarEvento()
+        private void AsignarRut()
         {
-            cbx_Id_estado.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-            cbx_Id_perfil.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-
+            
             SqlCommand cmd = new SqlCommand();
             //SqlCommand cmd = new SqlCommand();
             DataSet dt;
@@ -310,7 +316,7 @@ namespace ControlDosimetro
 
         private void txt_rut_Leave(object sender, EventArgs e)
         {
-            AsignarEvento();
+            AsignarRut();
         }
         #endregion
 
@@ -390,7 +396,7 @@ namespace ControlDosimetro
     private void BtnColBuscar_Click(object sender, EventArgs e)
     {
 			Cursor = Cursors.WaitCursor;
-      Filtro();
+            Filtro();
 			Cursor = Cursors.Default;
 		}
 

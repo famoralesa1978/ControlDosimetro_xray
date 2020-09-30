@@ -18,7 +18,7 @@
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <PublishUrl>F:\instalador\instaladorv4\</PublishUrl>
+    <PublishUrl>E:\Publicacion\XrayAplicacion\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -32,11 +32,11 @@
     <TargetCulture>es-CL</TargetCulture>
     <ProductName>X-Ray Dosimetro</ProductName>
     <SuiteName>Sistema Dosimetro</SuiteName>
-    <MinimumRequiredVersion>9.0.0.24</MinimumRequiredVersion>
+    <MinimumRequiredVersion>9.0.1.2</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>instalacion.html</WebPage>
-    <ApplicationRevision>24</ApplicationRevision>
-    <ApplicationVersion>9.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>9.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -168,10 +168,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Busqueda\frmAyudaPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Busqueda\frmAyudaPersonal.Designer.cs">
+      <DependentUpon>frmAyudaPersonal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\classEvento.cs" />
     <Compile Include="Clases\classFuncionesGenerales.cs" />
     <Compile Include="Clases\classFuncionesBD.cs" />
     <Compile Include="Clases\classBD.cs" />
     <Compile Include="Clases\ClassFormReporte.cs" />
+    <Compile Include="Clases\classPersonal.cs" />
     <Compile Include="Clases\classUsuario.cs" />
     <Compile Include="DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -202,6 +210,12 @@
     </Compile>
     <Compile Include="GenerarDcto\frmGenerarISP.Designer.cs">
       <DependentUpon>frmGenerarISP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Herramientas\frmCambioFecha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Herramientas\frmCambioFecha.Designer.cs">
+      <DependentUpon>frmCambioFecha.cs</DependentUpon>
     </Compile>
     <Compile Include="Herramientas\frmCambioSucursal.cs">
       <SubType>Form</SubType>
@@ -383,6 +397,12 @@
     <Compile Include="Recepcion\FrmInformeISP.Designer.cs">
       <DependentUpon>FrmInformeISP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Recepcion\frmIngresoDosimetriaDos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\frmIngresoDosimetriaDos.Designer.cs">
+      <DependentUpon>frmIngresoDosimetriaDos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Recepcion\frmOrdenTrabajoFechaRecepcion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -539,11 +559,17 @@
     <Compile Include="PtUtil.cs" />
     <Compile Include="ReplaceBookmarkText.cs" />
     <Compile Include="RevisionAccepter.cs" />
+    <EmbeddedResource Include="Busqueda\frmAyudaPersonal.resx">
+      <DependentUpon>frmAyudaPersonal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarDcto\frmGenerarISP.resx">
       <DependentUpon>frmGenerarISP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Herramientas\frmCambioFecha.resx">
+      <DependentUpon>frmCambioFecha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Herramientas\frmCambioSucursal.resx">
       <DependentUpon>frmCambioSucursal.cs</DependentUpon>
@@ -625,6 +651,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Recepcion\FrmInformeISP.resx">
       <DependentUpon>FrmInformeISP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepcion\frmIngresoDosimetriaDos.resx">
+      <DependentUpon>frmIngresoDosimetriaDos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Recepcion\frmOrdenTrabajoFechaRecepcion.resx">
       <DependentUpon>frmOrdenTrabajoFechaRecepcion.cs</DependentUpon>
@@ -727,6 +756,7 @@
     <EmbeddedResource Include="reporte\rptDosimetriaEnc__.rdlc" />
     <EmbeddedResource Include="reporte\rptDosimetriaEnc_ori.rdlc" />
     <EmbeddedResource Include="reporte\rptDosis.rdlc" />
+    <EmbeddedResource Include="reporte\rptListadoTLD.rdlc" />
     <EmbeddedResource Include="reporte\rptToes.rdlc" />
     <EmbeddedResource Include="reporte\rptEstadoDosimetro.rdlc" />
     <EmbeddedResource Include="reporte\rptOrdenTrabajo.rdlc" />

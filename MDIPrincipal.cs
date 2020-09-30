@@ -27,18 +27,43 @@ namespace ControlDosimetro
 
 		public enum MENU
 		{
+			MantConfiguracionParametro		=	101,
+			MantPerfil							=  102,
+			MantUsuario							=	103,
+			MantTipoDocumento					=	104,
+			MantCliente							=	106,
+			MantSucursal						=	107,
+			MantPersonal						=	108,
+
+			IngresoPel							=	201,
+			CorreccionDcto						=	202,
+			EnvioPelicula						=	203,
+			ProcSeparador1						=	204,
+			ProcEnviado							=  205,
+			ProcRecepcion						=	206,
+			ProcOrTrabTodas					=	208,
+			ProcOrTrabPorCliente				=	209,
+			ProcOrTrabPorFechaRecepcion	=	210,
+			ProcIngresarDosisCliente		=  213,
+			ProcIngresarDosisDos				=  214,
+
 			Ingreso_TLD							=	301, 
 			EnviadoTLD							=	302,
 			RecepcionTLD						=	303,
 			IniciarLectura						=	304,
 			IngresarDosisTLD					=	305,
 			DosisISPTLD							=	306,
+		
 
 			GenerarDctoISP						=	401,
 
 			repDosimetria						=	501,
 			repEstadoDosimetro				=	502,
 			repCliente							=	503,
+			repConsultaTLD						=  505,
+
+
+			LinkVigDosimetrica				=	601,
 
 			Herramientas						=	800,
 			ConfigurarCorreo					=	801,
@@ -49,6 +74,7 @@ namespace ControlDosimetro
 			AsociarDocumentoCliente			=	806,
 			LiberarDosimetro					=	807,
 			TraspasoPersonal					=	808,
+			CambioSucursal						=	809,
 
 			Ayuda									=	900,
 			AcercaDe								=	901,
@@ -59,7 +85,8 @@ namespace ControlDosimetro
 		public enum REPORTES
 		{
 			Cliente = 1,
-			Dosimetro = 2
+			Dosimetro = 2,
+			ListadoTLD
 		}
 
 
@@ -138,105 +165,10 @@ namespace ControlDosimetro
 
 		#endregion
 
-
-		#region "Menu Mantenedor"
-		private void MnuMantConfiguracionParametro_Click(object sender, EventArgs e)
-		{
-			frmParametro frm = new frmParametro();
-			Graba_log(frm.Text);
-			frm.ShowDialog(this);
-		}
-
-		private void MnuMantTipoDocumento_Click(object sender, EventArgs e)
-		{
-			frmMantenedorTipoDocumento frm = new frmMantenedorTipoDocumento();
-			Graba_log(frm.Text);
-			frm.ShowDialog(this);
-		}
-		private void MnuMantCliente_Click(object sender, EventArgs e)
-		{
-			frmBusquedaEmpresa frm = new frmBusquedaEmpresa();
-			Graba_log(frm.Text);
-			frm.Show(this);
-		}
-
-		private void MnuMantPersonal_Click(object sender, EventArgs e)
-		{
-			frmBusquedaPersonal frm = new frmBusquedaPersonal(0);
-			Graba_log(frm.Text);
-			frm.ShowDialog(this);
-		}
-
-		private void MnuMantPerfil_Click(object sender, EventArgs e)
-		{
-			frmMantenedorPerfil frm = new frmMantenedorPerfil();
-			Graba_log(frm.Text);
-			frm.Show(this);
-		}
-
-		private void MnuMantUsuario_Click(object sender, EventArgs e)
-		{
-			frmMantenedorUsuario frm = new frmMantenedorUsuario();
-			Graba_log(frm.Text);
-			frm.ShowDialog(this);
-		}
-
-		#endregion
-
 		#region "Proceso"
 		private void mnuProcesoDosisISP_Click(object sender, EventArgs e)
 		{
-			frmDosimetriaISP frm = new frmDosimetriaISP(0);
-			Graba_log(frm.Text);
-			frm.Show();
-		}
-
-		private void MnuLinkVigilanciaDosi_Click(object sender, EventArgs e)
-		{
-			frmUrlVigilanciadosimetrica frm = new frmUrlVigilanciadosimetrica();
-			Graba_log(frm.Text);
-			frm.Show();
-
-		}
-
-		private void MnuProcesoRecepcion_Click(object sender, EventArgs e)
-		{
-			frmModuloRecepcion frm = new frmModuloRecepcion(0);
-			Graba_log(frm.Text);
-			frm.Show();
-		}
-
-		private void MnuProcesoEnviado_Click(object sender, EventArgs e)
-		{
-			frmModuloEnviado frm = new frmModuloEnviado(0);
-			Graba_log(frm.Text);
-			frm.Show();
-		}
-
-		private void MnuProcesoOrdenTrabajoVarios_Click(object sender, EventArgs e)
-		{
-			frmOrdenTrabajo frm = new frmOrdenTrabajo(2);
-			Graba_log(frm.Text);
-			frm.Show();
-		}
-
-		private void MnuProcesoOrdenTrabajoPorDocumento_Click(object sender, EventArgs e)
-		{
-			frmOrdenTrabajoPorDocumento frm = new frmOrdenTrabajoPorDocumento(2);
-			Graba_log(frm.Text);
-			frm.Show();
-		}
-
-		private void MnuProcesoOrdenTrabajoFechaRecepcion_Click(object sender, EventArgs e)
-		{
-			frmOrdenTrabajoFechaRecepcion frm = new frmOrdenTrabajoFechaRecepcion(2);
-			Graba_log(frm.Text);
-			frm.Show();
-		}
-
-		private void MnuProcesoEnvioDosimetro_Click(object sender, EventArgs e)
-		{
-			frmRecepcionPelicula frm = new frmRecepcionPelicula(0);
+			frmDosimetriaISP frm = new frmDosimetriaISP(-1);
 			Graba_log(frm.Text);
 			frm.Show();
 		}
@@ -264,30 +196,9 @@ namespace ControlDosimetro
 
 		}
 
-		private void MnuProcesoIngresoNpelicula_Click(object sender, EventArgs e)
-		{
-			frmIngresoPelicula frm = new frmIngresoPelicula(0);
-			Graba_log(frm.Text);
-			frm.ShowDialog(this);
-		}
-
 		private void MnuProcesoIngresarDosis_Click(object sender, EventArgs e)
 		{
 			frmIngresoDosimetria frm = new frmIngresoDosimetria(0);
-			Graba_log(frm.Text);
-			frm.ShowDialog(this);
-		}
-
-		private void MnuMantSucursal_Click(object sender, EventArgs e)
-		{
-			frmBusquedaSucursal frm = new frmBusquedaSucursal(0);
-			Graba_log(frm.Text);
-			frm.ShowDialog(this);
-		}
-
-		private void MnuProcesoIngresoDosimetroPersonal_Click(object sender, EventArgs e)
-		{
-			frmDosimetriaPersonal frm = new frmDosimetriaPersonal(0);
 			Graba_log(frm.Text);
 			frm.ShowDialog(this);
 		}
@@ -356,43 +267,219 @@ namespace ControlDosimetro
 		private void Cargar_Submenu( ref ToolStripMenuItem tsiMenu,DataTable dt,int intTag)
 		{
 			ToolStripMenuItem tsiSubMenu;
+			ToolStripSeparator tsiSeparador;
 
 			DataView dv = new DataView(dt);
 			dv.RowFilter = "Id_menu_Padre=" + intTag.ToString();
 			dv.Sort = "Orden";
 			foreach (DataRowView drv in dv)
 			{
+
+				if(drv["Menu"].ToString()=="Separador")
+				{
+					tsiSeparador = new ToolStripSeparator();
+					tsiMenu.DropDownItems.Add(tsiSeparador);
+				}
+				else{ 
 				tsiSubMenu = new ToolStripMenuItem();
 				tsiSubMenu.Text = drv["Menu"].ToString();
 				tsiSubMenu.Name = drv["nameMenu"].ToString();
 				tsiSubMenu.Tag = drv["Id_Menu"].ToString();
+				
 
+					if ((bool)drv["EventoClick"] == true)
+						tsiSubMenu.Click += new EventHandler(this.Cargamenu_Click);
+					Cargar_Submenu(ref tsiSubMenu,dt,Convert.ToInt16( tsiSubMenu.Tag));
+					tsiMenu.DropDownItems.Add(tsiSubMenu);
 
-				if ((bool)drv["EventoClick"] == true)
-					tsiSubMenu.Click += new EventHandler(this.Cargamenu_Click);
-				tsiMenu.DropDownItems.Add(tsiSubMenu);
+					
+				}
+				
 			}
 		}
 
 		private void Cargamenu_Click(object sender, EventArgs e)
 		{
+			
 			int intMenu= Convert.ToUInt16(((System.Windows.Forms.ToolStripItem)sender).Tag.ToString());
 			object[] objParams = { intMenu };
 			Form objFrm;
 			switch (intMenu)
 			{
+				#region "Mantenedor"
 
-
-				#region "ProcesoTLD"
-				case (int)MENU.Ingreso_TLD:
-					 objFrm = new frmIngresoDosimetroTLD(0)
+				case (int)MENU.MantConfiguracionParametro:
+					objFrm = new frmParametro()
 					{
 						ShowInTaskbar = false,
-						 StartPosition = FormStartPosition.CenterScreen,
-						 Parametros = objParams
+						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
-					objFrm.Show();
+					objFrm.ShowDialog(this);
+					break;
+				case (int)MENU.MantPerfil:
+					objFrm = new frmMantenedorPerfil()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.MantUsuario:
+					objFrm = new frmMantenedorUsuario()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.MantTipoDocumento:
+					objFrm = new frmMantenedorTipoDocumento()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.MantCliente:
+					objFrm = new frmBusquedaEmpresa()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.MantSucursal:
+					objFrm = new frmBusquedaSucursal(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.MantPersonal:
+					objFrm = new frmBusquedaPersonal(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+
+				#endregion
+
+
+				#region "Proceso 200"
+
+				case (int)MENU.IngresoPel:
+					objFrm = new frmIngresoPelicula(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.CorreccionDcto:
+					objFrm = new frmDosimetriaPersonal(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.EnvioPelicula:
+					objFrm = new frmRecepcionPelicula(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.ProcEnviado:
+					objFrm = new frmModuloEnviado(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.ProcRecepcion:
+					objFrm = new frmModuloRecepcion(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.ProcOrTrabTodas:
+					objFrm = new frmOrdenTrabajo(2)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.ProcOrTrabPorCliente:
+					objFrm = new frmOrdenTrabajoPorDocumento(2)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.ProcOrTrabPorFechaRecepcion:
+					objFrm = new frmOrdenTrabajoFechaRecepcion(2)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.ProcIngresarDosisCliente:
+					objFrm = new frmIngresoDosimetria(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.ProcIngresarDosisDos:
+					objFrm = new frmIngresoDosimetriaDos(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+
+				#endregion
+
+				#region "ProcesoTLD 300"
+				case (int)MENU.Ingreso_TLD:
+					objFrm = new frmIngresoDosimetroTLD(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen,
+						Parametros = objParams
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
 					break;
 				case (int)MENU.EnviadoTLD:
 					objFrm = new frmModuloEnviado(0)
@@ -401,7 +488,7 @@ namespace ControlDosimetro
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
-					objFrm.Show();
+					objFrm.Show(this);
 					break;
 				case (int)MENU.RecepcionTLD:
 					objFrm = new frmModuloRecepcion(0)
@@ -410,7 +497,7 @@ namespace ControlDosimetro
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
-					objFrm.Show();
+					objFrm.Show(this);
 					break;
 				case (int)MENU.IniciarLectura:
 					objFrm = new frmModuloIniciarProcesoTLD(2)
@@ -419,7 +506,7 @@ namespace ControlDosimetro
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
-					objFrm.Show();
+					objFrm.Show(this);
 					break;
 				case (int)MENU.IngresarDosisTLD:
 					objFrm = new frmIngresoDosisTLD(12)
@@ -428,7 +515,7 @@ namespace ControlDosimetro
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
-					objFrm.Show();
+					objFrm.Show(this);
 					break;
 				case (int)MENU.DosisISPTLD:
 					objFrm = new FrmInformeISP(-1)
@@ -437,12 +524,12 @@ namespace ControlDosimetro
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
-					objFrm.Show();
+					objFrm.Show(this);
 					break;
 
 				#endregion
 
-				#region "Generar Dcto ISP"
+				#region "Generar Dcto ISP 400"
 
 				case (int)MENU.GenerarDctoISP:
 					objFrm = new frmGenerarISP()
@@ -451,12 +538,12 @@ namespace ControlDosimetro
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
-					objFrm.Show();
+					objFrm.Show(this);
 					break;
 
-					#endregion
+				#endregion
 
-				#region "Reporte"
+				#region "Reporte 500"
 				case (int)MENU.repDosimetria:
 					objFrm = new frmRpDosimetria()
 					{
@@ -464,7 +551,7 @@ namespace ControlDosimetro
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
-					objFrm.Show();
+					objFrm.Show(this);
 					break;
 				case (int)MENU.repEstadoDosimetro:
 					objFrm = new frmRptPorEstado()
@@ -473,7 +560,7 @@ namespace ControlDosimetro
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
-					objFrm.Show();
+					objFrm.Show(this);
 					break;
 				case (int)MENU.repCliente:
 					objFrm = new frmRptcliente()
@@ -482,11 +569,28 @@ namespace ControlDosimetro
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
-					objFrm.Show();
+					objFrm.Show(this);
+					break;
+				case (int)MENU.repConsultaTLD:
+					CargarReporteListadoTLD();
 					break;
 				#endregion
 
-				#region "Herramientas"
+				#region "link 600"
+
+				case (int)MENU.LinkVigDosimetrica:
+					objFrm = new frmUrlVigilanciadosimetrica()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+
+				#endregion
+
+				#region "Herramientas 800"
 				case (int)MENU.ConfigurarCorreo:
 					objFrm = new FrmConfCorreo()
 					{
@@ -494,7 +598,7 @@ namespace ControlDosimetro
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
-					objFrm.ShowDialog();
+					objFrm.ShowDialog(this);
 					break;
 				case (int)MENU.RestcontrCliente:
 					LlamarFormularioContrasenaCliente();
@@ -509,7 +613,7 @@ namespace ControlDosimetro
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
-					objFrm.ShowDialog();
+					objFrm.ShowDialog(this);
 					break;
 				case (int)MENU.CambioTrimestre:
 					objFrm = new frmCorreccionTrimestral(0)
@@ -518,8 +622,8 @@ namespace ControlDosimetro
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
-					objFrm.ShowDialog();
-					
+					objFrm.ShowDialog(this);
+
 					break;
 				case (int)MENU.AsociarDocumentoCliente:
 					objFrm = new frmingdocumentos(0)
@@ -528,8 +632,8 @@ namespace ControlDosimetro
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
-					objFrm.ShowDialog();
-					
+					objFrm.ShowDialog(this);
+
 					break;
 				case (int)MENU.LiberarDosimetro:
 					objFrm = new frmLiberarDosimetro()
@@ -538,7 +642,7 @@ namespace ControlDosimetro
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
-					objFrm.ShowDialog();					
+					objFrm.ShowDialog(this);
 					break;
 				case (int)MENU.TraspasoPersonal:
 					objFrm = new frmTraspasoPersonal()
@@ -547,11 +651,20 @@ namespace ControlDosimetro
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
-					objFrm.ShowDialog();
-					break;				
-					#endregion
-		
-				#region "Acerca De"
+					objFrm.ShowDialog(this);
+					break;
+				case (int)MENU.CambioSucursal:
+					objFrm = new frmCambioSucursal()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.ShowDialog(this);
+					break;
+				#endregion
+
+				#region "Acerca De 900"
 				case (int)MENU.AcercaDe:
 					objFrm = new frmAcerceDe
 					{
@@ -559,11 +672,11 @@ namespace ControlDosimetro
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
-					objFrm.ShowDialog();
+					objFrm.ShowDialog(this);
 					break;
 				#endregion
 			
-				#region "Salir"
+				#region "Salir 1000"
 				case (int)MENU.Salir:
 					Graba_log("Finalizar");
 					Application.Exit();
@@ -572,6 +685,376 @@ namespace ControlDosimetro
 			}
 			
 		}
+
+		private void Cargamenu(int intMenu)
+		{
+
+			object[] objParams = { intMenu };
+			Form objFrm;
+			switch (intMenu)
+			{
+				#region "Mantenedor"
+
+				case (int)MENU.MantUsuario:
+					objFrm = new frmMantenedorUsuario()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.MantTipoDocumento:
+					objFrm = new frmMantenedorTipoDocumento()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.MantCliente:
+					objFrm = new frmBusquedaEmpresa()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.MantSucursal:
+					objFrm = new frmBusquedaSucursal(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.MantPersonal:
+					objFrm = new frmBusquedaPersonal(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+
+				#endregion
+
+
+				#region "Proceso 200"
+
+				case (int)MENU.IngresoPel:
+					objFrm = new frmIngresoPelicula(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.CorreccionDcto:
+					objFrm = new frmDosimetriaPersonal(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.EnvioPelicula:
+					objFrm = new frmRecepcionPelicula(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.ProcEnviado:
+					objFrm = new frmModuloEnviado(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.ProcRecepcion:
+					objFrm = new frmModuloRecepcion(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.ProcOrTrabTodas:
+					objFrm = new frmOrdenTrabajo(2)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.ProcOrTrabPorCliente:
+					objFrm = new frmOrdenTrabajoPorDocumento(2)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.ProcOrTrabPorFechaRecepcion:
+					objFrm = new frmOrdenTrabajoFechaRecepcion(2)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.ProcIngresarDosisCliente:
+					objFrm = new frmIngresoDosimetria(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.ProcIngresarDosisDos:
+					objFrm = new frmIngresoDosimetriaDos(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+
+				#endregion
+
+				#region "ProcesoTLD 300"
+				case (int)MENU.Ingreso_TLD:
+					objFrm = new frmIngresoDosimetroTLD(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen,
+						Parametros = objParams
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.EnviadoTLD:
+					objFrm = new frmModuloEnviado(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.RecepcionTLD:
+					objFrm = new frmModuloRecepcion(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.IniciarLectura:
+					objFrm = new frmModuloIniciarProcesoTLD(2)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.IngresarDosisTLD:
+					objFrm = new frmIngresoDosisTLD(12)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.DosisISPTLD:
+					objFrm = new FrmInformeISP(-1)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+
+				#endregion
+
+				#region "Generar Dcto ISP 400"
+
+				case (int)MENU.GenerarDctoISP:
+					objFrm = new frmGenerarISP()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+
+				#endregion
+
+				#region "Reporte 500"
+				case (int)MENU.repDosimetria:
+					objFrm = new frmRpDosimetria()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.repEstadoDosimetro:
+					objFrm = new frmRptPorEstado()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.repCliente:
+					objFrm = new frmRptcliente()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.repConsultaTLD:
+					CargarReporteListadoTLD();
+					break;
+				#endregion
+
+				#region "link 600"
+
+				case (int)MENU.LinkVigDosimetrica:
+					objFrm = new frmUrlVigilanciadosimetrica()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+
+				#endregion
+
+				#region "Herramientas 800"
+				case (int)MENU.ConfigurarCorreo:
+					objFrm = new FrmConfCorreo()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.ShowDialog(this);
+					break;
+				case (int)MENU.RestcontrCliente:
+					LlamarFormularioContrasenaCliente();
+					break;
+				case (int)MENU.Cambiarcontraseña:
+					LlamarFormularioContrasena();
+					break;
+				case (int)MENU.EnviarCorreo:
+					objFrm = new frmEnvioCorreos(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.ShowDialog(this);
+					break;
+				case (int)MENU.CambioTrimestre:
+					objFrm = new frmCorreccionTrimestral(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.ShowDialog(this);
+
+					break;
+				case (int)MENU.AsociarDocumentoCliente:
+					objFrm = new frmingdocumentos(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.ShowDialog(this);
+
+					break;
+				case (int)MENU.LiberarDosimetro:
+					objFrm = new frmLiberarDosimetro()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.ShowDialog(this);
+					break;
+				case (int)MENU.TraspasoPersonal:
+					objFrm = new frmTraspasoPersonal()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.ShowDialog(this);
+					break;
+				case (int)MENU.CambioSucursal:
+					objFrm = new frmCambioSucursal()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.ShowDialog(this);
+					break;
+				#endregion
+
+				#region "Acerca De 900"
+				case (int)MENU.AcercaDe:
+					objFrm = new frmAcerceDe
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.ShowDialog(this);
+					break;
+				#endregion
+
+				#region "Salir 1000"
+				case (int)MENU.Salir:
+					Graba_log("Finalizar");
+					Application.Exit();
+					break;
+					#endregion
+			}
+
+		}
+
 
 		static public void LlamadaReporte(int intReporte)
 		{
@@ -589,9 +1072,30 @@ namespace ControlDosimetro
 					frm2.ShowInTaskbar = false;
 					frm2.Show();
 					break;
+				case (int)REPORTES.ListadoTLD:
+					CargarReporteListadoTLD();
+					
+					break;
 			}
 
 		}
+
+		static public void CargarReporteListadoTLD()
+		{
+			clsConectorSqlServer Conectar = new clsConectorSqlServer();
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "rtpListaIngresoTLD";
+			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
+			DataSet ds;
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+
+			frmreporte frm3 = new frmreporte(ds, null, 9);
+			frm3.ShowInTaskbar = false;
+			frm3.Show();
+		}
+
+
 
 
 		private void Timer1_Tick(object sender, EventArgs e)
@@ -649,5 +1153,14 @@ namespace ControlDosimetro
 
 		#endregion
 
+		private void tsbPrincipal_Click(object sender, EventArgs e)
+		{
+			if (((ToolStripButton)sender).Text == "Cliente")
+				Cargamenu((int)MENU.MantUsuario);
+			if (((ToolStripButton)sender).Text == "Personal")
+				Cargamenu((int)MENU.MantPersonal);
+			//if (((ToolStripButton)sender).Text == "Restablecer")
+			//	Cargamenu((int)MENU.MantPersonal);
+		}
 	}
 }

@@ -2,27 +2,27 @@
 {
 
 
-    public partial class DB_A2B812_ControlDataSet
-    {
-        partial class tbl_personalDataTable
-        {
+	public partial class DB_A2B812_ControlDataSet
+	{
+		partial class tbl_personalDataTable
+		{
 
-            partial class tbl_clienteDataTable
-            {
-            }
+			partial class tbl_clienteDataTable
+			{
+			}
 
-            partial class rtpDosimetriaAnualDataTable
-            {
-            }
+			partial class rtpDosimetriaAnualDataTable
+			{
+			}
 
-            partial class DOSISDataTable
-            {
-            }
+			partial class DOSISDataTable
+			{
+			}
 
-            partial class TOESDataTable
-            {
-            }
-        }
-    }
+			partial class TOESDataTable
+			{
+			}
+		}
+	}
 
 }

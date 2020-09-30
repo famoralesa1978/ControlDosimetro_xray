@@ -271,6 +271,42 @@ namespace ControlDosimetro.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Error.
+        /// </summary>
+        public static string msgCaptionError {
+            get {
+                return ResourceManager.GetString("msgCaptionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El cliente no corresponde para este periodo.
+        /// </summary>
+        public static string msgClientePeriodoError {
+            get {
+                return ResourceManager.GetString("msgClientePeriodoError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Falta ingresar el número de  cliente.
+        /// </summary>
+        public static string msgErrorFaltaCliente {
+            get {
+                return ResourceManager.GetString("msgErrorFaltaCliente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No existe información a cargar.
+        /// </summary>
+        public static string msgNoExisteError {
+            get {
+                return ResourceManager.GetString("msgNoExisteError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
         /// </summary>
         public static System.Drawing.Icon nuevo32 {
