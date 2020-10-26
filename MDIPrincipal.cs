@@ -509,7 +509,7 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.IngresarDosisTLD:
-					objFrm = new frmIngresoDosisTLD(12)
+					objFrm = new frmIngresoDosisTLD(12)//
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
