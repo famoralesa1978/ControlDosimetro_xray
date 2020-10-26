@@ -28,7 +28,7 @@ namespace ControlDosimetro
 				clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
             clsEventoControl ClaseEvento = new clsEventoControl();
         clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
-        clsFunciones clsFunc = new clsFunciones();
+        ClsFunciones clsFunc = new ClsFunciones();
         #endregion
 
         public frmLiberarDosimetro()

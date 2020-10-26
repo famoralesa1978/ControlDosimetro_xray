@@ -28,7 +28,7 @@ namespace ControlDosimetro
 				clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
             clsEventoControl ClaseEvento = new clsEventoControl();
         clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
-        clsFunciones clsFunc = new clsFunciones();
+        ClsFunciones clsFunc = new ClsFunciones();
         #endregion
 
 		public frmCambioSucursal()
@@ -38,8 +38,70 @@ namespace ControlDosimetro
 			Btn_filtro_Click(null,null);
 		}
 
-    #region "Llamada de carga"      
-   
+		#region "Llamada de carga"      
+
+		private void Cargar_Documento(Int64 intNDocumento)
+		{
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "select P.Id_cliente,run,Razon_Social,Id_sucursal " +
+								 "  FROM ges_DosimetriaPersonal P inner join tbl_cliente C on P.Id_cliente=C.Id_cliente WHERE N_Documento= " + intNDocumento.ToString();
+			DataSet dt;
+
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			if (dt.Tables[0].Rows.Count == 1)
+			{
+				lbl_NCliente.Text = dt.Tables[0].Rows[0]["Id_cliente"].ToString();
+				lbl_NombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
+				Cargar_Sucursal(dt.Tables[0].Rows[0]["run"].ToString());
+				cbx_SucActual.SelectedValue = dt.Tables[0].Rows[0]["Id_sucursal"];
+				btn_Cargar.Enabled = false;
+				txt_NDoc.Enabled = false;
+				btn_Guardar.Enabled = true;
+			}
+			else
+			if (dt.Tables[0].Rows.Count > 1)
+			{
+				lbl_NCliente.Text = "";
+				lbl_NombreCliente.Text = "";
+				btn_Guardar.Enabled = false;
+
+				MessageBox.Show("Existe mas cliente con el mismo N° documento");
+
+			}
+			else
+			if (dt.Tables[0].Rows.Count == 0)
+			{
+				lbl_NCliente.Text = "";
+				lbl_NombreCliente.Text = "";
+				btn_Guardar.Enabled = false;
+				MessageBox.Show("Documento no existe");
+
+			}
+
+		}
+
+		private void Cargar_Sucursal(string rut)
+		{
+			SqlCommand cmd = new SqlCommand();
+
+			cmd.CommandText = "select id_sucursal, direccion + ','+co.comuna as Dato " +
+				 "from [dbo].[tbl_sucursal] s " +
+				 "inner join glo_region r on r.Id_region=s.Id_Region " +
+				 "inner join glo_comuna co on co.id_comuna=s.Id_Comuna " +
+				 "where run='" + rut + "'";
+			DataSet dt;
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			DataSet dtCopia;
+			dtCopia = dt.Copy();
+			cbx_SucActual.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
+			cbx_SucActual.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
+			cbx_SucActual.DataSource = dt.Tables[0];
+
+			cbx_SucCambio.DisplayMember = dtCopia.Tables[0].Columns[1].Caption.ToString();
+			cbx_SucCambio.ValueMember = dtCopia.Tables[0].Columns[0].Caption.ToString();
+			cbx_SucCambio.DataSource = dtCopia.Tables[0];
+		}
+
 		private void AsignarEvento()
 		{
 			txt_NDoc.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
@@ -51,21 +113,26 @@ namespace ControlDosimetro
 
 		private void btn_Cargar_Click(object sender, EventArgs e)
 		{
-
+			Cargar_Documento(Convert.ToInt64(  txt_NDoc.Text));
 		}
 
 		private void Btn_Guardar_Click(object sender, EventArgs e)
 		{
-			//if((txt_NDoc.Text=="")&&(txt_NDos.Text==""))
-			//    MessageBox.Show("Todos los campos son obligatorios");
-			//else
-			// if (MessageBox.Show("Esta seguro de  estado?" , "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-			// {
-			//    string strMensaje = "";
-			//    int intResul = clsFunc.CambiarEstado(txt_NDoc.Text, txt_NDos.Text, ref strMensaje);
+			SqlCommand cmd = new SqlCommand();
+			DataSet ds;
+			string strParametro = String.Format("{0},{1},{2}", txt_NDoc.Text, cbx_SucActual.SelectedValue, cbx_SucCambio.SelectedValue);
+			cmd.CommandText = "pa_ModificarSucursal_upd " + strParametro;
+			cmd.CommandType = CommandType.Text;
 
-			//    MessageBox.Show(strMensaje);   
-			//}
+
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
+			{
+				MessageBox.Show("Error en actualizar la información");
+			}
+
+			else
+				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
 		}
 
 		private void Btn_Cerrar_Click(object sender, EventArgs e)
@@ -78,6 +145,11 @@ namespace ControlDosimetro
 			txt_NDoc.Clear();
 			lbl_NombreCliente.Text = "";
 			lbl_NCliente.Text = "";
+			btn_Cargar.Enabled = true;
+			txt_NDoc.Enabled = true;
+			lbl_NCliente.Text = "";
+			lbl_NombreCliente.Text = "";
+			btn_Guardar.Enabled = false;
 		}
 
 		#endregion
