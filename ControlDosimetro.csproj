@@ -211,6 +211,12 @@
     <Compile Include="GenerarDcto\frmGenerarISP.Designer.cs">
       <DependentUpon>frmGenerarISP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Herramientas\frmCambiarFechaControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Herramientas\frmCambiarFechaControl.Designer.cs">
+      <DependentUpon>frmCambiarFechaControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Herramientas\frmCambioFecha.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -568,6 +574,9 @@
     <EmbeddedResource Include="GenerarDcto\frmGenerarISP.resx">
       <DependentUpon>frmGenerarISP.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Herramientas\frmCambiarFechaControl.resx">
+      <DependentUpon>frmCambiarFechaControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Herramientas\frmCambioFecha.resx">
       <DependentUpon>frmCambioFecha.cs</DependentUpon>
     </EmbeddedResource>
@@ -880,22 +889,22 @@
   <ItemGroup>
     <PublishFile Include="bin\Debug\dllLibreriaMysql.pdb">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="dllLibreriaMysql.pdb">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
