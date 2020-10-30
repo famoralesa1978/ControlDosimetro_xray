@@ -336,7 +336,7 @@ namespace ControlDosimetro
 						else
 						{
 							SqlCommand cmd1 = new SqlCommand();
-							cmd1.CommandText = "pa_ClienteHistorial_upd " + txt_id_cliente.Text +"," + dtp_FechaInicio.Value;
+							cmd1.CommandText = "pa_ClienteHistorial_upd " + txt_id_cliente.Text +",'" + dtp_FechaInicio.Value + "'";
 							cmd1.CommandType = CommandType.Text;
 							DataSet ds = Conectar.Listar(Clases.clsBD.BD, cmd1);
 
@@ -351,7 +351,7 @@ namespace ControlDosimetro
 					else{
 
 						SqlCommand cmd1 = new SqlCommand();
-						cmd1.CommandText = "pa_ClienteHistorial_upd " + txt_id_cliente.Text + "," + dtp_FechaInicio.Value;
+						cmd1.CommandText = "pa_ClienteHistorial_upd " + txt_id_cliente.Text + ",'" + dtp_FechaInicio.Value + "'";
 						cmd1.CommandType = CommandType.Text;
 						DataSet ds= Conectar.Listar(Clases.clsBD.BD, cmd1);
 
