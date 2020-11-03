@@ -346,7 +346,6 @@
 			this.dtp_FechaInicio.Size = new System.Drawing.Size(98, 20);
 			this.dtp_FechaInicio.TabIndex = 19;
 			this.dtp_FechaInicio.Value = new System.DateTime(2017, 10, 18, 0, 29, 57, 0);
-			this.dtp_FechaInicio.Visible = false;
 			// 
 			// lbl_N_Cliente_Ref
 			// 

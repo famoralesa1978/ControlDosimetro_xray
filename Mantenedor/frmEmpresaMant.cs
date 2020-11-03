@@ -126,8 +126,9 @@ namespace ControlDosimetro
 				txt_Email.Text = dt.Tables[0].Rows[0]["Email"].ToString();
 				cbx_id_estado.SelectedValue = dt.Tables[0].Rows[0]["Id_estado"].ToString();
 				lbl_Estado_mod.Text = cbx_id_estado.Text;
-				dtp_FechaInicio.Text = dt.Tables[0].Rows[0]["Fechainicio"].ToString();
-				cbx_id_periodo.Text = dtp_FechaInicio.Text;
+				dtp_FechaInicio.Value = Convert.ToDateTime( dt.Tables[0].Rows[0]["Fechainicio"]);
+
+				cbx_id_periodo.Text = dt.Tables[0].Rows[0]["Fechainicio"].ToString();
 				txt_Clave.Text = dt.Tables[0].Rows[0]["clave"].ToString();
 				txt_Clave1.Visible = false;
 				txt_Clave.Visible = false;
