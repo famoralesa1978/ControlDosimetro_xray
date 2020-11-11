@@ -379,5 +379,36 @@ namespace ControlDosimetro
         {
 
         }
-    }
+
+		private void chkControlado_CheckedChanged(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+			DataGridViewCheckBoxCell checkMarca;
+			for (int i = 0; i <= grdDatos.RowCount - 1; i++)
+			{
+				checkMarca = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["Controlado"];
+				checkMarca.Value = chkControlado.Checked;
+			}
+
+			Cursor = Cursors.Default;
+		}
+
+		private void chkMarcar_CheckedChanged(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+			DataGridViewComboBoxCell EstDosis;
+			DataGridViewCheckBoxCell checkMarca;
+			for (int i = 0; i <= grdDatos.RowCount - 1; i++)
+			{
+				checkMarca = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["condosis"];
+				if((int)checkMarca.Value==0){
+					EstDosis = (DataGridViewComboBoxCell)grdDatos.Rows[i].Cells["Estado"];//
+					EstDosis.Value = 5;
+				}
+				
+			}
+
+			Cursor = Cursors.Default;
+		}
+	}
 }
