@@ -28,13 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngresoDosisTLD));
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
-			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
 			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.PosicionDisco = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +52,12 @@
 			this.Id_Dosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.id_periodo = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.tld = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.chkMarcar = new System.Windows.Forms.CheckBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.chkControlado = new System.Windows.Forms.CheckBox();
+			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
+			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.btn_Cliente = new System.Windows.Forms.ToolStripButton();
 			this.btnIngresarDosisISP = new System.Windows.Forms.ToolStripButton();
@@ -71,15 +75,11 @@
 			this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.chkControlado = new System.Windows.Forms.CheckBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.chkMarcar = new System.Windows.Forms.CheckBox();
 			this.groupBox2.SuspendLayout();
-			this.pnl_Progreso.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
-			this.toolStrip1.SuspendLayout();
 			this.panel1.SuspendLayout();
+			this.pnl_Progreso.SuspendLayout();
+			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox2
@@ -92,27 +92,10 @@
 			this.groupBox2.Controls.Add(this.pnl_Progreso);
 			this.groupBox2.Location = new System.Drawing.Point(0, 28);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(1179, 470);
+			this.groupBox2.Size = new System.Drawing.Size(1179, 460);
 			this.groupBox2.TabIndex = 6;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Listado";
-			// 
-			// pnl_Progreso
-			// 
-			this.pnl_Progreso.Controls.Add(this.pgb_Barra);
-			this.pnl_Progreso.Location = new System.Drawing.Point(95, 88);
-			this.pnl_Progreso.Name = "pnl_Progreso";
-			this.pnl_Progreso.Size = new System.Drawing.Size(787, 118);
-			this.pnl_Progreso.TabIndex = 10;
-			this.pnl_Progreso.TabStop = false;
-			this.pnl_Progreso.Text = "Progreso de Grabado";
-			// 
-			// pgb_Barra
-			// 
-			this.pgb_Barra.Location = new System.Drawing.Point(21, 43);
-			this.pgb_Barra.Name = "pgb_Barra";
-			this.pgb_Barra.Size = new System.Drawing.Size(749, 23);
-			this.pgb_Barra.TabIndex = 0;
 			// 
 			// grdDatos
 			// 
@@ -146,7 +129,7 @@
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-			this.grdDatos.Size = new System.Drawing.Size(1173, 416);
+			this.grdDatos.Size = new System.Drawing.Size(1173, 406);
 			this.grdDatos.TabIndex = 8;
 			this.grdDatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellClick);
 			this.grdDatos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellDoubleClick);
@@ -261,9 +244,9 @@
 			// valor
 			// 
 			this.valor.DataPropertyName = "dosis";
-			dataGridViewCellStyle10.Format = "N2";
-			dataGridViewCellStyle10.NullValue = "0";
-			this.valor.DefaultCellStyle = dataGridViewCellStyle10;
+			dataGridViewCellStyle1.Format = "N2";
+			dataGridViewCellStyle1.NullValue = "0";
+			this.valor.DefaultCellStyle = dataGridViewCellStyle1;
 			this.valor.HeaderText = "Valor Ingresar";
 			this.valor.Name = "valor";
 			this.valor.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -315,6 +298,65 @@
 			this.tld.Visible = false;
 			this.tld.Width = 43;
 			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.chkMarcar);
+			this.panel1.Controls.Add(this.label1);
+			this.panel1.Controls.Add(this.chkControlado);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel1.Location = new System.Drawing.Point(3, 16);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(1173, 35);
+			this.panel1.TabIndex = 11;
+			// 
+			// chkMarcar
+			// 
+			this.chkMarcar.AutoSize = true;
+			this.chkMarcar.Location = new System.Drawing.Point(904, 8);
+			this.chkMarcar.Name = "chkMarcar";
+			this.chkMarcar.Size = new System.Drawing.Size(51, 17);
+			this.chkMarcar.TabIndex = 2;
+			this.chkMarcar.Text = "MNR";
+			this.chkMarcar.UseVisualStyleBackColor = true;
+			this.chkMarcar.CheckedChanged += new System.EventHandler(this.chkMarcar_CheckedChanged);
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(593, 12);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(69, 13);
+			this.label1.TabIndex = 1;
+			this.label1.Text = "Marcar todos";
+			// 
+			// chkControlado
+			// 
+			this.chkControlado.AutoSize = true;
+			this.chkControlado.Location = new System.Drawing.Point(682, 12);
+			this.chkControlado.Name = "chkControlado";
+			this.chkControlado.Size = new System.Drawing.Size(77, 17);
+			this.chkControlado.TabIndex = 0;
+			this.chkControlado.Text = "Controlado";
+			this.chkControlado.UseVisualStyleBackColor = true;
+			this.chkControlado.CheckedChanged += new System.EventHandler(this.chkControlado_CheckedChanged);
+			// 
+			// pnl_Progreso
+			// 
+			this.pnl_Progreso.Controls.Add(this.pgb_Barra);
+			this.pnl_Progreso.Location = new System.Drawing.Point(95, 88);
+			this.pnl_Progreso.Name = "pnl_Progreso";
+			this.pnl_Progreso.Size = new System.Drawing.Size(787, 118);
+			this.pnl_Progreso.TabIndex = 10;
+			this.pnl_Progreso.TabStop = false;
+			this.pnl_Progreso.Text = "Progreso de Grabado";
+			// 
+			// pgb_Barra
+			// 
+			this.pgb_Barra.Location = new System.Drawing.Point(21, 43);
+			this.pgb_Barra.Name = "pgb_Barra";
+			this.pgb_Barra.Size = new System.Drawing.Size(749, 23);
+			this.pgb_Barra.TabIndex = 0;
+			// 
 			// toolStrip1
 			// 
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -351,7 +393,7 @@
 			// btn_Guardar
 			// 
 			this.btn_Guardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Guardar.Location = new System.Drawing.Point(333, 504);
+			this.btn_Guardar.Location = new System.Drawing.Point(333, 494);
 			this.btn_Guardar.Name = "btn_Guardar";
 			this.btn_Guardar.Size = new System.Drawing.Size(75, 23);
 			this.btn_Guardar.TabIndex = 7;
@@ -362,7 +404,7 @@
 			// btn_Cerrar
 			// 
 			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Cerrar.Location = new System.Drawing.Point(612, 504);
+			this.btn_Cerrar.Location = new System.Drawing.Point(612, 494);
 			this.btn_Cerrar.Name = "btn_Cerrar";
 			this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
 			this.btn_Cerrar.TabIndex = 8;
@@ -451,9 +493,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle11.Format = "N2";
-			dataGridViewCellStyle11.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle11;
+			dataGridViewCellStyle2.Format = "N2";
+			dataGridViewCellStyle2.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -471,60 +513,18 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle12.Format = "N2";
-			dataGridViewCellStyle12.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle12;
+			dataGridViewCellStyle3.Format = "N2";
+			dataGridViewCellStyle3.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle3;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
-			// 
-			// panel1
-			// 
-			this.panel1.Controls.Add(this.chkMarcar);
-			this.panel1.Controls.Add(this.label1);
-			this.panel1.Controls.Add(this.chkControlado);
-			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel1.Location = new System.Drawing.Point(3, 16);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(1173, 35);
-			this.panel1.TabIndex = 11;
-			// 
-			// chkControlado
-			// 
-			this.chkControlado.AutoSize = true;
-			this.chkControlado.Location = new System.Drawing.Point(682, 12);
-			this.chkControlado.Name = "chkControlado";
-			this.chkControlado.Size = new System.Drawing.Size(77, 17);
-			this.chkControlado.TabIndex = 0;
-			this.chkControlado.Text = "Controlado";
-			this.chkControlado.UseVisualStyleBackColor = true;
-			this.chkControlado.CheckedChanged += new System.EventHandler(this.chkControlado_CheckedChanged);
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(593, 12);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(69, 13);
-			this.label1.TabIndex = 1;
-			this.label1.Text = "Marcar todos";
-			// 
-			// chkMarcar
-			// 
-			this.chkMarcar.AutoSize = true;
-			this.chkMarcar.Location = new System.Drawing.Point(904, 8);
-			this.chkMarcar.Name = "chkMarcar";
-			this.chkMarcar.Size = new System.Drawing.Size(51, 17);
-			this.chkMarcar.TabIndex = 2;
-			this.chkMarcar.Text = "MNR";
-			this.chkMarcar.UseVisualStyleBackColor = true;
-			this.chkMarcar.CheckedChanged += new System.EventHandler(this.chkMarcar_CheckedChanged);
 			// 
 			// frmIngresoDosisTLD
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1184, 565);
+			this.ClientSize = new System.Drawing.Size(1184, 555);
 			this.Controls.Add(this.btn_Cerrar);
 			this.Controls.Add(this.btn_Guardar);
 			this.Controls.Add(this.toolStrip1);
@@ -537,12 +537,12 @@
 			this.Text = "Ingreso Dosis  TLD";
 			this.Load += new System.EventHandler(this.frmIngresoDosisTLD_Load);
 			this.groupBox2.ResumeLayout(false);
-			this.pnl_Progreso.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).EndInit();
-			this.toolStrip1.ResumeLayout(false);
-			this.toolStrip1.PerformLayout();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
+			this.pnl_Progreso.ResumeLayout(false);
+			this.toolStrip1.ResumeLayout(false);
+			this.toolStrip1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

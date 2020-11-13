@@ -73,12 +73,16 @@
 			this.N_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.NCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.NomPersonal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.groupBox1.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudPosicion)).BeginInit();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
+			this.tableLayoutPanel2.SuspendLayout();
+			this.tableLayoutPanel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -153,7 +157,7 @@
 			// 
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(798, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(781, 25);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -268,7 +272,7 @@
 			// btn_Cerrar
 			// 
 			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Cerrar.Location = new System.Drawing.Point(517, 532);
+			this.btn_Cerrar.Location = new System.Drawing.Point(508, 532);
 			this.btn_Cerrar.Name = "btn_Cerrar";
 			this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
 			this.btn_Cerrar.TabIndex = 10;
@@ -435,9 +439,7 @@
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Controls.Add(this.pictureBox1);
-			this.groupBox2.Controls.Add(this.btnIniciar);
-			this.groupBox2.Controls.Add(this.grdDatos);
+			this.groupBox2.Controls.Add(this.tableLayoutPanel2);
 			this.groupBox2.Location = new System.Drawing.Point(12, 309);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(752, 217);
@@ -448,7 +450,7 @@
 			// pictureBox1
 			// 
 			this.pictureBox1.Image = global::ControlDosimetro.Properties.Resources.IniciarProceso;
-			this.pictureBox1.Location = new System.Drawing.Point(656, 20);
+			this.pictureBox1.Location = new System.Drawing.Point(3, 3);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(89, 85);
 			this.pictureBox1.TabIndex = 11;
@@ -456,7 +458,7 @@
 			// 
 			// btnIniciar
 			// 
-			this.btnIniciar.Location = new System.Drawing.Point(655, 111);
+			this.btnIniciar.Location = new System.Drawing.Point(3, 99);
 			this.btnIniciar.Name = "btnIniciar";
 			this.btnIniciar.Size = new System.Drawing.Size(90, 43);
 			this.btnIniciar.TabIndex = 10;
@@ -470,7 +472,6 @@
 			this.grdDatos.AllowUserToDeleteRows = false;
 			this.grdDatos.AllowUserToResizeColumns = false;
 			this.grdDatos.AllowUserToResizeRows = false;
-			this.grdDatos.Anchor = System.Windows.Forms.AnchorStyles.None;
 			this.grdDatos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.grdDatos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			this.grdDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -479,11 +480,12 @@
             this.N_documento,
             this.NCliente,
             this.NomPersonal});
-			this.grdDatos.Location = new System.Drawing.Point(0, 18);
+			this.grdDatos.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.grdDatos.Location = new System.Drawing.Point(3, 3);
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.grdDatos.Size = new System.Drawing.Size(649, 184);
+			this.grdDatos.Size = new System.Drawing.Size(631, 192);
 			this.grdDatos.TabIndex = 9;
 			// 
 			// N_Pelicula
@@ -529,11 +531,41 @@
 			this.NomPersonal.Name = "NomPersonal";
 			this.NomPersonal.ReadOnly = true;
 			// 
+			// tableLayoutPanel2
+			// 
+			this.tableLayoutPanel2.ColumnCount = 2;
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85.38874F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.61126F));
+			this.tableLayoutPanel2.Controls.Add(this.grdDatos, 0, 0);
+			this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 1, 0);
+			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
+			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+			this.tableLayoutPanel2.RowCount = 1;
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(746, 198);
+			this.tableLayoutPanel2.TabIndex = 0;
+			// 
+			// tableLayoutPanel3
+			// 
+			this.tableLayoutPanel3.ColumnCount = 1;
+			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel3.Controls.Add(this.pictureBox1, 0, 0);
+			this.tableLayoutPanel3.Controls.Add(this.btnIniciar, 0, 1);
+			this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel3.Location = new System.Drawing.Point(640, 3);
+			this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+			this.tableLayoutPanel3.RowCount = 2;
+			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel3.Size = new System.Drawing.Size(103, 192);
+			this.tableLayoutPanel3.TabIndex = 0;
+			// 
 			// frmModuloIniciarProcesoTLD
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(798, 565);
+			this.ClientSize = new System.Drawing.Size(781, 565);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Controls.Add(this.btn_filtro);
@@ -555,6 +587,8 @@
 			this.groupBox2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).EndInit();
+			this.tableLayoutPanel2.ResumeLayout(false);
+			this.tableLayoutPanel3.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -605,5 +639,7 @@
                                 private System.Windows.Forms.DataGridViewTextBoxColumn NomPersonal;
                                 private System.Windows.Forms.Button btnIniciar;
         private System.Windows.Forms.PictureBox pictureBox1;
-    }
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+	}
 }

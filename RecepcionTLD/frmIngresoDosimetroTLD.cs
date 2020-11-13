@@ -50,8 +50,10 @@ namespace ControlDosimetro
     {
       InitializeComponent();
 			AsignarEvento();
-		
-    }
+			grdDatos.AutoGenerateColumns = false;
+
+
+	 }
 
 		private void frmIngresoDosimetroTLD_Load(object sender, EventArgs e)
 		{
@@ -121,8 +123,8 @@ namespace ControlDosimetro
               //SqlCommand cmd = new SqlCommand();
 			 
 				DataSet dt;
-              //codigo,paterno,materno,nombre,rut,periodo,
-                cmd.CommandText = "pa_ListarPersonalTLD_sel " + cbx_id_periodo.SelectedValue.ToString() +","+ lbl_id_cliente.Text
+			//codigo,paterno,materno,nombre,rut,periodo,
+			cmd.CommandText = "pa_ListarPersonalTLD_sel " + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;
 
 					 //"  select p.Id_Personal, isnull(n_dosimetro,0) as N_pelicula, 0 as Generar, case when isnull(N_Documento,0)<>0 then	1	else 0  end  as Generado, " +
 					 //              "p.id_cliente, isnull(N_Documento,0) N_Documento,rut,  nombres,paterno,maternos,   isnull(id_sucursal,0) as id_sucursal, isnull(id_estadodosimetro,-1) as id_estadodosimetro " +
