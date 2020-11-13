@@ -122,12 +122,14 @@ namespace ControlDosimetro
 			 
 				DataSet dt;
               //codigo,paterno,materno,nombre,rut,periodo,
-                cmd.CommandText = "select p.Id_Personal, isnull(n_dosimetro,0) as N_pelicula, 0 as Generar, case when isnull(N_Documento,0)<>0 then	1	else 0  end  as Generado, " +
-                    "p.id_cliente, isnull(N_Documento,0) N_Documento,rut,  nombres,paterno,maternos,   isnull(id_sucursal,0) as id_sucursal, isnull(id_estadodosimetro,-1) as id_estadodosimetro " +
-                    " from tbl_personal p left join ges_dosimetro_estado_TLD tld on p.id_cliente=TLD.id_cliente and p.Id_Personal=TLD.Id_Personal and id_periodo= " + cbx_id_periodo.SelectedValue +
-                 " WHERE p.id_cliente=" + lbl_id_cliente.Text + " and p.id_estado=1 and  isnull(id_estadodosimetro,-1) in(-1,0)";
-          
-			  cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "pa_ListarPersonalTLD_sel " + cbx_id_periodo.SelectedValue.ToString() +","+ lbl_id_cliente.Text
+
+					 //"  select p.Id_Personal, isnull(n_dosimetro,0) as N_pelicula, 0 as Generar, case when isnull(N_Documento,0)<>0 then	1	else 0  end  as Generado, " +
+					 //              "p.id_cliente, isnull(N_Documento,0) N_Documento,rut,  nombres,paterno,maternos,   isnull(id_sucursal,0) as id_sucursal, isnull(id_estadodosimetro,-1) as id_estadodosimetro " +
+					 //              " from tbl_personal p left join ges_dosimetro_estado_TLD tld on p.id_cliente=TLD.id_cliente and p.Id_Personal=TLD.Id_Personal and id_periodo= " + cbx_id_periodo.SelectedValue +
+					 //           " WHERE p.id_cliente=" + lbl_id_cliente.Text + " and p.id_estado=1 and  isnull(id_estadodosimetro,-1) in(-1,0)";
+
+			cmd.CommandType = CommandType.Text;
 	 
 			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
               string filterExp = "";
