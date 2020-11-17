@@ -32,10 +32,10 @@
     <TargetCulture>es-CL</TargetCulture>
     <ProductName>X-Ray Dosimetro</ProductName>
     <SuiteName>Sistema Dosimetro</SuiteName>
-    <MinimumRequiredVersion>9.0.1.2</MinimumRequiredVersion>
+    <MinimumRequiredVersion>9.0.1.3</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>instalacion.html</WebPage>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>9.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -198,6 +198,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DB_A2B812_ControlDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dosimetro\frmIngresoPeliculaDosi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dosimetro\frmIngresoPeliculaDosi.Designer.cs">
+      <DependentUpon>frmIngresoPeliculaDosi.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -403,10 +409,10 @@
     <Compile Include="Recepcion\FrmInformeISP.Designer.cs">
       <DependentUpon>FrmInformeISP.cs</DependentUpon>
     </Compile>
-    <Compile Include="Recepcion\frmIngresoDosimetriaDos.cs">
+    <Compile Include="Dosimetro\frmIngresoDosimetriaDos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Recepcion\frmIngresoDosimetriaDos.Designer.cs">
+    <Compile Include="Dosimetro\frmIngresoDosimetriaDos.Designer.cs">
       <DependentUpon>frmIngresoDosimetriaDos.cs</DependentUpon>
     </Compile>
     <Compile Include="Recepcion\frmOrdenTrabajoFechaRecepcion.cs">
@@ -568,6 +574,9 @@
     <EmbeddedResource Include="Busqueda\frmAyudaPersonal.resx">
       <DependentUpon>frmAyudaPersonal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dosimetro\frmIngresoPeliculaDosi.resx">
+      <DependentUpon>frmIngresoPeliculaDosi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -661,7 +670,7 @@
     <EmbeddedResource Include="Recepcion\FrmInformeISP.resx">
       <DependentUpon>FrmInformeISP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Recepcion\frmIngresoDosimetriaDos.resx">
+    <EmbeddedResource Include="Dosimetro\frmIngresoDosimetriaDos.resx">
       <DependentUpon>frmIngresoDosimetriaDos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Recepcion\frmOrdenTrabajoFechaRecepcion.resx">
@@ -885,26 +894,27 @@
   <ItemGroup>
     <Folder Include="Archivo\" />
     <Folder Include="bin\Debug\" />
+    <Folder Include="TLD\" />
   </ItemGroup>
   <ItemGroup>
     <PublishFile Include="bin\Debug\dllLibreriaMysql.pdb">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="dllLibreriaMysql.pdb">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
