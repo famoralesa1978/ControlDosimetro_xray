@@ -378,7 +378,7 @@ namespace ControlDosimetro
 				#region "Proceso 200"
 
 				case (int)MENU.IngresoPel:
-					objFrm = new frmIngresoPelicula(0)
+					objFrm = new frmIngresoPeliculaDosi(0)
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
@@ -747,7 +747,7 @@ namespace ControlDosimetro
 				#region "Proceso 200"
 
 				case (int)MENU.IngresoPel:
-					objFrm = new frmIngresoPelicula(0)
+					objFrm = new frmIngresoPeliculaDosi(0)
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen

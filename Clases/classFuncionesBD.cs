@@ -72,6 +72,34 @@ namespace classFuncionesBD
 			}
 		}
 
+		public void Cargar_Cliente(int intPeriodo, Int64 intCodCliente, ref Label Rut, ref Label RazonSocial, ref Label Direccion)
+		{
+			DataSet ds;
+
+
+			SqlCommand cmd = new SqlCommand
+			{
+				//	SqlCommand cmd = new SqlCommand();
+
+				CommandText = "pa_ObtieneCliente_sel  " + intPeriodo.ToString() + "," + intCodCliente.ToString()
+			};
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				RazonSocial.Text = ds.Tables[0].Rows[0]["Razon_Social"].ToString();
+				Rut.Text = ds.Tables[0].Rows[0]["run"].ToString();
+				Direccion.Text = ds.Tables[0].Rows[0]["Direccion"].ToString();
+			}
+			else
+			{
+				RazonSocial.Text = "";
+				Rut.Text = "";
+				Direccion.Text = "";
+				if (intCodCliente != -1)
+					MessageBox.Show(ControlDosimetro.Properties.Resources.msgClientePeriodoError, ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+			}
+		}
 
 	}
 

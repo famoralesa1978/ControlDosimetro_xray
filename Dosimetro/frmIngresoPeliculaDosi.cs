@@ -13,6 +13,7 @@ using dllLibreriaMysql;
 using System.Data.SqlClient;
 using System.Data.Sql;
 using Microsoft.Reporting.WinForms;
+using classFuncionesBD;
 
 namespace ControlDosimetro
 {
@@ -20,9 +21,11 @@ namespace ControlDosimetro
 	{
 
 		#region "Definicion variable"
+		Clases.ClassEvento clsEvt = new Clases.ClassEvento();
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
+		ClsFunciones clsFunc = new ClsFunciones();
 		int intContar = 0;
 		#endregion
 
@@ -140,9 +143,6 @@ namespace ControlDosimetro
 		private void Cargar_Periodo()
 		{
 			SqlCommand cmd = new SqlCommand();
-
-			//	  SqlCommand cmd = new SqlCommand();
-
 			cmd.CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ '°T' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text;
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -150,12 +150,6 @@ namespace ControlDosimetro
 			cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
 			cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_id_periodo.DataSource = dt.Tables[0];
-
-			//cbx_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
-			//cbx_periodo.DataSource = dt.Tables[0];
-
-			//cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
-			//cbx_id_periodo.DataSource = dt.Tables[0];
 		}
 
 		private void Cargar_Sucursal()
@@ -174,35 +168,16 @@ namespace ControlDosimetro
 			cbx_Sucursal.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_Sucursal.DataSource = dt.Tables[0];
 
-
-
-			//cbx_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
-			//cbx_periodo.DataSource = dt.Tables[0];
-
-			//cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
-			//cbx_id_periodo.DataSource = dt.Tables[0];
 		}
 
 		private void AsignarEvento()
 		{
-			//this.txt_Rut.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
-			//txt_Rut.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
-			//txt_Rut.Validated += new EventHandler(ClaseEvento.validarut_Validated);
-
-			txt_Pelicula.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			txt_Pelicula.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-			txt_PeliculaHasta.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			txt_PeliculaHasta.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-			txt_pelrefhasta.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			txt_pelrefhasta.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-			txt_pelrefdesde.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			txt_pelrefdesde.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-			txt_NDocumento.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			txt_NDocumento.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-			dtp_Fecha_inicio.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			//txt_RazonSocial.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-
-
+			clsEvt.AsignarNumero(ref txt_Pelicula);
+			clsEvt.AsignarNumero(ref txt_PeliculaHasta);
+			clsEvt.AsignarNumero(ref txt_pelrefhasta);
+			clsEvt.AsignarNumero(ref txt_pelrefdesde);
+			clsEvt.AsignarNumero(ref txt_NDocumento);
+			clsEvt.AsignarKeyPressDTP(ref dtp_Fecha_inicio);
 		}
 
 		#endregion
@@ -441,37 +416,38 @@ namespace ControlDosimetro
 
 		private void btn_Filtro_Click(object sender, EventArgs e)
 		{
-			//txt_ref_cliente.ReadOnly = false;
-			//txt_Rut.ReadOnly = false;
-			//txt_ref_cliente.Text = "";
-			//txt_Rut.Text = "";
-			//txt_RazonSocial.Text = "";
-			//Listar_Cliente(0);
-			//Listar_Personal();
-			//txt_ref_cliente.Focus();
+		
 		}
 
 		private void btn_cargar_Click(object sender, EventArgs e)
 		{
-			if (lbl_id_cliente.Text.ToString().Trim() != "")
-			{
-				Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
-				Listar_Grilla();
-				SqlCommand cmd = new SqlCommand();
+			//if (bolDesdeinicio == false)
+			//{
+				if ((lbl_id_cliente.Text != "-1") && (!String.IsNullOrEmpty(lbl_id_cliente.Text)))
+					Cargar_Datos();
+				else
+					if (String.IsNullOrEmpty(lbl_id_cliente.Text))
+					MessageBox.Show(ControlDosimetro.Properties.Resources.msgErrorFaltaCliente, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			//}
+			//if (lbl_id_cliente.Text.ToString().Trim() != "")
+			//{
+			//	Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
+			//	Listar_Grilla();
+			//	SqlCommand cmd = new SqlCommand();
 
-				DataSet dt;
+			//	DataSet dt;
 
 
-				cmd.CommandText = "SELECT replace([fecha_termino],'/',' - ')fecha" +
-												" FROM conf_periodo " +
-												" WHERE  id_periodo=" + cbx_id_periodo.SelectedValue + " ";
-				cmd.CommandType = CommandType.Text;
+			//	cmd.CommandText = "SELECT replace([fecha_termino],'/',' - ')fecha" +
+			//									" FROM conf_periodo " +
+			//									" WHERE  id_periodo=" + cbx_id_periodo.SelectedValue + " ";
+			//	cmd.CommandType = CommandType.Text;
 
-				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-				dtp_Fecha_dev.Text = dt.Tables[0].Rows[0]["fecha"].ToString();
-				btn_Cargar_cliente_Click(sender, e);
-				intContar = 0;
-			}
+			//	dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			//	dtp_Fecha_dev.Text = dt.Tables[0].Rows[0]["fecha"].ToString();
+			//	btn_Cargar_cliente_Click(sender, e);
+			//	intContar = 0;
+			//}
 		}
 
 		private void btn_filtro_Click_1(object sender, EventArgs e)
@@ -635,6 +611,20 @@ namespace ControlDosimetro
 		}
 
 		#endregion
+
+	#region "Carga"
+
+
+		private void Cargar_Datos()
+		{
+			Cursor = Cursors.WaitCursor;
+			clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(lbl_id_cliente.Text.ToString()), ref lbl_rut, ref lbl_nombreCliente,ref lbl_Direccion);
+			
+			Cursor = Cursors.Default;
+		}
+
+
+	#endregion
 
 		private void btn_Imprimir_Click(object sender, EventArgs e)
 		{

@@ -40,6 +40,11 @@ namespace Clases
 			textbox.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 		}
 
+		public void AsignarKeyPressDTP(ref DateTimePicker textbox)
+		{
+			textbox.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+		}
+
 	}
 
 }
