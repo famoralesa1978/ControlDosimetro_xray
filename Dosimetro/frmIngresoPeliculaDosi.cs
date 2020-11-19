@@ -429,25 +429,6 @@ namespace ControlDosimetro
 					if (String.IsNullOrEmpty(lbl_id_cliente.Text))
 					MessageBox.Show(ControlDosimetro.Properties.Resources.msgErrorFaltaCliente, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			//}
-			//if (lbl_id_cliente.Text.ToString().Trim() != "")
-			//{
-			//	Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
-			//	Listar_Grilla();
-			//	SqlCommand cmd = new SqlCommand();
-
-			//	DataSet dt;
-
-
-			//	cmd.CommandText = "SELECT replace([fecha_termino],'/',' - ')fecha" +
-			//									" FROM conf_periodo " +
-			//									" WHERE  id_periodo=" + cbx_id_periodo.SelectedValue + " ";
-			//	cmd.CommandType = CommandType.Text;
-
-			//	dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-			//	dtp_Fecha_dev.Text = dt.Tables[0].Rows[0]["fecha"].ToString();
-			//	btn_Cargar_cliente_Click(sender, e);
-			//	intContar = 0;
-			//}
 		}
 
 		private void btn_filtro_Click_1(object sender, EventArgs e)
@@ -619,7 +600,25 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 			clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(lbl_id_cliente.Text.ToString()), ref lbl_rut, ref lbl_nombreCliente,ref lbl_Direccion);
-			
+			if (lbl_id_cliente.Text.ToString().Trim() != "")
+			{
+				Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
+				Listar_Grilla();
+				SqlCommand cmd = new SqlCommand();
+
+				DataSet dt;
+
+
+				cmd.CommandText = "SELECT replace([fecha_termino],'/',' - ')fecha" +
+												" FROM conf_periodo " +
+												" WHERE  id_periodo=" + cbx_id_periodo.SelectedValue + " ";
+				cmd.CommandType = CommandType.Text;
+
+				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+				dtp_Fecha_dev.Text = dt.Tables[0].Rows[0]["fecha"].ToString();
+				//btn_Cargar_cliente_Click(sender, e);
+				intContar = 0;
+			}
 			Cursor = Cursors.Default;
 		}
 
