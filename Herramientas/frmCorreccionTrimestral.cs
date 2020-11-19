@@ -167,15 +167,16 @@ namespace ControlDosimetro
                  SqlCommand cmd = new SqlCommand();
                  DataSet ds;
 
-                 cmd.CommandText = "pa_CambiarNDocumentoTrimestre_upd " + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue + "," + cbx_id_periodoCambio.Text;
+                 cmd.CommandText = "pa_CambiarNDocumentoTrimestre_upd " + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue + "," + cbx_id_periodoCambio.SelectedValue;
                  cmd.CommandType = CommandType.Text;
                  ds = Conectar.Listar(Clases.clsBD.BD,cmd);
 
-                 if (ds.Tables[0].Rows[0][0].ToString() != "-1")
-                 {
-                     MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
-                 }
-             }
+                
+                  MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
+
+				Btn_filtro_Click(null, null);
+
+				 }
          }
 
          private void Btn_filtro_Click(object sender, EventArgs e)
