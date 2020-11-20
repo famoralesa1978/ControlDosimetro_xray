@@ -27,6 +27,20 @@ namespace ControlDosimetro
 		clsEventoControl ClaseEvento = new clsEventoControl();
 		ClsFunciones clsFunc = new ClsFunciones();
 		int intContar = 0;
+
+		public string Id_Menu { get; private set; }
+
+		public object[] Parametros
+		{
+			set
+			{
+				if (value != null)
+				{
+					Id_Menu = value[0].ToString();
+				}
+			}
+		}
+
 		#endregion
 
 		public frmIngresoPeliculaDosi(Int64 intId_Cliente)
@@ -36,12 +50,19 @@ namespace ControlDosimetro
 			AsignarEvento();
 			Cargar_Cliente(intId_Cliente);
 			Cargar_Anno();
+			
 			grp_Ingreso.Enabled = false;
 			pnl_Progreso.Visible = false;
 			btn_cargar.Enabled = true;
 			dtp_Fecha_inicio.Text = DateTime.Now.Date.ToString();
 			lbl_id_cliente.Focus();
 		}
+
+		private void frmIngresoPelicula_Load(object sender, EventArgs e)
+		{
+			Cargar_Reporte();
+		}
+
 
 		#region "Llamada de carga"
 
@@ -178,6 +199,32 @@ namespace ControlDosimetro
 			clsEvt.AsignarNumero(ref txt_pelrefdesde);
 			clsEvt.AsignarNumero(ref txt_NDocumento);
 			clsEvt.AsignarKeyPressDTP(ref dtp_Fecha_inicio);
+		}
+
+		#endregion
+
+		#region Texto
+
+		private void txt_NDocumento_Leave(object sender, EventArgs e)
+		{
+			SqlCommand cmd = new SqlCommand();
+
+			DataSet dt;
+
+
+			cmd.CommandText = "SELECT G.[id],[id_estadodosimetro],n_documento,[n_dosimetro], Descripcion" +
+											" FROM ges_dosimetro_estado G inner join glo_estadodosimetro e on e.id=g.id_estadodosimetro" +
+											" WHERE ((id_cliente <>" + lbl_id_cliente.Text + " ) or" +
+											 " (id_cliente =" + lbl_id_cliente.Text + "  and  id_periodo<>" + cbx_id_periodo.SelectedValue + ")) " +
+											" and n_documento=" + txt_NDocumento.Text;
+			cmd.CommandType = CommandType.Text;
+
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+			if (dt.Tables[0].Rows.Count > 0)
+			{
+				MessageBox.Show("No se puede asignar el n° de documento a otro cliente  o puede estar asignado en otro periodo");
+			}
 		}
 
 		#endregion
@@ -491,6 +538,45 @@ namespace ControlDosimetro
 			Listar_Grilla();
 		}
 
+		private void btn_IngresoDosimetro_Click(object sender, EventArgs e)
+		{
+			frmDosimetriaPersonal frm = new frmDosimetriaPersonal(Convert.ToInt64(lbl_id_cliente.Text.ToString()));
+			frm.Show();
+			Listar_Grilla();
+		}
+
+		private void btn_Cargar_cliente_Click(object sender, EventArgs e)
+		{
+			Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
+		}
+
+		private void pctAgregarSucursal_Click(object sender, EventArgs e)
+		{
+			frmBusquedaSucursal frm = new frmBusquedaSucursal(Convert.ToInt32(lbl_id_cliente.Text));
+			frm.ShowDialog(this);
+			Cargar_Sucursal();
+		}
+
+		private void tsb_Imprimir_Click(object sender, EventArgs e)
+		{
+			frmimprimedocpel frm = new frmimprimedocpel();
+			frm.Show(this);
+		}
+
+		private void btn_Imprimir_Click(object sender, EventArgs e)
+		{
+
+			DataSet dt;
+			dt = RptSobre(Convert.ToInt64(lbl_id_cliente.Text));
+
+			frmreporte frm = new frmreporte(dt, dt, 2);
+			frm.Show(this);
+			//Llamado_reporte(dt);
+
+
+		}
+
+
 		#endregion
 
 		#region "combobox"
@@ -498,6 +584,25 @@ namespace ControlDosimetro
 		private void cbx_anno_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			Cargar_Periodo();
+		}
+
+		private void cbx_Sucursal_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			SqlCommand cmd1 = new SqlCommand();
+			DataSet ds1;
+			if (lbl_id_cliente.Text.Trim() != "")
+			{
+				cmd1.CommandText = "select cast(count(n_dosimetro) as varchar(3))cant from ges_dosimetro_estado es where id_ref=0 and es.Id_cliente = " + lbl_id_cliente.Text + " and es.id_periodo=" + cbx_id_periodo.SelectedValue.ToString() + " and Id_sucursal=" + cbx_Sucursal.SelectedValue.ToString() + " group by Id_sucursal";
+				cmd1.CommandType = CommandType.Text;
+
+				ds1 = Conectar.Listar(Clases.clsBD.BD, cmd1);
+				if (ds1.Tables[0].Rows.Count > 0)
+				{
+					groupBox2.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es:" + ds1.Tables[0].Rows[0][0].ToString();
+				}
+				else
+					groupBox2.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es: 0";
+			}
 		}
 
 		#endregion
@@ -593,8 +698,36 @@ namespace ControlDosimetro
 
 		#endregion
 
-	#region "Carga"
+		#region "Carga"
 
+		private void Cargar_Reporte()
+		{
+			ToolStripMenuItem tsiMenu;
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "pa_ListarReporte_Sel " + Id_Menu.ToString();
+			DataSet dt;
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			if (dt == null)
+				tsdReporte.Visible = false;
+			else
+			{
+				tsdReporte.Visible = dt.Tables[0].Rows.Count == 0 ? false : true;
+				if (dt.Tables[0].Rows.Count > 0)
+				{
+					for (int intFila = 0; intFila <= dt.Tables[0].Rows.Count - 1; intFila++)
+					{
+						tsiMenu = new ToolStripMenuItem();
+						tsiMenu.Text = dt.Tables[0].Rows[intFila]["Nombre"].ToString();
+						tsiMenu.Name = dt.Tables[0].Rows[intFila]["nameMenu"].ToString();
+						tsiMenu.Tag = dt.Tables[0].Rows[intFila]["N_Reporte"].ToString();
+						tsiMenu.Click += new EventHandler(this.LLamadoReporte_Click);
+
+						tsdReporte.DropDownItems.Add(tsiMenu);
+					}
+				}
+			}
+
+		}
 
 		private void Cargar_Datos()
 		{
@@ -622,26 +755,13 @@ namespace ControlDosimetro
 			Cursor = Cursors.Default;
 		}
 
-
-	#endregion
-
-		private void btn_Imprimir_Click(object sender, EventArgs e)
+		private void LLamadoReporte_Click(object sender, EventArgs e)
 		{
-
-			DataSet dt;
-			dt = RptSobre(Convert.ToInt64(lbl_id_cliente.Text));
-
-			frmreporte frm = new frmreporte(dt, dt, 2);
-			frm.Show(this);
-			//Llamado_reporte(dt);
-
+			MDIPrincipal.LlamadaReporte(Convert.ToUInt16(((System.Windows.Forms.ToolStripItem)sender).Tag.ToString()));
 
 		}
 
-		private void frmIngresoPelicula_Load(object sender, EventArgs e)
-		{
-
-		}
+		#endregion
 
 		public DataSet RptSobre(Int64 id_cliente)
 		{
@@ -659,104 +779,6 @@ namespace ControlDosimetro
 			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
 			return ds;
 		}
-
-
-		private void btn_IngresoDosimetro_Click(object sender, EventArgs e)
-		{
-			frmDosimetriaPersonal frm = new frmDosimetriaPersonal(Convert.ToInt64(lbl_id_cliente.Text.ToString()));
-			frm.Show();
-			Listar_Grilla();
-		}
-
-		private void btn_Cargar_cliente_Click(object sender, EventArgs e)
-		{
-			Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
-		}
-
-		private void lbl_Direccion_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void label1_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void cbx_id_periodo_SelectedIndexChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void label6_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void label3_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void txt_NDocumento_AcceptsTabChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void txt_NDocumento_Leave(object sender, EventArgs e)
-		{
-			SqlCommand cmd = new SqlCommand();
-
-			DataSet dt;
-
-
-			cmd.CommandText = "SELECT G.[id],[id_estadodosimetro],n_documento,[n_dosimetro], Descripcion" +
-											" FROM ges_dosimetro_estado G inner join glo_estadodosimetro e on e.id=g.id_estadodosimetro" +
-											" WHERE ((id_cliente <>" + lbl_id_cliente.Text + " ) or" +
-											 " (id_cliente =" + lbl_id_cliente.Text + "  and  id_periodo<>" + cbx_id_periodo.SelectedValue + ")) " +
-											" and n_documento=" + txt_NDocumento.Text;
-			cmd.CommandType = CommandType.Text;
-
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-			if (dt.Tables[0].Rows.Count > 0)
-			{
-				MessageBox.Show("No se puede asignar el n° de documento a otro cliente  o puede estar asignado en otro periodo");
-			}
-		}
-
-		private void pctAgregarSucursal_Click(object sender, EventArgs e)
-		{
-			frmBusquedaSucursal frm = new frmBusquedaSucursal(Convert.ToInt32(lbl_id_cliente.Text));
-			frm.ShowDialog(this);
-			Cargar_Sucursal();
-		}
-
-		private void tsb_Imprimir_Click(object sender, EventArgs e)
-		{
-			frmimprimedocpel frm = new frmimprimedocpel();
-			frm.Show(this);
-		}
-
-		private void cbx_Sucursal_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			SqlCommand cmd1 = new SqlCommand();
-			DataSet ds1;
-			if (lbl_id_cliente.Text.Trim() != "")
-			{
-				cmd1.CommandText = "select cast(count(n_dosimetro) as varchar(3))cant from ges_dosimetro_estado es where id_ref=0 and es.Id_cliente = " + lbl_id_cliente.Text + " and es.id_periodo=" + cbx_id_periodo.SelectedValue.ToString() + " and Id_sucursal=" + cbx_Sucursal.SelectedValue.ToString() + " group by Id_sucursal";
-				cmd1.CommandType = CommandType.Text;
-
-				ds1 = Conectar.Listar(Clases.clsBD.BD, cmd1);
-				if (ds1.Tables[0].Rows.Count > 0)
-				{
-					groupBox2.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es:" + ds1.Tables[0].Rows[0][0].ToString();
-				}
-				else
-					groupBox2.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es: 0";
-			}
-		}
-
 
 	}
 }

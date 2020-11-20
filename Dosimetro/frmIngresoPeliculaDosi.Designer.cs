@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngresoPeliculaDosi));
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.label16 = new System.Windows.Forms.Label();
 			this.lbl_rut = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
 			this.btn_Cargar_cliente = new System.Windows.Forms.Button();
@@ -98,7 +100,7 @@
 			this.btn_Imprimir = new System.Windows.Forms.Button();
 			this.btn_Cerrar = new System.Windows.Forms.Button();
 			this.btn_IngresoDosimetro = new System.Windows.Forms.Button();
-			this.label16 = new System.Windows.Forms.Label();
+			this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
 			this.groupBox1.SuspendLayout();
 			this.grp_Ingreso.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pctAgregarSucursal)).BeginInit();
@@ -133,6 +135,15 @@
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Dato Cliente";
+			// 
+			// label16
+			// 
+			this.label16.AutoSize = true;
+			this.label16.Location = new System.Drawing.Point(12, 98);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(44, 13);
+			this.label16.TabIndex = 50;
+			this.label16.Text = "Nombre";
 			// 
 			// lbl_rut
 			// 
@@ -178,7 +189,6 @@
 			this.lbl_Direccion.Size = new System.Drawing.Size(35, 13);
 			this.lbl_Direccion.TabIndex = 46;
 			this.lbl_Direccion.Text = "label1";
-			this.lbl_Direccion.Click += new System.EventHandler(this.lbl_Direccion_Click);
 			// 
 			// label6
 			// 
@@ -188,7 +198,6 @@
 			this.label6.Size = new System.Drawing.Size(52, 13);
 			this.label6.TabIndex = 45;
 			this.label6.Text = "Dirección";
-			this.label6.Click += new System.EventHandler(this.label6_Click);
 			// 
 			// btn_filtro
 			// 
@@ -218,7 +227,6 @@
 			this.cbx_id_periodo.Name = "cbx_id_periodo";
 			this.cbx_id_periodo.Size = new System.Drawing.Size(121, 21);
 			this.cbx_id_periodo.TabIndex = 2;
-			this.cbx_id_periodo.SelectedIndexChanged += new System.EventHandler(this.cbx_id_periodo_SelectedIndexChanged);
 			// 
 			// lbl_nombreCliente
 			// 
@@ -397,7 +405,6 @@
 			this.txt_NDocumento.Name = "txt_NDocumento";
 			this.txt_NDocumento.Size = new System.Drawing.Size(100, 20);
 			this.txt_NDocumento.TabIndex = 10;
-			this.txt_NDocumento.AcceptsTabChanged += new System.EventHandler(this.txt_NDocumento_AcceptsTabChanged);
 			this.txt_NDocumento.Leave += new System.EventHandler(this.txt_NDocumento_Leave);
 			// 
 			// label8
@@ -485,7 +492,6 @@
 			this.label1.Size = new System.Drawing.Size(42, 13);
 			this.label1.TabIndex = 36;
 			this.label1.Text = "periodo";
-			this.label1.Click += new System.EventHandler(this.label1_Click);
 			// 
 			// cbx_anno
 			// 
@@ -514,7 +520,6 @@
 			this.label3.Size = new System.Drawing.Size(26, 13);
 			this.label3.TabIndex = 4;
 			this.label3.Text = "Año";
-			this.label3.Click += new System.EventHandler(this.label3_Click);
 			// 
 			// groupBox2
 			// 
@@ -635,7 +640,8 @@
 			// toolStrip1
 			// 
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsb_Imprimir});
+            this.tsb_Imprimir,
+            this.tsdReporte});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(470, 25);
@@ -733,9 +739,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle5.Format = "N2";
-			dataGridViewCellStyle5.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle5;
+			dataGridViewCellStyle1.Format = "N2";
+			dataGridViewCellStyle1.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -753,9 +759,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle6.Format = "N2";
-			dataGridViewCellStyle6.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle6;
+			dataGridViewCellStyle2.Format = "N2";
+			dataGridViewCellStyle2.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -793,14 +799,14 @@
 			this.btn_IngresoDosimetro.UseVisualStyleBackColor = true;
 			this.btn_IngresoDosimetro.Click += new System.EventHandler(this.btn_IngresoDosimetro_Click);
 			// 
-			// label16
+			// tsdReporte
 			// 
-			this.label16.AutoSize = true;
-			this.label16.Location = new System.Drawing.Point(12, 98);
-			this.label16.Name = "label16";
-			this.label16.Size = new System.Drawing.Size(44, 13);
-			this.label16.TabIndex = 50;
-			this.label16.Text = "Nombre";
+			this.tsdReporte.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsdReporte.Image = ((System.Drawing.Image)(resources.GetObject("tsdReporte.Image")));
+			this.tsdReporte.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsdReporte.Name = "tsdReporte";
+			this.tsdReporte.Size = new System.Drawing.Size(61, 22);
+			this.tsdReporte.Text = "Reporte";
 			// 
 			// frmIngresoPeliculaDosi
 			// 
@@ -905,5 +911,6 @@
                                 private System.Windows.Forms.PictureBox pctAgregarSucursal;
                                 private System.Windows.Forms.ToolStripButton tsb_Imprimir;
 		private System.Windows.Forms.Label label16;
+		private System.Windows.Forms.ToolStripDropDownButton tsdReporte;
 	}
 }

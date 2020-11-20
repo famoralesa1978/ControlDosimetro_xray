@@ -381,7 +381,8 @@ namespace ControlDosimetro
 					objFrm = new frmIngresoPeliculaDosi(0)
 					{
 						ShowInTaskbar = false,
-						StartPosition = FormStartPosition.CenterScreen
+						StartPosition = FormStartPosition.CenterScreen,
+						Parametros = objParams
 					};
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
