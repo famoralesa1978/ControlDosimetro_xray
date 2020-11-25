@@ -34,6 +34,7 @@ namespace ControlDosimetro
 			MantCliente							=	106,
 			MantSucursal						=	107,
 			MantPersonal						=	108,
+			MantPermiso							= 109,
 
 			IngresoPel							=	201,
 			CorreccionDcto						=	202,
@@ -307,7 +308,7 @@ namespace ControlDosimetro
 			switch (intMenu)
 			{
 				#region "Mantenedor"
-
+				
 				case (int)MENU.MantConfiguracionParametro:
 					objFrm = new frmParametro()
 					{
@@ -371,7 +372,15 @@ namespace ControlDosimetro
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
 					break;
-
+				case (int)MENU.MantPermiso:
+					objFrm = new frmMantenedorPermiso()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
 				#endregion
 
 

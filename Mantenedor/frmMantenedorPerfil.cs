@@ -103,6 +103,7 @@ namespace ControlDosimetro
 
             dgvGrilla.DataSource = dt.Tables[0];
         }
+
         private void LlamadoAModificar(int intFila)
         {
             DataTable dt = (DataTable)dgvGrilla.DataSource;
