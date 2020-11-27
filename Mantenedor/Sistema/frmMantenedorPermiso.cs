@@ -49,7 +49,6 @@ namespace ControlDosimetro
 		public frmMantenedorPermiso()
 		{
 			InitializeComponent();
-			tsbGuardar.Enabled = false;
 			dgvGrilla.AutoGenerateColumns = false;
 			dgvDetalle.AutoGenerateColumns = false;
 		}
@@ -78,6 +77,23 @@ namespace ControlDosimetro
 				cmd.CommandText = "pa_Permiso_Del " + currentRow[ConfGrilla.id.ToString()].ToString();
 				cmd.CommandType = CommandType.Text;
 				Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+
+		//		ConfGrillaDetalle: int
+		//{
+		//			idmenu = 0,
+		//	Menu = 1,
+			//	Acceso = 2,
+			//	Lectura = 3,
+			//	Nuevo = 4,
+			//	Modificacion = 5,
+			//	Eliminar = 6
+
+
+				foreach (DataRowView row in ((DataTable) dgvDetalle.DataSource).DefaultView)
+				{
+					string aaa =row[(int)ConfGrillaDetalle.idmenu].ToString();
+			
+				}
 
 				//pa_Permiso_Del
 				//        if (bolResult == true)
