@@ -91,27 +91,17 @@ namespace ControlDosimetro
 
 				foreach (DataRowView row in ((DataTable) dgvDetalle.DataSource).DefaultView)
 				{
-					string aaa =row[(int)ConfGrillaDetalle.idmenu].ToString();
-			
+					
+					//if (row.Row.RowState==DataRowState.Modified){
+
+					if((bool)row[(int)ConfGrillaDetalle.Acceso] || (bool)row[(int)ConfGrillaDetalle.Lectura] || (bool)row[(int)ConfGrillaDetalle.Modificacion] || (bool)row[(int)ConfGrillaDetalle.Nuevo] || (bool)row[(int)ConfGrillaDetalle.Eliminar])
+					{
+						cmd.CommandText = "pa_Permiso_Ins " + currentRow[ConfGrilla.id.ToString()].ToString() + "," + row[(int)ConfGrillaDetalle.idmenu] + "," + row[(int)ConfGrillaDetalle.Acceso] + "," + row[(int)ConfGrillaDetalle.Lectura] + "," + row[(int)ConfGrillaDetalle.Nuevo] + "," + row[(int)ConfGrillaDetalle.Modificacion] + "," + row[(int)ConfGrillaDetalle.Eliminar];
+						cmd.CommandType = CommandType.Text;
+						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+					}
 				}
 
-				//pa_Permiso_Del
-				//        if (bolResult == true)
-				//        {
-				//            CargarGrilla();
-				//            MessageBox.Show("Dato Guardado");                        
-				//        }
-				//    }
-				//    else
-				//    if (tssEstado.Text == "Modificar")
-				//    {
-				//        ClaseComun.Modificar(Clases.clsBD.BD,tbl_perfil, ref bolResult);
-				//        if (bolResult == true)
-				//        {
-				//            CargarGrilla();
-				//            MessageBox.Show("Dato modificado");
-				//        }
-				//    }
 				Cursor = Cursors.Default;
 			}
 		}
