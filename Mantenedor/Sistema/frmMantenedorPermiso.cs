@@ -35,8 +35,9 @@ namespace ControlDosimetro
 			Lectura=3,
 			Nuevo=4,
 			Modificacion=5,
-			Eliminar=6
-	};
+			Eliminar=6,
+			Id_menu_Padre=7
+		};
 
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
@@ -132,21 +133,6 @@ namespace ControlDosimetro
 			dtDet = Conectar.Listar(Clases.clsBD.BD, cmd);
 
 			dgvDetalle.DataSource = dtDet.Tables[0];
-
-			//txt_Descripcion.Text = currentRow[ConfGrilla.descripcion.ToString()].ToString();
-			//cbx_id_estado.SelectedValue = currentRow[ConfGrilla.Id_estado.ToString()].ToString();
-			//tssEstado.Text = "Modificar";
-			//if (txt_Id_perfil.Text == "1")
-			//{
-			//	btn_Guardar.Enabled = false;
-			//	tsbGuardar.Enabled = false;
-			//}
-			//else
-			//{
-			//	btn_Guardar.Enabled = true;
-			//	tsbGuardar.Enabled = true;
-			//}
-			//scPrincipal.Panel2Collapsed = false;
 		}
 
 		#endregion
@@ -181,6 +167,22 @@ namespace ControlDosimetro
 			bs.DataSource = dgvGrilla.DataSource;
 			bs.Filter = "Descripcion like '%" + (sender as TextBox).Text + "%'";
 			dgvGrilla.DataSource = bs;
+		}
+
+		private void dgvDetalle_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+		{
+			foreach (DataGridViewRow filaGrilla in dgvDetalle.Rows)
+			{
+				DataRowView dtrFila = (DataRowView)filaGrilla.DataBoundItem;
+				if ((bool)dtrFila["EventoClick"] == false)
+				{
+					dgvDetalle[ColLectura.Index, filaGrilla.Index].ReadOnly = true;
+					dgvDetalle[ColNuevo.Index, filaGrilla.Index].ReadOnly = true;
+					dgvDetalle[ColModificacion.Index, filaGrilla.Index].ReadOnly = true;
+					dgvDetalle[ColEliminar.Index, filaGrilla.Index].ReadOnly = true;
+					dgvDetalle[ColMenu.Index, filaGrilla.Index].Style.BackColor = Color.Aqua;
+				}
+			}
 		}
 
 		#endregion

@@ -237,6 +237,7 @@
 			this.dgvDetalle.Name = "dgvDetalle";
 			this.dgvDetalle.Size = new System.Drawing.Size(638, 442);
 			this.dgvDetalle.TabIndex = 0;
+			this.dgvDetalle.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvDetalle_DataBindingComplete);
 			// 
 			// ColMenu
 			// 
