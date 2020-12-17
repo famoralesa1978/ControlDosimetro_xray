@@ -874,6 +874,7 @@
     <Content Include="Imagen\delete_32.png" />
     <Content Include="Imagen\Detalle.png" />
     <Content Include="Imagen\documents_32.png" />
+    <Content Include="Imagen\EmailConf.png" />
     <Content Include="Imagen\exit.png" />
     <Content Include="Imagen\Filmica.png" />
     <Content Include="Imagen\firma.jpg" />
