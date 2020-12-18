@@ -233,5 +233,14 @@ namespace ControlDosimetro
         {
 
         }
-    }
+
+		private void tsbEmail_Click(object sender, EventArgs e)
+		{
+			object[] objParams = { grdDatos.SelectedCells[1].Value.ToString() };
+			frmMantenedorClienteCorreo frm = new frmMantenedorClienteCorreo();
+			frm.Parametros = objParams;
+			frm.ShowDialog();
+
+		}
+	}
 }

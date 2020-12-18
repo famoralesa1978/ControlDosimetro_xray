@@ -56,11 +56,11 @@
 			this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.tsbAgregarCliente = new System.Windows.Forms.ToolStripButton();
+			this.tsbEmail = new System.Windows.Forms.ToolStripButton();
 			this.tsbAgregarReferencia = new System.Windows.Forms.ToolStripButton();
 			this.tsbAgregarPersonal = new System.Windows.Forms.ToolStripButton();
 			this.tsbIngresoDosimetro = new System.Windows.Forms.ToolStripButton();
 			this.btnIngresarDosisISP = new System.Windows.Forms.ToolStripButton();
-			this.tsbEmail = new System.Windows.Forms.ToolStripButton();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -345,6 +345,17 @@
 			this.tsbAgregarCliente.ToolTipText = "Agregar Cliente";
 			this.tsbAgregarCliente.Click += new System.EventHandler(this.btn_Agregar_Click);
 			// 
+			// tsbEmail
+			// 
+			this.tsbEmail.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbEmail.Image = global::ControlDosimetro.Properties.Resources.EmailConf;
+			this.tsbEmail.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbEmail.Name = "tsbEmail";
+			this.tsbEmail.Size = new System.Drawing.Size(24, 24);
+			this.tsbEmail.Text = "Conf. correo";
+			this.tsbEmail.ToolTipText = "Configurar correo";
+			this.tsbEmail.Click += new System.EventHandler(this.tsbEmail_Click);
+			// 
 			// tsbAgregarReferencia
 			// 
 			this.tsbAgregarReferencia.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -389,16 +400,6 @@
 			this.btnIngresarDosisISP.Text = "Dosis ISP";
 			this.btnIngresarDosisISP.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
 			this.btnIngresarDosisISP.Click += new System.EventHandler(this.btnIngresarDosisISP_Click);
-			// 
-			// tsbEmail
-			// 
-			this.tsbEmail.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.tsbEmail.Image = global::ControlDosimetro.Properties.Resources.EmailConf;
-			this.tsbEmail.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbEmail.Name = "tsbEmail";
-			this.tsbEmail.Size = new System.Drawing.Size(24, 24);
-			this.tsbEmail.Text = "Conf. correo";
-			this.tsbEmail.ToolTipText = "Configurar correo";
 			// 
 			// frmBusquedaEmpresa
 			// 

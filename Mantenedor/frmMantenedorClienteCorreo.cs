@@ -22,24 +22,36 @@ namespace ControlDosimetro
         TextBox txtBox = new TextBox();
         enum ConfGrilla: int
         {
-            id=0,
-            descripcion=1,
-            Id_estado = 2
-        };
+					Id=0,
+					run=1,
+					Email=2
+				};
 
         clsConectorSqlServer Conectar = new clsConectorSqlServer();
         clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
         clsEventoControl ClaseEvento = new clsEventoControl();
 
-        #endregion
+		public string Rut { get; private set; }
 
-        #region "Inicio"
+		public object[] Parametros
+		{
+			set
+			{
+				if (value != null)
+				{
+					Rut = value[0].ToString();
+				}
+			}
+		}
 
-        public frmMantenedorClienteCorreo()
+		#endregion
+
+		#region "Inicio"
+
+		public frmMantenedorClienteCorreo()
         {
             InitializeComponent();
             scPrincipal.Panel2Collapsed = true;
-            Cargar_Estado();
             tsbGuardar.Enabled = false;
             dgvGrilla.AutoGenerateColumns = false;
         }
@@ -52,15 +64,10 @@ namespace ControlDosimetro
         #endregion
 
         #region Procedimiento
-        private void Cargar_Estado()
-        {
-            ClaseComun.Listar_Estado(Clases.clsBD.BD,ref cbx_id_estado_Buscar, ref cbx_id_estado_Buscar);
-            ClaseComun.Listar_Estado(Clases.clsBD.BD,ref cbx_id_estado, ref cbx_id_estado);
-        }
         private void LimpiarFormulario()
         {
             txt_Descripcion.Clear();
-            txt_Id_perfil.Clear();
+            txt_Id.Clear();
             cbx_id_estado.SelectedIndex = 0;            
         }
         private void Grabar()
@@ -69,9 +76,9 @@ namespace ControlDosimetro
             bolResult = false;
             if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
             {
-                if ((tssEstado.Text == "Nuevo")&&(txt_Id_perfil.Text=="0"))
+                if ((tssEstado.Text == "Nuevo")&&(txt_Id.Text=="0"))
                 {
-                    ClaseComun.Insertar(Clases.clsBD.BD,tbl_perfil, ref bolResult);
+                    ClaseComun.Insertar(Clases.clsBD.BD,tbl_cliente_Email, ref bolResult);
                     if (bolResult == true)
                     {
                         CargarGrilla();
@@ -81,7 +88,7 @@ namespace ControlDosimetro
                 else
                 if (tssEstado.Text == "Modificar")
                 {
-                    ClaseComun.Modificar(Clases.clsBD.BD,tbl_perfil, ref bolResult);
+                    ClaseComun.Modificar(Clases.clsBD.BD,tbl_cliente_Email, ref bolResult);
                     if (bolResult == true)
                     {
                         CargarGrilla();
@@ -94,7 +101,7 @@ namespace ControlDosimetro
         private void CargarGrilla()
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT  [Id_perfil] as id,Descripcion,Id_estado FROM [dbo].[tbl_perfil]  where id_estado= " + cbx_id_estado_Buscar.SelectedValue + "  order by Descripcion";
+            cmd.CommandText = "SELECT  [Id_perfil] as id,Descripcion,Id_estado FROM [dbo].[tbl_perfil]  order by Descripcion";
 
             cmd.CommandType = CommandType.Text;
 
@@ -108,11 +115,11 @@ namespace ControlDosimetro
         {
             DataTable dt = (DataTable)dgvGrilla.DataSource;
             DataRow currentRow = dt.Rows[intFila];
-            txt_Id_perfil.Text = currentRow[ConfGrilla.id.ToString()].ToString();
+            txt_Id.Text = currentRow[ConfGrilla.id.ToString()].ToString();
             txt_Descripcion.Text = currentRow[ConfGrilla.descripcion.ToString()].ToString();
             cbx_id_estado.SelectedValue = currentRow[ConfGrilla.Id_estado.ToString()].ToString();
             tssEstado.Text = "Modificar";
-            if (txt_Id_perfil.Text == "1")
+            if (txt_Id.Text == "1")
             {
                 btn_Guardar.Enabled = false;
                 tsbGuardar.Enabled = false;
@@ -163,7 +170,7 @@ namespace ControlDosimetro
 
             LimpiarFormulario();
             tssEstado.Text = "Nuevo";
-            txt_Id_perfil.Text = "0";
+            txt_Id.Text = "0";
 
             Cursor = Cursors.Default;
         }
@@ -184,7 +191,7 @@ namespace ControlDosimetro
             Grabar();
             LimpiarFormulario();
             tssEstado.Text = "Nuevo";
-            txt_Id_perfil.Text = "0";
+            txt_Id.Text = "0";
 
             Cursor = Cursors.Default;
         }
@@ -256,12 +263,12 @@ namespace ControlDosimetro
                 tssEstado.Text = "Nuevo";
                 tsbGuardar.Enabled = true;
                 LimpiarFormulario();
-                txt_Id_perfil.Text = "0";
+                txt_Id.Text = "0";
             }
             else
             {
                 tssEstado.Text = "";
-                txt_Id_perfil.Text = "";
+                txt_Id.Text = "";
             }
 
             Cursor = Cursors.Default;
