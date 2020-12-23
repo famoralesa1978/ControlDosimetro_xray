@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.stsEstado = new System.Windows.Forms.StatusStrip();
 			this.tssDescEstado = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tssEstado = new System.Windows.Forms.ToolStripStatusLabel();
@@ -41,23 +41,21 @@
 			this.pnlPrincipal = new System.Windows.Forms.Panel();
 			this.gpxListado = new System.Windows.Forms.GroupBox();
 			this.dgvGrilla = new System.Windows.Forms.DataGridView();
-			this.Colperfil1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cmsMenuContexto = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmActualizar = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-			this.tsmAsignarPermiso = new System.Windows.Forms.ToolStripMenuItem();
 			this.tbl_cliente_Email = new System.Windows.Forms.GroupBox();
+			this.lbl_Email = new System.Windows.Forms.Label();
+			this.txt_Email = new System.Windows.Forms.TextBox();
+			this.txt_run = new System.Windows.Forms.TextBox();
+			this.lbl_run = new System.Windows.Forms.Label();
 			this.btn_Minimizar = new System.Windows.Forms.Button();
 			this.btn_Limpiar = new System.Windows.Forms.Button();
 			this.btn_Guardar = new System.Windows.Forms.Button();
 			this.txt_Id = new System.Windows.Forms.TextBox();
 			this.lbl_Id_perfil = new System.Windows.Forms.Label();
-			this.txt_run = new System.Windows.Forms.TextBox();
-			this.lbl_run = new System.Windows.Forms.Label();
-			this.lbl_Email = new System.Windows.Forms.Label();
-			this.txt_Email = new System.Windows.Forms.TextBox();
+			this.ColEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.stsEstado.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.scPrincipal)).BeginInit();
@@ -190,17 +188,17 @@
 			this.dgvGrilla.AllowUserToDeleteRows = false;
 			this.dgvGrilla.AllowUserToOrderColumns = true;
 			this.dgvGrilla.AllowUserToResizeColumns = false;
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dgvGrilla.ColumnHeadersHeight = 42;
 			this.dgvGrilla.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Colperfil1});
+            this.ColEmail});
 			this.dgvGrilla.ContextMenuStrip = this.cmsMenuContexto;
 			this.dgvGrilla.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dgvGrilla.Location = new System.Drawing.Point(3, 16);
@@ -212,54 +210,33 @@
 			this.dgvGrilla.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvGrilla_ColumnWidthChanged);
 			this.dgvGrilla.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvGrilla_Paint);
 			// 
-			// Colperfil1
-			// 
-			this.Colperfil1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Colperfil1.DataPropertyName = "Descripcion";
-			this.Colperfil1.HeaderText = "Nombre";
-			this.Colperfil1.Name = "Colperfil1";
-			this.Colperfil1.ReadOnly = true;
-			// 
 			// cmsMenuContexto
 			// 
 			this.cmsMenuContexto.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmActualizar,
             this.toolStripSeparator2,
-            this.tsmEliminar,
-            this.toolStripSeparator3,
-            this.tsmAsignarPermiso});
+            this.tsmEliminar});
 			this.cmsMenuContexto.Name = "cmsMenuContexto";
-			this.cmsMenuContexto.Size = new System.Drawing.Size(161, 82);
+			this.cmsMenuContexto.Size = new System.Drawing.Size(181, 76);
 			// 
 			// tsmActualizar
 			// 
 			this.tsmActualizar.Name = "tsmActualizar";
-			this.tsmActualizar.Size = new System.Drawing.Size(160, 22);
+			this.tsmActualizar.Size = new System.Drawing.Size(180, 22);
 			this.tsmActualizar.Text = "Modificar";
 			this.tsmActualizar.Click += new System.EventHandler(this.tsmActualizar_Click);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(157, 6);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
 			// 
 			// tsmEliminar
 			// 
 			this.tsmEliminar.Name = "tsmEliminar";
-			this.tsmEliminar.Size = new System.Drawing.Size(160, 22);
+			this.tsmEliminar.Size = new System.Drawing.Size(180, 22);
 			this.tsmEliminar.Text = "Eliminar";
 			this.tsmEliminar.Click += new System.EventHandler(this.tsmEliminar_Click);
-			// 
-			// toolStripSeparator3
-			// 
-			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			this.toolStripSeparator3.Size = new System.Drawing.Size(157, 6);
-			// 
-			// tsmAsignarPermiso
-			// 
-			this.tsmAsignarPermiso.Name = "tsmAsignarPermiso";
-			this.tsmAsignarPermiso.Size = new System.Drawing.Size(160, 22);
-			this.tsmAsignarPermiso.Text = "Asignar permiso";
 			// 
 			// tbl_cliente_Email
 			// 
@@ -279,6 +256,41 @@
 			this.tbl_cliente_Email.TabIndex = 6;
 			this.tbl_cliente_Email.TabStop = false;
 			this.tbl_cliente_Email.Text = "Datos";
+			// 
+			// lbl_Email
+			// 
+			this.lbl_Email.AutoSize = true;
+			this.lbl_Email.Location = new System.Drawing.Point(6, 42);
+			this.lbl_Email.Name = "lbl_Email";
+			this.lbl_Email.Size = new System.Drawing.Size(32, 13);
+			this.lbl_Email.TabIndex = 42;
+			this.lbl_Email.Text = "Email";
+			// 
+			// txt_Email
+			// 
+			this.txt_Email.Location = new System.Drawing.Point(88, 39);
+			this.txt_Email.MaxLength = 100;
+			this.txt_Email.Name = "txt_Email";
+			this.txt_Email.Size = new System.Drawing.Size(269, 20);
+			this.txt_Email.TabIndex = 41;
+			// 
+			// txt_run
+			// 
+			this.txt_run.Location = new System.Drawing.Point(88, 13);
+			this.txt_run.MaxLength = 50;
+			this.txt_run.Name = "txt_run";
+			this.txt_run.ReadOnly = true;
+			this.txt_run.Size = new System.Drawing.Size(120, 20);
+			this.txt_run.TabIndex = 15;
+			// 
+			// lbl_run
+			// 
+			this.lbl_run.AutoSize = true;
+			this.lbl_run.Location = new System.Drawing.Point(6, 16);
+			this.lbl_run.Name = "lbl_run";
+			this.lbl_run.Size = new System.Drawing.Size(24, 13);
+			this.lbl_run.TabIndex = 14;
+			this.lbl_run.Text = "Rut";
 			// 
 			// btn_Minimizar
 			// 
@@ -342,39 +354,13 @@
 			this.lbl_Id_perfil.Text = "ID";
 			this.lbl_Id_perfil.Visible = false;
 			// 
-			// txt_run
+			// ColEmail
 			// 
-			this.txt_run.Location = new System.Drawing.Point(88, 13);
-			this.txt_run.MaxLength = 10;
-			this.txt_run.Name = "txt_run";
-			this.txt_run.Size = new System.Drawing.Size(120, 20);
-			this.txt_run.TabIndex = 15;
-			// 
-			// lbl_run
-			// 
-			this.lbl_run.AutoSize = true;
-			this.lbl_run.Location = new System.Drawing.Point(6, 16);
-			this.lbl_run.Name = "lbl_run";
-			this.lbl_run.Size = new System.Drawing.Size(24, 13);
-			this.lbl_run.TabIndex = 14;
-			this.lbl_run.Text = "Rut";
-			// 
-			// lbl_Email
-			// 
-			this.lbl_Email.AutoSize = true;
-			this.lbl_Email.Location = new System.Drawing.Point(6, 42);
-			this.lbl_Email.Name = "lbl_Email";
-			this.lbl_Email.Size = new System.Drawing.Size(32, 13);
-			this.lbl_Email.TabIndex = 42;
-			this.lbl_Email.Text = "Email";
-			// 
-			// txt_Email
-			// 
-			this.txt_Email.Location = new System.Drawing.Point(88, 39);
-			this.txt_Email.MaxLength = 100;
-			this.txt_Email.Name = "txt_Email";
-			this.txt_Email.Size = new System.Drawing.Size(303, 20);
-			this.txt_Email.TabIndex = 41;
+			this.ColEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.ColEmail.DataPropertyName = "Email";
+			this.ColEmail.HeaderText = "Email";
+			this.ColEmail.Name = "ColEmail";
+			this.ColEmail.ReadOnly = true;
 			// 
 			// frmMantenedorClienteCorreo
 			// 
@@ -427,18 +413,16 @@
         private System.Windows.Forms.ToolStripMenuItem tsmActualizar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem tsmEliminar;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripMenuItem tsmAsignarPermiso;
         private System.Windows.Forms.ToolStripStatusLabel tssDescEstado;
         private System.Windows.Forms.ToolStripStatusLabel tssEstado;
         private System.Windows.Forms.Button btn_Limpiar;
         private System.Windows.Forms.Button btn_Guardar;
         private System.Windows.Forms.Button btn_Minimizar;
         private System.Windows.Forms.DataGridView dgvGrilla;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Colperfil1;
 		private System.Windows.Forms.TextBox txt_run;
 		private System.Windows.Forms.Label lbl_run;
 		private System.Windows.Forms.Label lbl_Email;
 		private System.Windows.Forms.TextBox txt_Email;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColEmail;
 	}
 }
