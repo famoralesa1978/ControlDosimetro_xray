@@ -24,7 +24,8 @@ namespace ControlDosimetro
 		{
 			Id = 0,
 			run = 1,
-			Email = 2
+			Email = 2,
+			Id_Depto=3
 		};
 
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
@@ -59,6 +60,7 @@ namespace ControlDosimetro
 		private void frmMantenedorClienteCorreo_Load(object sender, EventArgs e)
 		{
 			CargarGrilla();
+			Cargar_Departamento();
 		}
 
 		#endregion
@@ -101,7 +103,7 @@ namespace ControlDosimetro
 		private void CargarGrilla()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "SELECT  [Id],[run],[Email]  FROM [dbo].[tbl_cliente_Email] where run='" + Rut + "'";
+			cmd.CommandText = "SELECT  [Id],[run],[Email],Id_Depto  FROM [dbo].[tbl_cliente_Email] where run='" + Rut + "'";
 
 			cmd.CommandType = CommandType.Text;
 
@@ -118,6 +120,7 @@ namespace ControlDosimetro
 			txt_Id.Text = currentRow[ConfGrilla.Id.ToString()].ToString();
 			txt_run.Text = Rut;
 			txt_Email.Text = currentRow[ConfGrilla.Email.ToString()].ToString();
+			cbx_Id_Depto.SelectedValue = currentRow[ConfGrilla.Id_Depto.ToString()];
 			tssEstado.Text = "Modificar";
 			if (txt_Id.Text == "")
 			{
@@ -130,6 +133,11 @@ namespace ControlDosimetro
 				tsbGuardar.Enabled = true;
 			}
 			scPrincipal.Panel2Collapsed = false;
+		}
+
+		private void Cargar_Departamento()
+		{
+			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref cbx_Id_Depto, 19);
 		}
 
 		#endregion

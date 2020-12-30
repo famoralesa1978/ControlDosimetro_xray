@@ -48,11 +48,15 @@
 			this.lbl_Host = new System.Windows.Forms.Label();
 			this.txt_Desde = new System.Windows.Forms.TextBox();
 			this.lbl_Desde = new System.Windows.Forms.Label();
+			this.cbx_Id_Depto = new System.Windows.Forms.ComboBox();
+			this.lbl_Id_Depto = new System.Windows.Forms.Label();
 			this.conf_Correo.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// conf_Correo
 			// 
+			this.conf_Correo.Controls.Add(this.cbx_Id_Depto);
+			this.conf_Correo.Controls.Add(this.lbl_Id_Depto);
 			this.conf_Correo.Controls.Add(this.btn_EnviarCorreo);
 			this.conf_Correo.Controls.Add(this.txt_Para);
 			this.conf_Correo.Controls.Add(this.label3);
@@ -75,14 +79,14 @@
 			this.conf_Correo.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.conf_Correo.Location = new System.Drawing.Point(0, 0);
 			this.conf_Correo.Name = "conf_Correo";
-			this.conf_Correo.Size = new System.Drawing.Size(492, 297);
+			this.conf_Correo.Size = new System.Drawing.Size(492, 348);
 			this.conf_Correo.TabIndex = 0;
 			this.conf_Correo.TabStop = false;
 			this.conf_Correo.Text = "Datos";
 			// 
 			// btn_EnviarCorreo
 			// 
-			this.btn_EnviarCorreo.Location = new System.Drawing.Point(78, 251);
+			this.btn_EnviarCorreo.Location = new System.Drawing.Point(78, 275);
 			this.btn_EnviarCorreo.Name = "btn_EnviarCorreo";
 			this.btn_EnviarCorreo.Size = new System.Drawing.Size(110, 23);
 			this.btn_EnviarCorreo.TabIndex = 63;
@@ -92,7 +96,7 @@
 			// 
 			// txt_Para
 			// 
-			this.txt_Para.Location = new System.Drawing.Point(167, 221);
+			this.txt_Para.Location = new System.Drawing.Point(167, 245);
 			this.txt_Para.MaxLength = 50;
 			this.txt_Para.Name = "txt_Para";
 			this.txt_Para.Size = new System.Drawing.Size(313, 20);
@@ -101,7 +105,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(11, 224);
+			this.label3.Location = new System.Drawing.Point(11, 248);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(29, 13);
 			this.label3.TabIndex = 61;
@@ -110,7 +114,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(13, 201);
+			this.label2.Location = new System.Drawing.Point(13, 225);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(118, 13);
 			this.label2.TabIndex = 60;
@@ -119,7 +123,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(16, 184);
+			this.label1.Location = new System.Drawing.Point(16, 208);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(283, 13);
 			this.label1.TabIndex = 59;
@@ -127,7 +131,7 @@
 			// 
 			// txt_Clave
 			// 
-			this.txt_Clave.Location = new System.Drawing.Point(53, 121);
+			this.txt_Clave.Location = new System.Drawing.Point(53, 145);
 			this.txt_Clave.MaxLength = 100;
 			this.txt_Clave.Name = "txt_Clave";
 			this.txt_Clave.Size = new System.Drawing.Size(111, 20);
@@ -136,7 +140,7 @@
 			// 
 			// txt_Clave1
 			// 
-			this.txt_Clave1.Location = new System.Drawing.Point(167, 122);
+			this.txt_Clave1.Location = new System.Drawing.Point(167, 146);
 			this.txt_Clave1.MaxLength = 100;
 			this.txt_Clave1.Name = "txt_Clave1";
 			this.txt_Clave1.PasswordChar = '*';
@@ -146,7 +150,7 @@
 			// 
 			// txt_Credencial
 			// 
-			this.txt_Credencial.Location = new System.Drawing.Point(167, 17);
+			this.txt_Credencial.Location = new System.Drawing.Point(167, 41);
 			this.txt_Credencial.MaxLength = 50;
 			this.txt_Credencial.Name = "txt_Credencial";
 			this.txt_Credencial.Size = new System.Drawing.Size(313, 20);
@@ -155,7 +159,7 @@
 			// lbl_Clave
 			// 
 			this.lbl_Clave.AutoSize = true;
-			this.lbl_Clave.Location = new System.Drawing.Point(11, 128);
+			this.lbl_Clave.Location = new System.Drawing.Point(11, 152);
 			this.lbl_Clave.Name = "lbl_Clave";
 			this.lbl_Clave.Size = new System.Drawing.Size(34, 13);
 			this.lbl_Clave.TabIndex = 55;
@@ -164,7 +168,7 @@
 			// lbl_Id_Personal
 			// 
 			this.lbl_Id_Personal.AutoSize = true;
-			this.lbl_Id_Personal.Location = new System.Drawing.Point(164, 22);
+			this.lbl_Id_Personal.Location = new System.Drawing.Point(164, 46);
 			this.lbl_Id_Personal.Name = "lbl_Id_Personal";
 			this.lbl_Id_Personal.Size = new System.Drawing.Size(0, 13);
 			this.lbl_Id_Personal.TabIndex = 47;
@@ -172,7 +176,7 @@
 			// lbl_Credencial
 			// 
 			this.lbl_Credencial.AutoSize = true;
-			this.lbl_Credencial.Location = new System.Drawing.Point(13, 22);
+			this.lbl_Credencial.Location = new System.Drawing.Point(13, 46);
 			this.lbl_Credencial.Name = "lbl_Credencial";
 			this.lbl_Credencial.Size = new System.Drawing.Size(57, 13);
 			this.lbl_Credencial.TabIndex = 45;
@@ -180,7 +184,7 @@
 			// 
 			// btn_cerrar
 			// 
-			this.btn_cerrar.Location = new System.Drawing.Point(224, 158);
+			this.btn_cerrar.Location = new System.Drawing.Point(224, 182);
 			this.btn_cerrar.Name = "btn_cerrar";
 			this.btn_cerrar.Size = new System.Drawing.Size(75, 23);
 			this.btn_cerrar.TabIndex = 13;
@@ -190,7 +194,7 @@
 			// 
 			// btn_Grabar
 			// 
-			this.btn_Grabar.Location = new System.Drawing.Point(113, 158);
+			this.btn_Grabar.Location = new System.Drawing.Point(113, 182);
 			this.btn_Grabar.Name = "btn_Grabar";
 			this.btn_Grabar.Size = new System.Drawing.Size(75, 23);
 			this.btn_Grabar.TabIndex = 12;
@@ -200,7 +204,7 @@
 			// 
 			// txt_Port
 			// 
-			this.txt_Port.Location = new System.Drawing.Point(167, 95);
+			this.txt_Port.Location = new System.Drawing.Point(167, 119);
 			this.txt_Port.MaxLength = 20;
 			this.txt_Port.Name = "txt_Port";
 			this.txt_Port.Size = new System.Drawing.Size(45, 20);
@@ -209,7 +213,7 @@
 			// lbl_Port
 			// 
 			this.lbl_Port.AutoSize = true;
-			this.lbl_Port.Location = new System.Drawing.Point(11, 98);
+			this.lbl_Port.Location = new System.Drawing.Point(11, 122);
 			this.lbl_Port.Name = "lbl_Port";
 			this.lbl_Port.Size = new System.Drawing.Size(26, 13);
 			this.lbl_Port.TabIndex = 9;
@@ -217,7 +221,7 @@
 			// 
 			// txt_Host
 			// 
-			this.txt_Host.Location = new System.Drawing.Point(167, 69);
+			this.txt_Host.Location = new System.Drawing.Point(167, 93);
 			this.txt_Host.MaxLength = 30;
 			this.txt_Host.Name = "txt_Host";
 			this.txt_Host.Size = new System.Drawing.Size(104, 20);
@@ -226,7 +230,7 @@
 			// lbl_Host
 			// 
 			this.lbl_Host.AutoSize = true;
-			this.lbl_Host.Location = new System.Drawing.Point(11, 72);
+			this.lbl_Host.Location = new System.Drawing.Point(11, 96);
 			this.lbl_Host.Name = "lbl_Host";
 			this.lbl_Host.Size = new System.Drawing.Size(29, 13);
 			this.lbl_Host.TabIndex = 7;
@@ -234,7 +238,7 @@
 			// 
 			// txt_Desde
 			// 
-			this.txt_Desde.Location = new System.Drawing.Point(167, 43);
+			this.txt_Desde.Location = new System.Drawing.Point(167, 67);
 			this.txt_Desde.MaxLength = 50;
 			this.txt_Desde.Name = "txt_Desde";
 			this.txt_Desde.Size = new System.Drawing.Size(313, 20);
@@ -243,17 +247,36 @@
 			// lbl_Desde
 			// 
 			this.lbl_Desde.AutoSize = true;
-			this.lbl_Desde.Location = new System.Drawing.Point(11, 46);
+			this.lbl_Desde.Location = new System.Drawing.Point(11, 70);
 			this.lbl_Desde.Name = "lbl_Desde";
 			this.lbl_Desde.Size = new System.Drawing.Size(38, 13);
 			this.lbl_Desde.TabIndex = 0;
 			this.lbl_Desde.Text = "Desde";
 			// 
+			// cbx_Id_Depto
+			// 
+			this.cbx_Id_Depto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_Id_Depto.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbx_Id_Depto.FormattingEnabled = true;
+			this.cbx_Id_Depto.Location = new System.Drawing.Point(167, 14);
+			this.cbx_Id_Depto.Name = "cbx_Id_Depto";
+			this.cbx_Id_Depto.Size = new System.Drawing.Size(150, 21);
+			this.cbx_Id_Depto.TabIndex = 64;
+			// 
+			// lbl_Id_Depto
+			// 
+			this.lbl_Id_Depto.AutoSize = true;
+			this.lbl_Id_Depto.Location = new System.Drawing.Point(13, 17);
+			this.lbl_Id_Depto.Name = "lbl_Id_Depto";
+			this.lbl_Id_Depto.Size = new System.Drawing.Size(74, 13);
+			this.lbl_Id_Depto.TabIndex = 65;
+			this.lbl_Id_Depto.Text = "Departamento";
+			// 
 			// FrmConfCorreo
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(492, 297);
+			this.ClientSize = new System.Drawing.Size(492, 348);
 			this.Controls.Add(this.conf_Correo);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -288,5 +311,7 @@
         private System.Windows.Forms.TextBox txt_Para;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_EnviarCorreo;
-    }
+		private System.Windows.Forms.ComboBox cbx_Id_Depto;
+		private System.Windows.Forms.Label lbl_Id_Depto;
+	}
 }

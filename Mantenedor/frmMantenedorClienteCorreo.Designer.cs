@@ -41,11 +41,14 @@
 			this.pnlPrincipal = new System.Windows.Forms.Panel();
 			this.gpxListado = new System.Windows.Forms.GroupBox();
 			this.dgvGrilla = new System.Windows.Forms.DataGridView();
+			this.ColEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cmsMenuContexto = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmActualizar = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
 			this.tbl_cliente_Email = new System.Windows.Forms.GroupBox();
+			this.cbx_Id_Depto = new System.Windows.Forms.ComboBox();
+			this.lbl_Id_Depto = new System.Windows.Forms.Label();
 			this.lbl_Email = new System.Windows.Forms.Label();
 			this.txt_Email = new System.Windows.Forms.TextBox();
 			this.txt_run = new System.Windows.Forms.TextBox();
@@ -55,7 +58,6 @@
 			this.btn_Guardar = new System.Windows.Forms.Button();
 			this.txt_Id = new System.Windows.Forms.TextBox();
 			this.lbl_Id_perfil = new System.Windows.Forms.Label();
-			this.ColEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.stsEstado.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.scPrincipal)).BeginInit();
@@ -76,7 +78,7 @@
             this.tssEstado});
 			this.stsEstado.Location = new System.Drawing.Point(0, 297);
 			this.stsEstado.Name = "stsEstado";
-			this.stsEstado.Size = new System.Drawing.Size(629, 22);
+			this.stsEstado.Size = new System.Drawing.Size(816, 22);
 			this.stsEstado.TabIndex = 0;
 			this.stsEstado.Text = "statusStrip1";
 			// 
@@ -101,7 +103,7 @@
             this.tsbAgregar});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(629, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(816, 25);
 			this.toolStrip1.TabIndex = 1;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -152,8 +154,8 @@
 			this.scPrincipal.Panel2.Controls.Add(this.tbl_cliente_Email);
 			this.scPrincipal.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.scPrincipal.Panel2MinSize = 200;
-			this.scPrincipal.Size = new System.Drawing.Size(617, 269);
-			this.scPrincipal.SplitterDistance = 250;
+			this.scPrincipal.Size = new System.Drawing.Size(804, 269);
+			this.scPrincipal.SplitterDistance = 325;
 			this.scPrincipal.TabIndex = 2;
 			// 
 			// pnlPrincipal
@@ -166,7 +168,7 @@
 			this.pnlPrincipal.Location = new System.Drawing.Point(0, 3);
 			this.pnlPrincipal.Margin = new System.Windows.Forms.Padding(6, 3, 5, 3);
 			this.pnlPrincipal.Name = "pnlPrincipal";
-			this.pnlPrincipal.Size = new System.Drawing.Size(245, 263);
+			this.pnlPrincipal.Size = new System.Drawing.Size(320, 263);
 			this.pnlPrincipal.TabIndex = 1;
 			// 
 			// gpxListado
@@ -177,7 +179,7 @@
 			this.gpxListado.Controls.Add(this.dgvGrilla);
 			this.gpxListado.Location = new System.Drawing.Point(3, 3);
 			this.gpxListado.Name = "gpxListado";
-			this.gpxListado.Size = new System.Drawing.Size(237, 255);
+			this.gpxListado.Size = new System.Drawing.Size(312, 255);
 			this.gpxListado.TabIndex = 4;
 			this.gpxListado.TabStop = false;
 			this.gpxListado.Text = "Listado correo";
@@ -204,11 +206,19 @@
 			this.dgvGrilla.Location = new System.Drawing.Point(3, 16);
 			this.dgvGrilla.Name = "dgvGrilla";
 			this.dgvGrilla.ReadOnly = true;
-			this.dgvGrilla.Size = new System.Drawing.Size(231, 236);
+			this.dgvGrilla.Size = new System.Drawing.Size(306, 236);
 			this.dgvGrilla.TabIndex = 0;
 			this.dgvGrilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_CellDoubleClick);
 			this.dgvGrilla.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvGrilla_ColumnWidthChanged);
 			this.dgvGrilla.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvGrilla_Paint);
+			// 
+			// ColEmail
+			// 
+			this.ColEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.ColEmail.DataPropertyName = "Email";
+			this.ColEmail.HeaderText = "Email";
+			this.ColEmail.Name = "ColEmail";
+			this.ColEmail.ReadOnly = true;
 			// 
 			// cmsMenuContexto
 			// 
@@ -217,29 +227,31 @@
             this.toolStripSeparator2,
             this.tsmEliminar});
 			this.cmsMenuContexto.Name = "cmsMenuContexto";
-			this.cmsMenuContexto.Size = new System.Drawing.Size(181, 76);
+			this.cmsMenuContexto.Size = new System.Drawing.Size(126, 54);
 			// 
 			// tsmActualizar
 			// 
 			this.tsmActualizar.Name = "tsmActualizar";
-			this.tsmActualizar.Size = new System.Drawing.Size(180, 22);
+			this.tsmActualizar.Size = new System.Drawing.Size(125, 22);
 			this.tsmActualizar.Text = "Modificar";
 			this.tsmActualizar.Click += new System.EventHandler(this.tsmActualizar_Click);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(122, 6);
 			// 
 			// tsmEliminar
 			// 
 			this.tsmEliminar.Name = "tsmEliminar";
-			this.tsmEliminar.Size = new System.Drawing.Size(180, 22);
+			this.tsmEliminar.Size = new System.Drawing.Size(125, 22);
 			this.tsmEliminar.Text = "Eliminar";
 			this.tsmEliminar.Click += new System.EventHandler(this.tsmEliminar_Click);
 			// 
 			// tbl_cliente_Email
 			// 
+			this.tbl_cliente_Email.Controls.Add(this.cbx_Id_Depto);
+			this.tbl_cliente_Email.Controls.Add(this.lbl_Id_Depto);
 			this.tbl_cliente_Email.Controls.Add(this.lbl_Email);
 			this.tbl_cliente_Email.Controls.Add(this.txt_Email);
 			this.tbl_cliente_Email.Controls.Add(this.txt_run);
@@ -252,10 +264,29 @@
 			this.tbl_cliente_Email.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tbl_cliente_Email.Location = new System.Drawing.Point(0, 0);
 			this.tbl_cliente_Email.Name = "tbl_cliente_Email";
-			this.tbl_cliente_Email.Size = new System.Drawing.Size(363, 269);
+			this.tbl_cliente_Email.Size = new System.Drawing.Size(475, 269);
 			this.tbl_cliente_Email.TabIndex = 6;
 			this.tbl_cliente_Email.TabStop = false;
 			this.tbl_cliente_Email.Text = "Datos";
+			// 
+			// cbx_Id_Depto
+			// 
+			this.cbx_Id_Depto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_Id_Depto.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbx_Id_Depto.FormattingEnabled = true;
+			this.cbx_Id_Depto.Location = new System.Drawing.Point(88, 65);
+			this.cbx_Id_Depto.Name = "cbx_Id_Depto";
+			this.cbx_Id_Depto.Size = new System.Drawing.Size(150, 21);
+			this.cbx_Id_Depto.TabIndex = 48;
+			// 
+			// lbl_Id_Depto
+			// 
+			this.lbl_Id_Depto.AutoSize = true;
+			this.lbl_Id_Depto.Location = new System.Drawing.Point(6, 68);
+			this.lbl_Id_Depto.Name = "lbl_Id_Depto";
+			this.lbl_Id_Depto.Size = new System.Drawing.Size(74, 13);
+			this.lbl_Id_Depto.TabIndex = 49;
+			this.lbl_Id_Depto.Text = "Departamento";
 			// 
 			// lbl_Email
 			// 
@@ -309,7 +340,7 @@
 			this.btn_Limpiar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.btn_Limpiar.Image = global::ControlDosimetro.Properties.Resources.Limpiar;
 			this.btn_Limpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_Limpiar.Location = new System.Drawing.Point(173, 219);
+			this.btn_Limpiar.Location = new System.Drawing.Point(229, 219);
 			this.btn_Limpiar.Name = "btn_Limpiar";
 			this.btn_Limpiar.Size = new System.Drawing.Size(85, 40);
 			this.btn_Limpiar.TabIndex = 10;
@@ -325,7 +356,7 @@
 			this.btn_Guardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.btn_Guardar.Image = global::ControlDosimetro.Properties.Resources.save_32;
 			this.btn_Guardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_Guardar.Location = new System.Drawing.Point(44, 219);
+			this.btn_Guardar.Location = new System.Drawing.Point(100, 219);
 			this.btn_Guardar.Name = "btn_Guardar";
 			this.btn_Guardar.Size = new System.Drawing.Size(87, 40);
 			this.btn_Guardar.TabIndex = 9;
@@ -337,7 +368,7 @@
 			// txt_Id
 			// 
 			this.txt_Id.Enabled = false;
-			this.txt_Id.Location = new System.Drawing.Point(88, 66);
+			this.txt_Id.Location = new System.Drawing.Point(88, 117);
 			this.txt_Id.Name = "txt_Id";
 			this.txt_Id.ReadOnly = true;
 			this.txt_Id.Size = new System.Drawing.Size(66, 20);
@@ -347,26 +378,18 @@
 			// lbl_Id_perfil
 			// 
 			this.lbl_Id_perfil.AutoSize = true;
-			this.lbl_Id_perfil.Location = new System.Drawing.Point(3, 73);
+			this.lbl_Id_perfil.Location = new System.Drawing.Point(3, 124);
 			this.lbl_Id_perfil.Name = "lbl_Id_perfil";
 			this.lbl_Id_perfil.Size = new System.Drawing.Size(18, 13);
 			this.lbl_Id_perfil.TabIndex = 8;
 			this.lbl_Id_perfil.Text = "ID";
 			this.lbl_Id_perfil.Visible = false;
 			// 
-			// ColEmail
-			// 
-			this.ColEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.ColEmail.DataPropertyName = "Email";
-			this.ColEmail.HeaderText = "Email";
-			this.ColEmail.Name = "ColEmail";
-			this.ColEmail.ReadOnly = true;
-			// 
 			// frmMantenedorClienteCorreo
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(629, 319);
+			this.ClientSize = new System.Drawing.Size(816, 319);
 			this.Controls.Add(this.scPrincipal);
 			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this.stsEstado);
@@ -424,5 +447,7 @@
 		private System.Windows.Forms.Label lbl_Email;
 		private System.Windows.Forms.TextBox txt_Email;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColEmail;
+		private System.Windows.Forms.ComboBox cbx_Id_Depto;
+		private System.Windows.Forms.Label lbl_Id_Depto;
 	}
 }
