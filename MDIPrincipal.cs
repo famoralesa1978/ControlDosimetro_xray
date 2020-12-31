@@ -349,7 +349,8 @@ namespace ControlDosimetro
 					objFrm = new frmBusquedaEmpresa()
 					{
 						ShowInTaskbar = false,
-						StartPosition = FormStartPosition.CenterScreen
+						StartPosition = FormStartPosition.CenterScreen,
+						Parametros = objParams
 					};
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
@@ -727,7 +728,8 @@ namespace ControlDosimetro
 					objFrm = new frmBusquedaEmpresa()
 					{
 						ShowInTaskbar = false,
-						StartPosition = FormStartPosition.CenterScreen
+						StartPosition = FormStartPosition.CenterScreen,
+						Parametros = objParams
 					};
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);

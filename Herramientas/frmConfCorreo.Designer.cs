@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
 			this.conf_Correo = new System.Windows.Forms.GroupBox();
+			this.cbx_Id_Depto = new System.Windows.Forms.ComboBox();
+			this.lbl_Id_Depto = new System.Windows.Forms.Label();
 			this.btn_EnviarCorreo = new System.Windows.Forms.Button();
 			this.txt_Para = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
@@ -48,8 +50,6 @@
 			this.lbl_Host = new System.Windows.Forms.Label();
 			this.txt_Desde = new System.Windows.Forms.TextBox();
 			this.lbl_Desde = new System.Windows.Forms.Label();
-			this.cbx_Id_Depto = new System.Windows.Forms.ComboBox();
-			this.lbl_Id_Depto = new System.Windows.Forms.Label();
 			this.conf_Correo.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -83,6 +83,26 @@
 			this.conf_Correo.TabIndex = 0;
 			this.conf_Correo.TabStop = false;
 			this.conf_Correo.Text = "Datos";
+			// 
+			// cbx_Id_Depto
+			// 
+			this.cbx_Id_Depto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_Id_Depto.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbx_Id_Depto.FormattingEnabled = true;
+			this.cbx_Id_Depto.Location = new System.Drawing.Point(167, 14);
+			this.cbx_Id_Depto.Name = "cbx_Id_Depto";
+			this.cbx_Id_Depto.Size = new System.Drawing.Size(150, 21);
+			this.cbx_Id_Depto.TabIndex = 64;
+			this.cbx_Id_Depto.SelectedValueChanged += new System.EventHandler(this.cbx_Id_Depto_SelectedValueChanged);
+			// 
+			// lbl_Id_Depto
+			// 
+			this.lbl_Id_Depto.AutoSize = true;
+			this.lbl_Id_Depto.Location = new System.Drawing.Point(13, 17);
+			this.lbl_Id_Depto.Name = "lbl_Id_Depto";
+			this.lbl_Id_Depto.Size = new System.Drawing.Size(74, 13);
+			this.lbl_Id_Depto.TabIndex = 65;
+			this.lbl_Id_Depto.Text = "Departamento";
 			// 
 			// btn_EnviarCorreo
 			// 
@@ -252,25 +272,6 @@
 			this.lbl_Desde.Size = new System.Drawing.Size(38, 13);
 			this.lbl_Desde.TabIndex = 0;
 			this.lbl_Desde.Text = "Desde";
-			// 
-			// cbx_Id_Depto
-			// 
-			this.cbx_Id_Depto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_Id_Depto.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbx_Id_Depto.FormattingEnabled = true;
-			this.cbx_Id_Depto.Location = new System.Drawing.Point(167, 14);
-			this.cbx_Id_Depto.Name = "cbx_Id_Depto";
-			this.cbx_Id_Depto.Size = new System.Drawing.Size(150, 21);
-			this.cbx_Id_Depto.TabIndex = 64;
-			// 
-			// lbl_Id_Depto
-			// 
-			this.lbl_Id_Depto.AutoSize = true;
-			this.lbl_Id_Depto.Location = new System.Drawing.Point(13, 17);
-			this.lbl_Id_Depto.Name = "lbl_Id_Depto";
-			this.lbl_Id_Depto.Size = new System.Drawing.Size(74, 13);
-			this.lbl_Id_Depto.TabIndex = 65;
-			this.lbl_Id_Depto.Text = "Departamento";
 			// 
 			// FrmConfCorreo
 			// 

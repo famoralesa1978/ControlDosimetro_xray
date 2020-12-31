@@ -43,7 +43,7 @@ namespace ControlDosimetro
 		{
 			SqlCommand cmd = new SqlCommand
 			{
-				CommandText = "  SELECT [Desde] , [Credencial],[Clave],[Host],[Port]  FROM [dbo].[conf_Correo]"
+				CommandText = "  SELECT [Desde] , [Credencial],[Clave],[Host],[Port]  FROM [dbo].[conf_Correo] where Id_Depto=" + cbx_Id_Depto.SelectedValue
 			};
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -142,8 +142,12 @@ namespace ControlDosimetro
 			txt_Clave.Text = clsUtiles1.GenerateHashMD5(txt_Clave1.Text);
 		}
 
-		#endregion
+		private void cbx_Id_Depto_SelectedValueChanged(object sender, EventArgs e)
+		{
+			Cargar();
+		}
 
+		#endregion
 
 	}
 }

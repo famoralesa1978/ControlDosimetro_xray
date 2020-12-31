@@ -61,6 +61,7 @@
 			this.tsbAgregarPersonal = new System.Windows.Forms.ToolStripButton();
 			this.tsbIngresoDosimetro = new System.Windows.Forms.ToolStripButton();
 			this.btnIngresarDosisISP = new System.Windows.Forms.ToolStripButton();
+			this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -327,7 +328,8 @@
             this.tsbAgregarReferencia,
             this.tsbAgregarPersonal,
             this.tsbIngresoDosimetro,
-            this.btnIngresarDosisISP});
+            this.btnIngresarDosisISP,
+            this.tsdReporte});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(980, 27);
@@ -401,6 +403,15 @@
 			this.btnIngresarDosisISP.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
 			this.btnIngresarDosisISP.Click += new System.EventHandler(this.btnIngresarDosisISP_Click);
 			// 
+			// tsdReporte
+			// 
+			this.tsdReporte.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsdReporte.Image = ((System.Drawing.Image)(resources.GetObject("tsdReporte.Image")));
+			this.tsdReporte.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsdReporte.Name = "tsdReporte";
+			this.tsdReporte.Size = new System.Drawing.Size(61, 24);
+			this.tsdReporte.Text = "Reporte";
+			// 
 			// frmBusquedaEmpresa
 			// 
 			this.AcceptButton = this.btn_cargarCliente;
@@ -417,6 +428,7 @@
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Busqueda Cliente";
+			this.Load += new System.EventHandler(this.frmBusquedaEmpresa_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
@@ -462,5 +474,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Direccion;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
 		private System.Windows.Forms.ToolStripButton tsbEmail;
+		private System.Windows.Forms.ToolStripDropDownButton tsdReporte;
 	}
 }

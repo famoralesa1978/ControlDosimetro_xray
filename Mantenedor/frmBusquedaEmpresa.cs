@@ -22,6 +22,20 @@ namespace ControlDosimetro
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
+
+		public string Id_Menu { get; private set; }
+
+		public object[] Parametros
+		{
+			set
+			{
+				if (value != null)
+				{
+					Id_Menu = value[0].ToString();
+				}
+			}
+		}
+
 		#endregion
 
 		public frmBusquedaEmpresa()
@@ -32,7 +46,48 @@ namespace ControlDosimetro
 			HablitarBarra(false);
 		}
 
+		private void frmBusquedaEmpresa_Load(object sender, EventArgs e)
+		{
+			Cargar_Reporte();
+		}
+
 		#region "Llamada de carga"
+
+		private void Cargar_Reporte()
+		{
+			ToolStripMenuItem tsiMenu;
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "pa_ListarReporte_Sel " + Id_Menu.ToString();
+			DataSet dt;
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			if (dt == null)
+				tsdReporte.Visible = false;
+			else
+			{
+				tsdReporte.Visible = dt.Tables[0].Rows.Count == 0 ? false : true;
+				if (dt.Tables[0].Rows.Count > 0)
+				{
+					for (int intFila = 0; intFila <= dt.Tables[0].Rows.Count - 1; intFila++)
+					{
+						tsiMenu = new ToolStripMenuItem();
+						tsiMenu.Text = dt.Tables[0].Rows[intFila]["Nombre"].ToString();
+						tsiMenu.Name = dt.Tables[0].Rows[intFila]["nameMenu"].ToString();
+						tsiMenu.Tag = dt.Tables[0].Rows[intFila]["N_Reporte"].ToString();
+						tsiMenu.Click += new EventHandler(this.LLamadoReporte_Click);
+
+						tsdReporte.DropDownItems.Add(tsiMenu);
+					}
+				}
+			}
+
+		}
+
+		private void LLamadoReporte_Click(object sender, EventArgs e)
+		{
+			MDIPrincipal.LlamadaReporte(Convert.ToUInt16(((System.Windows.Forms.ToolStripItem)sender).Tag.ToString()));
+
+		}
+
 
 		string FormarFiltro()
 		{
@@ -243,5 +298,7 @@ namespace ControlDosimetro
 			frm.ShowDialog();
 
 		}
+
+
 	}
 }
