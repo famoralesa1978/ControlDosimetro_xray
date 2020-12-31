@@ -28,7 +28,13 @@ namespace ControlDosimetro
 		{
 			InitializeComponent();
 			AsignarEvento();
+			
+		}
+
+		private void FrmConfCorreo_Load(object sender, EventArgs e)
+		{
 			Cargar_Departamento();
+			cbx_Id_Depto.SelectedIndex = 0;
 			Cargar();
 		}
 
@@ -144,10 +150,15 @@ namespace ControlDosimetro
 
 		private void cbx_Id_Depto_SelectedValueChanged(object sender, EventArgs e)
 		{
-			Cargar();
+			
 		}
 
+		private void cbx_Id_Depto_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			Cargar();
+		}
 		#endregion
+
 
 	}
 }

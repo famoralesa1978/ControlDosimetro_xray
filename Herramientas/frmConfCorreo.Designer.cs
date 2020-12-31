@@ -93,6 +93,7 @@
 			this.cbx_Id_Depto.Name = "cbx_Id_Depto";
 			this.cbx_Id_Depto.Size = new System.Drawing.Size(150, 21);
 			this.cbx_Id_Depto.TabIndex = 64;
+			this.cbx_Id_Depto.SelectedIndexChanged += new System.EventHandler(this.cbx_Id_Depto_SelectedIndexChanged);
 			this.cbx_Id_Depto.SelectedValueChanged += new System.EventHandler(this.cbx_Id_Depto_SelectedValueChanged);
 			// 
 			// lbl_Id_Depto
@@ -284,6 +285,7 @@
 			this.Name = "FrmConfCorreo";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Configuración de  correo";
+			this.Load += new System.EventHandler(this.FrmConfCorreo_Load);
 			this.conf_Correo.ResumeLayout(false);
 			this.conf_Correo.PerformLayout();
 			this.ResumeLayout(false);
