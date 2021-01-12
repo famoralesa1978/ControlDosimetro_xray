@@ -239,7 +239,18 @@ namespace ControlDosimetro
 
 		}
 
+		private void Cargar_Seccion()
+		{
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "select 'Todos' as seccion, -1 as id_seccion union SELECT seccion,id_seccion " +
+							" FROM tbl_seccion  WHERE Id_cliente= " + lbl_id_cliente.Text.ToString() + " and id_estado=1";
+			DataSet dt;
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
+			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
+			cbx_id_seccion.DataSource = dt.Tables[0];
 
+		}
 
 		private void AsignarEvento()
 		{
@@ -408,7 +419,12 @@ namespace ControlDosimetro
 
 		private void btn_Corregir_Click(object sender, EventArgs e)
 		{
-
+			if (string.IsNullOrWhiteSpace(txt_N_TLD.Text)){
+				MessageBox.Show("Debe asignar un número de TLD");
+				return;
+			}
+				
+		
 			SqlCommand cmd2 = new SqlCommand();
 			//	  SqlCommand cmd = new SqlCommand();
 			SqlCommand cmdpersonal = new SqlCommand();
@@ -1020,6 +1036,7 @@ namespace ControlDosimetro
 		{
 			Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
 			Cargar_Sucursal();
+			Cargar_Seccion();
 			btn_Corregir.Enabled = false;
 			btn_Guardar.Enabled = false;
 		}
@@ -1074,5 +1091,12 @@ namespace ControlDosimetro
 			}
 		}
 
+		private void txtNombre_TextChanged(object sender, EventArgs e)
+		{
+			BindingSource bs = new BindingSource();
+			bs.DataSource = grdDatos.DataSource;
+			bs.Filter = "nombres + ' ' + paterno + ' ' + maternos like '%" + txtNombre.Text + "%'";
+			grdDatos.DataSource = bs;
+		}
 	}
 }

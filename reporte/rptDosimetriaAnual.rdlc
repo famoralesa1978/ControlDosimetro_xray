@@ -874,7 +874,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!t1.Value</Value>
-                              <Style />
+                              <Style>
+                                <Color>=iif(Fields!t1Env.Value=0,"Red", "Black")</Color>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -906,7 +908,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!t1Env.Value</Value>
-                              <Style />
+                              <Style>
+                                <Color>=iif(Fields!t1Env.Value=0,"Red", "Black")</Color>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -938,7 +942,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!t2.Value</Value>
-                              <Style />
+                              <Style>
+                                <Color>=iif(Fields!t2Env.Value=0,"Red", "Black")</Color>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -970,7 +976,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!t2Env.Value</Value>
-                              <Style />
+                              <Style>
+                                <Color>=iif(Fields!t2Env.Value=0,"Red", "Black")</Color>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -1002,7 +1010,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!t3.Value</Value>
-                              <Style />
+                              <Style>
+                                <Color>=iif(Fields!t3Env.Value=0,"Red", "Black")</Color>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -1034,7 +1044,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!t3Env.Value</Value>
-                              <Style />
+                              <Style>
+                                <Color>=iif(Fields!t3Env.Value=0,"Red", "Black")</Color>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -1066,7 +1078,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!t4.Value</Value>
-                              <Style />
+                              <Style>
+                                <Color>=iif(Fields!t4Env.Value=0,"Red", "Black")</Color>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -1086,6 +1100,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1098,7 +1113,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!t4Env.Value</Value>
-                              <Style />
+                              <Style>
+                                <Color>=iif(Fields!t4Env.Value=0,"Red", "Black")</Color>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -1118,7 +1135,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -1167,7 +1183,7 @@
     <Height>0.70866in</Height>
     <Style />
   </Body>
-  <Width>13.40986in</Width>
+  <Width>12.42561in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
