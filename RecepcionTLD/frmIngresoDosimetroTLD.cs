@@ -124,7 +124,7 @@ namespace ControlDosimetro
 
 			DataSet dt;
 			//codigo,paterno,materno,nombre,rut,periodo,
-			cmd.CommandText = "pa_ListarPersonalTLD_sel " + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;
+			cmd.CommandText = "pa_ListarPersonalTLDPorSeccion_sel " + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text + "," + cbx_id_seccion.SelectedValue.ToString();
 
 			//"  select p.Id_Personal, isnull(n_dosimetro,0) as N_pelicula, 0 as Generar, case when isnull(N_Documento,0)<>0 then	1	else 0  end  as Generado, " +
 			//              "p.id_cliente, isnull(N_Documento,0) N_Documento,rut,  nombres,paterno,maternos,   isnull(id_sucursal,0) as id_sucursal, isnull(id_estadodosimetro,-1) as id_estadodosimetro " +
@@ -242,14 +242,14 @@ namespace ControlDosimetro
 		private void Cargar_Seccion()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "select 'Todos' as seccion, -1 as id_seccion union SELECT seccion,id_seccion " +
+			cmd.CommandText = "select 'Todos' as seccion, -1 as id_seccion union all SELECT seccion,id_seccion " +
 							" FROM tbl_seccion  WHERE Id_cliente= " + lbl_id_cliente.Text.ToString() + " and id_estado=1";
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			
 			cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
 			cbx_id_seccion.DataSource = dt.Tables[0];
-
 		}
 
 		private void AsignarEvento()
@@ -273,6 +273,8 @@ namespace ControlDosimetro
 
 		private void btn_cargar_Click(object sender, EventArgs e)
 		{
+			Cursor = Cursors.WaitCursor;
+			Cargar_Seccion();
 			Listar_Personal();
 			cbx_anno.Enabled = false;
 			cbx_id_periodo.Enabled = false;
@@ -287,6 +289,7 @@ namespace ControlDosimetro
 			dtValorMax = Conectar.Listar(Clases.clsBD.BD, cmdValorMax);
 
 			lbl_ValorMax.Text = dtValorMax.Tables[0].Rows[0]["valor"].ToString() == "0" ? "1" : dtValorMax.Tables[0].Rows[0]["valor"].ToString();
+			Cursor = Cursors.Default;
 		}
 
 		private void btn_Guardar_Click(object sender, EventArgs e)
@@ -1034,11 +1037,12 @@ namespace ControlDosimetro
 
 		private void btn_Cargar_cliente_Click(object sender, EventArgs e)
 		{
+			Cursor = Cursors.WaitCursor;
 			Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
-			Cargar_Sucursal();
-			Cargar_Seccion();
+			Cargar_Sucursal();			
 			btn_Corregir.Enabled = false;
 			btn_Guardar.Enabled = false;
+			Cursor = Cursors.Default;
 		}
 
 		private void grdDatos_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
@@ -1097,6 +1101,18 @@ namespace ControlDosimetro
 			bs.DataSource = grdDatos.DataSource;
 			bs.Filter = "nombres + ' ' + paterno + ' ' + maternos like '%" + txtNombre.Text + "%'";
 			grdDatos.DataSource = bs;
+		}
+
+		private void cbx_id_seccion_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+			Listar_Personal();
+			Cursor = Cursors.Default;
+		}
+
+		private void cbx_id_seccion_SelectedValueChanged(object sender, EventArgs e)
+		{
+		
 		}
 	}
 }

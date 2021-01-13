@@ -72,6 +72,8 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
 			this.grpFiltro = new System.Windows.Forms.GroupBox();
+			this.txtNombre = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
 			this.txtRut = new System.Windows.Forms.TextBox();
 			this.lblRut = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -80,8 +82,6 @@
 			this.txt_N_TLD = new System.Windows.Forms.TextBox();
 			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
 			this.lbl_id_seccion = new System.Windows.Forms.Label();
-			this.txtNombre = new System.Windows.Forms.TextBox();
-			this.label6 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -536,6 +536,24 @@
 			this.grpFiltro.TabStop = false;
 			this.grpFiltro.Text = "Busqueda personal";
 			// 
+			// txtNombre
+			// 
+			this.txtNombre.Location = new System.Drawing.Point(259, 12);
+			this.txtNombre.MaxLength = 50;
+			this.txtNombre.Name = "txtNombre";
+			this.txtNombre.Size = new System.Drawing.Size(338, 20);
+			this.txtNombre.TabIndex = 3;
+			this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(209, 15);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(44, 13);
+			this.label6.TabIndex = 2;
+			this.label6.Text = "Nombre";
+			// 
 			// txtRut
 			// 
 			this.txtRut.Location = new System.Drawing.Point(38, 15);
@@ -600,6 +618,8 @@
 			this.cbx_id_seccion.Name = "cbx_id_seccion";
 			this.cbx_id_seccion.Size = new System.Drawing.Size(236, 21);
 			this.cbx_id_seccion.TabIndex = 14;
+			this.cbx_id_seccion.SelectedIndexChanged += new System.EventHandler(this.cbx_id_seccion_SelectedIndexChanged);
+			this.cbx_id_seccion.SelectedValueChanged += new System.EventHandler(this.cbx_id_seccion_SelectedValueChanged);
 			// 
 			// lbl_id_seccion
 			// 
@@ -609,24 +629,6 @@
 			this.lbl_id_seccion.Size = new System.Drawing.Size(46, 13);
 			this.lbl_id_seccion.TabIndex = 15;
 			this.lbl_id_seccion.Text = "Sección";
-			// 
-			// txtNombre
-			// 
-			this.txtNombre.Location = new System.Drawing.Point(259, 12);
-			this.txtNombre.MaxLength = 50;
-			this.txtNombre.Name = "txtNombre";
-			this.txtNombre.Size = new System.Drawing.Size(338, 20);
-			this.txtNombre.TabIndex = 3;
-			this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(209, 15);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(44, 13);
-			this.label6.TabIndex = 2;
-			this.label6.Text = "Nombre";
 			// 
 			// frmIngresoDosimetroTLD
 			// 
