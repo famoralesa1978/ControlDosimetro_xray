@@ -32,7 +32,7 @@
     <TargetCulture>es-CL</TargetCulture>
     <ProductName>X-Ray Dosimetro</ProductName>
     <SuiteName>Sistema Dosimetro</SuiteName>
-    <MinimumRequiredVersion>9.0.1.3</MinimumRequiredVersion>
+    <MinimumRequiredVersion>9.0.1.4</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>instalacion.html</WebPage>
     <ApplicationRevision>4</ApplicationRevision>
@@ -900,6 +900,8 @@
     <Content Include="Libreria\dllLibreriaMysql.dll" />
     <Content Include="Libreria\DocumentFormat.OpenXml.dll" />
     <Content Include="Libreria\GridExtension.dll" />
+    <None Include="Resources\Personal.png" />
+    <None Include="Resources\client.png" />
     <None Include="Resources\IniciarProceso.PNG" />
     <None Include="Resources\CambioContrasenaCliente.PNG" />
     <None Include="Resources\CambioContrasena.PNG" />

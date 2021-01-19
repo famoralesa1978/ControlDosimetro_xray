@@ -133,6 +133,16 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap client {
+            get {
+                object obj = ResourceManager.GetObject("client", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap cliente {
             get {
                 object obj = ResourceManager.GetObject("cliente", resourceCulture);
@@ -332,6 +342,16 @@ namespace ControlDosimetro.Properties {
         public static System.Drawing.Bitmap Personal {
             get {
                 object obj = ResourceManager.GetObject("Personal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Personal1 {
+            get {
+                object obj = ResourceManager.GetObject("Personal1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

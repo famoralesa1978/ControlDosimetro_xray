@@ -30,17 +30,17 @@
         {
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIPrincipal));
-			System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Versión 8.0.1.0");
-			System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Versión 8.0.1.1");
-			System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Versión 8.0.1.2");
-			System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Versión 8.0.1.3");
-			System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Versión 8.0.1.5");
-			System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Versión del sistema y sus actualizaciones", new System.Windows.Forms.TreeNode[] {
-            treeNode7,
-            treeNode8,
-            treeNode9,
-            treeNode10,
-            treeNode11});
+			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Versión 8.0.1.0");
+			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Versión 8.0.1.1");
+			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Versión 8.0.1.2");
+			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Versión 8.0.1.3");
+			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Versión 8.0.1.5");
+			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Versión del sistema y sus actualizaciones", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode5});
 			this.menuStrip = new System.Windows.Forms.MenuStrip();
 			this.mnuProceso = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnuProcesoIngresarDosis = new System.Windows.Forms.ToolStripMenuItem();
@@ -313,20 +313,20 @@
 			this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.treeView1.Location = new System.Drawing.Point(0, 0);
 			this.treeView1.Name = "treeView1";
-			treeNode7.Name = "Nodo1";
-			treeNode7.Text = "Versión 8.0.1.0";
-			treeNode8.Name = "Nodo2";
-			treeNode8.Text = "Versión 8.0.1.1";
-			treeNode9.Name = "Nodo3";
-			treeNode9.Text = "Versión 8.0.1.2";
-			treeNode10.Name = "Nodo4";
-			treeNode10.Text = "Versión 8.0.1.3";
-			treeNode11.Name = "Nodo5";
-			treeNode11.Text = "Versión 8.0.1.5";
-			treeNode12.Name = "Nodo0";
-			treeNode12.Text = "Versión del sistema y sus actualizaciones";
+			treeNode1.Name = "Nodo1";
+			treeNode1.Text = "Versión 8.0.1.0";
+			treeNode2.Name = "Nodo2";
+			treeNode2.Text = "Versión 8.0.1.1";
+			treeNode3.Name = "Nodo3";
+			treeNode3.Text = "Versión 8.0.1.2";
+			treeNode4.Name = "Nodo4";
+			treeNode4.Text = "Versión 8.0.1.3";
+			treeNode5.Name = "Nodo5";
+			treeNode5.Text = "Versión 8.0.1.5";
+			treeNode6.Name = "Nodo0";
+			treeNode6.Text = "Versión del sistema y sus actualizaciones";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode12});
+            treeNode6});
 			this.treeView1.Size = new System.Drawing.Size(200, 368);
 			this.treeView1.TabIndex = 0;
 			this.treeView1.Click += new System.EventHandler(this.TreeView1_Click);
@@ -376,7 +376,7 @@
 			// tsbPrincipalCliente
 			// 
 			this.tsbPrincipalCliente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.tsbPrincipalCliente.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrincipalCliente.Image")));
+			this.tsbPrincipalCliente.Image = global::ControlDosimetro.Properties.Resources.client;
 			this.tsbPrincipalCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbPrincipalCliente.Name = "tsbPrincipalCliente";
 			this.tsbPrincipalCliente.Size = new System.Drawing.Size(36, 36);
@@ -387,7 +387,7 @@
 			// tsbPrincipalPersonal
 			// 
 			this.tsbPrincipalPersonal.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.tsbPrincipalPersonal.Image = global::ControlDosimetro.Properties.Resources.Personal;
+			this.tsbPrincipalPersonal.Image = global::ControlDosimetro.Properties.Resources.Personal1;
 			this.tsbPrincipalPersonal.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbPrincipalPersonal.Name = "tsbPrincipalPersonal";
 			this.tsbPrincipalPersonal.Size = new System.Drawing.Size(36, 36);

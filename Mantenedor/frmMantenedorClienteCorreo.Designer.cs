@@ -398,7 +398,7 @@
 			this.MinimumSize = new System.Drawing.Size(645, 300);
 			this.Name = "frmMantenedorClienteCorreo";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Mantenedor de perfil de usuario";
+			this.Text = "Configuracion de correo cliente";
 			this.Load += new System.EventHandler(this.frmMantenedorClienteCorreo_Load);
 			this.stsEstado.ResumeLayout(false);
 			this.stsEstado.PerformLayout();
