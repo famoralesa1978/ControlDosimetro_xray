@@ -283,10 +283,10 @@
     <Compile Include="frmUrlVigilanciadosimetrica.Designer.cs">
       <DependentUpon>frmUrlVigilanciadosimetrica.cs</DependentUpon>
     </Compile>
-    <Compile Include="Herramientas\frmingdocumentos.cs">
+    <Compile Include="Documento\frmingdocumentos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Herramientas\frmingdocumentos.designer.cs">
+    <Compile Include="Documento\frmingdocumentos.designer.cs">
       <DependentUpon>frmingdocumentos.cs</DependentUpon>
     </Compile>
     <Compile Include="Herramientas\frmCambioContrasena.cs">
@@ -628,7 +628,7 @@
     <EmbeddedResource Include="frmUrlVigilanciadosimetrica.resx">
       <DependentUpon>frmUrlVigilanciadosimetrica.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Herramientas\frmingdocumentos.resx">
+    <EmbeddedResource Include="Documento\frmingdocumentos.resx">
       <DependentUpon>frmingdocumentos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Herramientas\frmCambioContrasena.resx">
