@@ -26,7 +26,7 @@ namespace ControlDosimetro
      //   Int64 intTempPeriodo;
     //    int intContar = 0;
         #endregion
-        public frmingdocumentos(Int64 intId_Cliente)
+        public frmingdocumentos()
         {
             InitializeComponent();
              Cargar_Anno();
@@ -155,7 +155,7 @@ namespace ControlDosimetro
                 SqlCommand sqlcmd = new SqlCommand();
                 sqlcmd.CommandText = "" +
 
-        "   INSERT INTO ges_documentos ([Doc_Id_cliente],[Doc_Id_periodo],[Doc_Nombre],[Doc_Descripcion],[Doc_Extension],[Doc_Archivo],[Doc_Id_Tipo_Documento]) " +
+        "   INSERT INTO ges_documentos ([Id_cliente],[Id_periodo],[Nombre],[Descripcion],[Extension],[Archivo],[Id_Tipo_Documento]) " +
        // "   VALUES (Convert.ToInt32( lbl_id_cliente.Text), Convert.ToInt32(cbx_id_periodo.SelectedValue),Convert.ToInt32(cmbTipoDocumento.SelectedValue), txtDescripcionArchivo.Text.Trim(),extension, buffer,@Doc_Id_Tipo_Documento)  ";
         
         "   VALUES (@Doc_Id_cliente,@Doc_Id_periodo,@Doc_Nombre,@Doc_Descripcion,@Doc_Extension,@Doc_Archivo,@Doc_Id_Tipo_Documento)  ";

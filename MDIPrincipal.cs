@@ -27,60 +27,62 @@ namespace ControlDosimetro
 
 		public enum MENU
 		{
-			MantConfiguracionParametro		=	101,
-			MantPerfil							=  102,
-			MantUsuario							=	103,
-			MantTipoDocumento					=	104,
-			MantCliente							=	106,
-			MantSucursal						=	107,
-			MantPersonal						=	108,
-			MantPermiso							= 109,
+			MantConfiguracionParametro = 101,
+			MantPerfil = 102,
+			MantUsuario = 103,
+			MantTipoDocumento = 104,
+			MantCliente = 106,
+			MantSucursal = 107,
+			MantPersonal = 108,
+			MantPermiso = 109,
 
-			IngresoPel							=	201,
-			CorreccionDcto						=	202,
-			EnvioPelicula						=	203,
-			ProcSeparador1						=	204,
-			ProcEnviado							=  205,
-			ProcRecepcion						=	206,
-			ProcOrTrabTodas					=	208,
-			ProcOrTrabPorCliente				=	209,
-			ProcOrTrabPorFechaRecepcion	=	210,
-			ProcIngresarDosisCliente		=  213,
-			ProcIngresarDosisDos				=  214,
+			IngresoPel = 201,
+			CorreccionDcto = 202,
+			EnvioPelicula = 203,
+			ProcSeparador1 = 204,
+			ProcEnviado = 205,
+			ProcRecepcion = 206,
+			ProcOrTrabTodas = 208,
+			ProcOrTrabPorCliente = 209,
+			ProcOrTrabPorFechaRecepcion = 210,
+			ProcIngresarDosisCliente = 213,
+			ProcIngresarDosisDos = 214,
 
-			Ingreso_TLD							=	301, 
-			EnviadoTLD							=	302,
-			RecepcionTLD						=	303,
-			IniciarLectura						=	304,
-			IngresarDosisTLD					=	305,
-			DosisISPTLD							=	306,
-		
-
-			GenerarDctoISP						=	401,
-
-			repDosimetria						=	501,
-			repEstadoDosimetro				=	502,
-			repCliente							=	503,
-			repConsultaTLD						=  505,
+			Ingreso_TLD = 301,
+			EnviadoTLD = 302,
+			RecepcionTLD = 303,
+			IniciarLectura = 304,
+			IngresarDosisTLD = 305,
+			DosisISPTLD = 306,
 
 
-			LinkVigDosimetrica				=	601,
+			GenerarDctoISP = 401,
 
-			Herramientas						=	800,
-			ConfigurarCorreo					=	801,
-			RestcontrCliente					=	802,
-			Cambiarcontraseña					=	803,
-			EnviarCorreo						=	804,
-			CambioTrimestre					=	805,
-			AsociarDocumentoCliente			=	806,
-			LiberarDosimetro					=	807,
-			TraspasoPersonal					=	808,
-			CambioSucursal						=	809,
+			repDosimetria = 501,
+			repEstadoDosimetro = 502,
+			repCliente = 503,
+			repConsultaTLD = 505,
 
-			Ayuda									=	900,
-			AcercaDe								=	901,
 
-			Salir									=	1000
+			LinkVigDosimetrica = 601,
+
+			Herramientas = 800,
+			ConfigurarCorreo = 801,
+			RestcontrCliente = 802,
+			Cambiarcontraseña = 803,
+			EnviarCorreo = 804,
+			CambioTrimestre = 805,
+			LiberarDosimetro = 807,
+			TraspasoPersonal = 808,
+			CambioSucursal = 809,
+
+			Ayuda = 900,
+			AcercaDe = 901,
+
+			Salir = 1000,
+
+			Documento = 1100,
+			SubirDocumento = 1101
 		}
 
 		public enum REPORTES
@@ -265,7 +267,7 @@ namespace ControlDosimetro
 			}
 		}
 
-		private void Cargar_Submenu( ref ToolStripMenuItem tsiMenu,DataTable dt,int intTag)
+		private void Cargar_Submenu(ref ToolStripMenuItem tsiMenu, DataTable dt, int intTag)
 		{
 			ToolStripMenuItem tsiSubMenu;
 			ToolStripSeparator tsiSeparador;
@@ -276,39 +278,40 @@ namespace ControlDosimetro
 			foreach (DataRowView drv in dv)
 			{
 
-				if(drv["Menu"].ToString()=="Separador")
+				if (drv["Menu"].ToString() == "Separador")
 				{
 					tsiSeparador = new ToolStripSeparator();
 					tsiMenu.DropDownItems.Add(tsiSeparador);
 				}
-				else{ 
-				tsiSubMenu = new ToolStripMenuItem();
-				tsiSubMenu.Text = drv["Menu"].ToString();
-				tsiSubMenu.Name = drv["nameMenu"].ToString();
-				tsiSubMenu.Tag = drv["Id_Menu"].ToString();
-				
+				else
+				{
+					tsiSubMenu = new ToolStripMenuItem();
+					tsiSubMenu.Text = drv["Menu"].ToString();
+					tsiSubMenu.Name = drv["nameMenu"].ToString();
+					tsiSubMenu.Tag = drv["Id_Menu"].ToString();
+
 
 					if ((bool)drv["EventoClick"] == true)
 						tsiSubMenu.Click += new EventHandler(this.Cargamenu_Click);
-					Cargar_Submenu(ref tsiSubMenu,dt,Convert.ToInt16( tsiSubMenu.Tag));
+					Cargar_Submenu(ref tsiSubMenu, dt, Convert.ToInt16(tsiSubMenu.Tag));
 					tsiMenu.DropDownItems.Add(tsiSubMenu);
 
-					
+
 				}
-				
+
 			}
 		}
 
 		private void Cargamenu_Click(object sender, EventArgs e)
 		{
-			
-			int intMenu= Convert.ToUInt16(((System.Windows.Forms.ToolStripItem)sender).Tag.ToString());
+
+			int intMenu = Convert.ToUInt16(((System.Windows.Forms.ToolStripItem)sender).Tag.ToString());
 			object[] objParams = { intMenu };
 			Form objFrm;
 			switch (intMenu)
 			{
 				#region "Mantenedor"
-				
+
 				case (int)MENU.MantConfiguracionParametro:
 					objFrm = new frmParametro()
 					{
@@ -636,16 +639,6 @@ namespace ControlDosimetro
 					objFrm.ShowDialog(this);
 
 					break;
-				case (int)MENU.AsociarDocumentoCliente:
-					objFrm = new frmingdocumentos(0)
-					{
-						ShowInTaskbar = false,
-						StartPosition = FormStartPosition.CenterScreen
-					};
-					Graba_log(objFrm.Text);
-					objFrm.ShowDialog(this);
-
-					break;
 				case (int)MENU.LiberarDosimetro:
 					objFrm = new frmLiberarDosimetro()
 					{
@@ -686,15 +679,30 @@ namespace ControlDosimetro
 					objFrm.ShowDialog(this);
 					break;
 				#endregion
-			
+
 				#region "Salir 1000"
 				case (int)MENU.Salir:
 					Graba_log("Finalizar");
 					Application.Exit();
-					break;	
+					break;
+				#endregion
+
+				#region "Documento 1100"
+
+				case (int)MENU.SubirDocumento:
+					objFrm = new frmingdocumentos()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen,
+					//	Parametros = objParams
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+
 				#endregion
 			}
-			
+
 		}
 
 		private void Cargamenu(int intMenu)
@@ -1006,16 +1014,6 @@ namespace ControlDosimetro
 					objFrm.ShowDialog(this);
 
 					break;
-				case (int)MENU.AsociarDocumentoCliente:
-					objFrm = new frmingdocumentos(0)
-					{
-						ShowInTaskbar = false,
-						StartPosition = FormStartPosition.CenterScreen
-					};
-					Graba_log(objFrm.Text);
-					objFrm.ShowDialog(this);
-
-					break;
 				case (int)MENU.LiberarDosimetro:
 					objFrm = new frmLiberarDosimetro()
 					{
@@ -1086,7 +1084,7 @@ namespace ControlDosimetro
 					break;
 				case (int)REPORTES.ListadoTLD:
 					CargarReporteListadoTLD();
-					
+
 					break;
 			}
 
@@ -1114,7 +1112,7 @@ namespace ControlDosimetro
 		{
 			stsHora.Text = DateTime.Now.ToString();
 		}
-		
+
 		private void Graba_log(string strModulo)
 		{
 			SqlCommand cmd = new SqlCommand
@@ -1174,7 +1172,7 @@ namespace ControlDosimetro
 			if (((ToolStripButton)sender).Text == "Cambio contraseña")
 				Cargamenu((int)MENU.Cambiarcontraseña);
 			if (((ToolStripButton)sender).Text == "Restablecer")
-				LlamarFormularioContrasenaCliente();;
+				LlamarFormularioContrasenaCliente(); ;
 		}
 	}
 }
