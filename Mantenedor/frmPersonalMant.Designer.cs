@@ -394,7 +394,7 @@
             // 
             // btn_Grabar
             // 
-            this.btn_Grabar.Image = global::ControlDosimetro.Properties.Resources.save_32;
+            this.btn_Grabar.Image = global::ControlDosimetro.Properties.Resources.Save_32;
             this.btn_Grabar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_Grabar.Location = new System.Drawing.Point(79, 417);
             this.btn_Grabar.Name = "btn_Grabar";

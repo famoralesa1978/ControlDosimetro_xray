@@ -101,7 +101,7 @@
 			// tsbGuardar
 			// 
 			this.tsbGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.tsbGuardar.Image = global::ControlDosimetro.Properties.Resources.save_32;
+			this.tsbGuardar.Image = global::ControlDosimetro.Properties.Resources.Save_32;
 			this.tsbGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbGuardar.Name = "tsbGuardar";
 			this.tsbGuardar.Size = new System.Drawing.Size(23, 22);

@@ -438,7 +438,7 @@
             // 
             this.btn_Agregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btn_Agregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_Agregar.Image = global::ControlDosimetro.Properties.Resources.save_32;
+            this.btn_Agregar.Image = global::ControlDosimetro.Properties.Resources.Save_32;
             this.btn_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_Agregar.Location = new System.Drawing.Point(311, 156);
             this.btn_Agregar.Name = "btn_Agregar";

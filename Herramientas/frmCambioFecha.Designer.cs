@@ -121,7 +121,7 @@
 			// 
 			// btn_Guardar
 			// 
-			this.btn_Guardar.Image = global::ControlDosimetro.Properties.Resources.save_32;
+			this.btn_Guardar.Image = global::ControlDosimetro.Properties.Resources.Save_32;
 			this.btn_Guardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btn_Guardar.Location = new System.Drawing.Point(278, 16);
 			this.btn_Guardar.Name = "btn_Guardar";
@@ -277,7 +277,7 @@
 			// 
 			// btn_GuardarTermino
 			// 
-			this.btn_GuardarTermino.Image = global::ControlDosimetro.Properties.Resources.save_32;
+			this.btn_GuardarTermino.Image = global::ControlDosimetro.Properties.Resources.Save_32;
 			this.btn_GuardarTermino.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btn_GuardarTermino.Location = new System.Drawing.Point(278, 15);
 			this.btn_GuardarTermino.Name = "btn_GuardarTermino";

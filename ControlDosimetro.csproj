@@ -900,6 +900,10 @@
     <Content Include="Libreria\dllLibreriaMysql.dll" />
     <Content Include="Libreria\DocumentFormat.OpenXml.dll" />
     <Content Include="Libreria\GridExtension.dll" />
+    <None Include="Resources\Save-24.png" />
+    <None Include="Resources\Save-32.png" />
+    <None Include="Resources\Close_24.png" />
+    <None Include="Resources\close.png" />
     <None Include="Resources\Personal.png" />
     <None Include="Resources\client.png" />
     <None Include="Resources\IniciarProceso.PNG" />

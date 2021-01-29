@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.btnLimpiar = new System.Windows.Forms.Button();
+			this.cbx_TipoPeriodo = new System.Windows.Forms.ComboBox();
+			this.label7 = new System.Windows.Forms.Label();
 			this.lbl_rut = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
 			this.btn_Cargar_cliente = new System.Windows.Forms.Button();
@@ -41,24 +44,26 @@
 			this.cbx_anno = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.btnCancelar = new System.Windows.Forms.Button();
-			this.btnLimpiar = new System.Windows.Forms.Button();
+			this.gpx_Asociar = new System.Windows.Forms.GroupBox();
 			this.txtDescripcionArchivo = new System.Windows.Forms.TextBox();
 			this.txtRutaArchivo = new System.Windows.Forms.TextBox();
 			this.btnExaminar = new System.Windows.Forms.Button();
-			this.btnGrabarArchivo = new System.Windows.Forms.Button();
 			this.cbxTipoDocumento = new System.Windows.Forms.ComboBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
-			this.cbx_TipoPeriodo = new System.Windows.Forms.ComboBox();
-			this.label7 = new System.Windows.Forms.Label();
+			this.btnCancelar = new System.Windows.Forms.Button();
+			this.btnGrabarArchivo = new System.Windows.Forms.Button();
+			this.label8 = new System.Windows.Forms.Label();
+			this.lbl_RazonSocial = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
-			this.groupBox2.SuspendLayout();
+			this.gpx_Asociar.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.lbl_RazonSocial);
+			this.groupBox1.Controls.Add(this.label8);
+			this.groupBox1.Controls.Add(this.btnLimpiar);
 			this.groupBox1.Controls.Add(this.cbx_TipoPeriodo);
 			this.groupBox1.Controls.Add(this.label7);
 			this.groupBox1.Controls.Add(this.lbl_rut);
@@ -80,6 +85,34 @@
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Dato Cliente";
 			// 
+			// btnLimpiar
+			// 
+			this.btnLimpiar.Location = new System.Drawing.Point(366, 89);
+			this.btnLimpiar.Name = "btnLimpiar";
+			this.btnLimpiar.Size = new System.Drawing.Size(144, 23);
+			this.btnLimpiar.TabIndex = 11;
+			this.btnLimpiar.Text = "Limpiar";
+			this.btnLimpiar.UseVisualStyleBackColor = true;
+			// 
+			// cbx_TipoPeriodo
+			// 
+			this.cbx_TipoPeriodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_TipoPeriodo.FormattingEnabled = true;
+			this.cbx_TipoPeriodo.Location = new System.Drawing.Point(90, 15);
+			this.cbx_TipoPeriodo.Name = "cbx_TipoPeriodo";
+			this.cbx_TipoPeriodo.Size = new System.Drawing.Size(121, 21);
+			this.cbx_TipoPeriodo.TabIndex = 50;
+			this.cbx_TipoPeriodo.SelectedIndexChanged += new System.EventHandler(this.cbx_TipoPeriodo_SelectedIndexChanged);
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(12, 18);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(66, 13);
+			this.label7.TabIndex = 51;
+			this.label7.Text = "Tipo periodo";
+			// 
 			// lbl_rut
 			// 
 			this.lbl_rut.AutoSize = true;
@@ -99,7 +132,7 @@
 			// 
 			// btn_Cargar_cliente
 			// 
-			this.btn_Cargar_cliente.Location = new System.Drawing.Point(185, 158);
+			this.btn_Cargar_cliente.Location = new System.Drawing.Point(229, 90);
 			this.btn_Cargar_cliente.Name = "btn_Cargar_cliente";
 			this.btn_Cargar_cliente.Size = new System.Drawing.Size(119, 23);
 			this.btn_Cargar_cliente.TabIndex = 47;
@@ -109,9 +142,9 @@
 			// 
 			// lbl_id_cliente
 			// 
-			this.lbl_id_cliente.Location = new System.Drawing.Point(87, 113);
+			this.lbl_id_cliente.Location = new System.Drawing.Point(90, 92);
 			this.lbl_id_cliente.Name = "lbl_id_cliente";
-			this.lbl_id_cliente.Size = new System.Drawing.Size(53, 20);
+			this.lbl_id_cliente.Size = new System.Drawing.Size(121, 20);
 			this.lbl_id_cliente.TabIndex = 1;
 			// 
 			// lbl_Direccion
@@ -165,11 +198,12 @@
 			this.cbx_anno.Name = "cbx_anno";
 			this.cbx_anno.Size = new System.Drawing.Size(121, 21);
 			this.cbx_anno.TabIndex = 2;
+			this.cbx_anno.SelectedIndexChanged += new System.EventHandler(this.cbx_anno_SelectedIndexChanged);
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(12, 114);
+			this.label2.Location = new System.Drawing.Point(12, 95);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(57, 13);
 			this.label2.TabIndex = 34;
@@ -184,41 +218,20 @@
 			this.label3.TabIndex = 4;
 			this.label3.Text = "Año";
 			// 
-			// groupBox2
+			// gpx_Asociar
 			// 
-			this.groupBox2.Controls.Add(this.btnCancelar);
-			this.groupBox2.Controls.Add(this.btnLimpiar);
-			this.groupBox2.Controls.Add(this.txtDescripcionArchivo);
-			this.groupBox2.Controls.Add(this.txtRutaArchivo);
-			this.groupBox2.Controls.Add(this.btnExaminar);
-			this.groupBox2.Controls.Add(this.btnGrabarArchivo);
-			this.groupBox2.Controls.Add(this.cbxTipoDocumento);
-			this.groupBox2.Controls.Add(this.label4);
-			this.groupBox2.Controls.Add(this.label5);
-			this.groupBox2.Location = new System.Drawing.Point(23, 215);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(516, 245);
-			this.groupBox2.TabIndex = 45;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Asociar Documentos a Cliente";
-			// 
-			// btnCancelar
-			// 
-			this.btnCancelar.Location = new System.Drawing.Point(308, 166);
-			this.btnCancelar.Name = "btnCancelar";
-			this.btnCancelar.Size = new System.Drawing.Size(144, 23);
-			this.btnCancelar.TabIndex = 6;
-			this.btnCancelar.Text = "Cancelar";
-			this.btnCancelar.UseVisualStyleBackColor = true;
-			// 
-			// btnLimpiar
-			// 
-			this.btnLimpiar.Location = new System.Drawing.Point(160, 166);
-			this.btnLimpiar.Name = "btnLimpiar";
-			this.btnLimpiar.Size = new System.Drawing.Size(144, 23);
-			this.btnLimpiar.TabIndex = 11;
-			this.btnLimpiar.Text = "Limpiar";
-			this.btnLimpiar.UseVisualStyleBackColor = true;
+			this.gpx_Asociar.Controls.Add(this.txtDescripcionArchivo);
+			this.gpx_Asociar.Controls.Add(this.txtRutaArchivo);
+			this.gpx_Asociar.Controls.Add(this.btnExaminar);
+			this.gpx_Asociar.Controls.Add(this.cbxTipoDocumento);
+			this.gpx_Asociar.Controls.Add(this.label4);
+			this.gpx_Asociar.Controls.Add(this.label5);
+			this.gpx_Asociar.Location = new System.Drawing.Point(23, 215);
+			this.gpx_Asociar.Name = "gpx_Asociar";
+			this.gpx_Asociar.Size = new System.Drawing.Size(516, 169);
+			this.gpx_Asociar.TabIndex = 45;
+			this.gpx_Asociar.TabStop = false;
+			this.gpx_Asociar.Text = "Asociar Documentos a Cliente";
 			// 
 			// txtDescripcionArchivo
 			// 
@@ -245,16 +258,6 @@
 			this.btnExaminar.Text = "Seleccionar Archivo...";
 			this.btnExaminar.UseVisualStyleBackColor = true;
 			this.btnExaminar.Click += new System.EventHandler(this.btnExaminar_Click);
-			// 
-			// btnGrabarArchivo
-			// 
-			this.btnGrabarArchivo.Location = new System.Drawing.Point(7, 166);
-			this.btnGrabarArchivo.Name = "btnGrabarArchivo";
-			this.btnGrabarArchivo.Size = new System.Drawing.Size(144, 23);
-			this.btnGrabarArchivo.TabIndex = 5;
-			this.btnGrabarArchivo.Text = "Grabar Archivo";
-			this.btnGrabarArchivo.UseVisualStyleBackColor = true;
-			this.btnGrabarArchivo.Click += new System.EventHandler(this.btnGrabarArchivo_Click);
 			// 
 			// cbxTipoDocumento
 			// 
@@ -283,38 +286,65 @@
 			this.label5.TabIndex = 7;
 			this.label5.Text = "Descripción";
 			// 
-			// cbx_TipoPeriodo
+			// btnCancelar
 			// 
-			this.cbx_TipoPeriodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_TipoPeriodo.FormattingEnabled = true;
-			this.cbx_TipoPeriodo.Location = new System.Drawing.Point(90, 15);
-			this.cbx_TipoPeriodo.Name = "cbx_TipoPeriodo";
-			this.cbx_TipoPeriodo.Size = new System.Drawing.Size(121, 21);
-			this.cbx_TipoPeriodo.TabIndex = 50;
+			this.btnCancelar.Image = global::ControlDosimetro.Properties.Resources.Close_24;
+			this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnCancelar.Location = new System.Drawing.Point(304, 390);
+			this.btnCancelar.Name = "btnCancelar";
+			this.btnCancelar.Size = new System.Drawing.Size(125, 29);
+			this.btnCancelar.TabIndex = 6;
+			this.btnCancelar.Text = "Cerrar";
+			this.btnCancelar.UseVisualStyleBackColor = true;
+			this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
 			// 
-			// label7
+			// btnGrabarArchivo
 			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(12, 18);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(66, 13);
-			this.label7.TabIndex = 51;
-			this.label7.Text = "Tipo periodo";
+			this.btnGrabarArchivo.Image = global::ControlDosimetro.Properties.Resources.Save_24;
+			this.btnGrabarArchivo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnGrabarArchivo.Location = new System.Drawing.Point(113, 390);
+			this.btnGrabarArchivo.Name = "btnGrabarArchivo";
+			this.btnGrabarArchivo.Size = new System.Drawing.Size(125, 29);
+			this.btnGrabarArchivo.TabIndex = 5;
+			this.btnGrabarArchivo.Text = "Grabar";
+			this.btnGrabarArchivo.UseVisualStyleBackColor = true;
+			this.btnGrabarArchivo.Click += new System.EventHandler(this.btnGrabarArchivo_Click);
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(14, 121);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(68, 13);
+			this.label8.TabIndex = 52;
+			this.label8.Text = "Razon social";
+			// 
+			// lbl_RazonSocial
+			// 
+			this.lbl_RazonSocial.AutoSize = true;
+			this.lbl_RazonSocial.Location = new System.Drawing.Point(105, 121);
+			this.lbl_RazonSocial.Name = "lbl_RazonSocial";
+			this.lbl_RazonSocial.Size = new System.Drawing.Size(0, 13);
+			this.lbl_RazonSocial.TabIndex = 53;
 			// 
 			// frmingdocumentos
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(569, 483);
-			this.Controls.Add(this.groupBox2);
+			this.ClientSize = new System.Drawing.Size(569, 431);
+			this.Controls.Add(this.btnCancelar);
+			this.Controls.Add(this.gpx_Asociar);
 			this.Controls.Add(this.groupBox1);
+			this.Controls.Add(this.btnGrabarArchivo);
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "frmingdocumentos";
 			this.Text = "Asociar Documentos a Clientes";
 			this.Load += new System.EventHandler(this.frmingdocumentos_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
-			this.groupBox2.ResumeLayout(false);
-			this.groupBox2.PerformLayout();
+			this.gpx_Asociar.ResumeLayout(false);
+			this.gpx_Asociar.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -334,7 +364,7 @@
         private System.Windows.Forms.ComboBox cbx_anno;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gpx_Asociar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.TextBox txtDescripcionArchivo;
@@ -346,5 +376,7 @@
         private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.ComboBox cbx_TipoPeriodo;
 		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Label lbl_RazonSocial;
+		private System.Windows.Forms.Label label8;
 	}
 }

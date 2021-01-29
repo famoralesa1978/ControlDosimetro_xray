@@ -126,10 +126,9 @@ namespace classFuncionesBD
 				CommandText = "pa_ObtieneAnno_sel " + intTipoPeriodo.ToString()
 			};
 			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
-			cbx.DataSource = ds;
 			cbx.ValueMember = ds.Tables[0].Columns[0].Caption.ToString();
 			cbx.DisplayMember = ds.Tables[0].Columns[0].Caption.ToString();
-			cbx.DataSource = ds;
+			cbx.DataSource = ds.Tables[0];
 		}
 
 		public void Cargar_Periodo(ref ComboBox cbx, int intTipoPeriodo,int intAnno)
@@ -145,7 +144,7 @@ namespace classFuncionesBD
 
 			cbx.ValueMember = ds.Tables[0].Columns[0].Caption.ToString();
 			cbx.DisplayMember = ds.Tables[0].Columns[2].Caption.ToString();
-			cbx.DataSource = ds;
+			cbx.DataSource = ds.Tables[0];
 		}
 
 		public void Cargar_TipoDocumento(ref ComboBox cbx)

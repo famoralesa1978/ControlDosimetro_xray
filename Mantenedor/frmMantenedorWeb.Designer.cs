@@ -131,7 +131,7 @@
             // tsbGuardar
             // 
             this.tsbGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbGuardar.Image = global::ControlDosimetro.Properties.Resources.save_32;
+            this.tsbGuardar.Image = global::ControlDosimetro.Properties.Resources.Save_32;
             this.tsbGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbGuardar.Name = "tsbGuardar";
             this.tsbGuardar.Size = new System.Drawing.Size(24, 24);
@@ -462,7 +462,7 @@
             this.btn_Guardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btn_Guardar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btn_Guardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_Guardar.Image = global::ControlDosimetro.Properties.Resources.save_32;
+            this.btn_Guardar.Image = global::ControlDosimetro.Properties.Resources.Save_32;
             this.btn_Guardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_Guardar.Location = new System.Drawing.Point(88, 273);
             this.btn_Guardar.Name = "btn_Guardar";
