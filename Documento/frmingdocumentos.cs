@@ -74,36 +74,7 @@ namespace ControlDosimetro
 			btn_Cargar_cliente.Enabled = bolHabilitar;
 			btnGrabarArchivo.Enabled = bolHabilitar && !String.IsNullOrEmpty(lbl_rut.Text.Trim());
 			gpx_Asociar.Enabled = bolHabilitar && !String.IsNullOrEmpty(lbl_rut.Text.Trim());
-		}
-
-		#endregion
-
-		private void btn_Cargar_cliente_Click(object sender, EventArgs e)
-		{
-			Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
-			HabilitarControles(cbx_id_periodo.Enabled);
-		}
-
-
-		private void btnGrabarArchivo_Click(object sender, EventArgs e)
-		{
-			GrabarArchivo();
-		}
-
-		private void btnExaminar_Click(object sender, EventArgs e)
-		{
-
-			OpenFileDialog fdlg = new OpenFileDialog();
-			fdlg.Title = "Seleccione archivo a Cargar";
-			fdlg.InitialDirectory = @"c:\";
-			fdlg.Filter = "PDF files (*.PDF)|*.PDF|DOC files (*.DOC)|*.DOC|DOCX files (*.DOCX)|*.DOCX";
-			fdlg.FilterIndex = 2;
-			fdlg.RestoreDirectory = true;
-			if (fdlg.ShowDialog() == DialogResult.OK)
-			{
-				txtRutaArchivo.Text = fdlg.FileName;
-			}
-
+			btn_Ver.Enabled = bolHabilitar && !String.IsNullOrEmpty(txtRutaArchivo.Text.Trim());
 		}
 
 		private void GrabarArchivo()
@@ -150,6 +121,60 @@ namespace ControlDosimetro
 
 		}
 
+
+		#endregion
+
+		#region Boton
+
+		private void btn_Cargar_cliente_Click(object sender, EventArgs e)
+		{
+			Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
+			HabilitarControles(cbx_id_periodo.Enabled);
+		}
+
+		private void btnGrabarArchivo_Click(object sender, EventArgs e)
+		{
+			GrabarArchivo();
+		}
+
+		private void btnExaminar_Click(object sender, EventArgs e)
+		{
+
+			OpenFileDialog fdlg = new OpenFileDialog();
+			fdlg.Title = "Seleccione archivo a Cargar";
+			fdlg.InitialDirectory = @"c:\";
+			fdlg.Filter = "PDF files (*.PDF)|*.PDF|DOC files (*.DOC)|*.DOC|DOCX files (*.DOCX)|*.DOCX";
+			fdlg.FilterIndex = 2;
+			fdlg.RestoreDirectory = true;
+			if (fdlg.ShowDialog() == DialogResult.OK)
+			{
+				txtRutaArchivo.Text = fdlg.FileName;
+			}
+			btn_Ver.Enabled = !String.IsNullOrEmpty(txtRutaArchivo.Text.Trim());
+		}
+
+		private void btnCancelar_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+
+		private void btn_Ver_Click(object sender, EventArgs e)
+		{
+			byte[] buffer = classFuncionesGenerales.ClsValidadores.Convertir_Binario(txtRutaArchivo.Text);
+			try
+			{
+				classFuncionesGenerales.ClsValidadores.Leer_Binario(buffer, "Archivo2.DOCX");
+			}
+			catch
+			{
+
+			}
+		}
+
+		#endregion
+
+		#region ComboBox
+
 		private void cbx_TipoPeriodo_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			Cargar_Anno();
@@ -171,22 +196,9 @@ namespace ControlDosimetro
 			HabilitarControles(cbx_id_periodo.Enabled);
 		}
 
-		private void btnCancelar_Click(object sender, EventArgs e)
-		{
-			this.Close();
-		}
 
-		private void btn_Ver_Click(object sender, EventArgs e)
-		{
-			byte[] buffer = File.ReadAllBytes(txtRutaArchivo.Text);
-			try
-			{
-				System.IO.File.WriteAllBytes("D:\\Archivo.pdf", buffer);
-			}
-			catch
-			{
 
-			}
-		}
+		#endregion
+
 	}
 }

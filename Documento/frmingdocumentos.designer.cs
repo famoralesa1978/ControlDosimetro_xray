@@ -47,6 +47,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.gpx_Asociar = new System.Windows.Forms.GroupBox();
+			this.btn_Ver = new System.Windows.Forms.Button();
 			this.txtDescripcionArchivo = new System.Windows.Forms.TextBox();
 			this.txtRutaArchivo = new System.Windows.Forms.TextBox();
 			this.btnExaminar = new System.Windows.Forms.Button();
@@ -55,7 +56,7 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.btnCancelar = new System.Windows.Forms.Button();
 			this.btnGrabarArchivo = new System.Windows.Forms.Button();
-			this.btn_Ver = new System.Windows.Forms.Button();
+			this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
 			this.groupBox1.SuspendLayout();
 			this.gpx_Asociar.SuspendLayout();
 			this.SuspendLayout();
@@ -252,6 +253,16 @@
 			this.gpx_Asociar.TabStop = false;
 			this.gpx_Asociar.Text = "Asociar Documentos a Cliente";
 			// 
+			// btn_Ver
+			// 
+			this.btn_Ver.Image = global::ControlDosimetro.Properties.Resources.lookImage_32;
+			this.btn_Ver.Location = new System.Drawing.Point(458, 123);
+			this.btn_Ver.Name = "btn_Ver";
+			this.btn_Ver.Size = new System.Drawing.Size(36, 37);
+			this.btn_Ver.TabIndex = 8;
+			this.btn_Ver.UseVisualStyleBackColor = true;
+			this.btn_Ver.Click += new System.EventHandler(this.btn_Ver_Click);
+			// 
 			// txtDescripcionArchivo
 			// 
 			this.txtDescripcionArchivo.CausesValidation = false;
@@ -265,6 +276,7 @@
 			// 
 			this.txtRutaArchivo.Location = new System.Drawing.Point(7, 132);
 			this.txtRutaArchivo.Name = "txtRutaArchivo";
+			this.txtRutaArchivo.ReadOnly = true;
 			this.txtRutaArchivo.Size = new System.Drawing.Size(295, 20);
 			this.txtRutaArchivo.TabIndex = 3;
 			// 
@@ -329,16 +341,6 @@
 			this.btnGrabarArchivo.UseVisualStyleBackColor = true;
 			this.btnGrabarArchivo.Click += new System.EventHandler(this.btnGrabarArchivo_Click);
 			// 
-			// btn_Ver
-			// 
-			this.btn_Ver.Image = global::ControlDosimetro.Properties.Resources.lookImage_32;
-			this.btn_Ver.Location = new System.Drawing.Point(458, 123);
-			this.btn_Ver.Name = "btn_Ver";
-			this.btn_Ver.Size = new System.Drawing.Size(36, 37);
-			this.btn_Ver.TabIndex = 8;
-			this.btn_Ver.UseVisualStyleBackColor = true;
-			this.btn_Ver.Click += new System.EventHandler(this.btn_Ver_Click);
-			// 
 			// frmingdocumentos
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -391,5 +393,6 @@
 		private System.Windows.Forms.Label lbl_RazonSocial;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.Button btn_Ver;
+		private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
 	}
 }

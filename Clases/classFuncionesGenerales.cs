@@ -9,64 +9,94 @@ using dllLibreriaMysql;
 using System.Data.SqlClient;
 using System.Data.Sql;
 using System.Data;
+using System.IO;
+using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace classFuncionesGenerales
 {
-   public class ClsValidadores
-    {
+	public class ClsValidadores
+	{
 		readonly clsConectorSqlServer Conectar = new clsConectorSqlServer();
-      
-                 
-            public static string FormatearRut(string rut)
-            {
-                string rutFormateado = string.Empty;
 
-                if (rut.Length == 0)
-                {
-                    rutFormateado = "";
-                }
-                else
-                {
-                    string rutTemporal;
-                    string dv;
+
+		public static string FormatearRut(string rut)
+		{
+			string rutFormateado = string.Empty;
+
+			if (rut.Length == 0)
+			{
+				rutFormateado = "";
+			}
+			else
+			{
+				string rutTemporal;
+				string dv;
 
 				rut = rut.Replace("-", "").Replace(".", "");
 
 				if (rut.Length == 1)
-                    {
-                        rutFormateado = rut;
-                    }
-                    else
-                    {
-                        rutTemporal = rut.Substring(0, rut.Length - 1);
-                        dv = rut.Substring(rut.Length - 1, 1);
+				{
+					rutFormateado = rut;
+				}
+				else
+				{
+					rutTemporal = rut.Substring(0, rut.Length - 1);
+					dv = rut.Substring(rut.Length - 1, 1);
 
-                        if (!Int64.TryParse(rutTemporal, out long rutNumerico))
-                        {
-                            rutNumerico = 0;
-                        }
-  
-                        rutFormateado = rutNumerico.ToString();
+					if (!Int64.TryParse(rutTemporal, out long rutNumerico))
+					{
+						rutNumerico = 0;
+					}
 
-                        if (rutFormateado.Equals("0"))
-                        {
-                            rutFormateado = string.Empty;
-                        }
-                        else
-                        {
-                            //si no hubo problemas con el formateo agrego el DV a la salida
-                            rutFormateado += "-" + dv;
+					rutFormateado = rutNumerico.ToString();
 
-                            //y hago este replace por si el servidor tuviese configuracion anglosajona y reemplazo las comas por puntos
-                            rutFormateado = rutFormateado.Replace(",", ".");
-                        }
-                    }
-                }
+					if (rutFormateado.Equals("0"))
+					{
+						rutFormateado = string.Empty;
+					}
+					else
+					{
+						//si no hubo problemas con el formateo agrego el DV a la salida
+						rutFormateado += "-" + dv;
 
-                return rutFormateado;
-            }
-        }
-    }
+						//y hago este replace por si el servidor tuviese configuracion anglosajona y reemplazo las comas por puntos
+						rutFormateado = rutFormateado.Replace(",", ".");
+					}
+				}
+			}
+
+			return rutFormateado;
+		}
+
+
+		public static byte[] Convertir_Binario(String Ruta_Archivo){
+
+			byte[] Convert = File.ReadAllBytes(Ruta_Archivo);
+
+			return Convert;
+		}
+
+		public static void Leer_Binario(byte[] Convert, String Archivo)
+		{
+			FolderBrowserDialog fdlg = new FolderBrowserDialog();
+			if (fdlg.ShowDialog() == DialogResult.OK)
+			{
+				try
+				{
+					System.IO.File.WriteAllBytes(fdlg.SelectedPath + "\\" + Archivo, Convert);
+					Process p = new Process();
+					p.StartInfo.FileName = fdlg.SelectedPath + "\\" + Archivo;
+					p.Start();
+				}
+				catch(Exception e)
+				{
+					MessageBox.Show(e.Message, ControlDosimetro.Properties.Resources.msgCaptionError,MessageBoxButtons.OK,MessageBoxIcon.Error);
+				}
+			}
+		}
+	}
+}
 
 
 
