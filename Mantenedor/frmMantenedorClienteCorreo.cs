@@ -52,6 +52,14 @@ namespace ControlDosimetro
 		public frmMantenedorClienteCorreo()
 		{
 			InitializeComponent();
+
+			SqlCommand cmd = new SqlCommand
+			{
+				CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "',' " + this.Text + "'",
+				CommandType = CommandType.Text
+			};
+			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+
 			scPrincipal.Panel2Collapsed = true;
 			tsbGuardar.Enabled = false;
 			dgvGrilla.AutoGenerateColumns = false;

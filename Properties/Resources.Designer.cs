@@ -253,6 +253,36 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap filter_16 {
+            get {
+                object obj = ResourceManager.GetObject("filter_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Filter_24 {
+            get {
+                object obj = ResourceManager.GetObject("Filter_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Filter_32 {
+            get {
+                object obj = ResourceManager.GetObject("Filter_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap iconoNregrita {
             get {
                 object obj = ResourceManager.GetObject("iconoNregrita", resourceCulture);
@@ -422,6 +452,16 @@ namespace ControlDosimetro.Properties {
         public static System.Drawing.Bitmap regresar {
             get {
                 object obj = ResourceManager.GetObject("regresar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Save_16 {
+            get {
+                object obj = ResourceManager.GetObject("Save_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -199,6 +199,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DB_A2B812_ControlDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Documento\frmDocumentoVerAprobar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Documento\frmDocumentoVerAprobar.Designer.cs">
+      <DependentUpon>frmDocumentoVerAprobar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dosimetro\frmIngresoPeliculaDosi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -586,6 +592,9 @@
     <EmbeddedResource Include="Busqueda\frmAyudaPersonal.resx">
       <DependentUpon>frmAyudaPersonal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Documento\frmDocumentoVerAprobar.resx">
+      <DependentUpon>frmDocumentoVerAprobar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dosimetro\frmIngresoPeliculaDosi.resx">
       <DependentUpon>frmIngresoPeliculaDosi.cs</DependentUpon>
     </EmbeddedResource>
@@ -900,6 +909,10 @@
     <Content Include="Libreria\dllLibreriaMysql.dll" />
     <Content Include="Libreria\DocumentFormat.OpenXml.dll" />
     <Content Include="Libreria\GridExtension.dll" />
+    <None Include="Resources\Save-16.png" />
+    <None Include="Resources\filter_16.png" />
+    <None Include="Resources\Filter_24.png" />
+    <None Include="Resources\Filter_32.png" />
     <None Include="Resources\lookImage-24.png" />
     <None Include="Resources\lookImage-32.png" />
     <None Include="Resources\Save-24.png" />
