@@ -77,6 +77,28 @@ namespace classFuncionesGenerales
 			return Convert;
 		}
 
+		public static void Leer_BinarioCarpetaTmp(byte[] Convert, String Archivo)
+		{
+			string strPath = "C:\\Doc_Xray\\tmp\\";
+				try
+				{
+				if (!Directory.Exists("C:\\Doc_Xray"))
+					Directory.CreateDirectory("C:\\Doc_Xray");
+				if (!Directory.Exists("C:\\Doc_Xray\\tmp"))
+					Directory.CreateDirectory("C:\\Doc_Xray\\tmp");
+
+				System.IO.File.WriteAllBytes(strPath + Archivo, Convert);
+					Process p = new Process();
+					p.StartInfo.FileName = strPath + Archivo;
+					p.Start();
+				}
+				catch(Exception e)
+				{
+					MessageBox.Show(e.Message, ControlDosimetro.Properties.Resources.msgCaptionError,MessageBoxButtons.OK,MessageBoxIcon.Error);
+				}
+	
+		}
+
 		public static void Leer_Binario(byte[] Convert, String Archivo)
 		{
 			FolderBrowserDialog fdlg = new FolderBrowserDialog();
@@ -89,12 +111,13 @@ namespace classFuncionesGenerales
 					p.StartInfo.FileName = fdlg.SelectedPath + "\\" + Archivo;
 					p.Start();
 				}
-				catch(Exception e)
+				catch (Exception e)
 				{
-					MessageBox.Show(e.Message, ControlDosimetro.Properties.Resources.msgCaptionError,MessageBoxButtons.OK,MessageBoxIcon.Error);
+					MessageBox.Show(e.Message, ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
 		}
+
 	}
 }
 

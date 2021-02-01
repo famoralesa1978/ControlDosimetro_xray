@@ -163,11 +163,12 @@ namespace ControlDosimetro
 			byte[] buffer = classFuncionesGenerales.ClsValidadores.Convertir_Binario(txtRutaArchivo.Text);
 			try
 			{
-				classFuncionesGenerales.ClsValidadores.Leer_Binario(buffer, "Archivo2.DOCX");
+				string extension = Path.GetExtension(txtRutaArchivo.Text);
+				classFuncionesGenerales.ClsValidadores.Leer_BinarioCarpetaTmp(buffer, "Archivo" + extension);
 			}
-			catch
+			catch(Exception ex)
 			{
-
+				MessageBox.Show(ex.Message, ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 
