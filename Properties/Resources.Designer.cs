@@ -303,6 +303,26 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap lookImage_24 {
+            get {
+                object obj = ResourceManager.GetObject("lookImage_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap lookImage_32 {
+            get {
+                object obj = ResourceManager.GetObject("lookImage_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap minimizar {
             get {
                 object obj = ResourceManager.GetObject("minimizar", resourceCulture);

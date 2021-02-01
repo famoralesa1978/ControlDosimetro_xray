@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.lbl_RazonSocial = new System.Windows.Forms.Label();
+			this.label8 = new System.Windows.Forms.Label();
 			this.btnLimpiar = new System.Windows.Forms.Button();
 			this.cbx_TipoPeriodo = new System.Windows.Forms.ComboBox();
 			this.label7 = new System.Windows.Forms.Label();
@@ -53,8 +55,7 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.btnCancelar = new System.Windows.Forms.Button();
 			this.btnGrabarArchivo = new System.Windows.Forms.Button();
-			this.label8 = new System.Windows.Forms.Label();
-			this.lbl_RazonSocial = new System.Windows.Forms.Label();
+			this.btn_Ver = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.gpx_Asociar.SuspendLayout();
 			this.SuspendLayout();
@@ -84,6 +85,23 @@
 			this.groupBox1.TabIndex = 3;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Dato Cliente";
+			// 
+			// lbl_RazonSocial
+			// 
+			this.lbl_RazonSocial.AutoSize = true;
+			this.lbl_RazonSocial.Location = new System.Drawing.Point(105, 121);
+			this.lbl_RazonSocial.Name = "lbl_RazonSocial";
+			this.lbl_RazonSocial.Size = new System.Drawing.Size(0, 13);
+			this.lbl_RazonSocial.TabIndex = 53;
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(14, 121);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(68, 13);
+			this.label8.TabIndex = 52;
+			this.label8.Text = "Razon social";
 			// 
 			// btnLimpiar
 			// 
@@ -220,6 +238,7 @@
 			// 
 			// gpx_Asociar
 			// 
+			this.gpx_Asociar.Controls.Add(this.btn_Ver);
 			this.gpx_Asociar.Controls.Add(this.txtDescripcionArchivo);
 			this.gpx_Asociar.Controls.Add(this.txtRutaArchivo);
 			this.gpx_Asociar.Controls.Add(this.btnExaminar);
@@ -310,22 +329,15 @@
 			this.btnGrabarArchivo.UseVisualStyleBackColor = true;
 			this.btnGrabarArchivo.Click += new System.EventHandler(this.btnGrabarArchivo_Click);
 			// 
-			// label8
+			// btn_Ver
 			// 
-			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(14, 121);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(68, 13);
-			this.label8.TabIndex = 52;
-			this.label8.Text = "Razon social";
-			// 
-			// lbl_RazonSocial
-			// 
-			this.lbl_RazonSocial.AutoSize = true;
-			this.lbl_RazonSocial.Location = new System.Drawing.Point(105, 121);
-			this.lbl_RazonSocial.Name = "lbl_RazonSocial";
-			this.lbl_RazonSocial.Size = new System.Drawing.Size(0, 13);
-			this.lbl_RazonSocial.TabIndex = 53;
+			this.btn_Ver.Image = global::ControlDosimetro.Properties.Resources.lookImage_32;
+			this.btn_Ver.Location = new System.Drawing.Point(458, 123);
+			this.btn_Ver.Name = "btn_Ver";
+			this.btn_Ver.Size = new System.Drawing.Size(36, 37);
+			this.btn_Ver.TabIndex = 8;
+			this.btn_Ver.UseVisualStyleBackColor = true;
+			this.btn_Ver.Click += new System.EventHandler(this.btn_Ver_Click);
 			// 
 			// frmingdocumentos
 			// 
@@ -378,5 +390,6 @@
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Label lbl_RazonSocial;
 		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Button btn_Ver;
 	}
 }

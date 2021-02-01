@@ -37,7 +37,7 @@ namespace ControlDosimetro
 
 		private void frmingdocumentos_Load(object sender, EventArgs e)
 		{
-			
+
 		}
 
 		#endregion
@@ -45,15 +45,16 @@ namespace ControlDosimetro
 
 		#region carga
 
-		private void Cargar_Ddls(){
+		private void Cargar_Ddls()
+		{
 			Func.Cargar_TipoDocumento(ref cbxTipoDocumento);
 			Func.Cargar_TipoPeriodo(ref cbx_TipoPeriodo);
 
-		} 
+		}
 
 		private void Cargar_Cliente(Int64 intCodCliente)
 		{
-			Func.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64( lbl_id_cliente.Text.ToString()), ref lbl_rut,ref lbl_RazonSocial, ref lbl_Direccion);
+			Func.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(lbl_id_cliente.Text.ToString()), ref lbl_rut, ref lbl_RazonSocial, ref lbl_Direccion);
 
 		}
 
@@ -68,9 +69,10 @@ namespace ControlDosimetro
 			Func.Cargar_Periodo(ref cbx_id_periodo, (int)cbx_TipoPeriodo.SelectedValue, (int)cbx_anno.SelectedValue);
 		}
 
-		private void HabilitarControles(bool bolHabilitar){
+		private void HabilitarControles(bool bolHabilitar)
+		{
 			btn_Cargar_cliente.Enabled = bolHabilitar;
-			btnGrabarArchivo.Enabled = bolHabilitar &&  !String.IsNullOrEmpty( lbl_rut.Text.Trim());
+			btnGrabarArchivo.Enabled = bolHabilitar && !String.IsNullOrEmpty(lbl_rut.Text.Trim());
 			gpx_Asociar.Enabled = bolHabilitar && !String.IsNullOrEmpty(lbl_rut.Text.Trim());
 		}
 
@@ -82,7 +84,7 @@ namespace ControlDosimetro
 			HabilitarControles(cbx_id_periodo.Enabled);
 		}
 
-	
+
 		private void btnGrabarArchivo_Click(object sender, EventArgs e)
 		{
 			GrabarArchivo();
@@ -94,7 +96,7 @@ namespace ControlDosimetro
 			OpenFileDialog fdlg = new OpenFileDialog();
 			fdlg.Title = "Seleccione archivo a Cargar";
 			fdlg.InitialDirectory = @"c:\";
-			fdlg.Filter = "All files (*.*)|*.*|All files (*.*)|*.*";
+			fdlg.Filter = "PDF files (*.PDF)|*.PDF|DOC files (*.DOC)|*.DOC|DOCX files (*.DOCX)|*.DOCX";
 			fdlg.FilterIndex = 2;
 			fdlg.RestoreDirectory = true;
 			if (fdlg.ShowDialog() == DialogResult.OK)
@@ -153,10 +155,11 @@ namespace ControlDosimetro
 			Cargar_Anno();
 			cbx_anno.Enabled = cbx_anno.Items.Count == 0 ? false : true;
 			cbx_id_periodo.Enabled = cbx_anno.Enabled;
-			if (!cbx_anno.Enabled){
+			if (!cbx_anno.Enabled)
+			{
 				cbx_id_periodo.DataSource = null;
 			}
-				
+
 
 			HabilitarControles(cbx_id_periodo.Enabled);
 		}
@@ -171,6 +174,19 @@ namespace ControlDosimetro
 		private void btnCancelar_Click(object sender, EventArgs e)
 		{
 			this.Close();
+		}
+
+		private void btn_Ver_Click(object sender, EventArgs e)
+		{
+			byte[] buffer = File.ReadAllBytes(txtRutaArchivo.Text);
+			try
+			{
+				System.IO.File.WriteAllBytes("D:\\Archivo.pdf", buffer);
+			}
+			catch
+			{
+
+			}
 		}
 	}
 }
