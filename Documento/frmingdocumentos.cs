@@ -87,8 +87,8 @@ namespace ControlDosimetro
 		{
 			if (File.Exists(txtRutaArchivo.Text))
 			{
-				String nombrearchivo = Path.GetFileNameWithoutExtension(txtRutaArchivo.Text);
-				String extension = Path.GetExtension(txtRutaArchivo.Text).Replace(".", "");
+				String nombrearchivo = lbl_id_cliente.Text +"-" + cbxTipoDocumento.Text+ "_"+ cbx_anno.Text +"-" + cbx_id_periodo.Text.Replace("°", "");// Path.GetFileNameWithoutExtension(txtRutaArchivo.Text);
+				String extension = Path.GetExtension(txtRutaArchivo.Text);
 
 
 				byte[] buffer = File.ReadAllBytes(txtRutaArchivo.Text);
@@ -96,9 +96,7 @@ namespace ControlDosimetro
 				SqlCommand sqlcmd = new SqlCommand();
 				sqlcmd.CommandText = "" +
 
-"   INSERT INTO ges_documentos ([Id_cliente],[Id_periodo],[Nombre],[Descripcion],[Extension],[Archivo],[Id_Tipo_Documento]) " +
-// "   VALUES (Convert.ToInt32( lbl_id_cliente.Text), Convert.ToInt32(cbx_id_periodo.SelectedValue),Convert.ToInt32(cmbTipoDocumento.SelectedValue), txtDescripcionArchivo.Text.Trim(),extension, buffer,@Doc_Id_Tipo_Documento)  ";
-
+"   INSERT INTO ges_documentos ([Id_cliente],[Id_periodo],[Nombre],[Descripcion],[Extension],[Archivo],[Id_TipoDocumento]) " +
 "   VALUES (@Doc_Id_cliente,@Doc_Id_periodo,@Doc_Nombre,@Doc_Descripcion,@Doc_Extension,@Doc_Archivo,@Doc_Id_Tipo_Documento)  ";
 
 				sqlcmd.CommandType = CommandType.Text;
@@ -134,8 +132,11 @@ namespace ControlDosimetro
 
 		private void btn_Cargar_cliente_Click(object sender, EventArgs e)
 		{
-			Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
-			HabilitarControles(cbx_id_periodo.Enabled);
+			if(!String.IsNullOrWhiteSpace(lbl_id_cliente.Text)){
+				Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
+				HabilitarControles(cbx_id_periodo.Enabled);
+			}
+			
 		}
 
 		private void btnGrabarArchivo_Click(object sender, EventArgs e)

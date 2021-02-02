@@ -21,60 +21,43 @@ namespace ControlDosimetro
 		#region "Definicion variable"
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-		Clases.ClassEvento ClaseEvento;
-		classFuncionesBD.ClsFunciones ClasesFuncBD;
+		Clases.ClassEvento ClaseEvento = new Clases.ClassEvento();
+		classFuncionesBD.ClsFunciones ClasesFuncBD = new classFuncionesBD.ClsFunciones();
 		int intContar = 0;
-		int intintId_Estado_temp;
 		#endregion
 
-		public frmDocumentoVerAprobar(int intId_Estado)
+		public frmDocumentoVerAprobar(bool Id_Estado)
 		{
 			InitializeComponent();
-
-			SqlCommand cmdcombo = new SqlCommand();
-			//	SqlCommand cmdcombo = new SqlCommand();
-			DataSet dtcombo;
-			cmdcombo.CommandText = "select 0 as Id_DetParametro, 'Seleccione' as Glosa, 0 as orden union all " +
-				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 order by orden ";
-			cmdcombo.CommandType = CommandType.Text;
-			dtcombo = Conectar.Listar(Clases.clsBD.BD, cmdcombo);
-
-
 			AsignarEvento();
-					
+			btn_Guardar.Visible= ColAprobado.Visible = Id_Estado;
+			grdDatos.AutoGenerateColumns = false;
+			
+		}
+
+		private void frmDocumentoVerAprobar_Load(object sender, EventArgs e)
+		{
+			
+
 			Cargar_Anno();
+			Listar_Grilla();
 			pnl_Progreso.Visible = false;
 			btn_Guardar.Enabled = false;
 		}
 
 		#region "Llamada de carga"
 
-		private void Listar_Grilla_Dosimetria()
+		private void Listar_Grilla()
 		{
 			SqlCommand cmd = new SqlCommand();
 			DataSet dt;
-			cmd.CommandText = "pa_ListadoPorEnviarClienteDosimetro ";
+			cmd.CommandText = "pa_ListadoPorDocumento " + cbx_Anno.SelectedValue;
 
 			cmd.CommandType = CommandType.Text;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
 			grdDatos.DataSource = dt.Tables[0];
-		}
-
-		private void Listar_Grilla_TLD()
-		{
-			SqlCommand cmd = new SqlCommand();
-			DataSet dt;
-			cmd.CommandText = "pa_ListadoPorEnviarClienteTLD ";
-
-			cmd.CommandType = CommandType.Text;
-
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-			grdDatos.DataSource = dt.Tables[0];
-			groupBox2.Text = "Listado       Registro:";
-			intContar = 0;
 		}
 
 		private void Cargar_Anno()
@@ -125,36 +108,34 @@ namespace ControlDosimetro
 				strIdCliente = grdDatos.Rows[i].Cells["IdCliente"].Value.ToString();
 				strid_periodo = grdDatos.Rows[i].Cells["id_periodo"].Value.ToString();
 
-				if ((checkMarca.Value.ToString() == "1") && (checkEnviado.Value.ToString() == "0"))
-				{
-					if (rbTodos.Checked == true)
-						cmd.CommandText = "pa_DosimetroEstadoEnviadoDosimetro_upd " + intintId_Estado_temp.ToString() + ",'" + Clases.clsUsuario.Usuario + "'," + strIdCliente + "," + strid_periodo;
-					if (rbtAprobado.Checked == true)
-						cmd.CommandText = "pa_DosimetroEstadoEnviadoTLD_upd " + intintId_Estado_temp.ToString() + ",'" + Clases.clsUsuario.Usuario + "'," + strIdCliente + "," + strid_periodo;
+				//if ((checkMarca.Value.ToString() == "1") && (checkEnviado.Value.ToString() == "0"))
+				//{
+				//	if (rbTodos.Checked == true)
+				//		cmd.CommandText = "pa_DosimetroEstadoEnviadoDosimetro_upd " + intintId_Estado_temp.ToString() + ",'" + Clases.clsUsuario.Usuario + "'," + strIdCliente + "," + strid_periodo;
+				//	if (rbtAprobado.Checked == true)
+				//		cmd.CommandText = "pa_DosimetroEstadoEnviadoTLD_upd " + intintId_Estado_temp.ToString() + ",'" + Clases.clsUsuario.Usuario + "'," + strIdCliente + "," + strid_periodo;
 
-					cmd.CommandType = CommandType.Text;
-					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-				}
-				else
-				{
-					if ((checkMarca.Value.ToString() == "1") && (checkEnviado.Value.ToString() == "1"))
-					{
-						if (rbTodos.Checked == true)
-							cmd.CommandText = "pa_DosimetroDesvolverEstadoEnviadoDosimetria_upd 1,'" + Clases.clsUsuario.Usuario + "'," + strIdCliente + "," + strid_periodo;
-						if (rbtAprobado.Checked == true)
-							cmd.CommandText = "pa_DosimetroDesvolverEstadoEnviadoTLD_upd 1,'" + Clases.clsUsuario.Usuario + "'," + strIdCliente + "," + strid_periodo;
+				//	cmd.CommandType = CommandType.Text;
+				//	Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+				//}
+				//else
+				//{
+				//	if ((checkMarca.Value.ToString() == "1") && (checkEnviado.Value.ToString() == "1"))
+				//	{
+				//		if (rbTodos.Checked == true)
+				//			cmd.CommandText = "pa_DosimetroDesvolverEstadoEnviadoDosimetria_upd 1,'" + Clases.clsUsuario.Usuario + "'," + strIdCliente + "," + strid_periodo;
+				//		if (rbtAprobado.Checked == true)
+				//			cmd.CommandText = "pa_DosimetroDesvolverEstadoEnviadoTLD_upd 1,'" + Clases.clsUsuario.Usuario + "'," + strIdCliente + "," + strid_periodo;
 
-						cmd.CommandType = CommandType.Text;
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-					}
-				}//
+				//		cmd.CommandType = CommandType.Text;
+				//		Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+				//	}
+				//}//
 
 
 			}
-			if (rbtAprobado.Checked == true)
-				Listar_Grilla_TLD();
-			if (rbTodos.Checked == true)
-				Listar_Grilla_Dosimetria();
+			
+				Listar_Grilla();
 			MessageBox.Show("Informacion grabada");
 			btn_Guardar.Enabled = true;
 			pnl_Progreso.Visible = false;
@@ -162,10 +143,7 @@ namespace ControlDosimetro
 
 		private void btn_cargar_Click(object sender, EventArgs e)
 		{
-			if (rbtAprobado.Checked == true)
-				Listar_Grilla_TLD();
-			if (rbTodos.Checked == true)
-				Listar_Grilla_Dosimetria();
+				Listar_Grilla();
 		}
 
 		private void btn_Cerrar_Click(object sender, EventArgs e)
@@ -177,11 +155,6 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "combobox"
-
-		private void cbx_anno_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			Cargar_Periodo();
-		}
 
 		#endregion
 

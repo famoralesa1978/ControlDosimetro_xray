@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.txt_n_Cliente = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
@@ -44,16 +44,13 @@
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
-			this.marca = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.Enviado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.id_estadodosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.IdCliente = new GridExtension.IntegerGridColumn();
+			this.ColId_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.razon_social = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.run = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.id_periodo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Trimestre = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.annomesperiodo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ndocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColDescTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColNombreArchivo = new System.Windows.Forms.DataGridViewLinkColumn();
+			this.ColAprobado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -225,16 +222,13 @@
 			this.grdDatos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.grdDatos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			this.grdDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.marca,
-            this.Enviado,
-            this.id_estadodosimetro,
-            this.IdCliente,
+            this.ColId_cliente,
             this.razon_social,
             this.run,
-            this.id_periodo,
-            this.Trimestre,
             this.annomesperiodo,
-            this.ndocumento});
+            this.ColDescTipo,
+            this.ColNombreArchivo,
+            this.ColAprobado});
 			this.grdDatos.Location = new System.Drawing.Point(3, 19);
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
@@ -245,48 +239,13 @@
 			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
 			// 
-			// marca
+			// ColId_cliente
 			// 
-			this.marca.DataPropertyName = "marca";
-			this.marca.FalseValue = "0";
-			this.marca.HeaderText = "Seleccionar";
-			this.marca.IndeterminateValue = "0";
-			this.marca.Name = "marca";
-			this.marca.TrueValue = "1";
-			this.marca.Width = 69;
-			// 
-			// Enviado
-			// 
-			this.Enviado.DataPropertyName = "Seleccion";
-			this.Enviado.FalseValue = "0";
-			this.Enviado.HeaderText = "Enviado";
-			this.Enviado.IndeterminateValue = "0";
-			this.Enviado.Name = "Enviado";
-			this.Enviado.ReadOnly = true;
-			this.Enviado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.Enviado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.Enviado.TrueValue = "1";
-			this.Enviado.Width = 71;
-			// 
-			// id_estadodosimetro
-			// 
-			this.id_estadodosimetro.DataPropertyName = "id_estadodosimetro";
-			this.id_estadodosimetro.HeaderText = "id_estadodosimetro";
-			this.id_estadodosimetro.Name = "id_estadodosimetro";
-			this.id_estadodosimetro.ReadOnly = true;
-			this.id_estadodosimetro.Visible = false;
-			this.id_estadodosimetro.Width = 123;
-			// 
-			// IdCliente
-			// 
-			this.IdCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-			this.IdCliente.DataPropertyName = "id_cliente";
-			this.IdCliente.HeaderText = "N° Cliente";
-			this.IdCliente.Name = "IdCliente";
-			this.IdCliente.ReadOnly = true;
-			this.IdCliente.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.IdCliente.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.IdCliente.Width = 79;
+			this.ColId_cliente.DataPropertyName = "id_cliente";
+			this.ColId_cliente.HeaderText = "N° Cliente";
+			this.ColId_cliente.Name = "ColId_cliente";
+			this.ColId_cliente.ReadOnly = true;
+			this.ColId_cliente.Width = 79;
 			// 
 			// razon_social
 			// 
@@ -304,39 +263,38 @@
 			this.run.ReadOnly = true;
 			this.run.Width = 49;
 			// 
-			// id_periodo
-			// 
-			this.id_periodo.DataPropertyName = "id_periodo";
-			this.id_periodo.HeaderText = "id_periodo";
-			this.id_periodo.Name = "id_periodo";
-			this.id_periodo.ReadOnly = true;
-			this.id_periodo.Visible = false;
-			this.id_periodo.Width = 81;
-			// 
-			// Trimestre
-			// 
-			this.Trimestre.DataPropertyName = "tri";
-			this.Trimestre.HeaderText = "Trimestre";
-			this.Trimestre.Name = "Trimestre";
-			this.Trimestre.ReadOnly = true;
-			this.Trimestre.Width = 75;
-			// 
 			// annomesperiodo
 			// 
 			this.annomesperiodo.DataPropertyName = "annomesperiodo";
 			this.annomesperiodo.HeaderText = "Periodo";
 			this.annomesperiodo.Name = "annomesperiodo";
 			this.annomesperiodo.ReadOnly = true;
-			this.annomesperiodo.Visible = false;
 			this.annomesperiodo.Width = 68;
 			// 
-			// ndocumento
+			// ColDescTipo
 			// 
-			this.ndocumento.DataPropertyName = "N_Documento";
-			this.ndocumento.HeaderText = "N° Documento";
-			this.ndocumento.Name = "ndocumento";
-			this.ndocumento.ReadOnly = true;
-			this.ndocumento.Width = 102;
+			this.ColDescTipo.DataPropertyName = "DescTipo";
+			this.ColDescTipo.HeaderText = "Tipo documento";
+			this.ColDescTipo.Name = "ColDescTipo";
+			this.ColDescTipo.ReadOnly = true;
+			this.ColDescTipo.Width = 109;
+			// 
+			// ColNombreArchivo
+			// 
+			this.ColNombreArchivo.DataPropertyName = "NombreArchivo";
+			this.ColNombreArchivo.HeaderText = "Nombre archivo";
+			this.ColNombreArchivo.Name = "ColNombreArchivo";
+			this.ColNombreArchivo.ReadOnly = true;
+			this.ColNombreArchivo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.ColNombreArchivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.ColNombreArchivo.Width = 107;
+			// 
+			// ColAprobado
+			// 
+			this.ColAprobado.DataPropertyName = "Aprobado";
+			this.ColAprobado.HeaderText = "Aprobar";
+			this.ColAprobado.Name = "ColAprobado";
+			this.ColAprobado.Width = 50;
 			// 
 			// toolStrip1
 			// 
@@ -427,9 +385,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle9.Format = "N2";
-			dataGridViewCellStyle9.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle9;
+			dataGridViewCellStyle1.Format = "N2";
+			dataGridViewCellStyle1.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -447,9 +405,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle10.Format = "N2";
-			dataGridViewCellStyle10.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle10;
+			dataGridViewCellStyle2.Format = "N2";
+			dataGridViewCellStyle2.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -490,11 +448,13 @@
 			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "frmDocumentoVerAprobar";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Documentos";
+			this.Load += new System.EventHandler(this.frmDocumentoVerAprobar_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
@@ -528,16 +488,6 @@
                                 private GridExtension.IntegerGridColumn integerGridColumn2;
                                 private System.Windows.Forms.Button btn_Cerrar;
                                 private System.Windows.Forms.Button btn_Guardar;
-                                private System.Windows.Forms.DataGridViewCheckBoxColumn marca;
-                                private System.Windows.Forms.DataGridViewCheckBoxColumn Enviado;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn id_estadodosimetro;
-                                private GridExtension.IntegerGridColumn IdCliente;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn razon_social;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn run;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn id_periodo;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn Trimestre;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn annomesperiodo;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn ndocumento;
                                 private System.Windows.Forms.RadioButton rbtAprobado;
                                 private System.Windows.Forms.RadioButton rbTodos;
 		private System.Windows.Forms.Label label1;
@@ -546,5 +496,12 @@
 		private System.Windows.Forms.ComboBox cbx_Anno;
 		private System.Windows.Forms.TextBox txt_n_Cliente;
 		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColId_cliente;
+		private System.Windows.Forms.DataGridViewTextBoxColumn razon_social;
+		private System.Windows.Forms.DataGridViewTextBoxColumn run;
+		private System.Windows.Forms.DataGridViewTextBoxColumn annomesperiodo;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColDescTipo;
+		private System.Windows.Forms.DataGridViewLinkColumn ColNombreArchivo;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn ColAprobado;
 	}
 }
