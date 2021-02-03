@@ -85,9 +85,10 @@ namespace ControlDosimetro
 
 		private void GrabarArchivo()
 		{
-			if (Validar())
+			string strMensaje = "";
+			if (Validar(ref strMensaje))
 			{
-
+				MessageBox.Show(strMensaje, "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 			else
 			{
@@ -133,10 +134,9 @@ namespace ControlDosimetro
 
 		}
 
-		private bool Validar()
+		private bool Validar( ref string strMensaje)
 		{
 			bool bolvalidar = false;
-			string strMensaje = "";
 
 			if (String.IsNullOrWhiteSpace(txtRutaArchivo.Text))
 				strMensaje = "Archivo es requerido";
