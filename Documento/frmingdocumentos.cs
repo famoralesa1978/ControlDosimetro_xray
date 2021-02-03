@@ -143,7 +143,7 @@ namespace ControlDosimetro
 			else
 			{
 				System.IO.FileInfo info = new System.IO.FileInfo(txtRutaArchivo.Text);
-				if (info.Length > 1300000)//
+				if (info.Length > 4000000)//
 					strMensaje = "Tamaño del archivo se ha pasado el limite";
 			}
 
