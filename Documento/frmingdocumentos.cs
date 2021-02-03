@@ -85,46 +85,74 @@ namespace ControlDosimetro
 
 		private void GrabarArchivo()
 		{
-			if (File.Exists(txtRutaArchivo.Text))
+			if (Validar())
 			{
-				String nombrearchivo = lbl_id_cliente.Text +"-" + cbxTipoDocumento.Text+ "_"+ cbx_anno.Text +"-" + cbx_id_periodo.Text.Replace("°", "");// Path.GetFileNameWithoutExtension(txtRutaArchivo.Text);
-				String extension = Path.GetExtension(txtRutaArchivo.Text);
-
-
-				byte[] buffer = File.ReadAllBytes(txtRutaArchivo.Text);
-
-				SqlCommand sqlcmd = new SqlCommand();
-				sqlcmd.CommandText = "" +
-
-"   INSERT INTO ges_documentos ([Id_cliente],[Id_periodo],[Nombre],[Descripcion],[Extension],[Archivo],[Id_TipoDocumento]) " +
-"   VALUES (@Doc_Id_cliente,@Doc_Id_periodo,@Doc_Nombre,@Doc_Descripcion,@Doc_Extension,@Doc_Archivo,@Doc_Id_Tipo_Documento)  ";
-
-				sqlcmd.CommandType = CommandType.Text;
-				sqlcmd.Parameters.Add("@Doc_Id_Cliente", SqlDbType.Int).Value = Convert.ToInt16(lbl_id_cliente.Text);
-				sqlcmd.Parameters.Add("@Doc_Id_Periodo", SqlDbType.Int).Value = Convert.ToInt16(cbx_id_periodo.SelectedValue);
-				sqlcmd.Parameters.Add("@Doc_Id_Tipo_Documento", SqlDbType.Int).Value = Convert.ToInt32(cbxTipoDocumento.SelectedValue);
-				sqlcmd.Parameters.Add("@Doc_Descripcion", SqlDbType.VarChar, 200).Value = txtDescripcionArchivo.Text.Trim();
-				sqlcmd.Parameters.Add("@Doc_Extension", SqlDbType.VarChar, 200).Value = extension;
-				sqlcmd.Parameters.Add("@Doc_Nombre", SqlDbType.VarChar, 200).Value = nombrearchivo;
-				sqlcmd.Parameters.Add("@Doc_Archivo", SqlDbType.Image).Value = buffer;
-
-				Conectar.AgregarModificarEliminar(Clases.clsBD.BD, sqlcmd);
-				// sqlcmd.CommandText = "" + "VALUES (" + Convert.ToInt32(lbl_id_cliente.Text) +""+ ;   
-
-				//MostrarArchivo(buffer, Path.GetFileName(txtRutaArchivo.Text));
-				MessageBox.Show("Archivo guardado", "Grabado exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-				this.DialogResult = System.Windows.Forms.DialogResult.OK;
-				//this.Close();
 
 			}
 			else
 			{
-				MessageBox.Show("No existe archivo a cargar", "Error al seleccionar archivo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				if (File.Exists(txtRutaArchivo.Text))
+				{
+					String nombrearchivo = lbl_id_cliente.Text + "-" + cbxTipoDocumento.Text + "_" + cbx_anno.Text + "-" + cbx_id_periodo.Text.Replace("°", "");// Path.GetFileNameWithoutExtension(txtRutaArchivo.Text);
+					String extension = Path.GetExtension(txtRutaArchivo.Text);
+
+
+					byte[] buffer = File.ReadAllBytes(txtRutaArchivo.Text);
+
+					SqlCommand sqlcmd = new SqlCommand();
+					sqlcmd.CommandText = "" +
+
+	"   INSERT INTO ges_documentos ([Id_cliente],[Id_periodo],[Nombre],[Descripcion],[Extension],[Archivo],[Id_TipoDocumento]) " +
+	"   VALUES (@Doc_Id_cliente,@Doc_Id_periodo,@Doc_Nombre,@Doc_Descripcion,@Doc_Extension,@Doc_Archivo,@Doc_Id_Tipo_Documento)  ";
+
+					sqlcmd.CommandType = CommandType.Text;
+					sqlcmd.Parameters.Add("@Doc_Id_Cliente", SqlDbType.Int).Value = Convert.ToInt16(lbl_id_cliente.Text);
+					sqlcmd.Parameters.Add("@Doc_Id_Periodo", SqlDbType.Int).Value = Convert.ToInt16(cbx_id_periodo.SelectedValue);
+					sqlcmd.Parameters.Add("@Doc_Id_Tipo_Documento", SqlDbType.Int).Value = Convert.ToInt32(cbxTipoDocumento.SelectedValue);
+					sqlcmd.Parameters.Add("@Doc_Descripcion", SqlDbType.VarChar, 200).Value = txtDescripcionArchivo.Text.Trim();
+					sqlcmd.Parameters.Add("@Doc_Extension", SqlDbType.VarChar, 200).Value = extension;
+					sqlcmd.Parameters.Add("@Doc_Nombre", SqlDbType.VarChar, 200).Value = nombrearchivo;
+					sqlcmd.Parameters.Add("@Doc_Archivo", SqlDbType.Image).Value = buffer;
+
+					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, sqlcmd);
+					// sqlcmd.CommandText = "" + "VALUES (" + Convert.ToInt32(lbl_id_cliente.Text) +""+ ;   
+
+					//MostrarArchivo(buffer, Path.GetFileName(txtRutaArchivo.Text));
+					MessageBox.Show("Archivo guardado", "Grabado exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+					this.DialogResult = System.Windows.Forms.DialogResult.OK;
+					//this.Close();
+
+				}
+				else
+				{
+					MessageBox.Show("No existe archivo a cargar", "Error al seleccionar archivo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
 			}
+
 
 		}
 
+		private bool Validar()
+		{
+			bool bolvalidar = false;
+			string strMensaje = "";
+
+			if (String.IsNullOrWhiteSpace(txtRutaArchivo.Text))
+				strMensaje = "Archivo es requerido";
+			else
+			{
+				System.IO.FileInfo info = new System.IO.FileInfo(txtRutaArchivo.Text);
+				if (info.Length > 1300000)//
+					strMensaje = "Tamaño del archivo se ha pasado el limite";
+			}
+
+
+			if (String.IsNullOrWhiteSpace(lbl_id_cliente.Text))
+				strMensaje = strMensaje == "" ? "N° cliente es requerido" : strMensaje + System.Environment.NewLine + "N° cliente es requerido";
+
+			return bolvalidar;
+		}
 
 		#endregion
 
@@ -132,11 +160,12 @@ namespace ControlDosimetro
 
 		private void btn_Cargar_cliente_Click(object sender, EventArgs e)
 		{
-			if(!String.IsNullOrWhiteSpace(lbl_id_cliente.Text)){
+			if (!String.IsNullOrWhiteSpace(lbl_id_cliente.Text))
+			{
 				Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
 				HabilitarControles(cbx_id_periodo.Enabled);
 			}
-			
+
 		}
 
 		private void btnGrabarArchivo_Click(object sender, EventArgs e)
@@ -173,7 +202,7 @@ namespace ControlDosimetro
 				string extension = Path.GetExtension(txtRutaArchivo.Text);
 				classFuncionesGenerales.ClsValidadores.Leer_BinarioCarpetaTmp(buffer, "Archivo" + extension);
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message, ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}

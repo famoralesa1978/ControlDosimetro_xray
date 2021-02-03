@@ -17,7 +17,7 @@ namespace classFuncionesBD
 	{
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 
-		
+
 
 		public int CambiarEstado(string NDoc, string NDos, ref string mensaje)
 		{
@@ -45,7 +45,7 @@ namespace classFuncionesBD
 			return Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString());
 		}
 
-		public void Cargar_Cliente(int intPeriodo,Int64 intCodCliente, ref Label Rut, ref Label RazonSocial)
+		public void Cargar_Cliente(int intPeriodo, Int64 intCodCliente, ref Label Rut, ref Label RazonSocial)
 		{
 			DataSet ds;
 
@@ -60,15 +60,15 @@ namespace classFuncionesBD
 
 			if (ds.Tables[0].Rows.Count > 0)
 			{
-				RazonSocial.Text= ds.Tables[0].Rows[0]["Razon_Social"].ToString();
+				RazonSocial.Text = ds.Tables[0].Rows[0]["Razon_Social"].ToString();
 				Rut.Text = ds.Tables[0].Rows[0]["run"].ToString();
 			}
 			else
 			{
 				RazonSocial.Text = "";
 				Rut.Text = "";
-				if(intCodCliente != -1)
-					MessageBox.Show(ControlDosimetro.Properties.Resources.msgClientePeriodoError, ControlDosimetro.Properties.Resources.msgCaptionError,MessageBoxButtons.OKCancel,MessageBoxIcon.Error);
+				if (intCodCliente != -1)
+					MessageBox.Show(ControlDosimetro.Properties.Resources.msgClientePeriodoError, ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
 			}
 		}
 
@@ -101,22 +101,23 @@ namespace classFuncionesBD
 			}
 		}
 
-		public void Cargar_TipoPeriodo(ref ComboBox cbx){
+		public void Cargar_TipoPeriodo(ref ComboBox cbx)
+		{
 			DataSet ds;
 			SqlCommand cmd = new SqlCommand
 			{
 				//	SqlCommand cmd = new SqlCommand();
 
-				CommandText = "pa_ObtieneTipoPeriodo_sel " 
+				CommandText = "pa_ObtieneTipoPeriodo_sel "
 			};
 			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
-			
+
 			cbx.ValueMember = ds.Tables[0].Columns[0].Caption.ToString();
 			cbx.DisplayMember = ds.Tables[0].Columns[1].Caption.ToString();
 			cbx.DataSource = ds.Tables[0];
 		}
 
-		public void Cargar_Año(ref ComboBox cbx,int intTipoPeriodo)
+		public void Cargar_Año(ref ComboBox cbx, int intTipoPeriodo)
 		{
 			DataSet ds;
 			SqlCommand cmd = new SqlCommand
@@ -131,7 +132,7 @@ namespace classFuncionesBD
 			cbx.DataSource = ds.Tables[0];
 		}
 
-		public void Cargar_Periodo(ref ComboBox cbx, int intTipoPeriodo,int intAnno)
+		public void Cargar_Periodo(ref ComboBox cbx, int intTipoPeriodo, int intAnno)
 		{
 			DataSet ds;
 			SqlCommand cmd = new SqlCommand
@@ -163,6 +164,22 @@ namespace classFuncionesBD
 			cbx.DataSource = ds.Tables[0];
 		}
 
+		public void DescargarDocumento(int Id, ref byte[] Convert)
+		{
+			DataSet ds;
+			SqlCommand cmd = new SqlCommand
+			{
+				//	SqlCommand cmd = new SqlCommand();
+
+				CommandText = "pa_DescargarDocumento " + Id.ToString()
+			};
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+			Convert = (byte[])ds.Tables[0].Rows[0]["Archivo"];
+		}
+
 	}
 
 }
+
+

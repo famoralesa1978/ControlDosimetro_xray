@@ -30,14 +30,14 @@ namespace ControlDosimetro
 		{
 			InitializeComponent();
 			AsignarEvento();
-			btn_Guardar.Visible= ColAprobado.Visible = Id_Estado;
+			btn_Guardar.Visible = ColAprobado.Visible = Id_Estado;
 			grdDatos.AutoGenerateColumns = false;
-			
+
 		}
 
 		private void frmDocumentoVerAprobar_Load(object sender, EventArgs e)
 		{
-			
+
 
 			Cargar_Anno();
 			Listar_Grilla();
@@ -62,7 +62,7 @@ namespace ControlDosimetro
 
 		private void Cargar_Anno()
 		{
-			ClasesFuncBD.Cargar_Año( ref cbx_Anno, 3);
+			ClasesFuncBD.Cargar_Año(ref cbx_Anno, 3);
 		}
 
 
@@ -134,8 +134,8 @@ namespace ControlDosimetro
 
 
 			}
-			
-				Listar_Grilla();
+
+			Listar_Grilla();
 			MessageBox.Show("Informacion grabada");
 			btn_Guardar.Enabled = true;
 			pnl_Progreso.Visible = false;
@@ -143,7 +143,7 @@ namespace ControlDosimetro
 
 		private void btn_cargar_Click(object sender, EventArgs e)
 		{
-				Listar_Grilla();
+			Listar_Grilla();
 		}
 
 		private void btn_Cerrar_Click(object sender, EventArgs e)
@@ -192,6 +192,27 @@ namespace ControlDosimetro
 		{
 		}
 
+		private void grdDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+			if (e.RowIndex > -1)
+			{
+				if(e.ColumnIndex== ColNombreArchivo.Index){
+					Cursor = Cursors.WaitCursor;
+					int intFila = e.RowIndex;
+					int id;
+					byte[] archivo=null;
+					
+					DataTable dt = (DataTable)grdDatos.DataSource;
+					DataRow currentRow = dt.Rows[intFila];
+					id = (int)currentRow["Id_Doc"]; 
+					string strNombreArchivo = currentRow["NombreArchivo"].ToString();
+					ClasesFuncBD.DescargarDocumento(id, ref archivo);
+					Cursor = Cursors.Default;
+					classFuncionesGenerales.ClsValidadores.Leer_Binario(archivo, strNombreArchivo);
+				}
+			}
+		}
+
 		#endregion
 
 		private void chk_marcar_CheckedChanged(object sender, EventArgs e)
@@ -217,6 +238,7 @@ namespace ControlDosimetro
 		{
 
 		}
+
 
 	}
 }
