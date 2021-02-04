@@ -44,13 +44,6 @@
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
-			this.ColId_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.razon_social = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.run = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.annomesperiodo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColDescTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColNombreArchivo = new System.Windows.Forms.DataGridViewLinkColumn();
-			this.ColAprobado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,6 +59,14 @@
 			this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btn_Cerrar = new System.Windows.Forms.Button();
 			this.btn_Guardar = new System.Windows.Forms.Button();
+			this.ColId_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.razon_social = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.run = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.annomesperiodo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColDescTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColNombreArchivo = new System.Windows.Forms.DataGridViewLinkColumn();
+			this.ColAprobado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.ColEliminar = new System.Windows.Forms.DataGridViewLinkColumn();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -228,7 +229,8 @@
             this.annomesperiodo,
             this.ColDescTipo,
             this.ColNombreArchivo,
-            this.ColAprobado});
+            this.ColAprobado,
+            this.ColEliminar});
 			this.grdDatos.Location = new System.Drawing.Point(3, 19);
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
@@ -239,63 +241,6 @@
 			this.grdDatos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdDatos_CellFormatting);
 			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
-			// 
-			// ColId_cliente
-			// 
-			this.ColId_cliente.DataPropertyName = "id_cliente";
-			this.ColId_cliente.HeaderText = "N° Cliente";
-			this.ColId_cliente.Name = "ColId_cliente";
-			this.ColId_cliente.ReadOnly = true;
-			this.ColId_cliente.Width = 79;
-			// 
-			// razon_social
-			// 
-			this.razon_social.DataPropertyName = "razon_social";
-			this.razon_social.HeaderText = "Razon Social";
-			this.razon_social.Name = "razon_social";
-			this.razon_social.ReadOnly = true;
-			this.razon_social.Width = 95;
-			// 
-			// run
-			// 
-			this.run.DataPropertyName = "run";
-			this.run.HeaderText = "Rut";
-			this.run.Name = "run";
-			this.run.ReadOnly = true;
-			this.run.Width = 49;
-			// 
-			// annomesperiodo
-			// 
-			this.annomesperiodo.DataPropertyName = "annomesperiodo";
-			this.annomesperiodo.HeaderText = "Periodo";
-			this.annomesperiodo.Name = "annomesperiodo";
-			this.annomesperiodo.ReadOnly = true;
-			this.annomesperiodo.Width = 68;
-			// 
-			// ColDescTipo
-			// 
-			this.ColDescTipo.DataPropertyName = "DescTipo";
-			this.ColDescTipo.HeaderText = "Tipo documento";
-			this.ColDescTipo.Name = "ColDescTipo";
-			this.ColDescTipo.ReadOnly = true;
-			this.ColDescTipo.Width = 109;
-			// 
-			// ColNombreArchivo
-			// 
-			this.ColNombreArchivo.DataPropertyName = "NombreArchivo";
-			this.ColNombreArchivo.HeaderText = "Nombre archivo";
-			this.ColNombreArchivo.Name = "ColNombreArchivo";
-			this.ColNombreArchivo.ReadOnly = true;
-			this.ColNombreArchivo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.ColNombreArchivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.ColNombreArchivo.Width = 107;
-			// 
-			// ColAprobado
-			// 
-			this.ColAprobado.DataPropertyName = "Aprobado";
-			this.ColAprobado.HeaderText = "Aprobar";
-			this.ColAprobado.Name = "ColAprobado";
-			this.ColAprobado.Width = 50;
 			// 
 			// toolStrip1
 			// 
@@ -439,6 +384,69 @@
 			this.btn_Guardar.UseWaitCursor = true;
 			this.btn_Guardar.Click += new System.EventHandler(this.btn_Guardar_Click);
 			// 
+			// ColId_cliente
+			// 
+			this.ColId_cliente.DataPropertyName = "id_cliente";
+			this.ColId_cliente.HeaderText = "N° Cliente";
+			this.ColId_cliente.Name = "ColId_cliente";
+			this.ColId_cliente.ReadOnly = true;
+			this.ColId_cliente.Width = 79;
+			// 
+			// razon_social
+			// 
+			this.razon_social.DataPropertyName = "razon_social";
+			this.razon_social.HeaderText = "Razon Social";
+			this.razon_social.Name = "razon_social";
+			this.razon_social.ReadOnly = true;
+			this.razon_social.Width = 95;
+			// 
+			// run
+			// 
+			this.run.DataPropertyName = "run";
+			this.run.HeaderText = "Rut";
+			this.run.Name = "run";
+			this.run.ReadOnly = true;
+			this.run.Width = 49;
+			// 
+			// annomesperiodo
+			// 
+			this.annomesperiodo.DataPropertyName = "annomesperiodo";
+			this.annomesperiodo.HeaderText = "Periodo";
+			this.annomesperiodo.Name = "annomesperiodo";
+			this.annomesperiodo.ReadOnly = true;
+			this.annomesperiodo.Width = 68;
+			// 
+			// ColDescTipo
+			// 
+			this.ColDescTipo.DataPropertyName = "DescTipo";
+			this.ColDescTipo.HeaderText = "Tipo documento";
+			this.ColDescTipo.Name = "ColDescTipo";
+			this.ColDescTipo.ReadOnly = true;
+			this.ColDescTipo.Width = 109;
+			// 
+			// ColNombreArchivo
+			// 
+			this.ColNombreArchivo.DataPropertyName = "NombreArchivo";
+			this.ColNombreArchivo.HeaderText = "Nombre archivo";
+			this.ColNombreArchivo.Name = "ColNombreArchivo";
+			this.ColNombreArchivo.ReadOnly = true;
+			this.ColNombreArchivo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.ColNombreArchivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.ColNombreArchivo.Width = 107;
+			// 
+			// ColAprobado
+			// 
+			this.ColAprobado.DataPropertyName = "Aprobado";
+			this.ColAprobado.HeaderText = "Aprobar";
+			this.ColAprobado.Name = "ColAprobado";
+			this.ColAprobado.Width = 50;
+			// 
+			// ColEliminar
+			// 
+			this.ColEliminar.HeaderText = "Eliminar";
+			this.ColEliminar.Name = "ColEliminar";
+			this.ColEliminar.Width = 49;
+			// 
 			// frmDocumentoVerAprobar
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -504,5 +512,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColDescTipo;
 		private System.Windows.Forms.DataGridViewLinkColumn ColNombreArchivo;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn ColAprobado;
+		private System.Windows.Forms.DataGridViewLinkColumn ColEliminar;
 	}
 }

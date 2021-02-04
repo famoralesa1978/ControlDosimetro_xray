@@ -83,7 +83,8 @@ namespace ControlDosimetro
 
 			Documento = 1100,
 			SubirDocumento = 1101,
-			VerDocumento = 1102
+			VerDocumento = 1102,
+			AprobarDocumento = 1103
 		}
 
 		public enum REPORTES
@@ -702,6 +703,17 @@ namespace ControlDosimetro
 					break;
 				case (int)MENU.VerDocumento:
 					objFrm = new frmDocumentoVerAprobar(false)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen,
+						//	Parametros = objParams
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+
+				case (int)MENU.AprobarDocumento:
+					objFrm = new frmDocumentoVerAprobar(true)
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen,

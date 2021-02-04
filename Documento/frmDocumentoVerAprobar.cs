@@ -30,7 +30,7 @@ namespace ControlDosimetro
 		{
 			InitializeComponent();
 			AsignarEvento();
-			btn_Guardar.Visible = ColAprobado.Visible = Id_Estado;
+			btn_Guardar.Visible = ColAprobado.Visible = ColEliminar.Visible= Id_Estado;
 			grdDatos.AutoGenerateColumns = false;
 
 		}
