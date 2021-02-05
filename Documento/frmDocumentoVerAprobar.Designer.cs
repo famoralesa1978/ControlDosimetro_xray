@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.btnCargar = new System.Windows.Forms.Button();
 			this.txt_n_Cliente = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.cbx_Anno = new System.Windows.Forms.ComboBox();
@@ -39,7 +40,6 @@
 			this.rbtSinAprobar = new System.Windows.Forms.RadioButton();
 			this.rbtAprobado = new System.Windows.Forms.RadioButton();
 			this.rbTodos = new System.Windows.Forms.RadioButton();
-			this.btn_cargar = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
@@ -66,7 +66,7 @@
 			this.ColDescTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ColNombreArchivo = new System.Windows.Forms.DataGridViewLinkColumn();
 			this.ColAprobado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.ColEliminar = new System.Windows.Forms.DataGridViewLinkColumn();
+			this.ColEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -75,6 +75,7 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.btnCargar);
 			this.groupBox1.Controls.Add(this.txt_n_Cliente);
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Controls.Add(this.cbx_Anno);
@@ -83,13 +84,24 @@
 			this.groupBox1.Controls.Add(this.rbtSinAprobar);
 			this.groupBox1.Controls.Add(this.rbtAprobado);
 			this.groupBox1.Controls.Add(this.rbTodos);
-			this.groupBox1.Controls.Add(this.btn_cargar);
 			this.groupBox1.Location = new System.Drawing.Point(5, 28);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(462, 147);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Filtrar";
+			// 
+			// btnCargar
+			// 
+			this.btnCargar.Image = global::ControlDosimetro.Properties.Resources.filter_16;
+			this.btnCargar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnCargar.Location = new System.Drawing.Point(10, 107);
+			this.btnCargar.Name = "btnCargar";
+			this.btnCargar.Size = new System.Drawing.Size(75, 23);
+			this.btnCargar.TabIndex = 14;
+			this.btnCargar.Text = "Filtrar";
+			this.btnCargar.UseVisualStyleBackColor = true;
+			this.btnCargar.Click += new System.EventHandler(this.btn_cargar_Click);
 			// 
 			// txt_n_Cliente
 			// 
@@ -115,6 +127,7 @@
 			this.cbx_Anno.Name = "cbx_Anno";
 			this.cbx_Anno.Size = new System.Drawing.Size(84, 21);
 			this.cbx_Anno.TabIndex = 11;
+			this.cbx_Anno.SelectedIndexChanged += new System.EventHandler(this.cbx_Anno_SelectedIndexChanged);
 			// 
 			// label2
 			// 
@@ -166,20 +179,6 @@
 			this.rbTodos.Text = "Todos";
 			this.rbTodos.UseVisualStyleBackColor = true;
 			// 
-			// btn_cargar
-			// 
-			this.btn_cargar.Image = global::ControlDosimetro.Properties.Resources.filter_16;
-			this.btn_cargar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_cargar.Location = new System.Drawing.Point(7, 107);
-			this.btn_cargar.Name = "btn_cargar";
-			this.btn_cargar.Size = new System.Drawing.Size(74, 25);
-			this.btn_cargar.TabIndex = 5;
-			this.btn_cargar.Text = "Filtrar";
-			this.btn_cargar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btn_cargar.UseVisualStyleBackColor = true;
-			this.btn_cargar.UseWaitCursor = true;
-			this.btn_cargar.Click += new System.EventHandler(this.btn_cargar_Click);
-			// 
 			// groupBox2
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -193,7 +192,6 @@
 			this.groupBox2.TabIndex = 7;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Listado";
-			this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
 			// 
 			// pnl_Progreso
 			// 
@@ -331,9 +329,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle1.Format = "N2";
-			dataGridViewCellStyle1.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle5.Format = "N2";
+			dataGridViewCellStyle5.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle5;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -351,9 +349,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle2.Format = "N2";
-			dataGridViewCellStyle2.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle6.Format = "N2";
+			dataGridViewCellStyle6.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle6;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -443,8 +441,11 @@
 			// 
 			// ColEliminar
 			// 
+			this.ColEliminar.DataPropertyName = "Eliminar";
 			this.ColEliminar.HeaderText = "Eliminar";
 			this.ColEliminar.Name = "ColEliminar";
+			this.ColEliminar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.ColEliminar.Text = "Eliminar";
 			this.ColEliminar.Width = 49;
 			// 
 			// frmDocumentoVerAprobar
@@ -480,7 +481,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
 		  private System.Windows.Forms.DataGridView grdDatos;
           private System.Windows.Forms.ToolStrip toolStrip1;
-          private System.Windows.Forms.Button btn_cargar;
                                 private System.Windows.Forms.GroupBox pnl_Progreso;
                                 private System.Windows.Forms.ProgressBar pgb_Barra;
                                 private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
@@ -505,6 +505,7 @@
 		private System.Windows.Forms.ComboBox cbx_Anno;
 		private System.Windows.Forms.TextBox txt_n_Cliente;
 		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Button btnCargar;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColId_cliente;
 		private System.Windows.Forms.DataGridViewTextBoxColumn razon_social;
 		private System.Windows.Forms.DataGridViewTextBoxColumn run;
@@ -512,6 +513,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColDescTipo;
 		private System.Windows.Forms.DataGridViewLinkColumn ColNombreArchivo;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn ColAprobado;
-		private System.Windows.Forms.DataGridViewLinkColumn ColEliminar;
+		private System.Windows.Forms.DataGridViewButtonColumn ColEliminar;
 	}
 }

@@ -23,6 +23,7 @@ namespace ControlDosimetro
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		Clases.ClassEvento ClaseEvento = new Clases.ClassEvento();
 		classFuncionesBD.ClsFunciones ClasesFuncBD = new classFuncionesBD.ClsFunciones();
+		DataTable dt;
 		int intContar = 0;
 		#endregion
 
@@ -30,7 +31,7 @@ namespace ControlDosimetro
 		{
 			InitializeComponent();
 			AsignarEvento();
-			btn_Guardar.Visible = ColAprobado.Visible = ColEliminar.Visible= Id_Estado;
+			btn_Guardar.Visible = ColAprobado.Visible = ColEliminar.Visible = Id_Estado;
 			grdDatos.AutoGenerateColumns = false;
 
 		}
@@ -40,24 +41,33 @@ namespace ControlDosimetro
 
 
 			Cargar_Anno();
+			CargarDt();
 			Listar_Grilla();
 			pnl_Progreso.Visible = false;
-			btn_Guardar.Enabled = false;
 		}
 
 		#region "Llamada de carga"
 
 		private void Listar_Grilla()
 		{
+
+			if (rbtAprobado.Checked)
+				dt.DefaultView.RowFilter = "aprobado=1";
+			if (rbtSinAprobar.Checked)
+				dt.DefaultView.RowFilter = "aprobado=0";
+			grdDatos.DataSource = dt;
+		}
+
+		private void CargarDt()
+		{
 			SqlCommand cmd = new SqlCommand();
-			DataSet dt;
+			DataSet ds;
 			cmd.CommandText = "pa_ListadoPorDocumento " + cbx_Anno.SelectedValue;
 
 			cmd.CommandType = CommandType.Text;
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = ds.Tables[0];
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-			grdDatos.DataSource = dt.Tables[0];
 		}
 
 		private void Cargar_Anno()
@@ -84,57 +94,34 @@ namespace ControlDosimetro
 		private void btn_Guardar_Click(object sender, EventArgs e)
 		{
 			SqlCommand cmd = new SqlCommand();
-			// SqlCommand cmd = new SqlCommand();
-
-			//// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
-
-			DataGridViewCheckBoxCell checkMarca;
-			DataGridViewCheckBoxCell checkEnviado;
-			String strIdCliente;
-			String strid_periodo;
-			//   string strId;
+			bool bolMarca;
+			String strId;
 			pnl_Progreso.Visible = true;
 			btn_Guardar.Enabled = false;
 			pnl_Progreso.Refresh();
 			pgb_Barra.Minimum = 0;
 			pgb_Barra.Maximum = grdDatos.RowCount;
-			for (int i = 0; i <= grdDatos.RowCount - 1; ++i)
+			StringBuilder strMarcado = new StringBuilder();
+			StringBuilder strDesmarcado = new StringBuilder();
+
+			foreach (DataRowView dv in ((DataTable)grdDatos.DataSource).DefaultView)
 			{
-				pgb_Barra.Value = i + 1;
-				pgb_Barra.Refresh();
-				checkMarca = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["marca"];
-				checkEnviado = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["Enviado"];
+				strId = dv["Id_Doc"].ToString();
+				bolMarca = (bool)dv["Aprobado"];
+				if (bolMarca)
+				{
+					strMarcado.AppendFormat(@"<a e=""{0}""/>", strId);
 
-				strIdCliente = grdDatos.Rows[i].Cells["IdCliente"].Value.ToString();
-				strid_periodo = grdDatos.Rows[i].Cells["id_periodo"].Value.ToString();
-
-				//if ((checkMarca.Value.ToString() == "1") && (checkEnviado.Value.ToString() == "0"))
-				//{
-				//	if (rbTodos.Checked == true)
-				//		cmd.CommandText = "pa_DosimetroEstadoEnviadoDosimetro_upd " + intintId_Estado_temp.ToString() + ",'" + Clases.clsUsuario.Usuario + "'," + strIdCliente + "," + strid_periodo;
-				//	if (rbtAprobado.Checked == true)
-				//		cmd.CommandText = "pa_DosimetroEstadoEnviadoTLD_upd " + intintId_Estado_temp.ToString() + ",'" + Clases.clsUsuario.Usuario + "'," + strIdCliente + "," + strid_periodo;
-
-				//	cmd.CommandType = CommandType.Text;
-				//	Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-				//}
-				//else
-				//{
-				//	if ((checkMarca.Value.ToString() == "1") && (checkEnviado.Value.ToString() == "1"))
-				//	{
-				//		if (rbTodos.Checked == true)
-				//			cmd.CommandText = "pa_DosimetroDesvolverEstadoEnviadoDosimetria_upd 1,'" + Clases.clsUsuario.Usuario + "'," + strIdCliente + "," + strid_periodo;
-				//		if (rbtAprobado.Checked == true)
-				//			cmd.CommandText = "pa_DosimetroDesvolverEstadoEnviadoTLD_upd 1,'" + Clases.clsUsuario.Usuario + "'," + strIdCliente + "," + strid_periodo;
-
-				//		cmd.CommandType = CommandType.Text;
-				//		Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-				//	}
-				//}//
-
-
+				}
+				else
+				{
+					strDesmarcado.AppendFormat(@"<a e=""{0}""/>", strId);
+				}
 			}
 
+			cmd.CommandText = "pa_DocumentoAprobarUpd '" + strMarcado + "','" + strDesmarcado + "'";
+			cmd.CommandType = CommandType.Text;
+			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 			Listar_Grilla();
 			MessageBox.Show("Informacion grabada");
 			btn_Guardar.Enabled = true;
@@ -143,6 +130,7 @@ namespace ControlDosimetro
 
 		private void btn_cargar_Click(object sender, EventArgs e)
 		{
+			CargarDt();
 			Listar_Grilla();
 		}
 
@@ -155,6 +143,11 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "combobox"
+		private void cbx_Anno_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			CargarDt();
+			Listar_Grilla();
+		}
 
 		#endregion
 
@@ -168,76 +161,49 @@ namespace ControlDosimetro
 			}
 		}
 
-		private void grdDatos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-		{
-			if ((grdDatos.Columns[e.ColumnIndex].Name == "marca"))
-			{
-				DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[e.RowIndex].Cells["marca"];
-
-				if ((Convert.ToInt64(checkCell.Value) == 1) || (Convert.ToInt64(checkCell.Value) == 2))
-				{
-					intContar = intContar + 1;
-					groupBox2.Text = "Listado       Registro:" + intContar.ToString();
-				}
-				else
-				{
-					intContar = intContar - 1;
-					groupBox2.Text = "Listado       Registro:" + intContar.ToString();
-				}
-				btn_Guardar.Enabled = intContar == 0 ? false : true;
-			}
-		}
-
-		private void grdDatos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-		{
-		}
-
 		private void grdDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
 			if (e.RowIndex > -1)
 			{
-				if(e.ColumnIndex== ColNombreArchivo.Index){
+				int intFila = e.RowIndex;
+				int id;
+				DataTable dt = (DataTable)grdDatos.DataSource;
+				DataRow currentRow = dt.Rows[intFila];
+				id = (int)currentRow["Id_Doc"];
+				if (e.ColumnIndex == ColNombreArchivo.Index)
+				{
+
 					Cursor = Cursors.WaitCursor;
-					int intFila = e.RowIndex;
-					int id;
-					byte[] archivo=null;
 					
-					DataTable dt = (DataTable)grdDatos.DataSource;
-					DataRow currentRow = dt.Rows[intFila];
-					id = (int)currentRow["Id_Doc"]; 
+					byte[] archivo = null;
+
 					string strNombreArchivo = currentRow["NombreArchivo"].ToString();
 					ClasesFuncBD.DescargarDocumento(id, ref archivo);
 					Cursor = Cursors.Default;
 					classFuncionesGenerales.ClsValidadores.Leer_Binario(archivo, strNombreArchivo);
 				}
+				else
+				{
+					if (e.ColumnIndex == ColEliminar.Index)
+					{
+						if(MessageBox.Show("¿Desea elimar el archivo?","Eliminar archivo adjunto",MessageBoxButtons.OKCancel,MessageBoxIcon.Question)==DialogResult.OK){
+							SqlCommand cmd = new SqlCommand();
+							cmd.CommandText = "pa_DocumentoDel " + id.ToString();
+
+							cmd.CommandType = CommandType.Text;
+
+							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+
+							CargarDt();
+							Listar_Grilla();
+						}
+					}
+				}
+
 			}
 		}
 
 		#endregion
-
-		private void chk_marcar_CheckedChanged(object sender, EventArgs e)
-		{
-			pnl_Progreso.Refresh();
-			pgb_Barra.Minimum = 0;
-			DataGridViewCheckBoxCell checkMarca;
-			pgb_Barra.Maximum = grdDatos.RowCount;
-			for (int i = 0; i <= grdDatos.RowCount - 1; i++)
-			{
-				pgb_Barra.Value = i + 1;
-				pgb_Barra.Refresh();
-				checkMarca = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["marca"];
-
-				DataGridViewTextBoxCell txtFechaRecepcion = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["FechaRecepción"];
-
-			}
-			btn_Guardar.Enabled = true;
-			pnl_Progreso.Visible = false;
-		}
-
-		private void groupBox2_Enter(object sender, EventArgs e)
-		{
-
-		}
 
 
 	}
