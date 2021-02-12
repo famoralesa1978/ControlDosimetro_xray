@@ -317,6 +317,12 @@ namespace ControlDosimetro
 
 			Boolean bolResult;
 			bolResult = false;
+
+			if (Convert.ToDateTime(cbx_id_periodo.Text.ToString()) > DateTime.Now.Date){
+				Cursor = Cursors.Default;
+				MessageBox.Show("FEcha inicio control es mayor que la fecha actual", ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);				
+				return;
+			}
 			//   if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
 			//  {
 			if (btn_Grabar.Text == "Modificar")

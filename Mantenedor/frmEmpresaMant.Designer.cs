@@ -341,7 +341,7 @@
 			this.dtp_FechaInicio.CustomFormat = "dd/MM/yyyy";
 			this.dtp_FechaInicio.Enabled = false;
 			this.dtp_FechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dtp_FechaInicio.Location = new System.Drawing.Point(296, 492);
+			this.dtp_FechaInicio.Location = new System.Drawing.Point(167, 491);
 			this.dtp_FechaInicio.Name = "dtp_FechaInicio";
 			this.dtp_FechaInicio.Size = new System.Drawing.Size(98, 20);
 			this.dtp_FechaInicio.TabIndex = 19;
@@ -442,9 +442,11 @@
 			// 
 			// btn_cerrar
 			// 
+			this.btn_cerrar.Image = global::ControlDosimetro.Properties.Resources.Close_24;
+			this.btn_cerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btn_cerrar.Location = new System.Drawing.Point(275, 566);
 			this.btn_cerrar.Name = "btn_cerrar";
-			this.btn_cerrar.Size = new System.Drawing.Size(75, 23);
+			this.btn_cerrar.Size = new System.Drawing.Size(97, 38);
 			this.btn_cerrar.TabIndex = 22;
 			this.btn_cerrar.Text = "Cerrar";
 			this.btn_cerrar.UseVisualStyleBackColor = true;
@@ -452,9 +454,11 @@
 			// 
 			// btn_Grabar
 			// 
+			this.btn_Grabar.Image = global::ControlDosimetro.Properties.Resources.Save_24;
+			this.btn_Grabar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btn_Grabar.Location = new System.Drawing.Point(88, 566);
 			this.btn_Grabar.Name = "btn_Grabar";
-			this.btn_Grabar.Size = new System.Drawing.Size(75, 23);
+			this.btn_Grabar.Size = new System.Drawing.Size(104, 38);
 			this.btn_Grabar.TabIndex = 21;
 			this.btn_Grabar.Text = "Guardar";
 			this.btn_Grabar.UseVisualStyleBackColor = true;
