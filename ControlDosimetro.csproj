@@ -104,7 +104,7 @@
     </Reference>
     <Reference Include="dllLibreriaMysql, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libreria\dllLibreriaMysql.dll</HintPath>
+      <HintPath>..\..\..\Libreria\dllLibreriasqlCommand\dllLibreriaMysql\bin\Debug\dllLibreriaMysql.dll</HintPath>
     </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

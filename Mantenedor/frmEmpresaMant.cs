@@ -31,6 +31,7 @@ namespace ControlDosimetro
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
+		Clases.ClassEvento clsEvento = new Clases.ClassEvento();
 
 		dllLibreriaMysql.clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
 		#endregion
@@ -245,7 +246,9 @@ namespace ControlDosimetro
 					((DateTimePicker)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 
 			}
-			txt_Email.Validated += new EventHandler(ClaseEvento.validaEmail_Validated);
+			clsEvento.AsignarMailMultiple(ref txt_Email);
+			clsEvento.AsignarMailMultiple(ref txt_Emailfacturacion);
+			//txt_Email.Validated += new EventHandler(ClaseEvento.validaEmail_Validated);
 		}
 
 		private bool valida_cliente(Int64 intCodigo)

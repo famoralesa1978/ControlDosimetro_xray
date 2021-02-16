@@ -184,13 +184,6 @@ namespace ControlDosimetro
 			cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
 			cbx_id_seccion.DataSource = dt.Tables[0];
-
-			//cbx_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
-			//cbx_seccion.DataSource = dt.Tables[0];
-
-			//cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
-			//cbx_id_seccion.DataSource = dt.Tables[0];
-
 		}
 
 		private void Cargar_Profesion()
@@ -198,7 +191,7 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			// SqlCommand cmd = new SqlCommand();
 
-			cmd.CommandText = "select id_profesion,Profesion,orden FROM glo_profesion order by Profesion";
+			cmd.CommandText = "select id_profesion, cast(orden as  varchar(max))+'-'+Profesion as Profesion,orden FROM glo_profesion order by Profesion";
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 			cbx_id_profesion.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
@@ -227,22 +220,8 @@ namespace ControlDosimetro
 		}
 		private void Cargar_sexo()
 		{
+			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref cbx_id_sexo, 4);
 
-			// SqlCommand cmd = new SqlCommand();
-			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "select Id_DetParametro,Glosa FROM conf_detparametro WHERE Id_Parametro=4 order by orden";
-			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-			cbx_id_sexo.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
-			cbx_id_sexo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
-			cbx_id_sexo.DataSource = dt.Tables[0];
-
-			//cbx_sexo.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
-			//cbx_sexo.DataSource = dt.Tables[0];
-
-			//cbx_id_sexo.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
-			//cbx_id_sexo.DataSource = dt.Tables[0];
 
 		}
 
@@ -378,30 +357,14 @@ namespace ControlDosimetro
 						if (lbl_Fecha_Modificacion.Text != cbx_id_estado.Text)
 						{
 							MessageBox.Show("Dato modificado,Debe ingresar una observación porque se dejo inactivo");
-							//if (MessageBox.Show("Desea salir del formulario", "Confirmar", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-							//{
-							//    this.Close();
-							//}
-							//else
+			
 							LimpiarControles();
 						}
 						else
-							//MessageBox.Show("Dato modificado");
-							//if (MessageBox.Show("Desea salir del formulario", "Confirmar", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-							//{
-							//    this.Close();
-							//}
-							//else
 							LimpiarControles();
 					}
 					else
 					{
-						//MessageBox.Show("Dato modificado");
-						//if (MessageBox.Show("Desea salir del formulario", "Confirmar", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-						//{
-						//    this.Close();
-						//}
-						//else
 						LimpiarControles();
 					}
 
@@ -414,11 +377,7 @@ namespace ControlDosimetro
 				if (bolResult == true)
 				{
 					MessageBox.Show("Dato Guardado");
-					//if (MessageBox.Show("Desea salir del formulario", "Confirmar", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-					//{
-					//    this.Close();
-					//}
-					//else
+	
 					LimpiarControles();
 				}
 			}

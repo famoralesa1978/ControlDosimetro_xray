@@ -77,11 +77,15 @@
 			this.lbl_id_cliente = new System.Windows.Forms.Label();
 			this.txt_run = new System.Windows.Forms.TextBox();
 			this.lbl_run = new System.Windows.Forms.Label();
+			this.lbl_Emailfacturacion = new System.Windows.Forms.Label();
+			this.txt_Emailfacturacion = new System.Windows.Forms.TextBox();
 			this.tbl_cliente.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tbl_cliente
 			// 
+			this.tbl_cliente.Controls.Add(this.lbl_Emailfacturacion);
+			this.tbl_cliente.Controls.Add(this.txt_Emailfacturacion);
 			this.tbl_cliente.Controls.Add(this.lbl_Nombre_fantasia);
 			this.tbl_cliente.Controls.Add(this.txt_Nombre_fantasia);
 			this.tbl_cliente.Controls.Add(this.txt_Opr);
@@ -133,7 +137,7 @@
 			this.tbl_cliente.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tbl_cliente.Location = new System.Drawing.Point(0, 0);
 			this.tbl_cliente.Name = "tbl_cliente";
-			this.tbl_cliente.Size = new System.Drawing.Size(491, 616);
+			this.tbl_cliente.Size = new System.Drawing.Size(491, 677);
 			this.tbl_cliente.TabIndex = 0;
 			this.tbl_cliente.TabStop = false;
 			this.tbl_cliente.Text = "Datos";
@@ -157,16 +161,16 @@
 			// 
 			// txt_Opr
 			// 
-			this.txt_Opr.Location = new System.Drawing.Point(166, 413);
+			this.txt_Opr.Location = new System.Drawing.Point(166, 444);
 			this.txt_Opr.MaxLength = 50;
 			this.txt_Opr.Name = "txt_Opr";
 			this.txt_Opr.Size = new System.Drawing.Size(313, 20);
-			this.txt_Opr.TabIndex = 16;
+			this.txt_Opr.TabIndex = 17;
 			// 
 			// lbl_Opr
 			// 
 			this.lbl_Opr.AutoSize = true;
-			this.lbl_Opr.Location = new System.Drawing.Point(10, 416);
+			this.lbl_Opr.Location = new System.Drawing.Point(10, 447);
 			this.lbl_Opr.Name = "lbl_Opr";
 			this.lbl_Opr.Size = new System.Drawing.Size(30, 13);
 			this.lbl_Opr.TabIndex = 55;
@@ -174,16 +178,16 @@
 			// 
 			// txt_Director
 			// 
-			this.txt_Director.Location = new System.Drawing.Point(166, 387);
+			this.txt_Director.Location = new System.Drawing.Point(166, 418);
 			this.txt_Director.MaxLength = 50;
 			this.txt_Director.Name = "txt_Director";
 			this.txt_Director.Size = new System.Drawing.Size(313, 20);
-			this.txt_Director.TabIndex = 15;
+			this.txt_Director.TabIndex = 16;
 			// 
 			// lbl_Director
 			// 
 			this.lbl_Director.AutoSize = true;
-			this.lbl_Director.Location = new System.Drawing.Point(10, 390);
+			this.lbl_Director.Location = new System.Drawing.Point(10, 421);
 			this.lbl_Director.Name = "lbl_Director";
 			this.lbl_Director.Size = new System.Drawing.Size(44, 13);
 			this.lbl_Director.TabIndex = 53;
@@ -194,15 +198,15 @@
 			this.cbx_Id_Sector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_Id_Sector.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.cbx_Id_Sector.FormattingEnabled = true;
-			this.cbx_Id_Sector.Location = new System.Drawing.Point(166, 360);
+			this.cbx_Id_Sector.Location = new System.Drawing.Point(166, 391);
 			this.cbx_Id_Sector.Name = "cbx_Id_Sector";
 			this.cbx_Id_Sector.Size = new System.Drawing.Size(150, 21);
-			this.cbx_Id_Sector.TabIndex = 14;
+			this.cbx_Id_Sector.TabIndex = 15;
 			// 
 			// lbl_Id_Sector
 			// 
 			this.lbl_Id_Sector.AutoSize = true;
-			this.lbl_Id_Sector.Location = new System.Drawing.Point(10, 363);
+			this.lbl_Id_Sector.Location = new System.Drawing.Point(10, 394);
 			this.lbl_Id_Sector.Name = "lbl_Id_Sector";
 			this.lbl_Id_Sector.Size = new System.Drawing.Size(38, 13);
 			this.lbl_Id_Sector.TabIndex = 51;
@@ -213,15 +217,15 @@
 			this.cbx_id_Ministerio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_id_Ministerio.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.cbx_id_Ministerio.FormattingEnabled = true;
-			this.cbx_id_Ministerio.Location = new System.Drawing.Point(166, 333);
+			this.cbx_id_Ministerio.Location = new System.Drawing.Point(166, 364);
 			this.cbx_id_Ministerio.Name = "cbx_id_Ministerio";
 			this.cbx_id_Ministerio.Size = new System.Drawing.Size(150, 21);
-			this.cbx_id_Ministerio.TabIndex = 13;
+			this.cbx_id_Ministerio.TabIndex = 14;
 			// 
 			// lbl_id_Ministerio
 			// 
 			this.lbl_id_Ministerio.AutoSize = true;
-			this.lbl_id_Ministerio.Location = new System.Drawing.Point(11, 341);
+			this.lbl_id_Ministerio.Location = new System.Drawing.Point(11, 372);
 			this.lbl_id_Ministerio.Name = "lbl_id_Ministerio";
 			this.lbl_id_Ministerio.Size = new System.Drawing.Size(51, 13);
 			this.lbl_id_Ministerio.TabIndex = 49;
@@ -232,15 +236,15 @@
 			this.cbx_Id_TipoEntidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_Id_TipoEntidad.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.cbx_Id_TipoEntidad.FormattingEnabled = true;
-			this.cbx_Id_TipoEntidad.Location = new System.Drawing.Point(167, 306);
+			this.cbx_Id_TipoEntidad.Location = new System.Drawing.Point(167, 337);
 			this.cbx_Id_TipoEntidad.Name = "cbx_Id_TipoEntidad";
 			this.cbx_Id_TipoEntidad.Size = new System.Drawing.Size(150, 21);
-			this.cbx_Id_TipoEntidad.TabIndex = 12;
+			this.cbx_Id_TipoEntidad.TabIndex = 13;
 			// 
 			// lbl_Id_TipoEntidad
 			// 
 			this.lbl_Id_TipoEntidad.AutoSize = true;
-			this.lbl_Id_TipoEntidad.Location = new System.Drawing.Point(12, 314);
+			this.lbl_Id_TipoEntidad.Location = new System.Drawing.Point(12, 340);
 			this.lbl_Id_TipoEntidad.Name = "lbl_Id_TipoEntidad";
 			this.lbl_Id_TipoEntidad.Size = new System.Drawing.Size(67, 13);
 			this.lbl_Id_TipoEntidad.TabIndex = 47;
@@ -250,15 +254,15 @@
 			// 
 			this.cbx_id_periodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_id_periodo.FormattingEnabled = true;
-			this.cbx_id_periodo.Location = new System.Drawing.Point(166, 491);
+			this.cbx_id_periodo.Location = new System.Drawing.Point(166, 522);
 			this.cbx_id_periodo.Name = "cbx_id_periodo";
 			this.cbx_id_periodo.Size = new System.Drawing.Size(121, 21);
-			this.cbx_id_periodo.TabIndex = 46;
+			this.cbx_id_periodo.TabIndex = 20;
 			this.cbx_id_periodo.SelectedIndexChanged += new System.EventHandler(this.cbx_id_periodo_SelectedIndexChanged);
 			// 
 			// txt_Clave
 			// 
-			this.txt_Clave.Location = new System.Drawing.Point(52, 524);
+			this.txt_Clave.Location = new System.Drawing.Point(52, 555);
 			this.txt_Clave.MaxLength = 100;
 			this.txt_Clave.Name = "txt_Clave";
 			this.txt_Clave.Size = new System.Drawing.Size(111, 20);
@@ -268,7 +272,7 @@
 			// lbl_Clave
 			// 
 			this.lbl_Clave.AutoSize = true;
-			this.lbl_Clave.Location = new System.Drawing.Point(12, 524);
+			this.lbl_Clave.Location = new System.Drawing.Point(12, 555);
 			this.lbl_Clave.Name = "lbl_Clave";
 			this.lbl_Clave.Size = new System.Drawing.Size(34, 13);
 			this.lbl_Clave.TabIndex = 44;
@@ -276,25 +280,25 @@
 			// 
 			// txt_Clave1
 			// 
-			this.txt_Clave1.Location = new System.Drawing.Point(166, 524);
+			this.txt_Clave1.Location = new System.Drawing.Point(166, 555);
 			this.txt_Clave1.MaxLength = 100;
 			this.txt_Clave1.Name = "txt_Clave1";
 			this.txt_Clave1.Size = new System.Drawing.Size(313, 20);
-			this.txt_Clave1.TabIndex = 20;
+			this.txt_Clave1.TabIndex = 21;
 			this.txt_Clave1.TextChanged += new System.EventHandler(this.txt_Clave1_TextChanged);
 			// 
 			// txt_Servicio
 			// 
-			this.txt_Servicio.Location = new System.Drawing.Point(166, 438);
+			this.txt_Servicio.Location = new System.Drawing.Point(166, 469);
 			this.txt_Servicio.MaxLength = 100;
 			this.txt_Servicio.Name = "txt_Servicio";
 			this.txt_Servicio.Size = new System.Drawing.Size(313, 20);
-			this.txt_Servicio.TabIndex = 17;
+			this.txt_Servicio.TabIndex = 18;
 			// 
 			// lbl_Servicio
 			// 
 			this.lbl_Servicio.AutoSize = true;
-			this.lbl_Servicio.Location = new System.Drawing.Point(10, 441);
+			this.lbl_Servicio.Location = new System.Drawing.Point(10, 472);
 			this.lbl_Servicio.Name = "lbl_Servicio";
 			this.lbl_Servicio.Size = new System.Drawing.Size(45, 13);
 			this.lbl_Servicio.TabIndex = 42;
@@ -313,7 +317,7 @@
 			// txt_Email
 			// 
 			this.txt_Email.Location = new System.Drawing.Point(167, 282);
-			this.txt_Email.MaxLength = 100;
+			this.txt_Email.MaxLength = 200;
 			this.txt_Email.Name = "txt_Email";
 			this.txt_Email.Size = new System.Drawing.Size(303, 20);
 			this.txt_Email.TabIndex = 11;
@@ -321,7 +325,7 @@
 			// lbl_Estado_mod
 			// 
 			this.lbl_Estado_mod.AutoSize = true;
-			this.lbl_Estado_mod.Location = new System.Drawing.Point(309, 472);
+			this.lbl_Estado_mod.Location = new System.Drawing.Point(309, 503);
 			this.lbl_Estado_mod.Name = "lbl_Estado_mod";
 			this.lbl_Estado_mod.Size = new System.Drawing.Size(41, 13);
 			this.lbl_Estado_mod.TabIndex = 38;
@@ -341,7 +345,7 @@
 			this.dtp_FechaInicio.CustomFormat = "dd/MM/yyyy";
 			this.dtp_FechaInicio.Enabled = false;
 			this.dtp_FechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dtp_FechaInicio.Location = new System.Drawing.Point(167, 491);
+			this.dtp_FechaInicio.Location = new System.Drawing.Point(167, 522);
 			this.dtp_FechaInicio.Name = "dtp_FechaInicio";
 			this.dtp_FechaInicio.Size = new System.Drawing.Size(98, 20);
 			this.dtp_FechaInicio.TabIndex = 19;
@@ -359,7 +363,7 @@
 			// lbl_FechaInicio
 			// 
 			this.lbl_FechaInicio.AutoSize = true;
-			this.lbl_FechaInicio.Location = new System.Drawing.Point(11, 495);
+			this.lbl_FechaInicio.Location = new System.Drawing.Point(11, 526);
 			this.lbl_FechaInicio.Name = "lbl_FechaInicio";
 			this.lbl_FechaInicio.Size = new System.Drawing.Size(101, 13);
 			this.lbl_FechaInicio.TabIndex = 31;
@@ -371,15 +375,15 @@
 			this.cbx_id_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_id_estado.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.cbx_id_estado.FormattingEnabled = true;
-			this.cbx_id_estado.Location = new System.Drawing.Point(166, 464);
+			this.cbx_id_estado.Location = new System.Drawing.Point(166, 495);
 			this.cbx_id_estado.Name = "cbx_id_estado";
 			this.cbx_id_estado.Size = new System.Drawing.Size(121, 21);
-			this.cbx_id_estado.TabIndex = 18;
+			this.cbx_id_estado.TabIndex = 19;
 			// 
 			// lbl_id_estado
 			// 
 			this.lbl_id_estado.AutoSize = true;
-			this.lbl_id_estado.Location = new System.Drawing.Point(11, 467);
+			this.lbl_id_estado.Location = new System.Drawing.Point(11, 498);
 			this.lbl_id_estado.Name = "lbl_id_estado";
 			this.lbl_id_estado.Size = new System.Drawing.Size(40, 13);
 			this.lbl_id_estado.TabIndex = 28;
@@ -444,10 +448,10 @@
 			// 
 			this.btn_cerrar.Image = global::ControlDosimetro.Properties.Resources.Close_24;
 			this.btn_cerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_cerrar.Location = new System.Drawing.Point(275, 566);
+			this.btn_cerrar.Location = new System.Drawing.Point(275, 604);
 			this.btn_cerrar.Name = "btn_cerrar";
 			this.btn_cerrar.Size = new System.Drawing.Size(97, 38);
-			this.btn_cerrar.TabIndex = 22;
+			this.btn_cerrar.TabIndex = 23;
 			this.btn_cerrar.Text = "Cerrar";
 			this.btn_cerrar.UseVisualStyleBackColor = true;
 			this.btn_cerrar.Click += new System.EventHandler(this.btn_cerrar_Click);
@@ -456,10 +460,10 @@
 			// 
 			this.btn_Grabar.Image = global::ControlDosimetro.Properties.Resources.Save_24;
 			this.btn_Grabar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_Grabar.Location = new System.Drawing.Point(88, 566);
+			this.btn_Grabar.Location = new System.Drawing.Point(88, 604);
 			this.btn_Grabar.Name = "btn_Grabar";
 			this.btn_Grabar.Size = new System.Drawing.Size(104, 38);
-			this.btn_Grabar.TabIndex = 21;
+			this.btn_Grabar.TabIndex = 22;
 			this.btn_Grabar.Text = "Guardar";
 			this.btn_Grabar.UseVisualStyleBackColor = true;
 			this.btn_Grabar.Click += new System.EventHandler(this.btn_Grabar_Click);
@@ -587,11 +591,28 @@
 			this.lbl_run.TabIndex = 0;
 			this.lbl_run.Text = "Rut";
 			// 
+			// lbl_Emailfacturacion
+			// 
+			this.lbl_Emailfacturacion.AutoSize = true;
+			this.lbl_Emailfacturacion.Location = new System.Drawing.Point(12, 311);
+			this.lbl_Emailfacturacion.Name = "lbl_Emailfacturacion";
+			this.lbl_Emailfacturacion.Size = new System.Drawing.Size(88, 13);
+			this.lbl_Emailfacturacion.TabIndex = 59;
+			this.lbl_Emailfacturacion.Text = "Email facturación";
+			// 
+			// txt_Emailfacturacion
+			// 
+			this.txt_Emailfacturacion.Location = new System.Drawing.Point(166, 308);
+			this.txt_Emailfacturacion.MaxLength = 200;
+			this.txt_Emailfacturacion.Name = "txt_Emailfacturacion";
+			this.txt_Emailfacturacion.Size = new System.Drawing.Size(303, 20);
+			this.txt_Emailfacturacion.TabIndex = 12;
+			// 
 			// frmEmpresaMant
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(491, 616);
+			this.ClientSize = new System.Drawing.Size(491, 677);
 			this.Controls.Add(this.tbl_cliente);
 			this.Name = "frmEmpresaMant";
 			this.Text = "Cliente";
@@ -652,5 +673,7 @@
         private System.Windows.Forms.Label lbl_Director;
         private System.Windows.Forms.Label lbl_Nombre_fantasia;
         private System.Windows.Forms.TextBox txt_Nombre_fantasia;
-    }
+		private System.Windows.Forms.Label lbl_Emailfacturacion;
+		private System.Windows.Forms.TextBox txt_Emailfacturacion;
+	}
 }

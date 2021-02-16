@@ -35,6 +35,18 @@ namespace Clases
 			textbox.Validated += new EventHandler(ClaseEvento.validarut_Validated);
 		}
 
+		public void AsignarMailMultiple(ref TextBox textbox)
+		{
+			textbox.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+			textbox.Validated += new EventHandler(ClaseEvento.validaVariosEmail_Validated);
+		}
+
+		public void AsignarMail(ref TextBox textbox)
+		{
+			textbox.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+			textbox.Validated += new EventHandler(ClaseEvento.validarut_Validated);
+		}
+
 		public void AsignarKeyPress(ref TextBox textbox)
 		{
 			textbox.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
