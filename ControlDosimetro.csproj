@@ -217,6 +217,12 @@
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenerarDcto\frmGenerarPreISP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarDcto\frmGenerarPreISP.Designer.cs">
+      <DependentUpon>frmGenerarPreISP.cs</DependentUpon>
+    </Compile>
     <Compile Include="GenerarDcto\frmGenerarISP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -600,6 +606,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarDcto\frmGenerarPreISP.resx">
+      <DependentUpon>frmGenerarPreISP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarDcto\frmGenerarISP.resx">
       <DependentUpon>frmGenerarISP.cs</DependentUpon>

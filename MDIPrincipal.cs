@@ -57,6 +57,7 @@ namespace ControlDosimetro
 
 
 			GenerarDctoISP = 401,
+			GenerarPreDctoISP = 402,
 
 			repDosimetria = 501,
 			repEstadoDosimetro = 502,
@@ -549,6 +550,15 @@ namespace ControlDosimetro
 
 				case (int)MENU.GenerarDctoISP:
 					objFrm = new frmGenerarISP()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.GenerarPreDctoISP:
+					objFrm = new frmGenerarPreISP()
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
@@ -1127,9 +1137,6 @@ namespace ControlDosimetro
 			frm3.ShowInTaskbar = false;
 			frm3.Show();
 		}
-
-
-
 
 		private void Timer1_Tick(object sender, EventArgs e)
 		{
