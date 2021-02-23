@@ -187,7 +187,7 @@
 			this.btn_cargar.TabIndex = 3;
 			this.btn_cargar.Text = "Cargar";
 			this.btn_cargar.UseVisualStyleBackColor = true;
-			this.btn_cargar.Click += new System.EventHandler(this.btn_cargar_Click);
+			this.btn_cargar.Click += new System.EventHandler(this.Btn_cargar_Click);
 			// 
 			// cbx_id_periodo
 			// 
@@ -252,7 +252,7 @@
 			this.btn_Agregar.TabIndex = 7;
 			this.btn_Agregar.Text = "Agregar personal";
 			this.btn_Agregar.UseVisualStyleBackColor = true;
-			this.btn_Agregar.Click += new System.EventHandler(this.btn_Agregar_Click);
+			this.btn_Agregar.Click += new System.EventHandler(this.Btn_Agregar_Click);
 			// 
 			// cmsPopup
 			// 
@@ -299,7 +299,7 @@
 			this.btnIngresarDosisISP.Size = new System.Drawing.Size(58, 22);
 			this.btnIngresarDosisISP.Text = "Dosis ISP";
 			this.btnIngresarDosisISP.ToolTipText = "Dosis ISP";
-			this.btnIngresarDosisISP.Click += new System.EventHandler(this.btnIngresarDosisISP_Click);
+			this.btnIngresarDosisISP.Click += new System.EventHandler(this.BtnIngresarDosisISP_Click);
 			// 
 			// btn_reporte
 			// 
@@ -328,7 +328,7 @@
 			this.btn_Guardar.TabIndex = 7;
 			this.btn_Guardar.Text = "Guardar";
 			this.btn_Guardar.UseVisualStyleBackColor = true;
-			this.btn_Guardar.Click += new System.EventHandler(this.btn_Guardar_Click);
+			this.btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
 			// 
 			// btn_Cerrar
 			// 

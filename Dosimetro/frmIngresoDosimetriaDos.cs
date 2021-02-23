@@ -184,14 +184,14 @@ namespace ControlDosimetro
 
 		#region "button"
 
-		private void btnIngresarDosisISP_Click(object sender, EventArgs e)
+		private void BtnIngresarDosisISP_Click(object sender, EventArgs e)
 		{
 			frmDosimetriaISP frm = new frmDosimetriaISP(Convert.ToInt64(txt_id_cliente.Text));
 			frm.ShowDialog(this);
 		}
 
 
-		private void btn_Agregar_Click(object sender, EventArgs e)
+		private void Btn_Agregar_Click(object sender, EventArgs e)
 		{
 			verificar_Grabado();
 			frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_id_cliente.Text), 0);
@@ -201,7 +201,7 @@ namespace ControlDosimetro
 		}
 
 
-		private void btn_cargar_Click(object sender, EventArgs e)
+		private void Btn_cargar_Click(object sender, EventArgs e)
 		{
 			if (bolDesdeinicio == false)
 			{
@@ -213,7 +213,7 @@ namespace ControlDosimetro
 			}
 		}
 
-		private void btn_Guardar_Click(object sender, EventArgs e)
+		private void Btn_Guardar_Click(object sender, EventArgs e)
 		{
 			SqlCommand cmd = new SqlCommand();
 			// SqlCommand cmd = new SqlCommand();
@@ -334,7 +334,7 @@ namespace ControlDosimetro
 			lbl_nombreCliente.Text = "";
 			lbl_rut_cliente.Text = "";
 			txt_id_cliente.Text = "-1";
-			btn_cargar_Click(null,null);
+			Btn_cargar_Click(null,null);
 			txt_id_cliente.Clear();
 			txt_id_cliente.Focus();
 			grdDatos.DataSource=null;

@@ -66,8 +66,6 @@ namespace ControlDosimetro
 
 		private void Grabar()
 		{
-			Boolean bolResult;
-			bolResult = false;
 			if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
 			{
 				Cursor = Cursors.WaitCursor;

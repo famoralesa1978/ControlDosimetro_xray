@@ -123,7 +123,7 @@
 			this.mnuProcesoDosisISP.Name = "mnuProcesoDosisISP";
 			this.mnuProcesoDosisISP.Size = new System.Drawing.Size(181, 22);
 			this.mnuProcesoDosisISP.Text = "Dosis ISP";
-			this.mnuProcesoDosisISP.Click += new System.EventHandler(this.mnuProcesoDosisISP_Click);
+			this.mnuProcesoDosisISP.Click += new System.EventHandler(this.MnuProcesoDosisISP_Click);
 			// 
 			// mnuProcesoInformeGenerado
 			// 
@@ -360,7 +360,7 @@
 			this.tsbPrincipalCambioContraseña.Size = new System.Drawing.Size(36, 36);
 			this.tsbPrincipalCambioContraseña.Text = "Cambio contraseña";
 			this.tsbPrincipalCambioContraseña.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-			this.tsbPrincipalCambioContraseña.Click += new System.EventHandler(this.tsbPrincipal_Click);
+			this.tsbPrincipalCambioContraseña.Click += new System.EventHandler(this.TsbPrincipal_Click);
 			// 
 			// tsbPrincipalCambioContraseñaCliente
 			// 
@@ -371,7 +371,7 @@
 			this.tsbPrincipalCambioContraseñaCliente.Size = new System.Drawing.Size(36, 36);
 			this.tsbPrincipalCambioContraseñaCliente.Text = "Restablecer";
 			this.tsbPrincipalCambioContraseñaCliente.ToolTipText = "Restablecer  contraseña cliente";
-			this.tsbPrincipalCambioContraseñaCliente.Click += new System.EventHandler(this.tsbPrincipal_Click);
+			this.tsbPrincipalCambioContraseñaCliente.Click += new System.EventHandler(this.TsbPrincipal_Click);
 			// 
 			// tsbPrincipalCliente
 			// 
@@ -382,7 +382,7 @@
 			this.tsbPrincipalCliente.Size = new System.Drawing.Size(36, 36);
 			this.tsbPrincipalCliente.Text = "Cliente";
 			this.tsbPrincipalCliente.ToolTipText = "Cliente";
-			this.tsbPrincipalCliente.Click += new System.EventHandler(this.tsbPrincipal_Click);
+			this.tsbPrincipalCliente.Click += new System.EventHandler(this.TsbPrincipal_Click);
 			// 
 			// tsbPrincipalPersonal
 			// 
@@ -392,7 +392,7 @@
 			this.tsbPrincipalPersonal.Name = "tsbPrincipalPersonal";
 			this.tsbPrincipalPersonal.Size = new System.Drawing.Size(36, 36);
 			this.tsbPrincipalPersonal.Text = "Personal";
-			this.tsbPrincipalPersonal.Click += new System.EventHandler(this.tsbPrincipal_Click);
+			this.tsbPrincipalPersonal.Click += new System.EventHandler(this.TsbPrincipal_Click);
 			// 
 			// timer1
 			// 

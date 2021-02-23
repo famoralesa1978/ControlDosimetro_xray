@@ -573,11 +573,7 @@ namespace ControlDosimetro
         {
             SqlCommand cmd = new SqlCommand();
 
-            //  SqlCommand cmd = new SqlCommand();
-            Int64 intanno;
-            
             cmd.CommandText = "rtpDosimetriaVerificar " + cbx_id_periodo.SelectedValue.ToString();
-            //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
             DataSet dt;
             dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 

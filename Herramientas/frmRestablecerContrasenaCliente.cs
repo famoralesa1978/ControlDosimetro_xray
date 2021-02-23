@@ -83,8 +83,7 @@ namespace ControlDosimetro
         #region "button"
         private void btn_Grabar_Click(object sender, EventArgs e)
         {
-            Boolean bolResult;
-            bolResult = false;
+          
             //     if (MessageBox.Show("Desea modifica la contraseña", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
             //    {
             SqlCommand cmd = new SqlCommand();

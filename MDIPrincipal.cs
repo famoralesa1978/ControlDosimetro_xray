@@ -172,7 +172,7 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "Proceso"
-		private void mnuProcesoDosisISP_Click(object sender, EventArgs e)
+		private void MnuProcesoDosisISP_Click(object sender, EventArgs e)
 		{
 			frmDosimetriaISP frm = new frmDosimetriaISP(-1);
 			Graba_log(frm.Text);
@@ -254,10 +254,12 @@ namespace ControlDosimetro
 
 					for (int intFila = 0; intFila <= ds.Tables[0].Rows.Count - 1; intFila++)
 					{
-						tsiMenu = new ToolStripMenuItem();
-						tsiMenu.Text = ds.Tables[0].Rows[intFila]["Menu"].ToString();
-						tsiMenu.Name = ds.Tables[0].Rows[intFila]["nameMenu"].ToString();
-						tsiMenu.Tag = ds.Tables[0].Rows[intFila]["Id_Menu"].ToString();
+						tsiMenu = new ToolStripMenuItem
+						{
+							Text = ds.Tables[0].Rows[intFila]["Menu"].ToString(),
+							Name = ds.Tables[0].Rows[intFila]["nameMenu"].ToString(),
+							Tag = ds.Tables[0].Rows[intFila]["Id_Menu"].ToString()
+						};
 
 
 						if ((bool)ds.Tables[0].Rows[intFila]["EventoClick"] == true)
@@ -275,9 +277,11 @@ namespace ControlDosimetro
 			ToolStripMenuItem tsiSubMenu;
 			ToolStripSeparator tsiSeparador;
 
-			DataView dv = new DataView(dt);
-			dv.RowFilter = "Id_menu_Padre=" + intTag.ToString();
-			dv.Sort = "Orden";
+			DataView dv = new DataView(dt)
+			{
+				RowFilter = "Id_menu_Padre=" + intTag.ToString(),
+				Sort = "Orden"
+			};
 			foreach (DataRowView drv in dv)
 			{
 
@@ -288,10 +292,12 @@ namespace ControlDosimetro
 				}
 				else
 				{
-					tsiSubMenu = new ToolStripMenuItem();
-					tsiSubMenu.Text = drv["Menu"].ToString();
-					tsiSubMenu.Name = drv["nameMenu"].ToString();
-					tsiSubMenu.Tag = drv["Id_Menu"].ToString();
+					tsiSubMenu = new ToolStripMenuItem
+					{
+						Text = drv["Menu"].ToString(),
+						Name = drv["nameMenu"].ToString(),
+						Tag = drv["Id_Menu"].ToString()
+					};
 
 
 					if ((bool)drv["EventoClick"] == true)
@@ -706,7 +712,7 @@ namespace ControlDosimetro
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen,
-					//	Parametros = objParams
+						//	Parametros = objParams
 					};
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
@@ -1111,8 +1117,10 @@ namespace ControlDosimetro
 					frm1.Show();
 					break;
 				case (int)REPORTES.Dosimetro:
-					frmRpDosimetria frm2 = new frmRpDosimetria();
-					frm2.ShowInTaskbar = false;
+					frmRpDosimetria frm2 = new frmRpDosimetria
+					{
+						ShowInTaskbar = false
+					};
 					frm2.Show();
 					break;
 				case (int)REPORTES.ListadoTLD:
@@ -1126,15 +1134,19 @@ namespace ControlDosimetro
 		static public void CargarReporteListadoTLD()
 		{
 			clsConectorSqlServer Conectar = new clsConectorSqlServer();
-			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "rtpListaIngresoTLD";
+			SqlCommand cmd = new SqlCommand
+			{
+				CommandText = "rtpListaIngresoTLD"
+			};
 			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			DataSet ds;
 			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
 
 
-			frmreporte frm3 = new frmreporte(ds, null, 9);
-			frm3.ShowInTaskbar = false;
+			frmreporte frm3 = new frmreporte(ds, null, 9)
+			{
+				ShowInTaskbar = false
+			};
 			frm3.Show();
 		}
 
@@ -1193,7 +1205,7 @@ namespace ControlDosimetro
 
 		#endregion
 
-		private void tsbPrincipal_Click(object sender, EventArgs e)
+		private void TsbPrincipal_Click(object sender, EventArgs e)
 		{
 			if (((ToolStripButton)sender).Text == "Cliente")
 				Cargamenu((int)MENU.MantCliente);

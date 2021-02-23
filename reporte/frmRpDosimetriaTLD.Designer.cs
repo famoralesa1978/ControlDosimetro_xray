@@ -1,7 +1,7 @@
 ﻿namespace ControlDosimetro
 {
-    partial class frmRpDosimetria
-    {
+    partial class FrmRpDosimetriaTLD
+	{
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -191,7 +191,6 @@
 			this.txt_Rut.Name = "txt_Rut";
 			this.txt_Rut.Size = new System.Drawing.Size(126, 20);
 			this.txt_Rut.TabIndex = 1;
-			this.txt_Rut.TextChanged += new System.EventHandler(this.Txt_Rut_TextChanged);
 			// 
 			// label1
 			// 
@@ -232,7 +231,6 @@
 			this.txt_NumeroCliente.Name = "txt_NumeroCliente";
 			this.txt_NumeroCliente.Size = new System.Drawing.Size(126, 20);
 			this.txt_NumeroCliente.TabIndex = 4;
-			this.txt_NumeroCliente.TextChanged += new System.EventHandler(this.Txt_NumeroCliente_TextChanged);
 			// 
 			// label2
 			// 
@@ -381,7 +379,7 @@
 			this.rtpDosimetriaTableAdapter.DataSetName = "DB_A2B812_ControlDataSet";
 			this.rtpDosimetriaTableAdapter.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
-			// frmRpDosimetria
+			// FrmRpDosimetriaTLD
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -389,8 +387,8 @@
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.groupBox1);
 			this.MinimizeBox = false;
-			this.Name = "frmRpDosimetria";
-			this.Text = "Informe dosimetria";
+			this.Name = "FrmRpDosimetriaTLD";
+			this.Text = "Informe TLD";
 			this.Load += new System.EventHandler(this.FrmRpDosimetria_Load);
 			((System.ComponentModel.ISupportInitialize)(this.sistiamccontrolDataSet1BindingSource)).EndInit();
 			this.groupBox1.ResumeLayout(false);

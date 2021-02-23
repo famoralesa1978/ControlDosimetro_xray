@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
 			this.tbl_cliente = new System.Windows.Forms.GroupBox();
+			this.lbl_Emailfacturacion = new System.Windows.Forms.Label();
+			this.txt_Emailfacturacion = new System.Windows.Forms.TextBox();
 			this.lbl_Nombre_fantasia = new System.Windows.Forms.Label();
 			this.txt_Nombre_fantasia = new System.Windows.Forms.TextBox();
 			this.txt_Opr = new System.Windows.Forms.TextBox();
@@ -77,8 +79,6 @@
 			this.lbl_id_cliente = new System.Windows.Forms.Label();
 			this.txt_run = new System.Windows.Forms.TextBox();
 			this.lbl_run = new System.Windows.Forms.Label();
-			this.lbl_Emailfacturacion = new System.Windows.Forms.Label();
-			this.txt_Emailfacturacion = new System.Windows.Forms.TextBox();
 			this.tbl_cliente.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -141,6 +141,23 @@
 			this.tbl_cliente.TabIndex = 0;
 			this.tbl_cliente.TabStop = false;
 			this.tbl_cliente.Text = "Datos";
+			// 
+			// lbl_Emailfacturacion
+			// 
+			this.lbl_Emailfacturacion.AutoSize = true;
+			this.lbl_Emailfacturacion.Location = new System.Drawing.Point(12, 311);
+			this.lbl_Emailfacturacion.Name = "lbl_Emailfacturacion";
+			this.lbl_Emailfacturacion.Size = new System.Drawing.Size(88, 13);
+			this.lbl_Emailfacturacion.TabIndex = 59;
+			this.lbl_Emailfacturacion.Text = "Email facturación";
+			// 
+			// txt_Emailfacturacion
+			// 
+			this.txt_Emailfacturacion.Location = new System.Drawing.Point(166, 308);
+			this.txt_Emailfacturacion.MaxLength = 200;
+			this.txt_Emailfacturacion.Name = "txt_Emailfacturacion";
+			this.txt_Emailfacturacion.Size = new System.Drawing.Size(303, 20);
+			this.txt_Emailfacturacion.TabIndex = 12;
 			// 
 			// lbl_Nombre_fantasia
 			// 
@@ -590,23 +607,6 @@
 			this.lbl_run.Size = new System.Drawing.Size(24, 13);
 			this.lbl_run.TabIndex = 0;
 			this.lbl_run.Text = "Rut";
-			// 
-			// lbl_Emailfacturacion
-			// 
-			this.lbl_Emailfacturacion.AutoSize = true;
-			this.lbl_Emailfacturacion.Location = new System.Drawing.Point(12, 311);
-			this.lbl_Emailfacturacion.Name = "lbl_Emailfacturacion";
-			this.lbl_Emailfacturacion.Size = new System.Drawing.Size(88, 13);
-			this.lbl_Emailfacturacion.TabIndex = 59;
-			this.lbl_Emailfacturacion.Text = "Email facturación";
-			// 
-			// txt_Emailfacturacion
-			// 
-			this.txt_Emailfacturacion.Location = new System.Drawing.Point(166, 308);
-			this.txt_Emailfacturacion.MaxLength = 200;
-			this.txt_Emailfacturacion.Name = "txt_Emailfacturacion";
-			this.txt_Emailfacturacion.Size = new System.Drawing.Size(303, 20);
-			this.txt_Emailfacturacion.TabIndex = 12;
 			// 
 			// frmEmpresaMant
 			// 

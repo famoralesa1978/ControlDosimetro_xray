@@ -46,13 +46,15 @@ namespace ControlDosimetro
 
         private void Cargar_Anno()
         {
-            SqlCommand cmd = new SqlCommand();
+			SqlCommand cmd = new SqlCommand
+			{
 
-            //  SqlCommand cmd = new SqlCommand();
+				//  SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "SELECT distinct Anno FROM conf_periodo WHERE Id_TipoPeriodo=3";
-            //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
-            DataSet dt;
+				CommandText = "SELECT distinct Anno FROM conf_periodo WHERE Id_TipoPeriodo=3"
+			};
+			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
+			DataSet dt;
             dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
             cbx_anno.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -60,7 +62,7 @@ namespace ControlDosimetro
 
         }
 
-        private void frmRpDosimetria_Load(object sender, EventArgs e)
+        private void FrmRpDosimetria_Load(object sender, EventArgs e)
         {
             // TODO: esta línea de código carga datos en la tabla 'sistiamc_controlDataSet2.rtpDosimetria' Puede moverla o quitarla según sea necesario.
             //this.rtpDosimetriaTableAdapter.Fill(this.sistiamc_controlDataSet2.rtpDosimetria);
@@ -68,7 +70,7 @@ namespace ControlDosimetro
             //this.reportViewer1.RefreshReport();
         }
 
-        private void btn_ReporteRut_Click(object sender, EventArgs e)
+        private void Btn_ReporteRut_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -88,7 +90,7 @@ namespace ControlDosimetro
             
         }
 
-         private void btn_reporteNCliente_Click(object sender, EventArgs e)
+         private void Btn_reporteNCliente_Click(object sender, EventArgs e)
         {
              Cursor = Cursors.WaitCursor;
 
@@ -110,11 +112,13 @@ namespace ControlDosimetro
         public void Llamado_reporte(DataSet ds,String NombreReporte)
         {
             DataSet dtformato;
-            SqlCommand cmdArchivo = new SqlCommand();
-            cmdArchivo.CommandText = "" +
-              "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=7 order by orden ";
-            cmdArchivo.CommandType = CommandType.Text;
-            dtformato = Conectar.Listar(Clases.clsBD.BD,cmdArchivo);
+			SqlCommand cmdArchivo = new SqlCommand
+			{
+				CommandText = "" +
+				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=7 order by orden ",
+				CommandType = CommandType.Text
+			};
+			dtformato = Conectar.Listar(Clases.clsBD.BD,cmdArchivo);
             // string targetPath = @ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text;
             string targetPath = @dtformato.Tables[0].Rows[0]["Glosa"].ToString();
             reportViewer1.LocalReport.ReportEmbeddedResource = "ControlDosimetro.reporte." + NombreReporte;
@@ -129,7 +133,7 @@ namespace ControlDosimetro
 
         }
 
-        private void btn_ReporteRegion_Click(object sender, EventArgs e)
+        private void Btn_ReporteRegion_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -215,7 +219,7 @@ namespace ControlDosimetro
             Llamado_reporte(dt, "rptDosimetriaAnual.rdlc");
         }
 
-        private void btn_ReporteNDosimetro_Click(object sender, EventArgs e)
+        private void Btn_ReporteNDosimetro_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -233,7 +237,7 @@ namespace ControlDosimetro
 
         }
 
-        private void btnReporteAnualPorSucursal_Click(object sender, EventArgs e)
+        private void BtnReporteAnualPorSucursal_Click(object sender, EventArgs e)
         {
             DataSet dt;
 
@@ -241,7 +245,7 @@ namespace ControlDosimetro
             Llamado_reporte(dt, "rptDosimetriaAnualPorSucursal.rdlc");
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControl1.SelectedIndex == 0)
             {
@@ -254,12 +258,12 @@ namespace ControlDosimetro
             }
         }
 
-        private void txt_NumeroCliente_TextChanged(object sender, EventArgs e)
+        private void Txt_NumeroCliente_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void txt_Rut_TextChanged(object sender, EventArgs e)
+        private void Txt_Rut_TextChanged(object sender, EventArgs e)
         {
 
         }

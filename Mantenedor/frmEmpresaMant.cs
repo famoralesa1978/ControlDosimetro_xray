@@ -232,6 +232,7 @@ namespace ControlDosimetro
 							((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
 							((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
 							((TextBox)c).Validated += new EventHandler(ClaseEvento.validarut_Validated);
+							((TextBox)c).Leave += new EventHandler(ClaseEvento.run_Leave);
 						}
 						if (dt.Tables[0].Rows[0]["validacion"].ToString() == "numerico")
 						{
@@ -630,5 +631,7 @@ namespace ControlDosimetro
 		{
 
 		}
+
+
 	}
 }
