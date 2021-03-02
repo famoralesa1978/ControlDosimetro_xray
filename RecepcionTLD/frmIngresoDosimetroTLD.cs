@@ -19,6 +19,7 @@ namespace ControlDosimetro
 	{
 
 		#region "Definicion variable"
+		private bool bolInicio = false;
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
@@ -124,7 +125,7 @@ namespace ControlDosimetro
 
 			DataSet dt;
 			//codigo,paterno,materno,nombre,rut,periodo,
-			cmd.CommandText = "pa_ListarPersonalTLDPorSeccion_sel " + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text + "," + cbx_id_seccion.SelectedValue.ToString();
+			cmd.CommandText = "pa_ListarPersonalTLDPorSeccion_sel " + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text + "," + cbx_id_seccion.SelectedValue.ToString() +"," + cbx_Sucursal.SelectedValue.ToString();
 
 			//"  select p.Id_Personal, isnull(n_dosimetro,0) as N_pelicula, 0 as Generar, case when isnull(N_Documento,0)<>0 then	1	else 0  end  as Generado, " +
 			//              "p.id_cliente, isnull(N_Documento,0) N_Documento,rut,  nombres,paterno,maternos,   isnull(id_sucursal,0) as id_sucursal, isnull(id_estadodosimetro,-1) as id_estadodosimetro " +
@@ -1038,6 +1039,7 @@ namespace ControlDosimetro
 		private void btn_Cargar_cliente_Click(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
+			bolInicio = true;
 			Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
 			Cargar_Sucursal();			
 			btn_Corregir.Enabled = false;
@@ -1113,6 +1115,20 @@ namespace ControlDosimetro
 		private void cbx_id_seccion_SelectedValueChanged(object sender, EventArgs e)
 		{
 		
+		}
+
+		private void cbx_Sucursal_SelectedValueChanged(object sender, EventArgs e)
+		{
+		
+
+		}
+
+		private void cbx_Sucursal_SelectionChangeCommitted(object sender, EventArgs e)
+		{
+			if (!bolInicio)
+				btn_cargar_Click(null, null);
+
+			bolInicio = false;
 		}
 	}
 }

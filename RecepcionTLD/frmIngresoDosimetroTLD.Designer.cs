@@ -132,7 +132,7 @@
 			// 
 			// btn_Cargar_cliente
 			// 
-			this.btn_Cargar_cliente.Location = new System.Drawing.Point(204, 43);
+			this.btn_Cargar_cliente.Location = new System.Drawing.Point(199, 40);
 			this.btn_Cargar_cliente.Name = "btn_Cargar_cliente";
 			this.btn_Cargar_cliente.Size = new System.Drawing.Size(119, 23);
 			this.btn_Cargar_cliente.TabIndex = 52;
@@ -522,6 +522,8 @@
 			this.cbx_Sucursal.Name = "cbx_Sucursal";
 			this.cbx_Sucursal.Size = new System.Drawing.Size(526, 21);
 			this.cbx_Sucursal.TabIndex = 11;
+			this.cbx_Sucursal.SelectionChangeCommitted += new System.EventHandler(this.cbx_Sucursal_SelectionChangeCommitted);
+			this.cbx_Sucursal.SelectedValueChanged += new System.EventHandler(this.cbx_Sucursal_SelectedValueChanged);
 			// 
 			// grpFiltro
 			// 
