@@ -22,6 +22,7 @@ namespace ControlDosimetro
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
+		Clases.ClassEvento clsEvento = new Clases.ClassEvento();
 
 		public string Id_Menu { get; private set; }
 
@@ -152,6 +153,7 @@ namespace ControlDosimetro
 			txt_RazonSocial.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 
 			cbx_Estado.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+			clsEvento.AsignarDireccion(ref txt_Direccion);
 		}
 
 		private void Cargar_Estado()

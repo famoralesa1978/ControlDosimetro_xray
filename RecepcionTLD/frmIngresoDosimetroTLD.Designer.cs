@@ -82,6 +82,7 @@
 			this.txt_N_TLD = new System.Windows.Forms.TextBox();
 			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
 			this.lbl_id_seccion = new System.Windows.Forms.Label();
+			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -632,11 +633,21 @@
 			this.lbl_id_seccion.TabIndex = 15;
 			this.lbl_id_seccion.Text = "Sección";
 			// 
+			// textBox1
+			// 
+			this.textBox1.Location = new System.Drawing.Point(731, 161);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(100, 20);
+			this.textBox1.TabIndex = 16;
+			this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+			this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+			// 
 			// frmIngresoDosimetroTLD
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1084, 662);
+			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.lbl_id_seccion);
 			this.Controls.Add(this.cbx_id_seccion);
 			this.Controls.Add(this.groupBox3);
@@ -728,5 +739,6 @@
 		private System.Windows.Forms.Label lbl_id_seccion;
 		private System.Windows.Forms.TextBox txtNombre;
 		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.TextBox textBox1;
 	}
 }

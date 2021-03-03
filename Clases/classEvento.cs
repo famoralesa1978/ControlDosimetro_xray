@@ -42,6 +42,11 @@ namespace Clases
 			textbox.Validated += new EventHandler(ClaseEvento.validaVariosEmail_Validated);
 		}
 
+		public void AsignarDireccion(ref TextBox textbox)
+		{
+			textbox.KeyPress += new KeyPressEventHandler(ClaseEvento.Direccion_KeyPress);
+		}
+
 		public void AsignarMail(ref TextBox textbox)
 		{
 			textbox.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);

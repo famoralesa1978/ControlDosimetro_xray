@@ -249,6 +249,8 @@ namespace ControlDosimetro
 			}
 			clsEvento.AsignarMailMultiple(ref txt_Email);
 			clsEvento.AsignarMailMultiple(ref txt_Emailfacturacion);
+			clsEvento.AsignarDireccion(ref txt_direccion);
+
 			//txt_Email.Validated += new EventHandler(ClaseEvento.validaEmail_Validated);
 		}
 
