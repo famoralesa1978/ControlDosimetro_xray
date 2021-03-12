@@ -178,6 +178,30 @@ namespace classFuncionesBD
 			Convert = (byte[])ds.Tables[0].Rows[0]["Archivo"];
 		}
 
+		public void Cargar_Permiso(int id_Perfil,int id_Menu,ref bool Lectura,ref bool	Nuevo,ref bool	Modificacion,ref bool	Eliminar)
+		{
+			Lectura = false;
+			Nuevo = false;
+			Modificacion = false;
+			Eliminar = false;
+			DataSet ds;
+			SqlCommand cmd = new SqlCommand
+			{
+				CommandText = "pa_CargarPermiso_Listar " + id_Perfil.ToString() +"," +id_Menu.ToString()
+			};
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+			if(ds.Tables[0].Rows.Count>0)
+			{
+				Lectura = (bool)ds.Tables[0].Rows[0]["Lectura"];
+				Nuevo = (bool)ds.Tables[0].Rows[0]["Nuevo"];
+				Modificacion = (bool)ds.Tables[0].Rows[0]["Modificacion"];
+				Eliminar = (bool)ds.Tables[0].Rows[0]["Eliminar"];
+			}
+
+		}
+
+
 	}
 
 }

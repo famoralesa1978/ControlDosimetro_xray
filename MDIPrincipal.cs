@@ -343,7 +343,8 @@ namespace ControlDosimetro
 					objFrm = new frmMantenedorUsuario()
 					{
 						ShowInTaskbar = false,
-						StartPosition = FormStartPosition.CenterScreen
+						StartPosition = FormStartPosition.CenterScreen,
+						Parametros = objParams
 					};
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
