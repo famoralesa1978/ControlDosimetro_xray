@@ -309,12 +309,6 @@
     <Compile Include="Herramientas\frmConfCorreo.Designer.cs">
       <DependentUpon>frmConfCorreo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mantenedor\frmBusquedaUsuario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mantenedor\frmBusquedaUsuario.Designer.cs">
-      <DependentUpon>frmBusquedaUsuario.cs</DependentUpon>
-    </Compile>
     <Compile Include="Mantenedor\frmMantenedorClienteCorreo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -344,12 +338,6 @@
     </Compile>
     <Compile Include="Mantenedor\frmMantenedorPerfil.Designer.cs">
       <DependentUpon>frmMantenedorPerfil.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mantenedor\frmUsuarioMant.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mantenedor\frmUsuarioMant.Designer.cs">
-      <DependentUpon>frmUsuarioMant.cs</DependentUpon>
     </Compile>
     <Compile Include="Mantenedor\frmSucursalMant.cs">
       <SubType>Form</SubType>
@@ -657,9 +645,6 @@
     <EmbeddedResource Include="Herramientas\frmConfCorreo.resx">
       <DependentUpon>frmConfCorreo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mantenedor\frmBusquedaUsuario.resx">
-      <DependentUpon>frmBusquedaUsuario.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmMantenedorClienteCorreo.resx">
       <DependentUpon>frmMantenedorClienteCorreo.cs</DependentUpon>
     </EmbeddedResource>
@@ -674,9 +659,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmMantenedorPerfil.resx">
       <DependentUpon>frmMantenedorPerfil.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mantenedor\frmUsuarioMant.resx">
-      <DependentUpon>frmUsuarioMant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmSucursalMant.resx">
       <DependentUpon>frmSucursalMant.cs</DependentUpon>
