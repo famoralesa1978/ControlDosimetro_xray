@@ -129,6 +129,8 @@ namespace ControlDosimetro
 			txt_Descripcion.Clear();
 			txt_Id_perfil.Clear();
 			cbx_id_estado.SelectedIndex = 0;
+			btn_Guardar.Enabled = Modificacion || Nuevo;
+			tsbGuardar.Visible = Modificacion || Nuevo;
 		}
 	
 		private void Grabar()
@@ -183,7 +185,7 @@ namespace ControlDosimetro
 			if (txt_Id_perfil.Text == "1")
 			{
 				btn_Guardar.Enabled = Modificacion || Nuevo;
-				tsbGuardar.Enabled = Modificacion || Nuevo;
+				tsbGuardar.Visible = Modificacion || Nuevo;
 			}
 			else
 			{
