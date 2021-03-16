@@ -232,6 +232,8 @@ namespace ControlDosimetro
 
 			txt_Contraseña1.Enabled = true;
 			lbl_Id_Usuario.Text = "N° usuario";
+			btn_Guardar.Enabled = Nuevo || Modificacion;
+			tsbGuardar.Enabled = Nuevo || Modificacion;
 
 			// cbx_id_estado.SelectedIndex = 0;           
 		}
