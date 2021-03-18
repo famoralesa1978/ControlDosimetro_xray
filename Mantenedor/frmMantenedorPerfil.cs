@@ -59,16 +59,17 @@ namespace ControlDosimetro
 		public frmMantenedorPerfil()
 		{
 			InitializeComponent();
+			
+		}
+
+		private void frmMantenedorPerfil_Load(object sender, EventArgs e)
+		{
 			scPrincipal.Panel2Collapsed = true;
 			AsignarPermiso();
 			Cargar_Reporte();
 			Cargar_Estado();
 			tsbGuardar.Enabled = false;
 			dgvGrilla.AutoGenerateColumns = false;
-		}
-
-		private void frmMantenedorPerfil_Load(object sender, EventArgs e)
-		{
 			CargarGrilla();
 		}
 
@@ -115,6 +116,7 @@ namespace ControlDosimetro
 		{
 			ClaseFunciones.Cargar_Permiso(Clases.clsUsuario.Id_perfil, Id_Menu, ref Lectura, ref Nuevo, ref Modificacion, ref Eliminar);
 			tsbAgregar.Visible = Nuevo;
+			tsbGuardar.Visible = Nuevo || Modificacion;
 			tsmEliminar.Visible = Eliminar;
 		}
 

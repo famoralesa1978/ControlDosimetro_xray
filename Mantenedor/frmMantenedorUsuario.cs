@@ -142,7 +142,7 @@ namespace ControlDosimetro
 		{
 			ClaseFunciones.Cargar_Permiso(Clases.clsUsuario.Id_perfil, Id_Menu, ref Lectura, ref Nuevo, ref Modificacion, ref Eliminar);
 			tsbAgregar.Visible = Nuevo;
-
+			tsbGuardar.Visible = Nuevo || Modificacion;
 		}
 
 		private void Cargar_Perfil()

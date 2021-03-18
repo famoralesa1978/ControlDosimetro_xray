@@ -64,16 +64,19 @@ namespace ControlDosimetro
 		public frmMantenedorTipoDocumento()
 		{
 			InitializeComponent();
-
+			
 		}
 
 		private void frmMantenedorPerfil_Load(object sender, EventArgs e)
 		{
 
 			scPrincipal.Panel2Collapsed = true;
+			AsignarPermiso();
+			Cargar_Reporte();
+
 			Cargar_Estado();
-			tsbGuardar.Enabled = false;
 			dgvGrilla.AutoGenerateColumns = false;
+			tsbGuardar.Enabled = false;
 			bolInicializacion = true;
 			CargarGrilla();
 
@@ -122,6 +125,7 @@ namespace ControlDosimetro
 		{
 			ClaseFunciones.Cargar_Permiso(Clases.clsUsuario.Id_perfil, Id_Menu, ref Lectura, ref Nuevo, ref Modificacion, ref Eliminar);
 			tsbAgregar.Visible = Nuevo;
+			tsbGuardar.Visible = Nuevo || Modificacion;
 			tsmEliminar.Visible = Eliminar;
 		}
 
@@ -376,7 +380,7 @@ namespace ControlDosimetro
 			if (scPrincipal.Panel2Collapsed == false)
 			{
 				tssEstado.Text = "Nuevo";
-				tsbGuardar.Enabled = true;
+				tsbGuardar.Enabled = Nuevo || Modificacion;
 				LimpiarFormulario();
 				txt_id_tipo_doc.Text = "0";
 
