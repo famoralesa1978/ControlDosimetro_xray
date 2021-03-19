@@ -23,8 +23,13 @@ namespace ControlDosimetro
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
 		Clases.ClassEvento clsEvento = new Clases.ClassEvento();
+		classFuncionesBD.ClsFunciones ClaseFunciones = new classFuncionesBD.ClsFunciones();
 
-		public string Id_Menu { get; private set; }
+		bool Lectura;
+		bool Nuevo;
+		bool Modificacion;
+		bool Eliminar;
+		public int Id_Menu { get; private set; }
 
 		public object[] Parametros
 		{
@@ -32,7 +37,7 @@ namespace ControlDosimetro
 			{
 				if (value != null)
 				{
-					Id_Menu = value[0].ToString();
+					Id_Menu = (int)value[0];
 				}
 			}
 		}
@@ -43,16 +48,27 @@ namespace ControlDosimetro
 		{
 			InitializeComponent();
 			AsignarEvento();
-			Cargar_Estado();
-			HablitarBarra(false);
+			
 		}
 
 		private void frmBusquedaEmpresa_Load(object sender, EventArgs e)
 		{
+			HablitarBarra(false);
+			AsignarPermiso();
 			Cargar_Reporte();
+			Cargar_Estado();
+			
 		}
 
 		#region "Llamada de carga"
+
+		private void AsignarPermiso()
+		{
+			ClaseFunciones.Cargar_Permiso(Clases.clsUsuario.Id_perfil, Id_Menu, ref Lectura, ref Nuevo, ref Modificacion, ref Eliminar);
+			tsbAgregarCliente.Visible = Nuevo;
+			tsbAgregarPersonal.Visible = Nuevo;
+			tsmEliminar.Visible = Eliminar;
+		}
 
 		private void Cargar_Reporte()
 		{
@@ -166,6 +182,11 @@ namespace ControlDosimetro
 
 		}
 
+		private void Modificar(){
+			frmEmpresaMant frm = new frmEmpresaMant(Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
+			frm.ShowDialog(this);
+			Listar_Cliente();
+		}
 
 		#endregion
 
@@ -262,12 +283,12 @@ namespace ControlDosimetro
 
 		private void grdDatos_DoubleClick(object sender, EventArgs e)
 		{
-			frmEmpresaMant frm = new frmEmpresaMant(Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
-			frm.ShowDialog(this);
-			Listar_Cliente();
+			Modificar();
 		}
 
 		#endregion
+
+		#region "barra"
 
 		private void tsmEliminar_Click(object sender, EventArgs e)
 		{
@@ -292,6 +313,11 @@ namespace ControlDosimetro
 
 		}
 
+		private void tsmModificar_Click(object sender, EventArgs e)
+		{
+			Modificar();
+		}
+
 		private void tsbEmail_Click(object sender, EventArgs e)
 		{
 			object[] objParams = { grdDatos.SelectedCells[1].Value.ToString() };
@@ -300,6 +326,8 @@ namespace ControlDosimetro
 			frm.ShowDialog();
 
 		}
+
+		#endregion
 
 
 	}

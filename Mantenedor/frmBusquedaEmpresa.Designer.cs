@@ -62,6 +62,7 @@
 			this.tsbIngresoDosimetro = new System.Windows.Forms.ToolStripButton();
 			this.btnIngresarDosisISP = new System.Windows.Forms.ToolStripButton();
 			this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
+			this.tsmModificar = new System.Windows.Forms.ToolStripMenuItem();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -306,15 +307,16 @@
 			// 
 			this.cmsPopup.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.cmsPopup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmEliminar});
+            this.tsmEliminar,
+            this.tsmModificar});
 			this.cmsPopup.Name = "contextMenuStrip1";
-			this.cmsPopup.Size = new System.Drawing.Size(118, 26);
+			this.cmsPopup.Size = new System.Drawing.Size(181, 70);
 			// 
 			// tsmEliminar
 			// 
 			this.tsmEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 			this.tsmEliminar.Name = "tsmEliminar";
-			this.tsmEliminar.Size = new System.Drawing.Size(117, 22);
+			this.tsmEliminar.Size = new System.Drawing.Size(180, 22);
 			this.tsmEliminar.Text = "Eliminar";
 			this.tsmEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
 			this.tsmEliminar.Click += new System.EventHandler(this.tsmEliminar_Click);
@@ -412,6 +414,13 @@
 			this.tsdReporte.Size = new System.Drawing.Size(61, 24);
 			this.tsdReporte.Text = "Reporte";
 			// 
+			// tsmModificar
+			// 
+			this.tsmModificar.Name = "tsmModificar";
+			this.tsmModificar.Size = new System.Drawing.Size(180, 22);
+			this.tsmModificar.Text = "Modificar";
+			this.tsmModificar.Click += new System.EventHandler(this.tsmModificar_Click);
+			// 
 			// frmBusquedaEmpresa
 			// 
 			this.AcceptButton = this.btn_cargarCliente;
@@ -475,5 +484,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
 		private System.Windows.Forms.ToolStripButton tsbEmail;
 		private System.Windows.Forms.ToolStripDropDownButton tsdReporte;
+		private System.Windows.Forms.ToolStripMenuItem tsmModificar;
 	}
 }
