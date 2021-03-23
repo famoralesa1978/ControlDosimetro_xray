@@ -20,6 +20,7 @@ namespace ControlDosimetro
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
+		Clases.ClassEvento Evento = new Clases.ClassEvento();
 		#endregion
 
 
@@ -250,10 +251,7 @@ namespace ControlDosimetro
 					{
 						if (dt.Tables[0].Rows[0]["validacion"].ToString() == "rut")
 						{
-							((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
-							((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
-							((TextBox)c).Validated += new EventHandler(ClaseEvento.validarut_Validated);
-							((TextBox)c).Leave += new EventHandler(ClaseEvento.run_Leave);
+							Evento.AsignarRutSinGuion (ref txt_rut);
 						}
 						if (dt.Tables[0].Rows[0]["validacion"].ToString() == "numerico")
 						{

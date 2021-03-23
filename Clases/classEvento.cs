@@ -36,6 +36,15 @@ namespace Clases
 			textbox.Leave += new EventHandler(ClaseEvento.run_Leave);
 		}
 
+		public void AsignarRutSinGuion(ref TextBox textbox)
+		{
+			textbox.MaxLength = 10;
+
+			textbox.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
+			textbox.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
+			textbox.Validated += new EventHandler(ClaseEvento.validarut_Validated);
+		}
+
 		public void AsignarMailMultiple(ref TextBox textbox)
 		{
 			textbox.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
