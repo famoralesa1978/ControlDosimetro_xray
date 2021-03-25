@@ -33,6 +33,7 @@ namespace ControlDosimetro
 		const string footerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml";
 
 		public string Id_Menu { get; private set; }
+		private bool Inicializar = true;
 
 		public object[] Parametros
 		{
@@ -241,7 +242,7 @@ namespace ControlDosimetro
 		private void Cargar_Seccion()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "select 'Todos' as seccion, -1 as id_seccion union all SELECT seccion,id_seccion " +
+			cmd.CommandText = "SELECT seccion,id_seccion " +
 							" FROM tbl_seccion  WHERE Id_cliente= " + lbl_id_cliente.Text.ToString() + " and id_estado=1";
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -273,7 +274,7 @@ namespace ControlDosimetro
 		private void btn_cargar_Click(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
-			Cargar_Seccion();
+			Inicializar = false;
 			Listar_Personal();
 			cbx_anno.Enabled = false;
 			cbx_id_periodo.Enabled = false;
@@ -412,6 +413,7 @@ namespace ControlDosimetro
 			lbl_rut.Text = "";
 			lbl_id_cliente.Focus();
 			btn_cargar.Enabled = false;
+			Inicializar = true;
 		}
 
 		private void btn_Cerrar_Click(object sender, EventArgs e)
@@ -580,8 +582,8 @@ namespace ControlDosimetro
 			//*******************
 			//     string strArchivo = "";// dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "Plantillaword.docx";
 			//     int i;
-			File.Copy(targetPathFormato, targetPathConf + "\\ET_Cliente" + lbl_id_cliente.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri.xlsx", true);
-			string strpathcopiar = targetPathConf + "\\ET_Cliente" + lbl_id_cliente.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri.xlsx";
+			File.Copy(targetPathFormato, targetPathConf + "\\ET_Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri.xlsx", true);
+			string strpathcopiar = targetPathConf + "\\ET_Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri.xlsx";
 			int intFila = 2;
 			string fmt = "00000000";
 			for (int idatos = 0; idatos <= grdDatos.Rows.Count - 1; idatos++)
@@ -1038,8 +1040,10 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 			bolInicio = true;
+			Inicializar = true;
 			Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
-			Cargar_Sucursal();			
+			Cargar_Sucursal();
+			Cargar_Seccion();
 			btn_Corregir.Enabled = false;
 			btn_Guardar.Enabled = false;
 			Cursor = Cursors.Default;
@@ -1106,6 +1110,7 @@ namespace ControlDosimetro
 		private void cbx_id_seccion_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
+			if(!Inicializar)
 			Listar_Personal();
 			Cursor = Cursors.Default;
 		}
