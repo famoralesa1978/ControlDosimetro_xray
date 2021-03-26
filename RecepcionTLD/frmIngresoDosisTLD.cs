@@ -29,7 +29,7 @@ namespace ControlDosimetro
 		public frmIngresoDosisTLD(Int64 intId_Cliente)
 		{
 			InitializeComponent();
-
+			grdDatos.AutoGenerateColumns = false;
 			SqlCommand cmdcombo = new SqlCommand();
 			//	SqlCommand cmdcombo = new SqlCommand();
 			DataSet dtcombo;
@@ -267,43 +267,71 @@ namespace ControlDosimetro
 
 		private void grdDatos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
 		{
-
-			if ((grdDatos.Columns[e.ColumnIndex].Name == "Controlado") || (grdDatos.Columns[e.ColumnIndex].Name == "condosis"))
-			{
+			if(e.RowIndex>-1){
 				DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[e.RowIndex].Cells["Controlado"];
 				DataGridViewCheckBoxCell chkcondosis = (DataGridViewCheckBoxCell)grdDatos.Rows[e.RowIndex].Cells["condosis"];
-				DataGridViewTextBoxCell txtvalor = (DataGridViewTextBoxCell)grdDatos.Rows[e.RowIndex].Cells["valor"];
-				DataGridViewComboBoxCell cbxEstado = (DataGridViewComboBoxCell)grdDatos.Rows[e.RowIndex].Cells["Estado"];
-				if (Convert.ToInt64(checkCell.Value) == 1)
+				grdDatos.Rows[e.RowIndex].ErrorText = "";
+				if ((grdDatos.Columns[e.ColumnIndex].Name == "Controlado") || (grdDatos.Columns[e.ColumnIndex].Name == "condosis"))
 				{
-					chkcondosis.ReadOnly = false;
-					intContar = intContar + 1;
-					groupBox2.Text = "Listado       Registro:" + intContar.ToString();
 
-					if (Convert.ToInt64(chkcondosis.Value) == 1)
+					DataGridViewTextBoxCell txtvalor = (DataGridViewTextBoxCell)grdDatos.Rows[e.RowIndex].Cells["valor"];
+					DataGridViewComboBoxCell cbxEstado = (DataGridViewComboBoxCell)grdDatos.Rows[e.RowIndex].Cells["Estado"];
+					if (Convert.ToInt64(checkCell.Value) == 1)
 					{
-						txtvalor.ReadOnly = false;
-						cbxEstado.ReadOnly = true;
-						cbxEstado.Value = 0;
+						chkcondosis.ReadOnly = false;
+						intContar = intContar + 1;
+						groupBox2.Text = "Listado       Registro:" + intContar.ToString();
+
+						if (Convert.ToInt64(chkcondosis.Value) == 1)
+						{
+							txtvalor.ReadOnly = false;
+							cbxEstado.ReadOnly = true;
+							cbxEstado.Value = 0;
+						}
+						else
+						{
+							txtvalor.ReadOnly = true;
+							txtvalor.Value = 0.00;
+							cbxEstado.ReadOnly = false;
+						}
+						if (grdDatos.Rows[e.RowIndex].Cells["Cristal1"].Value == DBNull.Value)
+						{
+							grdDatos.Rows[e.RowIndex].ErrorText = "Cristal 1 es Requerido" + System.Environment.NewLine;
+							bolValidarGrilla = true;
+						}
+						if (grdDatos.Rows[e.RowIndex].Cells["Cristal2"].Value == DBNull.Value)
+						{
+							grdDatos.Rows[e.RowIndex].ErrorText = grdDatos.Rows[e.RowIndex].ErrorText + "Cristal 2 es Requerido" + System.Environment.NewLine;
+							bolValidarGrilla = true;
+						}
+
 					}
 					else
 					{
 						txtvalor.ReadOnly = true;
-						txtvalor.Value = 0.00;
-						cbxEstado.ReadOnly = false;
+						chkcondosis.ReadOnly = true;
+						chkcondosis.ReadOnly = true;
+						cbxEstado.ReadOnly = true;
+						intContar = intContar - 1;
+
+						groupBox2.Text = "Listado       Registro:" + intContar.ToString();
 					}
 				}
 				else
+				if ((e.ColumnIndex == Cristal1.Index || e.ColumnIndex == Cristal2.Index) && Convert.ToInt64(checkCell.Value) == 1)
 				{
-					txtvalor.ReadOnly = true;
-					chkcondosis.ReadOnly = true;
-					chkcondosis.ReadOnly = true;
-					cbxEstado.ReadOnly = true;
-					intContar = intContar - 1;
-					groupBox2.Text = "Listado       Registro:" + intContar.ToString();
+					if (grdDatos.Rows[e.RowIndex].Cells["Cristal1"].Value == DBNull.Value)
+					{
+						grdDatos.Rows[e.RowIndex].ErrorText = "Cristal 1 es Requerido" + System.Environment.NewLine;
+						bolValidarGrilla = true;
+					}
+					if (grdDatos.Rows[e.RowIndex].Cells["Cristal2"].Value == DBNull.Value)
+					{
+						grdDatos.Rows[e.RowIndex].ErrorText = grdDatos.Rows[e.RowIndex].ErrorText + "Cristal 2 es Requerido" + System.Environment.NewLine;
+						bolValidarGrilla = true;
+					}
 				}
 			}
-
 		}
 
 		private void grdDatos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -345,17 +373,17 @@ namespace ControlDosimetro
 			//}
 		}
 
-		private void grdDatos_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
+		private void grdDatos_RowValidated(object sender, DataGridViewCellEventArgs e)
 		{
 			if (e.RowIndex > -1)
 			{
 				DataGridViewRow row = grdDatos.CurrentRow;
 
-				
+				grdDatos.Rows[e.RowIndex].ErrorText = "";
 				var checkCell = row.Cells["Controlado"].Value;
 				var objValue = row.Cells["Cristal1"].Value;
 
-				if(checkCell.ToString()=="1")
+				if (checkCell.ToString() == "1")
 				{
 					if (String.IsNullOrEmpty(Convert.ToString(objValue)))
 					{
@@ -371,7 +399,7 @@ namespace ControlDosimetro
 						bolValidarGrilla = true;
 					}
 				}
-				
+
 			}
 		}
 
@@ -441,7 +469,6 @@ namespace ControlDosimetro
 
 			Cursor = Cursors.Default;
 		}
-
 
 	}
 }
