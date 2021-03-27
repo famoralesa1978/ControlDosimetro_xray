@@ -103,6 +103,20 @@ namespace ControlDosimetro
 			//frm.ShowDialog(this);
 		}
 
+		private bool ValidarGrillaError(){
+			bool bolValidar = false;
+
+			for(int intFila=0;intFila<= grdDatos.RowCount-1;intFila++)
+			{
+				if (!String.IsNullOrEmpty(grdDatos.Rows[intFila].ErrorText)){
+					bolValidar = true;
+					break;
+				}
+					
+			}
+			return bolValidar;
+		}
+
 		private void btn_Guardar_Click(object sender, EventArgs e)
 		{
 			SqlCommand cmd = new SqlCommand();
@@ -121,10 +135,10 @@ namespace ControlDosimetro
 			string strid_personal;
 			string strid_dosimetro;
 			String strid_periodo;
-	
+			bool bolGrabar = false;
 
 			//validar
-			if (bolValidarGrilla == true)
+			if (ValidarGrillaError())
 			{
 				MessageBox.Show("Existen errores en el ingreso de información.", ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
@@ -167,6 +181,8 @@ namespace ControlDosimetro
 					MessageBox.Show("Ingrese un Estado Controlado en la fila " + (i + 1).ToString());
 					grdDatos.Rows[i].Selected = true;
 					i = grdDatos.RowCount;
+					btn_Guardar.Enabled = true;
+					return;
 				}
 				else
 				{
@@ -227,10 +243,15 @@ namespace ControlDosimetro
 					}
 				}
 
+				bolGrabar = true;
 			}
-			Listar_Personal();
+			
 			Cursor = Cursors.Default;
-			MessageBox.Show("Informacion grabada");
+			if(bolGrabar){
+				Listar_Personal();
+				MessageBox.Show("Informacion grabada");
+			}
+			
 			btn_Guardar.Enabled = true;
 			pnl_Progreso.Visible = false;
 		}
@@ -268,22 +289,27 @@ namespace ControlDosimetro
 
 		private void grdDatos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
 		{
-			if(e.RowIndex>-1){
-				bolValidarGrilla = bolValidarGrilla?true:false;
+			if (e.RowIndex > -1)
+			{
+				bolValidarGrilla = bolValidarGrilla ? true : false;
 				DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[e.RowIndex].Cells["Controlado"];
 				DataGridViewCheckBoxCell chkcondosis = (DataGridViewCheckBoxCell)grdDatos.Rows[e.RowIndex].Cells["condosis"];
+				DataGridViewComboBoxCell cbxEstado = (DataGridViewComboBoxCell)grdDatos.Rows[e.RowIndex].Cells["Estado"];
 				grdDatos.Rows[e.RowIndex].ErrorText = "";
+
+				if (Convert.ToInt64(checkCell.Value) == 0 && e.ColumnIndex== condosis.Index)
+					return;
+
 				if ((grdDatos.Columns[e.ColumnIndex].Name == "Controlado") || (grdDatos.Columns[e.ColumnIndex].Name == "condosis"))
 				{
 
 					DataGridViewTextBoxCell txtvalor = (DataGridViewTextBoxCell)grdDatos.Rows[e.RowIndex].Cells["valor"];
-					DataGridViewComboBoxCell cbxEstado = (DataGridViewComboBoxCell)grdDatos.Rows[e.RowIndex].Cells["Estado"];
 					if (Convert.ToInt64(checkCell.Value) == 1)
 					{
 						chkcondosis.ReadOnly = false;
 						intContar = intContar + 1;
 						groupBox2.Text = "Listado       Registro:" + intContar.ToString();
-
+											 					 
 						if (Convert.ToInt64(chkcondosis.Value) == 1)
 						{
 							txtvalor.ReadOnly = false;
@@ -296,14 +322,24 @@ namespace ControlDosimetro
 							txtvalor.Value = 0.00;
 							cbxEstado.ReadOnly = false;
 						}
-						if (grdDatos.Rows[e.RowIndex].Cells["Cristal1"].Value == DBNull.Value)
+
+						if (Convert.ToInt64(chkcondosis.Value) == 0 && cbxEstado.Value.ToString() == "0")
+						{
+							grdDatos.Rows[e.RowIndex].ErrorText = "Estado Control es Requerido" + System.Environment.NewLine;
+							bolValidarGrilla = true;
+						}
+						else
+							bolValidarGrilla = bolValidarGrilla ? true : false;
+
+						if (grdDatos.Rows[e.RowIndex].Cells["Cristal1"].Value == DBNull.Value)// && Convert.ToInt64(chkcondosis.Value) == 1
 						{
 							grdDatos.Rows[e.RowIndex].ErrorText = "Cristal 1 es Requerido" + System.Environment.NewLine;
 							bolValidarGrilla = true;
 						}
 						else
-							bolValidarGrilla = false;
-						if (grdDatos.Rows[e.RowIndex].Cells["Cristal2"].Value == DBNull.Value)
+							bolValidarGrilla = bolValidarGrilla ? true : false;
+
+						if (grdDatos.Rows[e.RowIndex].Cells["Cristal2"].Value == DBNull.Value)//&& Convert.ToInt64(chkcondosis.Value) == 1
 						{
 							grdDatos.Rows[e.RowIndex].ErrorText = grdDatos.Rows[e.RowIndex].ErrorText + "Cristal 2 es Requerido" + System.Environment.NewLine;
 							bolValidarGrilla = true;
@@ -326,15 +362,16 @@ namespace ControlDosimetro
 				else
 				if ((e.ColumnIndex == Cristal1.Index || e.ColumnIndex == Cristal2.Index) && Convert.ToInt64(checkCell.Value) == 1)
 				{
-					
-					if (grdDatos.Rows[e.RowIndex].Cells["Cristal1"].Value == DBNull.Value)
+
+					if (grdDatos.Rows[e.RowIndex].Cells["Cristal1"].Value == DBNull.Value)//
 					{
 						grdDatos.Rows[e.RowIndex].ErrorText = "Cristal 1 es Requerido" + System.Environment.NewLine;
 						bolValidarGrilla = true;
 					}
 					else
-						bolValidarGrilla = false;
-					if (grdDatos.Rows[e.RowIndex].Cells["Cristal2"].Value == DBNull.Value)
+						bolValidarGrilla = bolValidarGrilla ? true : false;
+					
+						if (grdDatos.Rows[e.RowIndex].Cells["Cristal2"].Value == DBNull.Value)// && Convert.ToInt64(chkcondosis.Value) == 1
 					{
 						grdDatos.Rows[e.RowIndex].ErrorText = grdDatos.Rows[e.RowIndex].ErrorText + "Cristal 2 es Requerido" + System.Environment.NewLine;
 						bolValidarGrilla = true;
@@ -342,7 +379,19 @@ namespace ControlDosimetro
 					else
 						bolValidarGrilla = bolValidarGrilla ? true : false;
 				}
+				else
+				if (e.ColumnIndex == valor.Index)
+				{
+					//	if (Convert.ToInt64(chkcondosis.Value) == 1)
+					//	{
+					grdDatos.Rows[e.RowIndex].Cells["Cristal2"].Value = grdDatos.Rows[e.RowIndex].Cells["Valor"].Value;
+					grdDatos.Rows[e.RowIndex].Cells["Cristal1"].Value = grdDatos.Rows[e.RowIndex].Cells["Valor"].Value;
+					//	}
+
+				}
+
 			}
+			
 		}
 
 		private void grdDatos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -393,21 +442,31 @@ namespace ControlDosimetro
 
 				grdDatos.Rows[e.RowIndex].ErrorText = "";
 				var checkCell = row.Cells["Controlado"].Value;
+				var chkcondosis = row.Cells["condosis"].Value;
 				var objValue = row.Cells["Cristal1"].Value;
+				var objEstado = row.Cells["Estado"].Value;
 
 				if (checkCell.ToString() == "1")
 				{
-					if (String.IsNullOrEmpty(Convert.ToString(objValue)))
+					if (chkcondosis.ToString() == "0"  && objEstado.ToString() == "0")
 					{
-						grdDatos.Rows[e.RowIndex].ErrorText = "Cristal 1 es Requerido" + System.Environment.NewLine;
+						grdDatos.Rows[e.RowIndex].ErrorText = "Estado Control es Requerido" + System.Environment.NewLine;
 						bolValidarGrilla = true;
 					}
 					else
 						bolValidarGrilla = false;
 
+					if (String.IsNullOrEmpty(Convert.ToString(objValue)))//&& chkcondosis.ToString() == "1"
+					{
+						grdDatos.Rows[e.RowIndex].ErrorText = "Cristal 1 es Requerido" + System.Environment.NewLine;
+						bolValidarGrilla = true;
+					}
+					else
+						bolValidarGrilla = bolValidarGrilla ? true : false;
+
 					objValue = row.Cells["Cristal2"].Value;
 
-					if (String.IsNullOrEmpty(Convert.ToString(objValue)))
+					if (String.IsNullOrEmpty(Convert.ToString(objValue)))//&& chkcondosis.ToString() == "1"
 					{
 						grdDatos.Rows[e.RowIndex].ErrorText += "Cristal 2 es Requerido" + System.Environment.NewLine;
 						bolValidarGrilla = true;

@@ -204,7 +204,10 @@ namespace ControlDosimetro
 
 		  private void btn_cargar_Click(object sender, EventArgs e)
 		  {
-              Cargar_TLD();
+			if (!String.IsNullOrEmpty(txt_TLD.Text))
+				Cargar_TLD();
+			else
+				MessageBox.Show("Debe ingresar un  número", ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
 		  }
 
 		 private void btn_filtro_Click_1(object sender, EventArgs e)
