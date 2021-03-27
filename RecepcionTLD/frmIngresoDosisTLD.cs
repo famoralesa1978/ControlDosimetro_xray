@@ -121,11 +121,7 @@ namespace ControlDosimetro
 			string strid_personal;
 			string strid_dosimetro;
 			String strid_periodo;
-			pnl_Progreso.Visible = true;
-			btn_Guardar.Enabled = false;
-			pnl_Progreso.Refresh();
-			pgb_Barra.Minimum = 0;
-			pgb_Barra.Maximum = grdDatos.RowCount;
+	
 
 			//validar
 			if (bolValidarGrilla == true)
@@ -133,6 +129,11 @@ namespace ControlDosimetro
 				MessageBox.Show("Existen errores en el ingreso de información.", ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
+			pnl_Progreso.Visible = true;
+			btn_Guardar.Enabled = false;
+			pnl_Progreso.Refresh();
+			pgb_Barra.Minimum = 0;
+			pgb_Barra.Maximum = grdDatos.RowCount;
 			Cursor = Cursors.WaitCursor;
 
 			for (int i = 0; i <= grdDatos.RowCount - 1; i++)
@@ -268,6 +269,7 @@ namespace ControlDosimetro
 		private void grdDatos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
 		{
 			if(e.RowIndex>-1){
+				bolValidarGrilla = bolValidarGrilla?true:false;
 				DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[e.RowIndex].Cells["Controlado"];
 				DataGridViewCheckBoxCell chkcondosis = (DataGridViewCheckBoxCell)grdDatos.Rows[e.RowIndex].Cells["condosis"];
 				grdDatos.Rows[e.RowIndex].ErrorText = "";
@@ -299,11 +301,15 @@ namespace ControlDosimetro
 							grdDatos.Rows[e.RowIndex].ErrorText = "Cristal 1 es Requerido" + System.Environment.NewLine;
 							bolValidarGrilla = true;
 						}
+						else
+							bolValidarGrilla = false;
 						if (grdDatos.Rows[e.RowIndex].Cells["Cristal2"].Value == DBNull.Value)
 						{
 							grdDatos.Rows[e.RowIndex].ErrorText = grdDatos.Rows[e.RowIndex].ErrorText + "Cristal 2 es Requerido" + System.Environment.NewLine;
 							bolValidarGrilla = true;
 						}
+						else
+							bolValidarGrilla = bolValidarGrilla ? true : false;
 
 					}
 					else
@@ -320,16 +326,21 @@ namespace ControlDosimetro
 				else
 				if ((e.ColumnIndex == Cristal1.Index || e.ColumnIndex == Cristal2.Index) && Convert.ToInt64(checkCell.Value) == 1)
 				{
+					
 					if (grdDatos.Rows[e.RowIndex].Cells["Cristal1"].Value == DBNull.Value)
 					{
 						grdDatos.Rows[e.RowIndex].ErrorText = "Cristal 1 es Requerido" + System.Environment.NewLine;
 						bolValidarGrilla = true;
 					}
+					else
+						bolValidarGrilla = false;
 					if (grdDatos.Rows[e.RowIndex].Cells["Cristal2"].Value == DBNull.Value)
 					{
 						grdDatos.Rows[e.RowIndex].ErrorText = grdDatos.Rows[e.RowIndex].ErrorText + "Cristal 2 es Requerido" + System.Environment.NewLine;
 						bolValidarGrilla = true;
 					}
+					else
+						bolValidarGrilla = bolValidarGrilla ? true : false;
 				}
 			}
 		}
@@ -377,6 +388,7 @@ namespace ControlDosimetro
 		{
 			if (e.RowIndex > -1)
 			{
+				bolValidarGrilla = bolValidarGrilla ? true : false;
 				DataGridViewRow row = grdDatos.CurrentRow;
 
 				grdDatos.Rows[e.RowIndex].ErrorText = "";
@@ -390,6 +402,8 @@ namespace ControlDosimetro
 						grdDatos.Rows[e.RowIndex].ErrorText = "Cristal 1 es Requerido" + System.Environment.NewLine;
 						bolValidarGrilla = true;
 					}
+					else
+						bolValidarGrilla = false;
 
 					objValue = row.Cells["Cristal2"].Value;
 
@@ -398,6 +412,8 @@ namespace ControlDosimetro
 						grdDatos.Rows[e.RowIndex].ErrorText += "Cristal 2 es Requerido" + System.Environment.NewLine;
 						bolValidarGrilla = true;
 					}
+					else
+						bolValidarGrilla = bolValidarGrilla ? true : false;
 				}
 
 			}
