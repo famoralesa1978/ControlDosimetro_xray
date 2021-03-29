@@ -145,6 +145,7 @@
 			// lbl_Emailfacturacion
 			// 
 			this.lbl_Emailfacturacion.AutoSize = true;
+			this.lbl_Emailfacturacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_Emailfacturacion.Location = new System.Drawing.Point(12, 311);
 			this.lbl_Emailfacturacion.Name = "lbl_Emailfacturacion";
 			this.lbl_Emailfacturacion.Size = new System.Drawing.Size(88, 13);
@@ -162,6 +163,7 @@
 			// lbl_Nombre_fantasia
 			// 
 			this.lbl_Nombre_fantasia.AutoSize = true;
+			this.lbl_Nombre_fantasia.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_Nombre_fantasia.Location = new System.Drawing.Point(11, 126);
 			this.lbl_Nombre_fantasia.Name = "lbl_Nombre_fantasia";
 			this.lbl_Nombre_fantasia.Size = new System.Drawing.Size(84, 13);
@@ -187,6 +189,7 @@
 			// lbl_Opr
 			// 
 			this.lbl_Opr.AutoSize = true;
+			this.lbl_Opr.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_Opr.Location = new System.Drawing.Point(10, 447);
 			this.lbl_Opr.Name = "lbl_Opr";
 			this.lbl_Opr.Size = new System.Drawing.Size(30, 13);
@@ -204,6 +207,7 @@
 			// lbl_Director
 			// 
 			this.lbl_Director.AutoSize = true;
+			this.lbl_Director.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_Director.Location = new System.Drawing.Point(10, 421);
 			this.lbl_Director.Name = "lbl_Director";
 			this.lbl_Director.Size = new System.Drawing.Size(44, 13);
@@ -223,6 +227,7 @@
 			// lbl_Id_Sector
 			// 
 			this.lbl_Id_Sector.AutoSize = true;
+			this.lbl_Id_Sector.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_Id_Sector.Location = new System.Drawing.Point(10, 394);
 			this.lbl_Id_Sector.Name = "lbl_Id_Sector";
 			this.lbl_Id_Sector.Size = new System.Drawing.Size(38, 13);
@@ -242,6 +247,7 @@
 			// lbl_id_Ministerio
 			// 
 			this.lbl_id_Ministerio.AutoSize = true;
+			this.lbl_id_Ministerio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_id_Ministerio.Location = new System.Drawing.Point(11, 372);
 			this.lbl_id_Ministerio.Name = "lbl_id_Ministerio";
 			this.lbl_id_Ministerio.Size = new System.Drawing.Size(51, 13);
@@ -261,6 +267,7 @@
 			// lbl_Id_TipoEntidad
 			// 
 			this.lbl_Id_TipoEntidad.AutoSize = true;
+			this.lbl_Id_TipoEntidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_Id_TipoEntidad.Location = new System.Drawing.Point(12, 340);
 			this.lbl_Id_TipoEntidad.Name = "lbl_Id_TipoEntidad";
 			this.lbl_Id_TipoEntidad.Size = new System.Drawing.Size(67, 13);
@@ -289,6 +296,7 @@
 			// lbl_Clave
 			// 
 			this.lbl_Clave.AutoSize = true;
+			this.lbl_Clave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_Clave.Location = new System.Drawing.Point(12, 555);
 			this.lbl_Clave.Name = "lbl_Clave";
 			this.lbl_Clave.Size = new System.Drawing.Size(34, 13);
@@ -315,6 +323,7 @@
 			// lbl_Servicio
 			// 
 			this.lbl_Servicio.AutoSize = true;
+			this.lbl_Servicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_Servicio.Location = new System.Drawing.Point(10, 472);
 			this.lbl_Servicio.Name = "lbl_Servicio";
 			this.lbl_Servicio.Size = new System.Drawing.Size(45, 13);
@@ -325,6 +334,7 @@
 			// lbl_Email
 			// 
 			this.lbl_Email.AutoSize = true;
+			this.lbl_Email.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_Email.Location = new System.Drawing.Point(11, 285);
 			this.lbl_Email.Name = "lbl_Email";
 			this.lbl_Email.Size = new System.Drawing.Size(32, 13);
@@ -371,6 +381,7 @@
 			// lbl_N_Cliente_Ref
 			// 
 			this.lbl_N_Cliente_Ref.AutoSize = true;
+			this.lbl_N_Cliente_Ref.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_N_Cliente_Ref.Location = new System.Drawing.Point(12, 48);
 			this.lbl_N_Cliente_Ref.Name = "lbl_N_Cliente_Ref";
 			this.lbl_N_Cliente_Ref.Size = new System.Drawing.Size(141, 13);
@@ -380,6 +391,7 @@
 			// lbl_FechaInicio
 			// 
 			this.lbl_FechaInicio.AutoSize = true;
+			this.lbl_FechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_FechaInicio.Location = new System.Drawing.Point(11, 526);
 			this.lbl_FechaInicio.Name = "lbl_FechaInicio";
 			this.lbl_FechaInicio.Size = new System.Drawing.Size(101, 13);
@@ -400,6 +412,7 @@
 			// lbl_id_estado
 			// 
 			this.lbl_id_estado.AutoSize = true;
+			this.lbl_id_estado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_id_estado.Location = new System.Drawing.Point(11, 498);
 			this.lbl_id_estado.Name = "lbl_id_estado";
 			this.lbl_id_estado.Size = new System.Drawing.Size(40, 13);
@@ -507,6 +520,7 @@
 			// lbl_telefono
 			// 
 			this.lbl_telefono.AutoSize = true;
+			this.lbl_telefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_telefono.Location = new System.Drawing.Point(11, 259);
 			this.lbl_telefono.Name = "lbl_telefono";
 			this.lbl_telefono.Size = new System.Drawing.Size(49, 13);
@@ -516,6 +530,7 @@
 			// lbl_id_comuna
 			// 
 			this.lbl_id_comuna.AutoSize = true;
+			this.lbl_id_comuna.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_id_comuna.Location = new System.Drawing.Point(11, 233);
 			this.lbl_id_comuna.Name = "lbl_id_comuna";
 			this.lbl_id_comuna.Size = new System.Drawing.Size(46, 13);
@@ -525,6 +540,7 @@
 			// lbl_id_provincia
 			// 
 			this.lbl_id_provincia.AutoSize = true;
+			this.lbl_id_provincia.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_id_provincia.Location = new System.Drawing.Point(11, 205);
 			this.lbl_id_provincia.Name = "lbl_id_provincia";
 			this.lbl_id_provincia.Size = new System.Drawing.Size(51, 13);
@@ -534,6 +550,7 @@
 			// lbl_id_region
 			// 
 			this.lbl_id_region.AutoSize = true;
+			this.lbl_id_region.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_id_region.Location = new System.Drawing.Point(11, 178);
 			this.lbl_id_region.Name = "lbl_id_region";
 			this.lbl_id_region.Size = new System.Drawing.Size(41, 13);
@@ -551,6 +568,7 @@
 			// lbl_direccion
 			// 
 			this.lbl_direccion.AutoSize = true;
+			this.lbl_direccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_direccion.Location = new System.Drawing.Point(11, 151);
 			this.lbl_direccion.Name = "lbl_direccion";
 			this.lbl_direccion.Size = new System.Drawing.Size(52, 13);
@@ -568,6 +586,7 @@
 			// lbl_Razon_Social
 			// 
 			this.lbl_Razon_Social.AutoSize = true;
+			this.lbl_Razon_Social.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_Razon_Social.Location = new System.Drawing.Point(11, 103);
 			this.lbl_Razon_Social.Name = "lbl_Razon_Social";
 			this.lbl_Razon_Social.Size = new System.Drawing.Size(70, 13);
@@ -585,6 +604,7 @@
 			// lbl_id_cliente
 			// 
 			this.lbl_id_cliente.AutoSize = true;
+			this.lbl_id_cliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_id_cliente.Location = new System.Drawing.Point(11, 22);
 			this.lbl_id_cliente.Name = "lbl_id_cliente";
 			this.lbl_id_cliente.Size = new System.Drawing.Size(54, 13);
@@ -602,6 +622,7 @@
 			// lbl_run
 			// 
 			this.lbl_run.AutoSize = true;
+			this.lbl_run.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_run.Location = new System.Drawing.Point(11, 74);
 			this.lbl_run.Name = "lbl_run";
 			this.lbl_run.Size = new System.Drawing.Size(24, 13);
