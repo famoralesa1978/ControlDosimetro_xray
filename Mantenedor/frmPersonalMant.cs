@@ -275,10 +275,10 @@ namespace ControlDosimetro
 			txt_Nombres.Enabled = true;
 			txt_paterno.Enabled = true;
 			txt_rut.Enabled = true;
-			cbx_id_estado.Enabled = bolHabDesa;
-			cbx_id_seccion.Enabled = bolHabDesa;
-			cbx_id_profesion.Enabled = bolHabDesa;
-			cbx_id_sexo.Enabled = bolHabDesa;
+			cbx_id_estado.Enabled = true;
+			cbx_id_seccion.Enabled = true;
+			cbx_id_profesion.Enabled = true;
+			cbx_id_sexo.Enabled = true;
 			if (bolHabDesa == false)
 			{
 				dtp_Fecha_inicio.Enabled = bolHabDesa;
@@ -323,28 +323,9 @@ namespace ControlDosimetro
 			txt_rut.Focus();
 		}
 
-		#endregion
-
-		#region "button"
-
-		private void btn_cerrar_Click(object sender, EventArgs e)
+		private void Grabar()
 		{
-			Cursor = Cursors.WaitCursor;
-
-			//verificar_Grabado();
-			this.Close();
-
-			Cursor = Cursors.Default;
-		}
-
-		private void btn_Grabar_Click(object sender, EventArgs e)
-		{
-			Cursor = Cursors.WaitCursor;
-
-			Boolean bolResult;
-			bolResult = false;
-			//     if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-			//   {
+			Boolean bolResult=false;
 			if (btn_Grabar.Text == "Modificar")
 			{
 
@@ -356,7 +337,7 @@ namespace ControlDosimetro
 						if (lbl_Fecha_Modificacion.Text != cbx_id_estado.Text)
 						{
 							MessageBox.Show("Dato modificado,Debe ingresar una observación porque se dejo inactivo");
-			
+
 							LimpiarControles();
 						}
 						else
@@ -376,13 +357,42 @@ namespace ControlDosimetro
 				if (bolResult == true)
 				{
 					MessageBox.Show("Dato Guardado");
-	
+
 					LimpiarControles();
 				}
 			}
+		}
 
-			//   }
+		#endregion
 
+		#region "button"
+
+		private void btn_cerrar_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+
+			//verificar_Grabado();
+			this.Close();
+
+			Cursor = Cursors.Default;
+		}
+
+		
+
+		private void btn_Grabar_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+
+			Boolean bolResult = false;
+			string strMensaje = "";
+			bolResult = false;
+			if (!ClaseComun.ValidarFormulario(Clases.clsBD.BD, tbl_personal, ref bolResult, ref strMensaje))
+			{
+				Cursor = Cursors.Default;
+				classFuncionesGenerales.mensajes.MensajeError(strMensaje);
+			}
+			else
+				Grabar();
 			Cursor = Cursors.Default;
 
 		}

@@ -70,7 +70,8 @@ namespace classFuncionesGenerales
 		}
 
 
-		public static byte[] Convertir_Binario(String Ruta_Archivo){
+		public static byte[] Convertir_Binario(String Ruta_Archivo)
+		{
 
 			byte[] Convert = File.ReadAllBytes(Ruta_Archivo);
 
@@ -80,23 +81,23 @@ namespace classFuncionesGenerales
 		public static void Leer_BinarioCarpetaTmp(byte[] Convert, String Archivo)
 		{
 			string strPath = "C:\\Doc_Xray\\tmp\\";
-				try
-				{
+			try
+			{
 				if (!Directory.Exists("C:\\Doc_Xray"))
 					Directory.CreateDirectory("C:\\Doc_Xray");
 				if (!Directory.Exists("C:\\Doc_Xray\\tmp"))
 					Directory.CreateDirectory("C:\\Doc_Xray\\tmp");
 
 				System.IO.File.WriteAllBytes(strPath + Archivo, Convert);
-					Process p = new Process();
-					p.StartInfo.FileName = strPath + Archivo;
-					p.Start();
-				}
-				catch(Exception e)
-				{
-					MessageBox.Show(e.Message, ControlDosimetro.Properties.Resources.msgCaptionError,MessageBoxButtons.OK,MessageBoxIcon.Error);
-				}
-	
+				Process p = new Process();
+				p.StartInfo.FileName = strPath + Archivo;
+				p.Start();
+			}
+			catch (Exception e)
+			{
+				MessageBox.Show(e.Message, ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+
 		}
 
 		public static void Leer_Binario(byte[] Convert, String Archivo)
@@ -119,6 +120,16 @@ namespace classFuncionesGenerales
 		}
 
 	}
+
+	public class mensajes
+	{
+
+		public static void MensajeError(string strmensaje)
+		{
+			MessageBox.Show(strmensaje, ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
+		}
+	}
+
 }
 
 

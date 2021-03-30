@@ -584,7 +584,7 @@ namespace ControlDosimetro
 			if (!ClaseComun.ValidarFormulario(Clases.clsBD.BD, tbl_cliente, ref bolResult, ref strMensaje))
 			{
 				Cursor = Cursors.Default;
-				MessageBox.Show(strMensaje, ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				classFuncionesGenerales.mensajes.MensajeError(strMensaje);
 			}
 			else
 				Grabar();
