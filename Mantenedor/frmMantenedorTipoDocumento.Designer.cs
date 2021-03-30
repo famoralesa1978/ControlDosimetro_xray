@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMantenedorTipoDocumento));
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.stsEstado = new System.Windows.Forms.StatusStrip();
 			this.tssDescEstado = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tssEstado = new System.Windows.Forms.ToolStripStatusLabel();
@@ -38,6 +38,7 @@
 			this.tsbGuardar = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.tsbAgregar = new System.Windows.Forms.ToolStripButton();
+			this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
 			this.scPrincipal = new System.Windows.Forms.SplitContainer();
 			this.pnlPrincipal = new System.Windows.Forms.Panel();
 			this.gpxListado = new System.Windows.Forms.GroupBox();
@@ -65,7 +66,6 @@
 			this.txt_id_tipo_doc = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.btn_Limpiar = new System.Windows.Forms.Button();
-			this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
 			this.stsEstado.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.scPrincipal)).BeginInit();
@@ -146,6 +146,15 @@
 			this.tsbAgregar.Size = new System.Drawing.Size(24, 24);
 			this.tsbAgregar.Text = "Permite  Agregar un perfil de usuario";
 			this.tsbAgregar.Click += new System.EventHandler(this.tsbAgregar_Click);
+			// 
+			// tsdReporte
+			// 
+			this.tsdReporte.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsdReporte.Image = ((System.Drawing.Image)(resources.GetObject("tsdReporte.Image")));
+			this.tsdReporte.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsdReporte.Name = "tsdReporte";
+			this.tsdReporte.Size = new System.Drawing.Size(61, 24);
+			this.tsdReporte.Text = "Reporte";
 			// 
 			// scPrincipal
 			// 
@@ -386,6 +395,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
+			this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label4.Location = new System.Drawing.Point(29, 117);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(40, 13);
@@ -403,6 +413,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
+			this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label3.Location = new System.Drawing.Point(29, 90);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(36, 13);
@@ -420,6 +431,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
+			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label2.Location = new System.Drawing.Point(29, 64);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(63, 13);
@@ -460,15 +472,6 @@
 			this.btn_Limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btn_Limpiar.UseVisualStyleBackColor = true;
 			this.btn_Limpiar.Click += new System.EventHandler(this.btn_Limpiar_Click);
-			// 
-			// tsdReporte
-			// 
-			this.tsdReporte.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tsdReporte.Image = ((System.Drawing.Image)(resources.GetObject("tsdReporte.Image")));
-			this.tsdReporte.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsdReporte.Name = "tsdReporte";
-			this.tsdReporte.Size = new System.Drawing.Size(61, 24);
-			this.tsdReporte.Text = "Reporte";
 			// 
 			// frmMantenedorTipoDocumento
 			// 

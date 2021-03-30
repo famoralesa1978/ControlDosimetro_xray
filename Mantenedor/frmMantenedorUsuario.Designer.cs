@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMantenedorUsuario));
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.stsEstado = new System.Windows.Forms.StatusStrip();
 			this.tssDescEstado = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tssEstado = new System.Windows.Forms.ToolStripStatusLabel();
@@ -38,6 +38,7 @@
 			this.tsbGuardar = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.tsbAgregar = new System.Windows.Forms.ToolStripButton();
+			this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
 			this.scPrincipal = new System.Windows.Forms.SplitContainer();
 			this.pnlPrincipal = new System.Windows.Forms.Panel();
 			this.gpxListado = new System.Windows.Forms.GroupBox();
@@ -80,7 +81,6 @@
 			this.btn_Minimizar = new System.Windows.Forms.Button();
 			this.btn_Limpiar = new System.Windows.Forms.Button();
 			this.btn_Guardar = new System.Windows.Forms.Button();
-			this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
 			this.stsEstado.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.scPrincipal)).BeginInit();
@@ -157,6 +157,15 @@
 			this.tsbAgregar.Size = new System.Drawing.Size(23, 22);
 			this.tsbAgregar.Text = "Permite  agregar un perfil de usuario";
 			this.tsbAgregar.Click += new System.EventHandler(this.TsbAgregar_Click);
+			// 
+			// tsdReporte
+			// 
+			this.tsdReporte.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsdReporte.Image = ((System.Drawing.Image)(resources.GetObject("tsdReporte.Image")));
+			this.tsdReporte.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsdReporte.Name = "tsdReporte";
+			this.tsdReporte.Size = new System.Drawing.Size(61, 22);
+			this.tsdReporte.Text = "Reporte";
 			// 
 			// scPrincipal
 			// 
@@ -500,6 +509,7 @@
 			// lbl_Contraseña
 			// 
 			this.lbl_Contraseña.AutoSize = true;
+			this.lbl_Contraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_Contraseña.Location = new System.Drawing.Point(24, 213);
 			this.lbl_Contraseña.Name = "lbl_Contraseña";
 			this.lbl_Contraseña.Size = new System.Drawing.Size(61, 13);
@@ -509,6 +519,7 @@
 			// lbl_id_estado
 			// 
 			this.lbl_id_estado.AutoSize = true;
+			this.lbl_id_estado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_id_estado.Location = new System.Drawing.Point(24, 242);
 			this.lbl_id_estado.Name = "lbl_id_estado";
 			this.lbl_id_estado.Size = new System.Drawing.Size(40, 13);
@@ -518,6 +529,7 @@
 			// lbl_Id_perfil
 			// 
 			this.lbl_Id_perfil.AutoSize = true;
+			this.lbl_Id_perfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_Id_perfil.Location = new System.Drawing.Point(24, 184);
 			this.lbl_Id_perfil.Name = "lbl_Id_perfil";
 			this.lbl_Id_perfil.Size = new System.Drawing.Size(30, 13);
@@ -527,6 +539,7 @@
 			// lbl_Maternos
 			// 
 			this.lbl_Maternos.AutoSize = true;
+			this.lbl_Maternos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_Maternos.Location = new System.Drawing.Point(24, 155);
 			this.lbl_Maternos.Name = "lbl_Maternos";
 			this.lbl_Maternos.Size = new System.Drawing.Size(86, 13);
@@ -536,6 +549,7 @@
 			// lbl_Paterno
 			// 
 			this.lbl_Paterno.AutoSize = true;
+			this.lbl_Paterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_Paterno.Location = new System.Drawing.Point(24, 126);
 			this.lbl_Paterno.Name = "lbl_Paterno";
 			this.lbl_Paterno.Size = new System.Drawing.Size(84, 13);
@@ -545,6 +559,7 @@
 			// lbl_Nombres
 			// 
 			this.lbl_Nombres.AutoSize = true;
+			this.lbl_Nombres.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_Nombres.Location = new System.Drawing.Point(24, 97);
 			this.lbl_Nombres.Name = "lbl_Nombres";
 			this.lbl_Nombres.Size = new System.Drawing.Size(49, 13);
@@ -554,6 +569,7 @@
 			// lbl_rut
 			// 
 			this.lbl_rut.AutoSize = true;
+			this.lbl_rut.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_rut.Location = new System.Drawing.Point(24, 68);
 			this.lbl_rut.Name = "lbl_rut";
 			this.lbl_rut.Size = new System.Drawing.Size(36, 13);
@@ -563,6 +579,7 @@
 			// lbl_Usuario
 			// 
 			this.lbl_Usuario.AutoSize = true;
+			this.lbl_Usuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_Usuario.Location = new System.Drawing.Point(24, 39);
 			this.lbl_Usuario.Name = "lbl_Usuario";
 			this.lbl_Usuario.Size = new System.Drawing.Size(43, 13);
@@ -611,15 +628,6 @@
 			this.btn_Guardar.UseVisualStyleBackColor = true;
 			this.btn_Guardar.TextChanged += new System.EventHandler(this.Txt_Contraseña1_TextChanged);
 			this.btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
-			// 
-			// tsdReporte
-			// 
-			this.tsdReporte.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tsdReporte.Image = ((System.Drawing.Image)(resources.GetObject("tsdReporte.Image")));
-			this.tsdReporte.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsdReporte.Name = "tsdReporte";
-			this.tsdReporte.Size = new System.Drawing.Size(61, 22);
-			this.tsdReporte.Text = "Reporte";
 			// 
 			// frmMantenedorUsuario
 			// 

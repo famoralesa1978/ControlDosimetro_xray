@@ -127,7 +127,7 @@ namespace ControlDosimetro
 				txt_Email.Text = dt.Tables[0].Rows[0]["Email"].ToString();
 				cbx_id_estado.SelectedValue = dt.Tables[0].Rows[0]["Id_estado"].ToString();
 				lbl_Estado_mod.Text = cbx_id_estado.Text;
-				dtp_FechaInicio.Value = Convert.ToDateTime( dt.Tables[0].Rows[0]["Fechainicio"]);
+				dtp_FechaInicio.Value = Convert.ToDateTime(dt.Tables[0].Rows[0]["Fechainicio"]);
 
 				cbx_id_periodo.Text = dt.Tables[0].Rows[0]["Fechainicio"].ToString();
 				txt_Clave.Text = dt.Tables[0].Rows[0]["clave"].ToString();
@@ -304,29 +304,15 @@ namespace ControlDosimetro
 			dtp_FechaInicio.Text = cbx_id_periodo.Text;
 		}
 
-		#endregion
-
-		#region "button"
-
-		private void btn_cerrar_Click(object sender, EventArgs e)
+		private void Grabar()
 		{
-			Cursor = Cursors.WaitCursor;
-
-			this.Close();
-
-			Cursor = Cursors.Default;
-		}
-
-		private void btn_Grabar_Click(object sender, EventArgs e)
-		{
-			Cursor = Cursors.WaitCursor;
 
 			Boolean bolResult;
 			bolResult = false;
-
-			if (Convert.ToDateTime(cbx_id_periodo.Text.ToString()) > DateTime.Now.Date){
+			if (Convert.ToDateTime(cbx_id_periodo.Text.ToString()) > DateTime.Now.Date)
+			{
 				Cursor = Cursors.Default;
-				MessageBox.Show("FEcha inicio control es mayor que la fecha actual", ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);				
+				MessageBox.Show("FEcha inicio control es mayor que la fecha actual", ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 			//   if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
@@ -349,7 +335,7 @@ namespace ControlDosimetro
 						else
 						{
 							SqlCommand cmd1 = new SqlCommand();
-							cmd1.CommandText = "pa_ClienteHistorial_upd " + txt_id_cliente.Text +",'" + dtp_FechaInicio.Value + "'";
+							cmd1.CommandText = "pa_ClienteHistorial_upd " + txt_id_cliente.Text + ",'" + dtp_FechaInicio.Value + "'";
 							cmd1.CommandType = CommandType.Text;
 							DataSet ds = Conectar.Listar(Clases.clsBD.BD, cmd1);
 
@@ -361,20 +347,21 @@ namespace ControlDosimetro
 						}
 
 					}
-					else{
+					else
+					{
 
 						SqlCommand cmd1 = new SqlCommand();
 						cmd1.CommandText = "pa_ClienteHistorial_upd " + txt_id_cliente.Text + ",'" + dtp_FechaInicio.Value + "'";
 						cmd1.CommandType = CommandType.Text;
-						DataSet ds= Conectar.Listar(Clases.clsBD.BD, cmd1);
+						DataSet ds = Conectar.Listar(Clases.clsBD.BD, cmd1);
 
-						if((int)ds.Tables[0].Rows[0]["Resultado"]==0)
-							MessageBox.Show(ds.Tables[0].Rows[0]["Mensaje"].ToString(),"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+						if ((int)ds.Tables[0].Rows[0]["Resultado"] == 0)
+							MessageBox.Show(ds.Tables[0].Rows[0]["Mensaje"].ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 						else
 							if ((int)ds.Tables[0].Rows[0]["Resultado"] == 1)
 							MessageBox.Show(ds.Tables[0].Rows[0]["Mensaje"].ToString(), "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					}
-						
+
 
 					this.Close();
 				}
@@ -392,7 +379,7 @@ namespace ControlDosimetro
 
 						SqlCommand cmd = new SqlCommand();
 						cmd.CommandText = "pa_Sucursal_ins '" + txt_run.Text + "','" + txt_direccion.Text + "'," + cbx_id_region.SelectedValue + "," +
-													  cbx_id_provincia.SelectedValue + "," + cbx_id_comuna.SelectedValue + ",'" + txt_telefono.Text + "',1,1";
+														cbx_id_provincia.SelectedValue + "," + cbx_id_comuna.SelectedValue + ",'" + txt_telefono.Text + "',1,1";
 						cmd.CommandType = CommandType.Text;
 						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 
@@ -405,13 +392,13 @@ namespace ControlDosimetro
 						//SqlCommand cmdcombo = new SqlCommand();
 						DataSet dtArchivo;
 						cmdArchivo.CommandText = "" +
-						  "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=6 order by orden ";
+							"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=6 order by orden ";
 						cmdArchivo.CommandType = CommandType.Text;
 						dtArchivo = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
 
 						DataSet dtformato;
 						cmdArchivo.CommandText = "" +
-						  "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=5 order by orden ";
+							"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=5 order by orden ";
 						cmdArchivo.CommandType = CommandType.Text;
 						dtformato = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
 						string targetPath = dtArchivo.Tables[0].Rows[0]["Glosa"].ToString() + "Cliente " + lbl_id_cliente.Text;
@@ -486,7 +473,7 @@ namespace ControlDosimetro
 
 							SqlCommand cmd = new SqlCommand();
 							cmd.CommandText = "pa_Sucursal_ins '" + txt_run.Text + "','" + txt_direccion.Text + "'," + cbx_id_region.SelectedValue + "," +
-														  cbx_id_provincia.SelectedValue + "," + cbx_id_comuna.SelectedValue + ",'" + txt_telefono.Text + "',1";
+															cbx_id_provincia.SelectedValue + "," + cbx_id_comuna.SelectedValue + ",'" + txt_telefono.Text + "',1";
 							cmd.CommandType = CommandType.Text;
 							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 
@@ -502,13 +489,13 @@ namespace ControlDosimetro
 							//SqlCommand cmdcombo = new SqlCommand();
 							DataSet dtArchivo;
 							cmdArchivo.CommandText = "" +
-							  "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=6 order by orden ";
+								"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=6 order by orden ";
 							cmdArchivo.CommandType = CommandType.Text;
 							dtArchivo = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
 
 							DataSet dtformato;
 							cmdArchivo.CommandText = "" +
-							  "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=5 order by orden ";
+								"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=5 order by orden ";
 							cmdArchivo.CommandType = CommandType.Text;
 							dtformato = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
 
@@ -572,6 +559,35 @@ namespace ControlDosimetro
 
 			//  }
 
+			Cursor = Cursors.Default;
+		}
+
+		#endregion
+
+		#region "button"
+
+		private void btn_cerrar_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+
+			this.Close();
+
+			Cursor = Cursors.Default;
+		}
+
+		private void btn_Grabar_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+			string strMensaje = "";
+			Boolean bolResult;
+			bolResult = false;
+			if (!ClaseComun.ValidarFormulario(Clases.clsBD.BD, tbl_cliente, ref bolResult, ref strMensaje))
+			{
+				Cursor = Cursors.Default;
+				MessageBox.Show(strMensaje, ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			else
+				Grabar();
 			Cursor = Cursors.Default;
 		}
 		#endregion

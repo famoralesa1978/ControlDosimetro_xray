@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMantenedorPerfil));
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.stsEstado = new System.Windows.Forms.StatusStrip();
 			this.tssDescEstado = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tssEstado = new System.Windows.Forms.ToolStripStatusLabel();
@@ -38,6 +38,7 @@
 			this.tsbGuardar = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.tsbAgregar = new System.Windows.Forms.ToolStripButton();
+			this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
 			this.scPrincipal = new System.Windows.Forms.SplitContainer();
 			this.pnlPrincipal = new System.Windows.Forms.Panel();
 			this.gpxListado = new System.Windows.Forms.GroupBox();
@@ -63,7 +64,6 @@
 			this.lbl_Descripcion = new System.Windows.Forms.Label();
 			this.txt_Id_perfil = new System.Windows.Forms.TextBox();
 			this.lbl_Id_perfil = new System.Windows.Forms.Label();
-			this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
 			this.stsEstado.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.scPrincipal)).BeginInit();
@@ -140,6 +140,15 @@
 			this.tsbAgregar.Size = new System.Drawing.Size(23, 22);
 			this.tsbAgregar.Text = "Permite  Agregar un perfil de usuario";
 			this.tsbAgregar.Click += new System.EventHandler(this.tsbAgregar_Click);
+			// 
+			// tsdReporte
+			// 
+			this.tsdReporte.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsdReporte.Image = ((System.Drawing.Image)(resources.GetObject("tsdReporte.Image")));
+			this.tsdReporte.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsdReporte.Name = "tsdReporte";
+			this.tsdReporte.Size = new System.Drawing.Size(61, 22);
+			this.tsdReporte.Text = "Reporte";
 			// 
 			// scPrincipal
 			// 
@@ -389,6 +398,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
+			this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label4.Location = new System.Drawing.Point(3, 46);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(40, 13);
@@ -406,6 +416,7 @@
 			// lbl_Descripcion
 			// 
 			this.lbl_Descripcion.AutoSize = true;
+			this.lbl_Descripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_Descripcion.Location = new System.Drawing.Point(3, 20);
 			this.lbl_Descripcion.Name = "lbl_Descripcion";
 			this.lbl_Descripcion.Size = new System.Drawing.Size(63, 13);
@@ -430,15 +441,6 @@
 			this.lbl_Id_perfil.TabIndex = 8;
 			this.lbl_Id_perfil.Text = "ID";
 			this.lbl_Id_perfil.Visible = false;
-			// 
-			// tsdReporte
-			// 
-			this.tsdReporte.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tsdReporte.Image = ((System.Drawing.Image)(resources.GetObject("tsdReporte.Image")));
-			this.tsdReporte.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsdReporte.Name = "tsdReporte";
-			this.tsdReporte.Size = new System.Drawing.Size(61, 22);
-			this.tsdReporte.Text = "Reporte";
 			// 
 			// frmMantenedorPerfil
 			// 
