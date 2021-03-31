@@ -23,23 +23,43 @@ namespace ControlDosimetro
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		Clases.ClassEvento ClaseEvento = new Clases.ClassEvento();
 		classFuncionesBD.ClsFunciones ClasesFuncBD = new classFuncionesBD.ClsFunciones();
+		classFuncionesBD.ClsFunciones ClaseFunciones = new classFuncionesBD.ClsFunciones();
 		DataTable dt;
 		int intContar = 0;
+		bool Lectura;
+		bool Nuevo;
+		bool Modificacion;
+		bool Eliminar;
+		bool bolIdEstado;
+
+		public int Id_Menu { get; private set; }
+
+		public object[] Parametros
+		{
+			set
+			{
+				if (value != null)
+				{
+					Id_Menu = (int)value[0];
+				}
+			}
+		}
+
 		#endregion
 
 		public frmDocumentoVerAprobar(bool Id_Estado)
 		{
 			InitializeComponent();
 			AsignarEvento();
-			btn_Guardar.Visible = ColAprobado.Visible = ColEliminar.Visible = Id_Estado;
+
+			bolIdEstado = Id_Estado;
 			grdDatos.AutoGenerateColumns = false;
 
 		}
 
 		private void frmDocumentoVerAprobar_Load(object sender, EventArgs e)
 		{
-
-
+			AsignarPermiso(bolIdEstado);
 			Cargar_Anno();
 			CargarDt();
 			Listar_Grilla();
@@ -81,6 +101,16 @@ namespace ControlDosimetro
 			ClaseEvento.AsignarNumero(ref txt_n_Cliente);
 		}
 
+		private void AsignarPermiso(bool Id_Estado)
+		{
+			ClaseFunciones.Cargar_Permiso(Clases.clsUsuario.Id_perfil, Id_Menu, ref Lectura, ref Nuevo, ref Modificacion, ref Eliminar);
+			ColAprobado.Visible = Id_Estado && Modificacion;
+
+			ColEliminar.Visible = Id_Estado && Eliminar;
+			tsbAgregar.Visible = Nuevo;
+			tsbGuardar.Visible = Nuevo || Modificacion;
+		}
+
 		#endregion
 
 		#region "button"
@@ -96,8 +126,9 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			bool bolMarca;
 			String strId;
+			Cursor = Cursors.WaitCursor;
 			pnl_Progreso.Visible = true;
-			btn_Guardar.Enabled = false;
+			tsbGuardar.Enabled = false;
 			pnl_Progreso.Refresh();
 			pgb_Barra.Minimum = 0;
 			pgb_Barra.Maximum = grdDatos.RowCount;
@@ -123,8 +154,9 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;
 			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 			Listar_Grilla();
+			Cursor = Cursors.Default;
 			MessageBox.Show("Informacion grabada");
-			btn_Guardar.Enabled = true;
+			tsbGuardar.Enabled = true;
 			pnl_Progreso.Visible = false;
 		}
 
@@ -143,10 +175,23 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "combobox"
+	
 		private void cbx_Anno_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			CargarDt();
 			Listar_Grilla();
+		}
+
+		#endregion
+
+		#region "barra"
+
+		private void tsbAgregar_Click(object sender, EventArgs e)
+		{
+			object[] objParams = { Id_Menu };
+			frmingdocumentos frm = new frmingdocumentos();
+			frm.Parametros = objParams;
+			frm.ShowDialog();
 		}
 
 		#endregion
@@ -203,8 +248,8 @@ namespace ControlDosimetro
 			}
 		}
 
-		#endregion
 
+		#endregion
 
 	}
 }

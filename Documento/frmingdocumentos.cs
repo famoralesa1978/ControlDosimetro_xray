@@ -23,7 +23,26 @@ namespace ControlDosimetro
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
 		classFuncionesBD.ClsFunciones Func = new classFuncionesBD.ClsFunciones();
+		classFuncionesBD.ClsFunciones ClaseFunciones = new classFuncionesBD.ClsFunciones();
 
+		bool Lectura;
+		bool Nuevo;
+		bool Modificacion;
+		bool Eliminar;
+		bool bolIdEstado;
+
+		public int Id_Menu { get; private set; }
+
+		public object[] Parametros
+		{
+			set
+			{
+				if (value != null)
+				{
+					Id_Menu = (int)value[0];
+				}
+			}
+		}
 		#endregion
 
 		#region Inicio
@@ -43,13 +62,20 @@ namespace ControlDosimetro
 
 		private void frmingdocumentos_Load(object sender, EventArgs e)
 		{
-
+			AsignarPermiso();
 		}
 
 		#endregion
 
 
 		#region carga
+
+		private void AsignarPermiso()
+		{
+			ClaseFunciones.Cargar_Permiso(Clases.clsUsuario.Id_perfil, Id_Menu, ref Lectura, ref Nuevo, ref Modificacion, ref Eliminar);
+			
+			btnGrabarArchivo.Visible = Nuevo || Modificacion;
+		}
 
 		private void Cargar_Ddls()
 		{

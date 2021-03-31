@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.btnCargar = new System.Windows.Forms.Button();
 			this.txt_n_Cliente = new System.Windows.Forms.TextBox();
@@ -44,6 +44,14 @@
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
+			this.ColId_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.razon_social = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.run = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.annomesperiodo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColDescTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColNombreArchivo = new System.Windows.Forms.DataGridViewLinkColumn();
+			this.ColAprobado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.ColEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,19 +66,13 @@
 			this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btn_Cerrar = new System.Windows.Forms.Button();
-			this.btn_Guardar = new System.Windows.Forms.Button();
-			this.ColId_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.razon_social = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.run = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.annomesperiodo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColDescTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColNombreArchivo = new System.Windows.Forms.DataGridViewLinkColumn();
-			this.ColAprobado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.ColEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+			this.tsbAgregar = new System.Windows.Forms.ToolStripButton();
+			this.tsbGuardar = new System.Windows.Forms.ToolStripButton();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
+			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -216,8 +218,6 @@
 			this.grdDatos.AllowUserToDeleteRows = false;
 			this.grdDatos.AllowUserToResizeColumns = false;
 			this.grdDatos.AllowUserToResizeRows = false;
-			this.grdDatos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.grdDatos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.grdDatos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			this.grdDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -229,17 +229,87 @@
             this.ColNombreArchivo,
             this.ColAprobado,
             this.ColEliminar});
-			this.grdDatos.Location = new System.Drawing.Point(3, 19);
+			this.grdDatos.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.grdDatos.Location = new System.Drawing.Point(3, 16);
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-			this.grdDatos.Size = new System.Drawing.Size(827, 377);
+			this.grdDatos.Size = new System.Drawing.Size(830, 327);
 			this.grdDatos.TabIndex = 8;
 			this.grdDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellContentClick);
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
 			// 
+			// ColId_cliente
+			// 
+			this.ColId_cliente.DataPropertyName = "id_cliente";
+			this.ColId_cliente.HeaderText = "N° Cliente";
+			this.ColId_cliente.Name = "ColId_cliente";
+			this.ColId_cliente.ReadOnly = true;
+			this.ColId_cliente.Width = 79;
+			// 
+			// razon_social
+			// 
+			this.razon_social.DataPropertyName = "razon_social";
+			this.razon_social.HeaderText = "Razon Social";
+			this.razon_social.Name = "razon_social";
+			this.razon_social.ReadOnly = true;
+			this.razon_social.Width = 95;
+			// 
+			// run
+			// 
+			this.run.DataPropertyName = "run";
+			this.run.HeaderText = "Rut";
+			this.run.Name = "run";
+			this.run.ReadOnly = true;
+			this.run.Width = 49;
+			// 
+			// annomesperiodo
+			// 
+			this.annomesperiodo.DataPropertyName = "annomesperiodo";
+			this.annomesperiodo.HeaderText = "Periodo";
+			this.annomesperiodo.Name = "annomesperiodo";
+			this.annomesperiodo.ReadOnly = true;
+			this.annomesperiodo.Width = 68;
+			// 
+			// ColDescTipo
+			// 
+			this.ColDescTipo.DataPropertyName = "DescTipo";
+			this.ColDescTipo.HeaderText = "Tipo documento";
+			this.ColDescTipo.Name = "ColDescTipo";
+			this.ColDescTipo.ReadOnly = true;
+			this.ColDescTipo.Width = 109;
+			// 
+			// ColNombreArchivo
+			// 
+			this.ColNombreArchivo.DataPropertyName = "NombreArchivo";
+			this.ColNombreArchivo.HeaderText = "Nombre archivo";
+			this.ColNombreArchivo.Name = "ColNombreArchivo";
+			this.ColNombreArchivo.ReadOnly = true;
+			this.ColNombreArchivo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.ColNombreArchivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.ColNombreArchivo.Width = 107;
+			// 
+			// ColAprobado
+			// 
+			this.ColAprobado.DataPropertyName = "Aprobado";
+			this.ColAprobado.HeaderText = "Aprobar";
+			this.ColAprobado.Name = "ColAprobado";
+			this.ColAprobado.Width = 50;
+			// 
+			// ColEliminar
+			// 
+			this.ColEliminar.DataPropertyName = "Eliminar";
+			this.ColEliminar.HeaderText = "Eliminar";
+			this.ColEliminar.Name = "ColEliminar";
+			this.ColEliminar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.ColEliminar.Text = "Eliminar";
+			this.ColEliminar.Width = 49;
+			// 
 			// toolStrip1
 			// 
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbGuardar,
+            this.tsbAgregar});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(841, 25);
@@ -327,9 +397,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle5.Format = "N2";
-			dataGridViewCellStyle5.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle5;
+			dataGridViewCellStyle1.Format = "N2";
+			dataGridViewCellStyle1.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -347,9 +417,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle6.Format = "N2";
-			dataGridViewCellStyle6.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle6;
+			dataGridViewCellStyle2.Format = "N2";
+			dataGridViewCellStyle2.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -365,86 +435,26 @@
 			this.btn_Cerrar.UseVisualStyleBackColor = true;
 			this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click_1);
 			// 
-			// btn_Guardar
+			// tsbAgregar
 			// 
-			this.btn_Guardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Guardar.Image = global::ControlDosimetro.Properties.Resources.Save_16;
-			this.btn_Guardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_Guardar.Location = new System.Drawing.Point(366, 533);
-			this.btn_Guardar.Name = "btn_Guardar";
-			this.btn_Guardar.Size = new System.Drawing.Size(79, 22);
-			this.btn_Guardar.TabIndex = 9;
-			this.btn_Guardar.Text = "Guardar";
-			this.btn_Guardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btn_Guardar.UseVisualStyleBackColor = true;
-			this.btn_Guardar.UseWaitCursor = true;
-			this.btn_Guardar.Click += new System.EventHandler(this.btn_Guardar_Click);
+			this.tsbAgregar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbAgregar.Image = global::ControlDosimetro.Properties.Resources.Agregar;
+			this.tsbAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbAgregar.Name = "tsbAgregar";
+			this.tsbAgregar.Size = new System.Drawing.Size(23, 22);
+			this.tsbAgregar.Text = "toolStripButton1";
+			this.tsbAgregar.Click += new System.EventHandler(this.tsbAgregar_Click);
 			// 
-			// ColId_cliente
+			// tsbGuardar
 			// 
-			this.ColId_cliente.DataPropertyName = "id_cliente";
-			this.ColId_cliente.HeaderText = "N° Cliente";
-			this.ColId_cliente.Name = "ColId_cliente";
-			this.ColId_cliente.ReadOnly = true;
-			this.ColId_cliente.Width = 79;
-			// 
-			// razon_social
-			// 
-			this.razon_social.DataPropertyName = "razon_social";
-			this.razon_social.HeaderText = "Razon Social";
-			this.razon_social.Name = "razon_social";
-			this.razon_social.ReadOnly = true;
-			this.razon_social.Width = 95;
-			// 
-			// run
-			// 
-			this.run.DataPropertyName = "run";
-			this.run.HeaderText = "Rut";
-			this.run.Name = "run";
-			this.run.ReadOnly = true;
-			this.run.Width = 49;
-			// 
-			// annomesperiodo
-			// 
-			this.annomesperiodo.DataPropertyName = "annomesperiodo";
-			this.annomesperiodo.HeaderText = "Periodo";
-			this.annomesperiodo.Name = "annomesperiodo";
-			this.annomesperiodo.ReadOnly = true;
-			this.annomesperiodo.Width = 68;
-			// 
-			// ColDescTipo
-			// 
-			this.ColDescTipo.DataPropertyName = "DescTipo";
-			this.ColDescTipo.HeaderText = "Tipo documento";
-			this.ColDescTipo.Name = "ColDescTipo";
-			this.ColDescTipo.ReadOnly = true;
-			this.ColDescTipo.Width = 109;
-			// 
-			// ColNombreArchivo
-			// 
-			this.ColNombreArchivo.DataPropertyName = "NombreArchivo";
-			this.ColNombreArchivo.HeaderText = "Nombre archivo";
-			this.ColNombreArchivo.Name = "ColNombreArchivo";
-			this.ColNombreArchivo.ReadOnly = true;
-			this.ColNombreArchivo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.ColNombreArchivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.ColNombreArchivo.Width = 107;
-			// 
-			// ColAprobado
-			// 
-			this.ColAprobado.DataPropertyName = "Aprobado";
-			this.ColAprobado.HeaderText = "Aprobar";
-			this.ColAprobado.Name = "ColAprobado";
-			this.ColAprobado.Width = 50;
-			// 
-			// ColEliminar
-			// 
-			this.ColEliminar.DataPropertyName = "Eliminar";
-			this.ColEliminar.HeaderText = "Eliminar";
-			this.ColEliminar.Name = "ColEliminar";
-			this.ColEliminar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.ColEliminar.Text = "Eliminar";
-			this.ColEliminar.Width = 49;
+			this.tsbGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbGuardar.Image = global::ControlDosimetro.Properties.Resources.Save_32;
+			this.tsbGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbGuardar.Name = "tsbGuardar";
+			this.tsbGuardar.Size = new System.Drawing.Size(23, 22);
+			this.tsbGuardar.Text = "toolStripButton1";
+			this.tsbGuardar.ToolTipText = "Guardar";
+			this.tsbGuardar.Click += new System.EventHandler(this.btn_Guardar_Click);
 			// 
 			// frmDocumentoVerAprobar
 			// 
@@ -452,7 +462,6 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(841, 565);
 			this.Controls.Add(this.btn_Cerrar);
-			this.Controls.Add(this.btn_Guardar);
 			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
@@ -468,6 +477,8 @@
 			this.groupBox2.ResumeLayout(false);
 			this.pnl_Progreso.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).EndInit();
+			this.toolStrip1.ResumeLayout(false);
+			this.toolStrip1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -494,7 +505,6 @@
                                 private GridExtension.IntegerGridColumn integerGridColumn1;
                                 private GridExtension.IntegerGridColumn integerGridColumn2;
                                 private System.Windows.Forms.Button btn_Cerrar;
-                                private System.Windows.Forms.Button btn_Guardar;
                                 private System.Windows.Forms.RadioButton rbtAprobado;
                                 private System.Windows.Forms.RadioButton rbTodos;
 		private System.Windows.Forms.Label label1;
@@ -512,5 +522,7 @@
 		private System.Windows.Forms.DataGridViewLinkColumn ColNombreArchivo;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn ColAprobado;
 		private System.Windows.Forms.DataGridViewButtonColumn ColEliminar;
+		private System.Windows.Forms.ToolStripButton tsbAgregar;
+		private System.Windows.Forms.ToolStripButton tsbGuardar;
 	}
 }

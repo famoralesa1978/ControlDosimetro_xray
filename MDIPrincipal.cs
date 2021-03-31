@@ -715,7 +715,7 @@ namespace ControlDosimetro
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen,
-						//	Parametros = objParams
+						Parametros = objParams
 					};
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
@@ -725,7 +725,7 @@ namespace ControlDosimetro
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen,
-						//	Parametros = objParams
+						Parametros = objParams
 					};
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
@@ -736,7 +736,7 @@ namespace ControlDosimetro
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen,
-						//	Parametros = objParams
+						Parametros = objParams
 					};
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
