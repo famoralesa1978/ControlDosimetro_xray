@@ -25,6 +25,7 @@ namespace ControlDosimetro
 		clsEventoControl ClaseEvento = new clsEventoControl();
 		WorkbookPart wbPart = null;
 		SpreadsheetDocument document = null;
+		SpreadsheetDocument documentInforme = null;
 		//	SpreadsheetDocument document2 = null;
 		object missing = System.Reflection.Missing.Value;
 		//     object strcampoMarcador;
@@ -528,7 +529,7 @@ namespace ControlDosimetro
 		private void btn_Excel_Click(object sender, EventArgs e)
 		{
 			string targetPathFormato = "C:\\BaseTLD\\formato\\" + "FormatoTLD.xlsx";
-
+			string targetPathFormatoInfome = "C:\\BaseTLD\\formato\\" + "FORMULARIO.xlsx";
 			//crea carpeta de configuracion
 
 			string targetPathConf = "C:\\BaseTLD\\Cliente";
@@ -552,14 +553,20 @@ namespace ControlDosimetro
 			// SqlCommand cmdPeriodo = new SqlCommand();
 			SqlCommand cmdPeriodo = new SqlCommand();
 
-			cmdPeriodo.CommandText = "SELECT fecha_inicio,fecha_termino " +
+			cmdPeriodo.CommandText = "SELECT fecha_inicio,fecha_termino, " +
+														"substring([fecha_inicio],1,2)+' de '+ dbo.getmonth(cast(substring( [fecha_inicio],4,2)as int))+ ' de '+ substring([fecha_inicio],7,4) as Finicio," +
+														"substring([fecha_termino],1,2)+' de '+dbo.getmonth(cast(substring( [fecha_termino],4,2)as int))+ ' de '+ substring([fecha_termino],7,4) as FTermino" +
 													 " FROM conf_periodo " +
 													 //"where mes =3 and anno=" + cbx_anno.Text;  
 													 "WHERE  Id_Periodo= " + cbx_id_periodo.SelectedValue;
 			cmdPeriodo.CommandType = CommandType.Text;
 			dtPeriodo = Conectar.Listar(Clases.clsBD.BD, cmdPeriodo);
 			string strfecha_inicio = "From " + dtPeriodo.Tables[0].Rows[0]["fecha_inicio"].ToString().Substring(0, 6) + dtPeriodo.Tables[0].Rows[0]["fecha_inicio"].ToString().Substring(8, 2);
-			strfecha_inicio = strfecha_inicio + " to " + dtPeriodo.Tables[0].Rows[0]["fecha_termino"].ToString().Substring(0, 6) + dtPeriodo.Tables[0].Rows[0]["fecha_termino"].ToString().Substring(8, 2); ;
+			strfecha_inicio = strfecha_inicio + " to " + dtPeriodo.Tables[0].Rows[0]["fecha_termino"].ToString().Substring(0, 6) + dtPeriodo.Tables[0].Rows[0]["fecha_termino"].ToString().Substring(8, 2);
+
+			string strfecha_Per = dtPeriodo.Tables[0].Rows[0]["Finicio"].ToString() + " al " + dtPeriodo.Tables[0].Rows[0]["FTermino"].ToString();
+
+			string strfecha_Fin = dtPeriodo.Tables[0].Rows[0]["FTermino"].ToString();
 
 			string strTri = cbx_id_periodo.Text.ToString().Substring(0, 1) + "er Trim " + cbx_anno.Text;
 			//  From 01/01/19 to 31/03/19
@@ -582,12 +589,20 @@ namespace ControlDosimetro
 			//*******************
 			//     string strArchivo = "";// dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "Plantillaword.docx";
 			//     int i;
+			int intExcel = 1;
 			File.Copy(targetPathFormato, targetPathConf + "\\ET_Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri.xlsx", true);
+			File.Copy(targetPathFormatoInfome, targetPathConf + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + intExcel.ToString() + ".xlsx", true);
 			string strpathcopiar = targetPathConf + "\\ET_Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri.xlsx";
+			
 			int intFila = 2;
+			int intHojaExcel = 5;
+		
+			string strpathcopiarInforme = targetPathConf + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + intExcel.ToString() + ".xlsx";
+
 			string fmt = "00000000";
 			for (int idatos = 0; idatos <= grdDatos.Rows.Count - 1; idatos++)
 			{
+
 				checkGenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[idatos].Cells["Generar"];
 				checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[idatos].Cells["chkGenerado"];
 				txtndocumento = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["NDocumento"];
@@ -602,6 +617,19 @@ namespace ControlDosimetro
 				Id_Personal = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Id_Personal"];
 				if ((checkCell.Value.ToString() == "1"))//(checkGenerar.Value.ToString() == "1") &&&& (txtid_estadodosimetro.Value.ToString() == "-1")
 				{
+					if(intHojaExcel==18)
+					{
+						intHojaExcel = 5;
+						intExcel = intExcel + 1;
+						strpathcopiarInforme = targetPathConf + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + (intExcel-1).ToString() + ".xlsx";
+
+						File.Copy(strpathcopiarInforme, targetPathConf + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + (intExcel).ToString() + ".xlsx", true);
+
+						strpathcopiarInforme = targetPathConf + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + intExcel.ToString() + ".xlsx";
+
+						
+					}
+					
 					document = SpreadsheetDocument.Open(strpathcopiar, true);
 					wbPart = document.WorkbookPart;
 					string wsName = "Sheet1";
@@ -613,9 +641,27 @@ namespace ControlDosimetro
 					UpdateValue(wsName, "F" + (intFila).ToString(), strTri, 0, true);
 					UpdateValue(wsName, "G" + (intFila).ToString(), strfecha_inicio, 0, true);
 					document.Close();
+
+					wsName = "Informe";
+					document = SpreadsheetDocument.Open(strpathcopiarInforme, true);
+					wbPart = document.WorkbookPart;
+
+					UpdateValue(wsName, "A" + (intHojaExcel).ToString(), int.Parse(txtnpelicula.Value.ToString()).ToString(fmt), 0, true);
+					UpdateValue(wsName, "B" + (intHojaExcel).ToString(), Paterno.Value.ToString().ToUpper(), 0, true);
+					UpdateValue(wsName, "D" + (intHojaExcel).ToString(), Maternos.Value.ToString().ToUpper(), 0, true);
+					UpdateValue(wsName, "F" + (intHojaExcel).ToString(), Nombres.Value.ToString().Substring(0, 1).ToUpper() + Nombres.Value.ToString().Substring(1, Nombres.Value.ToString().Length - 1).ToLower(), 0, true);
+					UpdateValue(wsName, "G" + (intHojaExcel).ToString(), Rut.Value.ToString().ToUpperInvariant(), 0, true);
+					UpdateValue(wsName, "D2" , strfecha_Per, 0, true);
+					UpdateValue(wsName, "D18", strfecha_Fin, 0, true);
+					document.Close();
+
+
 					intFila = intFila + 1;
+					intHojaExcel = intHojaExcel + 1;
 					//
 				}
+
+
 
 			}
 			MessageBox.Show("El archivo fue generadoa en la siguiente Ruta: " + targetPathConf);
