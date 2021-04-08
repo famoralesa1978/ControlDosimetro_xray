@@ -32,7 +32,9 @@ namespace ControlDosimetro
 		const string documentRelationshipType = "http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument";
 		const string headerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.header+xml";
 		const string footerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml";
-
+		string strDireccion;
+		string strServicio;
+		string strRegion;
 		public string Id_Menu { get; private set; }
 		private bool Inicializar = true;
 
@@ -85,9 +87,9 @@ namespace ControlDosimetro
 
 
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "select run,Razon_Social,N_Cliente_Ref,region + ','+ comuna +','+Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
+			cmd.CommandText = "select run,Razon_Social,N_Cliente_Ref, Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio,Servicio,c.Id_Region as region " +
 											"  FROM tbl_cliente c inner join [dbo].[glo_region] r on c.Id_Region=r.Id_Region inner join glo_comuna co on co.id_comuna=c.id_comuna" +
-											" WHERE Id_cliente= " + intCodCliente.ToString();
+											" WHERE Id_cliente= " + intCodCliente.ToString();//comuna +','+ region
 			DataSet dt;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -96,6 +98,9 @@ namespace ControlDosimetro
 				lbl_id_cliente.Text = intCodCliente.ToString();
 				lbl_rut.Text = dt.Tables[0].Rows[0]["run"].ToString();
 				lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
+				strDireccion = dt.Tables[0].Rows[0]["Direccion"].ToString();
+				strServicio= dt.Tables[0].Rows[0]["Servicio"].ToString();
+				strRegion = dt.Tables[0].Rows[0]["region"].ToString();
 				btn_cargar.Enabled = true;
 				btn_Cargar_cliente.Enabled = false;
 				lbl_id_cliente.Enabled = false;
@@ -653,6 +658,11 @@ namespace ControlDosimetro
 					UpdateValue(wsName, "G" + (intHojaExcel).ToString(), Rut.Value.ToString().ToUpperInvariant(), 0, true);
 					UpdateValue(wsName, "D2" , strfecha_Per, 0, true);
 					UpdateValue(wsName, "D18", strfecha_Fin, 0, true);
+					UpdateValue(wsName, "J4", strServicio, 0, true);
+					UpdateValue(wsName, "L4", strDireccion, 0, true);
+					UpdateValue(wsName, "M4", strRegion, 0, true);
+					//UpdateValue(wsName, "M9", strRegion, 0, true);ciudad
+					UpdateValue(wsName, "K4", lbl_nombreCliente.Text, 0, true);
 					document.Close();
 
 
