@@ -35,6 +35,7 @@ namespace ControlDosimetro
 			MantSucursal = 107,
 			MantPersonal = 108,
 			MantPermiso = 109,
+			MantMasivoPersonal = 110,
 
 			IngresoPel = 201,
 			CorreccionDcto = 202,
@@ -393,6 +394,16 @@ namespace ControlDosimetro
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.MantMasivoPersonal:
+					objFrm = new frmModificarPersonalMasivo()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen,
+						Parametros = objParams
 					};
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
