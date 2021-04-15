@@ -40,14 +40,14 @@
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-			this.tsb_Agregar = new System.Windows.Forms.ToolStripButton();
-			this.tsb_Eliminar = new System.Windows.Forms.ToolStripButton();
+			this.tsbGuardar = new System.Windows.Forms.ToolStripButton();
 			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Paterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Maternos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Fec_nac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColServicio = new System.Windows.Forms.DataGridViewComboBoxColumn();
+			this.ColSeccion = new System.Windows.Forms.DataGridViewComboBoxColumn();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -171,7 +171,6 @@
 			this.grdDatos.AllowUserToDeleteRows = false;
 			this.grdDatos.AllowUserToResizeColumns = false;
 			this.grdDatos.AllowUserToResizeRows = false;
-			this.grdDatos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.grdDatos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			this.grdDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id_Personal,
@@ -179,49 +178,41 @@
             this.Nombres,
             this.Paterno,
             this.Maternos,
-            this.Fec_nac});
+            this.ColServicio,
+            this.ColSeccion});
 			this.grdDatos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.grdDatos.Location = new System.Drawing.Point(3, 16);
+			this.grdDatos.MultiSelect = false;
 			this.grdDatos.Name = "grdDatos";
-			this.grdDatos.ReadOnly = true;
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
 			this.grdDatos.Size = new System.Drawing.Size(836, 372);
 			this.grdDatos.TabIndex = 5;
+			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
+			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
+			this.grdDatos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdDatos_DataBindingComplete);
 			this.grdDatos.DoubleClick += new System.EventHandler(this.grdDatos_DoubleClick);
 			// 
 			// toolStrip1
 			// 
 			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsb_Agregar,
-            this.tsb_Eliminar});
+            this.tsbGuardar});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(859, 27);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
-			// tsb_Agregar
+			// tsbGuardar
 			// 
-			this.tsb_Agregar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.tsb_Agregar.Image = global::ControlDosimetro.Properties.Resources.Agregar;
-			this.tsb_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsb_Agregar.Name = "tsb_Agregar";
-			this.tsb_Agregar.Size = new System.Drawing.Size(24, 24);
-			this.tsb_Agregar.Text = "toolStripButton1";
-			this.tsb_Agregar.ToolTipText = "Agregar Personal";
-			this.tsb_Agregar.Click += new System.EventHandler(this.btn_Agregar_Click);
-			// 
-			// tsb_Eliminar
-			// 
-			this.tsb_Eliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.tsb_Eliminar.Image = global::ControlDosimetro.Properties.Resources.delete_32;
-			this.tsb_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsb_Eliminar.Name = "tsb_Eliminar";
-			this.tsb_Eliminar.Size = new System.Drawing.Size(24, 24);
-			this.tsb_Eliminar.Text = "Eliminar";
-			this.tsb_Eliminar.Click += new System.EventHandler(this.tsb_Eliminar_Click);
+			this.tsbGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbGuardar.Image = global::ControlDosimetro.Properties.Resources.Save_24;
+			this.tsbGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbGuardar.Name = "tsbGuardar";
+			this.tsbGuardar.Size = new System.Drawing.Size(24, 24);
+			this.tsbGuardar.Text = "toolStripButton1";
+			this.tsbGuardar.Click += new System.EventHandler(this.tsbGuardar_Click);
 			// 
 			// Id_Personal
 			// 
@@ -229,7 +220,6 @@
 			this.Id_Personal.Frozen = true;
 			this.Id_Personal.HeaderText = "Id_Personal";
 			this.Id_Personal.Name = "Id_Personal";
-			this.Id_Personal.ReadOnly = true;
 			this.Id_Personal.Visible = false;
 			this.Id_Personal.Width = 88;
 			// 
@@ -239,7 +229,6 @@
 			this.Rut.DataPropertyName = "Rut";
 			this.Rut.HeaderText = "Rut";
 			this.Rut.Name = "Rut";
-			this.Rut.ReadOnly = true;
 			this.Rut.Width = 49;
 			// 
 			// Nombres
@@ -248,7 +237,6 @@
 			this.Nombres.DataPropertyName = "Nombres";
 			this.Nombres.HeaderText = "Nombres";
 			this.Nombres.Name = "Nombres";
-			this.Nombres.ReadOnly = true;
 			this.Nombres.Width = 74;
 			// 
 			// Paterno
@@ -258,7 +246,6 @@
 			this.Paterno.FillWeight = 300F;
 			this.Paterno.HeaderText = "Paterno";
 			this.Paterno.Name = "Paterno";
-			this.Paterno.ReadOnly = true;
 			this.Paterno.Width = 69;
 			// 
 			// Maternos
@@ -268,17 +255,26 @@
 			this.Maternos.HeaderText = "Maternos";
 			this.Maternos.MinimumWidth = 150;
 			this.Maternos.Name = "Maternos";
-			this.Maternos.ReadOnly = true;
 			this.Maternos.Width = 150;
 			// 
-			// Fec_nac
+			// ColServicio
 			// 
-			this.Fec_nac.DataPropertyName = "fecha_nac";
-			this.Fec_nac.HeaderText = "Fecha Nacimiento";
-			this.Fec_nac.Name = "Fec_nac";
-			this.Fec_nac.ReadOnly = true;
-			this.Fec_nac.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.Fec_nac.Width = 118;
+			this.ColServicio.DataPropertyName = "Id_CodServicio";
+			this.ColServicio.DisplayStyleForCurrentCellOnly = true;
+			this.ColServicio.HeaderText = "Servicio";
+			this.ColServicio.Name = "ColServicio";
+			this.ColServicio.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.ColServicio.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.ColServicio.Width = 110;
+			// 
+			// ColSeccion
+			// 
+			this.ColSeccion.DataPropertyName = "Id_Seccion";
+			this.ColSeccion.DisplayStyleForCurrentCellOnly = true;
+			this.ColSeccion.HeaderText = "Sección";
+			this.ColSeccion.Name = "ColSeccion";
+			this.ColSeccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.ColSeccion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
 			// 
 			// frmModificarPersonalMasivo
 			// 
@@ -322,13 +318,13 @@
 								private System.Windows.Forms.TextBox txt_ref_cliente;
 								private System.Windows.Forms.Button btn_cargarCliente;
                                 private System.Windows.Forms.Button btn_Filtro;
-                                private System.Windows.Forms.ToolStripButton tsb_Agregar;
-		private System.Windows.Forms.ToolStripButton tsb_Eliminar;
+		private System.Windows.Forms.ToolStripButton tsbGuardar;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Id_Personal;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Rut;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Paterno;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Maternos;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Fec_nac;
+		private System.Windows.Forms.DataGridViewComboBoxColumn ColServicio;
+		private System.Windows.Forms.DataGridViewComboBoxColumn ColSeccion;
 	}
 }

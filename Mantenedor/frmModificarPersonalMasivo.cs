@@ -23,13 +23,13 @@ namespace ControlDosimetro
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
 		classFuncionesBD.ClsFunciones ClaseFunciones = new classFuncionesBD.ClsFunciones();
-
+		bool bolDesdeCodigo;
 		bool bolInicializacion;
 		bool Lectura;
 		bool Nuevo;
 		bool Modificacion;
 		bool Eliminar;
-
+		DataSet dt;
 
 		public int Id_Menu { get; private set; }
 
@@ -48,14 +48,16 @@ namespace ControlDosimetro
 		public frmModificarPersonalMasivo()
 		{
 			InitializeComponent();
+			
+			Cargar_CodServicio();
 			AsignarEvento();
-		//	Listar_Cliente(intId_Cliente);
-
 		}
 
 		private void frmModificarPersonalMasivo_Load(object sender, EventArgs e)
 		{
-
+			bolDesdeCodigo = true;
+			AsignarPermiso();
+			grdDatos.AutoGenerateColumns = false;
 		}
 
 		#region "Llamada de carga"
@@ -63,9 +65,7 @@ namespace ControlDosimetro
 		private void AsignarPermiso()
 		{
 			ClaseFunciones.Cargar_Permiso(Clases.clsUsuario.Id_perfil, Id_Menu, ref Lectura, ref Nuevo, ref Modificacion, ref Eliminar);
-			//tsbAgregar.Visible = Nuevo;
-			//tsbGuardar.Visible = Nuevo || Modificacion;
-			//tsmEliminar.Visible = Eliminar;
+			tsbGuardar.Visible = Modificacion;
 		}
 
 		private void Listar_Cliente(Int64 intCliente)
@@ -98,7 +98,7 @@ namespace ControlDosimetro
 				txt_ref_cliente.Text = "";
 				txt_Rut.Text = "";
 				txt_RazonSocial.Text = "";
-				tsb_Eliminar.Visible = tsb_Agregar.Visible = false;
+				tsbGuardar.Visible = false;
 			}
 			else
 			{
@@ -107,8 +107,9 @@ namespace ControlDosimetro
 				txt_RazonSocial.Text = dt.Tables[0].Rows[0]["razon_social"].ToString();
 				txt_ref_cliente.ReadOnly = true;
 				txt_Rut.ReadOnly = true;
-				tsb_Eliminar.Visible = tsb_Agregar.Visible = true;
+				tsbGuardar.Visible = Modificacion;
 				txt_RazonSocial.ReadOnly = true;
+				Cargar_Seccion();
 				Listar_Personal();
 			}
 		}
@@ -118,9 +119,39 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = "pa_ListarPersonal_sel '" + txt_Rut.Text + "'";
 			cmd.CommandType = CommandType.Text;
-			DataSet dt;
+			
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 			grdDatos.DataSource = dt.Tables[0];
+		}
+
+		private void Cargar_Seccion()
+		{
+			SqlCommand cmd = new SqlCommand();
+			//  SqlCommand cmd = new SqlCommand();
+
+			cmd.CommandText = "select ' ' as seccion, 0 as id_seccion union" +
+							 "		SELECT seccion,id_seccion " +
+							" FROM tbl_seccion  WHERE Id_cliente= " + txt_ref_cliente.Text.ToString() + " and id_estado=1";
+			DataSet dt;
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns[ColSeccion.Index] as DataGridViewComboBoxColumn;
+			comboboxColumn.DataSource = dt.Tables[0];
+			comboboxColumn.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
+			comboboxColumn.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
+		}
+
+		private void Cargar_CodServicio()
+		{
+			ComboBox cb = new ComboBox();
+			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref cb, 16);
+
+			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns[ColServicio.Index] as DataGridViewComboBoxColumn;
+
+			comboboxColumn.DataSource = cb.DataSource;
+			comboboxColumn.DisplayMember = cb.DisplayMember;
+			comboboxColumn.ValueMember = cb.ValueMember;
+
 		}
 
 		private void AsignarEvento()
@@ -145,21 +176,11 @@ namespace ControlDosimetro
 
 		#region "button"       
 
-		private void btn_Agregar_Click(object sender, EventArgs e)
-		{
-			Cursor = Cursors.WaitCursor;
-
-			frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), 0);
-			frm.ShowDialog(this);
-			Listar_Personal();
-
-			Cursor = Cursors.Default;
-		}
 
 		private void btn_cargarCliente_Click(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
-
+			bolDesdeCodigo = true;
 			if (txt_ref_cliente.Text == "")
 				Listar_Cliente(0);
 			else
@@ -168,9 +189,9 @@ namespace ControlDosimetro
 			if (txt_RazonSocial.Text == "")
 			{
 
-				tsb_Eliminar.Visible = tsb_Agregar.Visible = false;
+				tsbGuardar.Visible = false;
 			}
-
+				
 			Cursor = Cursors.Default;
 
 		}
@@ -196,56 +217,16 @@ namespace ControlDosimetro
 
 		private void grdDatos_DoubleClick(object sender, EventArgs e)
 		{
-			frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
-			frm.ShowDialog(this);
-			Listar_Personal();
+			//frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
+			//frm.ShowDialog(this);
+			//Listar_Personal();
 		}
-
-
-
-
-
-
-
-
-
-
-
 
 		#endregion
 
 		#region Barra
 
-		private void tsb_Eliminar_Click(object sender, EventArgs e)
-		{
-			string strMensaje = "";
-			if (MessageBox.Show("Desea eliminar el personal?", "Eliminación del personal", MessageBoxButtons.OKCancel) == DialogResult.OK)
-			{
-				for (int intFila = 0; intFila < grdDatos.SelectedRows.Count; intFila++)
-				{
-					int intIdPersonal = Convert.ToUInt16(grdDatos.Rows[intFila].Cells[0].Value);
-					SqlCommand cmd = new SqlCommand();
-					cmd.CommandText = "pa_EliminarPersonal_del " + intIdPersonal.ToString();
-					cmd.CommandType = CommandType.Text;
-					DataSet dt;
-					dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-					if (dt.Tables[0].Rows.Count == 0)
-					{
-						MessageBox.Show("No se han cargado ningun personal");
-					}
-					else
-					{
-						if (dt.Tables[0].Rows[0][1].ToString() == "0")
-							strMensaje += strMensaje == "" ? grdDatos.Rows[intFila].Cells[1].Value : ", " + grdDatos.Rows[intFila].Cells[1].Value;
-					}
-				}
 
-				if (strMensaje != "")
-					MessageBox.Show("No se puede eliminar los siguiente rut, hay datos relacionados : \n" + strMensaje);
-
-				btn_cargarCliente_Click(null, null);
-			}
-		}
 
 		#endregion
 
@@ -254,5 +235,64 @@ namespace ControlDosimetro
 
 		}
 
+		private void grdDatos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+		{
+
+		}
+
+		private void tsbGuardar_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+
+			SqlCommand cmd = new SqlCommand();
+			foreach (DataRow dr in ((DataTable)grdDatos.DataSource).Rows)
+			{
+				//	if (dr["Id_CodServicio"] != dr["Id_CodServicio",DataRowVersion.Original])
+				if (dr.RowState == DataRowState.Modified)
+				{
+					String strParametro = "";
+					if (dr["Id_CodServicio"] == DBNull.Value)
+						strParametro = "Null" + ",";
+					else
+						strParametro = dr["Id_CodServicio"].ToString() + ",";
+
+					if (dr["Id_Seccion"] == DBNull.Value)
+						strParametro = "Null";
+					else
+						strParametro = strParametro +  dr["Id_Seccion"].ToString();
+
+
+					cmd.CommandText = "pa_PersonalMasivo_Upd " + dr["Id_Personal"] + "," + strParametro;
+					cmd.CommandType = CommandType.Text;
+					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+				}
+					
+			}
+			Cursor = Cursors.Default;
+
+		}
+
+		private void grdDatos_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+		{
+			DataGridView dgv = sender as DataGridView;
+			if (null == dgv || null == dgv.CurrentCell || !dgv.IsCurrentCellDirty)
+			{
+				return;
+			}
+
+			if ((dgv.CurrentCell is DataGridViewComboBoxCell || dgv.CurrentCell is DataGridViewCheckBoxCell))
+			{
+				dgv.CommitEdit(DataGridViewDataErrorContexts.Commit);
+			}
+		}
+
+		private void grdDatos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+		{
+				if (e.RowIndex > -1)
+				{
+					((DataTable)grdDatos.DataSource).Rows[e.RowIndex].EndEdit();
+				}
+			
+		}
 	}
 }
