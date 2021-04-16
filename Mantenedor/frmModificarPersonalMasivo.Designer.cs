@@ -64,9 +64,9 @@
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Controls.Add(this.txt_Rut);
 			this.groupBox1.Controls.Add(this.label1);
-			this.groupBox1.Location = new System.Drawing.Point(0, 28);
+			this.groupBox1.Location = new System.Drawing.Point(0, 42);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(849, 107);
+			this.groupBox1.Size = new System.Drawing.Size(849, 93);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Dato Cliente";
@@ -188,6 +188,7 @@
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
 			this.grdDatos.Size = new System.Drawing.Size(836, 372);
 			this.grdDatos.TabIndex = 5;
+			this.grdDatos.VirtualMode = true;
 			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
 			this.grdDatos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdDatos_DataBindingComplete);
@@ -200,7 +201,7 @@
             this.tsbGuardar});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(859, 27);
+			this.toolStrip1.Size = new System.Drawing.Size(859, 31);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -208,9 +209,10 @@
 			// 
 			this.tsbGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.tsbGuardar.Image = global::ControlDosimetro.Properties.Resources.Save_24;
+			this.tsbGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.tsbGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbGuardar.Name = "tsbGuardar";
-			this.tsbGuardar.Size = new System.Drawing.Size(24, 24);
+			this.tsbGuardar.Size = new System.Drawing.Size(28, 28);
 			this.tsbGuardar.Text = "toolStripButton1";
 			this.tsbGuardar.Click += new System.EventHandler(this.tsbGuardar_Click);
 			// 
@@ -229,6 +231,7 @@
 			this.Rut.DataPropertyName = "Rut";
 			this.Rut.HeaderText = "Rut";
 			this.Rut.Name = "Rut";
+			this.Rut.ReadOnly = true;
 			this.Rut.Width = 49;
 			// 
 			// Nombres
@@ -237,6 +240,7 @@
 			this.Nombres.DataPropertyName = "Nombres";
 			this.Nombres.HeaderText = "Nombres";
 			this.Nombres.Name = "Nombres";
+			this.Nombres.ReadOnly = true;
 			this.Nombres.Width = 74;
 			// 
 			// Paterno
@@ -246,6 +250,7 @@
 			this.Paterno.FillWeight = 300F;
 			this.Paterno.HeaderText = "Paterno";
 			this.Paterno.Name = "Paterno";
+			this.Paterno.ReadOnly = true;
 			this.Paterno.Width = 69;
 			// 
 			// Maternos
@@ -255,12 +260,12 @@
 			this.Maternos.HeaderText = "Maternos";
 			this.Maternos.MinimumWidth = 150;
 			this.Maternos.Name = "Maternos";
+			this.Maternos.ReadOnly = true;
 			this.Maternos.Width = 150;
 			// 
 			// ColServicio
 			// 
 			this.ColServicio.DataPropertyName = "Id_CodServicio";
-			this.ColServicio.DisplayStyleForCurrentCellOnly = true;
 			this.ColServicio.HeaderText = "Servicio";
 			this.ColServicio.Name = "ColServicio";
 			this.ColServicio.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -270,7 +275,6 @@
 			// ColSeccion
 			// 
 			this.ColSeccion.DataPropertyName = "Id_Seccion";
-			this.ColSeccion.DisplayStyleForCurrentCellOnly = true;
 			this.ColSeccion.HeaderText = "Sección";
 			this.ColSeccion.Name = "ColSeccion";
 			this.ColSeccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;

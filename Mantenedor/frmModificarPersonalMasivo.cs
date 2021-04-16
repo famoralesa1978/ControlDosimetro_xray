@@ -30,7 +30,7 @@ namespace ControlDosimetro
 		bool Modificacion;
 		bool Eliminar;
 		DataSet dt;
-
+		DataSet dtPersonal;
 		public int Id_Menu { get; private set; }
 
 		public object[] Parametros
@@ -48,8 +48,7 @@ namespace ControlDosimetro
 		public frmModificarPersonalMasivo()
 		{
 			InitializeComponent();
-			
-			Cargar_CodServicio();
+		
 			AsignarEvento();
 		}
 
@@ -110,6 +109,7 @@ namespace ControlDosimetro
 				tsbGuardar.Visible = Modificacion;
 				txt_RazonSocial.ReadOnly = true;
 				Cargar_Seccion();
+				Cargar_CodServicio();
 				Listar_Personal();
 			}
 		}
@@ -119,9 +119,9 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = "pa_ListarPersonal_sel '" + txt_Rut.Text + "'";
 			cmd.CommandType = CommandType.Text;
-			
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-			grdDatos.DataSource = dt.Tables[0];
+
+			dtPersonal = Conectar.Listar(Clases.clsBD.BD, cmd);
+			grdDatos.DataSource = dtPersonal.Tables[0];
 		}
 
 		private void Cargar_Seccion()
@@ -282,7 +282,7 @@ namespace ControlDosimetro
 
 			if ((dgv.CurrentCell is DataGridViewComboBoxCell || dgv.CurrentCell is DataGridViewCheckBoxCell))
 			{
-				dgv.CommitEdit(DataGridViewDataErrorContexts.Commit);
+				grdDatos.CommitEdit(DataGridViewDataErrorContexts.Commit);
 			}
 		}
 
@@ -290,7 +290,9 @@ namespace ControlDosimetro
 		{
 				if (e.RowIndex > -1)
 				{
-					((DataTable)grdDatos.DataSource).Rows[e.RowIndex].EndEdit();
+					
+				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].RejectChanges();
+				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].SetModified();
 				}
 			
 		}
