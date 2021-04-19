@@ -121,6 +121,7 @@ namespace classFuncionesGenerales
 
 	}
 
+
 	public class mensajes
 	{
 
