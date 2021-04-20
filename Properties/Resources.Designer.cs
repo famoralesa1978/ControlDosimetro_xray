@@ -497,6 +497,36 @@ namespace ControlDosimetro.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Seccion_16 {
+            get {
+                object obj = ResourceManager.GetObject("Seccion_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Seccion_24 {
+            get {
+                object obj = ResourceManager.GetObject("Seccion_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Seccion_32 {
+            get {
+                object obj = ResourceManager.GetObject("Seccion_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a frmBusquedaSucursal frm = new frmBusquedaSucursal(0);.
         /// </summary>
         public static string String {

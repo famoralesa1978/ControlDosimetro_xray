@@ -41,24 +41,6 @@ namespace ControlDosimetro
 				  btn_Grabar.Text = "Modificar";
 				  this.Text = "Modificar Sección";
 
-				  //SqlCommand cmd = new SqlCommand();
-
-				  //cmd.CommandText = "SELECT run,Razon_Social,N_Cliente_Ref,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
-				  //				" FROM tbl_cliente WHERE Id_cliente= " + intCodCliente.ToString();
-				  //DataSet dt;
-				  //dt = Conectar.Listar(Clases.clsBD.BD,cmd);
-
-				  //txt_rut.Text = dt.Tables[0].Rows[0]["run"].ToString();
-				  //txt_seccion.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
-				  //txt_paterno.Text = dt.Tables[0].Rows[0]["Direccion"].ToString();
-				  //cbx_id_region.Text = dt.Tables[0].Rows[0]["Id_Region"].ToString();
-				  //cbx_seccion.SelectedIndex = cbx_id_region.SelectedIndex;
-
-				  //cbx_id_estado.Text = dt.Tables[0].Rows[0]["Id_estado"].ToString();
-				  //lbl_Fecha_Modificacion.Text = cbx_id_estado.Text;
-				  //cbx_Estado.SelectedIndex = cbx_id_estado.SelectedIndex;
-				  //dtp_Fecha_inicio.Text = dt.Tables[0].Rows[0]["Fechainicio"].ToString();
-				  //dtp_Fecha_inicio.Enabled = false;
 			  }
 		  }
 
@@ -113,18 +95,13 @@ namespace ControlDosimetro
 					  ClaseComun.Modificar(Clases.clsBD.BD,tbl_seccion, ref bolResult);
 					  if (bolResult == true)
 					  {
-						  if (cbx_id_estado.Text == "2")
-						  {
-							  //if (lbl_Fecha_Modificacion.Text != cbx_id_estado.Text)
-							  //{
-							  //	MessageBox.Show("Dato modificado,Debe ingresar una observación porque se dejo inactivo");
-							  //	this.Close();
-							  //}
-							  //else
-								  MessageBox.Show("Dato modificado");
-						  }
-						  else
-							  MessageBox.Show("Dato modificado");
+						  //if (cbx_id_estado.Text == "2")
+						  //{
+						
+								//  MessageBox.Show("Dato modificado");
+						  //}
+						  //else
+							 // MessageBox.Show("Dato modificado");
 
 						  this.Close();
 					  }
@@ -135,7 +112,7 @@ namespace ControlDosimetro
 					  ClaseComun.Insertar(Clases.clsBD.BD,tbl_seccion, ref bolResult);
 					  if (bolResult == true)
 					  {
-						  MessageBox.Show("Dato Guardado");
+						//  MessageBox.Show("Dato Guardado");
 						  this.Close();
 					  }
 				  }
@@ -150,29 +127,7 @@ namespace ControlDosimetro
 
 		  #region "combobox"
 
-		  private void cbx_provincia_SelectedIndexChanged(object sender, EventArgs e)
-		  {
-
-		  }
 		  #endregion
-
-		  private void label12_Click(object sender, EventArgs e)
-		  {
-
-		  }
-
-		  private void cbx_id_estado_SelectedIndexChanged(object sender, EventArgs e)
-		  {
-			  //if (cbx_id_estado.Text == "1")
-			  //	dtp_Fecha_inicio.Enabled = true;
-			  //else
-			  //	dtp_Fecha_inicio.Enabled = false;
-
-		  }
-
-  
-      
-
 
     }
 }

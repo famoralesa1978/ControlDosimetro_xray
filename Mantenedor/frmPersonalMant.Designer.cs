@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.tbl_personal = new System.Windows.Forms.GroupBox();
 			this.cbx_Id_Cargo = new System.Windows.Forms.ComboBox();
 			this.lbl_Id_Cargo = new System.Windows.Forms.Label();
@@ -71,6 +72,7 @@
 			this.lbl_id_cliente1 = new System.Windows.Forms.Label();
 			this.txt_rut = new System.Windows.Forms.TextBox();
 			this.lbl_rut = new System.Windows.Forms.Label();
+			this.topSeccion = new System.Windows.Forms.ToolTip(this.components);
 			this.tbl_personal.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -293,11 +295,13 @@
 			// 
 			// btn_Agregar
 			// 
-			this.btn_Agregar.Location = new System.Drawing.Point(409, 147);
+			this.btn_Agregar.Image = global::ControlDosimetro.Properties.Resources.Seccion_24;
+			this.btn_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btn_Agregar.Location = new System.Drawing.Point(409, 143);
 			this.btn_Agregar.Name = "btn_Agregar";
-			this.btn_Agregar.Size = new System.Drawing.Size(75, 23);
+			this.btn_Agregar.Size = new System.Drawing.Size(35, 31);
 			this.btn_Agregar.TabIndex = 11;
-			this.btn_Agregar.Text = "Agregar";
+			this.topSeccion.SetToolTip(this.btn_Agregar, "Agregar sección");
 			this.btn_Agregar.UseVisualStyleBackColor = true;
 			this.btn_Agregar.Click += new System.EventHandler(this.btn_Agregar_Click);
 			// 
@@ -546,6 +550,10 @@
 			this.lbl_rut.TabIndex = 0;
 			this.lbl_rut.Text = "Rut";
 			// 
+			// topSeccion
+			// 
+			this.topSeccion.ToolTipTitle = "Agregar sección";
+			// 
 			// frmPersonalMant
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -607,5 +615,6 @@
         private System.Windows.Forms.Label lbl_Id_Practica;
         private System.Windows.Forms.ComboBox cbx_Id_CodServicio;
         private System.Windows.Forms.Label lbl_Id_CodServicio;
-    }
+		private System.Windows.Forms.ToolTip topSeccion;
+	}
 }

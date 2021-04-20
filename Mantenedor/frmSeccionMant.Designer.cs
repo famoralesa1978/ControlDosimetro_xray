@@ -100,7 +100,6 @@
 			this.cbx_id_estado.Name = "cbx_id_estado";
 			this.cbx_id_estado.Size = new System.Drawing.Size(121, 21);
 			this.cbx_id_estado.TabIndex = 30;
-			this.cbx_id_estado.SelectedIndexChanged += new System.EventHandler(this.cbx_id_estado_SelectedIndexChanged);
 			// 
 			// lbl_id_estado
 			// 
@@ -114,9 +113,11 @@
 			// 
 			// btn_cerrar
 			// 
-			this.btn_cerrar.Location = new System.Drawing.Point(235, 138);
+			this.btn_cerrar.Image = global::ControlDosimetro.Properties.Resources.Close_24;
+			this.btn_cerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btn_cerrar.Location = new System.Drawing.Point(241, 127);
 			this.btn_cerrar.Name = "btn_cerrar";
-			this.btn_cerrar.Size = new System.Drawing.Size(75, 23);
+			this.btn_cerrar.Size = new System.Drawing.Size(112, 33);
 			this.btn_cerrar.TabIndex = 10;
 			this.btn_cerrar.Text = "Cerrar";
 			this.btn_cerrar.UseVisualStyleBackColor = true;
@@ -124,9 +125,11 @@
 			// 
 			// btn_Grabar
 			// 
-			this.btn_Grabar.Location = new System.Drawing.Point(80, 138);
+			this.btn_Grabar.Image = global::ControlDosimetro.Properties.Resources.Save_24;
+			this.btn_Grabar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btn_Grabar.Location = new System.Drawing.Point(92, 127);
 			this.btn_Grabar.Name = "btn_Grabar";
-			this.btn_Grabar.Size = new System.Drawing.Size(75, 23);
+			this.btn_Grabar.Size = new System.Drawing.Size(109, 34);
 			this.btn_Grabar.TabIndex = 9;
 			this.btn_Grabar.Text = "Guardar";
 			this.btn_Grabar.UseVisualStyleBackColor = true;
