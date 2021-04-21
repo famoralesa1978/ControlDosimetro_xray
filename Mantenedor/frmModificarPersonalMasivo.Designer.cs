@@ -150,7 +150,6 @@
             this.txt_Rut.ReadOnly = true;
             this.txt_Rut.Size = new System.Drawing.Size(132, 22);
             this.txt_Rut.TabIndex = 2;
-            this.txt_Rut.TextChanged += new System.EventHandler(this.txt_Rut_TextChanged);
             // 
             // label1
             // 
@@ -205,8 +204,6 @@
             this.grdDatos.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdDatos_CellMouseClick);
             this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
             this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
-            this.grdDatos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdDatos_DataBindingComplete);
-            this.grdDatos.DoubleClick += new System.EventHandler(this.grdDatos_DoubleClick);
             // 
             // Id_Personal
             // 

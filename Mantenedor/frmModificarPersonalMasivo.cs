@@ -215,12 +215,7 @@ namespace ControlDosimetro
 
 		#region "grilla"
 
-		private void grdDatos_DoubleClick(object sender, EventArgs e)
-		{
-			//frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
-			//frm.ShowDialog(this);
-			//Listar_Personal();
-		}
+
 
 		#endregion
 
@@ -229,16 +224,6 @@ namespace ControlDosimetro
 
 
 		#endregion
-
-		private void txt_Rut_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void grdDatos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-		{
-
-		}
 
 		private void tsbGuardar_Click(object sender, EventArgs e)
 		{
