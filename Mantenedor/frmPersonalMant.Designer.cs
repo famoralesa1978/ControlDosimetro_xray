@@ -270,6 +270,7 @@
 			this.btn_Limpiar.TabIndex = 15;
 			this.btn_Limpiar.Text = "Limpiar Controles";
 			this.btn_Limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.topSeccion.SetToolTip(this.btn_Limpiar, "Limpia los controles del formulario para ingresar uno nuevo");
 			this.btn_Limpiar.UseVisualStyleBackColor = true;
 			this.btn_Limpiar.Click += new System.EventHandler(this.btn_Limpiar_Click);
 			// 
@@ -461,6 +462,7 @@
 			this.btn_cerrar.TabIndex = 14;
 			this.btn_cerrar.Text = "Cerrar";
 			this.btn_cerrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.topSeccion.SetToolTip(this.btn_cerrar, "Cierra el formulario");
 			this.btn_cerrar.UseVisualStyleBackColor = true;
 			this.btn_cerrar.Click += new System.EventHandler(this.btn_cerrar_Click);
 			// 
@@ -474,6 +476,7 @@
 			this.btn_Grabar.TabIndex = 13;
 			this.btn_Grabar.Text = "Guardar";
 			this.btn_Grabar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.topSeccion.SetToolTip(this.btn_Grabar, "Guarda información del personal");
 			this.btn_Grabar.UseVisualStyleBackColor = true;
 			this.btn_Grabar.Click += new System.EventHandler(this.btn_Grabar_Click);
 			// 
@@ -549,10 +552,6 @@
 			this.lbl_rut.Size = new System.Drawing.Size(24, 13);
 			this.lbl_rut.TabIndex = 0;
 			this.lbl_rut.Text = "Rut";
-			// 
-			// topSeccion
-			// 
-			this.topSeccion.ToolTipTitle = "Agregar sección";
 			// 
 			// frmPersonalMant
 			// 

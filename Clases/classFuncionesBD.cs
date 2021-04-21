@@ -52,8 +52,6 @@ namespace classFuncionesBD
 
 			SqlCommand cmd = new SqlCommand
 			{
-				//	SqlCommand cmd = new SqlCommand();
-
 				CommandText = "pa_ObtieneCliente_sel  " + intPeriodo.ToString() + "," + intCodCliente.ToString()
 			};
 			ds = Conectar.Listar(Clases.clsBD.BD, cmd);

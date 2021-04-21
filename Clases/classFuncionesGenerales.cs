@@ -129,6 +129,15 @@ namespace classFuncionesGenerales
 		{
 			MessageBox.Show(strmensaje, ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
+
+		public static  bool MensajeConfirmacion(string strmensaje)
+		{
+
+			if (MessageBox.Show(strmensaje, ControlDosimetro.Properties.Resources.msgCaptionConfirmacion, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
+				return true;
+			else
+				return false;
+		}
 	}
 
 }

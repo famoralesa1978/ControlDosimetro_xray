@@ -361,6 +361,15 @@ namespace ControlDosimetro.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Confirmación.
+        /// </summary>
+        public static string msgCaptionConfirmacion {
+            get {
+                return ResourceManager.GetString("msgCaptionConfirmacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Error.
         /// </summary>
         public static string msgCaptionError {
@@ -384,6 +393,15 @@ namespace ControlDosimetro.Properties {
         public static string msgErrorFaltaCliente {
             get {
                 return ResourceManager.GetString("msgErrorFaltaCliente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Desea grabar la información?.
+        /// </summary>
+        public static string msgGrabar {
+            get {
+                return ResourceManager.GetString("msgGrabar", resourceCulture);
             }
         }
         

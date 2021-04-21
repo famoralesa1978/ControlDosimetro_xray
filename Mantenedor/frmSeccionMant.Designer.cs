@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.tbl_seccion = new System.Windows.Forms.GroupBox();
 			this.lbl_id_seccion = new System.Windows.Forms.Label();
 			this.lbl_nombreCliente = new System.Windows.Forms.Label();
@@ -40,6 +41,7 @@
 			this.txt_seccion = new System.Windows.Forms.TextBox();
 			this.lbl_seccion = new System.Windows.Forms.Label();
 			this.lbl_id_cliente1 = new System.Windows.Forms.Label();
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.tbl_seccion.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -120,6 +122,7 @@
 			this.btn_cerrar.Size = new System.Drawing.Size(112, 33);
 			this.btn_cerrar.TabIndex = 10;
 			this.btn_cerrar.Text = "Cerrar";
+			this.toolTip1.SetToolTip(this.btn_cerrar, "Cerrar formulario");
 			this.btn_cerrar.UseVisualStyleBackColor = true;
 			this.btn_cerrar.Click += new System.EventHandler(this.btn_cerrar_Click);
 			// 
@@ -132,6 +135,7 @@
 			this.btn_Grabar.Size = new System.Drawing.Size(109, 34);
 			this.btn_Grabar.TabIndex = 9;
 			this.btn_Grabar.Text = "Guardar";
+			this.toolTip1.SetToolTip(this.btn_Grabar, "Guardar la información");
 			this.btn_Grabar.UseVisualStyleBackColor = true;
 			this.btn_Grabar.Click += new System.EventHandler(this.btn_Grabar_Click);
 			// 
@@ -177,9 +181,11 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(489, 172);
 			this.Controls.Add(this.tbl_seccion);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "frmSeccionMant";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Sección";
 			this.tbl_seccion.ResumeLayout(false);
 			this.tbl_seccion.PerformLayout();
@@ -201,5 +207,6 @@
 								private System.Windows.Forms.Label lbl_id_cliente;
 								private System.Windows.Forms.Label lbl_nombreCliente;
 								private System.Windows.Forms.Label lbl_id_seccion;
-    }
+		private System.Windows.Forms.ToolTip toolTip1;
+	}
 }
