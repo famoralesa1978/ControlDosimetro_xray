@@ -361,6 +361,15 @@ namespace ControlDosimetro.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Confirmación.
+        /// </summary>
+        public static string msgCaptionConfirmacion {
+            get {
+                return ResourceManager.GetString("msgCaptionConfirmacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Error.
         /// </summary>
         public static string msgCaptionError {
@@ -384,6 +393,15 @@ namespace ControlDosimetro.Properties {
         public static string msgErrorFaltaCliente {
             get {
                 return ResourceManager.GetString("msgErrorFaltaCliente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Desea grabar la información?.
+        /// </summary>
+        public static string msgGrabar {
+            get {
+                return ResourceManager.GetString("msgGrabar", resourceCulture);
             }
         }
         
@@ -497,6 +515,36 @@ namespace ControlDosimetro.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Seccion_16 {
+            get {
+                object obj = ResourceManager.GetObject("Seccion_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Seccion_24 {
+            get {
+                object obj = ResourceManager.GetObject("Seccion_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Seccion_32 {
+            get {
+                object obj = ResourceManager.GetObject("Seccion_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a frmBusquedaSucursal frm = new frmBusquedaSucursal(0);.
         /// </summary>
         public static string String {
@@ -511,6 +559,36 @@ namespace ControlDosimetro.Properties {
         public static string String1 {
             get {
                 return ResourceManager.GetString("String1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Verify_16 {
+            get {
+                object obj = ResourceManager.GetObject("Verify_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Verify_24 {
+            get {
+                object obj = ResourceManager.GetObject("Verify_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Verify_32 {
+            get {
+                object obj = ResourceManager.GetObject("Verify_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
