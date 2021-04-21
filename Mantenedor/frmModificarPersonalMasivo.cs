@@ -48,7 +48,7 @@ namespace ControlDosimetro
 		public frmModificarPersonalMasivo()
 		{
 			InitializeComponent();
-		
+
 			AsignarEvento();
 		}
 
@@ -191,7 +191,7 @@ namespace ControlDosimetro
 
 				tsbGuardar.Visible = false;
 			}
-				
+
 			Cursor = Cursors.Default;
 
 		}
@@ -245,9 +245,9 @@ namespace ControlDosimetro
 			Cursor = Cursors.WaitCursor;
 
 			SqlCommand cmd = new SqlCommand();
-            //foreach (DataRow dr in ((DataTable)grdDatos.DataSource).Rows)
-            foreach (DataRow dr in ((DataTable)grdDatos.DataSource).GetChanges(DataRowState.Modified).Rows)
-            {
+			//foreach (DataRow dr in ((DataTable)grdDatos.DataSource).Rows)
+			foreach (DataRow dr in ((DataTable)grdDatos.DataSource).GetChanges(DataRowState.Modified).Rows)
+			{
 				//	if (dr["Id_CodServicio"] != dr["Id_CodServicio",DataRowVersion.Original])
 				if (dr.RowState == DataRowState.Modified)
 				{
@@ -260,14 +260,14 @@ namespace ControlDosimetro
 					if (dr["Id_Seccion"] == DBNull.Value)
 						strParametro = "Null";
 					else
-						strParametro = strParametro +  dr["Id_Seccion"].ToString();
+						strParametro = strParametro + dr["Id_Seccion"].ToString();
 
 
 					cmd.CommandText = "pa_PersonalMasivo_Upd " + dr["Id_Personal"] + "," + strParametro;
 					cmd.CommandType = CommandType.Text;
 					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 				}
-					
+
 			}
 			Cursor = Cursors.Default;
 
@@ -291,32 +291,43 @@ namespace ControlDosimetro
 		{
 			if (e.RowIndex > -1)
 			{
-                ((DataTable)grdDatos.DataSource).Rows[e.RowIndex].RejectChanges();
-                ((DataTable)grdDatos.DataSource).Rows[e.RowIndex].SetModified();
-            }
-        }
+				if(e.ColumnIndex==ColServicio.Index){
+					grdDatos.Rows[e.RowIndex].Cells[ColServicio.Index].Value = ((DataTable)grdDatos.DataSource).Rows[e.RowIndex]["Id_CodServicio"];
+					((DataTable)grdDatos.DataSource).Rows[e.RowIndex].AcceptChanges();
+				}else
+				if (e.ColumnIndex == ColSeccion.Index)
+				{
+					grdDatos.Rows[e.RowIndex].Cells[ColSeccion.Index].Value = ((DataTable)grdDatos.DataSource).Rows[e.RowIndex]["Id_Seccion"];
+					((DataTable)grdDatos.DataSource).Rows[e.RowIndex].AcceptChanges();
+				}
 
-        private void grdDatos_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //if (e.Button == MouseButtons.Left)
-            //{
-            //    //Para evitar multiselección
 
-            //    foreach (DataGridViewRow row in grdDatos.SelectedRows)
-            //    {
-            //        row.Selected = false;
-            //    }
-            //    grdDatos.SelectedRows()
-            //    ////Para seleccionar
-            //    //grdDatos.Rows(e.RowIndex).Selected = true;
-            //}
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = grdDatos.Rows[e.RowIndex];
-                var a = row.Cells[0].Value.ToString();
-                var b = row.Cells[1].Value.ToString();
-                var c = row.Cells[2].Value.ToString();
-            }
-        }
-    }
+				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].RejectChanges();
+				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].SetModified();
+			}
+		}
+
+		private void grdDatos_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+		{
+			//if (e.Button == MouseButtons.Left)
+			//{
+			//    //Para evitar multiselección
+
+			//    foreach (DataGridViewRow row in grdDatos.SelectedRows)
+			//    {
+			//        row.Selected = false;
+			//    }
+			//    grdDatos.SelectedRows()
+			//    ////Para seleccionar
+			//    //grdDatos.Rows(e.RowIndex).Selected = true;
+			//}
+			if (e.RowIndex >= 0)
+			{
+				DataGridViewRow row = grdDatos.Rows[e.RowIndex];
+				var a = row.Cells[0].Value.ToString();
+				var b = row.Cells[1].Value.ToString();
+				var c = row.Cells[2].Value.ToString();
+			}
+		}
+	}
 }
