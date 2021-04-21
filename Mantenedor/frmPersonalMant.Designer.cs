@@ -44,7 +44,6 @@
 			this.cbx_id_profesion = new System.Windows.Forms.ComboBox();
 			this.lbl_Id_Profesion = new System.Windows.Forms.Label();
 			this.btn_Limpiar = new System.Windows.Forms.Button();
-			this.btn_Verificar = new System.Windows.Forms.Button();
 			this.lbl_Id_Personal = new System.Windows.Forms.Label();
 			this.btn_Agregar = new System.Windows.Forms.Button();
 			this.lbl_Fecha_agregado = new System.Windows.Forms.Label();
@@ -73,11 +72,14 @@
 			this.txt_rut = new System.Windows.Forms.TextBox();
 			this.lbl_rut = new System.Windows.Forms.Label();
 			this.topSeccion = new System.Windows.Forms.ToolTip(this.components);
+			this.picVerificar = new System.Windows.Forms.PictureBox();
 			this.tbl_personal.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.picVerificar)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tbl_personal
 			// 
+			this.tbl_personal.Controls.Add(this.picVerificar);
 			this.tbl_personal.Controls.Add(this.cbx_Id_Cargo);
 			this.tbl_personal.Controls.Add(this.lbl_Id_Cargo);
 			this.tbl_personal.Controls.Add(this.cbx_Id_Practica);
@@ -92,7 +94,6 @@
 			this.tbl_personal.Controls.Add(this.cbx_id_profesion);
 			this.tbl_personal.Controls.Add(this.lbl_Id_Profesion);
 			this.tbl_personal.Controls.Add(this.btn_Limpiar);
-			this.tbl_personal.Controls.Add(this.btn_Verificar);
 			this.tbl_personal.Controls.Add(this.lbl_Id_Personal);
 			this.tbl_personal.Controls.Add(this.btn_Agregar);
 			this.tbl_personal.Controls.Add(this.lbl_Fecha_agregado);
@@ -273,16 +274,6 @@
 			this.topSeccion.SetToolTip(this.btn_Limpiar, "Limpia los controles del formulario para ingresar uno nuevo");
 			this.btn_Limpiar.UseVisualStyleBackColor = true;
 			this.btn_Limpiar.Click += new System.EventHandler(this.btn_Limpiar_Click);
-			// 
-			// btn_Verificar
-			// 
-			this.btn_Verificar.Location = new System.Drawing.Point(293, 41);
-			this.btn_Verificar.Name = "btn_Verificar";
-			this.btn_Verificar.Size = new System.Drawing.Size(75, 23);
-			this.btn_Verificar.TabIndex = 2;
-			this.btn_Verificar.Text = "Verificar";
-			this.btn_Verificar.UseVisualStyleBackColor = true;
-			this.btn_Verificar.Click += new System.EventHandler(this.btn_Verificar_Click);
 			// 
 			// lbl_Id_Personal
 			// 
@@ -553,6 +544,18 @@
 			this.lbl_rut.TabIndex = 0;
 			this.lbl_rut.Text = "Rut";
 			// 
+			// picVerificar
+			// 
+			this.picVerificar.Image = global::ControlDosimetro.Properties.Resources.Verify_24;
+			this.picVerificar.Location = new System.Drawing.Point(295, 37);
+			this.picVerificar.Name = "picVerificar";
+			this.picVerificar.Size = new System.Drawing.Size(24, 24);
+			this.picVerificar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+			this.picVerificar.TabIndex = 63;
+			this.picVerificar.TabStop = false;
+			this.topSeccion.SetToolTip(this.picVerificar, "Verificar si el rut ya fue ingresado");
+			this.picVerificar.Click += new System.EventHandler(this.btn_Verificar_Click);
+			// 
 			// frmPersonalMant
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -565,6 +568,7 @@
 			this.Text = "Personal";
 			this.tbl_personal.ResumeLayout(false);
 			this.tbl_personal.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.picVerificar)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -599,7 +603,6 @@
 								private System.Windows.Forms.Label lbl_Usuario;
 								private System.Windows.Forms.Button btn_Agregar;
 								private System.Windows.Forms.Label lbl_Id_Personal;
-								private System.Windows.Forms.Button btn_Verificar;
 								private System.Windows.Forms.Button btn_Limpiar;
                                 private System.Windows.Forms.Label lbl_Id_Profesion;
 								private System.Windows.Forms.ComboBox cbx_id_profesion;
@@ -615,5 +618,6 @@
         private System.Windows.Forms.ComboBox cbx_Id_CodServicio;
         private System.Windows.Forms.Label lbl_Id_CodServicio;
 		private System.Windows.Forms.ToolTip topSeccion;
+		private System.Windows.Forms.PictureBox picVerificar;
 	}
 }

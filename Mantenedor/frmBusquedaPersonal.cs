@@ -64,6 +64,7 @@ namespace ControlDosimetro
 				txt_ref_cliente.Text = "";
 				txt_Rut.Text = "";
 				txt_RazonSocial.Text = "";
+				grpPersonal.Enabled = false;
 				tsb_Eliminar.Visible = tsb_Agregar.Visible = false;
 			}
 			else
@@ -86,15 +87,16 @@ namespace ControlDosimetro
 				cmd.CommandText = "SELECT Id_Personal,Rut, Nombres,Paterno,Maternos,fecha_nac,Descripcion as id_estado,Fecha_inicio,fecha_termino  " +
 																	" FROM tbl_personal P inner join glo_estado est on est.Id_estado=p.Id_estado WHERE id_cliente= 0 and" +
 																	" rut_cliente='" + txt_Rut.Text + "'" +
-				" order by Nombres,Paterno,Maternos";
+				" order by Paterno,Maternos,Nombres";
 			else
 				cmd.CommandText = "SELECT Id_Personal,Rut, Nombres,Paterno,Maternos,fecha_nac,Descripcion  as id_estado,Fecha_inicio,fecha_termino  " +
 																	" FROM tbl_personal P inner join glo_estado est on est.Id_estado=p.Id_estado  WHERE id_cliente= " + txt_ref_cliente.Text +
 																		" and rut_cliente='" + txt_Rut.Text + "'" +
-				" order by Nombres,Paterno,Maternos";
+				" order by Paterno,Maternos,Nombres";
 			cmd.CommandType = CommandType.Text;
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			grpPersonal.Enabled = true;
 			grdDatos.DataSource = dt.Tables[0];
 		}
 
@@ -144,6 +146,7 @@ namespace ControlDosimetro
 			{
 
 				tsb_Eliminar.Visible = tsb_Agregar.Visible = false;
+				grpPersonal.Enabled = false;
 			}
 
 			Cursor = Cursors.Default;
@@ -162,8 +165,18 @@ namespace ControlDosimetro
 			Listar_Cliente(0);
 			Listar_Personal();
 			txt_ref_cliente.Focus();
-
+			grpPersonal.Enabled = false;
 			Cursor = Cursors.Default;
+		}
+
+		private void picFiltrarpersonal_Click(object sender, EventArgs e)
+		{
+			string strFiltro = "";
+			DataTable dt = ((DataTable)(grdDatos.DataSource));
+			//Rut, Nombres,Paterno,Maternos
+			strFiltro = !String.IsNullOrEmpty(txt_RunPersonal.Text) ? "Rut like '%" + txt_RunPersonal.Text + "%'" : "";
+			strFiltro = strFiltro + (!String.IsNullOrEmpty(txt_NombrePersonal.Text) ? "(Nombres + Paterno+Maternos) like '%" + txt_NombrePersonal.Text + "%'" : "");
+			dt.DefaultView.RowFilter = strFiltro;
 		}
 
 		#endregion
@@ -176,16 +189,6 @@ namespace ControlDosimetro
 			frm.ShowDialog(this);
 			Listar_Personal();
 		}
-
-
-
-
-
-
-
-
-
-
 
 
 		#endregion

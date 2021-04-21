@@ -914,6 +914,9 @@
     <Content Include="Libreria\dllLibreriaMysql.dll" />
     <Content Include="Libreria\DocumentFormat.OpenXml.dll" />
     <Content Include="Libreria\GridExtension.dll" />
+    <None Include="Resources\Verify_16.png" />
+    <None Include="Resources\Verify_32.png" />
+    <None Include="Resources\Verify_24.png" />
     <None Include="Resources\Seccion_32.png" />
     <None Include="Resources\Seccion_16.png" />
     <None Include="Resources\Seccion_24.png" />
