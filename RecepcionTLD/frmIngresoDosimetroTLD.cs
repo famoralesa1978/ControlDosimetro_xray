@@ -35,6 +35,7 @@ namespace ControlDosimetro
 		string strDireccion;
 		string strServicio;
 		string strRegion;
+		string strComuna;
 		public string Id_Menu { get; private set; }
 		private bool Inicializar = true;
 
@@ -87,7 +88,7 @@ namespace ControlDosimetro
 
 
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "select run,Razon_Social,N_Cliente_Ref, Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio,Servicio,c.Id_Region as region " +
+			cmd.CommandText = "select run,Razon_Social,N_Cliente_Ref, Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio,Servicio,r.region,co.Comuna " +
 											"  FROM tbl_cliente c inner join [dbo].[glo_region] r on c.Id_Region=r.Id_Region inner join glo_comuna co on co.id_comuna=c.id_comuna" +
 											" WHERE Id_cliente= " + intCodCliente.ToString();//comuna +','+ region
 			DataSet dt;
@@ -101,6 +102,7 @@ namespace ControlDosimetro
 				strDireccion = dt.Tables[0].Rows[0]["Direccion"].ToString();
 				strServicio= dt.Tables[0].Rows[0]["Servicio"].ToString();
 				strRegion = dt.Tables[0].Rows[0]["region"].ToString();
+				strComuna = dt.Tables[0].Rows[0]["Comuna"].ToString();
 				btn_cargar.Enabled = true;
 				btn_Cargar_cliente.Enabled = false;
 				lbl_id_cliente.Enabled = false;
@@ -661,7 +663,7 @@ namespace ControlDosimetro
 					UpdateValue(wsName, "J4", strServicio, 0, true);
 					UpdateValue(wsName, "L4", strDireccion, 0, true);
 					UpdateValue(wsName, "M4", strRegion, 0, true);
-					//UpdateValue(wsName, "M9", strRegion, 0, true);ciudad
+					UpdateValue(wsName, "N4", strComuna, 0, true);
 					UpdateValue(wsName, "K4", lbl_nombreCliente.Text, 0, true);
 					document.Close();
 
