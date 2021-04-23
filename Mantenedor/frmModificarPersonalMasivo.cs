@@ -170,12 +170,9 @@ namespace ControlDosimetro
 
 		}
 
-
-
 		#endregion
 
 		#region "button"       
-
 
 		private void btn_cargarCliente_Click(object sender, EventArgs e)
 		{
@@ -209,114 +206,68 @@ namespace ControlDosimetro
 			txt_ref_cliente.Focus();
 
 			Cursor = Cursors.Default;
-		}
+        }
 
-		#endregion
+        private void tsbGuardar_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
 
-		#region "grilla"
-
-		private void grdDatos_DoubleClick(object sender, EventArgs e)
-		{
-			//frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
-			//frm.ShowDialog(this);
-			//Listar_Personal();
-		}
-
-		#endregion
-
-		#region Barra
-
-
-
-		#endregion
-
-		private void txt_Rut_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void grdDatos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-		{
-
-		}
-
-		private void tsbGuardar_Click(object sender, EventArgs e)
-		{
-			Cursor = Cursors.WaitCursor;
-
-			SqlCommand cmd = new SqlCommand();
+            SqlCommand cmd = new SqlCommand();
             //foreach (DataRow dr in ((DataTable)grdDatos.DataSource).Rows)
             foreach (DataRow dr in ((DataTable)grdDatos.DataSource).GetChanges(DataRowState.Modified).Rows)
             {
-				//	if (dr["Id_CodServicio"] != dr["Id_CodServicio",DataRowVersion.Original])
-				if (dr.RowState == DataRowState.Modified)
-				{
-					String strParametro = "";
-					if (dr["Id_CodServicio"] == DBNull.Value)
-						strParametro = "Null" + ",";
-					else
-						strParametro = dr["Id_CodServicio"].ToString() + ",";
+                //	if (dr["Id_CodServicio"] != dr["Id_CodServicio",DataRowVersion.Original])
+                if (dr.RowState == DataRowState.Modified)
+                {
+                    String strParametro = "";
+                    if (dr["Id_CodServicio"] == DBNull.Value)
+                        strParametro = "Null" + ",";
+                    else
+                        strParametro = dr["Id_CodServicio"].ToString() + ",";
 
-					if (dr["Id_Seccion"] == DBNull.Value)
-						strParametro = "Null";
-					else
-						strParametro = strParametro +  dr["Id_Seccion"].ToString();
+                    if (dr["Id_Seccion"] == DBNull.Value)
+                        strParametro = "Null";
+                    else
+                        strParametro = strParametro + dr["Id_Seccion"].ToString();
 
 
-					cmd.CommandText = "pa_PersonalMasivo_Upd " + dr["Id_Personal"] + "," + strParametro;
-					cmd.CommandType = CommandType.Text;
-					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-				}
-					
-			}
-			Cursor = Cursors.Default;
+                    cmd.CommandText = "pa_PersonalMasivo_Upd " + dr["Id_Personal"] + "," + strParametro;
+                    cmd.CommandType = CommandType.Text;
+                    Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+                }
 
-		}
+            }
+            Cursor = Cursors.Default;
 
-		private void grdDatos_CurrentCellDirtyStateChanged(object sender, EventArgs e)
-		{
-			DataGridView dgv = sender as DataGridView;
-			if (null == dgv || null == dgv.CurrentCell || !dgv.IsCurrentCellDirty)
-			{
-				return;
-			}
+        }
 
-			if ((dgv.CurrentCell is DataGridViewComboBoxCell || dgv.CurrentCell is DataGridViewCheckBoxCell))
-			{
-				grdDatos.CommitEdit(DataGridViewDataErrorContexts.Commit);
-			}
-		}
+        #endregion
 
-		private void grdDatos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-		{
-			if (e.RowIndex > -1)
-			{
+        #region "grilla"
+
+        private void grdDatos_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            DataGridView dgv = sender as DataGridView;
+            if (null == dgv || null == dgv.CurrentCell || !dgv.IsCurrentCellDirty)
+            {
+                return;
+            }
+
+            if ((dgv.CurrentCell is DataGridViewComboBoxCell || dgv.CurrentCell is DataGridViewCheckBoxCell))
+            {
+                grdDatos.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void grdDatos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
                 ((DataTable)grdDatos.DataSource).Rows[e.RowIndex].RejectChanges();
                 ((DataTable)grdDatos.DataSource).Rows[e.RowIndex].SetModified();
             }
         }
 
-        private void grdDatos_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //if (e.Button == MouseButtons.Left)
-            //{
-            //    //Para evitar multiselección
-
-            //    foreach (DataGridViewRow row in grdDatos.SelectedRows)
-            //    {
-            //        row.Selected = false;
-            //    }
-            //    grdDatos.SelectedRows()
-            //    ////Para seleccionar
-            //    //grdDatos.Rows(e.RowIndex).Selected = true;
-            //}
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = grdDatos.Rows[e.RowIndex];
-                var a = row.Cells[0].Value.ToString();
-                var b = row.Cells[1].Value.ToString();
-                var c = row.Cells[2].Value.ToString();
-            }
-        }
+        #endregion
     }
 }
