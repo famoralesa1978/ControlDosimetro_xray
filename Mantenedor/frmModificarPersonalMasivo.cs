@@ -69,30 +69,9 @@ namespace ControlDosimetro
 
 		private void Listar_Cliente(Int64 intCliente)
 		{
-			//SqlCommand cmd = new SqlCommand();
-			SqlCommand cmd = new SqlCommand();
-			//MessageBox.Show("Conectado al servidor");
+            DataSet dt = classFuncionesGenerales.Filtro.FiltroPersonal(intCliente, txt_Rut.Text);
 
-			if (intCliente != 0)
-			{
-				cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
-						"from tbl_cliente " +
-						"where  (id_cliente=" + intCliente.ToString() + ") or run ='" + txt_Rut.Text + "' " +
-						" and id_estado=1 " +
-						"order by id_cliente";
-				txt_ref_cliente.Text = intCliente.ToString();
-			}
-			if (intCliente == 0)
-				cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
-						"from tbl_cliente " +
-						"where run  ='" + txt_Rut.Text + "' " + " and id_estado=1 " +
-						"order by id_cliente";
-			cmd.CommandType = CommandType.Text;
-
-			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-			if (dt.Tables[0].Rows.Count == 0)
+            if (dt.Tables[0].Rows.Count == 0)
 			{
 				txt_ref_cliente.Text = "";
 				txt_Rut.Text = "";

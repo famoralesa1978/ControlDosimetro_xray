@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 namespace classFuncionesGenerales
 {
-	public class ClsValidadores
+    public class ClsValidadores
 	{
 		readonly clsConectorSqlServer Conectar = new clsConectorSqlServer();
 
@@ -121,7 +121,6 @@ namespace classFuncionesGenerales
 
 	}
 
-
 	public class mensajes
 	{
 
@@ -130,6 +129,34 @@ namespace classFuncionesGenerales
 			MessageBox.Show(strmensaje, ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 	}
+
+    public class Filtro
+    {
+        public static DataSet FiltroPersonal(Int64 intCliente, string Rut)
+        {
+            clsConectorSqlServer Conectar = new clsConectorSqlServer();
+            SqlCommand cmd = new SqlCommand();
+
+            if (intCliente != 0)
+            {
+                cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
+                        "from tbl_cliente " +
+                        "where  (id_cliente=" + intCliente.ToString() + ") or run ='" + Rut + "' " +
+                        " and id_estado=1 " +
+                        "order by id_cliente";
+            }
+            if (intCliente == 0)
+                cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
+                        "from tbl_cliente " +
+                        "where run  ='" + Rut + "' " + " and id_estado=1 " +
+                        "order by id_cliente";
+            cmd.CommandType = CommandType.Text;
+
+            DataSet dt;
+            dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+            return dt;
+        }
+    }
 
 }
 
