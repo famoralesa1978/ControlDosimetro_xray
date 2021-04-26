@@ -201,7 +201,6 @@
             this.grdDatos.Size = new System.Drawing.Size(1115, 458);
             this.grdDatos.TabIndex = 5;
             this.grdDatos.VirtualMode = true;
-            this.grdDatos.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdDatos_CellMouseClick);
             this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
             this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
             // 
