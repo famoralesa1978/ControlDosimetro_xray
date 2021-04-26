@@ -282,7 +282,7 @@
 			this.tsbGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbGuardar.Name = "tsbGuardar";
 			this.tsbGuardar.Size = new System.Drawing.Size(28, 28);
-			this.tsbGuardar.Text = "toolStripButton1";
+			this.tsbGuardar.ToolTipText = "Grabar";
 			this.tsbGuardar.Click += new System.EventHandler(this.tsbGuardar_Click);
 			// 
 			// grpPersonal

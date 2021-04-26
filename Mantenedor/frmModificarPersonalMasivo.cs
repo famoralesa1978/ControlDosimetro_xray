@@ -126,14 +126,8 @@ namespace ControlDosimetro
 
 		private void Cargar_Seccion()
 		{
-			SqlCommand cmd = new SqlCommand();
-			//  SqlCommand cmd = new SqlCommand();
-
-			cmd.CommandText = "select ' ' as seccion, 0 as id_seccion union" +
-							 "		SELECT seccion,id_seccion " +
-							" FROM tbl_seccion  WHERE Id_cliente= " + txt_ref_cliente.Text.ToString() + " and id_estado=1";
-			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			
+			dt = ClaseFunciones.Cargar_Seccion(Convert.ToInt16( txt_ref_cliente.Text.ToString()));
 
 			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns[ColSeccion.Index] as DataGridViewComboBoxColumn;
 			comboboxColumn.DataSource = dt.Tables[0];

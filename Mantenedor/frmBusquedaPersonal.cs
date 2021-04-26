@@ -83,16 +83,7 @@ namespace ControlDosimetro
 		private void Listar_Personal()
 		{
 			SqlCommand cmd = new SqlCommand();
-			if (txt_ref_cliente.Text == "")
-				cmd.CommandText = "SELECT Id_Personal,Rut, Nombres,Paterno,Maternos,fecha_nac,Descripcion as id_estado,Fecha_inicio,fecha_termino  " +
-																	" FROM tbl_personal P inner join glo_estado est on est.Id_estado=p.Id_estado WHERE id_cliente= 0 and" +
-																	" rut_cliente='" + txt_Rut.Text + "'" +
-				" order by Paterno,Maternos,Nombres";
-			else
-				cmd.CommandText = "SELECT Id_Personal,Rut, Nombres,Paterno,Maternos,fecha_nac,Descripcion  as id_estado,Fecha_inicio,fecha_termino  " +
-																	" FROM tbl_personal P inner join glo_estado est on est.Id_estado=p.Id_estado  WHERE id_cliente= " + txt_ref_cliente.Text +
-																		" and rut_cliente='" + txt_Rut.Text + "'" +
-				" order by Paterno,Maternos,Nombres";
+			cmd.CommandText = "pa_ListarPersonal_sel '" + txt_Rut.Text + "'";
 			cmd.CommandType = CommandType.Text;
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
