@@ -9,6 +9,7 @@ using System;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -558,6 +559,8 @@ namespace ControlDosimetro
 				System.IO.Directory.CreateDirectory(targetPathConf);
 			}
 
+			string strDirCliente= @targetPathConf;
+
 			targetPathConf = "C:\\BaseTLD\\Cliente\\Cliente" + lbl_id_cliente.Text + "\\CodigoBarra";
 			if (!System.IO.Directory.Exists(targetPathConf))
 			{
@@ -709,7 +712,8 @@ namespace ControlDosimetro
 
 
 			}
-			MessageBox.Show("El archivo fue generadoa en la siguiente Ruta: " + targetPathConf);
+			Process.Start("explorer.exe", strDirCliente);
+			MessageBox.Show("El archivo fue generado");
 		}
 		#endregion
 
