@@ -21,7 +21,7 @@ namespace ControlDosimetro
 		#region "Definicion variable"
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-		clsEventoControl ClaseEvento = new clsEventoControl();
+		Clases.ClassEvento clsEvento = new Clases.ClassEvento();
 		classFuncionesBD.ClsFunciones ClaseFunciones = new classFuncionesBD.ClsFunciones();
 		bool bolDesdeCodigo;
 		bool bolInicializacion;
@@ -126,14 +126,8 @@ namespace ControlDosimetro
 
 		private void Cargar_Seccion()
 		{
-			SqlCommand cmd = new SqlCommand();
-			//  SqlCommand cmd = new SqlCommand();
-
-			cmd.CommandText = "select ' ' as seccion, 0 as id_seccion union" +
-							 "		SELECT seccion,id_seccion " +
-							" FROM tbl_seccion  WHERE Id_cliente= " + txt_ref_cliente.Text.ToString() + " and id_estado=1";
-			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			
+			dt = ClaseFunciones.Cargar_Seccion(Convert.ToInt16( txt_ref_cliente.Text.ToString()));
 
 			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns[ColSeccion.Index] as DataGridViewComboBoxColumn;
 			comboboxColumn.DataSource = dt.Tables[0];
@@ -156,18 +150,10 @@ namespace ControlDosimetro
 
 		private void AsignarEvento()
 		{
-
-
-			this.txt_Rut.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
-			txt_Rut.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
-			txt_Rut.Validated += new EventHandler(ClaseEvento.validarut_Validated);
-
-			txt_ref_cliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			txt_ref_cliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-
-			txt_RazonSocial.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-
-
+			clsEvento.AsignarRutSinGuion(ref txt_Rut);
+			clsEvento.AsignarRutSinGuion(ref txt_RunPersonal);
+			clsEvento.AsignarNumero(ref txt_ref_cliente);
+			clsEvento.AsignarKeyPress(ref txt_RazonSocial);
 		}
 
 
@@ -211,19 +197,55 @@ namespace ControlDosimetro
 			Cursor = Cursors.Default;
 		}
 
+		private void picFiltrarpersonal_Click(object sender, EventArgs e)
+		{
+			classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text);
+		}
+
 		#endregion
 
 		#region "grilla"
 
+		private void grdDatos_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+		{
+			DataGridView dgv = sender as DataGridView;
+			if (null == dgv || null == dgv.CurrentCell || !dgv.IsCurrentCellDirty)
+			{
+				return;
+			}
+
+			if ((dgv.CurrentCell is DataGridViewComboBoxCell || dgv.CurrentCell is DataGridViewCheckBoxCell))
+			{
+				grdDatos.CommitEdit(DataGridViewDataErrorContexts.Commit);
+			}
+		}
+
+		private void grdDatos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+		{
+			if (e.RowIndex > -1)
+			{
+				if (e.ColumnIndex == ColServicio.Index)
+				{
+					grdDatos.Rows[e.RowIndex].Cells[ColServicio.Index].Value = ((DataTable)grdDatos.DataSource).Rows[e.RowIndex]["Id_CodServicio"];
+					((DataTable)grdDatos.DataSource).Rows[e.RowIndex].AcceptChanges();
+				}
+				else
+				if (e.ColumnIndex == ColSeccion.Index)
+				{
+					grdDatos.Rows[e.RowIndex].Cells[ColSeccion.Index].Value = ((DataTable)grdDatos.DataSource).Rows[e.RowIndex]["Id_Seccion"];
+					((DataTable)grdDatos.DataSource).Rows[e.RowIndex].AcceptChanges();
+				}
+
+
+				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].RejectChanges();
+				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].SetModified();
+			}
+		}
 
 
 		#endregion
 
 		#region Barra
-
-
-
-		#endregion
 
 		private void tsbGuardar_Click(object sender, EventArgs e)
 		{
@@ -258,61 +280,10 @@ namespace ControlDosimetro
 
 		}
 
-		private void grdDatos_CurrentCellDirtyStateChanged(object sender, EventArgs e)
-		{
-			DataGridView dgv = sender as DataGridView;
-			if (null == dgv || null == dgv.CurrentCell || !dgv.IsCurrentCellDirty)
-			{
-				return;
-			}
 
-			if ((dgv.CurrentCell is DataGridViewComboBoxCell || dgv.CurrentCell is DataGridViewCheckBoxCell))
-			{
-				grdDatos.CommitEdit(DataGridViewDataErrorContexts.Commit);
-			}
-		}
-
-		private void grdDatos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-		{
-			if (e.RowIndex > -1)
-			{
-				if(e.ColumnIndex==ColServicio.Index){
-					grdDatos.Rows[e.RowIndex].Cells[ColServicio.Index].Value = ((DataTable)grdDatos.DataSource).Rows[e.RowIndex]["Id_CodServicio"];
-					((DataTable)grdDatos.DataSource).Rows[e.RowIndex].AcceptChanges();
-				}else
-				if (e.ColumnIndex == ColSeccion.Index)
-				{
-					grdDatos.Rows[e.RowIndex].Cells[ColSeccion.Index].Value = ((DataTable)grdDatos.DataSource).Rows[e.RowIndex]["Id_Seccion"];
-					((DataTable)grdDatos.DataSource).Rows[e.RowIndex].AcceptChanges();
-				}
+		#endregion
 
 
-				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].RejectChanges();
-				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].SetModified();
-			}
-		}
 
-		private void grdDatos_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-		{
-			//if (e.Button == MouseButtons.Left)
-			//{
-			//    //Para evitar multiselección
-
-			//    foreach (DataGridViewRow row in grdDatos.SelectedRows)
-			//    {
-			//        row.Selected = false;
-			//    }
-			//    grdDatos.SelectedRows()
-			//    ////Para seleccionar
-			//    //grdDatos.Rows(e.RowIndex).Selected = true;
-			//}
-			if (e.RowIndex >= 0)
-			{
-				DataGridViewRow row = grdDatos.Rows[e.RowIndex];
-				var a = row.Cells[0].Value.ToString();
-				var b = row.Cells[1].Value.ToString();
-				var c = row.Cells[2].Value.ToString();
-			}
-		}
 	}
 }

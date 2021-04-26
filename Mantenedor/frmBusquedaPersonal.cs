@@ -21,7 +21,7 @@ namespace ControlDosimetro
 		#region "Definicion variable"
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-		clsEventoControl ClaseEvento = new clsEventoControl();
+		Clases.ClassEvento clsEvento = new Clases.ClassEvento();
 		#endregion
 
 		public frmBusquedaPersonal(Int64 intId_Cliente)
@@ -83,16 +83,7 @@ namespace ControlDosimetro
 		private void Listar_Personal()
 		{
 			SqlCommand cmd = new SqlCommand();
-			if (txt_ref_cliente.Text == "")
-				cmd.CommandText = "SELECT Id_Personal,Rut, Nombres,Paterno,Maternos,fecha_nac,Descripcion as id_estado,Fecha_inicio,fecha_termino  " +
-																	" FROM tbl_personal P inner join glo_estado est on est.Id_estado=p.Id_estado WHERE id_cliente= 0 and" +
-																	" rut_cliente='" + txt_Rut.Text + "'" +
-				" order by Paterno,Maternos,Nombres";
-			else
-				cmd.CommandText = "SELECT Id_Personal,Rut, Nombres,Paterno,Maternos,fecha_nac,Descripcion  as id_estado,Fecha_inicio,fecha_termino  " +
-																	" FROM tbl_personal P inner join glo_estado est on est.Id_estado=p.Id_estado  WHERE id_cliente= " + txt_ref_cliente.Text +
-																		" and rut_cliente='" + txt_Rut.Text + "'" +
-				" order by Paterno,Maternos,Nombres";
+			cmd.CommandText = "pa_ListarPersonal_sel '" + txt_Rut.Text + "'";
 			cmd.CommandType = CommandType.Text;
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -102,18 +93,10 @@ namespace ControlDosimetro
 
 		private void AsignarEvento()
 		{
-
-
-			this.txt_Rut.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
-			txt_Rut.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
-			txt_Rut.Validated += new EventHandler(ClaseEvento.validarut_Validated);
-
-			txt_ref_cliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			txt_ref_cliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-
-			txt_RazonSocial.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-
-
+			clsEvento.AsignarRutSinGuion(ref txt_Rut);
+			clsEvento.AsignarRutSinGuion(ref txt_RunPersonal);
+			clsEvento.AsignarNumero(ref txt_ref_cliente);
+			clsEvento.AsignarKeyPress(ref txt_RazonSocial);
 		}
 
 
@@ -171,12 +154,7 @@ namespace ControlDosimetro
 
 		private void picFiltrarpersonal_Click(object sender, EventArgs e)
 		{
-			string strFiltro = "";
-			DataTable dt = ((DataTable)(grdDatos.DataSource));
-			//Rut, Nombres,Paterno,Maternos
-			strFiltro = !String.IsNullOrEmpty(txt_RunPersonal.Text) ? "Rut like '%" + txt_RunPersonal.Text + "%'" : "";
-			strFiltro = strFiltro + (!String.IsNullOrEmpty(txt_NombrePersonal.Text) ? "(Nombres + Paterno+Maternos) like '%" + txt_NombrePersonal.Text + "%'" : "");
-			dt.DefaultView.RowFilter = strFiltro;
+			classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text);
 		}
 
 		#endregion
@@ -227,11 +205,6 @@ namespace ControlDosimetro
 		}
 
 		#endregion
-
-		private void txt_Rut_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
+		
 	}
 }

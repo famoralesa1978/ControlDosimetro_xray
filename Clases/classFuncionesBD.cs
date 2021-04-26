@@ -161,6 +161,20 @@ namespace classFuncionesBD
 			cbx.DisplayMember = ds.Tables[0].Columns[0].Caption.ToString();
 			cbx.DataSource = ds.Tables[0];
 		}
+	
+		public DataSet Cargar_Seccion(int intId_Cliente ){
+			DataSet dt;
+
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "select ' ' as seccion, 0 as id_seccion union" +
+							 "		SELECT seccion,id_seccion " +
+							" FROM tbl_seccion  WHERE Id_cliente= " + intId_Cliente.ToString() + " and id_estado=1";
+			
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+
+			return dt;
+		}
 
 		public void DescargarDocumento(int Id, ref byte[] Convert)
 		{

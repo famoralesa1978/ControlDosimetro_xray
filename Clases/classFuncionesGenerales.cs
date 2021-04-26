@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 namespace classFuncionesGenerales
 {
-    public class ClsValidadores
+	public class ClsValidadores
 	{
 		readonly clsConectorSqlServer Conectar = new clsConectorSqlServer();
 
@@ -129,7 +129,7 @@ namespace classFuncionesGenerales
 			MessageBox.Show(strmensaje, ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 
-		public static  bool MensajeConfirmacion(string strmensaje)
+		public static bool MensajeConfirmacion(string strmensaje)
 		{
 
 			if (MessageBox.Show(strmensaje, ControlDosimetro.Properties.Resources.msgCaptionConfirmacion, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
@@ -139,33 +139,18 @@ namespace classFuncionesGenerales
 		}
 	}
 
-    public class Filtro
-    {
-        public static DataSet FiltroPersonal(Int64 intCliente, string Rut)
-        {
-            clsConectorSqlServer Conectar = new clsConectorSqlServer();
-            SqlCommand cmd = new SqlCommand();
-
-            if (intCliente != 0)
-            {
-                cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
-                        "from tbl_cliente " +
-                        "where  (id_cliente=" + intCliente.ToString() + ") or run ='" + Rut + "' " +
-                        " and id_estado=1 " +
-                        "order by id_cliente";
-            }
-            if (intCliente == 0)
-                cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
-                        "from tbl_cliente " +
-                        "where run  ='" + Rut + "' " + " and id_estado=1 " +
-                        "order by id_cliente";
-            cmd.CommandType = CommandType.Text;
-
-            DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-            return dt;
-        }
-    }
+	public class Filtro
+	{
+		public static void FiltroPersonal(ref DataGridView grdGrilla, string NombrePersonal, string Rut)
+		{
+			string strFiltro = "";
+			DataTable dt = ((DataTable)(grdGrilla.DataSource));
+			//Rut, Nombres,Paterno,Maternos
+			strFiltro = !String.IsNullOrEmpty(Rut) ? "Rut like '%" + Rut + "%'" : "";
+			strFiltro = strFiltro + (!String.IsNullOrEmpty(NombrePersonal) ? "(Nombres + Paterno+Maternos) like '%" + NombrePersonal + "%'" : "");
+			dt.DefaultView.RowFilter = strFiltro;
+		}
+	}
 
 }
 

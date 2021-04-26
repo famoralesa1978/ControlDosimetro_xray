@@ -21,6 +21,7 @@ namespace ControlDosimetro
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
 		Clases.ClassEvento Evento = new Clases.ClassEvento();
+		classFuncionesBD.ClsFunciones ClaseFunciones = new classFuncionesBD.ClsFunciones();
 		#endregion
 
 
@@ -172,14 +173,8 @@ namespace ControlDosimetro
 
 		private void Cargar_Seccion()
 		{
-			SqlCommand cmd = new SqlCommand();
-
-			//  SqlCommand cmd = new SqlCommand();
-
-			cmd.CommandText = "SELECT seccion,id_seccion " +
-							" FROM tbl_seccion  WHERE Id_cliente= " + lbl_id_cliente.Text.ToString() + " and id_estado=1";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = ClaseFunciones.Cargar_Seccion(Convert.ToInt16(lbl_id_cliente.Text.ToString()));
 			cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
 			cbx_id_seccion.DataSource = dt.Tables[0];
