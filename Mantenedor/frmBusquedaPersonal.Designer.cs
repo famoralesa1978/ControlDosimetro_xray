@@ -153,7 +153,6 @@
 			this.txt_Rut.Name = "txt_Rut";
 			this.txt_Rut.Size = new System.Drawing.Size(100, 20);
 			this.txt_Rut.TabIndex = 2;
-			this.txt_Rut.TextChanged += new System.EventHandler(this.txt_Rut_TextChanged);
 			// 
 			// label1
 			// 
