@@ -21,7 +21,7 @@ namespace ControlDosimetro
 		#region "Definicion variable"
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-		clsEventoControl ClaseEvento = new clsEventoControl();
+		Clases.ClassEvento clsEvento = new Clases.ClassEvento();
 		#endregion
 
 		public frmBusquedaPersonal(Int64 intId_Cliente)
@@ -29,19 +29,42 @@ namespace ControlDosimetro
 			InitializeComponent();
 			AsignarEvento();
 			Listar_Cliente(intId_Cliente);
+
 		}
 
 		#region "Llamada de carga"
 
 		private void Listar_Cliente(Int64 intCliente)
 		{
-            DataSet dt = classFuncionesGenerales.Filtro.FiltroPersonal(intCliente, txt_Rut.Text);
+			//SqlCommand cmd = new SqlCommand();
+			SqlCommand cmd = new SqlCommand();
+			//MessageBox.Show("Conectado al servidor");
+
+			if (intCliente != 0)
+			{
+				cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
+						"from tbl_cliente " +
+						"where  (id_cliente=" + intCliente.ToString() + ") or run ='" + txt_Rut.Text + "' " +
+						" and id_estado=1 " +
+						"order by id_cliente";
+				txt_ref_cliente.Text = intCliente.ToString();
+			}
+			if (intCliente == 0)
+				cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
+						"from tbl_cliente " +
+						"where run  ='" + txt_Rut.Text + "' " + " and id_estado=1 " +
+						"order by id_cliente";
+			cmd.CommandType = CommandType.Text;
+
+			DataSet dt;
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
 			if (dt.Tables[0].Rows.Count == 0)
 			{
 				txt_ref_cliente.Text = "";
 				txt_Rut.Text = "";
 				txt_RazonSocial.Text = "";
+				grpPersonal.Enabled = false;
 				tsb_Eliminar.Visible = tsb_Agregar.Visible = false;
 			}
 			else
@@ -60,37 +83,23 @@ namespace ControlDosimetro
 		private void Listar_Personal()
 		{
 			SqlCommand cmd = new SqlCommand();
-			if (txt_ref_cliente.Text == "")
-				cmd.CommandText = "SELECT Id_Personal,Rut, Nombres,Paterno,Maternos,fecha_nac,Descripcion as id_estado,Fecha_inicio,fecha_termino  " +
-																	" FROM tbl_personal P inner join glo_estado est on est.Id_estado=p.Id_estado WHERE id_cliente= 0 and" +
-																	" rut_cliente='" + txt_Rut.Text + "'" +
-				" order by Nombres,Paterno,Maternos";
-			else
-				cmd.CommandText = "SELECT Id_Personal,Rut, Nombres,Paterno,Maternos,fecha_nac,Descripcion  as id_estado,Fecha_inicio,fecha_termino  " +
-																	" FROM tbl_personal P inner join glo_estado est on est.Id_estado=p.Id_estado  WHERE id_cliente= " + txt_ref_cliente.Text +
-																		" and rut_cliente='" + txt_Rut.Text + "'" +
-				" order by Nombres,Paterno,Maternos";
+			cmd.CommandText = "pa_ListarPersonal_sel '" + txt_Rut.Text + "'";
 			cmd.CommandType = CommandType.Text;
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			grpPersonal.Enabled = true;
 			grdDatos.DataSource = dt.Tables[0];
 		}
 
 		private void AsignarEvento()
 		{
-
-
-			this.txt_Rut.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
-			txt_Rut.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
-			txt_Rut.Validated += new EventHandler(ClaseEvento.validarut_Validated);
-
-			txt_ref_cliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			txt_ref_cliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-
-			txt_RazonSocial.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-
-
+			clsEvento.AsignarRutSinGuion(ref txt_Rut);
+			clsEvento.AsignarRutSinGuion(ref txt_RunPersonal);
+			clsEvento.AsignarNumero(ref txt_ref_cliente);
+			clsEvento.AsignarKeyPress(ref txt_RazonSocial);
 		}
+
+
 
 		#endregion
 
@@ -120,6 +129,7 @@ namespace ControlDosimetro
 			{
 
 				tsb_Eliminar.Visible = tsb_Agregar.Visible = false;
+				grpPersonal.Enabled = false;
 			}
 
 			Cursor = Cursors.Default;
@@ -138,8 +148,13 @@ namespace ControlDosimetro
 			Listar_Cliente(0);
 			Listar_Personal();
 			txt_ref_cliente.Focus();
-
+			grpPersonal.Enabled = false;
 			Cursor = Cursors.Default;
+		}
+
+		private void picFiltrarpersonal_Click(object sender, EventArgs e)
+		{
+			classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text);
 		}
 
 		#endregion
@@ -152,6 +167,7 @@ namespace ControlDosimetro
 			frm.ShowDialog(this);
 			Listar_Personal();
 		}
+
 
 		#endregion
 
@@ -188,16 +204,7 @@ namespace ControlDosimetro
 			}
 		}
 
-        #endregion
-
-        #region Textboxes
-
-        private void txt_Rut_TextChanged(object sender, EventArgs e)
-		{
-
-        }
-
-        #endregion
-
-    }
+		#endregion
+		
+	}
 }

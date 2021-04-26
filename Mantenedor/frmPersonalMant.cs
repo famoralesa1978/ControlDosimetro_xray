@@ -21,6 +21,7 @@ namespace ControlDosimetro
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
 		Clases.ClassEvento Evento = new Clases.ClassEvento();
+		classFuncionesBD.ClsFunciones ClaseFunciones = new classFuncionesBD.ClsFunciones();
 		#endregion
 
 
@@ -47,7 +48,7 @@ namespace ControlDosimetro
 				lbl_Fecha_agregado.Text = DateTime.Now.Date.ToString().Substring(1, 10);
 				lbl_Fecha_Modificacion.Text = DateTime.Now.Date.ToString().Substring(1, 10);
 				HabDesa_Controles(false);
-				btn_Verificar.Visible = true;
+				picVerificar.Visible = true;
 			}
 			else
 			{
@@ -57,7 +58,7 @@ namespace ControlDosimetro
 				Cargar_Personal(intCodPersonal);
 				lbl_Id_Personal.Text = intCodPersonal.ToString();
 				HabDesa_Controles(true);
-				btn_Verificar.Visible = false;
+				picVerificar.Visible = false;
 				//txt_rut.Enabled = false;
 				btn_Limpiar.Visible = false;
 				btn_Grabar.Enabled = true;
@@ -127,21 +128,19 @@ namespace ControlDosimetro
 			bolverificar = false;
 			SqlCommand cmd = new SqlCommand();
 
-			//			  SqlCommand cmd = new SqlCommand();
-
-			cmd.CommandText = "SELECT Id_Personal,id_cliente,rut_cliente,Rut,Nombres,Paterno,Maternos,Id_Seccion,Id_estado,Fecha_inicio,fecha_termino,Usuario,Fecha_agregado,GETDATE()as Fecha_Modificacion " +
-											" FROM tbl_personal WHERE  Rut='" + strRut + "'  and rut_cliente = '" + lbl_rut_cliente.Text + "' and id_cliente=" + lbl_id_cliente.Text + " and id_estado=1";
+			cmd.CommandText = "SELECT top 1 Id_Personal,id_cliente,rut_cliente,Rut,Nombres,Paterno,Maternos,Id_Seccion,Id_estado,Fecha_inicio,fecha_termino,Usuario,Fecha_agregado,GETDATE()as Fecha_Modificacion " +
+											" FROM tbl_personal WHERE  Rut='" + strRut + "' and id_estado=1";//  and rut_cliente = '" + lbl_rut_cliente.Text + "' and id_cliente=" + lbl_id_cliente.Text + " and id_estado=1";
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
 			if (dt.Tables[0].Rows.Count > 0)
 			{
 
-				for (int i = 0; i <= dt.Tables[0].Rows.Count - 1; i++)
-				{
-					if (lbl_id_cliente.Text == dt.Tables[0].Rows[i]["id_cliente"].ToString() && lbl_rut_cliente.Text == dt.Tables[0].Rows[i]["rut_cliente"].ToString())
-						bolverificar = true;
-				}
+				//for (int i = 0; i <= dt.Tables[0].Rows.Count - 1; i++)
+				//{
+				//	if (lbl_id_cliente.Text == dt.Tables[0].Rows[i]["id_cliente"].ToString() && lbl_rut_cliente.Text == dt.Tables[0].Rows[i]["rut_cliente"].ToString())
+				//		bolverificar = true;
+				//}
 				if (bolverificar == false)
 				{
 					txt_Nombres.Text = dt.Tables[0].Rows[0]["Nombres"].ToString();
@@ -174,14 +173,8 @@ namespace ControlDosimetro
 
 		private void Cargar_Seccion()
 		{
-			SqlCommand cmd = new SqlCommand();
-
-			//  SqlCommand cmd = new SqlCommand();
-
-			cmd.CommandText = "SELECT seccion,id_seccion " +
-							" FROM tbl_seccion  WHERE Id_cliente= " + lbl_id_cliente.Text.ToString() + " and id_estado=1";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = ClaseFunciones.Cargar_Seccion(Convert.ToInt16(lbl_id_cliente.Text.ToString()));
 			cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
 			cbx_id_seccion.DataSource = dt.Tables[0];

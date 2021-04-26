@@ -21,7 +21,7 @@ namespace ControlDosimetro
 		#region "Definicion variable"
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-		clsEventoControl ClaseEvento = new clsEventoControl();
+		Clases.ClassEvento clsEvento = new Clases.ClassEvento();
 		classFuncionesBD.ClsFunciones ClaseFunciones = new classFuncionesBD.ClsFunciones();
 		bool bolDesdeCodigo;
 		bool bolInicializacion;
@@ -48,7 +48,7 @@ namespace ControlDosimetro
 		public frmModificarPersonalMasivo()
 		{
 			InitializeComponent();
-		
+
 			AsignarEvento();
 		}
 
@@ -69,9 +69,30 @@ namespace ControlDosimetro
 
 		private void Listar_Cliente(Int64 intCliente)
 		{
-            DataSet dt = classFuncionesGenerales.Filtro.FiltroPersonal(intCliente, txt_Rut.Text);
+			//SqlCommand cmd = new SqlCommand();
+			SqlCommand cmd = new SqlCommand();
+			//MessageBox.Show("Conectado al servidor");
 
-            if (dt.Tables[0].Rows.Count == 0)
+			if (intCliente != 0)
+			{
+				cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
+						"from tbl_cliente " +
+						"where  (id_cliente=" + intCliente.ToString() + ") or run ='" + txt_Rut.Text + "' " +
+						" and id_estado=1 " +
+						"order by id_cliente";
+				txt_ref_cliente.Text = intCliente.ToString();
+			}
+			if (intCliente == 0)
+				cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
+						"from tbl_cliente " +
+						"where run  ='" + txt_Rut.Text + "' " + " and id_estado=1 " +
+						"order by id_cliente";
+			cmd.CommandType = CommandType.Text;
+
+			DataSet dt;
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+			if (dt.Tables[0].Rows.Count == 0)
 			{
 				txt_ref_cliente.Text = "";
 				txt_Rut.Text = "";
@@ -105,14 +126,8 @@ namespace ControlDosimetro
 
 		private void Cargar_Seccion()
 		{
-			SqlCommand cmd = new SqlCommand();
-			//  SqlCommand cmd = new SqlCommand();
-
-			cmd.CommandText = "select ' ' as seccion, 0 as id_seccion union" +
-							 "		SELECT seccion,id_seccion " +
-							" FROM tbl_seccion  WHERE Id_cliente= " + txt_ref_cliente.Text.ToString() + " and id_estado=1";
-			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			
+			dt = ClaseFunciones.Cargar_Seccion(Convert.ToInt16( txt_ref_cliente.Text.ToString()));
 
 			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns[ColSeccion.Index] as DataGridViewComboBoxColumn;
 			comboboxColumn.DataSource = dt.Tables[0];
@@ -135,23 +150,18 @@ namespace ControlDosimetro
 
 		private void AsignarEvento()
 		{
-
-
-			this.txt_Rut.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
-			txt_Rut.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
-			txt_Rut.Validated += new EventHandler(ClaseEvento.validarut_Validated);
-
-			txt_ref_cliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			txt_ref_cliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-
-			txt_RazonSocial.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-
-
+			clsEvento.AsignarRutSinGuion(ref txt_Rut);
+			clsEvento.AsignarRutSinGuion(ref txt_RunPersonal);
+			clsEvento.AsignarNumero(ref txt_ref_cliente);
+			clsEvento.AsignarKeyPress(ref txt_RazonSocial);
 		}
+
+
 
 		#endregion
 
 		#region "button"       
+
 
 		private void btn_cargarCliente_Click(object sender, EventArgs e)
 		{
@@ -167,7 +177,7 @@ namespace ControlDosimetro
 
 				tsbGuardar.Visible = false;
 			}
-				
+
 			Cursor = Cursors.Default;
 
 		}
@@ -185,68 +195,95 @@ namespace ControlDosimetro
 			txt_ref_cliente.Focus();
 
 			Cursor = Cursors.Default;
-        }
+		}
 
-        private void tsbGuardar_Click(object sender, EventArgs e)
-        {
-            Cursor = Cursors.WaitCursor;
+		private void picFiltrarpersonal_Click(object sender, EventArgs e)
+		{
+			classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text);
+		}
 
-            SqlCommand cmd = new SqlCommand();
-            //foreach (DataRow dr in ((DataTable)grdDatos.DataSource).Rows)
-            foreach (DataRow dr in ((DataTable)grdDatos.DataSource).GetChanges(DataRowState.Modified).Rows)
-            {
-                //	if (dr["Id_CodServicio"] != dr["Id_CodServicio",DataRowVersion.Original])
-                if (dr.RowState == DataRowState.Modified)
-                {
-                    String strParametro = "";
-                    if (dr["Id_CodServicio"] == DBNull.Value)
-                        strParametro = "Null" + ",";
-                    else
-                        strParametro = dr["Id_CodServicio"].ToString() + ",";
+		#endregion
 
-                    if (dr["Id_Seccion"] == DBNull.Value)
-                        strParametro = "Null";
-                    else
-                        strParametro = strParametro + dr["Id_Seccion"].ToString();
+		#region "grilla"
+
+		private void grdDatos_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+		{
+			DataGridView dgv = sender as DataGridView;
+			if (null == dgv || null == dgv.CurrentCell || !dgv.IsCurrentCellDirty)
+			{
+				return;
+			}
+
+			if ((dgv.CurrentCell is DataGridViewComboBoxCell || dgv.CurrentCell is DataGridViewCheckBoxCell))
+			{
+				grdDatos.CommitEdit(DataGridViewDataErrorContexts.Commit);
+			}
+		}
+
+		private void grdDatos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+		{
+			if (e.RowIndex > -1)
+			{
+				if (e.ColumnIndex == ColServicio.Index)
+				{
+					grdDatos.Rows[e.RowIndex].Cells[ColServicio.Index].Value = ((DataTable)grdDatos.DataSource).Rows[e.RowIndex]["Id_CodServicio"];
+					((DataTable)grdDatos.DataSource).Rows[e.RowIndex].AcceptChanges();
+				}
+				else
+				if (e.ColumnIndex == ColSeccion.Index)
+				{
+					grdDatos.Rows[e.RowIndex].Cells[ColSeccion.Index].Value = ((DataTable)grdDatos.DataSource).Rows[e.RowIndex]["Id_Seccion"];
+					((DataTable)grdDatos.DataSource).Rows[e.RowIndex].AcceptChanges();
+				}
 
 
-                    cmd.CommandText = "pa_PersonalMasivo_Upd " + dr["Id_Personal"] + "," + strParametro;
-                    cmd.CommandType = CommandType.Text;
-                    Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-                }
+				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].RejectChanges();
+				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].SetModified();
+			}
+		}
 
-            }
-            Cursor = Cursors.Default;
 
-        }
+		#endregion
 
-        #endregion
+		#region Barra
 
-        #region "grilla"
+		private void tsbGuardar_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
 
-        private void grdDatos_CurrentCellDirtyStateChanged(object sender, EventArgs e)
-        {
-            DataGridView dgv = sender as DataGridView;
-            if (null == dgv || null == dgv.CurrentCell || !dgv.IsCurrentCellDirty)
-            {
-                return;
-            }
+			SqlCommand cmd = new SqlCommand();
+			//foreach (DataRow dr in ((DataTable)grdDatos.DataSource).Rows)
+			foreach (DataRow dr in ((DataTable)grdDatos.DataSource).GetChanges(DataRowState.Modified).Rows)
+			{
+				//	if (dr["Id_CodServicio"] != dr["Id_CodServicio",DataRowVersion.Original])
+				if (dr.RowState == DataRowState.Modified)
+				{
+					String strParametro = "";
+					if (dr["Id_CodServicio"] == DBNull.Value)
+						strParametro = "Null" + ",";
+					else
+						strParametro = dr["Id_CodServicio"].ToString() + ",";
 
-            if ((dgv.CurrentCell is DataGridViewComboBoxCell || dgv.CurrentCell is DataGridViewCheckBoxCell))
-            {
-                grdDatos.CommitEdit(DataGridViewDataErrorContexts.Commit);
-            }
-        }
+					if (dr["Id_Seccion"] == DBNull.Value)
+						strParametro = "Null";
+					else
+						strParametro = strParametro + dr["Id_Seccion"].ToString();
 
-        private void grdDatos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex > -1)
-            {
-                ((DataTable)grdDatos.DataSource).Rows[e.RowIndex].RejectChanges();
-                ((DataTable)grdDatos.DataSource).Rows[e.RowIndex].SetModified();
-            }
-        }
 
-        #endregion
-    }
+					cmd.CommandText = "pa_PersonalMasivo_Upd " + dr["Id_Personal"] + "," + strParametro;
+					cmd.CommandType = CommandType.Text;
+					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+				}
+
+			}
+			Cursor = Cursors.Default;
+
+		}
+
+
+		#endregion
+
+
+
+	}
 }
