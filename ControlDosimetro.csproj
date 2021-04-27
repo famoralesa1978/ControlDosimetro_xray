@@ -866,6 +866,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AdditionalFiles>
     <None Include="Formato\FormatoTLD.xlsx" />
+    <None Include="Formato\FORMULARIO.xlsx" />
     <None Include="Formato\Plantillaword.docx" />
     <None Include="Libreria\certificado.cer" />
     <None Include="packages.config" />
