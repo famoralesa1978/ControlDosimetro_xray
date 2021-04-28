@@ -170,6 +170,7 @@
     <Compile Include="Busqueda\frmAyudaPersonal.Designer.cs">
       <DependentUpon>frmAyudaPersonal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Clases\ClassErrores.cs" />
     <Compile Include="Clases\classEvento.cs" />
     <Compile Include="Clases\classFuncionesGenerales.cs" />
     <Compile Include="Clases\classFuncionesBD.cs" />

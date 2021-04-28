@@ -137,11 +137,19 @@ namespace ControlDosimetro
                 string Clave = clsUtiles1.GenerateHashMD5(txt_Contrasena.Text.Trim());  
                 //pa_login_sel 
                 SqlCommand cmd = new SqlCommand();
-                DataSet ds;
+                DataSet ds = new DataSet();
                 cmd.CommandText = "pa_login_sel '" + txt_Usuario.Text.Trim() + "','" + Clave + "'";
                 cmd.CommandType = CommandType.Text;
 
-                ds = Conectar.Listar(Clases.clsBD.BD,cmd);
+                try
+                {
+                    //throw new System.ArgumentException("Parameter cannot be null", "lohin");
+                    ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+                }
+                catch (Exception ex)
+                {
+                    new Clases.ClassErrores(ex, 0, "e");
+                }
 
                 if (ds.Tables[0].Rows.Count == 0)
                     MessageBox.Show("El usuario no existe");
