@@ -30,6 +30,7 @@
         {
 			this.components = new System.ComponentModel.Container();
 			this.tbl_personal = new System.Windows.Forms.GroupBox();
+			this.picVerificar = new System.Windows.Forms.PictureBox();
 			this.cbx_Id_Cargo = new System.Windows.Forms.ComboBox();
 			this.lbl_Id_Cargo = new System.Windows.Forms.Label();
 			this.cbx_Id_Practica = new System.Windows.Forms.ComboBox();
@@ -72,7 +73,6 @@
 			this.txt_rut = new System.Windows.Forms.TextBox();
 			this.lbl_rut = new System.Windows.Forms.Label();
 			this.topSeccion = new System.Windows.Forms.ToolTip(this.components);
-			this.picVerificar = new System.Windows.Forms.PictureBox();
 			this.tbl_personal.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picVerificar)).BeginInit();
 			this.SuspendLayout();
@@ -128,6 +128,18 @@
 			this.tbl_personal.TabIndex = 0;
 			this.tbl_personal.TabStop = false;
 			this.tbl_personal.Text = "Datos";
+			// 
+			// picVerificar
+			// 
+			this.picVerificar.Image = global::ControlDosimetro.Properties.Resources.Verify_24;
+			this.picVerificar.Location = new System.Drawing.Point(295, 37);
+			this.picVerificar.Name = "picVerificar";
+			this.picVerificar.Size = new System.Drawing.Size(24, 24);
+			this.picVerificar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+			this.picVerificar.TabIndex = 63;
+			this.picVerificar.TabStop = false;
+			this.topSeccion.SetToolTip(this.picVerificar, "Verificar si el rut ya fue ingresado");
+			this.picVerificar.Click += new System.EventHandler(this.btn_Verificar_Click);
 			// 
 			// cbx_Id_Cargo
 			// 
@@ -533,6 +545,7 @@
 			this.txt_rut.Name = "txt_rut";
 			this.txt_rut.Size = new System.Drawing.Size(120, 20);
 			this.txt_rut.TabIndex = 1;
+			this.txt_rut.Validated += new System.EventHandler(this.txt_rut_Validated);
 			// 
 			// lbl_rut
 			// 
@@ -543,18 +556,6 @@
 			this.lbl_rut.Size = new System.Drawing.Size(24, 13);
 			this.lbl_rut.TabIndex = 0;
 			this.lbl_rut.Text = "Rut";
-			// 
-			// picVerificar
-			// 
-			this.picVerificar.Image = global::ControlDosimetro.Properties.Resources.Verify_24;
-			this.picVerificar.Location = new System.Drawing.Point(295, 37);
-			this.picVerificar.Name = "picVerificar";
-			this.picVerificar.Size = new System.Drawing.Size(24, 24);
-			this.picVerificar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-			this.picVerificar.TabIndex = 63;
-			this.picVerificar.TabStop = false;
-			this.topSeccion.SetToolTip(this.picVerificar, "Verificar si el rut ya fue ingresado");
-			this.picVerificar.Click += new System.EventHandler(this.btn_Verificar_Click);
 			// 
 			// frmPersonalMant
 			// 

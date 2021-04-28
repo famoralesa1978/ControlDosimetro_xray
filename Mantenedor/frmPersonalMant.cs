@@ -12,6 +12,7 @@ using dllLibreriaEvento;
 using dllLibreriaMysql;
 using System.Data.SqlClient;
 using System.Data.Sql;
+
 namespace ControlDosimetro
 {
 	public partial class frmPersonalMant : Form
@@ -141,6 +142,10 @@ namespace ControlDosimetro
 				//	if (lbl_id_cliente.Text == dt.Tables[0].Rows[i]["id_cliente"].ToString() && lbl_rut_cliente.Text == dt.Tables[0].Rows[i]["rut_cliente"].ToString())
 				//		bolverificar = true;
 				//}
+				if (dt.Tables[0].Rows.Cast<DataRow>()
+											.Count(x => x.Field<string>("Rut") == strRut && x.Field<int>("id_cliente") == Convert.ToInt64(lbl_id_cliente.Text.ToString()))>0)
+					bolverificar = true;
+
 				if (bolverificar == false)
 				{
 					txt_Nombres.Text = dt.Tables[0].Rows[0]["Nombres"].ToString();
@@ -454,8 +459,17 @@ namespace ControlDosimetro
 		}
 
 
+
 		#endregion
 
 
+		#region "Textbox"
+
+		private void txt_rut_Validated(object sender, EventArgs e)
+		{
+			btn_Verificar_Click(null, null);
+		}
+
+		#endregion
 	}
 }
