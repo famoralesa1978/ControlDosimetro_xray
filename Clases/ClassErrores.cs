@@ -31,11 +31,16 @@ namespace Clases
                 Fecha = DateTime.Now.ToString("yyyyMMdd_HHmmss")
             };
 
-            StreamWriter serialWriter;
-            serialWriter = new StreamWriter("c:\\Error_ControlDosimetro_" + err.Fecha + ".xml");
-            XmlSerializer xmlWriter = new XmlSerializer(err.GetType());
-            xmlWriter.Serialize(serialWriter, err);
-            serialWriter.Close();
+            ////Creo un archivo xml para guardar el error.
+            //StreamWriter serialWriter;
+            //serialWriter = new StreamWriter("d:\\Error_ControlDosimetro_" + err.Fecha + ".xml");
+            //XmlSerializer xmlWriter = new XmlSerializer(err.GetType());
+            //xmlWriter.Serialize(serialWriter, err);
+            //serialWriter.Close();
+
+            //Creo el xml
+            System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(err.GetType());
+            x.Serialize(Console.Out, err);
         }
     }
 }

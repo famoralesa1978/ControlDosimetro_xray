@@ -128,52 +128,53 @@ namespace ControlDosimetro
         private void btn_ingresar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-
-            if (txt_Usuario.Text.Trim() == "" || txt_Contrasena.Text.Trim() == "")
-                MessageBox.Show("Debe contener usuario y contraseña");
-            else
+            try
             {
-                Cursor = Cursors.WaitCursor;
-                string Clave = clsUtiles1.GenerateHashMD5(txt_Contrasena.Text.Trim());  
-                //pa_login_sel 
-                SqlCommand cmd = new SqlCommand();
-                DataSet ds = new DataSet();
-                cmd.CommandText = "pa_login_sel '" + txt_Usuario.Text.Trim() + "','" + Clave + "'";
-                cmd.CommandType = CommandType.Text;
-
-                try
-                {
-                    //throw new System.ArgumentException("Parameter cannot be null", "lohin");
-                    ds = Conectar.Listar(Clases.clsBD.BD, cmd);
-                }
-                catch (Exception ex)
-                {
-                    new Clases.ClassErrores(ex, 0, "e");
-                }
-
-                if (ds.Tables[0].Rows.Count == 0)
-                    MessageBox.Show("El usuario no existe");
+                if (txt_Usuario.Text.Trim() == "" || txt_Contrasena.Text.Trim() == "")
+                    MessageBox.Show("Debe contener usuario y contraseña");
                 else
                 {
-                    if (ds.Tables[0].Rows[0]["Contraseña"].ToString() == Clave)
-                        if (ds.Tables[0].Rows[0]["Id_estado"].ToString() == "1")
-                        {
-                            Clases.clsUsuario.Usuario = ds.Tables[0].Rows[0]["Usuario"].ToString();
-                            Clases.clsUsuario.Nombre = ds.Tables[0].Rows[0]["Nombres"].ToString() + " " + ds.Tables[0].Rows[0]["Paterno"].ToString() +" " +  ds.Tables[0].Rows[0]["Maternos"].ToString();
-                            Clases.clsUsuario.Id_Usuario =  Convert.ToInt16(ds.Tables[0].Rows[0]["Id_Usuario"].ToString());
-                            Clases.clsUsuario.Id_perfil = Convert.ToInt16(ds.Tables[0].Rows[0]["Id_perfil"].ToString());
-                            Clases.clsUsuario.Contraseña = ds.Tables[0].Rows[0]["contraseña"].ToString();
-                            
-                            this.Close();
-                        }
-                        else
-                            MessageBox.Show("El usuario se encuentra desactivado");
+                    Cursor = Cursors.WaitCursor;
+                    string Clave = clsUtiles1.GenerateHashMD5(txt_Contrasena.Text.Trim());
+                    //pa_login_sel 
+                    SqlCommand cmd = new SqlCommand();
+                    DataSet ds; // = new DataSet();
+                    cmd.CommandText = "pa_login_sel '" + txt_Usuario.Text.Trim() + "','" + Clave + "'";
+                    cmd.CommandType = CommandType.Text;
+
+                    ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+                    if (ds.Tables[0].Rows.Count == 0)
+                        MessageBox.Show("El usuario no existe");
                     else
-                        MessageBox.Show("La contraseña es incorrecta");
+                    {
+                        if (ds.Tables[0].Rows[0]["Contraseña"].ToString() == Clave)
+                            if (ds.Tables[0].Rows[0]["Id_estado"].ToString() == "1")
+                            {
+                                Clases.clsUsuario.Usuario = ds.Tables[0].Rows[0]["Usuario"].ToString();
+                                Clases.clsUsuario.Nombre = ds.Tables[0].Rows[0]["Nombres"].ToString() + " " + ds.Tables[0].Rows[0]["Paterno"].ToString() + " " + ds.Tables[0].Rows[0]["Maternos"].ToString();
+                                Clases.clsUsuario.Id_Usuario = Convert.ToInt16(ds.Tables[0].Rows[0]["Id_Usuario"].ToString());
+                                Clases.clsUsuario.Id_perfil = Convert.ToInt16(ds.Tables[0].Rows[0]["Id_perfil"].ToString());
+                                Clases.clsUsuario.Contraseña = ds.Tables[0].Rows[0]["contraseña"].ToString();
+
+                                this.Close();
+                            }
+                            else
+                                MessageBox.Show("El usuario se encuentra desactivado");
+                        else
+                            MessageBox.Show("La contraseña es incorrecta");
+                    }
+                    Cursor = Cursors.Default;
                 }
+            }
+            catch (Exception ex)
+            {
+                new Clases.ClassErrores(ex, 0, txt_Usuario.Text);
+            }
+            finally
+            {
                 Cursor = Cursors.Default;
             }
-            Cursor = Cursors.Default;
         }
 
         private void labelBD_Click(object sender, EventArgs e)
