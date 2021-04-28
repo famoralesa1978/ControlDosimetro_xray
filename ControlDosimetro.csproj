@@ -807,6 +807,7 @@
     <EmbeddedResource Include="reporte\rptDosimetriaEnc_ori.rdlc" />
     <EmbeddedResource Include="reporte\rptDosis.rdlc" />
     <EmbeddedResource Include="reporte\rptListadoTLD.rdlc" />
+    <EmbeddedResource Include="reporte\rptPorNumeroTLD.rdlc" />
     <EmbeddedResource Include="reporte\rptToes.rdlc" />
     <EmbeddedResource Include="reporte\rptEstadoDosimetro.rdlc" />
     <EmbeddedResource Include="reporte\rptOrdenTrabajo.rdlc" />
