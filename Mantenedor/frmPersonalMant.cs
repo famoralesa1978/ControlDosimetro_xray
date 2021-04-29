@@ -105,6 +105,7 @@ namespace ControlDosimetro
 			lbl_Id_Personal.Text = intCodpersonal.ToString();
 			txt_Nombres.Text = dt.Tables[0].Rows[0]["Nombres"].ToString();
 			txt_rut.Text = dt.Tables[0].Rows[0]["Rut"].ToString();
+			txt_rut.Tag = dt.Tables[0].Rows[0]["Rut"].ToString();
 			txt_Maternos.Text = dt.Tables[0].Rows[0]["Maternos"].ToString();
 			txt_paterno.Text = dt.Tables[0].Rows[0]["Paterno"].ToString();
 			dtp_Fecha_inicio.Text = dt.Tables[0].Rows[0]["Fecha_inicio"].ToString();
@@ -142,25 +143,42 @@ namespace ControlDosimetro
 				//	if (lbl_id_cliente.Text == dt.Tables[0].Rows[i]["id_cliente"].ToString() && lbl_rut_cliente.Text == dt.Tables[0].Rows[i]["rut_cliente"].ToString())
 				//		bolverificar = true;
 				//}
-				if (dt.Tables[0].Rows.Cast<DataRow>()
-											.Count(x => x.Field<string>("Rut") == strRut && x.Field<int>("id_cliente") == Convert.ToInt64(lbl_id_cliente.Text.ToString()))>0)
-					bolverificar = true;
+				if (btn_Grabar.Text != "Modificar")
+					if (dt.Tables[0].Rows.Cast<DataRow>()
+												.Count(x => x.Field<string>("Rut") == strRut && x.Field<int>("id_cliente") == Convert.ToInt64(lbl_id_cliente.Text.ToString())) > 0)
+						bolverificar = true;
+				if (btn_Grabar.Text == "Modificar")
+					if (dt.Tables[0].Rows.Cast<DataRow>()
+												.Count(x => x.Field<string>("Rut") != txt_rut.Tag.ToString() &&  x.Field<string>("Rut") == strRut && x.Field<int>("id_cliente") == Convert.ToInt64(lbl_id_cliente.Text.ToString())) > 0)
+						bolverificar = true;
 
-				if (bolverificar == false)
+				if (btn_Grabar.Text != "Modificar")
 				{
-					txt_Nombres.Text = dt.Tables[0].Rows[0]["Nombres"].ToString();
-					txt_rut.Text = dt.Tables[0].Rows[0]["Rut"].ToString();
-					txt_Maternos.Text = dt.Tables[0].Rows[0]["Maternos"].ToString();
-					txt_paterno.Text = dt.Tables[0].Rows[0]["Paterno"].ToString();
-					txt_rut.Enabled = false;
-					txt_Nombres.Focus();
-					HabDesa_Controles(true);
+					if (bolverificar == false)
+					{
+						txt_Nombres.Text = dt.Tables[0].Rows[0]["Nombres"].ToString();
+						txt_rut.Text = dt.Tables[0].Rows[0]["Rut"].ToString();
+						txt_rut.Tag = dt.Tables[0].Rows[0]["Rut"].ToString();
+						txt_Maternos.Text = dt.Tables[0].Rows[0]["Maternos"].ToString();
+						txt_paterno.Text = dt.Tables[0].Rows[0]["Paterno"].ToString();
+						txt_rut.Enabled = false;
+						txt_Nombres.Focus();
+						HabDesa_Controles(true);
+					}
+					else
+					{
+						MessageBox.Show("El personal ya fue ingresado al mismo cliente, no se puede repetir");
+						txt_rut.Focus();
+					}
 				}
-				else
+				if (btn_Grabar.Text == "Modificar")
 				{
-					MessageBox.Show("El personal ya fue ingresado al mismo cliente, no se puede repetir");
-					txt_rut.Focus();
+					if (bolverificar == true){
+						MessageBox.Show("El personal ya fue ingresado al mismo cliente, no se puede repetir");
+						txt_rut.Focus();
+					}
 				}
+
 			}
 			else
 			{
@@ -249,7 +267,7 @@ namespace ControlDosimetro
 					{
 						if (dt.Tables[0].Rows[0]["validacion"].ToString() == "rut")
 						{
-							Evento.AsignarRutSinGuion (ref txt_rut);
+							Evento.AsignarRutSinGuion(ref txt_rut);
 						}
 						if (dt.Tables[0].Rows[0]["validacion"].ToString() == "numerico")
 						{
@@ -286,7 +304,7 @@ namespace ControlDosimetro
 			{
 				if ((int)cbx_id_estado.SelectedValue == 1)
 				{
-						  dtp_Fecha_inicio.Enabled = bolHabDesa;
+					dtp_Fecha_inicio.Enabled = bolHabDesa;
 					dtp_fecha_termino.Enabled = false;
 				}
 				if (cbx_id_estado.Text == "2")
@@ -301,6 +319,7 @@ namespace ControlDosimetro
 		private void LimpiarControles()
 		{
 			txt_rut.Text = "";
+			txt_rut.Tag = "";
 			txt_paterno.Text = "";
 			txt_Nombres.Text = "";
 			dtp_Fecha_inicio.Value = DateTime.Today;
@@ -323,7 +342,7 @@ namespace ControlDosimetro
 
 		private void Grabar()
 		{
-			Boolean bolResult=false;
+			Boolean bolResult = false;
 			if (btn_Grabar.Text == "Modificar")
 			{
 
@@ -375,7 +394,7 @@ namespace ControlDosimetro
 			Cursor = Cursors.Default;
 		}
 
-		
+
 
 		private void btn_Grabar_Click(object sender, EventArgs e)
 		{
