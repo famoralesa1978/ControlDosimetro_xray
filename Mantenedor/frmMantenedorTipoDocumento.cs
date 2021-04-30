@@ -65,7 +65,7 @@ namespace ControlDosimetro
 		public frmMantenedorTipoDocumento()
 		{
 			InitializeComponent();
-			
+			AsignarEvento();
 		}
 
 		private void frmMantenedorPerfil_Load(object sender, EventArgs e)
