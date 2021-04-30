@@ -58,13 +58,13 @@
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.btn_Guardar = new System.Windows.Forms.Button();
 			this.cbx_id_estado = new System.Windows.Forms.ComboBox();
-			this.label4 = new System.Windows.Forms.Label();
+			this.lbl_id_estado = new System.Windows.Forms.Label();
 			this.txt_orden = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
+			this.lbl_orden = new System.Windows.Forms.Label();
 			this.txt_detalle_tipo_documento = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
+			this.lbl_detalle_tipo_documento = new System.Windows.Forms.Label();
 			this.txt_id_tipo_doc = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
+			this.lbl_id_tipo_doc = new System.Windows.Forms.Label();
 			this.btn_Limpiar = new System.Windows.Forms.Button();
 			this.stsEstado.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
@@ -336,13 +336,13 @@
 			this.glo_TipoDocumentos.Controls.Add(this.pictureBox1);
 			this.glo_TipoDocumentos.Controls.Add(this.btn_Guardar);
 			this.glo_TipoDocumentos.Controls.Add(this.cbx_id_estado);
-			this.glo_TipoDocumentos.Controls.Add(this.label4);
+			this.glo_TipoDocumentos.Controls.Add(this.lbl_id_estado);
 			this.glo_TipoDocumentos.Controls.Add(this.txt_orden);
-			this.glo_TipoDocumentos.Controls.Add(this.label3);
+			this.glo_TipoDocumentos.Controls.Add(this.lbl_orden);
 			this.glo_TipoDocumentos.Controls.Add(this.txt_detalle_tipo_documento);
-			this.glo_TipoDocumentos.Controls.Add(this.label2);
+			this.glo_TipoDocumentos.Controls.Add(this.lbl_detalle_tipo_documento);
 			this.glo_TipoDocumentos.Controls.Add(this.txt_id_tipo_doc);
-			this.glo_TipoDocumentos.Controls.Add(this.label5);
+			this.glo_TipoDocumentos.Controls.Add(this.lbl_id_tipo_doc);
 			this.glo_TipoDocumentos.Controls.Add(this.btn_Limpiar);
 			this.glo_TipoDocumentos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.glo_TipoDocumentos.Location = new System.Drawing.Point(0, 0);
@@ -392,15 +392,15 @@
 			this.cbx_id_estado.Size = new System.Drawing.Size(155, 21);
 			this.cbx_id_estado.TabIndex = 21;
 			// 
-			// label4
+			// lbl_id_estado
 			// 
-			this.label4.AutoSize = true;
-			this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.Location = new System.Drawing.Point(29, 117);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(40, 13);
-			this.label4.TabIndex = 20;
-			this.label4.Text = "Estado";
+			this.lbl_id_estado.AutoSize = true;
+			this.lbl_id_estado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbl_id_estado.Location = new System.Drawing.Point(29, 117);
+			this.lbl_id_estado.Name = "lbl_id_estado";
+			this.lbl_id_estado.Size = new System.Drawing.Size(40, 13);
+			this.lbl_id_estado.TabIndex = 20;
+			this.lbl_id_estado.Text = "Estado";
 			// 
 			// txt_orden
 			// 
@@ -410,15 +410,15 @@
 			this.txt_orden.Size = new System.Drawing.Size(155, 20);
 			this.txt_orden.TabIndex = 19;
 			// 
-			// label3
+			// lbl_orden
 			// 
-			this.label3.AutoSize = true;
-			this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(29, 90);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(36, 13);
-			this.label3.TabIndex = 18;
-			this.label3.Text = "Orden";
+			this.lbl_orden.AutoSize = true;
+			this.lbl_orden.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbl_orden.Location = new System.Drawing.Point(29, 90);
+			this.lbl_orden.Name = "lbl_orden";
+			this.lbl_orden.Size = new System.Drawing.Size(36, 13);
+			this.lbl_orden.TabIndex = 18;
+			this.lbl_orden.Text = "Orden";
 			// 
 			// txt_detalle_tipo_documento
 			// 
@@ -428,15 +428,15 @@
 			this.txt_detalle_tipo_documento.Size = new System.Drawing.Size(155, 20);
 			this.txt_detalle_tipo_documento.TabIndex = 17;
 			// 
-			// label2
+			// lbl_detalle_tipo_documento
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(29, 64);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(63, 13);
-			this.label2.TabIndex = 16;
-			this.label2.Text = "Descripción";
+			this.lbl_detalle_tipo_documento.AutoSize = true;
+			this.lbl_detalle_tipo_documento.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbl_detalle_tipo_documento.Location = new System.Drawing.Point(29, 64);
+			this.lbl_detalle_tipo_documento.Name = "lbl_detalle_tipo_documento";
+			this.lbl_detalle_tipo_documento.Size = new System.Drawing.Size(63, 13);
+			this.lbl_detalle_tipo_documento.TabIndex = 16;
+			this.lbl_detalle_tipo_documento.Text = "Descripción";
 			// 
 			// txt_id_tipo_doc
 			// 
@@ -447,15 +447,15 @@
 			this.txt_id_tipo_doc.TabIndex = 15;
 			this.txt_id_tipo_doc.Visible = false;
 			// 
-			// label5
+			// lbl_id_tipo_doc
 			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(29, 144);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(18, 13);
-			this.label5.TabIndex = 14;
-			this.label5.Text = "ID";
-			this.label5.Visible = false;
+			this.lbl_id_tipo_doc.AutoSize = true;
+			this.lbl_id_tipo_doc.Location = new System.Drawing.Point(29, 144);
+			this.lbl_id_tipo_doc.Name = "lbl_id_tipo_doc";
+			this.lbl_id_tipo_doc.Size = new System.Drawing.Size(18, 13);
+			this.lbl_id_tipo_doc.TabIndex = 14;
+			this.lbl_id_tipo_doc.Text = "ID";
+			this.lbl_id_tipo_doc.Visible = false;
 			// 
 			// btn_Limpiar
 			// 
@@ -538,13 +538,13 @@
         private System.Windows.Forms.ToolStripStatusLabel tssEstado;
         private System.Windows.Forms.Button btn_Limpiar;
         private System.Windows.Forms.ComboBox cbx_id_estado;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbl_id_estado;
         private System.Windows.Forms.TextBox txt_orden;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbl_orden;
         private System.Windows.Forms.TextBox txt_detalle_tipo_documento;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbl_detalle_tipo_documento;
         private System.Windows.Forms.TextBox txt_id_tipo_doc;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbl_id_tipo_doc;
 		private System.Windows.Forms.Button btn_Guardar;
 		private System.Windows.Forms.DataGridView dgvGrilla;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Coldetalle_tipo_documento;

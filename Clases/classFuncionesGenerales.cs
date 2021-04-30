@@ -114,7 +114,7 @@ namespace classFuncionesGenerales
 				}
 				catch (Exception e)
 				{
-					MessageBox.Show(e.Message, ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
+					mensajes.MensajeError(e.Message);
 				}
 			}
 		}

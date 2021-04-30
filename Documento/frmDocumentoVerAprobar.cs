@@ -82,7 +82,9 @@ namespace ControlDosimetro
 		{
 			SqlCommand cmd = new SqlCommand();
 			DataSet ds;
-			cmd.CommandText = "pa_ListadoPorDocumento " + cbx_Anno.SelectedValue;
+
+			string strIdCliente = String.IsNullOrEmpty(txt_n_Cliente.Text) ? "0" : txt_n_Cliente.Text;
+			cmd.CommandText = "pa_ListadoPorDocumento " + cbx_Anno.SelectedValue + "," + strIdCliente;
 
 			cmd.CommandType = CommandType.Text;
 			ds = Conectar.Listar(Clases.clsBD.BD, cmd);

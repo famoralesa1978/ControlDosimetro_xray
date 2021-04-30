@@ -19,6 +19,7 @@ namespace ControlDosimetro
 	{
 		#region "Definicion variable"
 
+		Clases.ClassEvento clsEvento = new Clases.ClassEvento();
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
@@ -50,12 +51,8 @@ namespace ControlDosimetro
 		public frmingdocumentos()
 		{
 			InitializeComponent();
-			SqlCommand cmd = new SqlCommand
-			{
-				CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "',' " + this.Text + "'",
-				CommandType = CommandType.Text
-			};
-			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+			AsignarEvento();
+
 			Cargar_Ddls();
 		}
 
@@ -68,7 +65,15 @@ namespace ControlDosimetro
 		#endregion
 
 
-		#region carga
+		#region Metodo y procedimiento
+
+		private void AsignarEvento()
+		{
+			clsEvento.AsignarNumero(ref lbl_id_cliente);
+			clsEvento.AsignarKeyPress(ref txtDescripcionArchivo);
+			clsEvento.AsignarKeyPress(ref txtRutaArchivo);
+			//	clsEvento.K(ref txt_orden);
+		}
 
 		private void AsignarPermiso()
 		{
@@ -206,7 +211,7 @@ namespace ControlDosimetro
 			OpenFileDialog fdlg = new OpenFileDialog();
 			fdlg.Title = "Seleccione archivo a Cargar";
 			fdlg.InitialDirectory = @"c:\";
-			fdlg.Filter = "PDF files (*.PDF)|*.PDF|DOC files (*.DOC)|*.DOC|DOCX files (*.DOCX)|*.DOCX";
+			fdlg.Filter = "PDF files (*.PDF)|*.PDF|DOC files (*.DOC)|*.DOC|DOCX files (*.DOCX)|*.DOCX | xls files(*.XLS) | *.XLS| xlsx files(*.XLSX) | *.XLSX";
 			fdlg.FilterIndex = 2;
 			fdlg.RestoreDirectory = true;
 			if (fdlg.ShowDialog() == DialogResult.OK)

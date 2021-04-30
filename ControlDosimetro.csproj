@@ -32,10 +32,10 @@
     <TargetCulture>es-CL</TargetCulture>
     <ProductName>X-Ray Dosimetro</ProductName>
     <SuiteName>Sistema Dosimetro</SuiteName>
-    <MinimumRequiredVersion>9.0.1.14</MinimumRequiredVersion>
+    <MinimumRequiredVersion>9.0.1.16</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>instalacion.html</WebPage>
-    <ApplicationRevision>15</ApplicationRevision>
+    <ApplicationRevision>17</ApplicationRevision>
     <ApplicationVersion>9.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -807,6 +807,7 @@
     <EmbeddedResource Include="reporte\rptDosimetriaEnc_ori.rdlc" />
     <EmbeddedResource Include="reporte\rptDosis.rdlc" />
     <EmbeddedResource Include="reporte\rptListadoTLD.rdlc" />
+    <EmbeddedResource Include="reporte\rptPorNumeroTLD.rdlc" />
     <EmbeddedResource Include="reporte\rptToes.rdlc" />
     <EmbeddedResource Include="reporte\rptEstadoDosimetro.rdlc" />
     <EmbeddedResource Include="reporte\rptOrdenTrabajo.rdlc" />
@@ -866,6 +867,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AdditionalFiles>
     <None Include="Formato\FormatoTLD.xlsx" />
+    <None Include="Formato\FORMULARIO.xlsx" />
     <None Include="Formato\Plantillaword.docx" />
     <None Include="Libreria\certificado.cer" />
     <None Include="packages.config" />
