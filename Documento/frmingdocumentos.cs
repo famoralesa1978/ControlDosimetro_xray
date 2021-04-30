@@ -206,7 +206,7 @@ namespace ControlDosimetro
 			OpenFileDialog fdlg = new OpenFileDialog();
 			fdlg.Title = "Seleccione archivo a Cargar";
 			fdlg.InitialDirectory = @"c:\";
-			fdlg.Filter = "PDF files (*.PDF)|*.PDF|DOC files (*.DOC)|*.DOC|DOCX files (*.DOCX)|*.DOCX";
+			fdlg.Filter = "PDF files (*.PDF)|*.PDF|DOC files (*.DOC)|*.DOC|DOCX files (*.DOCX)|*.DOCX | xls files(*.XLS) | *.XLS| xlsx files(*.XLSX) | *.XLSX";
 			fdlg.FilterIndex = 2;
 			fdlg.RestoreDirectory = true;
 			if (fdlg.ShowDialog() == DialogResult.OK)

@@ -19,6 +19,7 @@ namespace ControlDosimetro
 	{
 		#region "Definicion variable"
 
+		Clases.ClassEvento clsEvento = new Clases.ClassEvento();
 		TextBox txtBox = new TextBox();
 		Button btnColBuscara = new Button();
 		bool bolInicializacion;
@@ -85,6 +86,14 @@ namespace ControlDosimetro
 		#endregion
 
 		#region Procedimiento
+
+		private void AsignarEvento()
+		{
+			clsEvento.AsignarNumero(ref txt_orden);
+			clsEvento.AsignarKeyPress(ref txt_detalle_tipo_documento);
+			//	clsEvento.K(ref txt_orden);
+		}
+
 
 		private void Cargar_Reporte()
 		{
