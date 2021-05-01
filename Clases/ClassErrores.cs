@@ -12,6 +12,7 @@ namespace Clases
     public class ClassErrores
     {
         readonly clsConectorSqlServer Conectar = new clsConectorSqlServer();
+        ClassDirectorios Directorios = new ClassDirectorios();
 
         public class Err
         {
@@ -31,16 +32,33 @@ namespace Clases
                 Fecha = DateTime.Now.ToString("yyyyMMdd_HHmmss")
             };
 
-            ////Creo un archivo xml para guardar el error.
-            //StreamWriter serialWriter;
-            //serialWriter = new StreamWriter("d:\\Error_ControlDosimetro_" + err.Fecha + ".xml");
-            //XmlSerializer xmlWriter = new XmlSerializer(err.GetType());
-            //xmlWriter.Serialize(serialWriter, err);
-            //serialWriter.Close();
+            ErroresCreaArchivos(err);
+            ErroresGuardarEnBD(err);
+        }
 
-            //Creo el xml
-            System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(err.GetType());
-            x.Serialize(Console.Out, err);
+        /// <summary>
+        /// Creo archivos xml para gudardar los errores que provoque la App.
+        /// </summary>
+        /// <param name="err"></param>
+        private void ErroresCreaArchivos(Err err)
+        {
+            //Creo directorio para los errores
+            var Carpeta = Directorios.CreaDirectorios(0);
+
+            //Creo un archivo xml para guardar el error.
+            StreamWriter serialWriter;
+            serialWriter = new StreamWriter(Carpeta + "\\" +err.Usuario + "_" + err.Fecha + ".xml");
+            XmlSerializer xmlWriter = new XmlSerializer(err.GetType());
+            xmlWriter.Serialize(serialWriter, err);
+            serialWriter.Close();
+        }
+
+        /// <summary>
+        /// Guardo los errores en la BD.
+        /// </summary>
+        /// <param name="err"></param>
+        private void ErroresGuardarEnBD(Err err)
+        {
         }
     }
 }

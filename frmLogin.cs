@@ -130,6 +130,7 @@ namespace ControlDosimetro
             Cursor = Cursors.WaitCursor;
             try
             {
+                //throw new ArgumentException("Prueba forzando error");
                 if (txt_Usuario.Text.Trim() == "" || txt_Contrasena.Text.Trim() == "")
                     MessageBox.Show("Debe contener usuario y contraseña");
                 else
