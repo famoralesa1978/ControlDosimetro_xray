@@ -118,7 +118,10 @@ namespace ControlDosimetro
                 return ((AssemblyCompanyAttribute)attributes[0]).Company;
             }
         }
+
         #endregion
+
+        #region Región asociada a los botones
 
         private void btn_Salir_Click(object sender, EventArgs e)
         {
@@ -170,11 +173,12 @@ namespace ControlDosimetro
             }
             catch (Exception ex)
             {
-                new Clases.ClassErrores(ex, 0, txt_Usuario.Text);
+                new Clases.ClassErrores(ex, 0, txt_Usuario.Text, String.Format("Versión {0}", AssemblyVersion));
             }
             finally
             {
                 Cursor = Cursors.Default;
+                classFuncionesGenerales.mensajes.MensajeAdvertencia("Se ha producido un error. Inténtelo nuevamente.");
             }
         }
 
@@ -184,9 +188,9 @@ namespace ControlDosimetro
             this.BackColor = labelBD.Text == "Producción" ? coColor : Color.Green;
             string strbd= labelBD.Text == "Producción" ? "" : "Desarrollo";
             this.Text = "Sistema de control dosimetro " + strbd;
-            Clases.clsBD.BD = labelBD.Text == "Producción" ? "Prod1" : "Desarrollo";           
+            Clases.clsBD.BD = labelBD.Text == "Producción" ? "Prod1" : "Desarrollo";
         }
-    }
 
-    
+        #endregion
+    }
 }

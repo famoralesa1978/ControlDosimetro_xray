@@ -136,8 +136,13 @@ namespace classFuncionesGenerales
 				return true;
 			else
 				return false;
-		}
-	}
+        }
+
+        public static void MensajeAdvertencia(string strmensaje)
+        {
+            MessageBox.Show(strmensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+    }
 
 	public class Filtro
 	{

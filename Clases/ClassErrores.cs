@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using dllConectorMysql;
-using System.Xml.Serialization;
 using System.IO;
+using System.Data;
+using System.Data.Sql;
+using System.Data.SqlClient;
 
 namespace Clases
 {
@@ -19,16 +21,18 @@ namespace Clases
             public int Menu { get; set; }
             public string Usuario { get; set; }
             public string Mensaje { get; set; }
+            public string VersionApp { get; set; }
             public string Fecha { get; set; }
         }
 
-        public ClassErrores(Exception Error, int menu, string usuario)
+        public ClassErrores(Exception Error, int menu, string usuario, string versionApp)
         {
             var err = new Err
             {
                 Menu = menu,
                 Usuario = usuario,
                 Mensaje = Error.Message,
+                VersionApp = versionApp,
                 Fecha = DateTime.Now.ToString("yyyyMMdd_HHmmss")
             };
 
@@ -37,20 +41,16 @@ namespace Clases
         }
 
         /// <summary>
-        /// Creo archivos xml para gudardar los errores que provoque la App.
+        /// Creo archivos txt para gudardar los errores que provoque la App.
         /// </summary>
         /// <param name="err"></param>
         private void ErroresCreaArchivos(Err err)
         {
             //Creo directorio para los errores
             var Carpeta = Directorios.CreaDirectorios(0);
-
-            //Creo un archivo xml para guardar el error.
-            StreamWriter serialWriter;
-            serialWriter = new StreamWriter(Carpeta + "\\" +err.Usuario + "_" + err.Fecha + ".xml");
-            XmlSerializer xmlWriter = new XmlSerializer(err.GetType());
-            xmlWriter.Serialize(serialWriter, err);
-            serialWriter.Close();
+            var Archivo = Carpeta + "\\" + err.Usuario + "_" + DateTime.Now.ToString("yyyyMMdd").ToString() + ".txt";
+            if (!File.Exists(Archivo)) File.Create(Archivo).Close();
+            File.AppendAllLines(Archivo, new String[] { err.Usuario + "; " + err.Menu.ToString() + "; " + err.VersionApp + "; " + err.Mensaje + "; " + err.Fecha });
         }
 
         /// <summary>
@@ -59,6 +59,15 @@ namespace Clases
         /// <param name="err"></param>
         private void ErroresGuardarEnBD(Err err)
         {
+            //SqlCommand cmd = new SqlCommand();
+            //cmd.CommandText = "pa_logErrores_Insertar '" + err.Usuario + "'," +
+            //                                    err.Menu + ",'" +
+            //                                    err.VersionApp + "','" +
+            //                                    err.Mensaje + "','" +
+            //                                    err.Fecha + "'";
+            //cmd.CommandType = CommandType.Text;
+            //
+            //Conectar.Listar(Clases.clsBD.BD, cmd);
         }
     }
 }

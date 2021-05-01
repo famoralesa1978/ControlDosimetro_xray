@@ -9,7 +9,7 @@ namespace Clases
 {
     public class ClassDirectorios
     {
-        string DirectorioRaiz = "D:\\ControlDosimetro";
+        string DirectorioRaiz = "C:\\ControlDosimetro";
         string DirectorioCreado = "";
         public enum Directorios
         {
@@ -17,6 +17,11 @@ namespace Clases
             Reportes
         }
 
+        /// <summary>
+        /// Creo los directorios para la App, según el objeto que se desee guardar.
+        /// </summary>
+        /// <param name="CodigoDirectorio"></param>
+        /// <returns></returns>
         public string CreaDirectorios(int CodigoDirectorio)
         {
             Directory.CreateDirectory(DirectorioRaiz);
