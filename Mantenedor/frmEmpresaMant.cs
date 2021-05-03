@@ -67,6 +67,7 @@ namespace ControlDosimetro
 				btn_Grabar.Text = "Modificar";
 				this.Text = "Modificar Cliente";
 				txt_id_cliente.Text = intCodigo.ToString();
+				txt_id_cliente.Tag = intCodigo.ToString();
 				txt_id_cliente.Enabled = false;
 				txt_Clave1.Enabled = false;
 				// SqlCommand cmd = new SqlCommand();
