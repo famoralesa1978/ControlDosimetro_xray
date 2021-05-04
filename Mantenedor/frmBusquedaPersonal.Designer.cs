@@ -53,11 +53,11 @@
 			this.tsb_Agregar = new System.Windows.Forms.ToolStripButton();
 			this.tsb_Eliminar = new System.Windows.Forms.ToolStripButton();
 			this.grpPersonal = new System.Windows.Forms.GroupBox();
+			this.picFiltrarpersonal = new System.Windows.Forms.PictureBox();
+			this.txt_NombrePersonal = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
 			this.txt_RunPersonal = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
-			this.txt_NombrePersonal = new System.Windows.Forms.TextBox();
-			this.picFiltrarpersonal = new System.Windows.Forms.PictureBox();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -117,6 +117,7 @@
 			this.txt_ref_cliente.Name = "txt_ref_cliente";
 			this.txt_ref_cliente.Size = new System.Drawing.Size(100, 20);
 			this.txt_ref_cliente.TabIndex = 1;
+			this.txt_ref_cliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_ref_cliente_KeyDown);
 			// 
 			// label2
 			// 
@@ -334,40 +335,6 @@
 			this.grpPersonal.TabStop = false;
 			this.grpPersonal.Text = "Filtrar personal";
 			// 
-			// txt_RunPersonal
-			// 
-			this.txt_RunPersonal.Location = new System.Drawing.Point(57, 19);
-			this.txt_RunPersonal.MaxLength = 10;
-			this.txt_RunPersonal.Name = "txt_RunPersonal";
-			this.txt_RunPersonal.Size = new System.Drawing.Size(100, 20);
-			this.txt_RunPersonal.TabIndex = 4;
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(14, 22);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(24, 13);
-			this.label4.TabIndex = 3;
-			this.label4.Text = "Rut";
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(198, 22);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(104, 13);
-			this.label5.TabIndex = 5;
-			this.label5.Text = "Nombre del personal";
-			// 
-			// txt_NombrePersonal
-			// 
-			this.txt_NombrePersonal.Location = new System.Drawing.Point(320, 18);
-			this.txt_NombrePersonal.MaxLength = 50;
-			this.txt_NombrePersonal.Name = "txt_NombrePersonal";
-			this.txt_NombrePersonal.Size = new System.Drawing.Size(219, 20);
-			this.txt_NombrePersonal.TabIndex = 6;
-			// 
 			// picFiltrarpersonal
 			// 
 			this.picFiltrarpersonal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -381,13 +348,48 @@
 			this.toolTip1.SetToolTip(this.picFiltrarpersonal, "Filtrar información del personal");
 			this.picFiltrarpersonal.Click += new System.EventHandler(this.picFiltrarpersonal_Click);
 			// 
+			// txt_NombrePersonal
+			// 
+			this.txt_NombrePersonal.Location = new System.Drawing.Point(320, 18);
+			this.txt_NombrePersonal.MaxLength = 50;
+			this.txt_NombrePersonal.Name = "txt_NombrePersonal";
+			this.txt_NombrePersonal.Size = new System.Drawing.Size(219, 20);
+			this.txt_NombrePersonal.TabIndex = 6;
+			this.txt_NombrePersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_NombrePersonal_KeyDown);
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(198, 22);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(104, 13);
+			this.label5.TabIndex = 5;
+			this.label5.Text = "Nombre del personal";
+			// 
+			// txt_RunPersonal
+			// 
+			this.txt_RunPersonal.Location = new System.Drawing.Point(57, 19);
+			this.txt_RunPersonal.MaxLength = 10;
+			this.txt_RunPersonal.Name = "txt_RunPersonal";
+			this.txt_RunPersonal.Size = new System.Drawing.Size(100, 20);
+			this.txt_RunPersonal.TabIndex = 4;
+			this.txt_RunPersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_RunPersonal_KeyDown);
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(14, 22);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(24, 13);
+			this.label4.TabIndex = 3;
+			this.label4.Text = "Rut";
+			// 
 			// toolTip1
 			// 
 			this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
 			// 
 			// frmBusquedaPersonal
 			// 
-			this.AcceptButton = this.btn_cargarCliente;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(859, 594);

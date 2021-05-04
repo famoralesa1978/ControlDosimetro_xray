@@ -127,8 +127,8 @@ namespace ControlDosimetro
 
 		private void Cargar_Seccion()
 		{
-			
-			dt = ClaseFunciones.Cargar_Seccion(Convert.ToInt16( txt_ref_cliente.Text.ToString()));
+
+			dt = ClaseFunciones.Cargar_Seccion(Convert.ToInt16(txt_ref_cliente.Text.ToString()));
 
 			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns[ColSeccion.Index] as DataGridViewComboBoxColumn;
 			comboboxColumn.DataSource = dt.Tables[0];
@@ -158,6 +158,34 @@ namespace ControlDosimetro
 		}
 
 
+
+		#endregion
+
+		#region "Textbox"
+
+		private void txt_ref_cliente_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Return)
+				btn_cargarCliente_Click(null, null);
+		}
+
+		private void txt_RunPersonal_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Return)
+				picFiltrarpersonal_Click(null, null);
+		}
+
+		private void txt_NombrePersonal_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Return)
+				picFiltrarpersonal_Click(null, null);
+		}
+
+		private void txt_ref_cliente_KeyDown_1(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Return)
+				btn_cargarCliente_Click(null, null);
+		}
 
 		#endregion
 
@@ -200,7 +228,9 @@ namespace ControlDosimetro
 
 		private void picFiltrarpersonal_Click(object sender, EventArgs e)
 		{
+			Cursor = Cursors.WaitCursor;
 			classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text);
+			Cursor = Cursors.Default;
 		}
 
 		#endregion
@@ -282,8 +312,9 @@ namespace ControlDosimetro
 		}
 
 
-		#endregion
 
+
+		#endregion
 
 
 	}

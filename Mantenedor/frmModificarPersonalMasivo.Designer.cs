@@ -112,6 +112,7 @@
 			this.txt_ref_cliente.Name = "txt_ref_cliente";
 			this.txt_ref_cliente.Size = new System.Drawing.Size(100, 20);
 			this.txt_ref_cliente.TabIndex = 1;
+			this.txt_ref_cliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_ref_cliente_KeyDown_1);
 			// 
 			// label2
 			// 
@@ -318,6 +319,7 @@
 			this.txt_NombrePersonal.Name = "txt_NombrePersonal";
 			this.txt_NombrePersonal.Size = new System.Drawing.Size(219, 20);
 			this.txt_NombrePersonal.TabIndex = 6;
+			this.txt_NombrePersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_NombrePersonal_KeyDown);
 			// 
 			// label5
 			// 
@@ -335,6 +337,7 @@
 			this.txt_RunPersonal.Name = "txt_RunPersonal";
 			this.txt_RunPersonal.Size = new System.Drawing.Size(100, 20);
 			this.txt_RunPersonal.TabIndex = 4;
+			this.txt_RunPersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_RunPersonal_KeyDown);
 			// 
 			// label4
 			// 
@@ -347,7 +350,6 @@
 			// 
 			// frmModificarPersonalMasivo
 			// 
-			this.AcceptButton = this.btn_cargarCliente;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(859, 532);
