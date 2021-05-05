@@ -83,7 +83,7 @@ namespace ControlDosimetro
 		private void Listar_Personal()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "pa_ListarPersonal_sel '" + txt_Rut.Text + "'";
+			cmd.CommandText = "pa_ListarPersonal_sel " + txt_ref_cliente.Text;
 			cmd.CommandType = CommandType.Text;
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);

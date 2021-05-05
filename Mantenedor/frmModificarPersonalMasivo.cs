@@ -29,6 +29,7 @@ namespace ControlDosimetro
 		bool Nuevo;
 		bool Modificacion;
 		bool Eliminar;
+		DateTimePicker dateTimePicker1;
 		DataSet dt;
 		DataSet dtPersonal;
 		public int Id_Menu { get; private set; }
@@ -118,12 +119,13 @@ namespace ControlDosimetro
 		private void Listar_Personal()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "pa_ListarPersonal_sel '" + txt_Rut.Text + "'";
+			cmd.CommandText = "pa_ListarPersonal_sel " + txt_ref_cliente.Text + "";
 			cmd.CommandType = CommandType.Text;
 
 			dtPersonal = Conectar.Listar(Clases.clsBD.BD, cmd);
 			grdDatos.DataSource = dtPersonal.Tables[0];
-		}
+		
+			}
 
 		private void Cargar_Seccion()
 		{
@@ -237,6 +239,54 @@ namespace ControlDosimetro
 
 		#region "grilla"
 
+		private void grdDatos_CellClick(object sender, DataGridViewCellEventArgs e)
+		{
+			if (e.ColumnIndex == ColFechaNac.Index)
+			{
+				dateTimePicker1 = new DateTimePicker();
+				//Agregamos el control de fecha dentro del DataGridView 
+				dateTimePicker1.Text = grdDatos.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+				grdDatos.Controls.Add(dateTimePicker1);
+
+				// Hacemos que el control sea invisible (para que no moleste visualmente)
+				dateTimePicker1.Visible = false;
+
+				// Establecemos el formato (depende de tu localización en tu PC)
+				dateTimePicker1.Format = DateTimePickerFormat.Short;  //Ej: 24/08/2016
+
+				// Agregamos el evento para cuando seleccionemos una fecha
+				dateTimePicker1.TextChanged += new EventHandler(dateTimePicker1_OnTextChange);
+
+				// Lo hacemos visible
+				dateTimePicker1.Visible = true;
+
+				// Creamos un rectángulo que representa el área visible de la celda
+				Rectangle rectangle1 = grdDatos.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+
+				//Establecemos el tamaño del control DateTimePicker (que sería el tamaño total de la celda)
+				dateTimePicker1.Size = new Size(rectangle1.Width, rectangle1.Height);
+
+				// Establecemos la ubicación del control
+				dateTimePicker1.Location = new Point(rectangle1.X, rectangle1.Y);
+
+				// Generamos el evento de cierre del control fecha
+				dateTimePicker1.CloseUp += new EventHandler(dateTimePicker1_CloseUp);
+
+			}
+		}
+
+		private void dateTimePicker1_OnTextChange(object sender, EventArgs e)
+		{
+			//Asignamos a la celda el valor de la feha seleccionada
+			grdDatos.CurrentCell.Value = dateTimePicker1.Text.ToString();
+		}
+
+		void dateTimePicker1_CloseUp(object sender, EventArgs e)
+		{
+			//Volvemos a colocar en invisible el control
+			dateTimePicker1.Visible = false;
+		}
+
 		private void grdDatos_CurrentCellDirtyStateChanged(object sender, EventArgs e)
 		{
 			DataGridView dgv = sender as DataGridView;
@@ -266,7 +316,11 @@ namespace ControlDosimetro
 					grdDatos.Rows[e.RowIndex].Cells[ColSeccion.Index].Value = ((DataTable)grdDatos.DataSource).Rows[e.RowIndex]["Id_Seccion"];
 					((DataTable)grdDatos.DataSource).Rows[e.RowIndex].AcceptChanges();
 				}
-
+				else
+				if (e.ColumnIndex == ColFechaNac.Index)
+				{
+					((DataTable)grdDatos.DataSource).Rows[e.RowIndex].AcceptChanges();
+				}
 
 				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].RejectChanges();
 				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].SetModified();
@@ -310,6 +364,7 @@ namespace ControlDosimetro
 			Cursor = Cursors.Default;
 
 		}
+
 
 
 
