@@ -151,6 +151,18 @@ namespace classFuncionesGenerales
 			strFiltro = strFiltro + (!String.IsNullOrEmpty(NombrePersonal) ? "(Nombres + ' '+  Paterno+ ' '+Maternos) like '%" + NombrePersonal + "%'" : "");
 			dt.DefaultView.RowFilter = strFiltro;
 		}
+
+		public static void FiltroPersonal(ref DataGridView grdGrilla, string NombrePersonal, string Rut, string FecNac)
+		{
+
+			string strFiltro = "";
+			DataTable dt = ((DataTable)(grdGrilla.DataSource));
+			//Rut, Nombres,Paterno,Maternos
+			strFiltro = !String.IsNullOrEmpty(Rut) ? "Rut like '%" + Rut + "%'" : "";
+			strFiltro = strFiltro + (!String.IsNullOrEmpty(NombrePersonal) ? "(Nombres + ' '+  Paterno+ ' '+Maternos) like '%" + NombrePersonal + "%'" : "");
+			strFiltro = strFiltro + (!String.IsNullOrEmpty(FecNac) ? "Fecha_Nac = '" + FecNac + "'" : "");
+			dt.DefaultView.RowFilter = strFiltro;
+		}
 	}
 
 }

@@ -27,6 +27,7 @@ namespace ControlDosimetro
 		public frmBusquedaPersonal(Int64 intId_Cliente)
 		{
 			InitializeComponent();
+			grdDatos.AutoGenerateColumns = false;
 			AsignarEvento();
 			Listar_Cliente(intId_Cliente);
 

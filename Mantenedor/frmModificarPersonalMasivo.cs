@@ -56,7 +56,7 @@ namespace ControlDosimetro
 
 		private void frmModificarPersonalMasivo_Load(object sender, EventArgs e)
 		{
-			bolDesdeCodigo = true;
+			bolDesdeCodigo = false;
 			AsignarPermiso();
 			grdDatos.AutoGenerateColumns = false;
 		}
@@ -99,7 +99,11 @@ namespace ControlDosimetro
 				txt_ref_cliente.Text = "";
 				txt_Rut.Text = "";
 				txt_RazonSocial.Text = "";
+				grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = false;
 				tsbGuardar.Visible = false;
+				bolDesdeCodigo = false;
+				chk_AsignarTLD.Checked = false;
+				btn_cargarCliente.Enabled = true;
 			}
 			else
 			{
@@ -108,8 +112,11 @@ namespace ControlDosimetro
 				txt_RazonSocial.Text = dt.Tables[0].Rows[0]["razon_social"].ToString();
 				txt_ref_cliente.ReadOnly = true;
 				txt_Rut.ReadOnly = true;
+				grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = true;
 				tsbGuardar.Visible = Modificacion;
 				txt_RazonSocial.ReadOnly = true;
+				btn_cargarCliente.Enabled = false;
+				bolDesdeCodigo = true;
 				Cargar_Seccion();
 				Cargar_CodServicio();
 				Listar_Personal();
@@ -119,13 +126,13 @@ namespace ControlDosimetro
 		private void Listar_Personal()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "pa_ListarPersonal_sel " + txt_ref_cliente.Text + "";
+			cmd.CommandText = "pa_ListarPersonal_sel " + (String.IsNullOrEmpty( txt_ref_cliente.Text)?"0": txt_ref_cliente.Text) + "";
 			cmd.CommandType = CommandType.Text;
 
 			dtPersonal = Conectar.Listar(Clases.clsBD.BD, cmd);
 			grdDatos.DataSource = dtPersonal.Tables[0];
-		
-			}
+
+		}
 
 		private void Cargar_Seccion()
 		{
@@ -217,12 +224,17 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 
+			grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = false;
 			txt_ref_cliente.ReadOnly = false;
 			txt_ref_cliente.Text = "";
 			txt_Rut.Text = "";
 			txt_RazonSocial.Text = "";
+			bolDesdeCodigo = true;
+			chk_AsignarTLD.Checked = false;
+
 			Listar_Cliente(0);
 			Listar_Personal();
+			btn_cargarCliente.Enabled = true;
 			txt_ref_cliente.Focus();
 
 			Cursor = Cursors.Default;
@@ -231,7 +243,29 @@ namespace ControlDosimetro
 		private void picFiltrarpersonal_Click(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
-			classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text);
+			if (chk_FecNac.Checked)
+				classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text, "01/01/1900");
+			else
+				classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text);
+			Cursor = Cursors.Default;
+		}
+
+		#endregion
+
+		#region ""checkBox"
+
+		private void chk_AsignarTLD_CheckedChanged(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+			if(bolDesdeCodigo){
+				foreach (DataGridViewRow dr in grdDatos.Rows)
+				{
+					if (Convert.ToInt16(dr.Cells[ColServicio.Index].Value) == 44)
+						dr.Cells[ColServicio.Index].Value = 99;
+				}
+
+			}
+		
 			Cursor = Cursors.Default;
 		}
 
@@ -335,42 +369,50 @@ namespace ControlDosimetro
 		private void tsbGuardar_Click(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
-
-			SqlCommand cmd = new SqlCommand();
-			//foreach (DataRow dr in ((DataTable)grdDatos.DataSource).Rows)
-			foreach (DataRow dr in ((DataTable)grdDatos.DataSource).GetChanges(DataRowState.Modified).Rows)
+			if (((DataTable)grdDatos.DataSource).GetChanges(DataRowState.Modified) != null)
 			{
-				//	if (dr["Id_CodServicio"] != dr["Id_CodServicio",DataRowVersion.Original])
-				if (dr.RowState == DataRowState.Modified)
+				SqlCommand cmd = new SqlCommand();
+				//foreach (DataRow dr in ((DataTable)grdDatos.DataSource).Rows)
+				foreach (DataRow dr in ((DataTable)grdDatos.DataSource).GetChanges(DataRowState.Modified).Rows)
 				{
-					String strParametro = "";
-					if (dr["Id_CodServicio"] == DBNull.Value)
-						strParametro = "Null" + ",";
-					else
-						strParametro = dr["Id_CodServicio"].ToString() + ",";
+					//	if (dr["Id_CodServicio"] != dr["Id_CodServicio",DataRowVersion.Original])
+					if (dr.RowState == DataRowState.Modified)
+					{
+						String strParametro = "";
+						if (dr["Id_CodServicio"] == DBNull.Value)
+							strParametro = "Null" + ",";
+						else
+							strParametro = dr["Id_CodServicio"].ToString() + ",";
 
-					if (dr["Id_Seccion"] == DBNull.Value)
-						strParametro = "Null";
-					else
-						strParametro = strParametro + dr["Id_Seccion"].ToString();
+						if (dr["Id_Seccion"] == DBNull.Value)
+							strParametro = strParametro + "Null" + ",";
+						else
+							strParametro = strParametro + dr["Id_Seccion"].ToString() + ",";
+
+						if (dr["Fecha_Nac"] == DBNull.Value)
+							strParametro = strParametro + "'01/01/1900'";
+						else
+							strParametro = strParametro + "'" + dr["Fecha_Nac"].ToString() + "'";
 
 
-					cmd.CommandText = "pa_PersonalMasivo_Upd " + dr["Id_Personal"] + "," + strParametro;
-					cmd.CommandType = CommandType.Text;
-					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+
+						cmd.CommandText = "pa_PersonalMasivo_Upd " + dr["Id_Personal"] + "," + strParametro;
+						cmd.CommandType = CommandType.Text;
+						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+					}
+
 				}
-
+				string strIdCliente = txt_ref_cliente.Text;
+				btn_Filtro_Click(null, null);
+				txt_ref_cliente.Text = strIdCliente;
+				btn_cargarCliente_Click(null,null);
 			}
+
 			Cursor = Cursors.Default;
 
 		}
 
-
-
-
-
 		#endregion
-
 
 	}
 }
