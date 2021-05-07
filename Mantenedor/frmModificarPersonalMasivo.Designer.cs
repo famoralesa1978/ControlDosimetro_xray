@@ -37,7 +37,7 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.txt_Rut = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.grp_Grilla = new System.Windows.Forms.GroupBox();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
 			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +46,7 @@
 			this.Maternos = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ColServicio = new System.Windows.Forms.DataGridViewComboBoxColumn();
 			this.ColSeccion = new System.Windows.Forms.DataGridViewComboBoxColumn();
+			this.ColFechaNac = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.tsbGuardar = new System.Windows.Forms.ToolStripButton();
 			this.grpPersonal = new System.Windows.Forms.GroupBox();
@@ -54,8 +55,10 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.txt_RunPersonal = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
+			this.chk_FecNac = new System.Windows.Forms.CheckBox();
+			this.chk_AsignarTLD = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
-			this.groupBox2.SuspendLayout();
+			this.grp_Grilla.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
 			this.toolStrip1.SuspendLayout();
 			this.grpPersonal.SuspendLayout();
@@ -112,6 +115,7 @@
 			this.txt_ref_cliente.Name = "txt_ref_cliente";
 			this.txt_ref_cliente.Size = new System.Drawing.Size(100, 20);
 			this.txt_ref_cliente.TabIndex = 1;
+			this.txt_ref_cliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_ref_cliente_KeyDown_1);
 			// 
 			// label2
 			// 
@@ -159,18 +163,19 @@
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Rut";
 			// 
-			// groupBox2
+			// grp_Grilla
 			// 
-			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.grp_Grilla.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox2.Controls.Add(this.grdDatos);
-			this.groupBox2.Location = new System.Drawing.Point(5, 209);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(842, 323);
-			this.groupBox2.TabIndex = 6;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Listado";
+			this.grp_Grilla.Controls.Add(this.grdDatos);
+			this.grp_Grilla.Enabled = false;
+			this.grp_Grilla.Location = new System.Drawing.Point(5, 239);
+			this.grp_Grilla.Name = "grp_Grilla";
+			this.grp_Grilla.Size = new System.Drawing.Size(842, 463);
+			this.grp_Grilla.TabIndex = 6;
+			this.grp_Grilla.TabStop = false;
+			this.grp_Grilla.Text = "Listado";
 			// 
 			// grdDatos
 			// 
@@ -186,16 +191,18 @@
             this.Paterno,
             this.Maternos,
             this.ColServicio,
-            this.ColSeccion});
+            this.ColSeccion,
+            this.ColFechaNac});
 			this.grdDatos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.grdDatos.Location = new System.Drawing.Point(3, 16);
 			this.grdDatos.MultiSelect = false;
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-			this.grdDatos.Size = new System.Drawing.Size(836, 304);
+			this.grdDatos.Size = new System.Drawing.Size(836, 444);
 			this.grdDatos.TabIndex = 5;
 			this.grdDatos.VirtualMode = true;
+			this.grdDatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellClick);
 			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
 			// 
@@ -263,6 +270,14 @@
 			this.ColSeccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
 			this.ColSeccion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
 			// 
+			// ColFechaNac
+			// 
+			this.ColFechaNac.DataPropertyName = "Fecha_Nac";
+			this.ColFechaNac.HeaderText = "Fec. nacimiento";
+			this.ColFechaNac.MaxInputLength = 10;
+			this.ColFechaNac.Name = "ColFechaNac";
+			this.ColFechaNac.ToolTipText = "Fecha nacimiento";
+			// 
 			// toolStrip1
 			// 
 			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -270,40 +285,42 @@
             this.tsbGuardar});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(859, 31);
+			this.toolStrip1.Size = new System.Drawing.Size(859, 39);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
 			// tsbGuardar
 			// 
 			this.tsbGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.tsbGuardar.Image = global::ControlDosimetro.Properties.Resources.Save_24;
+			this.tsbGuardar.Image = global::ControlDosimetro.Properties.Resources.Save_32;
 			this.tsbGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.tsbGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbGuardar.Name = "tsbGuardar";
-			this.tsbGuardar.Size = new System.Drawing.Size(28, 28);
+			this.tsbGuardar.Size = new System.Drawing.Size(36, 36);
 			this.tsbGuardar.ToolTipText = "Grabar";
 			this.tsbGuardar.Click += new System.EventHandler(this.tsbGuardar_Click);
 			// 
 			// grpPersonal
 			// 
+			this.grpPersonal.Controls.Add(this.chk_FecNac);
 			this.grpPersonal.Controls.Add(this.picFiltrarpersonal);
 			this.grpPersonal.Controls.Add(this.txt_NombrePersonal);
 			this.grpPersonal.Controls.Add(this.label5);
 			this.grpPersonal.Controls.Add(this.txt_RunPersonal);
 			this.grpPersonal.Controls.Add(this.label4);
+			this.grpPersonal.Enabled = false;
 			this.grpPersonal.Location = new System.Drawing.Point(8, 145);
 			this.grpPersonal.Name = "grpPersonal";
 			this.grpPersonal.Size = new System.Drawing.Size(839, 58);
 			this.grpPersonal.TabIndex = 8;
 			this.grpPersonal.TabStop = false;
-			this.grpPersonal.Text = "Filtrar personal";
+			this.grpPersonal.Text = "Filtrar";
 			// 
 			// picFiltrarpersonal
 			// 
 			this.picFiltrarpersonal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.picFiltrarpersonal.Image = global::ControlDosimetro.Properties.Resources.Buscar;
-			this.picFiltrarpersonal.Location = new System.Drawing.Point(545, 11);
+			this.picFiltrarpersonal.Location = new System.Drawing.Point(728, 10);
 			this.picFiltrarpersonal.Name = "picFiltrarpersonal";
 			this.picFiltrarpersonal.Size = new System.Drawing.Size(36, 36);
 			this.picFiltrarpersonal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -318,6 +335,7 @@
 			this.txt_NombrePersonal.Name = "txt_NombrePersonal";
 			this.txt_NombrePersonal.Size = new System.Drawing.Size(219, 20);
 			this.txt_NombrePersonal.TabIndex = 6;
+			this.txt_NombrePersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_NombrePersonal_KeyDown);
 			// 
 			// label5
 			// 
@@ -335,6 +353,7 @@
 			this.txt_RunPersonal.Name = "txt_RunPersonal";
 			this.txt_RunPersonal.Size = new System.Drawing.Size(100, 20);
 			this.txt_RunPersonal.TabIndex = 4;
+			this.txt_RunPersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_RunPersonal_KeyDown);
 			// 
 			// label4
 			// 
@@ -345,15 +364,37 @@
 			this.label4.TabIndex = 3;
 			this.label4.Text = "Rut";
 			// 
+			// chk_FecNac
+			// 
+			this.chk_FecNac.AutoSize = true;
+			this.chk_FecNac.Location = new System.Drawing.Point(566, 22);
+			this.chk_FecNac.Name = "chk_FecNac";
+			this.chk_FecNac.Size = new System.Drawing.Size(153, 17);
+			this.chk_FecNac.TabIndex = 8;
+			this.chk_FecNac.Text = "Por  Fec. Nac 01/01/1900";
+			this.chk_FecNac.UseVisualStyleBackColor = true;
+			// 
+			// chk_AsignarTLD
+			// 
+			this.chk_AsignarTLD.AutoSize = true;
+			this.chk_AsignarTLD.Enabled = false;
+			this.chk_AsignarTLD.Location = new System.Drawing.Point(8, 216);
+			this.chk_AsignarTLD.Name = "chk_AsignarTLD";
+			this.chk_AsignarTLD.Size = new System.Drawing.Size(216, 17);
+			this.chk_AsignarTLD.TabIndex = 6;
+			this.chk_AsignarTLD.Text = "Asignar a todos al personal servicio TLD";
+			this.chk_AsignarTLD.UseVisualStyleBackColor = true;
+			this.chk_AsignarTLD.CheckedChanged += new System.EventHandler(this.chk_AsignarTLD_CheckedChanged);
+			// 
 			// frmModificarPersonalMasivo
 			// 
-			this.AcceptButton = this.btn_cargarCliente;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(859, 532);
+			this.ClientSize = new System.Drawing.Size(859, 702);
+			this.Controls.Add(this.chk_AsignarTLD);
 			this.Controls.Add(this.grpPersonal);
 			this.Controls.Add(this.toolStrip1);
-			this.Controls.Add(this.groupBox2);
+			this.Controls.Add(this.grp_Grilla);
 			this.Controls.Add(this.groupBox1);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -365,7 +406,7 @@
 			this.Load += new System.EventHandler(this.frmModificarPersonalMasivo_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
-			this.groupBox2.ResumeLayout(false);
+			this.grp_Grilla.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).EndInit();
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
@@ -384,7 +425,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txt_RazonSocial;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grp_Grilla;
 		  private System.Windows.Forms.DataGridView grdDatos;
 		  private System.Windows.Forms.ToolStrip toolStrip1;
 								private System.Windows.Forms.Label label2;
@@ -392,6 +433,12 @@
 								private System.Windows.Forms.Button btn_cargarCliente;
                                 private System.Windows.Forms.Button btn_Filtro;
 		private System.Windows.Forms.ToolStripButton tsbGuardar;
+		private System.Windows.Forms.GroupBox grpPersonal;
+		private System.Windows.Forms.PictureBox picFiltrarpersonal;
+		private System.Windows.Forms.TextBox txt_NombrePersonal;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.TextBox txt_RunPersonal;
+		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Id_Personal;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Rut;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
@@ -399,11 +446,8 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Maternos;
 		private System.Windows.Forms.DataGridViewComboBoxColumn ColServicio;
 		private System.Windows.Forms.DataGridViewComboBoxColumn ColSeccion;
-		private System.Windows.Forms.GroupBox grpPersonal;
-		private System.Windows.Forms.PictureBox picFiltrarpersonal;
-		private System.Windows.Forms.TextBox txt_NombrePersonal;
-		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.TextBox txt_RunPersonal;
-		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColFechaNac;
+		private System.Windows.Forms.CheckBox chk_FecNac;
+		private System.Windows.Forms.CheckBox chk_AsignarTLD;
 	}
 }

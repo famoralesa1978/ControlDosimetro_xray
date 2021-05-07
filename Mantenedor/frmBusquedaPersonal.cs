@@ -27,6 +27,7 @@ namespace ControlDosimetro
 		public frmBusquedaPersonal(Int64 intId_Cliente)
 		{
 			InitializeComponent();
+			grdDatos.AutoGenerateColumns = false;
 			AsignarEvento();
 			Listar_Cliente(intId_Cliente);
 
@@ -83,7 +84,7 @@ namespace ControlDosimetro
 		private void Listar_Personal()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "pa_ListarPersonal_sel '" + txt_Rut.Text + "'";
+			cmd.CommandText = "pa_ListarPersonal_sel " + txt_ref_cliente.Text;
 			cmd.CommandType = CommandType.Text;
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -100,6 +101,28 @@ namespace ControlDosimetro
 		}
 
 
+
+		#endregion
+
+		#region Textbox
+
+		private void txt_ref_cliente_KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyCode==Keys.Return)
+				btn_cargarCliente_Click(null, null);
+		}
+
+		private void txt_RunPersonal_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Return)
+				picFiltrarpersonal_Click(null, null);
+		}
+
+		private void txt_NombrePersonal_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Return)
+				picFiltrarpersonal_Click(null, null);
+		}
 
 		#endregion
 
@@ -154,7 +177,9 @@ namespace ControlDosimetro
 
 		private void picFiltrarpersonal_Click(object sender, EventArgs e)
 		{
+			Cursor = Cursors.WaitCursor;
 			classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text);
+			Cursor = Cursors.Default;
 		}
 
 		#endregion
@@ -205,6 +230,6 @@ namespace ControlDosimetro
 		}
 
 		#endregion
-		
+
 	}
 }

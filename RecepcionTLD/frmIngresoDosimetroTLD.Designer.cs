@@ -71,11 +71,6 @@
 			this.btn_Corregir = new System.Windows.Forms.Button();
 			this.label4 = new System.Windows.Forms.Label();
 			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
-			this.grpFiltro = new System.Windows.Forms.GroupBox();
-			this.txtNombre = new System.Windows.Forms.TextBox();
-			this.label6 = new System.Windows.Forms.Label();
-			this.txtRut = new System.Windows.Forms.TextBox();
-			this.lblRut = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.lbl_ValorMax = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
@@ -83,13 +78,20 @@
 			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
 			this.lbl_id_seccion = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.grpFiltro = new System.Windows.Forms.GroupBox();
+			this.picFiltrarpersonal = new System.Windows.Forms.PictureBox();
+			this.txt_NombrePersonal = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.txt_RunPersonal = new System.Windows.Forms.TextBox();
+			this.label7 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
 			this.toolStrip1.SuspendLayout();
-			this.grpFiltro.SuspendLayout();
 			this.groupBox3.SuspendLayout();
+			this.grpFiltro.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.picFiltrarpersonal)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -297,7 +299,6 @@
 			this.grdDatos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdDatos_CellFormatting);
 			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
-			this.grdDatos.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.grdDatos_RowStateChanged);
 			this.grdDatos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdDatos_KeyDown);
 			// 
 			// Id_Personal
@@ -524,56 +525,6 @@
 			this.cbx_Sucursal.Size = new System.Drawing.Size(526, 21);
 			this.cbx_Sucursal.TabIndex = 11;
 			this.cbx_Sucursal.SelectionChangeCommitted += new System.EventHandler(this.cbx_Sucursal_SelectionChangeCommitted);
-			this.cbx_Sucursal.SelectedValueChanged += new System.EventHandler(this.cbx_Sucursal_SelectedValueChanged);
-			// 
-			// grpFiltro
-			// 
-			this.grpFiltro.Controls.Add(this.txtNombre);
-			this.grpFiltro.Controls.Add(this.label6);
-			this.grpFiltro.Controls.Add(this.txtRut);
-			this.grpFiltro.Controls.Add(this.lblRut);
-			this.grpFiltro.Location = new System.Drawing.Point(367, 210);
-			this.grpFiltro.Name = "grpFiltro";
-			this.grpFiltro.Size = new System.Drawing.Size(667, 43);
-			this.grpFiltro.TabIndex = 12;
-			this.grpFiltro.TabStop = false;
-			this.grpFiltro.Text = "Busqueda personal";
-			// 
-			// txtNombre
-			// 
-			this.txtNombre.Location = new System.Drawing.Point(259, 12);
-			this.txtNombre.MaxLength = 50;
-			this.txtNombre.Name = "txtNombre";
-			this.txtNombre.Size = new System.Drawing.Size(338, 20);
-			this.txtNombre.TabIndex = 3;
-			this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(209, 15);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(44, 13);
-			this.label6.TabIndex = 2;
-			this.label6.Text = "Nombre";
-			// 
-			// txtRut
-			// 
-			this.txtRut.Location = new System.Drawing.Point(38, 15);
-			this.txtRut.Name = "txtRut";
-			this.txtRut.Size = new System.Drawing.Size(100, 20);
-			this.txtRut.TabIndex = 1;
-			this.txtRut.TextChanged += new System.EventHandler(this.txtRut_TextChanged);
-			this.txtRut.Enter += new System.EventHandler(this.txtRut_Enter);
-			// 
-			// lblRut
-			// 
-			this.lblRut.AutoSize = true;
-			this.lblRut.Location = new System.Drawing.Point(7, 15);
-			this.lblRut.Name = "lblRut";
-			this.lblRut.Size = new System.Drawing.Size(24, 13);
-			this.lblRut.TabIndex = 0;
-			this.lblRut.Text = "Rut";
 			// 
 			// groupBox3
 			// 
@@ -622,7 +573,6 @@
 			this.cbx_id_seccion.Size = new System.Drawing.Size(236, 21);
 			this.cbx_id_seccion.TabIndex = 14;
 			this.cbx_id_seccion.SelectedIndexChanged += new System.EventHandler(this.cbx_id_seccion_SelectedIndexChanged);
-			this.cbx_id_seccion.SelectedValueChanged += new System.EventHandler(this.cbx_id_seccion_SelectedValueChanged);
 			// 
 			// lbl_id_seccion
 			// 
@@ -640,19 +590,79 @@
 			this.textBox1.Size = new System.Drawing.Size(100, 20);
 			this.textBox1.TabIndex = 16;
 			this.textBox1.Visible = false;
-			this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
-			this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+			// 
+			// grpFiltro
+			// 
+			this.grpFiltro.Controls.Add(this.picFiltrarpersonal);
+			this.grpFiltro.Controls.Add(this.txt_NombrePersonal);
+			this.grpFiltro.Controls.Add(this.label6);
+			this.grpFiltro.Controls.Add(this.txt_RunPersonal);
+			this.grpFiltro.Controls.Add(this.label7);
+			this.grpFiltro.Location = new System.Drawing.Point(367, 202);
+			this.grpFiltro.Name = "grpFiltro";
+			this.grpFiltro.Size = new System.Drawing.Size(705, 51);
+			this.grpFiltro.TabIndex = 17;
+			this.grpFiltro.TabStop = false;
+			this.grpFiltro.Text = "Filtrar personal";
+			// 
+			// picFiltrarpersonal
+			// 
+			this.picFiltrarpersonal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.picFiltrarpersonal.Image = global::ControlDosimetro.Properties.Resources.Buscar;
+			this.picFiltrarpersonal.Location = new System.Drawing.Point(545, 13);
+			this.picFiltrarpersonal.Name = "picFiltrarpersonal";
+			this.picFiltrarpersonal.Size = new System.Drawing.Size(36, 36);
+			this.picFiltrarpersonal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+			this.picFiltrarpersonal.TabIndex = 7;
+			this.picFiltrarpersonal.TabStop = false;
+			this.picFiltrarpersonal.Click += new System.EventHandler(this.picFiltrarpersonal_Click);
+			// 
+			// txt_NombrePersonal
+			// 
+			this.txt_NombrePersonal.Location = new System.Drawing.Point(320, 22);
+			this.txt_NombrePersonal.MaxLength = 50;
+			this.txt_NombrePersonal.Name = "txt_NombrePersonal";
+			this.txt_NombrePersonal.Size = new System.Drawing.Size(219, 20);
+			this.txt_NombrePersonal.TabIndex = 6;
+			this.txt_NombrePersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_NombrePersonal_KeyDown);
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(198, 26);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(104, 13);
+			this.label6.TabIndex = 5;
+			this.label6.Text = "Nombre del personal";
+			// 
+			// txt_RunPersonal
+			// 
+			this.txt_RunPersonal.Location = new System.Drawing.Point(57, 23);
+			this.txt_RunPersonal.MaxLength = 10;
+			this.txt_RunPersonal.Name = "txt_RunPersonal";
+			this.txt_RunPersonal.Size = new System.Drawing.Size(100, 20);
+			this.txt_RunPersonal.TabIndex = 4;
+			this.txt_RunPersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_RunPersonal_KeyDown);
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(14, 26);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(24, 13);
+			this.label7.TabIndex = 3;
+			this.label7.Text = "Rut";
 			// 
 			// frmIngresoDosimetroTLD
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1084, 662);
+			this.Controls.Add(this.grpFiltro);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.lbl_id_seccion);
 			this.Controls.Add(this.cbx_id_seccion);
 			this.Controls.Add(this.groupBox3);
-			this.Controls.Add(this.grpFiltro);
 			this.Controls.Add(this.cbx_Sucursal);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.btn_Corregir);
@@ -676,10 +686,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).EndInit();
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
-			this.grpFiltro.ResumeLayout(false);
-			this.grpFiltro.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
+			this.grpFiltro.ResumeLayout(false);
+			this.grpFiltro.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.picFiltrarpersonal)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -714,9 +725,6 @@
                                 private System.Windows.Forms.Label lbl_nombreCliente;
         private System.Windows.Forms.ToolStripButton btn_Excel;
         private System.Windows.Forms.ToolStripDropDownButton tsdReporte;
-        private System.Windows.Forms.GroupBox grpFiltro;
-        private System.Windows.Forms.TextBox txtRut;
-        private System.Windows.Forms.Label lblRut;
         private System.Windows.Forms.ToolStripButton btn_Cliente;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox txt_N_TLD;
@@ -738,8 +746,12 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn id_estadodosimetro;
 		private System.Windows.Forms.ComboBox cbx_id_seccion;
 		private System.Windows.Forms.Label lbl_id_seccion;
-		private System.Windows.Forms.TextBox txtNombre;
-		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.GroupBox grpFiltro;
+		private System.Windows.Forms.PictureBox picFiltrarpersonal;
+		private System.Windows.Forms.TextBox txt_NombrePersonal;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.TextBox txt_RunPersonal;
+		private System.Windows.Forms.Label label7;
 	}
 }
