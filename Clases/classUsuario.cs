@@ -56,4 +56,38 @@ namespace Clases
         public static string Contraseña { get => strContraseña; set => strContraseña = value; }
     }
 
+	class clsSistema//prueba
+	{
+		private static string strSistema;
+		private static string strBD;
+
+
+		public static string Sistema
+		{
+			get
+			{
+				return strSistema;
+			}
+			set
+			{
+				strSistema = value;  // value is an implicit parameter
+			}
+
+		}
+
+		public static string BD
+		{
+			get
+			{
+				return strBD;
+			}
+			set
+			{
+				strBD = value;  // value is an implicit parameter
+			}
+
+		}
+
+	}
+
 }
