@@ -166,7 +166,7 @@ namespace classFuncionesBD
 			DataSet dt;
 
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "select ' ' as seccion, 0 as id_seccion union" +
+			cmd.CommandText = "select ' ' as seccion, 0 as id_seccion union all" +
 							 "		SELECT seccion,id_seccion " +
 							" FROM tbl_seccion  WHERE Id_cliente= " + intId_Cliente.ToString() + " and id_estado=1";
 			
