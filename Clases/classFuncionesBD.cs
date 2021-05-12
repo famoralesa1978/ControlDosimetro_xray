@@ -66,7 +66,7 @@ namespace classFuncionesBD
 				RazonSocial.Text = "";
 				Rut.Text = "";
 				if (intCodCliente != -1)
-					MessageBox.Show(ControlDosimetro.Properties.Resources.msgClientePeriodoError, ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+					classFuncionesGenerales.mensajes.MensajeError(ControlDosimetro.Properties.Resources.msgClientePeriodoError);
 			}
 		}
 
@@ -95,7 +95,8 @@ namespace classFuncionesBD
 				Rut.Text = "";
 				Direccion.Text = "";
 				if (intCodCliente != -1)
-					MessageBox.Show(ControlDosimetro.Properties.Resources.msgClientePeriodoError, ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+					classFuncionesGenerales.mensajes.MensajeError(ControlDosimetro.Properties.Resources.msgClientePeriodoError);
+				//	MessageBox.Show(ControlDosimetro.Properties.Resources.msgClientePeriodoError, ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
 			}
 		}
 
