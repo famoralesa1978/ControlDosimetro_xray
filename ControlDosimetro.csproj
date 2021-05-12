@@ -170,6 +170,8 @@
     <Compile Include="Busqueda\frmAyudaPersonal.Designer.cs">
       <DependentUpon>frmAyudaPersonal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Clases\ClassDirectorios.cs" />
+    <Compile Include="Clases\ClassErrores.cs" />
     <Compile Include="Clases\classEvento.cs" />
     <Compile Include="Clases\classFuncionesGenerales.cs" />
     <Compile Include="Clases\classFuncionesBD.cs" />
@@ -952,22 +954,22 @@
   <ItemGroup>
     <PublishFile Include="bin\Debug\dllLibreriaMysql.pdb">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="dllLibreriaMysql.pdb">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
