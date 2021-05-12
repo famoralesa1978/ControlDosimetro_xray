@@ -30,13 +30,13 @@ namespace ControlDosimetro
 		enum ConfGrillaDetalle : int
 		{
 			idmenu = 0,
-			Menu=1,
-			Acceso=2,
-			Lectura=3,
-			Nuevo=4,
-			Modificacion=5,
-			Eliminar=6,
-			Id_menu_Padre=7
+			Menu = 1,
+			Acceso = 2,
+			Lectura = 3,
+			Nuevo = 4,
+			Modificacion = 5,
+			Eliminar = 6,
+			Id_menu_Padre = 7
 		};
 
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
@@ -69,7 +69,12 @@ namespace ControlDosimetro
 			if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
 			{
 				Cursor = Cursors.WaitCursor;
-				DataTable dt = (DataTable)dgvGrilla.DataSource;
+				if (((DataTable)dgvDetalle.DataSource).GetChanges(DataRowState.Modified) != null && ((DataTable)dgvDetalle.DataSource).GetChanges(DataRowState.Added) != null)
+				{
+
+				}
+
+					DataTable dt = (DataTable)dgvGrilla.DataSource;
 
 				DataRow currentRow = dt.Rows[dgvGrilla.CurrentCell.RowIndex];
 				SqlCommand cmd = new SqlCommand();
@@ -77,23 +82,16 @@ namespace ControlDosimetro
 				cmd.CommandType = CommandType.Text;
 				Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 
-		//		ConfGrillaDetalle: int
-		//{
-		//			idmenu = 0,
-		//	Menu = 1,
-			//	Acceso = 2,
-			//	Lectura = 3,
-			//	Nuevo = 4,
-			//	Modificacion = 5,
-			//	Eliminar = 6
+				//foreach (DataRow dr in ((DataTable)grdDatos.DataSource).GetChanges(DataRowState.Modified).Rows){
 
+				//}
 
-				foreach (DataRowView row in ((DataTable) dgvDetalle.DataSource).DefaultView)
+				foreach (DataRowView row in ((DataTable)dgvDetalle.DataSource).DefaultView)
 				{
-					
+
 					//if (row.Row.RowState==DataRowState.Modified){
 
-					if((bool)row[(int)ConfGrillaDetalle.Acceso] || (bool)row[(int)ConfGrillaDetalle.Lectura] || (bool)row[(int)ConfGrillaDetalle.Modificacion] || (bool)row[(int)ConfGrillaDetalle.Nuevo] || (bool)row[(int)ConfGrillaDetalle.Eliminar])
+					if ((bool)row[(int)ConfGrillaDetalle.Acceso] || (bool)row[(int)ConfGrillaDetalle.Lectura] || (bool)row[(int)ConfGrillaDetalle.Modificacion] || (bool)row[(int)ConfGrillaDetalle.Nuevo] || (bool)row[(int)ConfGrillaDetalle.Eliminar])
 					{
 						cmd.CommandText = "pa_Permiso_Ins " + currentRow[ConfGrilla.id.ToString()].ToString() + "," + row[(int)ConfGrillaDetalle.idmenu] + "," + row[(int)ConfGrillaDetalle.Acceso] + "," + row[(int)ConfGrillaDetalle.Lectura] + "," + row[(int)ConfGrillaDetalle.Nuevo] + "," + row[(int)ConfGrillaDetalle.Modificacion] + "," + row[(int)ConfGrillaDetalle.Eliminar];
 						cmd.CommandType = CommandType.Text;
@@ -183,6 +181,32 @@ namespace ControlDosimetro
 			}
 		}
 
+		private void dgvDetalle_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+		{
+			DataGridView dgv = sender as DataGridView;
+			if (null == dgv || null == dgv.CurrentCell || !dgv.IsCurrentCellDirty)
+			{
+				return;
+			}
+
+			if ((dgv.CurrentCell is DataGridViewComboBoxCell || dgv.CurrentCell is DataGridViewCheckBoxCell))
+			{
+				dgvDetalle.CommitEdit(DataGridViewDataErrorContexts.Commit);
+			}
+		}
+
+		private void dgvDetalle_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+		{
+			if (e.RowIndex > -1)
+			{
+
+			//	dgvDetalle.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = ((DataTable)dgvDetalle.DataSource).Rows[e.RowIndex]["Id_CodServicio"];
+				((DataTable)dgvDetalle.DataSource).Rows[e.RowIndex].AcceptChanges();
+
+				((DataTable)dgvDetalle.DataSource).Rows[e.RowIndex].SetModified();
+			}
+		}
+
 		#endregion
 
 		#region "boton"
@@ -200,7 +224,9 @@ namespace ControlDosimetro
 			Cursor = Cursors.Default;
 		}
 
+
 		#endregion
+
 
 	}
 }

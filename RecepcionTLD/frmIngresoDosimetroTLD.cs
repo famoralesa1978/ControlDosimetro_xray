@@ -545,7 +545,7 @@ namespace ControlDosimetro
 		private void btn_Excel_Click(object sender, EventArgs e)
 		{
 			string targetPathFormato = "C:\\BaseTLD\\formato\\" + "FormatoTLD.xlsx";
-			string targetPathFormatoInfome = "C:\\BaseTLD\\formato\\" + "FORMULARIO.xlsx";
+			string targetPathFormatoInfome = "C:\\BaseTLD\\formato\\" + "FORMULARIO DESPACHO.xlsx";
 			grdDatos.Sort(grdDatos.Columns[1], ListSortDirection.Ascending);
 
 			string targetPathConf = "C:\\BaseTLD\\Cliente";
@@ -626,10 +626,10 @@ namespace ControlDosimetro
 			string strpathcopiar = targetPathConf + "\\ET_Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri.xlsx";
 			
 			int intFila = 2;
-			int intHojaExcel = 5;
+			int intHojaExcel = 19;
 		
 			string strpathcopiarInforme = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + intExcel.ToString() + ".xlsx";
-
+			string strUsados = "Estos dosimetros deben ser usados entre el " + strfecha_Per + " al " + strfecha_Fin;
 			string fmt = "00000000";
 			for (int idatos = 0; idatos <= grdDatos.Rows.Count - 1; idatos++)
 			{
@@ -649,33 +649,37 @@ namespace ControlDosimetro
 				string wsName = "Sheet1";
 				if ((checkCell.Value.ToString() == "1"))//(checkGenerar.Value.ToString() == "1") &&&& (txtid_estadodosimetro.Value.ToString() == "-1")
 				{
-					if(intHojaExcel==18)
+					if(intHojaExcel==34)
 					{
-						intHojaExcel = 5;
+						intHojaExcel = 19;
 						intExcel = intExcel + 1;
 						strpathcopiarInforme = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + (intExcel-1).ToString() + ".xlsx";
 
 						File.Copy(strpathcopiarInforme, targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + (intExcel).ToString() + ".xlsx", true);
 
 						strpathcopiarInforme = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + intExcel.ToString() + ".xlsx";
-						
-						for (int intFilalimpiar= intHojaExcel; intFilalimpiar<=17; intFilalimpiar++){
+					
+						for (int intFilalimpiar= intHojaExcel; intFilalimpiar<=33; intFilalimpiar++){
 							wsName = "Informe";
 							document = SpreadsheetDocument.Open(strpathcopiarInforme, true);
 							wbPart = document.WorkbookPart;
-
-							UpdateValue(wsName, "A" + (intFilalimpiar).ToString(), "", 0, true);
 							UpdateValue(wsName, "B" + (intFilalimpiar).ToString(), "", 0, true);
+							UpdateValue(wsName, "C" + (intFilalimpiar).ToString(), "", 0, true);
 							UpdateValue(wsName, "D" + (intFilalimpiar).ToString(), "", 0, true);
+							UpdateValue(wsName, "E" + (intFilalimpiar).ToString(), "", 0, true);
 							UpdateValue(wsName, "F" + (intFilalimpiar).ToString(),"", 0, true);
 							UpdateValue(wsName, "G" + (intFilalimpiar).ToString(), "", 0, true);
-							UpdateValue(wsName, "D2", strfecha_Per, 0, true);
-							UpdateValue(wsName, "D18", strfecha_Fin, 0, true);
-							UpdateValue(wsName, "J4", strServicio, 0, true);
-							UpdateValue(wsName, "L4", strDireccion, 0, true);
-							UpdateValue(wsName, "M4", strRegion, 0, true);
-							UpdateValue(wsName, "N4", strComuna, 0, true);
-							UpdateValue(wsName, "K4", lbl_nombreCliente.Text, 0, true);
+							UpdateValue(wsName, "B15", strUsados, 0, true);
+					//		UpdateValue(wsName, "D18", strfecha_Fin, 0, true);
+				//			UpdateValue(wsName, "J4", strServicio, 0, true);
+							UpdateValue(wsName, "C12", strDireccion, 0, true);
+							UpdateValue(wsName, "C14", lbl_rut.Text, 0, true);
+							
+						//	UpdateValue(wsName, "M4", strRegion, 0, true);
+							UpdateValue(wsName, "C13", strComuna + ", " + strRegion, 0, true);
+							UpdateValue(wsName, "C11", lbl_nombreCliente.Text, 0, true);
+							UpdateValue(wsName, "F11", lbl_id_cliente.Text, 0, true);
+							//lbl_id_cliente
 							document.Close();
 						}
 					}
@@ -696,18 +700,21 @@ namespace ControlDosimetro
 					document = SpreadsheetDocument.Open(strpathcopiarInforme, true);
 					wbPart = document.WorkbookPart;
 
-					UpdateValue(wsName, "A" + (intHojaExcel).ToString(), int.Parse(txtnpelicula.Value.ToString()).ToString(fmt), 0, true);
-					UpdateValue(wsName, "B" + (intHojaExcel).ToString(), Paterno.Value.ToString().ToUpper(), 0, true);
+					UpdateValue(wsName, "B" + (intHojaExcel).ToString(), int.Parse(txtnpelicula.Value.ToString()).ToString(fmt), 0, true);
+					UpdateValue(wsName, "C" + (intHojaExcel).ToString(), Paterno.Value.ToString().ToUpper(), 0, true);
 					UpdateValue(wsName, "D" + (intHojaExcel).ToString(), Maternos.Value.ToString().ToUpper(), 0, true);
-					UpdateValue(wsName, "F" + (intHojaExcel).ToString(), Nombres.Value.ToString().Substring(0, 1).ToUpper() + Nombres.Value.ToString().Substring(1, Nombres.Value.ToString().Length - 1).ToLower(), 0, true);
-					UpdateValue(wsName, "G" + (intHojaExcel).ToString(), Rut.Value.ToString().ToUpperInvariant(), 0, true);
-					UpdateValue(wsName, "D2" , strfecha_Per, 0, true);
-					UpdateValue(wsName, "D18", strfecha_Fin, 0, true);
-					UpdateValue(wsName, "J4", strServicio, 0, true);
-					UpdateValue(wsName, "L4", strDireccion, 0, true);
-					UpdateValue(wsName, "M4", strRegion, 0, true);
-					UpdateValue(wsName, "N4", strComuna, 0, true);
-					UpdateValue(wsName, "K4", lbl_nombreCliente.Text, 0, true);
+					UpdateValue(wsName, "E" + (intHojaExcel).ToString(), Nombres.Value.ToString().Substring(0, 1).ToUpper() + Nombres.Value.ToString().Substring(1, Nombres.Value.ToString().Length - 1).ToLower(), 0, true);
+					UpdateValue(wsName, "F" + (intHojaExcel).ToString(), Rut.Value.ToString().ToUpperInvariant(), 0, true);
+					//UpdateValue(wsName, "D2" , strfecha_Per, 0, true);
+					//UpdateValue(wsName, "D18", strfecha_Fin, 0, true);
+					UpdateValue(wsName, "B15", strUsados, 0, true);
+					UpdateValue(wsName, "C12", strDireccion, 0, true);
+					UpdateValue(wsName, "C14", lbl_rut.Text, 0, true);
+
+					//	UpdateValue(wsName, "M4", strRegion, 0, true);
+					UpdateValue(wsName, "C13", strComuna + ", " + strRegion, 0, true);
+					UpdateValue(wsName, "C11", lbl_nombreCliente.Text, 0, true);
+					UpdateValue(wsName, "F11", lbl_id_cliente.Text, 0, true);
 					document.Close();
 
 
