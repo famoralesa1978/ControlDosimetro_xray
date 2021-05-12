@@ -173,7 +173,7 @@ namespace ControlDosimetro
             }
             catch (Exception ex)
             {
-                new Clases.ClassErrores(ex, 0, txt_Usuario.Text, String.Format("Versión {0}", AssemblyVersion));
+                new Clases.ClassErrores(ex, 0, txt_Usuario.Text);
             }
             finally
             {

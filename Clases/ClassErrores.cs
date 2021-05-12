@@ -8,6 +8,7 @@ using System.IO;
 using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
+using System.Reflection;
 
 namespace Clases
 {
@@ -25,14 +26,15 @@ namespace Clases
             public string Fecha { get; set; }
         }
 
-        public ClassErrores(Exception Error, int menu, string usuario, string versionApp)
+        public ClassErrores(Exception Error, int menu, string usuario)
         {
             var err = new Err
             {
                 Menu = menu,
                 Usuario = usuario,
                 Mensaje = Error.Message,
-                VersionApp = versionApp,
+                //VersionApp = versionApp,
+                VersionApp = Assembly.GetExecutingAssembly().GetName().Version.ToString(),
                 Fecha = DateTime.Now.ToString("yyyyMMdd_HHmmss")
             };
 
