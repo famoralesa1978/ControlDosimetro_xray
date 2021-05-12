@@ -651,7 +651,7 @@ namespace ControlDosimetro
 				{
 					if(intHojaExcel==34)
 					{
-						intHojaExcel = 18;
+						intHojaExcel = 19;
 						intExcel = intExcel + 1;
 						strpathcopiarInforme = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + (intExcel-1).ToString() + ".xlsx";
 
