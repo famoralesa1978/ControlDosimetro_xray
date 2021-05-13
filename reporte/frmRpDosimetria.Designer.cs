@@ -54,6 +54,9 @@
 			this.btn_ReporteRegion = new System.Windows.Forms.Button();
 			this.label3 = new System.Windows.Forms.Label();
 			this.tabAnual = new System.Windows.Forms.TabPage();
+			this.rbt_PorTLD = new System.Windows.Forms.RadioButton();
+			this.rbt_PorDosimetros = new System.Windows.Forms.RadioButton();
+			this.rbt_Todos = new System.Windows.Forms.RadioButton();
 			this.btn_AnualCliente = new System.Windows.Forms.Button();
 			this.tabAnualSucursal = new System.Windows.Forms.TabPage();
 			this.btnReporteAnualPorSucursal = new System.Windows.Forms.Button();
@@ -62,9 +65,6 @@
 			this.sistiamc_controlDataSet2 = new ControlDosimetro.DB_A2B812_ControlDataSet();
 			this.rtpDosimetriaBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.rtpDosimetriaTableAdapter = new ControlDosimetro.DB_A2B812_ControlDataSet();
-			this.rbt_Todos = new System.Windows.Forms.RadioButton();
-			this.rbt_PorDosimetros = new System.Windows.Forms.RadioButton();
-			this.rbt_PorTLD = new System.Windows.Forms.RadioButton();
 			((System.ComponentModel.ISupportInitialize)(this.sistiamccontrolDataSet1BindingSource)).BeginInit();
 			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -144,11 +144,11 @@
 			// rbt_TLD
 			// 
 			this.rbt_TLD.AutoSize = true;
-			this.rbt_TLD.Location = new System.Drawing.Point(126, 4);
+			this.rbt_TLD.Location = new System.Drawing.Point(91, 4);
 			this.rbt_TLD.Name = "rbt_TLD";
-			this.rbt_TLD.Size = new System.Drawing.Size(65, 17);
+			this.rbt_TLD.Size = new System.Drawing.Size(46, 17);
 			this.rbt_TLD.TabIndex = 10;
-			this.rbt_TLD.Text = "Por TLD";
+			this.rbt_TLD.Text = "TLD";
 			this.rbt_TLD.UseVisualStyleBackColor = true;
 			// 
 			// rbt_Dosimetro
@@ -157,10 +157,10 @@
 			this.rbt_Dosimetro.Checked = true;
 			this.rbt_Dosimetro.Location = new System.Drawing.Point(9, 4);
 			this.rbt_Dosimetro.Name = "rbt_Dosimetro";
-			this.rbt_Dosimetro.Size = new System.Drawing.Size(91, 17);
+			this.rbt_Dosimetro.Size = new System.Drawing.Size(64, 17);
 			this.rbt_Dosimetro.TabIndex = 9;
 			this.rbt_Dosimetro.TabStop = true;
-			this.rbt_Dosimetro.Text = "Por dosímetro";
+			this.rbt_Dosimetro.Text = "Fílmicos";
 			this.rbt_Dosimetro.UseVisualStyleBackColor = true;
 			this.rbt_Dosimetro.CheckedChanged += new System.EventHandler(this.rbt_Dosimetro_CheckedChanged);
 			// 
@@ -341,6 +341,38 @@
 			this.tabAnual.Text = "Anual por Cliente";
 			this.tabAnual.UseVisualStyleBackColor = true;
 			// 
+			// rbt_PorTLD
+			// 
+			this.rbt_PorTLD.AutoSize = true;
+			this.rbt_PorTLD.Location = new System.Drawing.Point(208, 7);
+			this.rbt_PorTLD.Name = "rbt_PorTLD";
+			this.rbt_PorTLD.Size = new System.Drawing.Size(46, 17);
+			this.rbt_PorTLD.TabIndex = 14;
+			this.rbt_PorTLD.Text = "TLD";
+			this.rbt_PorTLD.UseVisualStyleBackColor = true;
+			// 
+			// rbt_PorDosimetros
+			// 
+			this.rbt_PorDosimetros.AutoSize = true;
+			this.rbt_PorDosimetros.Location = new System.Drawing.Point(108, 7);
+			this.rbt_PorDosimetros.Name = "rbt_PorDosimetros";
+			this.rbt_PorDosimetros.Size = new System.Drawing.Size(64, 17);
+			this.rbt_PorDosimetros.TabIndex = 13;
+			this.rbt_PorDosimetros.Text = "Fílmicos";
+			this.rbt_PorDosimetros.UseVisualStyleBackColor = true;
+			// 
+			// rbt_Todos
+			// 
+			this.rbt_Todos.AutoSize = true;
+			this.rbt_Todos.Checked = true;
+			this.rbt_Todos.Location = new System.Drawing.Point(31, 7);
+			this.rbt_Todos.Name = "rbt_Todos";
+			this.rbt_Todos.Size = new System.Drawing.Size(55, 17);
+			this.rbt_Todos.TabIndex = 12;
+			this.rbt_Todos.TabStop = true;
+			this.rbt_Todos.Text = "Todos";
+			this.rbt_Todos.UseVisualStyleBackColor = true;
+			// 
 			// btn_AnualCliente
 			// 
 			this.btn_AnualCliente.Location = new System.Drawing.Point(48, 36);
@@ -411,38 +443,6 @@
 			// 
 			this.rtpDosimetriaTableAdapter.DataSetName = "DB_A2B812_ControlDataSet";
 			this.rtpDosimetriaTableAdapter.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
-			// rbt_Todos
-			// 
-			this.rbt_Todos.AutoSize = true;
-			this.rbt_Todos.Checked = true;
-			this.rbt_Todos.Location = new System.Drawing.Point(31, 7);
-			this.rbt_Todos.Name = "rbt_Todos";
-			this.rbt_Todos.Size = new System.Drawing.Size(55, 17);
-			this.rbt_Todos.TabIndex = 12;
-			this.rbt_Todos.TabStop = true;
-			this.rbt_Todos.Text = "Todos";
-			this.rbt_Todos.UseVisualStyleBackColor = true;
-			// 
-			// rbt_PorDosimetros
-			// 
-			this.rbt_PorDosimetros.AutoSize = true;
-			this.rbt_PorDosimetros.Location = new System.Drawing.Point(108, 7);
-			this.rbt_PorDosimetros.Name = "rbt_PorDosimetros";
-			this.rbt_PorDosimetros.Size = new System.Drawing.Size(94, 17);
-			this.rbt_PorDosimetros.TabIndex = 13;
-			this.rbt_PorDosimetros.Text = "Por dosimetros";
-			this.rbt_PorDosimetros.UseVisualStyleBackColor = true;
-			// 
-			// rbt_PorTLD
-			// 
-			this.rbt_PorTLD.AutoSize = true;
-			this.rbt_PorTLD.Location = new System.Drawing.Point(208, 7);
-			this.rbt_PorTLD.Name = "rbt_PorTLD";
-			this.rbt_PorTLD.Size = new System.Drawing.Size(65, 17);
-			this.rbt_PorTLD.TabIndex = 14;
-			this.rbt_PorTLD.Text = "Por TLD";
-			this.rbt_PorTLD.UseVisualStyleBackColor = true;
 			// 
 			// frmRpDosimetria
 			// 
