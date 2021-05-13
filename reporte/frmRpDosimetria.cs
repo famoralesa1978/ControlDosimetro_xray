@@ -106,13 +106,20 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 
+			string strNombreReporte = "";
+			if (rbt_Todos.Checked)
+				strNombreReporte = "rtpDosimetriaAnual";
+			if (rbt_PorDosimetros.Checked)
+				strNombreReporte = "rtpDosimetriaAnualDos";
+			if (rbt_PorTLD.Checked)
+				strNombreReporte = "rtpDosimetriaAnualTLD";
 			SqlCommand cmd = new SqlCommand();
 
 			//  SqlCommand cmd = new SqlCommand();
 			Int64 intanno;
 
 			intanno = Convert.ToInt64(cbx_anno.Text);
-			cmd.CommandText = "rtpDosimetriaAnual " + intanno.ToString();
+			cmd.CommandText = strNombreReporte + " " + intanno.ToString();
 			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -255,11 +262,11 @@ namespace ControlDosimetro
 			{
 				DataSet dt;
 
-				dt = rbt_Dosimetro.Checked? Cargar_PorDosimetro(): Cargar_PorTLD();
+				dt = rbt_Dosimetro.Checked ? Cargar_PorDosimetro() : Cargar_PorTLD();
 				string strReporte = "";
-				strReporte= rbt_Dosimetro.Checked ? "rptPorNumeroDosimetro" : "rptPorNumeroTLD";
-				
-				Llamado_reporte(dt, strReporte+".rdlc");
+				strReporte = rbt_Dosimetro.Checked ? "rptPorNumeroDosimetro" : "rptPorNumeroTLD";
+
+				Llamado_reporte(dt, strReporte + ".rdlc");
 			}
 			else
 				MessageBox.Show("Debe ingresar un valor");
