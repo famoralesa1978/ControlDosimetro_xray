@@ -62,6 +62,9 @@
 			this.sistiamc_controlDataSet2 = new ControlDosimetro.DB_A2B812_ControlDataSet();
 			this.rtpDosimetriaBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.rtpDosimetriaTableAdapter = new ControlDosimetro.DB_A2B812_ControlDataSet();
+			this.rbt_Todos = new System.Windows.Forms.RadioButton();
+			this.rbt_PorDosimetros = new System.Windows.Forms.RadioButton();
+			this.rbt_PorTLD = new System.Windows.Forms.RadioButton();
 			((System.ComponentModel.ISupportInitialize)(this.sistiamccontrolDataSet1BindingSource)).BeginInit();
 			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -196,7 +199,7 @@
 			this.tabRut.Location = new System.Drawing.Point(4, 25);
 			this.tabRut.Name = "tabRut";
 			this.tabRut.Padding = new System.Windows.Forms.Padding(3);
-			this.tabRut.Size = new System.Drawing.Size(543, 65);
+			this.tabRut.Size = new System.Drawing.Size(614, 65);
 			this.tabRut.TabIndex = 0;
 			this.tabRut.Text = "Por Rut";
 			this.tabRut.UseVisualStyleBackColor = true;
@@ -236,7 +239,7 @@
 			this.tabCliente.Location = new System.Drawing.Point(4, 25);
 			this.tabCliente.Name = "tabCliente";
 			this.tabCliente.Padding = new System.Windows.Forms.Padding(3);
-			this.tabCliente.Size = new System.Drawing.Size(543, 65);
+			this.tabCliente.Size = new System.Drawing.Size(614, 65);
 			this.tabCliente.TabIndex = 1;
 			this.tabCliente.Text = "Por Número Cliente";
 			this.tabCliente.UseVisualStyleBackColor = true;
@@ -275,7 +278,7 @@
 			this.tabRegion.Controls.Add(this.label3);
 			this.tabRegion.Location = new System.Drawing.Point(4, 25);
 			this.tabRegion.Name = "tabRegion";
-			this.tabRegion.Size = new System.Drawing.Size(543, 65);
+			this.tabRegion.Size = new System.Drawing.Size(614, 65);
 			this.tabRegion.TabIndex = 2;
 			this.tabRegion.Text = "Por Región";
 			this.tabRegion.UseVisualStyleBackColor = true;
@@ -326,18 +329,21 @@
 			// 
 			// tabAnual
 			// 
+			this.tabAnual.Controls.Add(this.rbt_PorTLD);
+			this.tabAnual.Controls.Add(this.rbt_PorDosimetros);
+			this.tabAnual.Controls.Add(this.rbt_Todos);
 			this.tabAnual.Controls.Add(this.btn_AnualCliente);
 			this.tabAnual.Location = new System.Drawing.Point(4, 25);
 			this.tabAnual.Name = "tabAnual";
 			this.tabAnual.Padding = new System.Windows.Forms.Padding(3);
-			this.tabAnual.Size = new System.Drawing.Size(543, 65);
+			this.tabAnual.Size = new System.Drawing.Size(614, 65);
 			this.tabAnual.TabIndex = 3;
 			this.tabAnual.Text = "Anual por Cliente";
 			this.tabAnual.UseVisualStyleBackColor = true;
 			// 
 			// btn_AnualCliente
 			// 
-			this.btn_AnualCliente.Location = new System.Drawing.Point(31, 17);
+			this.btn_AnualCliente.Location = new System.Drawing.Point(48, 36);
 			this.btn_AnualCliente.Name = "btn_AnualCliente";
 			this.btn_AnualCliente.Size = new System.Drawing.Size(75, 23);
 			this.btn_AnualCliente.TabIndex = 11;
@@ -351,7 +357,7 @@
 			this.tabAnualSucursal.Location = new System.Drawing.Point(4, 25);
 			this.tabAnualSucursal.Name = "tabAnualSucursal";
 			this.tabAnualSucursal.Padding = new System.Windows.Forms.Padding(3);
-			this.tabAnualSucursal.Size = new System.Drawing.Size(543, 65);
+			this.tabAnualSucursal.Size = new System.Drawing.Size(614, 65);
 			this.tabAnualSucursal.TabIndex = 5;
 			this.tabAnualSucursal.Text = "Anual por Sucursal";
 			this.tabAnualSucursal.UseVisualStyleBackColor = true;
@@ -406,6 +412,38 @@
 			this.rtpDosimetriaTableAdapter.DataSetName = "DB_A2B812_ControlDataSet";
 			this.rtpDosimetriaTableAdapter.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
+			// rbt_Todos
+			// 
+			this.rbt_Todos.AutoSize = true;
+			this.rbt_Todos.Checked = true;
+			this.rbt_Todos.Location = new System.Drawing.Point(31, 7);
+			this.rbt_Todos.Name = "rbt_Todos";
+			this.rbt_Todos.Size = new System.Drawing.Size(55, 17);
+			this.rbt_Todos.TabIndex = 12;
+			this.rbt_Todos.TabStop = true;
+			this.rbt_Todos.Text = "Todos";
+			this.rbt_Todos.UseVisualStyleBackColor = true;
+			// 
+			// rbt_PorDosimetros
+			// 
+			this.rbt_PorDosimetros.AutoSize = true;
+			this.rbt_PorDosimetros.Location = new System.Drawing.Point(108, 7);
+			this.rbt_PorDosimetros.Name = "rbt_PorDosimetros";
+			this.rbt_PorDosimetros.Size = new System.Drawing.Size(94, 17);
+			this.rbt_PorDosimetros.TabIndex = 13;
+			this.rbt_PorDosimetros.Text = "Por dosimetros";
+			this.rbt_PorDosimetros.UseVisualStyleBackColor = true;
+			// 
+			// rbt_PorTLD
+			// 
+			this.rbt_PorTLD.AutoSize = true;
+			this.rbt_PorTLD.Location = new System.Drawing.Point(208, 7);
+			this.rbt_PorTLD.Name = "rbt_PorTLD";
+			this.rbt_PorTLD.Size = new System.Drawing.Size(65, 17);
+			this.rbt_PorTLD.TabIndex = 14;
+			this.rbt_PorTLD.Text = "Por TLD";
+			this.rbt_PorTLD.UseVisualStyleBackColor = true;
+			// 
 			// frmRpDosimetria
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -430,6 +468,7 @@
 			this.tabRegion.ResumeLayout(false);
 			this.tabRegion.PerformLayout();
 			this.tabAnual.ResumeLayout(false);
+			this.tabAnual.PerformLayout();
 			this.tabAnualSucursal.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.sistiamc_controlDataSet2)).EndInit();
@@ -474,5 +513,8 @@
         private System.Windows.Forms.Button btnReporteAnualPorSucursal;
 		private System.Windows.Forms.RadioButton rbt_Dosimetro;
 		private System.Windows.Forms.RadioButton rbt_TLD;
+		private System.Windows.Forms.RadioButton rbt_PorTLD;
+		private System.Windows.Forms.RadioButton rbt_PorDosimetros;
+		private System.Windows.Forms.RadioButton rbt_Todos;
 	}
 }
