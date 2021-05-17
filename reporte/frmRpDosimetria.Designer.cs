@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+			Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
 			this.sistiamccontrolDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.cbx_anno = new System.Windows.Forms.ComboBox();
@@ -87,7 +87,7 @@
 			this.groupBox1.Controls.Add(this.tabControl1);
 			this.groupBox1.Location = new System.Drawing.Point(3, 12);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(634, 143);
+			this.groupBox1.Size = new System.Drawing.Size(634, 162);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Busqueda";
@@ -122,7 +122,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(6, 44);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(622, 94);
+			this.tabControl1.Size = new System.Drawing.Size(622, 118);
 			this.tabControl1.TabIndex = 0;
 			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
 			// 
@@ -336,7 +336,7 @@
 			this.tabAnual.Location = new System.Drawing.Point(4, 25);
 			this.tabAnual.Name = "tabAnual";
 			this.tabAnual.Padding = new System.Windows.Forms.Padding(3);
-			this.tabAnual.Size = new System.Drawing.Size(614, 65);
+			this.tabAnual.Size = new System.Drawing.Size(614, 89);
 			this.tabAnual.TabIndex = 3;
 			this.tabAnual.Text = "Anual por Cliente";
 			this.tabAnual.UseVisualStyleBackColor = true;
@@ -344,7 +344,7 @@
 			// rbt_PorTLD
 			// 
 			this.rbt_PorTLD.AutoSize = true;
-			this.rbt_PorTLD.Location = new System.Drawing.Point(208, 7);
+			this.rbt_PorTLD.Location = new System.Drawing.Point(272, 32);
 			this.rbt_PorTLD.Name = "rbt_PorTLD";
 			this.rbt_PorTLD.Size = new System.Drawing.Size(46, 17);
 			this.rbt_PorTLD.TabIndex = 14;
@@ -354,7 +354,7 @@
 			// rbt_PorDosimetros
 			// 
 			this.rbt_PorDosimetros.AutoSize = true;
-			this.rbt_PorDosimetros.Location = new System.Drawing.Point(108, 7);
+			this.rbt_PorDosimetros.Location = new System.Drawing.Point(172, 32);
 			this.rbt_PorDosimetros.Name = "rbt_PorDosimetros";
 			this.rbt_PorDosimetros.Size = new System.Drawing.Size(64, 17);
 			this.rbt_PorDosimetros.TabIndex = 13;
@@ -365,7 +365,7 @@
 			// 
 			this.rbt_Todos.AutoSize = true;
 			this.rbt_Todos.Checked = true;
-			this.rbt_Todos.Location = new System.Drawing.Point(31, 7);
+			this.rbt_Todos.Location = new System.Drawing.Point(95, 32);
 			this.rbt_Todos.Name = "rbt_Todos";
 			this.rbt_Todos.Size = new System.Drawing.Size(55, 17);
 			this.rbt_Todos.TabIndex = 12;
@@ -375,7 +375,7 @@
 			// 
 			// btn_AnualCliente
 			// 
-			this.btn_AnualCliente.Location = new System.Drawing.Point(48, 36);
+			this.btn_AnualCliente.Location = new System.Drawing.Point(37, 61);
 			this.btn_AnualCliente.Name = "btn_AnualCliente";
 			this.btn_AnualCliente.Size = new System.Drawing.Size(75, 23);
 			this.btn_AnualCliente.TabIndex = 11;
@@ -420,9 +420,9 @@
 			this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			reportDataSource1.Name = "DataSet1";
-			reportDataSource1.Value = this.sistiamccontrolDataSet1BindingSource;
-			this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+			reportDataSource2.Name = "DataSet1";
+			reportDataSource2.Value = this.sistiamccontrolDataSet1BindingSource;
+			this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
 			this.reportViewer1.LocalReport.ReportEmbeddedResource = "ControlDosimetro.reporte.rptDosimetria.rdlc";
 			this.reportViewer1.Location = new System.Drawing.Point(0, 0);
 			this.reportViewer1.Name = "reportViewer1";
