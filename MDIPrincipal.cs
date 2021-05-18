@@ -96,7 +96,6 @@ namespace ControlDosimetro
 			ListadoTLD
 		}
 
-
 		#endregion
 
 		#region formulario
@@ -105,7 +104,9 @@ namespace ControlDosimetro
 		{
 			InitializeComponent();
 
-			frmLogin frm = new frmLogin();
+            Clases.clsBD.ObtieneDatosSistema();
+
+            frmLogin frm = new frmLogin();
 			frm.ShowDialog();
 
 			tstUsuario.Text = Clases.clsUsuario.Usuario;
@@ -168,12 +169,25 @@ namespace ControlDosimetro
 		private void TsbPrincipalCambioContraseña_Click(object sender, EventArgs e)
 		{
 			LlamarFormularioContrasena();
-		}
+        }
 
-		#endregion
+        private void TsbPrincipal_Click(object sender, EventArgs e)
+        {
+            if (((ToolStripButton)sender).Text == "Cliente")
+                Cargamenu((int)MENU.MantCliente);
+            if (((ToolStripButton)sender).Text == "Personal")
+                Cargamenu((int)MENU.MantPersonal);
+            if (((ToolStripButton)sender).Text == "Cambio contraseña")
+                Cargamenu((int)MENU.Cambiarcontraseña);
+            if (((ToolStripButton)sender).Text == "Restablecer")
+                LlamarFormularioContrasenaCliente(); ;
+        }
 
-		#region "Proceso"
-		private void MnuProcesoDosisISP_Click(object sender, EventArgs e)
+        #endregion
+
+        #region "Proceso"
+
+        private void MnuProcesoDosisISP_Click(object sender, EventArgs e)
 		{
 			frmDosimetriaISP frm = new frmDosimetriaISP(-1);
 			Graba_log(frm.Text);
@@ -1119,7 +1133,6 @@ namespace ControlDosimetro
 
 		}
 
-
 		static public void LlamadaReporte(int intReporte)
 		{
 			switch (intReporte)
@@ -1219,17 +1232,5 @@ namespace ControlDosimetro
 		}
 
 		#endregion
-
-		private void TsbPrincipal_Click(object sender, EventArgs e)
-		{
-			if (((ToolStripButton)sender).Text == "Cliente")
-				Cargamenu((int)MENU.MantCliente);
-			if (((ToolStripButton)sender).Text == "Personal")
-				Cargamenu((int)MENU.MantPersonal);
-			if (((ToolStripButton)sender).Text == "Cambio contraseña")
-				Cargamenu((int)MENU.Cambiarcontraseña);
-			if (((ToolStripButton)sender).Text == "Restablecer")
-				LlamarFormularioContrasenaCliente(); ;
-		}
 	}
 }

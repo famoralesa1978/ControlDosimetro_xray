@@ -101,5 +101,14 @@ namespace ControlDosimetro.Properties {
                 return ((string)(this["sistiamc_controlConnectionString3"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public string Pk_Sistema {
+            get {
+                return ((string)(this["Pk_Sistema"]));
+            }
+        }
     }
 }
