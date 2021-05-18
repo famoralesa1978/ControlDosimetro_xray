@@ -31,13 +31,12 @@ namespace ControlDosimetro
             InitializeComponent();
             coColor = frmLogin.DefaultBackColor;
             this.labelVersion.Text = String.Format("Versión {0}", AssemblyVersion);
-            Clases.clsBD.BD = "Prod1";
-            if (Clases.clsBD.BD == "Desarrollo")
-            {
+            //Clases.clsBD.BD = "Prod1";
+            //if (Clases.clsBD.BD == "Desarrollo")
+            //{
                 this.BackColor = Color.Green;
                 this.Text = this.Text + " Desarrollo";
-            }
-                
+            //}
         }
 
         #region Descriptores de acceso de atributos de ensamblado
@@ -118,7 +117,10 @@ namespace ControlDosimetro
                 return ((AssemblyCompanyAttribute)attributes[0]).Company;
             }
         }
+
         #endregion
+
+        #region Región asociada a los botones
 
         private void btn_Salir_Click(object sender, EventArgs e)
         {
@@ -128,44 +130,55 @@ namespace ControlDosimetro
         private void btn_ingresar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-
-            if (txt_Usuario.Text.Trim() == "" || txt_Contrasena.Text.Trim() == "")
-                MessageBox.Show("Debe contener usuario y contraseña");
-            else
+            try
             {
-                Cursor = Cursors.WaitCursor;
-                string Clave = clsUtiles1.GenerateHashMD5(txt_Contrasena.Text.Trim());  
-                //pa_login_sel 
-                SqlCommand cmd = new SqlCommand();
-                DataSet ds;
-                cmd.CommandText = "pa_login_sel '" + txt_Usuario.Text.Trim() + "','" + Clave + "'";
-                cmd.CommandType = CommandType.Text;
-
-                ds = Conectar.Listar(Clases.clsBD.BD,cmd);
-
-                if (ds.Tables[0].Rows.Count == 0)
-                    MessageBox.Show("El usuario no existe");
+                //throw new ArgumentException("Prueba forzando error");
+                if (txt_Usuario.Text.Trim() == "" || txt_Contrasena.Text.Trim() == "")
+                    MessageBox.Show("Debe contener usuario y contraseña");
                 else
                 {
-                    if (ds.Tables[0].Rows[0]["Contraseña"].ToString() == Clave)
-                        if (ds.Tables[0].Rows[0]["Id_estado"].ToString() == "1")
-                        {
-                            Clases.clsUsuario.Usuario = ds.Tables[0].Rows[0]["Usuario"].ToString();
-                            Clases.clsUsuario.Nombre = ds.Tables[0].Rows[0]["Nombres"].ToString() + " " + ds.Tables[0].Rows[0]["Paterno"].ToString() +" " +  ds.Tables[0].Rows[0]["Maternos"].ToString();
-                            Clases.clsUsuario.Id_Usuario =  Convert.ToInt16(ds.Tables[0].Rows[0]["Id_Usuario"].ToString());
-                            Clases.clsUsuario.Id_perfil = Convert.ToInt16(ds.Tables[0].Rows[0]["Id_perfil"].ToString());
-                            Clases.clsUsuario.Contraseña = ds.Tables[0].Rows[0]["contraseña"].ToString();
-                            
-                            this.Close();
-                        }
-                        else
-                            MessageBox.Show("El usuario se encuentra desactivado");
+                    Cursor = Cursors.WaitCursor;
+                    string Clave = clsUtiles1.GenerateHashMD5(txt_Contrasena.Text.Trim());
+                    //pa_login_sel 
+                    SqlCommand cmd = new SqlCommand();
+                    DataSet ds; // = new DataSet();
+                    cmd.CommandText = "pa_login_sel '" + txt_Usuario.Text.Trim() + "','" + Clave + "'";
+                    cmd.CommandType = CommandType.Text;
+
+                    ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+                    if (ds.Tables[0].Rows.Count == 0)
+                        MessageBox.Show("El usuario no existe");
                     else
-                        MessageBox.Show("La contraseña es incorrecta");
+                    {
+                        if (ds.Tables[0].Rows[0]["Contraseña"].ToString() == Clave)
+                            if (ds.Tables[0].Rows[0]["Id_estado"].ToString() == "1")
+                            {
+                                Clases.clsUsuario.Usuario = ds.Tables[0].Rows[0]["Usuario"].ToString();
+                                Clases.clsUsuario.Nombre = ds.Tables[0].Rows[0]["Nombres"].ToString() + " " + ds.Tables[0].Rows[0]["Paterno"].ToString() + " " + ds.Tables[0].Rows[0]["Maternos"].ToString();
+                                Clases.clsUsuario.Id_Usuario = Convert.ToInt16(ds.Tables[0].Rows[0]["Id_Usuario"].ToString());
+                                Clases.clsUsuario.Id_perfil = Convert.ToInt16(ds.Tables[0].Rows[0]["Id_perfil"].ToString());
+                                Clases.clsUsuario.Contraseña = ds.Tables[0].Rows[0]["contraseña"].ToString();
+
+                                this.Close();
+                            }
+                            else
+                                MessageBox.Show("El usuario se encuentra desactivado");
+                        else
+                            MessageBox.Show("La contraseña es incorrecta");
+                    }
+                    Cursor = Cursors.Default;
                 }
-                Cursor = Cursors.Default;
             }
-            Cursor = Cursors.Default;
+            catch (Exception ex)
+            {
+                new Clases.ClassErrores(ex, 0, txt_Usuario.Text);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+                //classFuncionesGenerales.mensajes.MensajeAdvertencia("Se ha producido un error. Inténtelo nuevamente.");
+            }
         }
 
         private void labelBD_Click(object sender, EventArgs e)
@@ -174,9 +187,9 @@ namespace ControlDosimetro
             this.BackColor = labelBD.Text == "Producción" ? coColor : Color.Green;
             string strbd= labelBD.Text == "Producción" ? "" : "Desarrollo";
             this.Text = "Sistema de control dosimetro " + strbd;
-            Clases.clsBD.BD = labelBD.Text == "Producción" ? "Prod1" : "Desarrollo";           
+            Clases.clsBD.BD = labelBD.Text == "Producción" ? "Prod1" : "Desarrollo";
         }
-    }
 
-    
+        #endregion
+    }
 }

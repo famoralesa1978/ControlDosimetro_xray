@@ -43,5 +43,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=fmorales;Initial Catalog=sistiamc_control;Integrated Security=True</Value>
     </Setting>
+    <Setting Name="Pk_Sistema" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
