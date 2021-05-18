@@ -100,7 +100,7 @@
     </Reference>
     <Reference Include="dllLibreriaMysql, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libreria\dllLibreriasqlCommand\dllLibreriaMysql\bin\Debug\dllLibreriaMysql.dll</HintPath>
+      <HintPath>..\..\Proyectos_Web\ControlErrores\dllLibreriaMysql.dll</HintPath>
     </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -111,6 +111,10 @@
     </Reference>
     <Reference Include="GridExtension">
       <HintPath>Libreria\GridExtension.dll</HintPath>
+    </Reference>
+    <Reference Include="LibAdmSistema, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LibAdmSistema\LibAdmSistema\bin\Debug\LibAdmSistema.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -918,6 +922,7 @@
     <Content Include="Libreria\dllLibreriaMysql.dll" />
     <Content Include="Libreria\DocumentFormat.OpenXml.dll" />
     <Content Include="Libreria\GridExtension.dll" />
+    <Content Include="Libreria\LibAdmSistema.dll" />
     <None Include="Resources\Verify_16.png" />
     <None Include="Resources\Verify_32.png" />
     <None Include="Resources\Verify_24.png" />
@@ -954,22 +959,22 @@
   <ItemGroup>
     <PublishFile Include="bin\Debug\dllLibreriaMysql.pdb">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="dllLibreriaMysql.pdb">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
