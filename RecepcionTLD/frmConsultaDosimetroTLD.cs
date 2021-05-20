@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace ControlDosimetro
 {
-	public partial class frmIngresoDosimetroTLD : Form
+	public partial class frmConsultaDosimetroTLD : Form
 	{
 
 		#region "Definicion variable"
@@ -54,16 +54,15 @@ namespace ControlDosimetro
 
 		#endregion
 
-		public frmIngresoDosimetroTLD(Int64 intId_Cliente)
+		public frmConsultaDosimetroTLD()
 		{
 			InitializeComponent();
 			AsignarEvento();
 			grdDatos.AutoGenerateColumns = false;
 
-
 		}
 
-		private void frmIngresoDosimetroTLD_Load(object sender, EventArgs e)
+		private void frmConsultaDosimetroTLD_Load(object sender, EventArgs e)
 		{
 			SqlCommand cmdcombo = new SqlCommand();
 			//SqlCommand cmdcombo = new SqlCommand();
@@ -73,13 +72,8 @@ namespace ControlDosimetro
 			cmdcombo.CommandType = CommandType.Text;
 			dtcombo = Conectar.Listar(Clases.clsBD.BD, cmdcombo);
 
-
-
-			btn_Guardar.Visible = false;
 			pnl_Progreso.Visible = false;
 			grpFiltro.Enabled = false;
-			lbl_ValorMax.Text = "";
-			Cargar_Reporte();
 			Cargar_Anno();
 		}
 
@@ -123,10 +117,6 @@ namespace ControlDosimetro
 					MessageBox.Show("El cliente no existe");
 
 			}
-
-
-
-			//
 		}
 
 		private void Listar_Personal()
@@ -139,7 +129,7 @@ namespace ControlDosimetro
 			int intSucursal = cbx_Sucursal.SelectedValue == null ? 0 : (int)cbx_Sucursal.SelectedValue;
 			int intSeccion = cbx_id_seccion.SelectedValue == null ? 0 : (int)cbx_id_seccion.SelectedValue;
 
-			cmd.CommandText = "pa_ListarPersonalTLDPorSeccion_sel " + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text + "," + intSeccion.ToString() + "," + intSucursal.ToString();
+			cmd.CommandText = "pa_ConsultaIngresoTLDPorSeccion_sel " + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text + "," + intSeccion.ToString() + "," + intSucursal.ToString();
 
 			cmd.CommandType = CommandType.Text;
 
@@ -159,14 +149,12 @@ namespace ControlDosimetro
 
 			if (dt.Tables[0].Rows.Count == 0)
 			{
-				btn_Guardar.Visible = false;
 				grdDatos.DataSource = dt.Tables[0];
 				grpFiltro.Enabled = false;
 				
 			}
 			else
 			{
-				btn_Guardar.Visible = true;
 				grpFiltro.Enabled = true;
 				grdDatos.DefaultCellStyle.BackColor = System.Drawing.Color.White;
 				grdDatos.DataSource = dt.Tables[0];
@@ -220,35 +208,6 @@ namespace ControlDosimetro
 
 		}
 
-		private void Cargar_Reporte()
-		{
-			ToolStripMenuItem tsiMenu;
-			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "pa_ListarReporte_Sel " + Id_Menu.ToString();
-			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-			if (dt == null)
-				tsdReporte.Visible = false;
-			else
-			{
-				tsdReporte.Visible = dt.Tables[0].Rows.Count == 0 ? false : true;
-				if (dt.Tables[0].Rows.Count > 0)
-				{
-					for (int intFila = 0; intFila <= dt.Tables[0].Rows.Count - 1; intFila++)
-					{
-						tsiMenu = new ToolStripMenuItem();
-						tsiMenu.Text = dt.Tables[0].Rows[intFila]["Nombre"].ToString();
-						tsiMenu.Name = dt.Tables[0].Rows[intFila]["nameMenu"].ToString();
-						tsiMenu.Tag = dt.Tables[0].Rows[intFila]["N_Reporte"].ToString();
-						tsiMenu.Click += new EventHandler(this.LLamadoReporte_Click);
-
-						tsdReporte.DropDownItems.Add(tsiMenu);
-					}
-				}
-			}
-
-		}
-
 		private void Cargar_Seccion()
 		{
 			SqlCommand cmd = new SqlCommand();
@@ -264,10 +223,6 @@ namespace ControlDosimetro
 
 		private void AsignarEvento()
 		{
-	//		this.txtRut.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
-		//	txtRut.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
-			this.txt_N_TLD.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			txt_N_TLD.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
 			lbl_id_cliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
 			lbl_id_cliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
 		}
@@ -311,119 +266,8 @@ namespace ControlDosimetro
 			cbx_anno.Enabled = false;
 			cbx_id_periodo.Enabled = false;
 			btn_cargar.Enabled = false;
-			btn_Corregir.Enabled = true;
-			btn_Guardar.Enabled = true;
 			grdDatos.Focus();
-			SqlCommand cmdValorMax = new SqlCommand();
-			DataSet dtValorMax;
-			cmdValorMax.CommandText = "select max(n_dosimetro) valor from [dbo].[ges_dosimetro_estado_TLD]";
-			cmdValorMax.CommandType = CommandType.Text;
-			dtValorMax = Conectar.Listar(Clases.clsBD.BD, cmdValorMax);
-
-			lbl_ValorMax.Text = dtValorMax.Tables[0].Rows[0]["valor"].ToString() == "0" ? "1" : dtValorMax.Tables[0].Rows[0]["valor"].ToString();
-			Cursor = Cursors.Default;
-		}
-
-		private void btn_Guardar_Click(object sender, EventArgs e)
-		{
-			SqlCommand cmd = new SqlCommand();
-			//	  SqlCommand cmd = new SqlCommand();
-			SqlCommand cmdpersonal = new SqlCommand();
-			//  SqlCommand cmdpersonal = new SqlCommand();
-			SqlCommand cmdperiodo = new SqlCommand();
-			//  SqlCommand cmdperiodo = new SqlCommand();
-
-			// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);            
-			btn_Guardar.Enabled = false;
-
-
-			//   //**************carga periodo
-			DataSet dtPeriodo;
-			// SqlCommand cmdPeriodo = new SqlCommand();
-			SqlCommand cmdPeriodo = new SqlCommand();
-
-			cmdPeriodo.CommandText = "SELECT fecha_inicio,fecha_termino " +
-													 " FROM conf_periodo " +
-													 //"where mes =3 and anno=" + cbx_anno.Text;  
-													 "WHERE  Id_Periodo= " + cbx_id_periodo.SelectedValue;
-			cmdPeriodo.CommandType = CommandType.Text;
-			dtPeriodo = Conectar.Listar(Clases.clsBD.BD, cmdPeriodo);
-			string strfecha_inicio = "From " + dtPeriodo.Tables[0].Rows[0]["fecha_inicio"].ToString().Substring(0, 6) + dtPeriodo.Tables[0].Rows[0]["fecha_inicio"].ToString().Substring(8, 2);
-			strfecha_inicio = strfecha_inicio + " to " + dtPeriodo.Tables[0].Rows[0]["fecha_termino"].ToString().Substring(0, 6) + dtPeriodo.Tables[0].Rows[0]["fecha_termino"].ToString().Substring(8, 2); ;
-
-			string strTri = cbx_id_periodo.Text.ToString().Substring(0, 1) + "er Trim " + cbx_anno.Text;
-			//  From 01/01/19 to 31/03/19
-			//*****************
-			DataGridViewCheckBoxCell checkGenerar;
-			DataGridViewCheckBoxCell checkCell;
-			//DataGridViewTextBoxCell txtvalor;
-			DataGridViewTextBoxCell txtndocumento;
-			DataGridViewTextBoxCell txtnpelicula;
-			DataGridViewTextBoxCell txtid_estadodosimetro;
-			//    DataGridViewTextBoxCell N_Cliente;
-			DataGridViewTextBoxCell Rut;
-			DataGridViewTextBoxCell Paterno;
-			DataGridViewTextBoxCell Nombres;
-			DataGridViewTextBoxCell Maternos;
-			DataGridViewTextBoxCell id_sucursal;
-			DataGridViewTextBoxCell id_dosimetro;
-			DataGridViewTextBoxCell Id_Personal;
-
-			//*******************
-			//     string strArchivo = "";// dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "Plantillaword.docx";
-			//     int i;                
-			string fmt = "00000000";
-			for (int idatos = 0; idatos <= grdDatos.Rows.Count - 1; idatos++)
-			{
-				checkGenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[idatos].Cells["Generar"];
-				checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[idatos].Cells["chkGenerado"];
-				txtndocumento = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["NDocumento"];
-				txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["N_pelicula"];
-				txtid_estadodosimetro = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["id_estadodosimetro"];
-				Rut = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Rut"];
-				id_dosimetro = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["id_dosimetro"];
-				Paterno = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Paterno"];
-				Maternos = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Maternos"];
-				Nombres = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Nombres"];
-				id_sucursal = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["id_sucursal"];
-				Id_Personal = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Id_Personal"];
-				if ((checkGenerar.Value.ToString() == "1") && (checkCell.Value.ToString() == "0") && (txtid_estadodosimetro.Value.ToString() == "-1"))
-				{
-					if (Convert.ToInt64(txtnpelicula.Value.ToString()) > 0)
-					{
-						cmd.CommandText = "pa_DosimetroTLD_ins " +
-									 Id_Personal.Value.ToString() + "," + // @Id_Personal int,
-									lbl_id_cliente.Text.ToString() + "," +//@Id_cliente int,
-																												//id_sucursal.Value.ToString() + "," + //@Id_sucursal int,
-									cbx_Sucursal.SelectedValue.ToString() + "," + //@Id_sucursal int,
-									cbx_id_periodo.SelectedValue + "," +//@id_periodo int,
-									txtndocumento.Value.ToString() + "," +//@N_Documento int,
-									txtnpelicula.Value.ToString() + ",-1,'" +//@n_dosimetro int,
-									Clases.clsUsuario.Usuario + "'";
-						cmd.CommandType = CommandType.Text;
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-					}
-				}
-				if ((checkGenerar.Value.ToString() == "1") && (checkCell.Value.ToString() == "0") && (txtid_estadodosimetro.Value.ToString() != "-1"))
-				{
-					cmd.CommandText = "pa_DosimetroTLD_upd " +
-								Id_Personal.Value.ToString() + "," + // @Id_Personal int,
-								lbl_id_cliente.Text.ToString() + "," +//@Id_cliente int,
-								cbx_Sucursal.SelectedValue.ToString() + "," + //@Id_sucursal int,
-								cbx_id_periodo.SelectedValue + "," +//@id_periodo int,
-								txtndocumento.Value.ToString() + "," +//@N_Documento int,
-								txtnpelicula.Value.ToString() + ",-1,'" +//@n_dosimetro int,
-								Clases.clsUsuario.Usuario + "'";
-					//@id_estadodosimetro int
-					cmd.CommandType = CommandType.Text;
-					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-				}
-
-			}
-
-			MessageBox.Show("Informacion grabada");
-			btn_Guardar.Enabled = true;
-			Listar_Personal();
+				Cursor = Cursors.Default;
 		}
 
 		private void btn_filtro_Click_1(object sender, EventArgs e)
@@ -437,8 +281,6 @@ namespace ControlDosimetro
 			lbl_nombreCliente.Text = "";
 			btn_cargar.Enabled = true;
 			btn_Cargar_cliente.Enabled = true;
-			btn_Corregir.Enabled = false;
-			btn_Guardar.Enabled = false;
 			lbl_id_cliente.Enabled = true;
 			Listar_Personal();
 			lbl_id_cliente.Text = "0";
@@ -451,95 +293,6 @@ namespace ControlDosimetro
 		private void btn_Cerrar_Click(object sender, EventArgs e)
 		{
 			this.Close();
-		}
-
-		private void btn_Corregir_Click(object sender, EventArgs e)
-		{
-			if (string.IsNullOrWhiteSpace(txt_N_TLD.Text)){
-				MessageBox.Show("Debe asignar un número de TLD");
-				return;
-			}
-				
-		
-			SqlCommand cmd2 = new SqlCommand();
-			//	  SqlCommand cmd = new SqlCommand();
-			SqlCommand cmdpersonal = new SqlCommand();
-			//  SqlCommand cmdpersonal = new SqlCommand();
-			SqlCommand cmdperiodo = new SqlCommand();
-			//  SqlCommand cmdperiodo = new SqlCommand();
-
-			// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
-			DataGridViewCheckBoxCell checkGenerar;
-			DataGridViewCheckBoxCell checkCell;
-			//DataGridViewTextBoxCell txtvalor;
-			DataGridViewTextBoxCell txtndocumento;
-			DataGridViewTextBoxCell txtnpelicula;
-			DataGridViewTextBoxCell txtid_estadodosimetro;
-			//     DataGridViewComboBoxCell cbxEstado;
-			string strn_cliente;
-			string strid_personal;
-			//   string strid_dosimetro;
-			btn_Corregir.Enabled = false;
-
-			pnl_Progreso.Visible = true;
-			pgb_Barra.Minimum = 0;
-			pgb_Barra.Maximum = grdDatos.RowCount;
-			pnl_Progreso.Refresh();
-			int intN_Dos = 0;
-			SqlCommand cmd = new SqlCommand();
-			//   cmd.CommandText = "SELECT isnull(max([n_dosimetro]),0)n_dosimetro   FROM[dbo].[ges_dosimetro_estado_TLD]";
-			cmd.CommandText = "SELECT [n_dosimetro]  FROM[dbo].[ges_dosimetro_estado_TLD] where n_dosimetro>=" + txt_N_TLD.Text;
-			cmd.CommandType = CommandType.Text;
-			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-			DataTable dtNTld = dt.Tables[0];
-
-			intN_Dos = Int16.Parse(txt_N_TLD.Text);
-
-			cmd.CommandText = "SELECT [N_Documento]   FROM[dbo].[ges_dosimetro_estado_TLD] where id_periodo= " + cbx_id_periodo.SelectedValue +
-												" and Id_cliente=" + lbl_id_cliente.Text + " union all " +
-												"SELECT isnull(max([N_Documento]),0)n_dosimetro   FROM[dbo].[ges_dosimetro_estado_TLD] where " +
-												"  Id_cliente<>" + lbl_id_cliente.Text;
-			cmd.CommandType = CommandType.Text;
-
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-			int intN_Doc;
-			if (dt.Tables[0].Rows.Count > 0)
-				intN_Doc = 1 + Int16.Parse(dt.Tables[0].Rows[0]["N_Documento"].ToString());
-			else
-				intN_Doc = 1;
-
-			//N_Documento
-			for (int i = 0; i <= grdDatos.RowCount - 1; i++)
-			{
-				pgb_Barra.Value = i + 1;
-				pgb_Barra.Refresh();
-				checkGenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["Generar"];
-				checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["chkGenerado"];
-				txtndocumento = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["NDocumento"];
-				txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["N_pelicula"];
-				txtid_estadodosimetro = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["id_estadodosimetro"];
-
-				strn_cliente = grdDatos.Rows[i].Cells["N_Cliente"].Value.ToString();
-				strid_personal = grdDatos.Rows[i].Cells["id_personal"].Value.ToString();
-
-
-				if ((checkGenerar.Value.ToString() == "1") && (checkCell.Value.ToString() == "0") && (txtid_estadodosimetro.Value.ToString() == "-1"))
-				{
-					intN_Dos = DevolverNDosimetro(intN_Dos, dtNTld);
-
-					txtndocumento.Value = intN_Doc.ToString();
-					txtnpelicula.Value = intN_Dos.ToString();
-					intN_Dos = intN_Dos + 1;
-
-				}
-			}
-			MessageBox.Show("Informacion esta listo para generar el documento.");
-
-			btn_Corregir.Enabled = true;
-			pnl_Progreso.Visible = false;
-
-			//  Listar_Personal();
 		}
 
 		private void btn_Excel_Click(object sender, EventArgs e)
@@ -730,12 +483,6 @@ namespace ControlDosimetro
 			MessageBox.Show("El archivo fue generado");
 		}
 
-		private void btn_Sucursal_Click(object sender, EventArgs e)
-		{
-			frmBusquedaSucursal frm = new frmBusquedaSucursal(0);
-			frm.ShowDialog(this);
-		}
-
 		private void btn_Cargar_cliente_Click(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
@@ -744,17 +491,9 @@ namespace ControlDosimetro
 			Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
 			Cargar_Sucursal();
 			Cargar_Seccion();
-			btn_Corregir.Enabled = false;
-			btn_Guardar.Enabled = false;
 			Cursor = Cursors.Default;
 		}
 
-
-		private void btn_Cliente_Click(object sender, EventArgs e)
-		{
-			frmBusquedaEmpresa frm = new frmBusquedaEmpresa();
-			frm.Show(this);
-		}
 
 		#endregion
 
@@ -1210,19 +949,6 @@ namespace ControlDosimetro
 
 		#endregion
 		
-
-
-		private void LLamadoReporte_Click(object sender, EventArgs e)
-		{
-			MDIPrincipal.LlamadaReporte(Convert.ToUInt16(((System.Windows.Forms.ToolStripItem)sender).Tag.ToString()));
-
-		}
-
-		private void txtRut_Enter(object sender, EventArgs e)
-		{
-
-		}
-
 		#region Textbox
 
 		private void txt_RunPersonal_KeyDown(object sender, KeyEventArgs e)
@@ -1238,5 +964,6 @@ namespace ControlDosimetro
 		}
 
 		#endregion
+
 	}
 }

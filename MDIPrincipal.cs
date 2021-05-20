@@ -55,6 +55,7 @@ namespace ControlDosimetro
 			IniciarLectura = 304,
 			IngresarDosisTLD = 305,
 			DosisISPTLD = 306,
+			ConsultaIngTLD = 307,
 
 
 			GenerarDctoISP = 401,
@@ -104,9 +105,10 @@ namespace ControlDosimetro
 		{
 			InitializeComponent();
 
-            Clases.clsBD.ObtieneDatosSistema();
+			Clases.clsBD.ObtieneDatosSistema();
 
-            frmLogin frm = new frmLogin();
+
+			frmLogin frm = new frmLogin();
 			frm.ShowDialog();
 
 			tstUsuario.Text = Clases.clsUsuario.Usuario;
@@ -169,25 +171,25 @@ namespace ControlDosimetro
 		private void TsbPrincipalCambioContraseña_Click(object sender, EventArgs e)
 		{
 			LlamarFormularioContrasena();
-        }
+		}
 
-        private void TsbPrincipal_Click(object sender, EventArgs e)
-        {
-            if (((ToolStripButton)sender).Text == "Cliente")
-                Cargamenu((int)MENU.MantCliente);
-            if (((ToolStripButton)sender).Text == "Personal")
-                Cargamenu((int)MENU.MantPersonal);
-            if (((ToolStripButton)sender).Text == "Cambio contraseña")
-                Cargamenu((int)MENU.Cambiarcontraseña);
-            if (((ToolStripButton)sender).Text == "Restablecer")
-                LlamarFormularioContrasenaCliente(); ;
-        }
+		private void TsbPrincipal_Click(object sender, EventArgs e)
+		{
+			if (((ToolStripButton)sender).Text == "Cliente")
+				Cargamenu((int)MENU.MantCliente);
+			if (((ToolStripButton)sender).Text == "Personal")
+				Cargamenu((int)MENU.MantPersonal);
+			if (((ToolStripButton)sender).Text == "Cambio contraseña")
+				Cargamenu((int)MENU.Cambiarcontraseña);
+			if (((ToolStripButton)sender).Text == "Restablecer")
+				LlamarFormularioContrasenaCliente(); ;
+		}
 
-        #endregion
+		#endregion
 
-        #region "Proceso"
+		#region "Proceso"
 
-        private void MnuProcesoDosisISP_Click(object sender, EventArgs e)
+		private void MnuProcesoDosisISP_Click(object sender, EventArgs e)
 		{
 			frmDosimetriaISP frm = new frmDosimetriaISP(-1);
 			Graba_log(frm.Text);
@@ -570,6 +572,15 @@ namespace ControlDosimetro
 					break;
 				case (int)MENU.DosisISPTLD:
 					objFrm = new FrmInformeISP(-1)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.ConsultaIngTLD:
+					objFrm = new frmConsultaDosimetroTLD()
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
@@ -983,6 +994,16 @@ namespace ControlDosimetro
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
 					break;
+				case (int)MENU.ConsultaIngTLD:
+					objFrm = new frmConsultaDosimetroTLD()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+
 
 				#endregion
 

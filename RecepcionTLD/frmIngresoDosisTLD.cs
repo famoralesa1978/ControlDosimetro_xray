@@ -281,7 +281,13 @@ namespace ControlDosimetro
 
 		private void grdDatos_CurrentCellDirtyStateChanged(object sender, EventArgs e)
 		{
-			if (grdDatos.IsCurrentCellDirty)
+			DataGridView dgv = sender as DataGridView;
+			if (null == dgv || null == dgv.CurrentCell || !dgv.IsCurrentCellDirty)
+			{
+				return;
+			}
+
+			if ((dgv.CurrentCell is DataGridViewComboBoxCell || dgv.CurrentCell is DataGridViewCheckBoxCell))
 			{
 				grdDatos.CommitEdit(DataGridViewDataErrorContexts.Commit);
 			}
@@ -389,6 +395,10 @@ namespace ControlDosimetro
 					//	}
 
 				}
+
+				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].AcceptChanges();
+
+				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].SetModified();
 
 			}
 			
