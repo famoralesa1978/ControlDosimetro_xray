@@ -31,12 +31,8 @@ namespace ControlDosimetro
             InitializeComponent();
             coColor = frmLogin.DefaultBackColor;
             this.labelVersion.Text = String.Format("Versión {0}", AssemblyVersion);
-            //Clases.clsBD.BD = "Prod1";
-            //if (Clases.clsBD.BD == "Desarrollo")
-            //{
-                this.BackColor = Color.Green;
-                this.Text = this.Text + " Desarrollo";
-            //}
+            this.BackColor = Color.Green;
+            this.Text = "Sistema de control dosimetro Desarrollo";
         }
 
         #region Descriptores de acceso de atributos de ensamblado
@@ -177,7 +173,6 @@ namespace ControlDosimetro
             finally
             {
                 Cursor = Cursors.Default;
-                //classFuncionesGenerales.mensajes.MensajeAdvertencia("Se ha producido un error. Inténtelo nuevamente.");
             }
         }
 
@@ -187,7 +182,8 @@ namespace ControlDosimetro
             this.BackColor = labelBD.Text == "Producción" ? coColor : Color.Green;
             string strbd= labelBD.Text == "Producción" ? "" : "Desarrollo";
             this.Text = "Sistema de control dosimetro " + strbd;
-            Clases.clsBD.BD = labelBD.Text == "Producción" ? "Prod1" : "Desarrollo";
+            //Clases.clsBD.BD = labelBD.Text == "Producción" ? "Prod1" : "Desarrollo";
+            Clases.clsBD.BD = labelBD.Text == "Producción" ? Clases.clsBD.strConexionProd : Clases.clsBD.strConexionDes;
         }
 
         #endregion

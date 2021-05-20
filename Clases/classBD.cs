@@ -12,10 +12,8 @@ namespace Clases
     {
         public static string strBD;
 		public static string strConexionBD;
-        public static int strEstadoSistema;
-        public static string strConexionBdCentralAdm;
         public static string strConexionDes;
-        public static bool Ambiente = true;
+        public static string strConexionProd;
         public static string BD { get => strBD; set => strBD = value; }
 
 		public static string ConexionBD
@@ -40,29 +38,9 @@ namespace Clases
 
                 _tabla = libadm.Listar("", command);
                 BD = _tabla.Tables[0].Rows[0]["SIS_CON_DES"].ToString();
+                strConexionDes = _tabla.Tables[0].Rows[0]["SIS_CON_DES"].ToString();
+                strConexionProd = _tabla.Tables[0].Rows[0]["SIS_CON_PROD"].ToString();
 
-                //using (SqlConnection connection = new SqlConnection(libadm.)
-                //{
-                //    String sql = "SELECT * FROM GES_SISTEMA WHERE PK_SISTEMA='" + ControlDosimetro.Properties.Settings.Default.Pk_Sistema + "'";
-                //
-                //    using (SqlCommand command = new SqlCommand(sql, connection))
-                //    {
-                //        connection.Open();
-                //
-                //        SqlDataReader reader = command.ExecuteReader();
-                //
-                //        while (reader.Read())
-                //        {
-                //            strEstadoSistema = Convert.ToInt16(reader[0]);
-                //            strConexionBdCentralAdm = reader[7].ToString();
-                //            strConexionDes = reader[3].ToString();
-                //            strConexionBD = reader[4].ToString();
-                //        }
-                //
-                //        // Call Close when done reading.
-                //        reader.Close();
-                //    }
-                //}
                 return _tabla;
             }
             catch (SqlException e)
