@@ -107,6 +107,7 @@ namespace ControlDosimetro
 
 			Clases.clsBD.ObtieneDatosSistema();
 
+
 			frmLogin frm = new frmLogin();
 			frm.ShowDialog();
 

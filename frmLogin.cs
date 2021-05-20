@@ -16,176 +16,177 @@ using System.Data;
 
 namespace ControlDosimetro
 {
-    public partial class frmLogin : Form
-    {
-        #region "Definicion variable"
-        clsConectorSqlServer Conectar = new clsConectorSqlServer();
-        clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-        clsEventoControl ClaseEvento = new clsEventoControl();
-        Color coColor;
-        dllLibreriaMysql.clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
-        #endregion
+	public partial class frmLogin : Form
+	{
+		#region "Definicion variable"
+		clsConectorSqlServer Conectar = new clsConectorSqlServer();
+		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
+		clsEventoControl ClaseEvento = new clsEventoControl();
+		Color coColor;
+		dllLibreriaMysql.clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
+		#endregion
 
-        public frmLogin()
-        {
-            InitializeComponent();
-            coColor = frmLogin.DefaultBackColor;
-            this.labelVersion.Text = String.Format("Versión {0}", AssemblyVersion);
-            this.BackColor = Color.Green;
-            this.Text = "Sistema de control dosimetro Desarrollo";
-        }
+		public frmLogin()
+		{
+			InitializeComponent();
+			coColor = frmLogin.DefaultBackColor;
+			this.labelVersion.Text = String.Format("Versión {0}", AssemblyVersion);
+			labelBD.Text = "Desarrollo";
+			labelBD_Click(null,null);
 
-        #region Descriptores de acceso de atributos de ensamblado
+		}
 
-        public string AssemblyTitle
-        {
-            get
-            {
-                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
-                if (attributes.Length > 0)
-                {
-                    AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
-                    if (titleAttribute.Title != "")
-                    {
-                        return titleAttribute.Title;
-                    }
-                }
-                return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
-            }
-        }
+		#region Descriptores de acceso de atributos de ensamblado
 
-        public string AssemblyVersion
-        {
-            get
-            {
-                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            }
-        }
+		public string AssemblyTitle
+		{
+			get
+			{
+				object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
+				if (attributes.Length > 0)
+				{
+					AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
+					if (titleAttribute.Title != "")
+					{
+						return titleAttribute.Title;
+					}
+				}
+				return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
+			}
+		}
 
-        public string AssemblyDescription
-        {
-            get
-            {
-                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
-                if (attributes.Length == 0)
-                {
-                    return "";
-                }
-                return ((AssemblyDescriptionAttribute)attributes[0]).Description;
-            }
-        }
+		public string AssemblyVersion
+		{
+			get
+			{
+				return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+			}
+		}
 
-        public string AssemblyProduct
-        {
-            get
-            {
-                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), false);
-                if (attributes.Length == 0)
-                {
-                    return "";
-                }
-                return ((AssemblyProductAttribute)attributes[0]).Product;
-            }
-        }
+		public string AssemblyDescription
+		{
+			get
+			{
+				object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
+				if (attributes.Length == 0)
+				{
+					return "";
+				}
+				return ((AssemblyDescriptionAttribute)attributes[0]).Description;
+			}
+		}
 
-        public string AssemblyCopyright
-        {
-            get
-            {
-                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
-                if (attributes.Length == 0)
-                {
-                    return "";
-                }
-                return ((AssemblyCopyrightAttribute)attributes[0]).Copyright;
-            }
-        }
+		public string AssemblyProduct
+		{
+			get
+			{
+				object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), false);
+				if (attributes.Length == 0)
+				{
+					return "";
+				}
+				return ((AssemblyProductAttribute)attributes[0]).Product;
+			}
+		}
 
-        public string AssemblyCompany
-        {
-            get
-            {
-                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
-                if (attributes.Length == 0)
-                {
-                    return "";
-                }
-                return ((AssemblyCompanyAttribute)attributes[0]).Company;
-            }
-        }
+		public string AssemblyCopyright
+		{
+			get
+			{
+				object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
+				if (attributes.Length == 0)
+				{
+					return "";
+				}
+				return ((AssemblyCopyrightAttribute)attributes[0]).Copyright;
+			}
+		}
 
-        #endregion
+		public string AssemblyCompany
+		{
+			get
+			{
+				object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
+				if (attributes.Length == 0)
+				{
+					return "";
+				}
+				return ((AssemblyCompanyAttribute)attributes[0]).Company;
+			}
+		}
 
-        #region Región asociada a los botones
+		#endregion
 
-        private void btn_Salir_Click(object sender, EventArgs e)
-        {
-            Application.Exit(); 
-        }
+		#region Región asociada a los botones
 
-        private void btn_ingresar_Click(object sender, EventArgs e)
-        {
-            Cursor = Cursors.WaitCursor;
-            try
-            {
-                //throw new ArgumentException("Prueba forzando error");
-                if (txt_Usuario.Text.Trim() == "" || txt_Contrasena.Text.Trim() == "")
-                    MessageBox.Show("Debe contener usuario y contraseña");
-                else
-                {
-                    Cursor = Cursors.WaitCursor;
-                    string Clave = clsUtiles1.GenerateHashMD5(txt_Contrasena.Text.Trim());
-                    //pa_login_sel 
-                    SqlCommand cmd = new SqlCommand();
-                    DataSet ds; // = new DataSet();
-                    cmd.CommandText = "pa_login_sel '" + txt_Usuario.Text.Trim() + "','" + Clave + "'";
-                    cmd.CommandType = CommandType.Text;
+		private void btn_Salir_Click(object sender, EventArgs e)
+		{
+			Application.Exit();
+		}
 
-                    ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+		private void btn_ingresar_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+			try
+			{
+				//throw new ArgumentException("Prueba forzando error");
+				if (txt_Usuario.Text.Trim() == "" || txt_Contrasena.Text.Trim() == "")
+					MessageBox.Show("Debe contener usuario y contraseña");
+				else
+				{
+					Cursor = Cursors.WaitCursor;
+					string Clave = clsUtiles1.GenerateHashMD5(txt_Contrasena.Text.Trim());
+					//pa_login_sel 
+					SqlCommand cmd = new SqlCommand();
+					DataSet ds; // = new DataSet();
+					cmd.CommandText = "pa_login_sel '" + txt_Usuario.Text.Trim() + "','" + Clave + "'";
+					cmd.CommandType = CommandType.Text;
 
-                    if (ds.Tables[0].Rows.Count == 0)
-                        MessageBox.Show("El usuario no existe");
-                    else
-                    {
-                        if (ds.Tables[0].Rows[0]["Contraseña"].ToString() == Clave)
-                            if (ds.Tables[0].Rows[0]["Id_estado"].ToString() == "1")
-                            {
-                                Clases.clsUsuario.Usuario = ds.Tables[0].Rows[0]["Usuario"].ToString();
-                                Clases.clsUsuario.Nombre = ds.Tables[0].Rows[0]["Nombres"].ToString() + " " + ds.Tables[0].Rows[0]["Paterno"].ToString() + " " + ds.Tables[0].Rows[0]["Maternos"].ToString();
-                                Clases.clsUsuario.Id_Usuario = Convert.ToInt16(ds.Tables[0].Rows[0]["Id_Usuario"].ToString());
-                                Clases.clsUsuario.Id_perfil = Convert.ToInt16(ds.Tables[0].Rows[0]["Id_perfil"].ToString());
-                                Clases.clsUsuario.Contraseña = ds.Tables[0].Rows[0]["contraseña"].ToString();
+					ds = Conectar.Listar(Clases.clsBD.BD, cmd);
 
-                                this.Close();
-                            }
-                            else
-                                MessageBox.Show("El usuario se encuentra desactivado");
-                        else
-                            MessageBox.Show("La contraseña es incorrecta");
-                    }
-                    Cursor = Cursors.Default;
-                }
-            }
-            catch (Exception ex)
-            {
-                new Clases.ClassErrores(ex, 0, txt_Usuario.Text);
-            }
-            finally
-            {
-                Cursor = Cursors.Default;
-            }
-        }
+					if (ds.Tables[0].Rows.Count == 0)
+						MessageBox.Show("El usuario no existe");
+					else
+					{
+						if (ds.Tables[0].Rows[0]["Contraseña"].ToString() == Clave)
+							if (ds.Tables[0].Rows[0]["Id_estado"].ToString() == "1")
+							{
+								Clases.clsUsuario.Usuario = ds.Tables[0].Rows[0]["Usuario"].ToString();
+								Clases.clsUsuario.Nombre = ds.Tables[0].Rows[0]["Nombres"].ToString() + " " + ds.Tables[0].Rows[0]["Paterno"].ToString() + " " + ds.Tables[0].Rows[0]["Maternos"].ToString();
+								Clases.clsUsuario.Id_Usuario = Convert.ToInt16(ds.Tables[0].Rows[0]["Id_Usuario"].ToString());
+								Clases.clsUsuario.Id_perfil = Convert.ToInt16(ds.Tables[0].Rows[0]["Id_perfil"].ToString());
+								Clases.clsUsuario.Contraseña = ds.Tables[0].Rows[0]["contraseña"].ToString();
 
-        private void labelBD_Click(object sender, EventArgs e)
-        {
-            labelBD.Text = labelBD.Text == "Producción" ? "Desarrollo" : "Producción";
-            this.BackColor = labelBD.Text == "Producción" ? coColor : Color.Green;
-            string strbd= labelBD.Text == "Producción" ? "" : "Desarrollo";
-            this.Text = "Sistema de control dosimetro " + strbd;
-            //Clases.clsBD.BD = labelBD.Text == "Producción" ? "Prod1" : "Desarrollo";
-            Clases.clsBD.BD = labelBD.Text == "Producción" ? Clases.clsBD.strConexionProd : Clases.clsBD.strConexionDes;
-        }
+								this.Close();
+							}
+							else
+								MessageBox.Show("El usuario se encuentra desactivado");
+						else
+							MessageBox.Show("La contraseña es incorrecta");
+					}
+					Cursor = Cursors.Default;
+				}
+			}
+			catch (Exception ex)
+			{
+				new Clases.ClassErrores(ex, 0, txt_Usuario.Text);
+			}
+			finally
+			{
+				Cursor = Cursors.Default;
+			}
+		}
 
-        #endregion
-    }
+		private void labelBD_Click(object sender, EventArgs e)
+		{
+			labelBD.Text = labelBD.Text == "Producción" ? "Desarrollo" : "Producción";
+			this.BackColor = labelBD.Text == "Producción" ? coColor : Color.Green;
+			string strbd = labelBD.Text == "Producción" ? "" : "Desarrollo";
+			this.Text = "Sistema de control dosimetro " + strbd;
+			//Clases.clsBD.BD = labelBD.Text == "Producción" ? "Prod1" : "Desarrollo";
+			Clases.clsBD.BD = labelBD.Text == "Producción" ? Clases.clsBD.strConexionProd : Clases.clsBD.strConexionDes;
+		}
+
+		#endregion
+	}
 }
