@@ -62,13 +62,13 @@ namespace Clases
         private void ErroresGuardarEnBD(Err err)
         {
             //SqlCommand cmd = new SqlCommand();
-            //cmd.CommandText = "pa_logErrores_Insertar '" + err.Usuario + "'," +
+            //cmd.CommandText = "PA_GES_ERRORES_INSERTAR '" + err.Usuario + "'," +
             //                                    err.Menu + ",'" +
             //                                    err.VersionApp + "','" +
             //                                    err.Mensaje + "','" +
             //                                    err.Fecha + "'";
             //cmd.CommandType = CommandType.Text;
-            //
+
             //Conectar.Listar(Clases.clsBD.BD, cmd);
         }
     }
