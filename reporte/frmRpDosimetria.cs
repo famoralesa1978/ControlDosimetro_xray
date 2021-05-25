@@ -36,6 +36,9 @@ namespace ControlDosimetro
 			txt_Rut.Validated += new EventHandler(ClaseEvento.validarut_Validated);
 			txt_NumeroCliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
 			txt_NumeroCliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+			txtNClienteAnual.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+			txtNClienteAnual.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+
 			txt_NDosimetro.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
 			txt_NDosimetro.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
 			if (tabControl1.SelectedIndex == 0)
@@ -119,7 +122,7 @@ namespace ControlDosimetro
 			Int64 intanno;
 
 			intanno = Convert.ToInt64(cbx_anno.Text);
-			cmd.CommandText = strNombreReporte + " " + intanno.ToString();
+			cmd.CommandText = strNombreReporte + " "+intanno.ToString() + "," + (String.IsNullOrEmpty(txtNClienteAnual.Text) ? 0: Convert.ToInt16(txtNClienteAnual.Text));
 			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
