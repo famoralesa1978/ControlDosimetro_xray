@@ -164,7 +164,7 @@
 			this.rbt_Dosimetro.TabStop = true;
 			this.rbt_Dosimetro.Text = "Fílmicos";
 			this.rbt_Dosimetro.UseVisualStyleBackColor = true;
-			this.rbt_Dosimetro.CheckedChanged += new System.EventHandler(this.rbt_Dosimetro_CheckedChanged);
+			this.rbt_Dosimetro.CheckedChanged += new System.EventHandler(this.Rbt_Dosimetro_CheckedChanged);
 			// 
 			// btn_ReporteNDosimetro
 			// 
@@ -385,7 +385,7 @@
 			this.btn_AnualCliente.TabIndex = 11;
 			this.btn_AnualCliente.Text = "Reporte";
 			this.btn_AnualCliente.UseVisualStyleBackColor = true;
-			this.btn_AnualCliente.Click += new System.EventHandler(this.btn_AnualCliente_Click);
+			this.btn_AnualCliente.Click += new System.EventHandler(this.Btn_AnualCliente_Click);
 			// 
 			// tabAnualSucursal
 			// 

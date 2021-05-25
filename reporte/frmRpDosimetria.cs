@@ -249,7 +249,7 @@ namespace ControlDosimetro
 			Cursor = Cursors.Default;
 		}
 
-		private void btn_AnualCliente_Click(object sender, EventArgs e)
+		private void Btn_AnualCliente_Click(object sender, EventArgs e)
 		{
 			DataSet dt;
 
@@ -308,7 +308,7 @@ namespace ControlDosimetro
 
 		#region Radiobutton
 
-		private void rbt_Dosimetro_CheckedChanged(object sender, EventArgs e)
+		private void Rbt_Dosimetro_CheckedChanged(object sender, EventArgs e)
 		{
 			if (rbt_Dosimetro.Checked)
 				lbl_PorNDosimetro.Text = "Por dosímetro";
