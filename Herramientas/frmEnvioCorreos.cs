@@ -172,7 +172,7 @@ namespace ControlDosimetro
 
          private void Btn_IngresoDosimetro_Click(object sender, EventArgs e)
          {
-             frmDosimetriaPersonal frm = new frmDosimetriaPersonal(Convert.ToInt64(lbl_id_cliente.Text.ToString()));
+             FrmDosimetriaPersonal frm = new FrmDosimetriaPersonal(Convert.ToInt64(lbl_id_cliente.Text.ToString()));
              frm.Show();
            //  Listar_Grilla();
          }
