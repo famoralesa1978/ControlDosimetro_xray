@@ -809,6 +809,7 @@ namespace ControlDosimetro
 					cbxEstado.ReadOnly = true;
 
 				}
+				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].AcceptChanges();
 			}
 
 		}
