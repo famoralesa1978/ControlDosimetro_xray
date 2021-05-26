@@ -123,14 +123,14 @@ namespace ControlDosimetro
 		private void Cargar_Estado()
 		{
 			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_id_estado_Buscar, ref cbx_id_estado_Buscar);
-			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_id_estado, ref cbx_id_estado);
+			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_Id_estado, ref cbx_Id_estado);
 		}
 	
 		private void LimpiarFormulario()
 		{
 			txt_Descripcion.Clear();
 			txt_Id_perfil.Clear();
-			cbx_id_estado.SelectedIndex = 0;
+			cbx_Id_estado.SelectedIndex = 0;
 			btn_Guardar.Enabled = Modificacion || Nuevo;
 			tsbGuardar.Visible = Modificacion || Nuevo;
 		}
@@ -139,12 +139,21 @@ namespace ControlDosimetro
 		{
 			Boolean bolResult;
 			bolResult = false;
-			if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+            string strMensaje="";
+
+            ClaseComun.ValidarFormulario(Clases.clsBD.BD, tbl_perfil, ref bolResult,ref strMensaje);
+            if (!bolResult)
+            {
+                classFuncionesGenerales.mensajes.MensajeError(strMensaje);
+                return;
+            }
+
+            if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
 			{
 				if ((tssEstado.Text == "Nuevo") && (txt_Id_perfil.Text == "0"))
 				{
 					ClaseComun.Insertar(Clases.clsBD.BD, tbl_perfil, ref bolResult);
-					if (bolResult == true)
+                    if (bolResult == true)
 					{
 						CargarGrilla();
 						MessageBox.Show("Dato Guardado");
@@ -182,7 +191,7 @@ namespace ControlDosimetro
 			DataRow currentRow = dt.Rows[intFila];
 			txt_Id_perfil.Text = currentRow[ConfGrilla.id.ToString()].ToString();
 			txt_Descripcion.Text = currentRow[ConfGrilla.descripcion.ToString()].ToString();
-			cbx_id_estado.SelectedValue = currentRow[ConfGrilla.Id_estado.ToString()].ToString();
+			cbx_Id_estado.SelectedValue = currentRow[ConfGrilla.Id_estado.ToString()].ToString();
 			tssEstado.Text = "Modificar";
 			if (txt_Id_perfil.Text == "1")
 			{
