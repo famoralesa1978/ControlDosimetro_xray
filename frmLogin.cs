@@ -129,7 +129,6 @@ namespace ControlDosimetro
 			Cursor = Cursors.WaitCursor;
 			try
 			{
-				//throw new ArgumentException("Prueba forzando error");
 				if (txt_Usuario.Text.Trim() == "" || txt_Contrasena.Text.Trim() == "")
 					MessageBox.Show("Debe contener usuario y contraseña");
 				else
@@ -169,7 +168,7 @@ namespace ControlDosimetro
 			}
 			catch (Exception ex)
 			{
-				new Clases.ClassErrores(ex, 0, txt_Usuario.Text);
+                new Libreria.ClsErrores(ex, 0, (new System.Diagnostics.StackTrace(ex, true)).GetFrame(0).GetFileLineNumber(), this.Name, AssemblyVersion, Clases.clsUsuario.Usuario, Clases.clsBD.strSistema);
 			}
 			finally
 			{
