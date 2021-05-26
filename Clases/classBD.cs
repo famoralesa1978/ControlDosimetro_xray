@@ -14,6 +14,7 @@ namespace Clases
 		public static string strConexionBD;
         public static string strConexionDes;
         public static string strConexionProd;
+        public static string strSistema;
         public static string BD { get => strBD; set => strBD = value; }
 
 		public static string ConexionBD
@@ -32,6 +33,7 @@ namespace Clases
         {
             try
             {
+                strSistema = ControlDosimetro.Properties.Settings.Default.Pk_Sistema;
                 LibAdmSistema.ClsConector libadm = new LibAdmSistema.ClsConector();
                 System.Data.DataSet _tabla = new System.Data.DataSet();
                 SqlCommand command = new SqlCommand("PA_CARGA_DATOS_SISTEMA " + ControlDosimetro.Properties.Settings.Default.Pk_Sistema, null);

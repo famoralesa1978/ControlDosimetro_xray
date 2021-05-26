@@ -19,57 +19,75 @@ namespace Clases
 
         public class Err
         {
-            public int Menu { get; set; }
+            public int? Menu { get; set; }
+            public string Formulario { get; set; }
             public string Usuario { get; set; }
             public string Mensaje { get; set; }
+            public int? N_Error { get; set; }
             public string VersionApp { get; set; }
-            public string Fecha { get; set; }
+            public string Pk_Sistema { get; set; }
         }
 
-        public ClassErrores(Exception Error, int menu, string usuario)
+        /// <summary>
+        /// Gestión para errores de sistema.
+        /// </summary>
+        /// <param name="Error"></param>
+        /// <param name="menu"></param>
+        /// <param name="formulario"></param>
+        /// <param name="versionapp"></param>
+        /// <param name="usuario"></param>
+        /// <param name="sistema"></param>
+        public ClassErrores(Exception Error, int menu, int n_error, string formulario, string versionapp, string usuario, string sistema)
         {
             var err = new Err
             {
                 Menu = menu,
+                Formulario = formulario,
                 Usuario = usuario,
                 Mensaje = Error.Message,
-                //VersionApp = versionApp,
-                VersionApp = Assembly.GetExecutingAssembly().GetName().Version.ToString(),
-                Fecha = DateTime.Now.ToString("yyyyMMdd_HHmmss")
+                N_Error = n_error,
+                VersionApp = versionapp,
+                Pk_Sistema = sistema
             };
 
-            ErroresCreaArchivos(err);
-            ErroresGuardarEnBD(err);
+            ////ErroresCreaArchivos(err);
+            ////ErroresGuardarEnBD(err);
+            //GuardarErrores();
         }
 
-        /// <summary>
-        /// Creo archivos txt para gudardar los errores que provoque la App.
-        /// </summary>
-        /// <param name="err"></param>
-        private void ErroresCreaArchivos(Err err)
+        private void GuardarErrores(Exception Error, int menu, int n_error, string formulario, string versionapp, string usuario, string sistema)
         {
-            //Creo directorio para los errores
-            var Carpeta = Directorios.CreaDirectorios(0);
-            var Archivo = Carpeta + "\\" + err.Usuario + "_" + DateTime.Now.ToString("yyyyMMdd").ToString() + ".txt";
-            if (!File.Exists(Archivo)) File.Create(Archivo).Close();
-            File.AppendAllLines(Archivo, new String[] { err.Usuario + "; " + err.Menu.ToString() + "; " + err.VersionApp + "; " + err.Mensaje + "; " + err.Fecha });
+            //new Libreria.ClsErrores(Error,menu ,n_errorm);
         }
 
-        /// <summary>
-        /// Guardo los errores en la BD.
-        /// </summary>
-        /// <param name="err"></param>
-        private void ErroresGuardarEnBD(Err err)
-        {
-            //SqlCommand cmd = new SqlCommand();
-            //cmd.CommandText = "PA_GES_ERRORES_INSERTAR '" + err.Usuario + "'," +
-            //                                    err.Menu + ",'" +
-            //                                    err.VersionApp + "','" +
-            //                                    err.Mensaje + "','" +
-            //                                    err.Fecha + "'";
-            //cmd.CommandType = CommandType.Text;
+        ///// <summary>
+        ///// Creo archivos txt para gudardar los errores que provoque la App.
+        ///// </summary>
+        ///// <param name="err"></param>
+        //private void ErroresCreaArchivos(Err err)
+        //{
+        //    //Creo directorio para los errores
+        //    var Carpeta = Directorios.CreaDirectorios(0);
+        //    var Archivo = Carpeta + "\\" + err.Usuario + "_" + DateTime.Now.ToString("yyyyMMdd").ToString() + ".txt";
+        //    if (!File.Exists(Archivo)) File.Create(Archivo).Close();
+        //    File.AppendAllLines(Archivo, new String[] { err.Usuario + "; " + err.Menu.ToString() + "; " + err.VersionApp + "; " + err.Mensaje + "; " + err.Fecha });
+        //}
 
-            //Conectar.Listar(Clases.clsBD.BD, cmd);
-        }
+        ///// <summary>
+        ///// Guardo los errores en la BD.
+        ///// </summary>
+        ///// <param name="err"></param>
+        //private void ErroresGuardarEnBD(Err err)
+        //{
+        //    //SqlCommand cmd = new SqlCommand();
+        //    //cmd.CommandText = "PA_GES_ERRORES_INSERTAR '" + err.Usuario + "'," +
+        //    //                                    err.Menu + ",'" +
+        //    //                                    err.VersionApp + "','" +
+        //    //                                    err.Mensaje + "','" +
+        //    //                                    err.Fecha + "'";
+        //    //cmd.CommandType = CommandType.Text;
+
+        //    //Conectar.Listar(Clases.clsBD.BD, cmd);
+        //}
     }
 }
