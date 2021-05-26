@@ -16,7 +16,7 @@ using Microsoft.Reporting.WinForms;
 
 namespace ControlDosimetro
 {
-    public partial class frmDosimetriaPersonal : Form
+    public partial class FrmDosimetriaPersonal : Form
     {
 
         #region "Definicion variable"
@@ -27,7 +27,7 @@ namespace ControlDosimetro
             int intContar=0;	
         #endregion
 
-            public frmDosimetriaPersonal(Int64 intId_Cliente)
+            public FrmDosimetriaPersonal(Int64 intId_Cliente)
         {
             InitializeComponent();
 
@@ -60,11 +60,13 @@ namespace ControlDosimetro
 
             private void Cargar_Cliente(Int64 intCodCliente)
 				{
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.CommandText = "select run,Razon_Social,N_Cliente_Ref,region + ','+ comuna +','+Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio,servicio " +
-                                    "  FROM tbl_cliente c inner join [dbo].[glo_region] r on c.Id_Region=r.Id_Region inner join glo_comuna co on co.id_comuna=c.id_comuna" +
-                                    " WHERE Id_cliente= " + intCodCliente.ToString();
-					DataSet dt;
+			SqlCommand cmd = new SqlCommand
+			{
+				CommandText = "select run,Razon_Social,N_Cliente_Ref,region + ','+ comuna +','+Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio,servicio " +
+											"  FROM tbl_cliente c inner join [dbo].[glo_region] r on c.Id_Region=r.Id_Region inner join glo_comuna co on co.id_comuna=c.id_comuna" +
+											" WHERE Id_cliente= " + intCodCliente.ToString()
+			};
+			DataSet dt;
 
 					dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
@@ -143,13 +145,15 @@ namespace ControlDosimetro
 
 		  private void Cargar_Anno()
 		  {
-              SqlCommand cmd = new SqlCommand();
+			SqlCommand cmd = new SqlCommand
+			{
 
-		//	  SqlCommand cmd = new SqlCommand();
+				//	  SqlCommand cmd = new SqlCommand();
 
-			  cmd.CommandText = "SELECT distinct Anno FROM conf_periodo WHERE Id_TipoPeriodo=3";
-			  //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
-			  DataSet dt;
+				CommandText = "SELECT distinct Anno FROM conf_periodo WHERE Id_TipoPeriodo=3"
+			};
+			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
+			DataSet dt;
 			  dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
 			  cbx_anno.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -159,13 +163,15 @@ namespace ControlDosimetro
 
           private void Cargar_NDocumento()
           {
-              SqlCommand cmd = new SqlCommand();
+			SqlCommand cmd = new SqlCommand
+			{
 
-              //	  SqlCommand cmd = new SqlCommand();
+				//	  SqlCommand cmd = new SqlCommand();
 
-              cmd.CommandText = "SELECT distinct N_Documento FROM [dbo].[ges_dosimetro_estado] WHERE id_cliente=" + lbl_id_cliente.Text + "  and  id_periodo=" + cbx_id_periodo.SelectedValue;
-              //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
-              DataSet dt;
+				CommandText = "SELECT distinct N_Documento FROM [dbo].[ges_dosimetro_estado] WHERE id_cliente=" + lbl_id_cliente.Text + "  and  id_periodo=" + cbx_id_periodo.SelectedValue
+			};
+			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
+			DataSet dt;
               dt = Conectar.Listar(Clases.clsBD.BD,cmd);
               
               cbx_NDocumento.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -199,12 +205,14 @@ namespace ControlDosimetro
 
           private void Cargar_Periodo()
           {
-              SqlCommand cmd = new SqlCommand();
+			SqlCommand cmd = new SqlCommand
+			{
 
-              //	  SqlCommand cmd = new SqlCommand();
+				//	  SqlCommand cmd = new SqlCommand();
 
-              cmd.CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ '°T' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text;
-              DataSet dt;
+				CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ '°T' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text
+			};
+			DataSet dt;
               dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
               cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
@@ -220,16 +228,18 @@ namespace ControlDosimetro
 
           private void Cargar_Sucursal()
           {
-              SqlCommand cmd = new SqlCommand();
+			SqlCommand cmd = new SqlCommand
+			{
 
-              //	  SqlCommand cmd = new SqlCommand();
+				//	  SqlCommand cmd = new SqlCommand();
 
-              cmd.CommandText = "select id_sucursal, direccion + ','+co.comuna as Dato " +
-                  "from [dbo].[tbl_sucursal] s " +
-                  "inner join glo_region r on r.Id_region=s.Id_Region " +
-                  "inner join glo_comuna co on co.id_comuna=s.Id_Comuna " +
-                  "where run='" + lbl_rut.Text + "' and s.id_estado=1";
-              DataSet dt;
+				CommandText = "select id_sucursal, direccion + ','+co.comuna as Dato " +
+					"from [dbo].[tbl_sucursal] s " +
+					"inner join glo_region r on r.Id_region=s.Id_Region " +
+					"inner join glo_comuna co on co.id_comuna=s.Id_Comuna " +
+					"where run='" + lbl_rut.Text + "' and s.id_estado=1"
+			};
+			DataSet dt;
               dt = Conectar.Listar(Clases.clsBD.BD,cmd);
 
               cbx_Sucursal.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
@@ -260,14 +270,14 @@ namespace ControlDosimetro
 
         #region "button"
 
-		  private void btnIngresarDosisISP_Click(object sender, EventArgs e)
+		  private void BtnIngresarDosisISP_Click(object sender, EventArgs e)
 		  {
 			  frmDosimetriaISP frm = new frmDosimetriaISP(Convert.ToInt64(lbl_id_cliente.Text ));
 			  frm.ShowDialog(this);
 		  }
 
 
-        private void btn_Agregar_Click(object sender, EventArgs e)
+        private void Btn_Agregar_Click(object sender, EventArgs e)
         {
             SqlCommand cmd = new SqlCommand();
             DataSet ds;
@@ -288,7 +298,7 @@ namespace ControlDosimetro
             MessageBox.Show("Informacion grabada");
         }		
 
-		  private void btn_Filtro_Click(object sender, EventArgs e)
+		  private void Btn_Filtro_Click(object sender, EventArgs e)
 		  {
 			  //txt_ref_cliente.ReadOnly = false;
 			  //txt_Rut.ReadOnly = false;
@@ -300,7 +310,7 @@ namespace ControlDosimetro
 			  //txt_ref_cliente.Focus();
 		  }
 
-		  private void btn_cargar_Click(object sender, EventArgs e)
+		  private void Btn_cargar_Click(object sender, EventArgs e)
 		  {
               Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));  
 			  Listar_Grilla();
@@ -309,7 +319,7 @@ namespace ControlDosimetro
               intContar = 0;               
 		  }
 
-		 private void btn_filtro_Click_1(object sender, EventArgs e)
+		 private void Btn_filtro_Click_1(object sender, EventArgs e)
 		 {
 			 cbx_anno.Enabled = true;
              cbx_id_periodo.Enabled = true;
@@ -325,18 +335,19 @@ namespace ControlDosimetro
              intContar = 0;
 		 }
 
-		 private void btn_Cerrar_Click(object sender, EventArgs e)
+		 private void Btn_Cerrar_Click(object sender, EventArgs e)
 		 {
 			 this.Close();
 		 }
 
-         private void tsmEliminar_Click(object sender, EventArgs e)
+         private void TsmEliminar_Click(object sender, EventArgs e)
          {
-             SqlCommand cmd = new SqlCommand();
-
-             cmd.CommandText = "pa_Dosimetro_del " + grdDatos.SelectedCells[0].Value.ToString()+ ",'" + Clases.clsUsuario.Usuario + "'";
-             cmd.CommandType = CommandType.Text;
-            DataSet ds;
+			SqlCommand cmd = new SqlCommand
+			{
+				CommandText = "pa_Dosimetro_del " + grdDatos.SelectedCells[0].Value.ToString() + ",'" + Clases.clsUsuario.Usuario + "'",
+				CommandType = CommandType.Text
+			};
+			DataSet ds;
 
             ds = Conectar.Listar(Clases.clsBD.BD,cmd);
             if (ds.Tables[0].Rows.Count > 0)
@@ -348,16 +359,18 @@ namespace ControlDosimetro
              
          }
 
-         private void btnGrabarMod_Click(object sender, EventArgs e)
+         private void BtnGrabarMod_Click(object sender, EventArgs e)
          {
              if (Verificar_NDocumento() == 0)
              {
                  if (MessageBox.Show("Desea cambiar el número de documento", "Cambio de N° Documento", MessageBoxButtons.YesNo) == DialogResult.Yes)
                  {
-                     SqlCommand cmd = new SqlCommand();
-                     cmd.CommandText = "pa_CambiarNDocumento_upd " + cbx_NDocumento.Text + "," + txt_NDocumento.Text ;
-                     cmd.CommandType = CommandType.Text;
-                     Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
+					SqlCommand cmd = new SqlCommand
+					{
+						CommandText = "pa_CambiarNDocumento_upd " + cbx_NDocumento.Text + "," + txt_NDocumento.Text,
+						CommandType = CommandType.Text
+					};
+					Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
 
 
                      txt_NDocumento.Text = "";
@@ -406,7 +419,7 @@ namespace ControlDosimetro
 
 		  #region "combobox"
 
-		  private void cbx_anno_SelectedIndexChanged(object sender, EventArgs e)
+		  private void Cbx_anno_SelectedIndexChanged(object sender, EventArgs e)
 		  {
 			  Cargar_Periodo();
 		  }
@@ -415,7 +428,7 @@ namespace ControlDosimetro
 
 		  #region "grilla"
 
-		  private void grdDatos_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+		  private void GrdDatos_CurrentCellDirtyStateChanged(object sender, EventArgs e)
 		  {
 			  if (grdDatos.IsCurrentCellDirty)
 			  {
@@ -423,7 +436,7 @@ namespace ControlDosimetro
 			  }
 		  }
 
-		  private void grdDatos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+		  private void GrdDatos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
 		  {
 			  if ((grdDatos.Columns[e.ColumnIndex].Name == "Controlado")||(grdDatos.Columns[e.ColumnIndex].Name == "condosis"))
 			  {
@@ -462,58 +475,19 @@ namespace ControlDosimetro
 			  }		  
 			  
 		  }
-
-         private void grdDatos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-          {
-              //if (e.ColumnIndex == 9) //Column ColB
-              //{
-              //    if (e.Value != null)
-              //    {
-              //        try
-              //        {
-              //            e.CellStyle.Format = "N2";
-              //        }
-              //        catch (Exception)
-              //        {
-
-              //            MessageBox.Show("Ingrese solo número");
-              //        }
-
-                      
-              //    }
-              //}
-
-//              private void dataGridView1_CellValidating(object sender,
-//    DataGridViewCellValidatingEventArgs e)
-//{
-//    dataGridView1.Rows[e.RowIndex].ErrorText = "";
-//    int newInteger;
-
-//    // Don't try to validate the 'new row' until finished 
-//    // editing since there
-//    // is not any point in validating its initial value.
-//    if (dataGridView1.Rows[e.RowIndex].IsNewRow) { return; }
-//    if (!int.TryParse(e.FormattedValue.ToString(),
-//        out newInteger) || newInteger < 0)
-//    {
-//        e.Cancel = true;
-//        dataGridView1.Rows[e.RowIndex].ErrorText = "the value must be a non-negative integer";
-//    }
-//}
-          }
-
         #endregion
 
-         private void btn_Imprimir_Click(object sender, EventArgs e)
+         private void Btn_Imprimir_Click(object sender, EventArgs e)
          {
               DataSet ds = new DataSet();
               DataSet ds2 = new DataSet();
-             SqlCommand cmd = new SqlCommand();
+			SqlCommand cmd = new SqlCommand
+			{
+				CommandText = "rtpDosimetriaPersonal_Enc " + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue + "," + cbx_NDocumento.Text,
+				CommandType = CommandType.Text
+			};
 
-             cmd.CommandText = "rtpDosimetriaPersonal_Enc " + lbl_id_cliente.Text  + "," + cbx_id_periodo.SelectedValue + "," + cbx_NDocumento.Text;
-             cmd.CommandType = CommandType.Text;
-
-             ds = Conectar.Listar(Clases.clsBD.BD,cmd);
+			ds = Conectar.Listar(Clases.clsBD.BD,cmd);
 
              cmd.CommandText = "rtpDosimetriaPersonal_det " + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue + "," + cbx_NDocumento.Text;
              cmd.CommandType = CommandType.Text;
@@ -526,7 +500,7 @@ namespace ControlDosimetro
              
          }
 
-         private void frmIngresoPelicula_Load(object sender, EventArgs e)
+         private void FrmIngresoPelicula_Load(object sender, EventArgs e)
          {
 
          }
@@ -535,20 +509,21 @@ namespace ControlDosimetro
 
 
         
-         private void btn_Ocultar_Click(object sender, EventArgs e)
+         private void Btn_Ocultar_Click(object sender, EventArgs e)
          {
            //pnl_sobre.Visible = false;
          }
 
-         private void cbx_NDocumento_SelectedIndexChanged(object sender, EventArgs e)
+         private void Cbx_NDocumento_SelectedIndexChanged(object sender, EventArgs e)
          {
              DataSet ds = new DataSet();
-             SqlCommand cmd = new SqlCommand();
+			SqlCommand cmd = new SqlCommand
+			{
+				CommandText = "pa_DosimetroPersonal_sel " + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue + "," + cbx_NDocumento.Text,
+				CommandType = CommandType.Text
+			};
 
-             cmd.CommandText = "pa_DosimetroPersonal_sel " + lbl_id_cliente.Text   + ","+ cbx_id_periodo.SelectedValue + "," + cbx_NDocumento.Text;
-             cmd.CommandType = CommandType.Text;
-
-             ds = Conectar.Listar(Clases.clsBD.BD,cmd);
+			ds = Conectar.Listar(Clases.clsBD.BD,cmd);
 
              if (ds.Tables[0].Rows.Count > 0)
              {
@@ -562,17 +537,12 @@ namespace ControlDosimetro
              }
          }
 
-         private void pctAgregarSucursal_Click(object sender, EventArgs e)
+         private void PctAgregarSucursal_Click(object sender, EventArgs e)
          {
              frmBusquedaSucursal frm = new frmBusquedaSucursal(Convert.ToInt32(lbl_id_cliente.Text));
              frm.ShowDialog(this);
              Cargar_Sucursal();
          }
 
-       
-		  
-		
-
-	
     }
 }
