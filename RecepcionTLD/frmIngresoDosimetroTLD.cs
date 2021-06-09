@@ -626,10 +626,10 @@ namespace ControlDosimetro
 			string strpathcopiar = targetPathConf + "\\ET_Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri.xlsx";
 			
 			int intFila = 2;
-			int intHojaExcel = 19;
+			int intHojaExcel = 20;
 		
 			string strpathcopiarInforme = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + intExcel.ToString() + ".xlsx";
-			string strUsados = "Estos dosimetros deben ser usados entre el " + strfecha_Per + " al " + strfecha_Fin;
+			string strUsados = "Estos dosimetros deben ser usados entre el " + strfecha_Per;// + " al " + strfecha_Fin;
 			string fmt = "00000000";
 			for (int idatos = 0; idatos <= grdDatos.Rows.Count - 1; idatos++)
 			{
@@ -651,7 +651,7 @@ namespace ControlDosimetro
 				{
 					if(intHojaExcel==34)
 					{
-						intHojaExcel = 19;
+						intHojaExcel = 20;
 						intExcel = intExcel + 1;
 						strpathcopiarInforme = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + (intExcel-1).ToString() + ".xlsx";
 
@@ -669,7 +669,7 @@ namespace ControlDosimetro
 							UpdateValue(wsName, "E" + (intFilalimpiar).ToString(), "", 0, true);
 							UpdateValue(wsName, "F" + (intFilalimpiar).ToString(),"", 0, true);
 							UpdateValue(wsName, "G" + (intFilalimpiar).ToString(), "", 0, true);
-							UpdateValue(wsName, "B15", strUsados, 0, true);
+							UpdateValue(wsName, "B16", strUsados, 0, true);
 					//		UpdateValue(wsName, "D18", strfecha_Fin, 0, true);
 				//			UpdateValue(wsName, "J4", strServicio, 0, true);
 							UpdateValue(wsName, "C12", strDireccion.ToUpper(), 0, true);
@@ -707,14 +707,14 @@ namespace ControlDosimetro
 					UpdateValue(wsName, "F" + (intHojaExcel).ToString(), Rut.Value.ToString().ToUpperInvariant(), 0, true);
 					//UpdateValue(wsName, "D2" , strfecha_Per, 0, true);
 					//UpdateValue(wsName, "D18", strfecha_Fin, 0, true);
-					UpdateValue(wsName, "B15", strUsados, 0, true);
-					UpdateValue(wsName, "C12", strDireccion, 0, true);
-					UpdateValue(wsName, "C14", lbl_rut.Text, 0, true);
+					UpdateValue(wsName, "B16", strUsados, 0, true);
+					UpdateValue(wsName, "C12", strDireccion.ToUpper(), 0, true);
+					UpdateValue(wsName, "C14", lbl_rut.Text.ToUpper(), 0, true);
 
 					//	UpdateValue(wsName, "M4", strRegion, 0, true);
 					UpdateValue(wsName, "C13", strComuna.ToUpper() + ", " + strRegion.ToUpper(), 0, true);
 					UpdateValue(wsName, "C11", lbl_nombreCliente.Text.ToUpper(), 0, true);
-					UpdateValue(wsName, "F11", lbl_id_cliente.Text, 0, true);
+					UpdateValue(wsName, "G11", lbl_id_cliente.Text, 0, true);
 					document.Close();
 
 
