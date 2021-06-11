@@ -144,6 +144,11 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			System.Data.DataColumn newColumn = new System.Data.DataColumn("Eliminar", typeof(System.Boolean));
+			newColumn.DefaultValue = false;
+			dt.Tables[0].Columns.Add(newColumn);
+
+
 			string filterExp = "";
 			string sortExp = "rut";
 			DataRow[] drarray;
@@ -678,7 +683,8 @@ namespace ControlDosimetro
 						//	UpdateValue(wsName, "M4", strRegion, 0, true);
 							UpdateValue(wsName, "C13", strComuna.ToUpper() + ", " + strRegion.ToUpper(), 0, true);
 							UpdateValue(wsName, "C11", lbl_nombreCliente.Text.ToUpper(), 0, true);
-							UpdateValue(wsName, "F11", lbl_id_cliente.Text, 0, true);
+							UpdateValue(wsName, "G11", lbl_id_cliente.Text, 0, true);
+							UpdateValue(wsName, "F14", cbx_id_seccion.Text.ToUpper(), 0, true);
 							//lbl_id_cliente
 							document.Close();
 						}
@@ -710,7 +716,7 @@ namespace ControlDosimetro
 					UpdateValue(wsName, "B16", strUsados, 0, true);
 					UpdateValue(wsName, "C12", strDireccion.ToUpper(), 0, true);
 					UpdateValue(wsName, "C14", lbl_rut.Text.ToUpper(), 0, true);
-
+					UpdateValue(wsName, "F14", cbx_id_seccion.Text.ToUpper(), 0, true);
 					//	UpdateValue(wsName, "M4", strRegion, 0, true);
 					UpdateValue(wsName, "C13", strComuna.ToUpper() + ", " + strRegion.ToUpper(), 0, true);
 					UpdateValue(wsName, "C11", lbl_nombreCliente.Text.ToUpper(), 0, true);
@@ -799,17 +805,7 @@ namespace ControlDosimetro
 			{
 				if (e.KeyCode == Keys.Delete)
 				{
-					SqlCommand cmdValorMax = new SqlCommand();
-					DataSet dtValorMax;
-					cmdValorMax.CommandText = "pa_DosimetroTLD_del " + grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[2].Value.ToString() + ",'" + Clases.clsUsuario.Usuario + "'";
-					cmdValorMax.CommandType = CommandType.Text;
-					dtValorMax = Conectar.Listar(Clases.clsBD.BD, cmdValorMax);
-					if (dtValorMax.Tables[0].Rows[0][0].ToString() == "-1")
-					{
-						btn_cargar_Click(null, null);
-					}
-
-					MessageBox.Show(dtValorMax.Tables[0].Rows[0][1].ToString());
+		
 				}
 			}
 		}
@@ -1238,5 +1234,37 @@ namespace ControlDosimetro
 		}
 
 		#endregion
+
+		private void btn_Eliminar_Click(object sender, EventArgs e)
+		{
+			pnl_Progreso.Visible = true;
+			pgb_Barra.Minimum = 0;
+			pgb_Barra.Maximum = grdDatos.RowCount;
+			pnl_Progreso.Refresh();
+			DataGridViewCheckBoxCell checkEliminar;
+			DataGridViewTextBoxCell txtnpelicula;
+
+			//N_Documento
+			for (int i = 0; i <= grdDatos.RowCount - 1; i++)
+			{
+				pgb_Barra.Value = i + 1;
+				pgb_Barra.Refresh();
+				checkEliminar = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["ColEliminar"];
+				txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["N_pelicula"];
+				
+				if (Convert.ToBoolean( checkEliminar.Value) == true){
+					SqlCommand cmdValorMax = new SqlCommand();
+					DataSet dtValorMax;
+					cmdValorMax.CommandText = "pa_DosimetroTLD_del " + txtnpelicula.Value + ",'" + Clases.clsUsuario.Usuario + "'";
+					cmdValorMax.CommandType = CommandType.Text;
+					dtValorMax = Conectar.Listar(Clases.clsBD.BD, cmdValorMax);
+				}
+			}
+			btn_cargar_Click(null, null);
+			MessageBox.Show("Informacion esta listo para generar el documento.");
+
+			btn_Corregir.Enabled = true;
+			pnl_Progreso.Visible = false;
+		}
 	}
 }

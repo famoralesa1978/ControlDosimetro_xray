@@ -95,7 +95,7 @@ namespace ControlDosimetro
 
 			cmd.CommandText = "SELECT Rut,Nombres,Paterno,Maternos,Id_Seccion,Id_estado,Id_sexo,Id_profesion,Fecha_inicio,fecha_termino,Usuario,Fecha_agregado,getdate()as Fecha_Modificacion," +
 													"  fecha_nac, isnull(Id_CodServicio,8) as Id_CodServicio, isnull(Id_Practica,0) as Id_Practica, isnull(Id_Cargo,0) as Id_Cargo " +
-							" FROM tbl_personal WHERE Id_Personal= " + intCodpersonal.ToString() + " and id_cliente=" + lbl_id_cliente.Text;
+							" FROM tbl_personal WHERE Id_Personal= " + intCodpersonal.ToString() + " and rut_cliente='" + lbl_rut_cliente.Text + "'";
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
