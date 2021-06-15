@@ -52,6 +52,7 @@
 			this.btn_Cargar_clienteDestino = new System.Windows.Forms.Button();
 			this.txt_RutDestino = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
+			this.panel1 = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -60,6 +61,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.dtgOrigen)).BeginInit();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dtgDestino)).BeginInit();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// splitContainer1
@@ -76,13 +78,12 @@
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
-			this.splitContainer1.Size = new System.Drawing.Size(877, 409);
-			this.splitContainer1.SplitterDistance = 400;
+			this.splitContainer1.Size = new System.Drawing.Size(883, 541);
+			this.splitContainer1.SplitterDistance = 406;
 			this.splitContainer1.TabIndex = 4;
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Controls.Add(this.btn_Traspaso);
 			this.groupBox1.Controls.Add(this.dtgOrigen);
 			this.groupBox1.Controls.Add(this.lbl_Id_cliente);
 			this.groupBox1.Controls.Add(this.lbl_cliente);
@@ -94,13 +95,13 @@
 			this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBox1.Location = new System.Drawing.Point(0, 0);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(400, 409);
+			this.groupBox1.Size = new System.Drawing.Size(406, 541);
 			this.groupBox1.TabIndex = 4;
 			this.groupBox1.TabStop = false;
 			// 
 			// btn_Traspaso
 			// 
-			this.btn_Traspaso.Location = new System.Drawing.Point(127, 369);
+			this.btn_Traspaso.Location = new System.Drawing.Point(364, 6);
 			this.btn_Traspaso.Name = "btn_Traspaso";
 			this.btn_Traspaso.Size = new System.Drawing.Size(75, 23);
 			this.btn_Traspaso.TabIndex = 53;
@@ -114,15 +115,18 @@
 			this.dtgOrigen.AllowUserToDeleteRows = false;
 			this.dtgOrigen.AllowUserToResizeColumns = false;
 			this.dtgOrigen.AllowUserToResizeRows = false;
+			this.dtgOrigen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.dtgOrigen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dtgOrigen.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColRut,
             this.ColNombre});
-			this.dtgOrigen.Location = new System.Drawing.Point(13, 100);
+			this.dtgOrigen.Location = new System.Drawing.Point(13, 97);
 			this.dtgOrigen.Name = "dtgOrigen";
 			this.dtgOrigen.ReadOnly = true;
 			this.dtgOrigen.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dtgOrigen.Size = new System.Drawing.Size(364, 248);
+			this.dtgOrigen.Size = new System.Drawing.Size(387, 397);
 			this.dtgOrigen.TabIndex = 52;
 			// 
 			// ColRut
@@ -216,7 +220,7 @@
 			this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBox2.Location = new System.Drawing.Point(0, 0);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(473, 409);
+			this.groupBox2.Size = new System.Drawing.Size(473, 541);
 			this.groupBox2.TabIndex = 47;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Datos personal destino";
@@ -227,14 +231,17 @@
 			this.dtgDestino.AllowUserToDeleteRows = false;
 			this.dtgDestino.AllowUserToResizeColumns = false;
 			this.dtgDestino.AllowUserToResizeRows = false;
+			this.dtgDestino.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.dtgDestino.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dtgDestino.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-			this.dtgDestino.Location = new System.Drawing.Point(14, 100);
+			this.dtgDestino.Location = new System.Drawing.Point(6, 97);
 			this.dtgDestino.Name = "dtgDestino";
 			this.dtgDestino.ReadOnly = true;
-			this.dtgDestino.Size = new System.Drawing.Size(466, 248);
+			this.dtgDestino.Size = new System.Drawing.Size(466, 397);
 			this.dtgDestino.TabIndex = 59;
 			// 
 			// dataGridViewTextBoxColumn1
@@ -315,11 +322,21 @@
 			this.label6.TabIndex = 53;
 			this.label6.Text = "Razon social";
 			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.btn_Traspaso);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.panel1.Location = new System.Drawing.Point(0, 500);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(883, 41);
+			this.panel1.TabIndex = 5;
+			// 
 			// frmTraspasoPersonal
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(877, 409);
+			this.ClientSize = new System.Drawing.Size(883, 541);
+			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.splitContainer1);
 			this.Name = "frmTraspasoPersonal";
 			this.ShowInTaskbar = false;
@@ -336,6 +353,7 @@
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dtgDestino)).EndInit();
+			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -365,5 +383,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.Button btn_Traspaso;
-    }
+		private System.Windows.Forms.Panel panel1;
+	}
 }
