@@ -129,15 +129,30 @@ namespace ControlDosimetro
 		private void btn_Traspaso_Click(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
-
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "pa_Traspasopersonal_ins '" + txt_Rut.Text + "','" + txt_RutDestino.Text + "'";
-			DataSet ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			DataSet ds = null;
+			string strRutPersonal = "";
+
+			DataGridViewSelectedRowCollection Seleccionados = dtgOrigen.SelectedRows;
+
+			foreach (DataGridViewRow item in Seleccionados)
+			{
+				cmd = new SqlCommand();
+				strRutPersonal = item.Cells[0].Value.ToString();
+				cmd = new SqlCommand();
+				cmd.CommandText = "pa_Traspasopersonal_ins '" + txt_Rut.Text + "','" + txt_RutDestino.Text + "','" + strRutPersonal + "'," + lbl_Id_cliente.Text + "," + lbl_Id_clienteDestino.Text;
+				ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			}
+
 
 			if (ds != null)
 			{
 				if (ds.Tables[0].Rows.Count > 0)
+				{
 					MessageBox.Show("El traspaso del personal fue exitoso");
+					btn_Cargar_cliente_Click(null, null);
+				}
+
 			}
 
 			Cursor = Cursors.Default;
