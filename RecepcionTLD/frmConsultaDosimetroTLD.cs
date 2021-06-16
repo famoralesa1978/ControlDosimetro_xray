@@ -607,9 +607,15 @@ namespace ControlDosimetro
 
 		private void grdDatos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
 		{
-
-			//this.grdDatos.Columns["Dosis"].ValueType = typeof(Decimal);
-			//this.grdDatos.Columns["Dosis"].DefaultCellStyle.Format = "N2";
+			if(e.ColumnIndex== ColMedicion.Index){
+				if (e.Value != null)
+				{
+					if (((string)e.Value == "No"))
+					{
+						e.CellStyle.BackColor = System.Drawing.Color.OrangeRed;
+					}
+				}
+			}
 		}
 
 

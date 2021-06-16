@@ -73,6 +73,7 @@
 			this.Maternos = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.id_sucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.id_estadodosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColMedicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -274,7 +275,8 @@
             this.Paterno,
             this.Maternos,
             this.id_sucursal,
-            this.id_estadodosimetro});
+            this.id_estadodosimetro,
+            this.ColMedicion});
 			this.grdDatos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.grdDatos.Location = new System.Drawing.Point(3, 16);
 			this.grdDatos.Name = "grdDatos";
@@ -544,6 +546,15 @@
 			this.id_estadodosimetro.Visible = false;
 			this.id_estadodosimetro.Width = 123;
 			// 
+			// ColMedicion
+			// 
+			this.ColMedicion.DataPropertyName = "Medicion";
+			this.ColMedicion.HeaderText = "Med.";
+			this.ColMedicion.Name = "ColMedicion";
+			this.ColMedicion.ReadOnly = true;
+			this.ColMedicion.ToolTipText = "Medición";
+			this.ColMedicion.Width = 56;
+			// 
 			// frmConsultaDosimetroTLD
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -629,5 +640,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Maternos;
 		private System.Windows.Forms.DataGridViewTextBoxColumn id_sucursal;
 		private System.Windows.Forms.DataGridViewTextBoxColumn id_estadodosimetro;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColMedicion;
 	}
 }
