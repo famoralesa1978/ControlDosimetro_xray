@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.btnCancelar = new System.Windows.Forms.Button();
 			this.btn_Guardar = new System.Windows.Forms.Button();
@@ -65,40 +65,46 @@
 			this.lbl_TLD = new System.Windows.Forms.Label();
 			this.nudPosicion = new System.Windows.Forms.NumericUpDown();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.btnIniciar = new System.Windows.Forms.Button();
+			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
 			this.N_Pelicula = new GridExtension.IntegerGridColumn();
 			this.Periodo = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.N_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.NCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.NomPersonal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.btnIniciar = new System.Windows.Forms.Button();
+			this.rbtSolo = new System.Windows.Forms.RadioButton();
+			this.rbtVarios = new System.Windows.Forms.RadioButton();
+			this.lblHasta = new System.Windows.Forms.Label();
+			this.txtHasta = new System.Windows.Forms.TextBox();
 			this.groupBox1.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudPosicion)).BeginInit();
 			this.groupBox2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
 			this.tableLayoutPanel2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
 			this.tableLayoutPanel3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
 			// 
 			this.groupBox1.Controls.Add(this.btnCancelar);
+			this.groupBox1.Controls.Add(this.tableLayoutPanel1);
 			this.groupBox1.Controls.Add(this.btn_Guardar);
-			this.groupBox1.Location = new System.Drawing.Point(12, 74);
+			this.groupBox1.Location = new System.Drawing.Point(12, 122);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(752, 228);
+			this.groupBox1.Size = new System.Drawing.Size(752, 219);
 			this.groupBox1.TabIndex = 3;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Dato Cliente";
 			// 
 			// btnCancelar
 			// 
-			this.btnCancelar.Location = new System.Drawing.Point(386, 199);
+			this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.btnCancelar.Location = new System.Drawing.Point(383, 190);
 			this.btnCancelar.Name = "btnCancelar";
 			this.btnCancelar.Size = new System.Drawing.Size(75, 23);
 			this.btnCancelar.TabIndex = 6;
@@ -109,7 +115,7 @@
 			// btn_Guardar
 			// 
 			this.btn_Guardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Guardar.Location = new System.Drawing.Point(232, 199);
+			this.btn_Guardar.Location = new System.Drawing.Point(232, 190);
 			this.btn_Guardar.Name = "btn_Guardar";
 			this.btn_Guardar.Size = new System.Drawing.Size(127, 23);
 			this.btn_Guardar.TabIndex = 5;
@@ -119,14 +125,14 @@
 			// 
 			// txt_TLD
 			// 
-			this.txt_TLD.Location = new System.Drawing.Point(89, 45);
+			this.txt_TLD.Location = new System.Drawing.Point(96, 59);
 			this.txt_TLD.Name = "txt_TLD";
 			this.txt_TLD.Size = new System.Drawing.Size(134, 20);
 			this.txt_TLD.TabIndex = 1;
 			// 
 			// btn_filtro
 			// 
-			this.btn_filtro.Location = new System.Drawing.Point(336, 45);
+			this.btn_filtro.Location = new System.Drawing.Point(178, 90);
 			this.btn_filtro.Name = "btn_filtro";
 			this.btn_filtro.Size = new System.Drawing.Size(95, 23);
 			this.btn_filtro.TabIndex = 4;
@@ -136,7 +142,7 @@
 			// 
 			// btn_cargar
 			// 
-			this.btn_cargar.Location = new System.Drawing.Point(244, 45);
+			this.btn_cargar.Location = new System.Drawing.Point(86, 90);
 			this.btn_cargar.Name = "btn_cargar";
 			this.btn_cargar.Size = new System.Drawing.Size(75, 23);
 			this.btn_cargar.TabIndex = 2;
@@ -147,7 +153,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(14, 48);
+			this.label2.Location = new System.Drawing.Point(21, 62);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(43, 13);
 			this.label2.TabIndex = 34;
@@ -242,9 +248,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle1.Format = "N2";
-			dataGridViewCellStyle1.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle3.Format = "N2";
+			dataGridViewCellStyle3.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle3;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -262,9 +268,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle2.Format = "N2";
-			dataGridViewCellStyle2.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle4.Format = "N2";
+			dataGridViewCellStyle4.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle4;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -272,7 +278,7 @@
 			// btn_Cerrar
 			// 
 			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Cerrar.Location = new System.Drawing.Point(508, 532);
+			this.btn_Cerrar.Location = new System.Drawing.Point(508, 594);
 			this.btn_Cerrar.Name = "btn_Cerrar";
 			this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
 			this.btn_Cerrar.TabIndex = 10;
@@ -324,7 +330,7 @@
 			this.tableLayoutPanel1.Controls.Add(this.lbl_Periodo, 1, 3);
 			this.tableLayoutPanel1.Controls.Add(this.lbl_TLD, 1, 4);
 			this.tableLayoutPanel1.Controls.Add(this.nudPosicion, 1, 5);
-			this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 93);
+			this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 19);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 6;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -440,31 +446,27 @@
 			// groupBox2
 			// 
 			this.groupBox2.Controls.Add(this.tableLayoutPanel2);
-			this.groupBox2.Location = new System.Drawing.Point(12, 309);
+			this.groupBox2.Location = new System.Drawing.Point(12, 347);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(752, 217);
+			this.groupBox2.Size = new System.Drawing.Size(752, 241);
 			this.groupBox2.TabIndex = 35;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Para iniciar Proceso de lectura";
 			// 
-			// pictureBox1
+			// tableLayoutPanel2
 			// 
-			this.pictureBox1.Image = global::ControlDosimetro.Properties.Resources.IniciarProceso;
-			this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(89, 85);
-			this.pictureBox1.TabIndex = 11;
-			this.pictureBox1.TabStop = false;
-			// 
-			// btnIniciar
-			// 
-			this.btnIniciar.Location = new System.Drawing.Point(3, 99);
-			this.btnIniciar.Name = "btnIniciar";
-			this.btnIniciar.Size = new System.Drawing.Size(90, 43);
-			this.btnIniciar.TabIndex = 10;
-			this.btnIniciar.Text = "Iniciar Lectura";
-			this.btnIniciar.UseVisualStyleBackColor = true;
-			this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
+			this.tableLayoutPanel2.ColumnCount = 2;
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85.38874F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.61126F));
+			this.tableLayoutPanel2.Controls.Add(this.grdDatos, 0, 0);
+			this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 1, 0);
+			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
+			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+			this.tableLayoutPanel2.RowCount = 1;
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(746, 222);
+			this.tableLayoutPanel2.TabIndex = 0;
 			// 
 			// grdDatos
 			// 
@@ -485,7 +487,7 @@
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.grdDatos.Size = new System.Drawing.Size(631, 192);
+			this.grdDatos.Size = new System.Drawing.Size(631, 216);
 			this.grdDatos.TabIndex = 9;
 			// 
 			// N_Pelicula
@@ -531,21 +533,6 @@
 			this.NomPersonal.Name = "NomPersonal";
 			this.NomPersonal.ReadOnly = true;
 			// 
-			// tableLayoutPanel2
-			// 
-			this.tableLayoutPanel2.ColumnCount = 2;
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85.38874F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.61126F));
-			this.tableLayoutPanel2.Controls.Add(this.grdDatos, 0, 0);
-			this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 1, 0);
-			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
-			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-			this.tableLayoutPanel2.RowCount = 1;
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(746, 198);
-			this.tableLayoutPanel2.TabIndex = 0;
-			// 
 			// tableLayoutPanel3
 			// 
 			this.tableLayoutPanel3.ColumnCount = 1;
@@ -558,16 +545,79 @@
 			this.tableLayoutPanel3.RowCount = 2;
 			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel3.Size = new System.Drawing.Size(103, 192);
+			this.tableLayoutPanel3.Size = new System.Drawing.Size(103, 216);
 			this.tableLayoutPanel3.TabIndex = 0;
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Image = global::ControlDosimetro.Properties.Resources.IniciarProceso;
+			this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(89, 85);
+			this.pictureBox1.TabIndex = 11;
+			this.pictureBox1.TabStop = false;
+			// 
+			// btnIniciar
+			// 
+			this.btnIniciar.Location = new System.Drawing.Point(3, 111);
+			this.btnIniciar.Name = "btnIniciar";
+			this.btnIniciar.Size = new System.Drawing.Size(90, 43);
+			this.btnIniciar.TabIndex = 10;
+			this.btnIniciar.Text = "Iniciar Lectura";
+			this.btnIniciar.UseVisualStyleBackColor = true;
+			this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
+			// 
+			// rbtSolo
+			// 
+			this.rbtSolo.AutoSize = true;
+			this.rbtSolo.Checked = true;
+			this.rbtSolo.Location = new System.Drawing.Point(21, 29);
+			this.rbtSolo.Name = "rbtSolo";
+			this.rbtSolo.Size = new System.Drawing.Size(67, 17);
+			this.rbtSolo.TabIndex = 36;
+			this.rbtSolo.TabStop = true;
+			this.rbtSolo.Text = "Solo uno";
+			this.rbtSolo.UseVisualStyleBackColor = true;
+			this.rbtSolo.CheckedChanged += new System.EventHandler(this.rbtSolo_CheckedChanged);
+			// 
+			// rbtVarios
+			// 
+			this.rbtVarios.AutoSize = true;
+			this.rbtVarios.Location = new System.Drawing.Point(96, 29);
+			this.rbtVarios.Name = "rbtVarios";
+			this.rbtVarios.Size = new System.Drawing.Size(75, 17);
+			this.rbtVarios.TabIndex = 37;
+			this.rbtVarios.Text = "Correlativo";
+			this.rbtVarios.UseVisualStyleBackColor = true;
+			// 
+			// lblHasta
+			// 
+			this.lblHasta.AutoSize = true;
+			this.lblHasta.Location = new System.Drawing.Point(244, 65);
+			this.lblHasta.Name = "lblHasta";
+			this.lblHasta.Size = new System.Drawing.Size(33, 13);
+			this.lblHasta.TabIndex = 38;
+			this.lblHasta.Text = "hasta";
+			this.lblHasta.Visible = false;
+			// 
+			// txtHasta
+			// 
+			this.txtHasta.Location = new System.Drawing.Point(283, 59);
+			this.txtHasta.Name = "txtHasta";
+			this.txtHasta.Size = new System.Drawing.Size(100, 20);
+			this.txtHasta.TabIndex = 39;
+			this.txtHasta.Visible = false;
 			// 
 			// frmModuloIniciarProcesoTLD
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(781, 565);
+			this.ClientSize = new System.Drawing.Size(781, 627);
+			this.Controls.Add(this.txtHasta);
+			this.Controls.Add(this.lblHasta);
+			this.Controls.Add(this.rbtVarios);
+			this.Controls.Add(this.rbtSolo);
 			this.Controls.Add(this.groupBox2);
-			this.Controls.Add(this.tableLayoutPanel1);
 			this.Controls.Add(this.btn_filtro);
 			this.Controls.Add(this.btn_cargar);
 			this.Controls.Add(this.txt_TLD);
@@ -585,10 +635,10 @@
 			this.tableLayoutPanel1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudPosicion)).EndInit();
 			this.groupBox2.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).EndInit();
 			this.tableLayoutPanel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).EndInit();
 			this.tableLayoutPanel3.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -641,5 +691,9 @@
         private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+		private System.Windows.Forms.RadioButton rbtSolo;
+		private System.Windows.Forms.RadioButton rbtVarios;
+		private System.Windows.Forms.Label lblHasta;
+		private System.Windows.Forms.TextBox txtHasta;
 	}
 }
