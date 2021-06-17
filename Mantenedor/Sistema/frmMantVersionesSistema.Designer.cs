@@ -42,7 +42,6 @@
             this.pnlPrincipal = new System.Windows.Forms.Panel();
             this.gpxListado = new System.Windows.Forms.GroupBox();
             this.dgvGrilla = new System.Windows.Forms.DataGridView();
-            this.Colperfil1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsMenuContexto = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmActualizar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -69,6 +68,13 @@
             this.lbl_PK_SISTEMA = new System.Windows.Forms.Label();
             this.lbl_PK_VSISTEMA = new System.Windows.Forms.Label();
             this.txt_PK_VSISTEMA = new System.Windows.Forms.TextBox();
+            this.GVS_NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PK_VSISTEMA = new GridExtension.IntegerGridColumn();
+            this.PK_SISTEMA = new GridExtension.IntegerGridColumn();
+            this.GVS_DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GVS_N_VERSION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GVS_AMBIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AMBIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stsEstado.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scPrincipal)).BeginInit();
@@ -229,7 +235,13 @@
             this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvGrilla.ColumnHeadersHeight = 42;
             this.dgvGrilla.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Colperfil1});
+            this.GVS_NOMBRE,
+            this.PK_VSISTEMA,
+            this.PK_SISTEMA,
+            this.GVS_DESCRIPCION,
+            this.GVS_N_VERSION,
+            this.GVS_AMBIENTE,
+            this.AMBIENTE});
             this.dgvGrilla.ContextMenuStrip = this.cmsMenuContexto;
             this.dgvGrilla.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvGrilla.Location = new System.Drawing.Point(4, 19);
@@ -241,14 +253,6 @@
             this.dgvGrilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_CellDoubleClick);
             this.dgvGrilla.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvGrilla_ColumnWidthChanged);
             this.dgvGrilla.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvGrilla_Paint);
-            // 
-            // Colperfil1
-            // 
-            this.Colperfil1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Colperfil1.DataPropertyName = "Nombre";
-            this.Colperfil1.HeaderText = "Nombre";
-            this.Colperfil1.Name = "Colperfil1";
-            this.Colperfil1.ReadOnly = true;
             // 
             // cmsMenuContexto
             // 
@@ -534,6 +538,59 @@
             this.txt_PK_VSISTEMA.Size = new System.Drawing.Size(26, 22);
             this.txt_PK_VSISTEMA.TabIndex = 21;
             // 
+            // GVS_NOMBRE
+            // 
+            this.GVS_NOMBRE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.GVS_NOMBRE.DataPropertyName = "GVS_NOMBRE";
+            this.GVS_NOMBRE.HeaderText = "Nombre";
+            this.GVS_NOMBRE.Name = "GVS_NOMBRE";
+            this.GVS_NOMBRE.ReadOnly = true;
+            // 
+            // PK_VSISTEMA
+            // 
+            this.PK_VSISTEMA.DataPropertyName = "PK_VSISTEMA";
+            this.PK_VSISTEMA.HeaderText = "VSistema";
+            this.PK_VSISTEMA.Name = "PK_VSISTEMA";
+            this.PK_VSISTEMA.ReadOnly = true;
+            this.PK_VSISTEMA.Visible = false;
+            // 
+            // PK_SISTEMA
+            // 
+            this.PK_SISTEMA.DataPropertyName = "PK_SISTEMA";
+            this.PK_SISTEMA.HeaderText = "IdSistema";
+            this.PK_SISTEMA.Name = "PK_SISTEMA";
+            this.PK_SISTEMA.ReadOnly = true;
+            this.PK_SISTEMA.Visible = false;
+            // 
+            // GVS_DESCRIPCION
+            // 
+            this.GVS_DESCRIPCION.DataPropertyName = "GVS_DESCRIPCION";
+            this.GVS_DESCRIPCION.HeaderText = "Descripción";
+            this.GVS_DESCRIPCION.Name = "GVS_DESCRIPCION";
+            this.GVS_DESCRIPCION.ReadOnly = true;
+            // 
+            // GVS_N_VERSION
+            // 
+            this.GVS_N_VERSION.DataPropertyName = "GVS_N_VERSION";
+            this.GVS_N_VERSION.HeaderText = "N_Versión";
+            this.GVS_N_VERSION.Name = "GVS_N_VERSION";
+            this.GVS_N_VERSION.ReadOnly = true;
+            // 
+            // GVS_AMBIENTE
+            // 
+            this.GVS_AMBIENTE.DataPropertyName = "GVS_AMBIENTE";
+            this.GVS_AMBIENTE.HeaderText = "Ambiente";
+            this.GVS_AMBIENTE.Name = "GVS_AMBIENTE";
+            this.GVS_AMBIENTE.ReadOnly = true;
+            // 
+            // AMBIENTE
+            // 
+            this.AMBIENTE.DataPropertyName = "AMBIENTE";
+            this.AMBIENTE.HeaderText = "IdAmbiente";
+            this.AMBIENTE.Name = "AMBIENTE";
+            this.AMBIENTE.ReadOnly = true;
+            this.AMBIENTE.Visible = false;
+            // 
             // frmMantVersionesSistema
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -603,7 +660,6 @@
         private System.Windows.Forms.Button btn_Minimizar;
         private System.Windows.Forms.DataGridView dgvGrilla;
         private System.Windows.Forms.ToolStripDropDownButton tsdReporte;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Colperfil1;
         private System.Windows.Forms.Label lbl_GVS_AMBIENTE;
         private System.Windows.Forms.TextBox txt_GVS_N_VERSION;
         private System.Windows.Forms.Label lbl_GVS_N_VERSION;
@@ -612,5 +668,12 @@
         private System.Windows.Forms.Label lbl_PK_SISTEMA;
         private System.Windows.Forms.Label lbl_PK_VSISTEMA;
         private System.Windows.Forms.TextBox txt_PK_VSISTEMA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GVS_NOMBRE;
+        private GridExtension.IntegerGridColumn PK_VSISTEMA;
+        private GridExtension.IntegerGridColumn PK_SISTEMA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GVS_DESCRIPCION;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GVS_N_VERSION;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GVS_AMBIENTE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AMBIENTE;
     }
 }

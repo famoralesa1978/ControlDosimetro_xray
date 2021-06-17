@@ -41,10 +41,13 @@ namespace ControlDosimetro
 
 		enum ConfGrilla : int
 		{
-			id = 0,
-			descripcion = 1,
-			Id_estado = 2
-		};
+            PK_SISTEMA = 0,
+            GVS_NOMBRE = 1,
+            GVS_DESCRIPCION = 2,
+            GVS_N_VERSION = 3,
+            GVS_AMBIENTE = 4,
+            GVS_FECHA = 5
+        };
 
         clsConectorSqlServer Conectar = new clsConectorSqlServer();
         Libreria.clsSqlComun ClaseComun = new Libreria.clsSqlComun();
@@ -67,7 +70,6 @@ namespace ControlDosimetro
 			scPrincipal.Panel2Collapsed = true;
 			AsignarPermiso();
 			Cargar_Reporte();
-			//Cargar_Estado();
             Cargar_Ambientes();
             Cargar_Id_Version_Sistema();
             tsbGuardar.Enabled = false;
@@ -78,7 +80,7 @@ namespace ControlDosimetro
             lbl_PK_VSISTEMA.Visible = false;
 
             dgvGrilla.AutoGenerateColumns = false;
-			//CargarGrilla();
+			CargarGrilla();
 		}
 
 		#endregion
@@ -221,23 +223,23 @@ namespace ControlDosimetro
 
 		private void LlamadoAModificar(int intFila)
 		{
-			DataTable dt = (DataTable)dgvGrilla.DataSource;
-			DataRow currentRow = dt.Rows[intFila];
-			txt_GVS_DESCRIPCION.Text = currentRow[ConfGrilla.id.ToString()].ToString();
-			txt_GVS_NOMBRE.Text = currentRow[ConfGrilla.descripcion.ToString()].ToString();
-			//cbx_Id_estado.SelectedValue = currentRow[ConfGrilla.Id_estado.ToString()].ToString();
-			tssEstado.Text = "Modificar";
-			if (txt_GVS_DESCRIPCION.Text == "1")
-			{
-				btn_Guardar.Enabled = Modificacion || Nuevo;
-				tsbGuardar.Visible = Modificacion || Nuevo;
-			}
-			else
-			{
-				btn_Guardar.Enabled = Modificacion || Nuevo;
-				tsbGuardar.Enabled = Modificacion || Nuevo;
-			}
-			scPrincipal.Panel2Collapsed = false;
+			//DataTable dt = (DataTable)dgvGrilla.DataSource;
+			//DataRow currentRow = dt.Rows[intFila];
+			//txt_GVS_DESCRIPCION.Text = currentRow[ConfGrilla.id.ToString()].ToString();
+			//txt_GVS_NOMBRE.Text = currentRow[ConfGrilla.descripcion.ToString()].ToString();
+			////cbx_Id_estado.SelectedValue = currentRow[ConfGrilla.Id_estado.ToString()].ToString();
+			//tssEstado.Text = "Modificar";
+			//if (txt_GVS_DESCRIPCION.Text == "1")
+			//{
+			//	btn_Guardar.Enabled = Modificacion || Nuevo;
+			//	tsbGuardar.Visible = Modificacion || Nuevo;
+			//}
+			//else
+			//{
+			//	btn_Guardar.Enabled = Modificacion || Nuevo;
+			//	tsbGuardar.Enabled = Modificacion || Nuevo;
+			//}
+			//scPrincipal.Panel2Collapsed = false;
 		}
 
 		#endregion
@@ -246,13 +248,13 @@ namespace ControlDosimetro
 
 		private void dgvGrilla_Paint(object sender, PaintEventArgs e)
 		{
-			int columnIndex = 0;
-			Point headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
-			txtBox.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
-			txtBox.BackColor = Color.AliceBlue;
-			txtBox.Width = Colperfil1.Width;
-			txtBox.TextChanged += new EventHandler(TextBox_Changed);
-			dgvGrilla.Controls.Add(txtBox);
+			//int columnIndex = 0;
+			//Point headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
+			//txtBox.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
+			//txtBox.BackColor = Color.AliceBlue;
+			////txtBox.Width = Colperfil1.Width;
+			//txtBox.TextChanged += new EventHandler(TextBox_Changed);
+			//dgvGrilla.Controls.Add(txtBox);
 		}
 
 		private void dgvGrilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -309,26 +311,26 @@ namespace ControlDosimetro
 
 		private void tsmEliminar_Click(object sender, EventArgs e)
 		{
-			Cursor = Cursors.WaitCursor;
-
-			if (MessageBox.Show("¿Desea Eliminar la información?", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-			{
-				DataTable dt = ((DataTable)((BindingSource)((BindingSource)dgvGrilla.DataSource).DataSource).DataSource);
-				DataRow currentRow = dt.Rows[dgvGrilla.CurrentRow.Index];
-				SqlCommand cmd = new SqlCommand();
-				cmd.CommandText = "pa_Perfil_del " + currentRow[ConfGrilla.id.ToString()].ToString();
-
-				cmd.CommandType = CommandType.Text;
-
-				DataSet dt1;
-				dt1 = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-				MessageBox.Show(dt1.Tables[0].Rows[0][1].ToString());
-				if (dt1.Tables[0].Rows[0][0].ToString() == "0")
-					CargarGrilla();
-			}
-
-			Cursor = Cursors.Default;
+			//Cursor = Cursors.WaitCursor;
+            //
+			//if (MessageBox.Show("¿Desea Eliminar la información?", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+			//{
+			//	DataTable dt = ((DataTable)((BindingSource)((BindingSource)dgvGrilla.DataSource).DataSource).DataSource);
+			//	DataRow currentRow = dt.Rows[dgvGrilla.CurrentRow.Index];
+			//	SqlCommand cmd = new SqlCommand();
+			//	cmd.CommandText = "pa_Perfil_del " + currentRow[ConfGrilla.id.ToString()].ToString();
+            //
+			//	cmd.CommandType = CommandType.Text;
+            //
+			//	DataSet dt1;
+			//	dt1 = Conectar.Listar(Clases.clsBD.BD, cmd);
+            //
+			//	MessageBox.Show(dt1.Tables[0].Rows[0][1].ToString());
+			//	if (dt1.Tables[0].Rows[0][0].ToString() == "0")
+			//		CargarGrilla();
+			//}
+            //
+			//Cursor = Cursors.Default;
 		}
 
 		private void tsmActualizar_Click(object sender, EventArgs e)
@@ -381,7 +383,7 @@ namespace ControlDosimetro
 
 		private void dgvGrilla_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
 		{
-			txtBox.Width = Colperfil1.Width;
+			//txtBox.Width = Colperfil1.Width;
 		}
 	}
 }
