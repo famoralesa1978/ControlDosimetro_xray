@@ -164,12 +164,6 @@ namespace ControlDosimetro
 
             dgvGrilla.AutoGenerateColumns = false;
         }
-
-  //      private void Cargar_Estado()
-		//{
-		//	//ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_id_estado_Buscar, ref cbx_id_estado_Buscar);
-		//	//ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_Id_estado, ref cbx_Id_estado);
-		//}
 	
 		private void LimpiarFormulario()
 		{
@@ -188,7 +182,7 @@ namespace ControlDosimetro
 		{
 			Boolean bolResult;
 			bolResult = false;
-            string strMensaje="";
+            //string strMensaje="";
 
             //ClaseComun.ValidarFormulario(null, GES_VERSIONES_SISTEMA, ref bolResult,ref strMensaje);
             //if (!bolResult)
@@ -294,6 +288,7 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "boton"
+
 		private void btn_Limpiar_Click(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
@@ -396,7 +391,6 @@ namespace ControlDosimetro
 			Cursor = Cursors.Default;
 
 		}
-
 
 		#endregion
 
