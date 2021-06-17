@@ -375,6 +375,7 @@
             // 
             // cbx_GVS_AMBIENTE
             // 
+            this.cbx_GVS_AMBIENTE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_GVS_AMBIENTE.FormattingEnabled = true;
             this.cbx_GVS_AMBIENTE.Location = new System.Drawing.Point(117, 262);
             this.cbx_GVS_AMBIENTE.Name = "cbx_GVS_AMBIENTE";
@@ -579,17 +580,17 @@
             // GVS_AMBIENTE
             // 
             this.GVS_AMBIENTE.DataPropertyName = "GVS_AMBIENTE";
-            this.GVS_AMBIENTE.HeaderText = "Ambiente";
+            this.GVS_AMBIENTE.HeaderText = "gvs_Ambiente";
             this.GVS_AMBIENTE.Name = "GVS_AMBIENTE";
             this.GVS_AMBIENTE.ReadOnly = true;
+            this.GVS_AMBIENTE.Visible = false;
             // 
             // AMBIENTE
             // 
             this.AMBIENTE.DataPropertyName = "AMBIENTE";
-            this.AMBIENTE.HeaderText = "IdAmbiente";
+            this.AMBIENTE.HeaderText = "Ambiente";
             this.AMBIENTE.Name = "AMBIENTE";
             this.AMBIENTE.ReadOnly = true;
-            this.AMBIENTE.Visible = false;
             // 
             // frmMantVersionesSistema
             // 
