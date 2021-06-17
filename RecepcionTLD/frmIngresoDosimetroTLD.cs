@@ -526,7 +526,7 @@ namespace ControlDosimetro
 				txtid_estadodosimetro = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["id_estadodosimetro"];
 
 				strn_cliente = grdDatos.Rows[i].Cells["N_Cliente"].Value.ToString();
-				strid_personal = grdDatos.Rows[i].Cells["id_personal"].Value.ToString();
+		  		strid_personal = grdDatos.Rows[i].Cells["id_personal"].Value.ToString();
 
 
 				if ((checkGenerar.Value.ToString() == "1") && (checkCell.Value.ToString() == "0") && (txtid_estadodosimetro.Value.ToString() == "-1"))
@@ -551,7 +551,7 @@ namespace ControlDosimetro
 		{
 			string targetPathFormato = "C:\\BaseTLD\\formato\\" + "FormatoTLD.xlsx";
 			string targetPathFormatoInfome = "C:\\BaseTLD\\formato\\" + "FORMULARIO DESPACHO.xlsx";
-			grdDatos.Sort(grdDatos.Columns[1], ListSortDirection.Ascending);
+			grdDatos.Sort(grdDatos.Columns["N_pelicula"], ListSortDirection.Ascending);
 
 			string targetPathConf = "C:\\BaseTLD\\Cliente";
 			string targetPathFormatoFormulario = "C:\\BaseTLD\\Cliente";

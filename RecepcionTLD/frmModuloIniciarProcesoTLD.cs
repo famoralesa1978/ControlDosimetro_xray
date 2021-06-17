@@ -210,23 +210,34 @@ namespace ControlDosimetro
 		private void btn_cargar_Click(object sender, EventArgs e)
 		{
 			if (rbtSolo.Checked && ValidarSoloUno() == false)
-				Cargar_TLD(Convert.ToInt16( txt_TLD.Text));
-			else if (rbtVarios.Checked && ValidarVarios() == false){
-				for(int intTLD = Convert.ToInt16(txt_TLD.Text); intTLD<= Convert.ToInt16(txtHasta.Text); intTLD++)
-					Cargar_TLD(intTLD);
+			{
+				btn_Guardar.Enabled = true;
+				Cargar_TLD(Convert.ToInt16(txt_TLD.Text));
 			}
-				
+			else if (rbtVarios.Checked && ValidarVarios() == false)
+			{
+				btn_Guardar.Enabled = false;
+				for (int intTLD = Convert.ToInt16(txt_TLD.Text); intTLD <= Convert.ToInt16(txtHasta.Text); intTLD++){
+					nudPosicion.Value = 1;
+					Cargar_TLD(intTLD);
+					btn_Guardar_Click(null, null);
+					nudPosicion.Value = nudPosicion.Value + 2;
+				}
+					
+			}
+
 		}
 
 		private bool ValidarSoloUno()
 		{
 			bool bolValidar = false;
 
-			if (String.IsNullOrEmpty(txt_TLD.Text)){
+			if (String.IsNullOrEmpty(txt_TLD.Text))
+			{
 				bolValidar = true;
 				classFuncionesGenerales.mensajes.MensajeError("Debe ingresar un  número");
 			}
-				
+
 
 			return bolValidar;
 		}
@@ -239,14 +250,16 @@ namespace ControlDosimetro
 			{
 				classFuncionesGenerales.mensajes.MensajeError("Debe ingresar un  número");
 				bolValidar = true;
-			}else
+			}
+			else
 			{
-				if (Convert.ToInt16(txt_TLD.Text)>Convert.ToInt16( txtHasta.Text)){
+				if (Convert.ToInt16(txt_TLD.Text) > Convert.ToInt16(txtHasta.Text))
+				{
 					bolValidar = true;
 					classFuncionesGenerales.mensajes.MensajeError("El número hasta debe ser mayor que el desde(TLD)");
 				}
 			}
-				
+
 
 			return bolValidar;
 		}
