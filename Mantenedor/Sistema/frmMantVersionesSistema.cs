@@ -41,19 +41,19 @@ namespace ControlDosimetro
 
 		enum ConfGrilla : int
 		{
-            PK_SISTEMA = 0,
-            GVS_NOMBRE = 1,
-            GVS_DESCRIPCION = 2,
-            GVS_N_VERSION = 3,
-            GVS_AMBIENTE = 4,
-            GVS_FECHA = 5,
-            PK_VSISTEMA = 6
-        };
+			PK_SISTEMA = 0,
+			GVS_NOMBRE = 1,
+			GVS_DESCRIPCION = 2,
+			GVS_N_VERSION = 3,
+			GVS_AMBIENTE = 4,
+			GVS_FECHA = 5,
+			PK_VSISTEMA = 6
+		};
 
-        clsConectorSqlServer Conectar = new clsConectorSqlServer();
-        Libreria.clsSqlComun ClaseComun = new Libreria.clsSqlComun();
-        LibAdmSistema.ClsConector ConectarAdm = new LibAdmSistema.ClsConector();
-        clsEventoControl ClaseEvento = new clsEventoControl();
+		clsConectorSqlServer Conectar = new clsConectorSqlServer();
+		Libreria.clsSqlComun ClaseComun = new Libreria.clsSqlComun();
+		LibAdmSistema.ClsConector ConectarAdm = new LibAdmSistema.ClsConector();
+		clsEventoControl ClaseEvento = new clsEventoControl();
 		dllLibreriaMysql.clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
 		classFuncionesBD.ClsFunciones ClaseFunciones = new classFuncionesBD.ClsFunciones();
 
@@ -71,9 +71,9 @@ namespace ControlDosimetro
 			scPrincipal.Panel2Collapsed = true;
 			AsignarPermiso();
 			Cargar_Reporte();
-            Cargar_Ambientes();
-            Carga_Propiedades_Controles();
-            Cargar_Id_Version_Sistema();
+			Cargar_Ambientes();
+			Carga_Propiedades_Controles();
+			Cargar_Id_Version_Sistema();
 			CargarGrilla();
 		}
 
@@ -87,7 +87,7 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = "pa_ListarReporte_Sel " + Id_Menu.ToString();
 			DataSet dt;
-            dt = null; // Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = null; // Conectar.Listar(Clases.clsBD.BD, cmd);
 			if (dt == null)
 				tsdReporte.Visible = false;
 			else
@@ -121,82 +121,82 @@ namespace ControlDosimetro
 			tsbAgregar.Visible = Nuevo;
 			tsbGuardar.Visible = Nuevo || Modificacion;
 			tsmEliminar.Visible = Eliminar;
-        }
+		}
 
-        private void Cargar_Ambientes()
-        {
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "PA_AMBIENTES_LISTAR";
-            DataSet ds;
-            ds = ConectarAdm.Listar(null, cmd);
+		private void Cargar_Ambientes()
+		{
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "PA_AMBIENTES_LISTAR";
+			DataSet ds;
+			ds = ConectarAdm.Listar(null, cmd);
 
-            cbx_GVS_AMBIENTE_Buscar.DataSource = ds.Tables[0];
-            cbx_GVS_AMBIENTE_Buscar.ValueMember = ds.Tables[0].Columns[0].Caption.ToString();
-            cbx_GVS_AMBIENTE_Buscar.DisplayMember = ds.Tables[0].Columns[1].Caption.ToString();
+			cbx_GVS_AMBIENTE_Buscar.DataSource = ds.Tables[0];
+			cbx_GVS_AMBIENTE_Buscar.ValueMember = ds.Tables[0].Columns[0].Caption.ToString();
+			cbx_GVS_AMBIENTE_Buscar.DisplayMember = ds.Tables[0].Columns[1].Caption.ToString();
 
-            cbx_GVS_AMBIENTE.DataSource = ds.Tables[0];
-            cbx_GVS_AMBIENTE.ValueMember = ds.Tables[0].Columns[0].Caption.ToString();
-            cbx_GVS_AMBIENTE.DisplayMember = ds.Tables[0].Columns[1].Caption.ToString();
-        }
+			cbx_GVS_AMBIENTE.DataSource = ds.Tables[0];
+			cbx_GVS_AMBIENTE.ValueMember = ds.Tables[0].Columns[0].Caption.ToString();
+			cbx_GVS_AMBIENTE.DisplayMember = ds.Tables[0].Columns[1].Caption.ToString();
+		}
 
-        private void Cargar_Id_Version_Sistema()
-        {
-            txt_PK_SISTEMA.Text = ControlDosimetro.Properties.Settings.Default.Pk_Sistema;
+		private void Cargar_Id_Version_Sistema()
+		{
+			txt_PK_SISTEMA.Text = ControlDosimetro.Properties.Settings.Default.Pk_Sistema;
 
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "Select isnull(max(PK_VSISTEMA),0)+1 PK_VSISTEMA FROM GES_VERSIONES_SISTEMA";
-            DataSet ds;
-            ds = ConectarAdm.Listar(null, cmd);
-            txt_PK_VSISTEMA.Text = ds.Tables[0].Rows[0]["PK_VSISTEMA"].ToString();
-        }
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "Select isnull(max(PK_VSISTEMA),0)+1 PK_VSISTEMA FROM GES_VERSIONES_SISTEMA";
+			DataSet ds;
+			ds = ConectarAdm.Listar(null, cmd);
+			txt_PK_VSISTEMA.Text = ds.Tables[0].Rows[0]["PK_VSISTEMA"].ToString();
+		}
 
-        private void Carga_Propiedades_Controles()
-        {
-            tsbGuardar.Enabled = false;
+		private void Carga_Propiedades_Controles()
+		{
+			tsbGuardar.Enabled = false;
 
-            txt_GVS_DESCRIPCION.ScrollBars = ScrollBars.Both;
-            txt_GVS_DESCRIPCION.WordWrap = false;
+			txt_GVS_DESCRIPCION.ScrollBars = ScrollBars.Both;
+			txt_GVS_DESCRIPCION.WordWrap = false;
 
-            txt_PK_SISTEMA.Visible = false;
-            lbl_PK_SISTEMA.Visible = false;
-            txt_PK_VSISTEMA.Visible = false;
-            lbl_PK_VSISTEMA.Visible = false;
+			txt_PK_SISTEMA.Visible = false;
+			lbl_PK_SISTEMA.Visible = false;
+			txt_PK_VSISTEMA.Visible = false;
+			lbl_PK_VSISTEMA.Visible = false;
 
-            dgvGrilla.AutoGenerateColumns = false;
-        }
-	
+			dgvGrilla.AutoGenerateColumns = false;
+		}
+
 		private void LimpiarFormulario()
 		{
 			txt_GVS_NOMBRE.Clear();
 			txt_GVS_DESCRIPCION.Clear();
-            txt_GVS_N_VERSION.Clear();
-            txt_PK_VSISTEMA.Clear();
-            txt_PK_SISTEMA.Clear();
-            cbx_GVS_AMBIENTE.SelectedIndex = 0;
+			txt_GVS_N_VERSION.Clear();
+			txt_PK_VSISTEMA.Clear();
+			txt_PK_SISTEMA.Clear();
+			cbx_GVS_AMBIENTE.SelectedIndex = 0;
 			btn_Guardar.Enabled = Modificacion || Nuevo;
 			tsbGuardar.Visible = Modificacion || Nuevo;
-            Cargar_Id_Version_Sistema();
-        }
-	
+			Cargar_Id_Version_Sistema();
+		}
+
 		private void Grabar()
 		{
 			Boolean bolResult;
 			bolResult = false;
-            //string strMensaje="";
+			string strMensaje="";
 
-            //ClaseComun.ValidarFormulario(null, GES_VERSIONES_SISTEMA, ref bolResult,ref strMensaje);
-            //if (!bolResult)
-            //{
-            //    classFuncionesGenerales.mensajes.MensajeError(strMensaje);
-            //    return;
-            //}
+			ClaseComun.ValidarFormulario(Clases.clsBD.BD, GES_VERSIONES_SISTEMA, ref bolResult,ref strMensaje);
+			if (!bolResult)
+			{
+				classFuncionesGenerales.mensajes.MensajeError(strMensaje);
+				return;
+			}
 
-            if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+			if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
 			{
 				if (tssEstado.Text == "Nuevo")
 				{
 					ClaseComun.Insertar(Clases.clsBD.BD, GES_VERSIONES_SISTEMA, ref bolResult);
-                    if (bolResult == true)
+					if (bolResult == true)
 					{
 						CargarGrilla();
 						MessageBox.Show("Dato Guardado");
@@ -231,18 +231,18 @@ namespace ControlDosimetro
 			DataTable dt = (DataTable)dgvGrilla.DataSource;
 			DataRow currentRow = dt.Rows[intFila];
 
-            txt_PK_SISTEMA.Text = currentRow[ConfGrilla.PK_SISTEMA.ToString()].ToString();
-            txt_PK_VSISTEMA.Text = currentRow[ConfGrilla.PK_VSISTEMA.ToString()].ToString();
+			txt_PK_SISTEMA.Text = currentRow[ConfGrilla.PK_SISTEMA.ToString()].ToString();
+			txt_PK_VSISTEMA.Text = currentRow[ConfGrilla.PK_VSISTEMA.ToString()].ToString();
 
-            txt_GVS_NOMBRE.Text = currentRow[ConfGrilla.GVS_NOMBRE.ToString()].ToString();
-            txt_GVS_DESCRIPCION.Text = currentRow[ConfGrilla.GVS_DESCRIPCION.ToString()].ToString();
-            txt_GVS_N_VERSION.Text = currentRow[ConfGrilla.GVS_N_VERSION.ToString()].ToString();
-            cbx_GVS_AMBIENTE.SelectedValue = currentRow[ConfGrilla.GVS_AMBIENTE.ToString()].ToString();
+			txt_GVS_NOMBRE.Text = currentRow[ConfGrilla.GVS_NOMBRE.ToString()].ToString();
+			txt_GVS_DESCRIPCION.Text = currentRow[ConfGrilla.GVS_DESCRIPCION.ToString()].ToString();
+			txt_GVS_N_VERSION.Text = currentRow[ConfGrilla.GVS_N_VERSION.ToString()].ToString();
+			cbx_GVS_AMBIENTE.SelectedValue = currentRow[ConfGrilla.GVS_AMBIENTE.ToString()].ToString();
 
 
-            txt_GVS_NOMBRE.Text = currentRow[ConfGrilla.GVS_NOMBRE.ToString()].ToString();
-            
-            tssEstado.Text = "Modificar";
+			txt_GVS_NOMBRE.Text = currentRow[ConfGrilla.GVS_NOMBRE.ToString()].ToString();
+
+			tssEstado.Text = "Modificar";
 			if (txt_GVS_DESCRIPCION.Text == "")
 			{
 				btn_Guardar.Enabled = Modificacion || Nuevo;
@@ -262,14 +262,14 @@ namespace ControlDosimetro
 
 		private void dgvGrilla_Paint(object sender, PaintEventArgs e)
 		{
-            int columnIndex = 0;
-            Point headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
-            txtBox.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
-            txtBox.BackColor = Color.AliceBlue;
-            txtBox.Width = GVS_NOMBRE.Width;
-            txtBox.TextChanged += new EventHandler(TextBox_Changed);
-            dgvGrilla.Controls.Add(txtBox);
-        }
+			int columnIndex = 0;
+			Point headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
+			txtBox.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
+			txtBox.BackColor = Color.AliceBlue;
+			txtBox.Width = GVS_NOMBRE.Width;
+			txtBox.TextChanged += new EventHandler(TextBox_Changed);
+			dgvGrilla.Controls.Add(txtBox);
+		}
 
 		private void dgvGrilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
 		{
@@ -327,24 +327,24 @@ namespace ControlDosimetro
 		private void tsmEliminar_Click(object sender, EventArgs e)
 		{
 			//Cursor = Cursors.WaitCursor;
-            //
+			//
 			//if (MessageBox.Show("¿Desea Eliminar la información?", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
 			//{
 			//	DataTable dt = ((DataTable)((BindingSource)((BindingSource)dgvGrilla.DataSource).DataSource).DataSource);
 			//	DataRow currentRow = dt.Rows[dgvGrilla.CurrentRow.Index];
 			//	SqlCommand cmd = new SqlCommand();
 			//	cmd.CommandText = "pa_Perfil_del " + currentRow[ConfGrilla.id.ToString()].ToString();
-            //
+			//
 			//	cmd.CommandType = CommandType.Text;
-            //
+			//
 			//	DataSet dt1;
 			//	dt1 = Conectar.Listar(Clases.clsBD.BD, cmd);
-            //
+			//
 			//	MessageBox.Show(dt1.Tables[0].Rows[0][1].ToString());
 			//	if (dt1.Tables[0].Rows[0][0].ToString() == "0")
 			//		CargarGrilla();
 			//}
-            //
+			//
 			//Cursor = Cursors.Default;
 		}
 
@@ -396,7 +396,7 @@ namespace ControlDosimetro
 
 		private void dgvGrilla_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
 		{
-            txtBox.Width = GVS_NOMBRE.Width;
-        }
-    }
+			txtBox.Width = GVS_NOMBRE.Width;
+		}
+	}
 }
