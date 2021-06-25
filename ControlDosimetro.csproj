@@ -435,6 +435,12 @@
     <Compile Include="RecepcionTLD\frmModuloIniciarProcesoTLD.Designer.cs">
       <DependentUpon>frmModuloIniciarProcesoTLD.cs</DependentUpon>
     </Compile>
+    <Compile Include="Recepcion\frmConsultaFilmico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\frmConsultaFilmico.Designer.cs">
+      <DependentUpon>frmConsultaFilmico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Recepcion\FrmInformeISP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -719,6 +725,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RecepcionTLD\frmModuloIniciarProcesoTLD.resx">
       <DependentUpon>frmModuloIniciarProcesoTLD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepcion\frmConsultaFilmico.resx">
+      <DependentUpon>frmConsultaFilmico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Recepcion\FrmInformeISP.resx">
       <DependentUpon>FrmInformeISP.cs</DependentUpon>
