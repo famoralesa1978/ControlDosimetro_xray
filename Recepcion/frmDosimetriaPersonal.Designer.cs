@@ -1,6 +1,6 @@
 ﻿namespace ControlDosimetro
 {
-    partial class frmDosimetriaPersonal
+    partial class FrmDosimetriaPersonal
     {
         /// <summary>
         /// Required designer variable.
@@ -150,7 +150,7 @@
             this.btn_filtro.TabIndex = 44;
             this.btn_filtro.Text = "Limpiar filtro";
             this.btn_filtro.UseVisualStyleBackColor = true;
-            this.btn_filtro.Click += new System.EventHandler(this.btn_filtro_Click_1);
+            this.btn_filtro.Click += new System.EventHandler(this.Btn_filtro_Click_1);
             // 
             // btn_cargar
             // 
@@ -160,7 +160,7 @@
             this.btn_cargar.TabIndex = 3;
             this.btn_cargar.Text = "Cargar";
             this.btn_cargar.UseVisualStyleBackColor = true;
-            this.btn_cargar.Click += new System.EventHandler(this.btn_cargar_Click);
+            this.btn_cargar.Click += new System.EventHandler(this.Btn_cargar_Click);
             // 
             // cbx_id_periodo
             // 
@@ -232,7 +232,7 @@
             this.btnGrabarMod.Text = "Ok";
             this.btnGrabarMod.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnGrabarMod.UseVisualStyleBackColor = true;
-            this.btnGrabarMod.Click += new System.EventHandler(this.btnGrabarMod_Click);
+            this.btnGrabarMod.Click += new System.EventHandler(this.BtnGrabarMod_Click);
             // 
             // txt_NDocumento
             // 
@@ -276,7 +276,7 @@
             this.cbx_NDocumento.Name = "cbx_NDocumento";
             this.cbx_NDocumento.Size = new System.Drawing.Size(121, 21);
             this.cbx_NDocumento.TabIndex = 17;
-            this.cbx_NDocumento.SelectedIndexChanged += new System.EventHandler(this.cbx_NDocumento_SelectedIndexChanged);
+            this.cbx_NDocumento.SelectedIndexChanged += new System.EventHandler(this.Cbx_NDocumento_SelectedIndexChanged);
             // 
             // txt_Servicio
             // 
@@ -322,7 +322,7 @@
             this.btn_Agregar.TabIndex = 8;
             this.btn_Agregar.Text = "Grabar";
             this.btn_Agregar.UseVisualStyleBackColor = true;
-            this.btn_Agregar.Click += new System.EventHandler(this.btn_Agregar_Click);
+            this.btn_Agregar.Click += new System.EventHandler(this.Btn_Agregar_Click);
             // 
             // label5
             // 
@@ -350,7 +350,7 @@
             this.cbx_anno.Name = "cbx_anno";
             this.cbx_anno.Size = new System.Drawing.Size(121, 21);
             this.cbx_anno.TabIndex = 1;
-            this.cbx_anno.SelectedIndexChanged += new System.EventHandler(this.cbx_anno_SelectedIndexChanged);
+            this.cbx_anno.SelectedIndexChanged += new System.EventHandler(this.Cbx_anno_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -423,9 +423,8 @@
             this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdDatos.Size = new System.Drawing.Size(459, 260);
             this.grdDatos.TabIndex = 8;
-            this.grdDatos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdDatos_CellFormatting);
-            this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
-            this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
+            this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdDatos_CellValueChanged);
+            this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdDatos_CurrentCellDirtyStateChanged);
             // 
             // id
             // 
@@ -484,7 +483,7 @@
             this.tsmEliminar.Size = new System.Drawing.Size(117, 22);
             this.tsmEliminar.Text = "Eliminar";
             this.tsmEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.tsmEliminar.Click += new System.EventHandler(this.tsmEliminar_Click);
+            this.tsmEliminar.Click += new System.EventHandler(this.TsmEliminar_Click);
             // 
             // toolStrip1
             // 
@@ -610,7 +609,7 @@
             this.btn_Imprimir.TabIndex = 7;
             this.btn_Imprimir.Text = "Imprimir Documento Dosimetria Personal";
             this.btn_Imprimir.UseVisualStyleBackColor = true;
-            this.btn_Imprimir.Click += new System.EventHandler(this.btn_Imprimir_Click);
+            this.btn_Imprimir.Click += new System.EventHandler(this.Btn_Imprimir_Click);
             // 
             // btn_Cerrar
             // 
@@ -621,7 +620,7 @@
             this.btn_Cerrar.TabIndex = 9;
             this.btn_Cerrar.Text = "Cerrar";
             this.btn_Cerrar.UseVisualStyleBackColor = true;
-            this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click);
+            this.btn_Cerrar.Click += new System.EventHandler(this.Btn_Cerrar_Click);
             // 
             // sistiamc_controlDataSet111
             // 
@@ -638,7 +637,7 @@
             this.pctAgregarSucursal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pctAgregarSucursal.TabIndex = 34;
             this.pctAgregarSucursal.TabStop = false;
-            this.pctAgregarSucursal.Click += new System.EventHandler(this.pctAgregarSucursal_Click);
+            this.pctAgregarSucursal.Click += new System.EventHandler(this.PctAgregarSucursal_Click);
             // 
             // frmDosimetriaPersonal
             // 
@@ -655,7 +654,7 @@
             this.Name = "frmDosimetriaPersonal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dosimetria Personal";
-            this.Load += new System.EventHandler(this.frmIngresoPelicula_Load);
+            this.Load += new System.EventHandler(this.FrmIngresoPelicula_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grp_Ingreso.ResumeLayout(false);

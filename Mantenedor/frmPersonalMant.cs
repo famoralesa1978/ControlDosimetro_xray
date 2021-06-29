@@ -95,7 +95,7 @@ namespace ControlDosimetro
 
 			cmd.CommandText = "SELECT Rut,Nombres,Paterno,Maternos,Id_Seccion,Id_estado,Id_sexo,Id_profesion,Fecha_inicio,fecha_termino,Usuario,Fecha_agregado,getdate()as Fecha_Modificacion," +
 													"  fecha_nac, isnull(Id_CodServicio,8) as Id_CodServicio, isnull(Id_Practica,0) as Id_Practica, isnull(Id_Cargo,0) as Id_Cargo " +
-							" FROM tbl_personal WHERE Id_Personal= " + intCodpersonal.ToString() + " and id_cliente=" + lbl_id_cliente.Text;
+							" FROM tbl_personal WHERE Id_Personal= " + intCodpersonal.ToString() + " and rut_cliente='" + lbl_rut_cliente.Text + "'";
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
@@ -130,7 +130,7 @@ namespace ControlDosimetro
 			bolverificar = false;
 			SqlCommand cmd = new SqlCommand();
 
-			cmd.CommandText = "SELECT top 1 Id_Personal,id_cliente,rut_cliente,Rut,Nombres,Paterno,Maternos,Id_Seccion,Id_estado,Fecha_inicio,fecha_termino,Usuario,Fecha_agregado,GETDATE()as Fecha_Modificacion " +
+			cmd.CommandText = "SELECT top 1 Id_Personal,id_cliente,rut_cliente,Rut,Nombres,Paterno,Fecha_Nac,Maternos,Id_Seccion,Id_estado,Fecha_inicio,fecha_termino,Usuario,Fecha_agregado,GETDATE()as Fecha_Modificacion " +
 											" FROM tbl_personal WHERE  Rut='" + strRut + "' and id_estado=1";//  and rut_cliente = '" + lbl_rut_cliente.Text + "' and id_cliente=" + lbl_id_cliente.Text + " and id_estado=1";
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -161,6 +161,7 @@ namespace ControlDosimetro
 						txt_rut.Tag = dt.Tables[0].Rows[0]["Rut"].ToString();
 						txt_Maternos.Text = dt.Tables[0].Rows[0]["Maternos"].ToString();
 						txt_paterno.Text = dt.Tables[0].Rows[0]["Paterno"].ToString();
+						dtp_Fecha_Nac.Text= dt.Tables[0].Rows[0]["Fecha_Nac"].ToString(); 
 						txt_rut.Enabled = false;
 						txt_Nombres.Focus();
 						HabDesa_Controles(true);

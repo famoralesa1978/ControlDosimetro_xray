@@ -118,6 +118,7 @@ namespace ControlDosimetro
 				btn_cargarCliente.Enabled = false;
 				bolDesdeCodigo = true;
 				Cargar_Seccion();
+				Cargar_Estado();
 				Cargar_CodServicio();
 				Listar_Personal();
 			}
@@ -151,6 +152,19 @@ namespace ControlDosimetro
 			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref cb, 16);
 
 			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns[ColServicio.Index] as DataGridViewComboBoxColumn;
+
+			comboboxColumn.DataSource = cb.DataSource;
+			comboboxColumn.DisplayMember = cb.DisplayMember;
+			comboboxColumn.ValueMember = cb.ValueMember;
+
+		}
+
+		private void Cargar_Estado()
+		{
+			ComboBox cb = new ComboBox();
+			ClaseFunciones.Cargar_Estado(ref cb);
+
+			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns[ColEstado.Index] as DataGridViewComboBoxColumn;
 
 			comboboxColumn.DataSource = cb.DataSource;
 			comboboxColumn.DisplayMember = cb.DisplayMember;
@@ -355,7 +369,10 @@ namespace ControlDosimetro
 				{
 					((DataTable)grdDatos.DataSource).Rows[e.RowIndex].AcceptChanges();
 				}
-
+				if (e.ColumnIndex == ColEstado.Index)
+				{
+					((DataTable)grdDatos.DataSource).Rows[e.RowIndex].AcceptChanges();
+				}
 				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].RejectChanges();
 				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].SetModified();
 			}
@@ -392,9 +409,12 @@ namespace ControlDosimetro
 						if (dr["Fecha_Nac"] == DBNull.Value)
 							strParametro = strParametro + "'01/01/1900'";
 						else
-							strParametro = strParametro + "'" + dr["Fecha_Nac"].ToString() + "'";
+							strParametro = strParametro + "'" + dr["Fecha_Nac"].ToString() + "',";
 
-
+						if (dr["Id_estado"] == DBNull.Value)
+							strParametro = strParametro + "'1";
+						else
+							strParametro = strParametro + "" + dr["Id_estado"].ToString() + "";
 
 						cmd.CommandText = "pa_PersonalMasivo_Upd " + dr["Id_Personal"] + "," + strParametro;
 						cmd.CommandType = CommandType.Text;

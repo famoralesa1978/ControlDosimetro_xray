@@ -451,7 +451,7 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.CorreccionDcto:
-					objFrm = new frmDosimetriaPersonal(0)
+					objFrm = new FrmDosimetriaPersonal(0)
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
@@ -875,7 +875,7 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.CorreccionDcto:
-					objFrm = new frmDosimetriaPersonal(0)
+					objFrm = new FrmDosimetriaPersonal(0)
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen

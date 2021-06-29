@@ -1,6 +1,6 @@
 ﻿namespace ControlDosimetro
 {
-    partial class frmConsultaDosimetroTLD
+    partial class frmConsultaFilmico
 	{
         /// <summary>
         /// Required designer variable.
@@ -46,20 +46,6 @@
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
-			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-			this.btn_Excel = new System.Windows.Forms.ToolStripButton();
-			this.btn_Cerrar = new System.Windows.Forms.Button();
-			this.label4 = new System.Windows.Forms.Label();
-			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
-			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
-			this.lbl_id_seccion = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.grpFiltro = new System.Windows.Forms.GroupBox();
-			this.picFiltrarpersonal = new System.Windows.Forms.PictureBox();
-			this.txt_NombrePersonal = new System.Windows.Forms.TextBox();
-			this.label6 = new System.Windows.Forms.Label();
-			this.txt_RunPersonal = new System.Windows.Forms.TextBox();
-			this.label7 = new System.Windows.Forms.Label();
 			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.N_pelicula = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.id_dosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,11 +60,23 @@
 			this.id_sucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.id_estadodosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ColMedicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.btn_Cerrar = new System.Windows.Forms.Button();
+			this.label4 = new System.Windows.Forms.Label();
+			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
+			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
+			this.lbl_id_seccion = new System.Windows.Forms.Label();
+			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.grpFiltro = new System.Windows.Forms.GroupBox();
+			this.picFiltrarpersonal = new System.Windows.Forms.PictureBox();
+			this.txt_NombrePersonal = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.txt_RunPersonal = new System.Windows.Forms.TextBox();
+			this.label7 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
-			this.toolStrip1.SuspendLayout();
 			this.grpFiltro.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picFiltrarpersonal)).BeginInit();
 			this.SuspendLayout();
@@ -108,7 +106,7 @@
 			// lbl_rut
 			// 
 			this.lbl_rut.AutoSize = true;
-			this.lbl_rut.Location = new System.Drawing.Point(75, 50);
+			this.lbl_rut.Location = new System.Drawing.Point(85, 97);
 			this.lbl_rut.Name = "lbl_rut";
 			this.lbl_rut.Size = new System.Drawing.Size(0, 13);
 			this.lbl_rut.TabIndex = 54;
@@ -116,7 +114,7 @@
 			// label11
 			// 
 			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(10, 50);
+			this.label11.Location = new System.Drawing.Point(13, 97);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(24, 13);
 			this.label11.TabIndex = 53;
@@ -124,7 +122,7 @@
 			// 
 			// btn_Cargar_cliente
 			// 
-			this.btn_Cargar_cliente.Location = new System.Drawing.Point(199, 40);
+			this.btn_Cargar_cliente.Location = new System.Drawing.Point(633, 77);
 			this.btn_Cargar_cliente.Name = "btn_Cargar_cliente";
 			this.btn_Cargar_cliente.Size = new System.Drawing.Size(119, 23);
 			this.btn_Cargar_cliente.TabIndex = 52;
@@ -134,7 +132,7 @@
 			// 
 			// lbl_id_cliente
 			// 
-			this.lbl_id_cliente.Location = new System.Drawing.Point(78, 17);
+			this.lbl_id_cliente.Location = new System.Drawing.Point(88, 66);
 			this.lbl_id_cliente.Name = "lbl_id_cliente";
 			this.lbl_id_cliente.Size = new System.Drawing.Size(53, 20);
 			this.lbl_id_cliente.TabIndex = 50;
@@ -142,7 +140,7 @@
 			// lbl_nombreCliente
 			// 
 			this.lbl_nombreCliente.AutoSize = true;
-			this.lbl_nombreCliente.Location = new System.Drawing.Point(137, 18);
+			this.lbl_nombreCliente.Location = new System.Drawing.Point(147, 67);
 			this.lbl_nombreCliente.Name = "lbl_nombreCliente";
 			this.lbl_nombreCliente.Size = new System.Drawing.Size(0, 13);
 			this.lbl_nombreCliente.TabIndex = 51;
@@ -150,7 +148,7 @@
 			// lbl_rut_cliente
 			// 
 			this.lbl_rut_cliente.AutoSize = true;
-			this.lbl_rut_cliente.Location = new System.Drawing.Point(211, 80);
+			this.lbl_rut_cliente.Location = new System.Drawing.Point(770, 87);
 			this.lbl_rut_cliente.Name = "lbl_rut_cliente";
 			this.lbl_rut_cliente.Size = new System.Drawing.Size(53, 13);
 			this.lbl_rut_cliente.TabIndex = 46;
@@ -181,7 +179,7 @@
 			// 
 			this.cbx_id_periodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_id_periodo.FormattingEnabled = true;
-			this.cbx_id_periodo.Location = new System.Drawing.Point(85, 97);
+			this.cbx_id_periodo.Location = new System.Drawing.Point(88, 39);
 			this.cbx_id_periodo.Name = "cbx_id_periodo";
 			this.cbx_id_periodo.Size = new System.Drawing.Size(121, 21);
 			this.cbx_id_periodo.TabIndex = 43;
@@ -189,7 +187,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(10, 102);
+			this.label1.Location = new System.Drawing.Point(13, 44);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(42, 13);
 			this.label1.TabIndex = 36;
@@ -199,7 +197,7 @@
 			// 
 			this.cbx_anno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_anno.FormattingEnabled = true;
-			this.cbx_anno.Location = new System.Drawing.Point(85, 72);
+			this.cbx_anno.Location = new System.Drawing.Point(88, 14);
 			this.cbx_anno.Name = "cbx_anno";
 			this.cbx_anno.Size = new System.Drawing.Size(121, 21);
 			this.cbx_anno.TabIndex = 1;
@@ -208,7 +206,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(10, 20);
+			this.label2.Location = new System.Drawing.Point(13, 69);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(57, 13);
 			this.label2.TabIndex = 34;
@@ -217,7 +215,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(10, 75);
+			this.label3.Location = new System.Drawing.Point(13, 17);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(26, 13);
 			this.label3.TabIndex = 4;
@@ -291,26 +289,136 @@
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
 			this.grdDatos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdDatos_KeyDown);
 			// 
+			// Id_Personal
+			// 
+			this.Id_Personal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+			this.Id_Personal.DataPropertyName = "Id_Personal";
+			this.Id_Personal.HeaderText = "Id_Personal";
+			this.Id_Personal.Name = "Id_Personal";
+			this.Id_Personal.ReadOnly = true;
+			this.Id_Personal.Visible = false;
+			// 
+			// N_pelicula
+			// 
+			this.N_pelicula.DataPropertyName = "N_pelicula";
+			this.N_pelicula.HeaderText = "Nº Pelicula";
+			this.N_pelicula.Name = "N_pelicula";
+			this.N_pelicula.ReadOnly = true;
+			this.N_pelicula.Width = 84;
+			// 
+			// id_dosimetro
+			// 
+			this.id_dosimetro.DataPropertyName = "id_dosimetro";
+			this.id_dosimetro.HeaderText = "Id_dosimetro";
+			this.id_dosimetro.Name = "id_dosimetro";
+			this.id_dosimetro.ReadOnly = true;
+			this.id_dosimetro.Visible = false;
+			this.id_dosimetro.Width = 92;
+			// 
+			// ColEstado
+			// 
+			this.ColEstado.DataPropertyName = "Estado";
+			this.ColEstado.HeaderText = "Estado";
+			this.ColEstado.Name = "ColEstado";
+			this.ColEstado.ReadOnly = true;
+			this.ColEstado.Width = 65;
+			// 
+			// N_Cliente
+			// 
+			this.N_Cliente.DataPropertyName = "Id_Cliente";
+			this.N_Cliente.HeaderText = "N° Cliente";
+			this.N_Cliente.Name = "N_Cliente";
+			this.N_Cliente.ReadOnly = true;
+			this.N_Cliente.Width = 79;
+			// 
+			// NDocumento
+			// 
+			this.NDocumento.DataPropertyName = "N_Documento";
+			this.NDocumento.HeaderText = "N° Documento";
+			this.NDocumento.Name = "NDocumento";
+			this.NDocumento.ReadOnly = true;
+			this.NDocumento.Width = 102;
+			// 
+			// Rut
+			// 
+			this.Rut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Rut.DataPropertyName = "Rut";
+			this.Rut.HeaderText = "Rut";
+			this.Rut.Name = "Rut";
+			this.Rut.ReadOnly = true;
+			this.Rut.Width = 49;
+			// 
+			// ColServicio
+			// 
+			this.ColServicio.DataPropertyName = "Servicio";
+			this.ColServicio.HeaderText = "Servicio";
+			this.ColServicio.Name = "ColServicio";
+			this.ColServicio.ReadOnly = true;
+			this.ColServicio.Width = 70;
+			// 
+			// Nombres
+			// 
+			this.Nombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+			this.Nombres.DataPropertyName = "Nombres";
+			this.Nombres.HeaderText = "Nombres";
+			this.Nombres.MinimumWidth = 150;
+			this.Nombres.Name = "Nombres";
+			this.Nombres.ReadOnly = true;
+			this.Nombres.Width = 150;
+			// 
+			// Paterno
+			// 
+			this.Paterno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Paterno.DataPropertyName = "Paterno";
+			this.Paterno.FillWeight = 300F;
+			this.Paterno.HeaderText = "Paterno";
+			this.Paterno.Name = "Paterno";
+			this.Paterno.ReadOnly = true;
+			// 
+			// Maternos
+			// 
+			this.Maternos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Maternos.DataPropertyName = "Maternos";
+			this.Maternos.HeaderText = "Maternos";
+			this.Maternos.MinimumWidth = 150;
+			this.Maternos.Name = "Maternos";
+			this.Maternos.ReadOnly = true;
+			// 
+			// id_sucursal
+			// 
+			this.id_sucursal.DataPropertyName = "id_sucursal";
+			this.id_sucursal.HeaderText = "id_sucursal";
+			this.id_sucursal.Name = "id_sucursal";
+			this.id_sucursal.ReadOnly = true;
+			this.id_sucursal.Visible = false;
+			this.id_sucursal.Width = 85;
+			// 
+			// id_estadodosimetro
+			// 
+			this.id_estadodosimetro.DataPropertyName = "id_estadodosimetro";
+			this.id_estadodosimetro.HeaderText = "id_estadodosimetro";
+			this.id_estadodosimetro.Name = "id_estadodosimetro";
+			this.id_estadodosimetro.ReadOnly = true;
+			this.id_estadodosimetro.Visible = false;
+			this.id_estadodosimetro.Width = 123;
+			// 
+			// ColMedicion
+			// 
+			this.ColMedicion.DataPropertyName = "Medicion";
+			this.ColMedicion.HeaderText = "Med.";
+			this.ColMedicion.Name = "ColMedicion";
+			this.ColMedicion.ReadOnly = true;
+			this.ColMedicion.ToolTipText = "Medición";
+			this.ColMedicion.Width = 56;
+			// 
 			// toolStrip1
 			// 
 			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btn_Excel});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(1084, 27);
+			this.toolStrip1.Size = new System.Drawing.Size(1084, 25);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
-			// 
-			// btn_Excel
-			// 
-			this.btn_Excel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.btn_Excel.Image = global::ControlDosimetro.Properties.Resources.excel;
-			this.btn_Excel.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.btn_Excel.Name = "btn_Excel";
-			this.btn_Excel.Size = new System.Drawing.Size(24, 24);
-			this.btn_Excel.ToolTipText = "Descargar Excel";
-			this.btn_Excel.Click += new System.EventHandler(this.btn_Excel_Click);
 			// 
 			// btn_Cerrar
 			// 
@@ -432,130 +540,7 @@
 			this.label7.TabIndex = 3;
 			this.label7.Text = "Rut";
 			// 
-			// Id_Personal
-			// 
-			this.Id_Personal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-			this.Id_Personal.DataPropertyName = "Id_Personal";
-			this.Id_Personal.HeaderText = "Id_Personal";
-			this.Id_Personal.Name = "Id_Personal";
-			this.Id_Personal.ReadOnly = true;
-			this.Id_Personal.Visible = false;
-			this.Id_Personal.Width = 88;
-			// 
-			// N_pelicula
-			// 
-			this.N_pelicula.DataPropertyName = "N_pelicula";
-			this.N_pelicula.HeaderText = "Nº Pelicula";
-			this.N_pelicula.Name = "N_pelicula";
-			this.N_pelicula.ReadOnly = true;
-			this.N_pelicula.Width = 84;
-			// 
-			// id_dosimetro
-			// 
-			this.id_dosimetro.DataPropertyName = "id_dosimetro";
-			this.id_dosimetro.HeaderText = "Id_dosimetro";
-			this.id_dosimetro.Name = "id_dosimetro";
-			this.id_dosimetro.ReadOnly = true;
-			this.id_dosimetro.Visible = false;
-			this.id_dosimetro.Width = 92;
-			// 
-			// ColEstado
-			// 
-			this.ColEstado.DataPropertyName = "Estado";
-			this.ColEstado.HeaderText = "Estado";
-			this.ColEstado.Name = "ColEstado";
-			this.ColEstado.ReadOnly = true;
-			this.ColEstado.Width = 65;
-			// 
-			// N_Cliente
-			// 
-			this.N_Cliente.DataPropertyName = "Id_Cliente";
-			this.N_Cliente.HeaderText = "N° Cliente";
-			this.N_Cliente.Name = "N_Cliente";
-			this.N_Cliente.ReadOnly = true;
-			this.N_Cliente.Width = 79;
-			// 
-			// NDocumento
-			// 
-			this.NDocumento.DataPropertyName = "N_Documento";
-			this.NDocumento.HeaderText = "N° Documento";
-			this.NDocumento.Name = "NDocumento";
-			this.NDocumento.ReadOnly = true;
-			this.NDocumento.Width = 102;
-			// 
-			// Rut
-			// 
-			this.Rut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-			this.Rut.DataPropertyName = "Rut";
-			this.Rut.HeaderText = "Rut";
-			this.Rut.Name = "Rut";
-			this.Rut.ReadOnly = true;
-			this.Rut.Width = 49;
-			// 
-			// ColServicio
-			// 
-			this.ColServicio.DataPropertyName = "Servicio";
-			this.ColServicio.HeaderText = "Servicio";
-			this.ColServicio.Name = "ColServicio";
-			this.ColServicio.ReadOnly = true;
-			this.ColServicio.Width = 70;
-			// 
-			// Nombres
-			// 
-			this.Nombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-			this.Nombres.DataPropertyName = "Nombres";
-			this.Nombres.HeaderText = "Nombres";
-			this.Nombres.MinimumWidth = 150;
-			this.Nombres.Name = "Nombres";
-			this.Nombres.ReadOnly = true;
-			this.Nombres.Width = 150;
-			// 
-			// Paterno
-			// 
-			this.Paterno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Paterno.DataPropertyName = "Paterno";
-			this.Paterno.FillWeight = 300F;
-			this.Paterno.HeaderText = "Paterno";
-			this.Paterno.Name = "Paterno";
-			this.Paterno.ReadOnly = true;
-			// 
-			// Maternos
-			// 
-			this.Maternos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Maternos.DataPropertyName = "Maternos";
-			this.Maternos.HeaderText = "Maternos";
-			this.Maternos.MinimumWidth = 150;
-			this.Maternos.Name = "Maternos";
-			this.Maternos.ReadOnly = true;
-			// 
-			// id_sucursal
-			// 
-			this.id_sucursal.DataPropertyName = "id_sucursal";
-			this.id_sucursal.HeaderText = "id_sucursal";
-			this.id_sucursal.Name = "id_sucursal";
-			this.id_sucursal.ReadOnly = true;
-			this.id_sucursal.Visible = false;
-			this.id_sucursal.Width = 85;
-			// 
-			// id_estadodosimetro
-			// 
-			this.id_estadodosimetro.DataPropertyName = "id_estadodosimetro";
-			this.id_estadodosimetro.HeaderText = "id_estadodosimetro";
-			this.id_estadodosimetro.Name = "id_estadodosimetro";
-			this.id_estadodosimetro.ReadOnly = true;
-			this.id_estadodosimetro.Visible = false;
-			this.id_estadodosimetro.Width = 123;
-			// 
-			// ColMedicion
-			// 
-			this.ColMedicion.DataPropertyName = "Medicion";
-			this.ColMedicion.HeaderText = "Med.";
-			this.ColMedicion.Name = "ColMedicion";
-			this.ColMedicion.ReadOnly = true;
-			this.ColMedicion.ToolTipText = "Medición";
-			this.ColMedicion.Width = 56;
-			// 
-			// frmConsultaDosimetroTLD
+			// frmConsultaFilmico
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -573,18 +558,16 @@
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(776, 462);
-			this.Name = "frmConsultaDosimetroTLD";
+			this.Name = "frmConsultaFilmico";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Consulta ingreso TLD";
-			this.Load += new System.EventHandler(this.frmConsultaDosimetroTLD_Load);
+			this.Text = "Consulta Fílmico";
+			this.Load += new System.EventHandler(this.frmConsultaFilmico_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
 			this.pnl_Progreso.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).EndInit();
-			this.toolStrip1.ResumeLayout(false);
-			this.toolStrip1.PerformLayout();
 			this.grpFiltro.ResumeLayout(false);
 			this.grpFiltro.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picFiltrarpersonal)).EndInit();
@@ -617,7 +600,6 @@
                                 private System.Windows.Forms.Button btn_Cargar_cliente;
                                 private System.Windows.Forms.TextBox lbl_id_cliente;
                                 private System.Windows.Forms.Label lbl_nombreCliente;
-        private System.Windows.Forms.ToolStripButton btn_Excel;
 		private System.Windows.Forms.ComboBox cbx_id_seccion;
 		private System.Windows.Forms.Label lbl_id_seccion;
 		private System.Windows.Forms.TextBox textBox1;

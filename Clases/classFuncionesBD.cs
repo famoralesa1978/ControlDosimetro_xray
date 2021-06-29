@@ -162,7 +162,24 @@ namespace classFuncionesBD
 			cbx.DisplayMember = ds.Tables[0].Columns[0].Caption.ToString();
 			cbx.DataSource = ds.Tables[0];
 		}
-	
+
+		public void Cargar_Estado(ref ComboBox cbx)
+		{
+			DataSet ds;
+			SqlCommand cmd = new SqlCommand
+			{
+				//	SqlCommand cmd = new SqlCommand();
+
+				CommandText = "select Id_Estado,descripcion from glo_estado order by orden"
+			};
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+			cbx.ValueMember = ds.Tables[0].Columns[0].Caption.ToString();
+			cbx.DisplayMember = ds.Tables[0].Columns[1].Caption.ToString();
+			cbx.DataSource = ds.Tables[0];
+		}
+
+
 		public DataSet Cargar_Seccion(int intId_Cliente ){
 			DataSet dt;
 

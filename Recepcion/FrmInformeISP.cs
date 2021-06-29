@@ -132,7 +132,7 @@ namespace ControlDosimetro
 				groupBox2.Text = "Listado";
 				groupBox2.Enabled = false;
 				lbl_id_cliente.Text = "";
-				cbx_Sucursal.Enabled = false;
+				cbx_Sucursal.Enabled = true;
 				btn_Corregir.Enabled = false;
 				lbl_id_cliente.Focus();
 
@@ -146,6 +146,7 @@ namespace ControlDosimetro
 			{
 				groupBox2.Enabled = true;
 				btn_Corregir.Enabled = true;
+				cbx_Sucursal.Enabled = true;
 			}
 		}
 
@@ -238,8 +239,16 @@ namespace ControlDosimetro
 									  " inner join tbl_sucursal s on s.Id_sucursal=dos.Id_Sucursal " +
 									  " inner  join glo_region R on s.id_region=r.id_region inner join glo_provincia p on p.id_provincia=s.Id_Provincia  " +
 									  " inner join glo_comuna co on co.Id_Comuna=s.Id_Comuna " +
-									  "WHERE c.Id_cliente= " + lbl_id_cliente.Text + " and dos.id_periodo=" + cbx_id_periodo.SelectedValue + "",
+									  "WHERE c.Id_cliente= " + lbl_id_cliente.Text + " and dos.id_periodo=" + cbx_id_periodo.SelectedValue + " union all " +
+										"SELECT distinct s.Id_sucursal, " +
+									"case when s.Direccion is null or s.Direccion ='' then c.Direccion else s.Direccion end + ',' + comuna as Direccion" + //N_Documento,
+										" FROM  ges_dosimetro_estado_TLD tld inner join tbl_dosimetria dos on dos.id_cliente = tld.id_cliente and TLD = 1 inner join tbl_cliente c on c.Id_cliente=dos.Id_cliente " +
+										" inner join tbl_sucursal s on s.Id_sucursal=tld.Id_Sucursal " +
+										" inner  join glo_region R on s.id_region=r.id_region inner join glo_provincia p on p.id_provincia=s.Id_Provincia  " +
+										" inner join glo_comuna co on co.Id_Comuna=s.Id_Comuna " +
+										"WHERE c.Id_cliente= " + lbl_id_cliente.Text + " and dos.id_periodo=" + cbx_id_periodo.SelectedValue,
 				CommandType = CommandType.Text
+
 			};
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmdSucursal);
@@ -800,6 +809,7 @@ namespace ControlDosimetro
 					cbxEstado.ReadOnly = true;
 
 				}
+				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].AcceptChanges();
 			}
 
 		}
