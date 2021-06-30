@@ -30,7 +30,6 @@
         {
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label11 = new System.Windows.Forms.Label();
-			this.btn_Cargar_cliente = new System.Windows.Forms.Button();
 			this.lbl_id_cliente = new System.Windows.Forms.TextBox();
 			this.lbl_nombreCliente = new System.Windows.Forms.Label();
 			this.lbl_rut_cliente = new System.Windows.Forms.Label();
@@ -45,6 +44,18 @@
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.btn_Cerrar = new System.Windows.Forms.Button();
+			this.label4 = new System.Windows.Forms.Label();
+			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
+			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
+			this.lbl_id_seccion = new System.Windows.Forms.Label();
+			this.grpFiltro = new System.Windows.Forms.GroupBox();
+			this.picFiltrarpersonal = new System.Windows.Forms.PictureBox();
+			this.txt_NombrePersonal = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.txt_RunPersonal = new System.Windows.Forms.TextBox();
+			this.label7 = new System.Windows.Forms.Label();
 			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.N_pelicula = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.id_dosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,19 +70,6 @@
 			this.id_sucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.id_estadodosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ColMedicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-			this.btn_Cerrar = new System.Windows.Forms.Button();
-			this.label4 = new System.Windows.Forms.Label();
-			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
-			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
-			this.lbl_id_seccion = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.grpFiltro = new System.Windows.Forms.GroupBox();
-			this.picFiltrarpersonal = new System.Windows.Forms.PictureBox();
-			this.txt_NombrePersonal = new System.Windows.Forms.TextBox();
-			this.label6 = new System.Windows.Forms.Label();
-			this.txt_RunPersonal = new System.Windows.Forms.TextBox();
-			this.label7 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -83,7 +81,6 @@
 			// groupBox1
 			// 
 			this.groupBox1.Controls.Add(this.label11);
-			this.groupBox1.Controls.Add(this.btn_Cargar_cliente);
 			this.groupBox1.Controls.Add(this.lbl_id_cliente);
 			this.groupBox1.Controls.Add(this.lbl_nombreCliente);
 			this.groupBox1.Controls.Add(this.lbl_rut_cliente);
@@ -109,16 +106,6 @@
 			this.label11.Size = new System.Drawing.Size(24, 13);
 			this.label11.TabIndex = 53;
 			this.label11.Text = "Rut";
-			// 
-			// btn_Cargar_cliente
-			// 
-			this.btn_Cargar_cliente.Location = new System.Drawing.Point(633, 77);
-			this.btn_Cargar_cliente.Name = "btn_Cargar_cliente";
-			this.btn_Cargar_cliente.Size = new System.Drawing.Size(119, 23);
-			this.btn_Cargar_cliente.TabIndex = 52;
-			this.btn_Cargar_cliente.Text = "Cargar Cliente";
-			this.btn_Cargar_cliente.UseVisualStyleBackColor = true;
-			this.btn_Cargar_cliente.Click += new System.EventHandler(this.btn_Cargar_cliente_Click);
 			// 
 			// lbl_id_cliente
 			// 
@@ -277,6 +264,127 @@
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
 			this.grdDatos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdDatos_KeyDown);
 			// 
+			// toolStrip1
+			// 
+			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.Size = new System.Drawing.Size(1084, 25);
+			this.toolStrip1.TabIndex = 2;
+			this.toolStrip1.Text = "toolStrip1";
+			// 
+			// btn_Cerrar
+			// 
+			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.btn_Cerrar.Location = new System.Drawing.Point(472, 630);
+			this.btn_Cerrar.Name = "btn_Cerrar";
+			this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
+			this.btn_Cerrar.TabIndex = 8;
+			this.btn_Cerrar.Text = "Cerrar";
+			this.btn_Cerrar.UseVisualStyleBackColor = true;
+			this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click);
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(8, 160);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(48, 13);
+			this.label4.TabIndex = 10;
+			this.label4.Text = "Sucursal";
+			// 
+			// cbx_Sucursal
+			// 
+			this.cbx_Sucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_Sucursal.FormattingEnabled = true;
+			this.cbx_Sucursal.Location = new System.Drawing.Point(62, 157);
+			this.cbx_Sucursal.Name = "cbx_Sucursal";
+			this.cbx_Sucursal.Size = new System.Drawing.Size(526, 21);
+			this.cbx_Sucursal.TabIndex = 11;
+			this.cbx_Sucursal.SelectionChangeCommitted += new System.EventHandler(this.cbx_Sucursal_SelectionChangeCommitted);
+			// 
+			// cbx_id_seccion
+			// 
+			this.cbx_id_seccion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_id_seccion.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbx_id_seccion.FormattingEnabled = true;
+			this.cbx_id_seccion.Location = new System.Drawing.Point(62, 184);
+			this.cbx_id_seccion.Name = "cbx_id_seccion";
+			this.cbx_id_seccion.Size = new System.Drawing.Size(236, 21);
+			this.cbx_id_seccion.TabIndex = 14;
+			this.cbx_id_seccion.SelectedIndexChanged += new System.EventHandler(this.cbx_id_seccion_SelectedIndexChanged);
+			// 
+			// lbl_id_seccion
+			// 
+			this.lbl_id_seccion.AutoSize = true;
+			this.lbl_id_seccion.Location = new System.Drawing.Point(8, 187);
+			this.lbl_id_seccion.Name = "lbl_id_seccion";
+			this.lbl_id_seccion.Size = new System.Drawing.Size(46, 13);
+			this.lbl_id_seccion.TabIndex = 15;
+			this.lbl_id_seccion.Text = "Sección";
+			// 
+			// grpFiltro
+			// 
+			this.grpFiltro.Controls.Add(this.picFiltrarpersonal);
+			this.grpFiltro.Controls.Add(this.txt_NombrePersonal);
+			this.grpFiltro.Controls.Add(this.label6);
+			this.grpFiltro.Controls.Add(this.txt_RunPersonal);
+			this.grpFiltro.Controls.Add(this.label7);
+			this.grpFiltro.Location = new System.Drawing.Point(8, 211);
+			this.grpFiltro.Name = "grpFiltro";
+			this.grpFiltro.Size = new System.Drawing.Size(705, 51);
+			this.grpFiltro.TabIndex = 17;
+			this.grpFiltro.TabStop = false;
+			this.grpFiltro.Text = "Filtrar personal";
+			// 
+			// picFiltrarpersonal
+			// 
+			this.picFiltrarpersonal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.picFiltrarpersonal.Image = global::ControlDosimetro.Properties.Resources.Buscar;
+			this.picFiltrarpersonal.Location = new System.Drawing.Point(545, 13);
+			this.picFiltrarpersonal.Name = "picFiltrarpersonal";
+			this.picFiltrarpersonal.Size = new System.Drawing.Size(36, 36);
+			this.picFiltrarpersonal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+			this.picFiltrarpersonal.TabIndex = 7;
+			this.picFiltrarpersonal.TabStop = false;
+			this.picFiltrarpersonal.Click += new System.EventHandler(this.picFiltrarpersonal_Click);
+			// 
+			// txt_NombrePersonal
+			// 
+			this.txt_NombrePersonal.Location = new System.Drawing.Point(320, 22);
+			this.txt_NombrePersonal.MaxLength = 50;
+			this.txt_NombrePersonal.Name = "txt_NombrePersonal";
+			this.txt_NombrePersonal.Size = new System.Drawing.Size(219, 20);
+			this.txt_NombrePersonal.TabIndex = 6;
+			this.txt_NombrePersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_NombrePersonal_KeyDown);
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(198, 26);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(104, 13);
+			this.label6.TabIndex = 5;
+			this.label6.Text = "Nombre del personal";
+			// 
+			// txt_RunPersonal
+			// 
+			this.txt_RunPersonal.Location = new System.Drawing.Point(57, 23);
+			this.txt_RunPersonal.MaxLength = 10;
+			this.txt_RunPersonal.Name = "txt_RunPersonal";
+			this.txt_RunPersonal.Size = new System.Drawing.Size(100, 20);
+			this.txt_RunPersonal.TabIndex = 4;
+			this.txt_RunPersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_RunPersonal_KeyDown);
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(14, 26);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(24, 13);
+			this.label7.TabIndex = 3;
+			this.label7.Text = "Rut";
+			// 
 			// Id_Personal
 			// 
 			this.Id_Personal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -285,6 +393,7 @@
 			this.Id_Personal.Name = "Id_Personal";
 			this.Id_Personal.ReadOnly = true;
 			this.Id_Personal.Visible = false;
+			this.Id_Personal.Width = 88;
 			// 
 			// N_pelicula
 			// 
@@ -393,140 +502,10 @@
 			// ColMedicion
 			// 
 			this.ColMedicion.DataPropertyName = "Medicion";
-			this.ColMedicion.HeaderText = "Med.";
+			this.ColMedicion.HeaderText = "Dosis";
 			this.ColMedicion.Name = "ColMedicion";
 			this.ColMedicion.ReadOnly = true;
-			this.ColMedicion.ToolTipText = "Medición";
-			this.ColMedicion.Width = 56;
-			// 
-			// toolStrip1
-			// 
-			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(1084, 25);
-			this.toolStrip1.TabIndex = 2;
-			this.toolStrip1.Text = "toolStrip1";
-			// 
-			// btn_Cerrar
-			// 
-			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Cerrar.Location = new System.Drawing.Point(472, 630);
-			this.btn_Cerrar.Name = "btn_Cerrar";
-			this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
-			this.btn_Cerrar.TabIndex = 8;
-			this.btn_Cerrar.Text = "Cerrar";
-			this.btn_Cerrar.UseVisualStyleBackColor = true;
-			this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click);
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(8, 160);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(48, 13);
-			this.label4.TabIndex = 10;
-			this.label4.Text = "Sucursal";
-			// 
-			// cbx_Sucursal
-			// 
-			this.cbx_Sucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_Sucursal.FormattingEnabled = true;
-			this.cbx_Sucursal.Location = new System.Drawing.Point(62, 157);
-			this.cbx_Sucursal.Name = "cbx_Sucursal";
-			this.cbx_Sucursal.Size = new System.Drawing.Size(526, 21);
-			this.cbx_Sucursal.TabIndex = 11;
-			this.cbx_Sucursal.SelectionChangeCommitted += new System.EventHandler(this.cbx_Sucursal_SelectionChangeCommitted);
-			// 
-			// cbx_id_seccion
-			// 
-			this.cbx_id_seccion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_id_seccion.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbx_id_seccion.FormattingEnabled = true;
-			this.cbx_id_seccion.Location = new System.Drawing.Point(62, 184);
-			this.cbx_id_seccion.Name = "cbx_id_seccion";
-			this.cbx_id_seccion.Size = new System.Drawing.Size(236, 21);
-			this.cbx_id_seccion.TabIndex = 14;
-			this.cbx_id_seccion.SelectedIndexChanged += new System.EventHandler(this.cbx_id_seccion_SelectedIndexChanged);
-			// 
-			// lbl_id_seccion
-			// 
-			this.lbl_id_seccion.AutoSize = true;
-			this.lbl_id_seccion.Location = new System.Drawing.Point(8, 187);
-			this.lbl_id_seccion.Name = "lbl_id_seccion";
-			this.lbl_id_seccion.Size = new System.Drawing.Size(46, 13);
-			this.lbl_id_seccion.TabIndex = 15;
-			this.lbl_id_seccion.Text = "Sección";
-			// 
-			// textBox1
-			// 
-			this.textBox1.Location = new System.Drawing.Point(731, 161);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(100, 20);
-			this.textBox1.TabIndex = 16;
-			this.textBox1.Visible = false;
-			// 
-			// grpFiltro
-			// 
-			this.grpFiltro.Controls.Add(this.picFiltrarpersonal);
-			this.grpFiltro.Controls.Add(this.txt_NombrePersonal);
-			this.grpFiltro.Controls.Add(this.label6);
-			this.grpFiltro.Controls.Add(this.txt_RunPersonal);
-			this.grpFiltro.Controls.Add(this.label7);
-			this.grpFiltro.Location = new System.Drawing.Point(8, 211);
-			this.grpFiltro.Name = "grpFiltro";
-			this.grpFiltro.Size = new System.Drawing.Size(705, 51);
-			this.grpFiltro.TabIndex = 17;
-			this.grpFiltro.TabStop = false;
-			this.grpFiltro.Text = "Filtrar personal";
-			// 
-			// picFiltrarpersonal
-			// 
-			this.picFiltrarpersonal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.picFiltrarpersonal.Image = global::ControlDosimetro.Properties.Resources.Buscar;
-			this.picFiltrarpersonal.Location = new System.Drawing.Point(545, 13);
-			this.picFiltrarpersonal.Name = "picFiltrarpersonal";
-			this.picFiltrarpersonal.Size = new System.Drawing.Size(36, 36);
-			this.picFiltrarpersonal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-			this.picFiltrarpersonal.TabIndex = 7;
-			this.picFiltrarpersonal.TabStop = false;
-			this.picFiltrarpersonal.Click += new System.EventHandler(this.picFiltrarpersonal_Click);
-			// 
-			// txt_NombrePersonal
-			// 
-			this.txt_NombrePersonal.Location = new System.Drawing.Point(320, 22);
-			this.txt_NombrePersonal.MaxLength = 50;
-			this.txt_NombrePersonal.Name = "txt_NombrePersonal";
-			this.txt_NombrePersonal.Size = new System.Drawing.Size(219, 20);
-			this.txt_NombrePersonal.TabIndex = 6;
-			this.txt_NombrePersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_NombrePersonal_KeyDown);
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(198, 26);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(104, 13);
-			this.label6.TabIndex = 5;
-			this.label6.Text = "Nombre del personal";
-			// 
-			// txt_RunPersonal
-			// 
-			this.txt_RunPersonal.Location = new System.Drawing.Point(57, 23);
-			this.txt_RunPersonal.MaxLength = 10;
-			this.txt_RunPersonal.Name = "txt_RunPersonal";
-			this.txt_RunPersonal.Size = new System.Drawing.Size(100, 20);
-			this.txt_RunPersonal.TabIndex = 4;
-			this.txt_RunPersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_RunPersonal_KeyDown);
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(14, 26);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(24, 13);
-			this.label7.TabIndex = 3;
-			this.label7.Text = "Rut";
+			this.ColMedicion.Width = 58;
 			// 
 			// frmConsultaTLD
 			// 
@@ -534,7 +513,6 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1084, 662);
 			this.Controls.Add(this.grpFiltro);
-			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.lbl_id_seccion);
 			this.Controls.Add(this.cbx_id_seccion);
 			this.Controls.Add(this.cbx_Sucursal);
@@ -584,12 +562,10 @@
                                 private System.Windows.Forms.ComboBox cbx_Sucursal;
                                 private System.Windows.Forms.Label lbl_rut_cliente;
                                 private System.Windows.Forms.Label label11;
-                                private System.Windows.Forms.Button btn_Cargar_cliente;
                                 private System.Windows.Forms.TextBox lbl_id_cliente;
                                 private System.Windows.Forms.Label lbl_nombreCliente;
 		private System.Windows.Forms.ComboBox cbx_id_seccion;
 		private System.Windows.Forms.Label lbl_id_seccion;
-		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.GroupBox grpFiltro;
 		private System.Windows.Forms.PictureBox picFiltrarpersonal;
 		private System.Windows.Forms.TextBox txt_NombrePersonal;
