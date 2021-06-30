@@ -28,18 +28,13 @@ namespace ControlDosimetro
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
 		WorkbookPart wbPart = null;
-		SpreadsheetDocument document = null;
-		SpreadsheetDocument documentInforme = null;
 		//	SpreadsheetDocument document2 = null;
 		object missing = System.Reflection.Missing.Value;
 		//     object strcampoMarcador;
 		const string documentRelationshipType = "http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument";
 		const string headerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.header+xml";
 		const string footerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml";
-		string strDireccion;
-		string strServicio;
-		string strRegion;
-		string strComuna;
+
 		public string Id_Menu { get; private set; }
 		private bool Inicializar = true;
 
@@ -164,32 +159,12 @@ namespace ControlDosimetro
 
 		private void Cargar_Anno()
 		{
-			SqlCommand cmd = new SqlCommand();
-
-			//  SqlCommand cmd = new SqlCommand();
-
-			cmd.CommandText = "SELECT distinct Anno FROM conf_periodo WHERE Id_TipoPeriodo=3";
-			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
-			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-			cbx_anno.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
-			cbx_anno.DataSource = dt.Tables[0];
-
+			clsFunc.Cargar_Año(ref cbx_anno, 3);
 		}
 
 		private void Cargar_Periodo()
 		{
-			SqlCommand cmd = new SqlCommand
-			{
-				CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ 'º TRI' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text
-			};
-			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-			cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
-			cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
-			cbx_id_periodo.DataSource = dt.Tables[0];
+			clsFunc.Cargar_Periodo(ref cbx_id_periodo, 3, (int)cbx_anno.SelectedValue);
 		}
 
 		private void Cargar_Sucursal()
