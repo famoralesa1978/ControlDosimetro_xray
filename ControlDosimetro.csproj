@@ -405,11 +405,11 @@
     <Compile Include="Mantenedor\Sistema\frmMantenedorReporte.Designer.cs">
       <DependentUpon>frmMantenedorReporte.cs</DependentUpon>
     </Compile>
-    <Compile Include="RecepcionTLD\frmConsultaDosimetroTLD.cs">
+    <Compile Include="RecepcionTLD\frmConsultaTLD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RecepcionTLD\frmConsultaDosimetroTLD.Designer.cs">
-      <DependentUpon>frmConsultaDosimetroTLD.cs</DependentUpon>
+    <Compile Include="RecepcionTLD\frmConsultaTLD.Designer.cs">
+      <DependentUpon>frmConsultaTLD.cs</DependentUpon>
     </Compile>
     <Compile Include="RecepcionTLD\frmModuloEnviado.cs">
       <SubType>Form</SubType>
@@ -711,8 +711,8 @@
     <EmbeddedResource Include="Mantenedor\Sistema\frmMantVersionesSistema.resx">
       <DependentUpon>frmMantVersionesSistema.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RecepcionTLD\frmConsultaDosimetroTLD.resx">
-      <DependentUpon>frmConsultaDosimetroTLD.cs</DependentUpon>
+    <EmbeddedResource Include="RecepcionTLD\frmConsultaTLD.resx">
+      <DependentUpon>frmConsultaTLD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecepcionTLD\frmModuloEnviado.resx">
       <DependentUpon>frmModuloEnviado.cs</DependentUpon>

@@ -281,14 +281,13 @@ namespace ControlDosimetro
 			cbx_id_periodo.Enabled = true;
 			groupBox2.Text = "Listado";
 			lbl_id_cliente.Text = "-1";
-			lbl_rut.Text = "";
+			lbl_rut_cliente.Text = "";
 			lbl_nombreCliente.Text = "";
 			btn_cargar.Enabled = true;
 			btn_Cargar_cliente.Enabled = true;
 			lbl_id_cliente.Enabled = true;
 			Listar_Personal();
 			lbl_id_cliente.Text = "0";
-			lbl_rut.Text = "";
 			lbl_id_cliente.Focus();
 			btn_cargar.Enabled = false;
 			Inicializar = true;

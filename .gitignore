@@ -260,3 +260,6 @@ paket-files/
 __pycache__/
 *.pyc
 /reporte/rptinformeTldCliente.rdlc
+/RecepcionTLD/frmConsultaTLD.resx
+/RecepcionTLD/frmConsultaTLD.Designer.cs
+/RecepcionTLD/frmConsultaTLD.cs

@@ -13,7 +13,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-
+using classFuncionesBD;
 
 namespace ControlDosimetro
 {
@@ -21,7 +21,9 @@ namespace ControlDosimetro
 	{
 
 		#region "Definicion variable"
+
 		private bool bolInicio = false;
+		ClsFunciones clsFunc = new ClsFunciones();
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
@@ -194,11 +196,7 @@ namespace ControlDosimetro
 		private void Cargar_Sucursal()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "select id_sucursal, direccion + ','+co.comuna as Dato " +
-					"from [dbo].[tbl_sucursal] s " +
-					"inner join glo_region r on r.Id_region=s.Id_Region " +
-					"inner join glo_comuna co on co.id_comuna=s.Id_Comuna " +
-					"where run='" + lbl_rut.Text + "' and s.id_estado=1";
+			cmd.CommandText = "BusClienteSucursal_TLD " +"'" + lbl_rut.Text + "',"+ lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue;
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
@@ -262,12 +260,18 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 			Inicializar = false;
-			Listar_Personal();
-			cbx_anno.Enabled = false;
-			cbx_id_periodo.Enabled = false;
-			btn_cargar.Enabled = false;
-			grdDatos.Focus();
-				Cursor = Cursors.Default;
+
+			clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(lbl_id_cliente.Text.ToString()), ref lbl_rut_cliente, ref lbl_nombreCliente);
+			
+			Cargar_Sucursal();
+			//Cargar_Seccion();
+
+			//Listar_Personal();
+			//cbx_anno.Enabled = false;
+			//cbx_id_periodo.Enabled = false;
+			//btn_cargar.Enabled = false;
+			//grdDatos.Focus();
+			Cursor = Cursors.Default;
 		}
 
 		private void btn_filtro_Click_1(object sender, EventArgs e)

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.lbl_rut = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
 			this.btn_Cargar_cliente = new System.Windows.Forms.Button();
 			this.lbl_id_cliente = new System.Windows.Forms.TextBox();
@@ -83,7 +82,6 @@
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Controls.Add(this.lbl_rut);
 			this.groupBox1.Controls.Add(this.label11);
 			this.groupBox1.Controls.Add(this.btn_Cargar_cliente);
 			this.groupBox1.Controls.Add(this.lbl_id_cliente);
@@ -102,14 +100,6 @@
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Dato Cliente";
-			// 
-			// lbl_rut
-			// 
-			this.lbl_rut.AutoSize = true;
-			this.lbl_rut.Location = new System.Drawing.Point(85, 97);
-			this.lbl_rut.Name = "lbl_rut";
-			this.lbl_rut.Size = new System.Drawing.Size(0, 13);
-			this.lbl_rut.TabIndex = 54;
 			// 
 			// label11
 			// 
@@ -148,12 +138,10 @@
 			// lbl_rut_cliente
 			// 
 			this.lbl_rut_cliente.AutoSize = true;
-			this.lbl_rut_cliente.Location = new System.Drawing.Point(770, 87);
+			this.lbl_rut_cliente.Location = new System.Drawing.Point(85, 97);
 			this.lbl_rut_cliente.Name = "lbl_rut_cliente";
-			this.lbl_rut_cliente.Size = new System.Drawing.Size(53, 13);
+			this.lbl_rut_cliente.Size = new System.Drawing.Size(0, 13);
 			this.lbl_rut_cliente.TabIndex = 46;
-			this.lbl_rut_cliente.Text = "rut cliente";
-			this.lbl_rut_cliente.Visible = false;
 			// 
 			// btn_filtro
 			// 
@@ -540,7 +528,7 @@
 			this.label7.TabIndex = 3;
 			this.label7.Text = "Rut";
 			// 
-			// frmConsultaFilmico
+			// frmConsultaTLD
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -558,10 +546,10 @@
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(776, 462);
-			this.Name = "frmConsultaFilmico";
+			this.Name = "frmConsultaTLD";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Consulta Fílmico";
+			this.Text = "Consulta TLD";
 			this.Load += new System.EventHandler(this.frmConsultaTLD_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
@@ -595,7 +583,6 @@
                                 private System.Windows.Forms.Label label4;
                                 private System.Windows.Forms.ComboBox cbx_Sucursal;
                                 private System.Windows.Forms.Label lbl_rut_cliente;
-                                private System.Windows.Forms.Label lbl_rut;
                                 private System.Windows.Forms.Label label11;
                                 private System.Windows.Forms.Button btn_Cargar_cliente;
                                 private System.Windows.Forms.TextBox lbl_id_cliente;

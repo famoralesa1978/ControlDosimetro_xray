@@ -591,7 +591,7 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.ConsultaIngTLD:
-					objFrm = new frmConsultaDosimetroTLD()
+					objFrm = new frmConsultaTLD()
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
@@ -1015,7 +1015,7 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.ConsultaIngTLD:
-					objFrm = new frmConsultaDosimetroTLD()
+					objFrm = new frmConsultaTLD()
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
