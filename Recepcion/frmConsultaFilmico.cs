@@ -28,18 +28,13 @@ namespace ControlDosimetro
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
 		WorkbookPart wbPart = null;
-		SpreadsheetDocument document = null;
-		SpreadsheetDocument documentInforme = null;
 		//	SpreadsheetDocument document2 = null;
 		object missing = System.Reflection.Missing.Value;
 		//     object strcampoMarcador;
 		const string documentRelationshipType = "http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument";
 		const string headerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.header+xml";
 		const string footerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml";
-		string strDireccion;
-		string strServicio;
-		string strRegion;
-		string strComuna;
+
 		public string Id_Menu { get; private set; }
 		private bool Inicializar = true;
 
@@ -81,45 +76,44 @@ namespace ControlDosimetro
 
 		#region "Llamada de carga"
 
-		private void Cargar_Cliente(Int64 intCodCliente)
-		{
+		//private void Cargar_Cliente(Int64 intCodCliente)
+		//{
 
 
-			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "select run,Razon_Social,N_Cliente_Ref, Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio,Servicio,r.region,co.Comuna " +
-											"  FROM tbl_cliente c inner join [dbo].[glo_region] r on c.Id_Region=r.Id_Region inner join glo_comuna co on co.id_comuna=c.id_comuna" +
-											" WHERE Id_cliente= " + intCodCliente.ToString();//comuna +','+ region
-			DataSet dt;
+		//	SqlCommand cmd = new SqlCommand();
+		//	cmd.CommandText = "select run,Razon_Social,N_Cliente_Ref, Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio,Servicio,r.region,co.Comuna " +
+		//									"  FROM tbl_cliente c inner join [dbo].[glo_region] r on c.Id_Region=r.Id_Region inner join glo_comuna co on co.id_comuna=c.id_comuna" +
+		//									" WHERE Id_cliente= " + intCodCliente.ToString();//comuna +','+ region
+		//	DataSet dt;
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-			if (dt.Tables[0].Rows.Count > 0)
-			{
-				lbl_id_cliente.Text = intCodCliente.ToString();
-				lbl_rut.Text = dt.Tables[0].Rows[0]["run"].ToString();
-				lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
-				strDireccion = dt.Tables[0].Rows[0]["Direccion"].ToString();
-				strServicio= dt.Tables[0].Rows[0]["Servicio"].ToString();
-				strRegion = dt.Tables[0].Rows[0]["region"].ToString();
-				strComuna = dt.Tables[0].Rows[0]["Comuna"].ToString();
-				btn_cargar.Enabled = true;
-				btn_Cargar_cliente.Enabled = false;
-				lbl_id_cliente.Enabled = false;
-				cbx_anno.Enabled = true;
-				cbx_id_periodo.Enabled = true;
-			}
-			else
-			{
-				btn_Cargar_cliente.Enabled = true;
-				//lbl_id_cliente.Text = "";
-				btn_cargar.Enabled = false;
-				lbl_id_cliente.Enabled = true;
-				lbl_nombreCliente.Text = "";
-				lbl_rut.Text = "";
-				if (intCodCliente != 0)
-					MessageBox.Show("El cliente no existe");
+		//	dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+		//	if (dt.Tables[0].Rows.Count > 0)
+		//	{
+		//		lbl_id_cliente.Text = intCodCliente.ToString();
+		//		lbl_rut.Text = dt.Tables[0].Rows[0]["run"].ToString();
+		//		lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
+		//		strDireccion = dt.Tables[0].Rows[0]["Direccion"].ToString();
+		//		strServicio= dt.Tables[0].Rows[0]["Servicio"].ToString();
+		//		strRegion = dt.Tables[0].Rows[0]["region"].ToString();
+		//		strComuna = dt.Tables[0].Rows[0]["Comuna"].ToString();
+		//		btn_cargar.Enabled = true;
+		//		btn_Cargar_cliente.Enabled = false;
+		//		lbl_id_cliente.Enabled = false;
+		//		cbx_anno.Enabled = true;
+		//		cbx_id_periodo.Enabled = true;
+		//	}
+		//	else
+		//	{
+		//		btn_Cargar_cliente.Enabled = true;
+		//		//lbl_id_cliente.Text = "";
+		//		btn_cargar.Enabled = false;
+		//		lbl_id_cliente.Enabled = true;
+		//		lbl_nombreCliente.Text = "";
+		//		if (intCodCliente != 0)
+		//			MessageBox.Show("El cliente no existe");
 
-			}
-		}
+		//	}
+		//}
 
 		private void Listar_Personal()
 		{
@@ -131,7 +125,7 @@ namespace ControlDosimetro
 			int intSucursal = cbx_Sucursal.SelectedValue == null ? 0 : (int)cbx_Sucursal.SelectedValue;
 			int intSeccion = cbx_id_seccion.SelectedValue == null ? 0 : (int)cbx_id_seccion.SelectedValue;
 
-			cmd.CommandText = "pa_ConsultaIngresoTLDPorSeccion_sel " + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text + "," + intSeccion.ToString() + "," + intSucursal.ToString();
+			cmd.CommandText = "pa_ConsultaIngresoFilmicoPorSeccion_sel " + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text + "," + intSeccion.ToString() + "," + intSucursal.ToString();
 
 			cmd.CommandType = CommandType.Text;
 
@@ -165,38 +159,18 @@ namespace ControlDosimetro
 
 		private void Cargar_Anno()
 		{
-			SqlCommand cmd = new SqlCommand();
-
-			//  SqlCommand cmd = new SqlCommand();
-
-			cmd.CommandText = "SELECT distinct Anno FROM conf_periodo WHERE Id_TipoPeriodo=3";
-			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
-			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-			cbx_anno.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
-			cbx_anno.DataSource = dt.Tables[0];
-
+			clsFunc.Cargar_Año(ref cbx_anno, 3);
 		}
 
 		private void Cargar_Periodo()
 		{
-			SqlCommand cmd = new SqlCommand
-			{
-				CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ 'º TRI' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text
-			};
-			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-			cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
-			cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
-			cbx_id_periodo.DataSource = dt.Tables[0];
+			clsFunc.Cargar_Periodo(ref cbx_id_periodo, 3, (int)cbx_anno.SelectedValue);
 		}
 
 		private void Cargar_Sucursal()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "BusClienteSucursal_TLD " +"'" + lbl_rut.Text + "',"+ lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue;
+			cmd.CommandText = "BusClienteSucursal_Filmico " + "'" + lbl_rut_cliente.Text + "',"+ lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue;
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
@@ -209,8 +183,8 @@ namespace ControlDosimetro
 		private void Cargar_Seccion()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "SELECT seccion,id_seccion " +
-							" FROM tbl_seccion  WHERE Id_cliente= " + lbl_id_cliente.Text.ToString() + " and id_estado=1";
+			cmd.CommandText = "select 'Todos' as seccion,-1 as id_seccion union SELECT seccion,id_seccion " +
+							" FROM tbl_seccion  WHERE Id_cliente= " + lbl_id_cliente.Text.ToString() + " and id_estado=1 order by id_seccion";
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 			
@@ -264,12 +238,12 @@ namespace ControlDosimetro
 			clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(lbl_id_cliente.Text.ToString()), ref lbl_rut_cliente, ref lbl_nombreCliente);
 			
 			Cargar_Sucursal();
-			//Cargar_Seccion();
+			Cargar_Seccion();
 
-			//Listar_Personal();
-			//cbx_anno.Enabled = false;
-			//cbx_id_periodo.Enabled = false;
-			//btn_cargar.Enabled = false;
+			Listar_Personal();
+			cbx_anno.Enabled = false;
+			cbx_id_periodo.Enabled = false;
+			btn_cargar.Enabled = false;
 			//grdDatos.Focus();
 			Cursor = Cursors.Default;
 		}
@@ -281,16 +255,18 @@ namespace ControlDosimetro
 			cbx_id_periodo.Enabled = true;
 			groupBox2.Text = "Listado";
 			lbl_id_cliente.Text = "-1";
-			lbl_rut.Text = "";
+			lbl_rut_cliente.Text = "";
 			lbl_nombreCliente.Text = "";
 			btn_cargar.Enabled = true;
-			btn_Cargar_cliente.Enabled = true;
 			lbl_id_cliente.Enabled = true;
-			Listar_Personal();
-			lbl_id_cliente.Text = "0";
-			lbl_rut.Text = "";
+			
+			lbl_id_cliente.Text = "-1";
 			lbl_id_cliente.Focus();
-			btn_cargar.Enabled = false;
+			cbx_anno.Enabled = true;
+			cbx_id_periodo.Enabled = true;
+			btn_cargar_Click(null, null);
+			lbl_id_cliente.Text = "";
+			btn_cargar.Enabled = true;
 			Inicializar = true;
 		}
 
@@ -298,18 +274,6 @@ namespace ControlDosimetro
 		{
 			this.Close();
 		}
-
-		private void btn_Cargar_cliente_Click(object sender, EventArgs e)
-		{
-			Cursor = Cursors.WaitCursor;
-			bolInicio = true;
-			Inicializar = true;
-			Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
-			Cargar_Sucursal();
-			Cargar_Seccion();
-			Cursor = Cursors.Default;
-		}
-
 
 		#endregion
 
@@ -338,7 +302,7 @@ namespace ControlDosimetro
 		private void cbx_Sucursal_SelectionChangeCommitted(object sender, EventArgs e)
 		{
 			if (!bolInicio)
-				btn_cargar_Click(null, null);
+				Listar_Personal();
 
 			bolInicio = false;
 		}

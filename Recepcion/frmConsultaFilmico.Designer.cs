@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.lbl_rut = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
-			this.btn_Cargar_cliente = new System.Windows.Forms.Button();
 			this.lbl_id_cliente = new System.Windows.Forms.TextBox();
 			this.lbl_nombreCliente = new System.Windows.Forms.Label();
 			this.lbl_rut_cliente = new System.Windows.Forms.Label();
@@ -66,7 +64,6 @@
 			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
 			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
 			this.lbl_id_seccion = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.grpFiltro = new System.Windows.Forms.GroupBox();
 			this.picFiltrarpersonal = new System.Windows.Forms.PictureBox();
 			this.txt_NombrePersonal = new System.Windows.Forms.TextBox();
@@ -83,9 +80,7 @@
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Controls.Add(this.lbl_rut);
 			this.groupBox1.Controls.Add(this.label11);
-			this.groupBox1.Controls.Add(this.btn_Cargar_cliente);
 			this.groupBox1.Controls.Add(this.lbl_id_cliente);
 			this.groupBox1.Controls.Add(this.lbl_nombreCliente);
 			this.groupBox1.Controls.Add(this.lbl_rut_cliente);
@@ -103,14 +98,6 @@
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Dato Cliente";
 			// 
-			// lbl_rut
-			// 
-			this.lbl_rut.AutoSize = true;
-			this.lbl_rut.Location = new System.Drawing.Point(85, 97);
-			this.lbl_rut.Name = "lbl_rut";
-			this.lbl_rut.Size = new System.Drawing.Size(0, 13);
-			this.lbl_rut.TabIndex = 54;
-			// 
 			// label11
 			// 
 			this.label11.AutoSize = true;
@@ -119,16 +106,6 @@
 			this.label11.Size = new System.Drawing.Size(24, 13);
 			this.label11.TabIndex = 53;
 			this.label11.Text = "Rut";
-			// 
-			// btn_Cargar_cliente
-			// 
-			this.btn_Cargar_cliente.Location = new System.Drawing.Point(633, 77);
-			this.btn_Cargar_cliente.Name = "btn_Cargar_cliente";
-			this.btn_Cargar_cliente.Size = new System.Drawing.Size(119, 23);
-			this.btn_Cargar_cliente.TabIndex = 52;
-			this.btn_Cargar_cliente.Text = "Cargar Cliente";
-			this.btn_Cargar_cliente.UseVisualStyleBackColor = true;
-			this.btn_Cargar_cliente.Click += new System.EventHandler(this.btn_Cargar_cliente_Click);
 			// 
 			// lbl_id_cliente
 			// 
@@ -148,12 +125,10 @@
 			// lbl_rut_cliente
 			// 
 			this.lbl_rut_cliente.AutoSize = true;
-			this.lbl_rut_cliente.Location = new System.Drawing.Point(770, 87);
+			this.lbl_rut_cliente.Location = new System.Drawing.Point(85, 97);
 			this.lbl_rut_cliente.Name = "lbl_rut_cliente";
-			this.lbl_rut_cliente.Size = new System.Drawing.Size(53, 13);
+			this.lbl_rut_cliente.Size = new System.Drawing.Size(0, 13);
 			this.lbl_rut_cliente.TabIndex = 46;
-			this.lbl_rut_cliente.Text = "rut cliente";
-			this.lbl_rut_cliente.Visible = false;
 			// 
 			// btn_filtro
 			// 
@@ -405,11 +380,10 @@
 			// ColMedicion
 			// 
 			this.ColMedicion.DataPropertyName = "Medicion";
-			this.ColMedicion.HeaderText = "Med.";
+			this.ColMedicion.HeaderText = "Dosis";
 			this.ColMedicion.Name = "ColMedicion";
 			this.ColMedicion.ReadOnly = true;
-			this.ColMedicion.ToolTipText = "Medición";
-			this.ColMedicion.Width = 56;
+			this.ColMedicion.Width = 58;
 			// 
 			// toolStrip1
 			// 
@@ -469,14 +443,6 @@
 			this.lbl_id_seccion.Size = new System.Drawing.Size(46, 13);
 			this.lbl_id_seccion.TabIndex = 15;
 			this.lbl_id_seccion.Text = "Sección";
-			// 
-			// textBox1
-			// 
-			this.textBox1.Location = new System.Drawing.Point(731, 161);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(100, 20);
-			this.textBox1.TabIndex = 16;
-			this.textBox1.Visible = false;
 			// 
 			// grpFiltro
 			// 
@@ -546,7 +512,6 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1084, 662);
 			this.Controls.Add(this.grpFiltro);
-			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.lbl_id_seccion);
 			this.Controls.Add(this.cbx_id_seccion);
 			this.Controls.Add(this.cbx_Sucursal);
@@ -561,7 +526,7 @@
 			this.Name = "frmConsultaFilmico";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Consulta Fílmico";
+			this.Text = "Consulta fílmico";
 			this.Load += new System.EventHandler(this.frmConsultaFilmico_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
@@ -595,14 +560,11 @@
                                 private System.Windows.Forms.Label label4;
                                 private System.Windows.Forms.ComboBox cbx_Sucursal;
                                 private System.Windows.Forms.Label lbl_rut_cliente;
-                                private System.Windows.Forms.Label lbl_rut;
                                 private System.Windows.Forms.Label label11;
-                                private System.Windows.Forms.Button btn_Cargar_cliente;
                                 private System.Windows.Forms.TextBox lbl_id_cliente;
                                 private System.Windows.Forms.Label lbl_nombreCliente;
 		private System.Windows.Forms.ComboBox cbx_id_seccion;
 		private System.Windows.Forms.Label lbl_id_seccion;
-		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.GroupBox grpFiltro;
 		private System.Windows.Forms.PictureBox picFiltrarpersonal;
 		private System.Windows.Forms.TextBox txt_NombrePersonal;
