@@ -37,6 +37,7 @@ namespace ControlDosimetro
 			MantPermiso = 109,
 			MantMasivoPersonal = 110,
             MantVersionesSistema = 111,
+            MantClienteRazonSocial = 112,
 
             IngresoPel = 201,
 			CorreccionDcto = 202,
@@ -427,6 +428,16 @@ namespace ControlDosimetro
 					break;
                 case (int)MENU.MantVersionesSistema:
                     objFrm = new frmMantVersionesSistema()
+                    {
+                        ShowInTaskbar = false,
+                        StartPosition = FormStartPosition.CenterScreen,
+                        Parametros = objParams
+                    };
+                    Graba_log(objFrm.Text);
+                    objFrm.Show(this);
+                    break;
+                case (int)MENU.MantClienteRazonSocial:
+                    objFrm = new frmMantenedorClienteRazonSocial(0)
                     {
                         ShowInTaskbar = false,
                         StartPosition = FormStartPosition.CenterScreen,
@@ -852,6 +863,15 @@ namespace ControlDosimetro
 					break;
                 case (int)MENU.MantVersionesSistema:
                     objFrm = new frmMantVersionesSistema()
+                    {
+                        ShowInTaskbar = false,
+                        StartPosition = FormStartPosition.CenterScreen
+                    };
+                    Graba_log(objFrm.Text);
+                    objFrm.Show(this);
+                    break;
+                case (int)MENU.MantClienteRazonSocial:
+                    objFrm = new frmMantenedorClienteRazonSocial(0)
                     {
                         ShowInTaskbar = false,
                         StartPosition = FormStartPosition.CenterScreen
