@@ -193,6 +193,22 @@ namespace ControlDosimetro
 			Listar_Personal();
 		}
 
+		private void grdDatos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+		{
+			if (e.ListChangedType == ListChangedType.Reset)
+			{
+				foreach (DataGridViewRow item in grdDatos.Rows)
+				{
+					DataRow dtrFila = ((DataRowView)item.DataBoundItem).Row;
+					if (Convert.ToInt32(dtrFila["Id_estado"].ToString())==0)
+					{
+						item.DefaultCellStyle.BackColor = Color.Red;
+					}
+				}
+
+			}
+
+		}
 
 		#endregion
 

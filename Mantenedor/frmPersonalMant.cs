@@ -59,7 +59,7 @@ namespace ControlDosimetro
 				Cargar_Personal(intCodPersonal);
 				lbl_Id_Personal.Text = intCodPersonal.ToString();
 				HabDesa_Controles(true);
-				picVerificar.Visible = false;
+				picVerificar.Visible = true;
 				//txt_rut.Enabled = false;
 				btn_Limpiar.Visible = false;
 				btn_Grabar.Enabled = true;
@@ -129,20 +129,18 @@ namespace ControlDosimetro
 			Boolean bolverificar;
 			bolverificar = false;
 			SqlCommand cmd = new SqlCommand();
+			strRut = strRut.Replace("-", "");
 
-			cmd.CommandText = "SELECT top 1 Id_Personal,id_cliente,rut_cliente,Rut,Nombres,Paterno,Fecha_Nac,Maternos,Id_Seccion,Id_estado,Fecha_inicio,fecha_termino,Usuario,Fecha_agregado,GETDATE()as Fecha_Modificacion " +
-											" FROM tbl_personal WHERE  Rut='" + strRut + "' and id_estado=1";//  and rut_cliente = '" + lbl_rut_cliente.Text + "' and id_cliente=" + lbl_id_cliente.Text + " and id_estado=1";
+			strRut = strRut.Length > 1 ? strRut.Substring(0, strRut.Length - 1) + "-" + strRut.Substring(strRut.Length - 1, 1) : "";
+
+			cmd.CommandText = "SELECT top 1 Id_Personal,id_cliente,Id_Cargo,Id_Practica,rut_cliente,Rut,Nombres,Paterno,Id_CodServicio,Fecha_Nac,Maternos,Id_Seccion,Id_profesion,Id_estado,Fecha_inicio,fecha_termino,Usuario,Fecha_agregado,GETDATE()as Fecha_Modificacion,id_sexo " +
+											" FROM tbl_personal WHERE  Rut='" + strRut + "'";//  and rut_cliente = '" + lbl_rut_cliente.Text + "' and id_cliente=" + lbl_id_cliente.Text + " and id_estado=1";
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
 			if (dt.Tables[0].Rows.Count > 0)
 			{
 
-				//for (int i = 0; i <= dt.Tables[0].Rows.Count - 1; i++)
-				//{
-				//	if (lbl_id_cliente.Text == dt.Tables[0].Rows[i]["id_cliente"].ToString() && lbl_rut_cliente.Text == dt.Tables[0].Rows[i]["rut_cliente"].ToString())
-				//		bolverificar = true;
-				//}
 				if (btn_Grabar.Text != "Modificar")
 					if (dt.Tables[0].Rows.Cast<DataRow>()
 												.Count(x => x.Field<string>("Rut") == strRut && x.Field<int>("id_cliente") == Convert.ToInt64(lbl_id_cliente.Text.ToString())) > 0)
@@ -161,21 +159,61 @@ namespace ControlDosimetro
 						txt_rut.Tag = dt.Tables[0].Rows[0]["Rut"].ToString();
 						txt_Maternos.Text = dt.Tables[0].Rows[0]["Maternos"].ToString();
 						txt_paterno.Text = dt.Tables[0].Rows[0]["Paterno"].ToString();
-						dtp_Fecha_Nac.Text= dt.Tables[0].Rows[0]["Fecha_Nac"].ToString(); 
+						dtp_Fecha_Nac.Text= dt.Tables[0].Rows[0]["Fecha_Nac"].ToString();
+						cbx_id_sexo.SelectedValue = dt.Tables[0].Rows[0]["id_sexo"];
 						txt_rut.Enabled = false;
 						txt_Nombres.Focus();
 						HabDesa_Controles(true);
 					}
 					else
 					{
-						MessageBox.Show("El personal ya fue ingresado al mismo cliente, no se puede repetir");
+						btn_Grabar.Text = "Modificar";
+						this.Text = "Modificar Personal";
+						txt_Nombres.Text = dt.Tables[0].Rows[0]["Nombres"].ToString();
+						txt_rut.Text = dt.Tables[0].Rows[0]["Rut"].ToString();
+						txt_rut.Tag = dt.Tables[0].Rows[0]["Rut"].ToString();
+						txt_Maternos.Text = dt.Tables[0].Rows[0]["Maternos"].ToString();
+						txt_paterno.Text = dt.Tables[0].Rows[0]["Paterno"].ToString();
+						dtp_Fecha_Nac.Text = dt.Tables[0].Rows[0]["Fecha_Nac"].ToString();
+						lbl_Id_Personal.Text = dt.Tables[0].Rows[0]["Id_Personal"].ToString();
+						lbl_id_cliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
+						cbx_id_seccion.SelectedValue = dt.Tables[0].Rows[0]["Id_Seccion"];
+						cbx_id_profesion.SelectedValue = dt.Tables[0].Rows[0]["Id_profesion"];
+						cbx_id_sexo.SelectedValue = dt.Tables[0].Rows[0]["id_sexo"];
+						cbx_Id_CodServicio.SelectedValue = dt.Tables[0].Rows[0]["Id_CodServicio"];
+						cbx_Id_Practica.SelectedValue = dt.Tables[0].Rows[0]["Id_Practica"];
+						cbx_Id_Cargo.SelectedValue = dt.Tables[0].Rows[0]["Id_Cargo"];
+						cbx_id_estado.SelectedValue = dt.Tables[0].Rows[0]["Id_estado"];
+						dtp_Fecha_inicio.Text = dt.Tables[0].Rows[0]["Fecha_inicio"].ToString();
+						dtp_fecha_termino.Text = dt.Tables[0].Rows[0]["fecha_termino"].ToString();
+						lbl_Usuario.Text = Clases.clsUsuario.Usuario;
 						txt_rut.Focus();
 					}
 				}
 				if (btn_Grabar.Text == "Modificar")
 				{
 					if (bolverificar == true){
-						MessageBox.Show("El personal ya fue ingresado al mismo cliente, no se puede repetir");
+						//	MessageBox.Show("El personal ya fue ingresado al mismo cliente, no se puede repetir");
+						btn_Grabar.Text = "Modificar";
+						this.Text = "Modificar Personal";
+						txt_Nombres.Text = dt.Tables[0].Rows[0]["Nombres"].ToString();
+						txt_rut.Text = dt.Tables[0].Rows[0]["Rut"].ToString();
+						txt_rut.Tag = dt.Tables[0].Rows[0]["Rut"].ToString();
+						txt_Maternos.Text = dt.Tables[0].Rows[0]["Maternos"].ToString();
+						txt_paterno.Text = dt.Tables[0].Rows[0]["Paterno"].ToString();
+						dtp_Fecha_Nac.Text = dt.Tables[0].Rows[0]["Fecha_Nac"].ToString();
+						lbl_Id_Personal.Text = dt.Tables[0].Rows[0]["Id_Personal"].ToString();
+						lbl_id_cliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
+						cbx_id_seccion.SelectedValue = dt.Tables[0].Rows[0]["Id_Seccion"];
+						cbx_id_profesion.SelectedValue = dt.Tables[0].Rows[0]["Id_profesion"];
+						cbx_id_sexo.SelectedValue = dt.Tables[0].Rows[0]["id_sexo"];
+						cbx_Id_CodServicio.SelectedValue = dt.Tables[0].Rows[0]["Id_CodServicio"];
+						cbx_Id_Practica.SelectedValue = dt.Tables[0].Rows[0]["Id_Practica"];
+						cbx_Id_Cargo.SelectedValue = dt.Tables[0].Rows[0]["Id_Cargo"];
+						cbx_id_estado.SelectedValue = dt.Tables[0].Rows[0]["Id_estado"];
+						dtp_Fecha_inicio.Text = dt.Tables[0].Rows[0]["Fecha_inicio"].ToString();
+						dtp_fecha_termino.Text = dt.Tables[0].Rows[0]["fecha_termino"].ToString();
+						lbl_Usuario.Text = Clases.clsUsuario.Usuario;
 						txt_rut.Focus();
 					}
 				}
@@ -268,7 +306,7 @@ namespace ControlDosimetro
 					{
 						if (dt.Tables[0].Rows[0]["validacion"].ToString() == "rut")
 						{
-							Evento.AsignarRutSinGuion(ref txt_rut);
+							Evento.AsignarRut(ref txt_rut);
 						}
 						if (dt.Tables[0].Rows[0]["validacion"].ToString() == "numerico")
 						{
@@ -430,9 +468,11 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 
-			Cargar_PersonalPorRut(txt_rut.Text);
-
-			Cursor = Cursors.Default;
+			if (!String.IsNullOrWhiteSpace(txt_rut.Text.Trim())  && txt_rut.Text.Trim().Length>1)
+				Cargar_PersonalPorRut(txt_rut.Text);
+			else
+				classFuncionesGenerales.mensajes.MensajeError("Ingrese el rut para verificar");
+		Cursor = Cursors.Default;
 		}
 
 		private void btn_Limpiar_Click(object sender, EventArgs e)

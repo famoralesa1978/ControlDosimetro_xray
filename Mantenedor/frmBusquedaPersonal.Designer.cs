@@ -40,15 +40,6 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
-			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Paterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Maternos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Fec_nac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Id_estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Fecha_inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Fecha_termino = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.tsb_Agregar = new System.Windows.Forms.ToolStripButton();
 			this.tsb_Eliminar = new System.Windows.Forms.ToolStripButton();
@@ -59,6 +50,15 @@
 			this.txt_RunPersonal = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Paterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Maternos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Fec_nac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Id_estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Fecha_inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Fecha_termino = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -203,89 +203,8 @@
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.grdDatos.Size = new System.Drawing.Size(836, 333);
 			this.grdDatos.TabIndex = 5;
+			this.grdDatos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdDatos_DataBindingComplete);
 			this.grdDatos.DoubleClick += new System.EventHandler(this.grdDatos_DoubleClick);
-			// 
-			// Id_Personal
-			// 
-			this.Id_Personal.DataPropertyName = "Id_Personal";
-			this.Id_Personal.Frozen = true;
-			this.Id_Personal.HeaderText = "Id_Personal";
-			this.Id_Personal.Name = "Id_Personal";
-			this.Id_Personal.ReadOnly = true;
-			this.Id_Personal.Visible = false;
-			this.Id_Personal.Width = 88;
-			// 
-			// Rut
-			// 
-			this.Rut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-			this.Rut.DataPropertyName = "Rut";
-			this.Rut.HeaderText = "Rut";
-			this.Rut.Name = "Rut";
-			this.Rut.ReadOnly = true;
-			this.Rut.Width = 49;
-			// 
-			// Nombres
-			// 
-			this.Nombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-			this.Nombres.DataPropertyName = "Nombres";
-			this.Nombres.HeaderText = "Nombres";
-			this.Nombres.Name = "Nombres";
-			this.Nombres.ReadOnly = true;
-			this.Nombres.Width = 74;
-			// 
-			// Paterno
-			// 
-			this.Paterno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-			this.Paterno.DataPropertyName = "Paterno";
-			this.Paterno.FillWeight = 300F;
-			this.Paterno.HeaderText = "Paterno";
-			this.Paterno.Name = "Paterno";
-			this.Paterno.ReadOnly = true;
-			this.Paterno.Width = 69;
-			// 
-			// Maternos
-			// 
-			this.Maternos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-			this.Maternos.DataPropertyName = "Maternos";
-			this.Maternos.HeaderText = "Maternos";
-			this.Maternos.MinimumWidth = 150;
-			this.Maternos.Name = "Maternos";
-			this.Maternos.ReadOnly = true;
-			this.Maternos.Width = 150;
-			// 
-			// Fec_nac
-			// 
-			this.Fec_nac.DataPropertyName = "fecha_nac";
-			this.Fec_nac.HeaderText = "Fecha Nacimiento";
-			this.Fec_nac.Name = "Fec_nac";
-			this.Fec_nac.ReadOnly = true;
-			this.Fec_nac.Width = 118;
-			// 
-			// Id_estado
-			// 
-			this.Id_estado.DataPropertyName = "Id_estado";
-			this.Id_estado.HeaderText = "Id_estado";
-			this.Id_estado.Name = "Id_estado";
-			this.Id_estado.ReadOnly = true;
-			this.Id_estado.Width = 79;
-			// 
-			// Fecha_inicio
-			// 
-			this.Fecha_inicio.DataPropertyName = "Fecha_inicio";
-			this.Fecha_inicio.HeaderText = "Fecha Inicio";
-			this.Fecha_inicio.MinimumWidth = 90;
-			this.Fecha_inicio.Name = "Fecha_inicio";
-			this.Fecha_inicio.ReadOnly = true;
-			this.Fecha_inicio.Width = 90;
-			// 
-			// Fecha_termino
-			// 
-			this.Fecha_termino.DataPropertyName = "Fecha_Termino";
-			this.Fecha_termino.HeaderText = "Fecha Termino";
-			this.Fecha_termino.MinimumWidth = 90;
-			this.Fecha_termino.Name = "Fecha_termino";
-			this.Fecha_termino.ReadOnly = true;
-			this.Fecha_termino.Width = 103;
 			// 
 			// toolStrip1
 			// 
@@ -388,6 +307,88 @@
 			// 
 			this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
 			// 
+			// Id_Personal
+			// 
+			this.Id_Personal.DataPropertyName = "Id_Personal";
+			this.Id_Personal.Frozen = true;
+			this.Id_Personal.HeaderText = "Id_Personal";
+			this.Id_Personal.Name = "Id_Personal";
+			this.Id_Personal.ReadOnly = true;
+			this.Id_Personal.Visible = false;
+			this.Id_Personal.Width = 88;
+			// 
+			// Rut
+			// 
+			this.Rut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Rut.DataPropertyName = "Rut";
+			this.Rut.HeaderText = "Rut";
+			this.Rut.Name = "Rut";
+			this.Rut.ReadOnly = true;
+			this.Rut.Width = 49;
+			// 
+			// Nombres
+			// 
+			this.Nombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Nombres.DataPropertyName = "Nombres";
+			this.Nombres.HeaderText = "Nombres";
+			this.Nombres.Name = "Nombres";
+			this.Nombres.ReadOnly = true;
+			this.Nombres.Width = 74;
+			// 
+			// Paterno
+			// 
+			this.Paterno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Paterno.DataPropertyName = "Paterno";
+			this.Paterno.FillWeight = 300F;
+			this.Paterno.HeaderText = "Paterno";
+			this.Paterno.Name = "Paterno";
+			this.Paterno.ReadOnly = true;
+			this.Paterno.Width = 69;
+			// 
+			// Maternos
+			// 
+			this.Maternos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Maternos.DataPropertyName = "Maternos";
+			this.Maternos.HeaderText = "Maternos";
+			this.Maternos.MinimumWidth = 150;
+			this.Maternos.Name = "Maternos";
+			this.Maternos.ReadOnly = true;
+			this.Maternos.Width = 150;
+			// 
+			// Fec_nac
+			// 
+			this.Fec_nac.DataPropertyName = "fecha_nac";
+			this.Fec_nac.HeaderText = "Fecha Nacimiento";
+			this.Fec_nac.Name = "Fec_nac";
+			this.Fec_nac.ReadOnly = true;
+			this.Fec_nac.Width = 118;
+			// 
+			// Id_estado
+			// 
+			this.Id_estado.DataPropertyName = "Estado";
+			this.Id_estado.HeaderText = "Estado";
+			this.Id_estado.Name = "Id_estado";
+			this.Id_estado.ReadOnly = true;
+			this.Id_estado.Width = 65;
+			// 
+			// Fecha_inicio
+			// 
+			this.Fecha_inicio.DataPropertyName = "Fecha_inicio";
+			this.Fecha_inicio.HeaderText = "Fecha Inicio";
+			this.Fecha_inicio.MinimumWidth = 90;
+			this.Fecha_inicio.Name = "Fecha_inicio";
+			this.Fecha_inicio.ReadOnly = true;
+			this.Fecha_inicio.Width = 90;
+			// 
+			// Fecha_termino
+			// 
+			this.Fecha_termino.DataPropertyName = "Fecha_Termino";
+			this.Fecha_termino.HeaderText = "Fecha Termino";
+			this.Fecha_termino.MinimumWidth = 90;
+			this.Fecha_termino.Name = "Fecha_termino";
+			this.Fecha_termino.ReadOnly = true;
+			this.Fecha_termino.Width = 103;
+			// 
 			// frmBusquedaPersonal
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -433,15 +434,6 @@
 								private System.Windows.Forms.Button btn_cargarCliente;
                                 private System.Windows.Forms.Button btn_Filtro;
                                 private System.Windows.Forms.ToolStripButton tsb_Agregar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id_Personal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Rut;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Paterno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Maternos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fec_nac;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id_estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha_inicio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha_termino;
 		private System.Windows.Forms.ToolStripButton tsb_Eliminar;
 		private System.Windows.Forms.GroupBox grpPersonal;
 		private System.Windows.Forms.PictureBox picFiltrarpersonal;
@@ -450,5 +442,14 @@
 		private System.Windows.Forms.TextBox txt_RunPersonal;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.ToolTip toolTip1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Id_Personal;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Rut;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Paterno;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Maternos;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Fec_nac;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Id_estado;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Fecha_inicio;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Fecha_termino;
 	}
 }
