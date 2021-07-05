@@ -45,6 +45,34 @@ namespace classFuncionesBD
 			return Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString());
 		}
 
+		public void Cargar_Cliente(Int64 intCodCliente, ref Label Rut, ref Label RazonSocial)
+		{
+			DataSet ds;
+
+
+			SqlCommand cmd = new SqlCommand
+			{
+				CommandText = "select run,Razon_Social,N_Cliente_Ref, Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio,Servicio,r.region,co.Comuna " +
+											"  FROM tbl_cliente c inner join [dbo].[glo_region] r on c.Id_Region=r.Id_Region inner join glo_comuna co on co.id_comuna=c.id_comuna" +
+											" WHERE Id_cliente= " + intCodCliente.ToString()
+		};
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				RazonSocial.Text = ds.Tables[0].Rows[0]["Razon_Social"].ToString();
+				Rut.Text = ds.Tables[0].Rows[0]["run"].ToString();
+			}
+			else
+			{
+				RazonSocial.Text = "";
+				Rut.Text = "";
+				if (intCodCliente != -1)
+					classFuncionesGenerales.mensajes.MensajeError(ControlDosimetro.Properties.Resources.msgClientePeriodoError);
+			}
+		}
+
+
 		public void Cargar_Cliente(int intPeriodo, Int64 intCodCliente, ref Label Rut, ref Label RazonSocial)
 		{
 			DataSet ds;

@@ -36,10 +36,9 @@ namespace ControlDosimetro
 			MantPersonal = 108,
 			MantPermiso = 109,
 			MantMasivoPersonal = 110,
-            MantVersionesSistema = 111,
-            MantClienteRazonSocial = 112,
+			MantVersionesSistema = 111,
 
-            IngresoPel = 201,
+			IngresoPel = 201,
 			CorreccionDcto = 202,
 			EnvioPelicula = 203,
 			ProcSeparador1 = 204,
@@ -80,6 +79,7 @@ namespace ControlDosimetro
 			LiberarDosimetro = 807,
 			TraspasoPersonal = 808,
 			CambioSucursal = 809,
+			MantClienteRazonSocial = 810,
 
 			Ayuda = 900,
 			AcercaDe = 901,
@@ -426,32 +426,32 @@ namespace ControlDosimetro
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
 					break;
-                case (int)MENU.MantVersionesSistema:
-                    objFrm = new frmMantVersionesSistema()
-                    {
-                        ShowInTaskbar = false,
-                        StartPosition = FormStartPosition.CenterScreen,
-                        Parametros = objParams
-                    };
-                    Graba_log(objFrm.Text);
-                    objFrm.Show(this);
-                    break;
-                case (int)MENU.MantClienteRazonSocial:
-                    objFrm = new frmMantenedorClienteRazonSocial(0)
-                    {
-                        ShowInTaskbar = false,
-                        StartPosition = FormStartPosition.CenterScreen,
-                        Parametros = objParams
-                    };
-                    Graba_log(objFrm.Text);
-                    objFrm.Show(this);
-                    break;
-                #endregion
+				case (int)MENU.MantVersionesSistema:
+					objFrm = new frmMantVersionesSistema()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen,
+						Parametros = objParams
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.MantClienteRazonSocial:
+					objFrm = new frmMantenedorClienteRazonSocial(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen,
+						Parametros = objParams
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				#endregion
 
 
-                #region "Proceso 200"
+				#region "Proceso 200"
 
-                case (int)MENU.IngresoPel:
+				case (int)MENU.IngresoPel:
 					objFrm = new frmIngresoPeliculaDosi(0)
 					{
 						ShowInTaskbar = false,
@@ -861,31 +861,23 @@ namespace ControlDosimetro
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
 					break;
-                case (int)MENU.MantVersionesSistema:
-                    objFrm = new frmMantVersionesSistema()
-                    {
-                        ShowInTaskbar = false,
-                        StartPosition = FormStartPosition.CenterScreen
-                    };
-                    Graba_log(objFrm.Text);
-                    objFrm.Show(this);
-                    break;
-                case (int)MENU.MantClienteRazonSocial:
-                    objFrm = new frmMantenedorClienteRazonSocial(0)
-                    {
-                        ShowInTaskbar = false,
-                        StartPosition = FormStartPosition.CenterScreen
-                    };
-                    Graba_log(objFrm.Text);
-                    objFrm.Show(this);
-                    break;
-
-                #endregion
+				case (int)MENU.MantVersionesSistema:
+					objFrm = new frmMantVersionesSistema()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
 
 
-                #region "Proceso 200"
+				#endregion
 
-                case (int)MENU.IngresoPel:
+
+				#region "Proceso 200"
+
+				case (int)MENU.IngresoPel:
 					objFrm = new frmIngresoPeliculaDosi(0)
 					{
 						ShowInTaskbar = false,
@@ -1169,6 +1161,15 @@ namespace ControlDosimetro
 					};
 					Graba_log(objFrm.Text);
 					objFrm.ShowDialog(this);
+					break;
+				case (int)MENU.MantClienteRazonSocial:
+					objFrm = new frmMantenedorClienteRazonSocial(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
 					break;
 				#endregion
 
