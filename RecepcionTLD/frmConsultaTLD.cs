@@ -122,8 +122,8 @@ namespace ControlDosimetro
 
 			DataSet dt;
 
-			int intSucursal = cbx_Sucursal.SelectedValue == null ? 0 : (int)cbx_Sucursal.SelectedValue;
-			int intSeccion = cbx_id_seccion.SelectedValue == null ? 0 : (int)cbx_id_seccion.SelectedValue;
+			int intSucursal = cbx_Sucursal.SelectedValue == null ? -1 : (int)cbx_Sucursal.SelectedValue;
+			int intSeccion = cbx_id_seccion.SelectedValue == null ? -1 : (int)cbx_id_seccion.SelectedValue;
 
 			cmd.CommandText = "pa_ConsultaIngresoTLDPorSeccion_sel " + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text + "," + intSeccion.ToString() + "," + intSucursal.ToString();
 
@@ -262,10 +262,11 @@ namespace ControlDosimetro
 			
 			lbl_id_cliente.Text = "-1";
 			lbl_id_cliente.Focus();
-			cbx_anno.Enabled = true;
-			cbx_id_periodo.Enabled = true;
+			
 			btn_cargar_Click(null, null);
 			lbl_id_cliente.Text = "";
+			cbx_anno.Enabled = true;
+			cbx_id_periodo.Enabled = true;
 			btn_cargar.Enabled = true;
 			Inicializar = true;
 		}

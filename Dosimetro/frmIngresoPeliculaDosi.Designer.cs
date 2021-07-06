@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngresoPeliculaDosi));
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngresoPeliculaDosi));
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label16 = new System.Windows.Forms.Label();
 			this.lbl_rut = new System.Windows.Forms.Label();
@@ -76,15 +76,11 @@
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
-			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.id_estadodosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.N_Pelicula = new GridExtension.IntegerGridColumn();
-			this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.N_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cmsPopup = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.tsb_Imprimir = new System.Windows.Forms.ToolStripButton();
+			this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
 			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -100,7 +96,12 @@
 			this.btn_Imprimir = new System.Windows.Forms.Button();
 			this.btn_Cerrar = new System.Windows.Forms.Button();
 			this.btn_IngresoDosimetro = new System.Windows.Forms.Button();
-			this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
+			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.id_estadodosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.N_Pelicula = new GridExtension.IntegerGridColumn();
+			this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.N_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColFecha_ingreso = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			this.grp_Ingreso.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pctAgregarSucursal)).BeginInit();
@@ -565,7 +566,8 @@
             this.id_estadodosimetro,
             this.N_Pelicula,
             this.Descripcion,
-            this.N_documento});
+            this.N_documento,
+            this.ColFecha_ingreso});
 			this.grdDatos.ContextMenuStrip = this.cmsPopup;
 			this.grdDatos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.grdDatos.Location = new System.Drawing.Point(3, 16);
@@ -577,49 +579,6 @@
 			this.grdDatos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdDatos_CellFormatting);
 			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
-			// 
-			// id
-			// 
-			this.id.DataPropertyName = "id";
-			this.id.HeaderText = "id";
-			this.id.Name = "id";
-			this.id.Visible = false;
-			this.id.Width = 40;
-			// 
-			// id_estadodosimetro
-			// 
-			this.id_estadodosimetro.DataPropertyName = "id_estadodosimetro";
-			this.id_estadodosimetro.HeaderText = "id_estadodosimetro";
-			this.id_estadodosimetro.Name = "id_estadodosimetro";
-			this.id_estadodosimetro.Visible = false;
-			this.id_estadodosimetro.Width = 123;
-			// 
-			// N_Pelicula
-			// 
-			this.N_Pelicula.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-			this.N_Pelicula.DataPropertyName = "n_dosimetro";
-			this.N_Pelicula.HeaderText = "Nº Pelicula";
-			this.N_Pelicula.Name = "N_Pelicula";
-			this.N_Pelicula.ReadOnly = true;
-			this.N_Pelicula.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.N_Pelicula.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.N_Pelicula.Width = 84;
-			// 
-			// Descripcion
-			// 
-			this.Descripcion.DataPropertyName = "Descripcion";
-			this.Descripcion.HeaderText = "Descripcion";
-			this.Descripcion.Name = "Descripcion";
-			this.Descripcion.ReadOnly = true;
-			this.Descripcion.Width = 88;
-			// 
-			// N_documento
-			// 
-			this.N_documento.DataPropertyName = "N_documento";
-			this.N_documento.HeaderText = "N° Documento";
-			this.N_documento.Name = "N_documento";
-			this.N_documento.ReadOnly = true;
-			this.N_documento.Width = 102;
 			// 
 			// cmsPopup
 			// 
@@ -657,6 +616,15 @@
 			this.tsb_Imprimir.Size = new System.Drawing.Size(23, 22);
 			this.tsb_Imprimir.Text = "Imprimir";
 			this.tsb_Imprimir.Click += new System.EventHandler(this.tsb_Imprimir_Click);
+			// 
+			// tsdReporte
+			// 
+			this.tsdReporte.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsdReporte.Image = ((System.Drawing.Image)(resources.GetObject("tsdReporte.Image")));
+			this.tsdReporte.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsdReporte.Name = "tsdReporte";
+			this.tsdReporte.Size = new System.Drawing.Size(61, 22);
+			this.tsdReporte.Text = "Reporte";
 			// 
 			// dataGridViewTextBoxColumn1
 			// 
@@ -799,14 +767,56 @@
 			this.btn_IngresoDosimetro.UseVisualStyleBackColor = true;
 			this.btn_IngresoDosimetro.Click += new System.EventHandler(this.btn_IngresoDosimetro_Click);
 			// 
-			// tsdReporte
+			// id
 			// 
-			this.tsdReporte.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tsdReporte.Image = ((System.Drawing.Image)(resources.GetObject("tsdReporte.Image")));
-			this.tsdReporte.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsdReporte.Name = "tsdReporte";
-			this.tsdReporte.Size = new System.Drawing.Size(61, 22);
-			this.tsdReporte.Text = "Reporte";
+			this.id.DataPropertyName = "id";
+			this.id.HeaderText = "id";
+			this.id.Name = "id";
+			this.id.Visible = false;
+			this.id.Width = 40;
+			// 
+			// id_estadodosimetro
+			// 
+			this.id_estadodosimetro.DataPropertyName = "id_estadodosimetro";
+			this.id_estadodosimetro.HeaderText = "id_estadodosimetro";
+			this.id_estadodosimetro.Name = "id_estadodosimetro";
+			this.id_estadodosimetro.Visible = false;
+			this.id_estadodosimetro.Width = 123;
+			// 
+			// N_Pelicula
+			// 
+			this.N_Pelicula.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+			this.N_Pelicula.DataPropertyName = "n_dosimetro";
+			this.N_Pelicula.HeaderText = "Nº Pelicula";
+			this.N_Pelicula.Name = "N_Pelicula";
+			this.N_Pelicula.ReadOnly = true;
+			this.N_Pelicula.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.N_Pelicula.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.N_Pelicula.Width = 84;
+			// 
+			// Descripcion
+			// 
+			this.Descripcion.DataPropertyName = "Descripcion";
+			this.Descripcion.HeaderText = "Descripcion";
+			this.Descripcion.Name = "Descripcion";
+			this.Descripcion.ReadOnly = true;
+			this.Descripcion.Width = 88;
+			// 
+			// N_documento
+			// 
+			this.N_documento.DataPropertyName = "N_documento";
+			this.N_documento.HeaderText = "N° Documento";
+			this.N_documento.Name = "N_documento";
+			this.N_documento.ReadOnly = true;
+			this.N_documento.Width = 102;
+			// 
+			// ColFecha_ingreso
+			// 
+			this.ColFecha_ingreso.DataPropertyName = "Fecha_ingreso";
+			this.ColFecha_ingreso.HeaderText = "Fecha ingreso";
+			this.ColFecha_ingreso.Name = "ColFecha_ingreso";
+			this.ColFecha_ingreso.ReadOnly = true;
+			this.ColFecha_ingreso.Width = 99;
 			// 
 			// frmIngresoPeliculaDosi
 			// 
@@ -885,11 +895,6 @@
                                 private System.Windows.Forms.Button btn_Cerrar;
                                 private System.Windows.Forms.TextBox txt_NDocumento;
                                 private System.Windows.Forms.Label label8;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn id;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn id_estadodosimetro;
-                                private GridExtension.IntegerGridColumn N_Pelicula;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
-                                private System.Windows.Forms.DataGridViewTextBoxColumn N_documento;
                                 private System.Windows.Forms.CheckBox chk_Ref;
                                 private System.Windows.Forms.Button btn_IngresoDosimetro;
                                 private System.Windows.Forms.TextBox txt_Observacion;
@@ -912,5 +917,11 @@
                                 private System.Windows.Forms.ToolStripButton tsb_Imprimir;
 		private System.Windows.Forms.Label label16;
 		private System.Windows.Forms.ToolStripDropDownButton tsdReporte;
+		private System.Windows.Forms.DataGridViewTextBoxColumn id;
+		private System.Windows.Forms.DataGridViewTextBoxColumn id_estadodosimetro;
+		private GridExtension.IntegerGridColumn N_Pelicula;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
+		private System.Windows.Forms.DataGridViewTextBoxColumn N_documento;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColFecha_ingreso;
 	}
 }

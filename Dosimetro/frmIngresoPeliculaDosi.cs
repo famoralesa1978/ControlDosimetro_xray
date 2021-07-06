@@ -117,7 +117,8 @@ namespace ControlDosimetro
 			DataSet dt;
 
 
-			cmd.CommandText = "SELECT G.[id],[id_estadodosimetro],n_documento,[n_dosimetro], Descripcion+ case when id_ref=1 then '/ref.' else '' end as Descripcion" +
+			cmd.CommandText = "SELECT G.[id],[id_estadodosimetro],n_documento,[n_dosimetro], Descripcion+ case when id_ref=1 then '/ref.' else '' end as Descripcion," +
+															" (select fecha_estado from ges_dosimetro_estado_log where id_estadodosimetro = 0  and N_Documento=G.N_Documento and n_dosimetro = G.n_dosimetro and id_cliente = g.id_cliente and id_periodo = g.id_cliente) as Fecha_ingreso" +
 											" FROM ges_dosimetro_estado G inner join glo_estadodosimetro e on e.id=g.id_estadodosimetro" +
 											" WHERE id_cliente=" + lbl_id_cliente.Text + "  and  id_periodo=" + cbx_id_periodo.SelectedValue + " and n_documento=" + txt_NDocumento.Text +
 											" and   id_ref=0 ";
@@ -136,7 +137,8 @@ namespace ControlDosimetro
 			DataSet dt;
 
 
-			cmd.CommandText = "SELECT G.[id],[id_estadodosimetro],n_documento,[n_dosimetro], Descripcion+ case when id_ref=1 then '/ref.' else '' end as Descripcion" +
+			cmd.CommandText = "SELECT G.[id],[id_estadodosimetro],n_documento,[n_dosimetro], Descripcion+ case when id_ref=1 then '/ref.' else '' end as Descripcion," +
+															" (select fecha_estado from ges_dosimetro_estado_log where id_estadodosimetro = 0  and N_Documento=G.N_Documento and n_dosimetro = G.n_dosimetro and id_cliente = g.id_cliente and id_periodo = g.id_periodo) as Fecha_ingreso" +
 											" FROM ges_dosimetro_estado G inner join glo_estadodosimetro e on e.id=g.id_estadodosimetro" +
 											" WHERE id_cliente=" + lbl_id_cliente.Text + "  and  id_periodo=" + cbx_id_periodo.SelectedValue + "";
 			cmd.CommandType = CommandType.Text;

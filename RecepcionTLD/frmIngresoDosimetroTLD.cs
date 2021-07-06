@@ -121,12 +121,8 @@ namespace ControlDosimetro
 				lbl_rut.Text = "";
 				if (intCodCliente != 0)
 					MessageBox.Show("El cliente no existe");
-
 			}
 
-
-
-			//
 		}
 
 		private void Listar_Personal()
