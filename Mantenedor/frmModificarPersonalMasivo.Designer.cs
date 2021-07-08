@@ -339,8 +339,8 @@
 			this.Nombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.Nombres.DataPropertyName = "Nombres";
 			this.Nombres.HeaderText = "Nombres";
+			this.Nombres.MaxInputLength = 100;
 			this.Nombres.Name = "Nombres";
-			this.Nombres.ReadOnly = true;
 			this.Nombres.Width = 74;
 			// 
 			// Paterno
@@ -349,8 +349,8 @@
 			this.Paterno.DataPropertyName = "Paterno";
 			this.Paterno.FillWeight = 300F;
 			this.Paterno.HeaderText = "Paterno";
+			this.Paterno.MaxInputLength = 100;
 			this.Paterno.Name = "Paterno";
-			this.Paterno.ReadOnly = true;
 			this.Paterno.Width = 69;
 			// 
 			// Maternos
@@ -358,9 +358,9 @@
 			this.Maternos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.Maternos.DataPropertyName = "Maternos";
 			this.Maternos.HeaderText = "Maternos";
+			this.Maternos.MaxInputLength = 100;
 			this.Maternos.MinimumWidth = 150;
 			this.Maternos.Name = "Maternos";
-			this.Maternos.ReadOnly = true;
 			this.Maternos.Width = 150;
 			// 
 			// ColServicio

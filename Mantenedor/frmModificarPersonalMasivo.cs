@@ -396,6 +396,22 @@ namespace ControlDosimetro
 					if (dr.RowState == DataRowState.Modified)
 					{
 						String strParametro = "";
+
+						if (dr["Nombres"] == DBNull.Value)
+							strParametro = "Null" + ",";
+						else
+							strParametro = dr["Nombres"].ToString() + ",";
+
+						if (dr["Paterno"] == DBNull.Value)
+							strParametro = "Null" + ",";
+						else
+							strParametro = dr["Paterno"].ToString() + ",";
+
+						if (dr["Maternos"] == DBNull.Value)
+							strParametro = "Null" + ",";
+						else
+							strParametro = dr["Maternos"].ToString() + ",";
+
 						if (dr["Id_CodServicio"] == DBNull.Value)
 							strParametro = "Null" + ",";
 						else
