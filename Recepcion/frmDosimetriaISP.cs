@@ -128,18 +128,18 @@ namespace ControlDosimetro
 			groupBox2.Text = "Listado       Registro Generado:" + drarray.Count().ToString() + ", registro Faltante: " + drarray1.Count().ToString();
 
 
-			if (dt.Tables[0].Rows.Count == 0)
-			{
-				btn_Guardar.Visible = false;
-				grdDatos.DataSource = dt.Tables[0];
-				MessageBox.Show("No se han cargado ningun personal");
-			}
-			else
-			{
+			//if (dt.Tables[0].Rows.Count == 0)
+			//{
+			//	btn_Guardar.Visible = false;
+			//	grdDatos.DataSource = dt.Tables[0];
+			//	MessageBox.Show("No se han cargado ningun personal");
+			//}
+			//else
+			//{
 				btn_Guardar.Visible = true;
 				grdDatos.DefaultCellStyle.BackColor = System.Drawing.Color.White;
 				grdDatos.DataSource = dt.Tables[0];
-			}
+			//}
 		}
 
 		private void Cargar_Anno()

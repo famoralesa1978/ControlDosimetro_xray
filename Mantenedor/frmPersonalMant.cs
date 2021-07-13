@@ -129,9 +129,9 @@ namespace ControlDosimetro
 			Boolean bolverificar;
 			bolverificar = false;
 			SqlCommand cmd = new SqlCommand();
-			strRut = strRut.Replace("-", "");
+			//strRut = strRut.Replace("-", "");
 
-			strRut = strRut.Length > 1 ? strRut.Substring(0, strRut.Length - 1) + "-" + strRut.Substring(strRut.Length - 1, 1) : "";
+			//strRut = strRut.Length > 1 ? strRut.Substring(0, strRut.Length - 1) + "-" + strRut.Substring(strRut.Length - 1, 1) : "";
 
 			cmd.CommandText = "SELECT top 1 Id_Personal,id_cliente,Id_Cargo,Id_Practica,rut_cliente,Rut,Nombres,Paterno,Id_CodServicio,Fecha_Nac,Maternos,Id_Seccion,Id_profesion,Id_estado,Fecha_inicio,fecha_termino,Usuario,Fecha_agregado,GETDATE()as Fecha_Modificacion,id_sexo " +
 											" FROM tbl_personal WHERE  Rut='" + strRut + "'";//  and rut_cliente = '" + lbl_rut_cliente.Text + "' and id_cliente=" + lbl_id_cliente.Text + " and id_estado=1";
@@ -306,7 +306,7 @@ namespace ControlDosimetro
 					{
 						if (dt.Tables[0].Rows[0]["validacion"].ToString() == "rut")
 						{
-							Evento.AsignarRut(ref txt_rut);
+							Evento.AsignarRutSinGuion(ref txt_rut);
 						}
 						if (dt.Tables[0].Rows[0]["validacion"].ToString() == "numerico")
 						{
