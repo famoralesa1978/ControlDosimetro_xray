@@ -25,6 +25,7 @@ namespace ControlDosimetro
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
+		classFuncionesBD.ClsFunciones FuncBD = new classFuncionesBD.ClsFunciones();
 		ClsFunciones clsFunc = new ClsFunciones();
 		int intContar = 0;
 
@@ -116,17 +117,15 @@ namespace ControlDosimetro
 
 			DataSet dt;
 
+			cmd.CommandText = "pa_ConsultaIngFilmico_sel " + lbl_id_cliente.Text + " ," + cbx_id_periodo.SelectedValue + "";
 
-			cmd.CommandText = "SELECT G.[id],[id_estadodosimetro],n_documento,[n_dosimetro], Descripcion+ case when id_ref=1 then '/ref.' else '' end as Descripcion," +
-															" (select fecha_estado from ges_dosimetro_estado_log where id_estadodosimetro = 0  and N_Documento=G.N_Documento and n_dosimetro = G.n_dosimetro and id_cliente = g.id_cliente and id_periodo = g.id_cliente) as Fecha_ingreso" +
-											" FROM ges_dosimetro_estado G inner join glo_estadodosimetro e on e.id=g.id_estadodosimetro" +
-											" WHERE id_cliente=" + lbl_id_cliente.Text + "  and  id_periodo=" + cbx_id_periodo.SelectedValue + " and n_documento=" + txt_NDocumento.Text +
-											" and   id_ref=0 ";
 			cmd.CommandType = CommandType.Text;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
-			return dt.Tables[0].Rows.Count;
+			dt.Tables[0].DefaultView.RowFilter = " id_ref=0  and n_documento=" + txt_NDocumento.Text;
+
+			return dt.Tables[0].DefaultView.Count;
 
 		}
 
@@ -136,11 +135,8 @@ namespace ControlDosimetro
 
 			DataSet dt;
 
-
-			cmd.CommandText = "SELECT G.[id],[id_estadodosimetro],n_documento,[n_dosimetro], Descripcion+ case when id_ref=1 then '/ref.' else '' end as Descripcion," +
-															" (select fecha_estado from ges_dosimetro_estado_log where id_estadodosimetro = 0  and N_Documento=G.N_Documento and n_dosimetro = G.n_dosimetro and id_cliente = g.id_cliente and id_periodo = g.id_periodo) as Fecha_ingreso" +
-											" FROM ges_dosimetro_estado G inner join glo_estadodosimetro e on e.id=g.id_estadodosimetro" +
-											" WHERE id_cliente=" + lbl_id_cliente.Text + "  and  id_periodo=" + cbx_id_periodo.SelectedValue + "";
+			cmd.CommandText = "pa_ConsultaIngFilmico_sel " + lbl_id_cliente.Text + " ," + cbx_id_periodo.SelectedValue + "";
+		
 			cmd.CommandType = CommandType.Text;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -177,20 +173,8 @@ namespace ControlDosimetro
 
 		private void Cargar_Sucursal()
 		{
-			SqlCommand cmd = new SqlCommand();
-
-			cmd.CommandText = "select id_sucursal, direccion + ','+co.comuna as Dato " +
-				 "from [dbo].[tbl_sucursal] s " +
-				 "inner join glo_region r on r.Id_region=s.Id_Region " +
-				 "inner join glo_comuna co on co.id_comuna=s.Id_Comuna " +
-				 "where run='" + lbl_rut.Text + "' and s.id_estado=1";
-			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-			cbx_Sucursal.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
-			cbx_Sucursal.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
-			cbx_Sucursal.DataSource = dt.Tables[0];
-
+			int intIdCliente = String.IsNullOrEmpty(lbl_id_cliente.Text) ? 0 : Convert.ToInt16( lbl_id_cliente.Text);
+			FuncBD.Cargar_Sucursal(ref cbx_Sucursal, lbl_rut.Text, intIdCliente, 1);
 		}
 
 		private void AsignarEvento()

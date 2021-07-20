@@ -207,7 +207,6 @@ namespace classFuncionesBD
 			cbx.DataSource = ds.Tables[0];
 		}
 
-
 		public DataSet Cargar_Seccion(int intId_Cliente ){
 			DataSet dt;
 
@@ -259,7 +258,32 @@ namespace classFuncionesBD
 
 		}
 
-	
+		/// <summary>
+		/// Definicion classFuncionesBD.ClsFunciones FuncBD = new classFuncionesBD.ClsFunciones();
+		/// llamada FuncBD.Cargar_Sucursal(ref cbx_Sucursal, lbl_rut.Text, Convert.ToInt16( lbl_id_cliente.Text.ToString()), 1);
+		/// </summary>
+		/// <param name="cbx"></param>
+		/// <param name="strRut"></param>
+		/// <param name="intIdCliente"></param>
+		/// <param name="intEstado"> 1- activo,2,Inactivo,0- todos</param>
+		public void Cargar_Sucursal(ref ComboBox cbx,string strRut, int intIdCliente, int intEstado)
+		{
+			DataSet ds;
+			SqlCommand cmd = new SqlCommand
+			{
+				CommandText = "BusClienteSucursal '" + strRut.ToString() + "'," + intIdCliente.ToString()
+			};
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			if (intEstado != 0)
+				ds.Tables[0].DefaultView.RowFilter = "Id_estado=" + intEstado.ToString();
+			else
+				ds.Tables[0].DefaultView.RowFilter = "Id_estado in (1,2)";
+
+			cbx.ValueMember = ds.Tables[0].Columns[0].Caption.ToString();
+			cbx.DisplayMember = ds.Tables[0].Columns[1].Caption.ToString();
+			cbx.DataSource = ds.Tables[0].DefaultView;
+		}
+
 
 	}
 

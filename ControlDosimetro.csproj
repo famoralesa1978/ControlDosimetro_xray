@@ -321,6 +321,12 @@
     <Compile Include="Mantenedor\frmMantenedorClienteRazonSocial.Designer.cs">
       <DependentUpon>frmMantenedorClienteRazonSocial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mantenedor\frmMantenedorCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmMantenedorCliente.Designer.cs">
+      <DependentUpon>frmMantenedorCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mantenedor\Sistema\frmMantVersionesSistema.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -458,6 +464,12 @@
     </Compile>
     <Compile Include="Dosimetro\frmIngresoDosimetriaDos.Designer.cs">
       <DependentUpon>frmIngresoDosimetriaDos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recepcion\frmIngresoDosimetriaV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\frmIngresoDosimetriaV2.Designer.cs">
+      <DependentUpon>frmIngresoDosimetriaV2.cs</DependentUpon>
     </Compile>
     <Compile Include="Recepcion\frmOrdenTrabajoFechaRecepcion.cs">
       <SubType>Form</SubType>
@@ -684,6 +696,9 @@
     <EmbeddedResource Include="Mantenedor\frmMantenedorClienteRazonSocial.resx">
       <DependentUpon>frmMantenedorClienteRazonSocial.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmMantenedorCliente.resx">
+      <DependentUpon>frmMantenedorCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmModificarPersonalMasivo.resx">
       <DependentUpon>frmModificarPersonalMasivo.cs</DependentUpon>
     </EmbeddedResource>
@@ -743,6 +758,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dosimetro\frmIngresoDosimetriaDos.resx">
       <DependentUpon>frmIngresoDosimetriaDos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepcion\frmIngresoDosimetriaV2.resx">
+      <DependentUpon>frmIngresoDosimetriaV2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Recepcion\frmOrdenTrabajoFechaRecepcion.resx">
       <DependentUpon>frmOrdenTrabajoFechaRecepcion.cs</DependentUpon>
