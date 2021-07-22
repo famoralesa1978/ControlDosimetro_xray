@@ -49,6 +49,7 @@ namespace ControlDosimetro
 			ProcOrTrabPorFechaRecepcion = 210,
 			ProcIngresarDosisCliente = 213,
 			ProcIngresarDosisDos = 214,
+			mnuProcConsultaFilmico=216,
 
 			Ingreso_TLD = 301,
 			EnviadoTLD = 302,
@@ -542,7 +543,15 @@ namespace ControlDosimetro
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
 					break;
-
+				case (int)MENU.mnuProcConsultaFilmico:
+					objFrm = new frmConsultaFilmico
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+						Graba_log(objFrm.Text);
+						objFrm.Show(this);
+						break;
 				#endregion
 
 				#region "ProcesoTLD 300"
