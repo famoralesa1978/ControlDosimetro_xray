@@ -213,6 +213,12 @@
     <Compile Include="Dosimetro\frmIngresoPeliculaDosi.Designer.cs">
       <DependentUpon>frmIngresoPeliculaDosi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Facturacion\frmFacturar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturacion\frmFacturar.designer.cs">
+      <DependentUpon>frmFacturar.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -641,6 +647,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dosimetro\frmIngresoPeliculaDosi.resx">
       <DependentUpon>frmIngresoPeliculaDosi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturacion\frmFacturar.resx">
+      <DependentUpon>frmFacturar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
