@@ -77,45 +77,6 @@ namespace ControlDosimetro
 
 		#region "Llamada de carga"
 
-		//private void Cargar_Cliente(Int64 intCodCliente)
-		//{
-
-
-		//	SqlCommand cmd = new SqlCommand();
-		//	cmd.CommandText = "select run,Razon_Social,N_Cliente_Ref, Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio,Servicio,r.region,co.Comuna " +
-		//									"  FROM tbl_cliente c inner join [dbo].[glo_region] r on c.Id_Region=r.Id_Region inner join glo_comuna co on co.id_comuna=c.id_comuna" +
-		//									" WHERE Id_cliente= " + intCodCliente.ToString();//comuna +','+ region
-		//	DataSet dt;
-
-		//	dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-		//	if (dt.Tables[0].Rows.Count > 0)
-		//	{
-		//		lbl_id_cliente.Text = intCodCliente.ToString();
-		//		lbl_rut.Text = dt.Tables[0].Rows[0]["run"].ToString();
-		//		lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
-		//		strDireccion = dt.Tables[0].Rows[0]["Direccion"].ToString();
-		//		strServicio= dt.Tables[0].Rows[0]["Servicio"].ToString();
-		//		strRegion = dt.Tables[0].Rows[0]["region"].ToString();
-		//		strComuna = dt.Tables[0].Rows[0]["Comuna"].ToString();
-		//		btn_cargar.Enabled = true;
-		//		btn_Cargar_cliente.Enabled = false;
-		//		lbl_id_cliente.Enabled = false;
-		//		cbx_anno.Enabled = true;
-		//		cbx_id_periodo.Enabled = true;
-		//	}
-		//	else
-		//	{
-		//		btn_Cargar_cliente.Enabled = true;
-		//		//lbl_id_cliente.Text = "";
-		//		btn_cargar.Enabled = false;
-		//		lbl_id_cliente.Enabled = true;
-		//		lbl_nombreCliente.Text = "";
-		//		if (intCodCliente != 0)
-		//			MessageBox.Show("El cliente no existe");
-
-		//	}
-		//}
-
 		private void Listar_Personal()
 		{
 			SqlCommand cmd = new SqlCommand();
