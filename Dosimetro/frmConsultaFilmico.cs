@@ -220,9 +220,10 @@ namespace ControlDosimetro
 			
 			lbl_id_cliente.Text = "-1";
 			lbl_id_cliente.Focus();
+			
+			btn_cargar_Click(null, null);
 			cbx_anno.Enabled = true;
 			cbx_id_periodo.Enabled = true;
-			btn_cargar_Click(null, null);
 			lbl_id_cliente.Text = "";
 			btn_cargar.Enabled = true;
 			Inicializar = true;
