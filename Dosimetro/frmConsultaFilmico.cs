@@ -97,12 +97,23 @@ namespace ControlDosimetro
 			DataRow[] drarray;
 			drarray = dt.Tables[0].Select(filterExp, sortExp, DataViewRowState.CurrentRows);
 
-			string filterExp1 = "";
+			string filterExp1 = "Rut is null";
 			string sortExp1 = "N_pelicula";
 			DataRow[] drarray1;
 			drarray1 = dt.Tables[0].Select(filterExp1, sortExp1, DataViewRowState.CurrentRows);
 
-			groupBox2.Text = "Listado       Registro Generado:" + drarray.Count().ToString() + ", registro Faltante: " + drarray1.Count().ToString();
+		 filterExp1 = "Medicion ='Si'";
+			sortExp1 = "N_pelicula";
+			DataRow[] drarray2;
+			drarray2 = dt.Tables[0].Select(filterExp1, sortExp1, DataViewRowState.CurrentRows);
+
+			filterExp1 = "Referencia =true";
+			sortExp1 = "N_pelicula";
+			DataRow[] drarray3;
+			drarray3 = dt.Tables[0].Select(filterExp1, sortExp1, DataViewRowState.CurrentRows);
+
+			groupBox2.Text = String.Format("Listado       Total registro: {0}, registro Faltante: {1}, Total con Dosis : {2}, Total referencia: {3}", 
+								drarray.Count().ToString(), drarray1.Count().ToString(), drarray2.Count().ToString(), drarray3.Count());
 
 
 			if (dt.Tables[0].Rows.Count == 0)
