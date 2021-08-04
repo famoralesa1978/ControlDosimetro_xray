@@ -183,7 +183,6 @@ namespace ControlDosimetro
 			return intDosimetro;
 		}
 
-
 		#endregion
 
 		#region "button"

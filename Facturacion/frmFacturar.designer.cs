@@ -381,6 +381,7 @@
 			this.Name = "frmFacturar";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Facturación Cliente";
+			this.Load += new System.EventHandler(this.frmFacturar_Load);
 			this.grpDatosCliente.ResumeLayout(false);
 			this.grpDatosCliente.PerformLayout();
 			this.grpDatosFactura.ResumeLayout(false);
