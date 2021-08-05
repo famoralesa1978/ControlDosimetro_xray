@@ -622,8 +622,25 @@ namespace ControlDosimetro
 			//     string strArchivo = "";// dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "Plantillaword.docx";
 			//     int i;
 			int intExcel = 1;
+			String strFecha = DateTime.Now.ToString("dd-MM-yyyy HHmmss");
+			String strPath= targetPathConf + "\\ET_Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_.xlsx";
+			String strPathRespaldo = targetPathConf + "\\ET_Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1)  + "Tri" + strFecha + ".xlsx";
+
+			if (File.Exists(strPath))
+				File.Copy(strPath, strPathRespaldo, true);
+
 			File.Copy(targetPathFormato, targetPathConf + "\\ET_Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri.xlsx", true);
+
+
+			strPath = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + intExcel.ToString() + ".xlsx";
+			strPathRespaldo = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + intExcel.ToString() + strFecha + ".xlsx";
+
+			if (File.Exists(strPath))
+				File.Copy(strPath, strPathRespaldo, true);
+
 			File.Copy(targetPathFormatoInfome, targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + intExcel.ToString() + ".xlsx", true);
+
+
 			string strpathcopiar = targetPathConf + "\\ET_Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri.xlsx";
 			
 			int intFila = 2;
@@ -655,6 +672,13 @@ namespace ControlDosimetro
 						intHojaExcel = 20;
 						intExcel = intExcel + 1;
 						strpathcopiarInforme = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + (intExcel-1).ToString() + ".xlsx";
+
+
+						strPath = strpathcopiarInforme;
+						strPathRespaldo = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + (intExcel - 1).ToString() +"_" + strFecha + ".xlsx";
+
+						if (File.Exists(strPath))
+							File.Copy(strPath, strPathRespaldo, true);
 
 						File.Copy(strpathcopiarInforme, targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + (intExcel).ToString() + ".xlsx", true);
 
