@@ -135,7 +135,7 @@ namespace ControlDosimetro
 		private void Cargar_Estado()
 		{
 			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_id_estadoBuscar, ref cbx_id_estadoBuscar);
-			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_Id_estado, ref cbx_Id_estado);
+			//ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_Id_estado, ref cbx_Id_estado);
 		}
 
 		private void AsignarPermiso()
@@ -147,37 +147,37 @@ namespace ControlDosimetro
 
 		private void Cargar_Perfil()
 		{
-			Cursor = Cursors.WaitCursor;
+			//Cursor = Cursors.WaitCursor;
 
-			SqlCommand cmd = new SqlCommand();
-			{
+			//SqlCommand cmd = new SqlCommand();
+			//{
 
-				cmd.CommandText = "select Id_perfil, Descripcion FROM tbl_perfil WHERE Id_estado=1 order by Descripcion";
-				DataSet dt;
-				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			//	cmd.CommandText = "select Id_perfil, Descripcion FROM tbl_perfil WHERE Id_estado=1 order by Descripcion";
+			//	DataSet dt;
+			//	dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
 
-				cbx_Id_perfil.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
-				cbx_Id_perfil.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
-				DataTable dtVista = dt.Tables[0];
+			//	cbx_Id_perfil.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
+			//	cbx_Id_perfil.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
+			//	DataTable dtVista = dt.Tables[0];
 
-				if (Clases.clsUsuario.Id_perfil != 1)
-				{
-					dtVista.DefaultView.RowFilter = "Id_perfil>1";
-					cbx_Id_perfil.DataSource = dtVista;
-				}
-				else
-					cbx_Id_perfil.DataSource = dt.Tables[0];
+			//	if (Clases.clsUsuario.Id_perfil != 1)
+			//	{
+			//		dtVista.DefaultView.RowFilter = "Id_perfil>1";
+			//		cbx_Id_perfil.DataSource = dtVista;
+			//	}
+			//	else
+			//		cbx_Id_perfil.DataSource = dt.Tables[0];
 
-				Cursor = Cursors.Default;
-			}
+			//	Cursor = Cursors.Default;
+			//}
 		}
 
 		private void AsignarEvento()
 		{
 
-			cbx_Id_estado.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-			cbx_Id_perfil.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+			//cbx_Id_estado.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+			//cbx_Id_perfil.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 
 		}
 
@@ -188,10 +188,7 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 
 			{
-				cmd.CommandText = "SELECT [Id_Usuario],[Rut],[Nombres],[Paterno],[Maternos],u.[Id_perfil],u.[Id_estado],[Usuario],[Contraseña],[Fecha_agregado],[Fecha_Modificacion] ,u.id_estado " +
-																				" FROM [dbo].[tbl_Usuario] U inner join tbl_perfil p on p.id_perfil=u.id_perfil" +
-																				" where u.id_estado=" + cbx_id_estadoBuscar.SelectedValue + 
-															" order by Nombres,Paterno,Maternos";
+				cmd.CommandText = "pa_Cliente_sel " + cbx_id_estadoBuscar.SelectedValue;
 				cmd.CommandType = CommandType.Text;
 
 				DataSet dt;
@@ -208,28 +205,28 @@ namespace ControlDosimetro
 
 		private void LimpiarFormulario()
 		{
-			txt_rut.Text = "";
-			txt_paterno.Text = "";
-			txt_Nombres.Text = "";
-			txt_Maternos.Text = "";
-			txt_rut.Enabled = true;
-			cbx_Id_estado.SelectedIndex = 0;
-			cbx_Id_perfil.SelectedIndex = 0;
-			// HabDesa_Controles(false);
-			btn_Guardar.Text = "Grabar";
-			this.Text = "Agregar Personal";
-			//  lbl_Usuario.Text = Clases.clsUsuario.Usuario;
-			lbl_Fecha_agregado.Text = DateTime.Now.Date.ToString().Substring(1, 10);
-			lbl_Fecha_Modificacion.Text = DateTime.Now.Date.ToString().Substring(1, 10);
-			txt_Contraseña.Clear();
-			txt_Contraseña1.Clear();
-			cbx_Id_estado.SelectedIndex = 0;
-			txt_Usuario.Clear();
-			txt_rut.Focus();
+			//txt_rut.Text = "";
+			//txt_paterno.Text = "";
+			//txt_Nombres.Text = "";
+			//txt_Maternos.Text = "";
+			//txt_rut.Enabled = true;
+			//cbx_Id_estado.SelectedIndex = 0;
+			//cbx_Id_perfil.SelectedIndex = 0;
+			//// HabDesa_Controles(false);
+			//btn_Guardar.Text = "Grabar";
+			//this.Text = "Agregar Personal";
+			////  lbl_Usuario.Text = Clases.clsUsuario.Usuario;
+			//lbl_Fecha_agregado.Text = DateTime.Now.Date.ToString().Substring(1, 10);
+			//lbl_Fecha_Modificacion.Text = DateTime.Now.Date.ToString().Substring(1, 10);
+			//txt_Contraseña.Clear();
+			//txt_Contraseña1.Clear();
+			//cbx_Id_estado.SelectedIndex = 0;
+			//txt_Usuario.Clear();
+			//txt_rut.Focus();
 
-			txt_Contraseña1.Enabled = true;
-			lbl_Id_Usuario.Text = "N° usuario";
-			btn_Guardar.Enabled = Nuevo || Modificacion;
+			//txt_Contraseña1.Enabled = true;
+			//lbl_Id_Usuario.Text = "N° usuario";
+			//btn_Guardar.Enabled = Nuevo || Modificacion;
 		//	tsbGuardar.Enabled = Nuevo || Modificacion;
 
 			// cbx_id_estado.SelectedIndex = 0;           
@@ -237,40 +234,40 @@ namespace ControlDosimetro
 
 		private void Grabar()
 		{
-			Boolean bolResult;
-			bolResult = false;
-			if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-			{
-				if ((tssEstado.Text == "Nuevo") && (txt_id_tipo_doc.Text == "0"))
-				{
-					ClaseComun.Insertar(Clases.clsBD.BD, tbl_Usuario, ref bolResult);
-					if (bolResult == true)
-					{
-						CargarGrilla();
-						MessageBox.Show("Dato Guardado");
-					}
-				}
-				else
-				if (tssEstado.Text == "Modificar")
-				{
+			//Boolean bolResult;
+			//bolResult = false;
+			//if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+			//{
+			//	if ((tssEstado.Text == "Nuevo") && (txt_id_tipo_doc.Text == "0"))
+			//	{
+			//		ClaseComun.Insertar(Clases.clsBD.BD, tbl_Usuario, ref bolResult);
+			//		if (bolResult == true)
+			//		{
+			//			CargarGrilla();
+			//			MessageBox.Show("Dato Guardado");
+			//		}
+			//	}
+			//	else
+			//	if (tssEstado.Text == "Modificar")
+			//	{
 
-					if (!String.IsNullOrEmpty(txt_rut.Text) && !String.IsNullOrEmpty(txt_Maternos.Text) && !String.IsNullOrEmpty(txt_paterno.Text) && !String.IsNullOrEmpty(txt_Nombres.Text) && !String.IsNullOrEmpty(txt_Usuario.Text))
-					{
+			//		if (!String.IsNullOrEmpty(txt_rut.Text) && !String.IsNullOrEmpty(txt_Maternos.Text) && !String.IsNullOrEmpty(txt_paterno.Text) && !String.IsNullOrEmpty(txt_Nombres.Text) && !String.IsNullOrEmpty(txt_Usuario.Text))
+			//		{
 
-						ClaseComun.Modificar(Clases.clsBD.BD, tbl_Usuario, ref bolResult);
-						if (bolResult == true)
-						{
-							CargarGrilla();
-							MessageBox.Show("Dato modificado");
-						}
+			//			ClaseComun.Modificar(Clases.clsBD.BD, tbl_Usuario, ref bolResult);
+			//			if (bolResult == true)
+			//			{
+			//				CargarGrilla();
+			//				MessageBox.Show("Dato modificado");
+			//			}
 
-					}
-					else
-					{
-						MessageBox.Show("Completar todos los datos ingresar modificación");
-					}
-				}
-			}
+			//		}
+			//		else
+			//		{
+			//			MessageBox.Show("Completar todos los datos ingresar modificación");
+			//		}
+			//	}
+			//}
 		}
 
 		private void LlamadoAModificar(int intFila)
@@ -282,38 +279,38 @@ namespace ControlDosimetro
 			{
 				var currentRow = bs1.List[intFila];
 
-				btn_Guardar.Text = "Modificar";
+				//btn_Guardar.Text = "Modificar";
 
-				txt_Contraseña.Enabled = false;
-				txt_Contraseña1.Enabled = false;
+				//txt_Contraseña.Enabled = false;
+				//txt_Contraseña1.Enabled = false;
 
-				lbl_Id_Usuario.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_Usuario].ToString();
-				txt_Contraseña1.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString();
-				txt_Usuario.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Usuario].ToString();
-				txt_rut.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Rut].ToString();
-				txt_Nombres.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Nombres].ToString();
-				txt_paterno.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Paterno].ToString();
-				cbx_Id_estado.SelectedValue = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_estado].ToString();
-				txt_Maternos.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Maternos].ToString();
-				cbx_Id_perfil.SelectedValue = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_perfil].ToString();
+				//lbl_Id_Usuario.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_Usuario].ToString();
+				//txt_Contraseña1.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString();
+				//txt_Usuario.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Usuario].ToString();
+				//txt_rut.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Rut].ToString();
+				//txt_Nombres.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Nombres].ToString();
+				//txt_paterno.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Paterno].ToString();
+				//cbx_Id_estado.SelectedValue = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_estado].ToString();
+				//txt_Maternos.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Maternos].ToString();
+				//cbx_Id_perfil.SelectedValue = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Id_perfil].ToString();
 
-				txt_Contraseña.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString();
-				try
-				{
-					txt_Contraseña1.Text = clsUtiles1.DecryptTripleDES(((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString());
-				}
-				catch (Exception)
-				{
+				//txt_Contraseña.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString();
+				//try
+				//{
+				//	txt_Contraseña1.Text = clsUtiles1.DecryptTripleDES(((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString());
+				//}
+				//catch (Exception)
+				//{
 
-					txt_Contraseña1.Text = clsUtiles1.GenerateHashMD5(((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString());
-					txt_Contraseña.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString();
-				}
+				//	txt_Contraseña1.Text = clsUtiles1.GenerateHashMD5(((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString());
+				//	txt_Contraseña.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Contraseña].ToString();
+				//}
 
-				lbl_Fecha_Modificacion.Text = DateTime.Today.ToString().Substring(0, 9);
-				lbl_Fecha_agregado.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Fecha_agregado].ToString();
+				//lbl_Fecha_Modificacion.Text = DateTime.Today.ToString().Substring(0, 9);
+				//lbl_Fecha_agregado.Text = ((System.Data.DataRowView)currentRow).Row.ItemArray[(int)ConfGrilla.Fecha_agregado].ToString();
 
-				tssEstado.Text = "Modificar";
-				btn_Guardar.Enabled = Nuevo || Modificacion;
+				//tssEstado.Text = "Modificar";
+				//btn_Guardar.Enabled = Nuevo || Modificacion;
 		//		tsbGuardar.Enabled = Nuevo || Modificacion;
 
 				scPrincipal.Panel2Collapsed = false;
@@ -322,7 +319,7 @@ namespace ControlDosimetro
 
 		private void Txt_Contraseña1_TextChanged(object sender, EventArgs e)
 		{
-			txt_Contraseña.Text = clsUtiles1.GenerateHashMD5(txt_Contraseña1.Text);
+		//	txt_Contraseña.Text = clsUtiles1.GenerateHashMD5(txt_Contraseña1.Text);
 		}
 
 		#endregion
@@ -332,51 +329,51 @@ namespace ControlDosimetro
 		private void AsignarRut()
 		{
 
-			SqlCommand cmd = new SqlCommand();
 			//SqlCommand cmd = new SqlCommand();
-			DataSet dt;
-			string strname;
-			foreach (Control c in tbl_Usuario.Controls)
-			{
-				//foreach (Control childc in c.Controls)
-				//{
-				if (c is TextBox)
-				{
-					strname = ((TextBox)c).Name;
+			////SqlCommand cmd = new SqlCommand();
+			//DataSet dt;
+			//string strname;
+			//foreach (Control c in tbl_Usuario.Controls)
+			//{
+			//	//foreach (Control childc in c.Controls)
+			//	//{
+			//	if (c is TextBox)
+			//	{
+			//		strname = ((TextBox)c).Name;
 
-					cmd.CommandText = "SELECT  requerido, validacion " +
-																	" FROM glo_configuracioncampo WHERE campo= '" + strname.Replace("txt_", "") + "'";
+			//		cmd.CommandText = "SELECT  requerido, validacion " +
+			//														" FROM glo_configuracioncampo WHERE campo= '" + strname.Replace("txt_", "") + "'";
 
-					dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-					if (dt.Tables[0].Rows.Count == 0)
-						((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-					else
-					{
-						if (dt.Tables[0].Rows[0]["validacion"].ToString() == "rut")
-						{
-							((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
-							((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
-							((TextBox)c).Validated += new EventHandler(ClaseEvento.validarut_Validated);
-						}
-						if (dt.Tables[0].Rows[0]["validacion"].ToString() == "numerico")
-						{
-							((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-							((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-						}
-					}
-				}
-				if (c is ComboBox)
-					((ComboBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-				if (c is DateTimePicker)
-					((DateTimePicker)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-			}
+			//		dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			//		if (dt.Tables[0].Rows.Count == 0)
+			//			((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+			//		else
+			//		{
+			//			if (dt.Tables[0].Rows[0]["validacion"].ToString() == "rut")
+			//			{
+			//				((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
+			//				((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
+			//				((TextBox)c).Validated += new EventHandler(ClaseEvento.validarut_Validated);
+			//			}
+			//			if (dt.Tables[0].Rows[0]["validacion"].ToString() == "numerico")
+			//			{
+			//				((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+			//				((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+			//			}
+			//		}
+			//	}
+			//	if (c is ComboBox)
+			//		((ComboBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+			//	if (c is DateTimePicker)
+			//		((DateTimePicker)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+			//}
 		}
 
 		private void txt_rut_KeyUp(object sender, KeyEventArgs e)
 		{
-			txt_rut.Text = classFuncionesGenerales.ClsValidadores.FormatearRut(txt_rut.Text);
-			txt_rut.SelectionStart = txt_rut.Text.Length;
-			txt_rut.SelectionLength = 0;
+			//txt_rut.Text = classFuncionesGenerales.ClsValidadores.FormatearRut(txt_rut.Text);
+			//txt_rut.SelectionStart = txt_rut.Text.Length;
+			//txt_rut.SelectionLength = 0;
 		}
 
 		private void txt_rut_Leave(object sender, EventArgs e)
@@ -470,8 +467,8 @@ namespace ControlDosimetro
 			Cursor = Cursors.WaitCursor;
 
 			LimpiarFormulario();
-			tssEstado.Text = "Nuevo";
-			txt_id_tipo_doc.Text = "0";
+			//tssEstado.Text = "Nuevo";
+			//txt_id_tipo_doc.Text = "0";
 
 			Cursor = Cursors.Default;
 		}
@@ -491,8 +488,8 @@ namespace ControlDosimetro
 
 			Grabar();
 
-			tssEstado.Text = "Nuevo";
-			txt_id_tipo_doc.Text = "0";
+			//tssEstado.Text = "Nuevo";
+			//txt_id_tipo_doc.Text = "0";
 
 			Cursor = Cursors.Default;
 		}
@@ -554,27 +551,27 @@ namespace ControlDosimetro
 		}
 		private void TsbAgregar_Click(object sender, EventArgs e)
 		{
-			Cursor = Cursors.WaitCursor;
+		//	Cursor = Cursors.WaitCursor;
 
-			if (scPrincipal.Panel2Collapsed == true)
-				scPrincipal.Panel2Collapsed = false;
+		//	if (scPrincipal.Panel2Collapsed == true)
+		//		scPrincipal.Panel2Collapsed = false;
 
-			if (scPrincipal.Panel2Collapsed == false)
-			{
-				tssEstado.Text = "Nuevo";
-		//		tsbGuardar.Enabled = true;
-				LimpiarFormulario();
-				txt_id_tipo_doc.Text = "0";
+		//	if (scPrincipal.Panel2Collapsed == false)
+		//	{
+		//		tssEstado.Text = "Nuevo";
+		////		tsbGuardar.Enabled = true;
+		//		LimpiarFormulario();
+		//		txt_id_tipo_doc.Text = "0";
 
-				btn_Guardar.Text = "Grabar";
-			}
-			else
-			{
-				tssEstado.Text = "";
-				txt_id_tipo_doc.Text = "";
-			}
+		//		btn_Guardar.Text = "Grabar";
+		//	}
+		//	else
+		//	{
+		//		tssEstado.Text = "";
+		//		txt_id_tipo_doc.Text = "";
+		//	}
 
-			Cursor = Cursors.Default;
+		//	Cursor = Cursors.Default;
 		}
 
 		#endregion

@@ -716,7 +716,7 @@ namespace ControlDosimetro
 					UpdateValue(wsName, "A" + (intFila).ToString(), int.Parse(txtnpelicula.Value.ToString()).ToString(fmt), 0, true);
 					UpdateValue(wsName, "B" + (intFila).ToString(), Paterno.Value.ToString().ToUpper(), 0, true);
 					UpdateValue(wsName, "C" + (intFila).ToString(), Maternos.Value.ToString().ToUpper(), 0, true);
-					UpdateValue(wsName, "D" + (intFila).ToString(), Nombres.Value.ToString().Substring(0, 1).ToUpper() + Nombres.Value.ToString().Substring(1, Nombres.Value.ToString().Length - 1).ToLower(), 0, true);
+					UpdateValue(wsName, "D" + (intFila).ToString(), Nombres.Value.ToString().ToUpper(), 0,true);// Nombres.Value.ToString().Substring(0, 1).ToUpper() + Nombres.Value.ToString().Substring(1, Nombres.Value.ToString().Length - 1).ToLower(), 0, true);
 					UpdateValue(wsName, "E" + (intFila).ToString(), Rut.Value.ToString().ToUpperInvariant(), 0, true);
 					UpdateValue(wsName, "F" + (intFila).ToString(), strTri, 0, true);
 					UpdateValue(wsName, "G" + (intFila).ToString(), strfecha_inicio, 0, true);
