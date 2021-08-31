@@ -21,6 +21,7 @@ namespace ControlDosimetro
 
 		TextBox txtColUsuario = new TextBox();
 		TextBox txtColNombre = new TextBox();
+		TextBox txtColNCliente = new TextBox();
 		public bool bolFiltro;
 		Button btnColBuscara = new Button();
 		bool bolInicializacion;
@@ -79,7 +80,7 @@ namespace ControlDosimetro
 
 		private void frmMantenedorCliente_Load(object sender, EventArgs e)
 		{
-			scPrincipal.Panel2Collapsed = true;
+		//	scPrincipal.Panel2Collapsed = true;
 			AsignarPermiso();
 			Cargar_Reporte();
 			Cargar_Estado();
@@ -279,6 +280,8 @@ namespace ControlDosimetro
 			{
 				var currentRow = bs1.List[intFila];
 
+
+
 				//btn_Guardar.Text = "Modificar";
 
 				//txt_Contraseña.Enabled = false;
@@ -313,7 +316,6 @@ namespace ControlDosimetro
 				//btn_Guardar.Enabled = Nuevo || Modificacion;
 		//		tsbGuardar.Enabled = Nuevo || Modificacion;
 
-				scPrincipal.Panel2Collapsed = false;
 			}
 		}
 
@@ -389,9 +391,10 @@ namespace ControlDosimetro
 			var bs = new BindingSource();
 			{
 				bs.DataSource = dgvGrilla.DataSource;
-				string strFiltro = txtColUsuario.Text != "" ? ColUsuario.DataPropertyName + " like '%" + txtColUsuario.Text + "%'" : "";
+				string strFiltro = txtColUsuario.Text != "" ? ColUsuario.DataPropertyName + " like '%" + txtColUsuario.Text + "%'" : "";//
 				strFiltro += strFiltro != "" && txtColNombre.Text != "" ? " and " : "";
 				strFiltro += txtColNombre.Text != "" ? ColNombres.DataPropertyName + " like '%" + txtColNombre.Text + "%'" : "";
+				strFiltro += txtColNCliente.Text != "" ? colId_cliente.DataPropertyName + "=" + txtColNCliente.Text + "" : "";
 
 				bs.Filter = strFiltro;
 				dgvGrilla.DataSource = bs;
@@ -404,13 +407,21 @@ namespace ControlDosimetro
 			{
 				int columnIndex = 0;
 				Point headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
+				txtColNCliente.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
+				txtColNCliente.BackColor = Color.AliceBlue;
+				txtColNCliente.Width = colId_cliente.Width - 2;
+				txtColNCliente.TextAlign = HorizontalAlignment.Left;
+				dgvGrilla.Controls.Add(txtColNCliente);
+
+				columnIndex = 1;
+				headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
 				txtColUsuario.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
 				txtColUsuario.BackColor = Color.AliceBlue;
 				txtColUsuario.Width = ColUsuario.Width - 2;
 				txtColUsuario.TextAlign = HorizontalAlignment.Left;
 				dgvGrilla.Controls.Add(txtColUsuario);
 
-				columnIndex = 1;
+				columnIndex = 2;
 				headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
 				txtColNombre.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
 				txtColNombre.BackColor = Color.AliceBlue;
@@ -443,11 +454,16 @@ namespace ControlDosimetro
 		{
 			txtColUsuario.Width = ColUsuario.Width - 4;
 			txtColNombre.Width = ColNombres.Width - 4;
+			txtColNCliente.Width = colId_cliente.Width - 4;
 			int columnIndex = 0;
 			Point headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
-			txtColUsuario.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
+			txtColNCliente.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
 
 			columnIndex = 1;
+			 headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
+			txtColUsuario.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
+
+			columnIndex = 2;
 			headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
 			txtColNombre.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
 		}
@@ -490,16 +506,6 @@ namespace ControlDosimetro
 
 			//tssEstado.Text = "Nuevo";
 			//txt_id_tipo_doc.Text = "0";
-
-			Cursor = Cursors.Default;
-		}
-
-		private void Btn_Minimizar_Click(object sender, EventArgs e)
-		{
-			Cursor = Cursors.WaitCursor;
-
-			scPrincipal.Panel2Collapsed = true;
-	//		tsbGuardar.Enabled = false;
 
 			Cursor = Cursors.Default;
 		}

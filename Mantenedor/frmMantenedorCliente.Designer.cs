@@ -30,7 +30,7 @@
         {
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMantenedorCliente));
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.stsEstado = new System.Windows.Forms.StatusStrip();
 			this.tssDescEstado = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tssEstado = new System.Windows.Forms.ToolStripStatusLabel();
@@ -41,8 +41,6 @@
 			this.pnlPrincipal = new System.Windows.Forms.Panel();
 			this.gpxListado = new System.Windows.Forms.GroupBox();
 			this.dgvGrilla = new System.Windows.Forms.DataGridView();
-			this.ColUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cmsMenuContexto = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmActualizar = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -63,6 +61,7 @@
 			this.tabPrincipal = new System.Windows.Forms.TabControl();
 			this.tabCliente = new System.Windows.Forms.TabPage();
 			this.tbl_cliente = new System.Windows.Forms.GroupBox();
+			this.btn_Limpiar = new System.Windows.Forms.Button();
 			this.lbl_Emailfacturacion = new System.Windows.Forms.Label();
 			this.txt_Emailfacturacion = new System.Windows.Forms.TextBox();
 			this.lbl_Nombre_fantasia = new System.Windows.Forms.Label();
@@ -139,7 +138,9 @@
 			this.ColEstado = new System.Windows.Forms.DataGridViewComboBoxColumn();
 			this.button3 = new System.Windows.Forms.Button();
 			this.button4 = new System.Windows.Forms.Button();
-			this.btn_Limpiar = new System.Windows.Forms.Button();
+			this.colId_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.stsEstado.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.scPrincipal)).BeginInit();
@@ -280,16 +281,17 @@
 			this.dgvGrilla.AllowUserToDeleteRows = false;
 			this.dgvGrilla.AllowUserToOrderColumns = true;
 			this.dgvGrilla.AllowUserToResizeColumns = false;
-			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvGrilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this.dgvGrilla.ColumnHeadersHeight = 42;
 			this.dgvGrilla.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colId_cliente,
             this.ColUsuario,
             this.ColNombres});
 			this.dgvGrilla.ContextMenuStrip = this.cmsMenuContexto;
@@ -302,25 +304,6 @@
 			this.dgvGrilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvGrilla_CellDoubleClick);
 			this.dgvGrilla.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DgvGrilla_ColumnWidthChanged);
 			this.dgvGrilla.Paint += new System.Windows.Forms.PaintEventHandler(this.DgvGrilla_Paint);
-			// 
-			// ColUsuario
-			// 
-			this.ColUsuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.ColUsuario.DataPropertyName = "Usuario";
-			this.ColUsuario.FillWeight = 108.6294F;
-			this.ColUsuario.HeaderText = "Razón social";
-			this.ColUsuario.Name = "ColUsuario";
-			this.ColUsuario.ReadOnly = true;
-			// 
-			// ColNombres
-			// 
-			this.ColNombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.ColNombres.DataPropertyName = "Nombres";
-			this.ColNombres.FillWeight = 91.37056F;
-			this.ColNombres.HeaderText = "Rut";
-			this.ColNombres.Name = "ColNombres";
-			this.ColNombres.ReadOnly = true;
-			this.ColNombres.Width = 90;
 			// 
 			// cmsMenuContexto
 			// 
@@ -554,6 +537,21 @@
 			this.tbl_cliente.TabIndex = 1;
 			this.tbl_cliente.TabStop = false;
 			this.tbl_cliente.Text = "Datos";
+			// 
+			// btn_Limpiar
+			// 
+			this.btn_Limpiar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.btn_Limpiar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.btn_Limpiar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+			this.btn_Limpiar.Image = global::ControlDosimetro.Properties.Resources.Limpiar;
+			this.btn_Limpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btn_Limpiar.Location = new System.Drawing.Point(415, 602);
+			this.btn_Limpiar.Name = "btn_Limpiar";
+			this.btn_Limpiar.Size = new System.Drawing.Size(110, 40);
+			this.btn_Limpiar.TabIndex = 60;
+			this.btn_Limpiar.Text = "Limpiar";
+			this.btn_Limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btn_Limpiar.UseVisualStyleBackColor = true;
 			// 
 			// lbl_Emailfacturacion
 			// 
@@ -884,7 +882,7 @@
 			// 
 			this.btn_cerrar.Image = global::ControlDosimetro.Properties.Resources.Close_24;
 			this.btn_cerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_cerrar.Location = new System.Drawing.Point(275, 604);
+			this.btn_cerrar.Location = new System.Drawing.Point(253, 602);
 			this.btn_cerrar.Name = "btn_cerrar";
 			this.btn_cerrar.Size = new System.Drawing.Size(97, 38);
 			this.btn_cerrar.TabIndex = 23;
@@ -895,7 +893,7 @@
 			// 
 			this.btn_Grabar.Image = global::ControlDosimetro.Properties.Resources.Save_24;
 			this.btn_Grabar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_Grabar.Location = new System.Drawing.Point(88, 604);
+			this.btn_Grabar.Location = new System.Drawing.Point(99, 602);
 			this.btn_Grabar.Name = "btn_Grabar";
 			this.btn_Grabar.Size = new System.Drawing.Size(104, 38);
 			this.btn_Grabar.TabIndex = 22;
@@ -1331,20 +1329,32 @@
 			this.button4.Text = "Guardar";
 			this.button4.UseVisualStyleBackColor = true;
 			// 
-			// btn_Limpiar
+			// colId_cliente
 			// 
-			this.btn_Limpiar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Limpiar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.btn_Limpiar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-			this.btn_Limpiar.Image = global::ControlDosimetro.Properties.Resources.Limpiar;
-			this.btn_Limpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_Limpiar.Location = new System.Drawing.Point(415, 602);
-			this.btn_Limpiar.Name = "btn_Limpiar";
-			this.btn_Limpiar.Size = new System.Drawing.Size(110, 40);
-			this.btn_Limpiar.TabIndex = 60;
-			this.btn_Limpiar.Text = "Limpiar";
-			this.btn_Limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btn_Limpiar.UseVisualStyleBackColor = true;
+			this.colId_cliente.DataPropertyName = "Id_cliente";
+			this.colId_cliente.HeaderText = "N°";
+			this.colId_cliente.Name = "colId_cliente";
+			this.colId_cliente.ReadOnly = true;
+			this.colId_cliente.Width = 40;
+			// 
+			// ColUsuario
+			// 
+			this.ColUsuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.ColUsuario.DataPropertyName = "Razon_Social";
+			this.ColUsuario.FillWeight = 108.6294F;
+			this.ColUsuario.HeaderText = "Razón social";
+			this.ColUsuario.Name = "ColUsuario";
+			this.ColUsuario.ReadOnly = true;
+			// 
+			// ColNombres
+			// 
+			this.ColNombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.ColNombres.DataPropertyName = "run";
+			this.ColNombres.FillWeight = 91.37056F;
+			this.ColNombres.HeaderText = "Rut";
+			this.ColNombres.Name = "ColNombres";
+			this.ColNombres.ReadOnly = true;
+			this.ColNombres.Width = 90;
 			// 
 			// frmMantenedorCliente
 			// 
@@ -1426,8 +1436,6 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label lblRut;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ColUsuario;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ColNombres;
 		private System.Windows.Forms.TabControl tabPrincipal;
 		private System.Windows.Forms.TabPage tabCliente;
 		private System.Windows.Forms.TabPage tabSucursal;
@@ -1508,5 +1516,8 @@
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button btn_Limpiar;
+		private System.Windows.Forms.DataGridViewTextBoxColumn colId_cliente;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColUsuario;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColNombres;
 	}
 }
