@@ -29,26 +29,8 @@
         private void InitializeComponent()
         {
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.btn_Filtro = new System.Windows.Forms.Button();
-			this.btn_cargarCliente = new System.Windows.Forms.Button();
-			this.txt_ref_cliente = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
-			this.txt_RazonSocial = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.txt_Rut = new System.Windows.Forms.TextBox();
-			this.label1 = new System.Windows.Forms.Label();
 			this.grp_Grilla = new System.Windows.Forms.GroupBox();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
-			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-			this.tsbGuardar = new System.Windows.Forms.ToolStripButton();
-			this.grpPersonal = new System.Windows.Forms.GroupBox();
-			this.chk_FecNac = new System.Windows.Forms.CheckBox();
-			this.picFiltrarpersonal = new System.Windows.Forms.PictureBox();
-			this.txt_NombrePersonal = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.txt_RunPersonal = new System.Windows.Forms.TextBox();
-			this.label4 = new System.Windows.Forms.Label();
-			this.chk_AsignarTLD = new System.Windows.Forms.CheckBox();
 			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,111 +40,50 @@
 			this.ColSeccion = new System.Windows.Forms.DataGridViewComboBoxColumn();
 			this.ColFechaNac = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ColEstado = new System.Windows.Forms.DataGridViewComboBoxColumn();
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.tsbGuardar = new System.Windows.Forms.ToolStripButton();
+			this.txt_id_cliente = new System.Windows.Forms.TextBox();
+			this.btn_filtro = new System.Windows.Forms.Button();
+			this.btn_cargar = new System.Windows.Forms.Button();
+			this.cbx_id_periodo = new System.Windows.Forms.ComboBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.cbx_anno = new System.Windows.Forms.ComboBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
+			this.lbl_rut_cliente = new System.Windows.Forms.Label();
+			this.lbl_nombreCliente = new System.Windows.Forms.Label();
+			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+			this.cbx_NDocumento = new System.Windows.Forms.ComboBox();
+			this.label5 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.grp_Grilla.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
 			this.toolStrip1.SuspendLayout();
-			this.grpPersonal.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.picFiltrarpersonal)).BeginInit();
+			this.tableLayoutPanel2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Controls.Add(this.btn_Filtro);
-			this.groupBox1.Controls.Add(this.btn_cargarCliente);
-			this.groupBox1.Controls.Add(this.txt_ref_cliente);
-			this.groupBox1.Controls.Add(this.label2);
-			this.groupBox1.Controls.Add(this.txt_RazonSocial);
-			this.groupBox1.Controls.Add(this.label3);
-			this.groupBox1.Controls.Add(this.txt_Rut);
+			this.groupBox1.Controls.Add(this.label4);
+			this.groupBox1.Controls.Add(this.label7);
+			this.groupBox1.Controls.Add(this.lbl_rut_cliente);
+			this.groupBox1.Controls.Add(this.lbl_nombreCliente);
+			this.groupBox1.Controls.Add(this.txt_id_cliente);
+			this.groupBox1.Controls.Add(this.btn_filtro);
+			this.groupBox1.Controls.Add(this.btn_cargar);
+			this.groupBox1.Controls.Add(this.cbx_id_periodo);
 			this.groupBox1.Controls.Add(this.label1);
+			this.groupBox1.Controls.Add(this.cbx_anno);
+			this.groupBox1.Controls.Add(this.label2);
+			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Location = new System.Drawing.Point(0, 42);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(849, 97);
+			this.groupBox1.Size = new System.Drawing.Size(849, 146);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Dato Cliente";
-			// 
-			// btn_Filtro
-			// 
-			this.btn_Filtro.Image = global::ControlDosimetro.Properties.Resources.Limpiar;
-			this.btn_Filtro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_Filtro.Location = new System.Drawing.Point(337, 18);
-			this.btn_Filtro.Name = "btn_Filtro";
-			this.btn_Filtro.Size = new System.Drawing.Size(122, 39);
-			this.btn_Filtro.TabIndex = 35;
-			this.btn_Filtro.Text = "Limpiar Filtro";
-			this.btn_Filtro.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btn_Filtro.UseVisualStyleBackColor = true;
-			this.btn_Filtro.Click += new System.EventHandler(this.btn_Filtro_Click);
-			// 
-			// btn_cargarCliente
-			// 
-			this.btn_cargarCliente.Image = global::ControlDosimetro.Properties.Resources.Buscar;
-			this.btn_cargarCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_cargarCliente.Location = new System.Drawing.Point(220, 17);
-			this.btn_cargarCliente.Name = "btn_cargarCliente";
-			this.btn_cargarCliente.Size = new System.Drawing.Size(111, 40);
-			this.btn_cargarCliente.TabIndex = 3;
-			this.btn_cargarCliente.Text = "Cargar";
-			this.btn_cargarCliente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btn_cargarCliente.UseVisualStyleBackColor = true;
-			this.btn_cargarCliente.Click += new System.EventHandler(this.btn_cargarCliente_Click);
-			// 
-			// txt_ref_cliente
-			// 
-			this.txt_ref_cliente.Location = new System.Drawing.Point(95, 17);
-			this.txt_ref_cliente.MaxLength = 4;
-			this.txt_ref_cliente.Name = "txt_ref_cliente";
-			this.txt_ref_cliente.Size = new System.Drawing.Size(100, 20);
-			this.txt_ref_cliente.TabIndex = 1;
-			this.txt_ref_cliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_ref_cliente_KeyDown_1);
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(13, 20);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(57, 13);
-			this.label2.TabIndex = 34;
-			this.label2.Text = "N°  Cliente";
-			// 
-			// txt_RazonSocial
-			// 
-			this.txt_RazonSocial.Location = new System.Drawing.Point(95, 69);
-			this.txt_RazonSocial.MaxLength = 60;
-			this.txt_RazonSocial.Name = "txt_RazonSocial";
-			this.txt_RazonSocial.ReadOnly = true;
-			this.txt_RazonSocial.Size = new System.Drawing.Size(342, 20);
-			this.txt_RazonSocial.TabIndex = 3;
-			this.txt_RazonSocial.TabStop = false;
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(12, 72);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(70, 13);
-			this.label3.TabIndex = 4;
-			this.label3.Text = "Razon Social";
-			// 
-			// txt_Rut
-			// 
-			this.txt_Rut.Location = new System.Drawing.Point(95, 44);
-			this.txt_Rut.MaxLength = 10;
-			this.txt_Rut.Name = "txt_Rut";
-			this.txt_Rut.ReadOnly = true;
-			this.txt_Rut.Size = new System.Drawing.Size(100, 20);
-			this.txt_Rut.TabIndex = 2;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(13, 47);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(24, 13);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "Rut";
 			// 
 			// grp_Grilla
 			// 
@@ -207,114 +128,6 @@
 			this.grdDatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellClick);
 			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
-			// 
-			// toolStrip1
-			// 
-			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbGuardar});
-			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(859, 39);
-			this.toolStrip1.TabIndex = 2;
-			this.toolStrip1.Text = "toolStrip1";
-			// 
-			// tsbGuardar
-			// 
-			this.tsbGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.tsbGuardar.Image = global::ControlDosimetro.Properties.Resources.Save_32;
-			this.tsbGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-			this.tsbGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbGuardar.Name = "tsbGuardar";
-			this.tsbGuardar.Size = new System.Drawing.Size(36, 36);
-			this.tsbGuardar.ToolTipText = "Grabar";
-			this.tsbGuardar.Click += new System.EventHandler(this.tsbGuardar_Click);
-			// 
-			// grpPersonal
-			// 
-			this.grpPersonal.Controls.Add(this.chk_FecNac);
-			this.grpPersonal.Controls.Add(this.picFiltrarpersonal);
-			this.grpPersonal.Controls.Add(this.txt_NombrePersonal);
-			this.grpPersonal.Controls.Add(this.label5);
-			this.grpPersonal.Controls.Add(this.txt_RunPersonal);
-			this.grpPersonal.Controls.Add(this.label4);
-			this.grpPersonal.Enabled = false;
-			this.grpPersonal.Location = new System.Drawing.Point(8, 145);
-			this.grpPersonal.Name = "grpPersonal";
-			this.grpPersonal.Size = new System.Drawing.Size(839, 58);
-			this.grpPersonal.TabIndex = 8;
-			this.grpPersonal.TabStop = false;
-			this.grpPersonal.Text = "Filtrar";
-			// 
-			// chk_FecNac
-			// 
-			this.chk_FecNac.AutoSize = true;
-			this.chk_FecNac.Location = new System.Drawing.Point(566, 22);
-			this.chk_FecNac.Name = "chk_FecNac";
-			this.chk_FecNac.Size = new System.Drawing.Size(153, 17);
-			this.chk_FecNac.TabIndex = 8;
-			this.chk_FecNac.Text = "Por  Fec. Nac 01/01/1900";
-			this.chk_FecNac.UseVisualStyleBackColor = true;
-			// 
-			// picFiltrarpersonal
-			// 
-			this.picFiltrarpersonal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.picFiltrarpersonal.Image = global::ControlDosimetro.Properties.Resources.Buscar;
-			this.picFiltrarpersonal.Location = new System.Drawing.Point(728, 10);
-			this.picFiltrarpersonal.Name = "picFiltrarpersonal";
-			this.picFiltrarpersonal.Size = new System.Drawing.Size(36, 36);
-			this.picFiltrarpersonal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-			this.picFiltrarpersonal.TabIndex = 7;
-			this.picFiltrarpersonal.TabStop = false;
-			this.picFiltrarpersonal.Click += new System.EventHandler(this.picFiltrarpersonal_Click);
-			// 
-			// txt_NombrePersonal
-			// 
-			this.txt_NombrePersonal.Location = new System.Drawing.Point(320, 18);
-			this.txt_NombrePersonal.MaxLength = 50;
-			this.txt_NombrePersonal.Name = "txt_NombrePersonal";
-			this.txt_NombrePersonal.Size = new System.Drawing.Size(219, 20);
-			this.txt_NombrePersonal.TabIndex = 6;
-			this.txt_NombrePersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_NombrePersonal_KeyDown);
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(198, 22);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(104, 13);
-			this.label5.TabIndex = 5;
-			this.label5.Text = "Nombre del personal";
-			// 
-			// txt_RunPersonal
-			// 
-			this.txt_RunPersonal.Location = new System.Drawing.Point(57, 19);
-			this.txt_RunPersonal.MaxLength = 10;
-			this.txt_RunPersonal.Name = "txt_RunPersonal";
-			this.txt_RunPersonal.Size = new System.Drawing.Size(100, 20);
-			this.txt_RunPersonal.TabIndex = 4;
-			this.txt_RunPersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_RunPersonal_KeyDown);
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(14, 22);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(24, 13);
-			this.label4.TabIndex = 3;
-			this.label4.Text = "Rut";
-			// 
-			// chk_AsignarTLD
-			// 
-			this.chk_AsignarTLD.AutoSize = true;
-			this.chk_AsignarTLD.Enabled = false;
-			this.chk_AsignarTLD.Location = new System.Drawing.Point(8, 216);
-			this.chk_AsignarTLD.Name = "chk_AsignarTLD";
-			this.chk_AsignarTLD.Size = new System.Drawing.Size(216, 17);
-			this.chk_AsignarTLD.TabIndex = 6;
-			this.chk_AsignarTLD.Text = "Asignar a todos al personal servicio TLD";
-			this.chk_AsignarTLD.UseVisualStyleBackColor = true;
-			this.chk_AsignarTLD.CheckedChanged += new System.EventHandler(this.chk_AsignarTLD_CheckedChanged);
 			// 
 			// Id_Personal
 			// 
@@ -399,23 +212,187 @@
 			this.ColEstado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
 			this.ColEstado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
 			// 
-			// frmModificarPersonalMasivo
+			// toolStrip1
+			// 
+			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbGuardar});
+			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.Size = new System.Drawing.Size(859, 39);
+			this.toolStrip1.TabIndex = 2;
+			this.toolStrip1.Text = "toolStrip1";
+			// 
+			// tsbGuardar
+			// 
+			this.tsbGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbGuardar.Image = global::ControlDosimetro.Properties.Resources.Save_32;
+			this.tsbGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.tsbGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbGuardar.Name = "tsbGuardar";
+			this.tsbGuardar.Size = new System.Drawing.Size(36, 36);
+			this.tsbGuardar.ToolTipText = "Grabar";
+			this.tsbGuardar.Click += new System.EventHandler(this.tsbGuardar_Click);
+			// 
+			// txt_id_cliente
+			// 
+			this.txt_id_cliente.Location = new System.Drawing.Point(94, 69);
+			this.txt_id_cliente.Name = "txt_id_cliente";
+			this.txt_id_cliente.Size = new System.Drawing.Size(121, 20);
+			this.txt_id_cliente.TabIndex = 56;
+			// 
+			// btn_filtro
+			// 
+			this.btn_filtro.Location = new System.Drawing.Point(306, 67);
+			this.btn_filtro.Name = "btn_filtro";
+			this.btn_filtro.Size = new System.Drawing.Size(95, 23);
+			this.btn_filtro.TabIndex = 55;
+			this.btn_filtro.Text = "Limpiar filtro";
+			this.btn_filtro.UseVisualStyleBackColor = true;
+			// 
+			// btn_cargar
+			// 
+			this.btn_cargar.Location = new System.Drawing.Point(225, 67);
+			this.btn_cargar.Name = "btn_cargar";
+			this.btn_cargar.Size = new System.Drawing.Size(75, 23);
+			this.btn_cargar.TabIndex = 50;
+			this.btn_cargar.Text = "Cargar";
+			this.btn_cargar.UseVisualStyleBackColor = true;
+			// 
+			// cbx_id_periodo
+			// 
+			this.cbx_id_periodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_id_periodo.FormattingEnabled = true;
+			this.cbx_id_periodo.Location = new System.Drawing.Point(94, 44);
+			this.cbx_id_periodo.Name = "cbx_id_periodo";
+			this.cbx_id_periodo.Size = new System.Drawing.Size(121, 21);
+			this.cbx_id_periodo.TabIndex = 54;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(19, 49);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(42, 13);
+			this.label1.TabIndex = 53;
+			this.label1.Text = "periodo";
+			// 
+			// cbx_anno
+			// 
+			this.cbx_anno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_anno.FormattingEnabled = true;
+			this.cbx_anno.Location = new System.Drawing.Point(94, 19);
+			this.cbx_anno.Name = "cbx_anno";
+			this.cbx_anno.Size = new System.Drawing.Size(121, 21);
+			this.cbx_anno.TabIndex = 49;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(19, 72);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(57, 13);
+			this.label2.TabIndex = 52;
+			this.label2.Text = "N°  Cliente";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(19, 22);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(26, 13);
+			this.label3.TabIndex = 51;
+			this.label3.Text = "Año";
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(19, 123);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(24, 13);
+			this.label4.TabIndex = 60;
+			this.label4.Text = "Rut";
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(19, 102);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(44, 13);
+			this.label7.TabIndex = 59;
+			this.label7.Text = "Nombre";
+			// 
+			// lbl_rut_cliente
+			// 
+			this.lbl_rut_cliente.AutoSize = true;
+			this.lbl_rut_cliente.Location = new System.Drawing.Point(91, 123);
+			this.lbl_rut_cliente.Name = "lbl_rut_cliente";
+			this.lbl_rut_cliente.Size = new System.Drawing.Size(53, 13);
+			this.lbl_rut_cliente.TabIndex = 58;
+			this.lbl_rut_cliente.Text = "rut cliente";
+			// 
+			// lbl_nombreCliente
+			// 
+			this.lbl_nombreCliente.AutoSize = true;
+			this.lbl_nombreCliente.Location = new System.Drawing.Point(91, 102);
+			this.lbl_nombreCliente.Name = "lbl_nombreCliente";
+			this.lbl_nombreCliente.Size = new System.Drawing.Size(76, 13);
+			this.lbl_nombreCliente.TabIndex = 57;
+			this.lbl_nombreCliente.Text = "NombreCliente";
+			// 
+			// tableLayoutPanel2
+			// 
+			this.tableLayoutPanel2.ColumnCount = 3;
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.39394F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.60606F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 342F));
+			this.tableLayoutPanel2.Controls.Add(this.cbx_NDocumento, 1, 0);
+			this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
+			this.tableLayoutPanel2.Location = new System.Drawing.Point(12, 194);
+			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+			this.tableLayoutPanel2.RowCount = 1;
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(664, 32);
+			this.tableLayoutPanel2.TabIndex = 9;
+			// 
+			// cbx_NDocumento
+			// 
+			this.cbx_NDocumento.DisplayMember = "NDoc";
+			this.cbx_NDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_NDocumento.FormattingEnabled = true;
+			this.cbx_NDocumento.Location = new System.Drawing.Point(129, 3);
+			this.cbx_NDocumento.Name = "cbx_NDocumento";
+			this.cbx_NDocumento.Size = new System.Drawing.Size(170, 21);
+			this.cbx_NDocumento.TabIndex = 50;
+			this.cbx_NDocumento.ValueMember = "N_Documento";
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(3, 0);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(77, 13);
+			this.label5.TabIndex = 8;
+			this.label5.Text = "Buscar n° TLD";
+			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// frmCambiarPersonalPorTLD
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(859, 702);
-			this.Controls.Add(this.chk_AsignarTLD);
-			this.Controls.Add(this.grpPersonal);
+			this.Controls.Add(this.tableLayoutPanel2);
 			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this.grp_Grilla);
 			this.Controls.Add(this.groupBox1);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(776, 461);
-			this.Name = "frmModificarPersonalMasivo";
+			this.Name = "frmCambiarPersonalPorTLD";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Modificar personal masivo";
+			this.Text = "Cambiar personal por el número  TLD";
 			this.Load += new System.EventHandler(this.frmModificarPersonalMasivo_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
@@ -423,9 +400,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).EndInit();
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
-			this.grpPersonal.ResumeLayout(false);
-			this.grpPersonal.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.picFiltrarpersonal)).EndInit();
+			this.tableLayoutPanel2.ResumeLayout(false);
+			this.tableLayoutPanel2.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -434,26 +410,10 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txt_Rut;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txt_RazonSocial;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox grp_Grilla;
 		  private System.Windows.Forms.DataGridView grdDatos;
 		  private System.Windows.Forms.ToolStrip toolStrip1;
-								private System.Windows.Forms.Label label2;
-								private System.Windows.Forms.TextBox txt_ref_cliente;
-								private System.Windows.Forms.Button btn_cargarCliente;
-                                private System.Windows.Forms.Button btn_Filtro;
 		private System.Windows.Forms.ToolStripButton tsbGuardar;
-		private System.Windows.Forms.GroupBox grpPersonal;
-		private System.Windows.Forms.PictureBox picFiltrarpersonal;
-		private System.Windows.Forms.TextBox txt_NombrePersonal;
-		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.TextBox txt_RunPersonal;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.CheckBox chk_FecNac;
-		private System.Windows.Forms.CheckBox chk_AsignarTLD;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Id_Personal;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Rut;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
@@ -463,5 +423,20 @@
 		private System.Windows.Forms.DataGridViewComboBoxColumn ColSeccion;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColFechaNac;
 		private System.Windows.Forms.DataGridViewComboBoxColumn ColEstado;
+		private System.Windows.Forms.TextBox txt_id_cliente;
+		private System.Windows.Forms.Button btn_filtro;
+		private System.Windows.Forms.Button btn_cargar;
+		private System.Windows.Forms.ComboBox cbx_id_periodo;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.ComboBox cbx_anno;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Label lbl_rut_cliente;
+		private System.Windows.Forms.Label lbl_nombreCliente;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+		private System.Windows.Forms.ComboBox cbx_NDocumento;
+		private System.Windows.Forms.Label label5;
 	}
 }

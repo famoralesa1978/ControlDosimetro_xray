@@ -599,8 +599,8 @@ namespace ControlDosimetro
 			string strfecha_Per = dtPeriodo.Tables[0].Rows[0]["Finicio"].ToString() + " al " + dtPeriodo.Tables[0].Rows[0]["FTermino"].ToString();
 
 			string strfecha_Fin = dtPeriodo.Tables[0].Rows[0]["FTermino"].ToString();
-
-			string strTri = cbx_id_periodo.Text.ToString().Substring(0, 1) + "er Trim " + cbx_anno.Text;
+			string strSigla = (cbx_id_periodo.Text.ToString().Substring(0, 1) == "1") ? "er Trim " : (cbx_id_periodo.Text.ToString().Substring(0, 1) == "2") ? "do Trim " : (cbx_id_periodo.Text.ToString().Substring(0, 1) == "3") ? "er Trim " : (cbx_id_periodo.Text.ToString().Substring(0, 1) == "4") ? "to Trim ":"";
+			string strTri = cbx_id_periodo.Text.ToString().Substring(0, 1) + strSigla + cbx_anno.Text;
 			//  From 01/01/19 to 31/03/19
 			//*****************
 			DataGridViewCheckBoxCell checkGenerar;

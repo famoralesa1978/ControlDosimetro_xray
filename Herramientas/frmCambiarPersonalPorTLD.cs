@@ -79,15 +79,15 @@ namespace ControlDosimetro
 			{
 				cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
 						"from tbl_cliente " +
-						"where  (id_cliente=" + intCliente.ToString() + ") or run ='" + txt_Rut.Text + "' " +
+						"where  (id_cliente=" + intCliente.ToString() + ") or run ='" + txt_id_cliente.Text + "' " +
 						" and id_estado=1 " +
 						"order by id_cliente";
-				txt_ref_cliente.Text = intCliente.ToString();
+				txt_id_cliente.Text = intCliente.ToString();
 			}
 			if (intCliente == 0)
 				cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
 						"from tbl_cliente " +
-						"where run  ='" + txt_Rut.Text + "' " + " and id_estado=1 " +
+						"where run  ='" + txt_id_cliente.Text + "' " + " and id_estado=1 " +
 						"order by id_cliente";
 			cmd.CommandType = CommandType.Text;
 
@@ -96,26 +96,26 @@ namespace ControlDosimetro
 
 			if (dt.Tables[0].Rows.Count == 0)
 			{
-				txt_ref_cliente.Text = "";
-				txt_Rut.Text = "";
-				txt_RazonSocial.Text = "";
-				grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = false;
-				tsbGuardar.Visible = false;
-				bolDesdeCodigo = false;
-				chk_AsignarTLD.Checked = false;
-				btn_cargarCliente.Enabled = true;
+				//txt_ref_cliente.Text = "";
+				//txt_Rut.Text = "";
+				//txt_RazonSocial.Text = "";
+				//grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = false;
+				//tsbGuardar.Visible = false;
+				//bolDesdeCodigo = false;
+				//chk_AsignarTLD.Checked = false;
+				//btn_cargarCliente.Enabled = true;
 			}
 			else
 			{
-				txt_ref_cliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
-				txt_Rut.Text = dt.Tables[0].Rows[0]["run"].ToString();
-				txt_RazonSocial.Text = dt.Tables[0].Rows[0]["razon_social"].ToString();
-				txt_ref_cliente.ReadOnly = true;
-				txt_Rut.ReadOnly = true;
-				grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = true;
-				tsbGuardar.Visible = Modificacion;
-				txt_RazonSocial.ReadOnly = true;
-				btn_cargarCliente.Enabled = false;
+				//txt_ref_cliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
+				//txt_Rut.Text = dt.Tables[0].Rows[0]["run"].ToString();
+				//txt_RazonSocial.Text = dt.Tables[0].Rows[0]["razon_social"].ToString();
+				//txt_ref_cliente.ReadOnly = true;
+				//txt_Rut.ReadOnly = true;
+				//grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = true;
+				//tsbGuardar.Visible = Modificacion;
+				//txt_RazonSocial.ReadOnly = true;
+				//btn_cargarCliente.Enabled = false;
 				bolDesdeCodigo = true;
 				Cargar_Seccion();
 				Cargar_Estado();
@@ -126,24 +126,24 @@ namespace ControlDosimetro
 
 		private void Listar_Personal()
 		{
-			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "pa_ListarPersonal_sel " + (String.IsNullOrEmpty( txt_ref_cliente.Text)?"0": txt_ref_cliente.Text) + "";
-			cmd.CommandType = CommandType.Text;
+			//SqlCommand cmd = new SqlCommand();
+			//cmd.CommandText = "pa_ListarPersonal_sel " + (String.IsNullOrEmpty( txt_ref_cliente.Text)?"0": txt_ref_cliente.Text) + "";
+			//cmd.CommandType = CommandType.Text;
 
-			dtPersonal = Conectar.Listar(Clases.clsBD.BD, cmd);
-			grdDatos.DataSource = dtPersonal.Tables[0];
+			//dtPersonal = Conectar.Listar(Clases.clsBD.BD, cmd);
+			//grdDatos.DataSource = dtPersonal.Tables[0];
 
 		}
 
 		private void Cargar_Seccion()
 		{
 
-			dt = ClaseFunciones.Cargar_Seccion(Convert.ToInt16(txt_ref_cliente.Text.ToString()));
+			//dt = ClaseFunciones.Cargar_Seccion(Convert.ToInt16(txt_ref_cliente.Text.ToString()));
 
-			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns[ColSeccion.Index] as DataGridViewComboBoxColumn;
-			comboboxColumn.DataSource = dt.Tables[0];
-			comboboxColumn.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
-			comboboxColumn.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
+			//DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns[ColSeccion.Index] as DataGridViewComboBoxColumn;
+			//comboboxColumn.DataSource = dt.Tables[0];
+			//comboboxColumn.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
+			//comboboxColumn.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
 		}
 
 		private void Cargar_CodServicio()
@@ -174,10 +174,10 @@ namespace ControlDosimetro
 
 		private void AsignarEvento()
 		{
-			clsEvento.AsignarRutSinGuion(ref txt_Rut);
-			clsEvento.AsignarRutSinGuion(ref txt_RunPersonal);
-			clsEvento.AsignarNumero(ref txt_ref_cliente);
-			clsEvento.AsignarKeyPress(ref txt_RazonSocial);
+			//clsEvento.AsignarRutSinGuion(ref txt_Rut);
+			//clsEvento.AsignarRutSinGuion(ref txt_RunPersonal);
+			//clsEvento.AsignarNumero(ref txt_ref_cliente);
+			//clsEvento.AsignarKeyPress(ref txt_RazonSocial);
 		}
 
 
@@ -190,18 +190,6 @@ namespace ControlDosimetro
 		{
 			if (e.KeyCode == Keys.Return)
 				btn_cargarCliente_Click(null, null);
-		}
-
-		private void txt_RunPersonal_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Return)
-				picFiltrarpersonal_Click(null, null);
-		}
-
-		private void txt_NombrePersonal_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Return)
-				picFiltrarpersonal_Click(null, null);
 		}
 
 		private void txt_ref_cliente_KeyDown_1(object sender, KeyEventArgs e)
@@ -219,16 +207,16 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 			bolDesdeCodigo = true;
-			if (txt_ref_cliente.Text == "")
-				Listar_Cliente(0);
-			else
-				Listar_Cliente(Convert.ToInt64(txt_ref_cliente.Text.ToString()));
+			//if (txt_ref_cliente.Text == "")
+			//	Listar_Cliente(0);
+			//else
+			//	Listar_Cliente(Convert.ToInt64(txt_ref_cliente.Text.ToString()));
 
-			if (txt_RazonSocial.Text == "")
-			{
+			//if (txt_RazonSocial.Text == "")
+			//{
 
-				tsbGuardar.Visible = false;
-			}
+			//	tsbGuardar.Visible = false;
+			//}
 
 			Cursor = Cursors.Default;
 
@@ -238,29 +226,19 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 
-			grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = false;
-			txt_ref_cliente.ReadOnly = false;
-			txt_ref_cliente.Text = "";
-			txt_Rut.Text = "";
-			txt_RazonSocial.Text = "";
-			bolDesdeCodigo = true;
-			chk_AsignarTLD.Checked = false;
+			//grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = false;
+			//txt_ref_cliente.ReadOnly = false;
+			//txt_ref_cliente.Text = "";
+			//txt_Rut.Text = "";
+			//txt_RazonSocial.Text = "";
+			//bolDesdeCodigo = true;
+			//chk_AsignarTLD.Checked = false;
 
-			Listar_Cliente(0);
-			Listar_Personal();
-			btn_cargarCliente.Enabled = true;
-			txt_ref_cliente.Focus();
+			//Listar_Cliente(0);
+			//Listar_Personal();
+			//btn_cargarCliente.Enabled = true;
+			//txt_ref_cliente.Focus();
 
-			Cursor = Cursors.Default;
-		}
-
-		private void picFiltrarpersonal_Click(object sender, EventArgs e)
-		{
-			Cursor = Cursors.WaitCursor;
-			if (chk_FecNac.Checked)
-				classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text, "01/01/1900");
-			else
-				classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text);
 			Cursor = Cursors.Default;
 		}
 
@@ -438,9 +416,9 @@ namespace ControlDosimetro
 					}
 
 				}
-				string strIdCliente = txt_ref_cliente.Text;
-				btn_Filtro_Click(null, null);
-				txt_ref_cliente.Text = strIdCliente;
+				//string strIdCliente = txt_ref_cliente.Text;
+				//btn_Filtro_Click(null, null);
+				//txt_ref_cliente.Text = strIdCliente;
 				btn_cargarCliente_Click(null,null);
 			}
 
