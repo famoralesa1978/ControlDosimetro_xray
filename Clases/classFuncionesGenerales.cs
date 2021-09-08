@@ -167,7 +167,47 @@ namespace classFuncionesGenerales
 			strFiltro = strFiltro + (!String.IsNullOrEmpty(NombrePersonal) ? "(Nombres + ' '+  Paterno+ ' '+Maternos) like '%" + NombrePersonal + "%'" : "");
 			strFiltro = strFiltro + (!String.IsNullOrEmpty(FecNac) ? "Fecha_Nac = '" + FecNac + "'" : "");
 			dt.DefaultView.RowFilter = strFiltro;
+		}//id_cliente
+
+		public static void FiltroPersonal(ref DataGridView grdGrilla, string NombrePersonal, string Rut, string FecNac,int intEstado)
+		{
+
+			string strFiltro = "";
+			DataTable dt = new DataTable();
+			BindingSource bs = new BindingSource();
+			bs.DataSource = grdGrilla.DataSource;
+			dt = ((DataView)(bs.DataSource)).Table;
+			//Rut, Nombres,Paterno,Maternos
+			strFiltro = !String.IsNullOrEmpty(Rut) ? "Rut like '%" + Rut + "%'" : "";
+			strFiltro = strFiltro + (!String.IsNullOrEmpty(NombrePersonal) ? "(Nombres + ' '+  Paterno+ ' '+Maternos) like '%" + NombrePersonal + "%'" : "");
+			strFiltro = strFiltro + (!String.IsNullOrEmpty(FecNac) ? "Fecha_Nac = '" + FecNac + "'" : "");
+			strFiltro = strFiltro + "id_Estado=" + intEstado.ToString();
+			dt.DefaultView.RowFilter = strFiltro;
 		}
+		public static void FiltroPersonal(ref DataGridView grdGrilla, string NombrePersonal, string Rut,int intEstado)
+		{
+
+			string strFiltro = "";
+			DataTable dt = new DataTable();
+			BindingSource bs = new BindingSource();
+			bs.DataSource = grdGrilla.DataSource;
+			dt = ((DataView)(bs.DataSource)).Table;
+			//Rut, Nombres,Paterno,Maternos
+			strFiltro = !String.IsNullOrEmpty(Rut) ? "Rut like '%" + Rut + "%'" : "";
+			strFiltro = strFiltro + (!String.IsNullOrEmpty(NombrePersonal) ? "(Nombres + ' '+  Paterno+ ' '+Maternos) like '%" + NombrePersonal + "%'" : "");
+			strFiltro = strFiltro + "id_Estado=" + intEstado.ToString();
+			dt.DefaultView.RowFilter = strFiltro;
+		}
+
+		public static void FiltroCliente(ref DataGridView grdGrilla, string intId_Cliente)
+		{
+
+			string strFiltro = "";
+			DataTable dt = ((DataTable)(grdGrilla.DataSource));
+			//Rut, Nombres,Paterno,Maternos
+			strFiltro = !String.IsNullOrEmpty(intId_Cliente) ? "Id_Cliente =" + intId_Cliente + "":"";
+			dt.DefaultView.RowFilter = strFiltro;
+		}//id_cliente
 	}
 
 }

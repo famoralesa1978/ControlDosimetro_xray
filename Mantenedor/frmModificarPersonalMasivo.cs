@@ -80,14 +80,14 @@ namespace ControlDosimetro
 				cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
 						"from tbl_cliente " +
 						"where  (id_cliente=" + intCliente.ToString() + ") or run ='" + txt_Rut.Text + "' " +
-						" and id_estado=1 " +
+						" and id_estado= 1" +
 						"order by id_cliente";
 				txt_ref_cliente.Text = intCliente.ToString();
 			}
 			if (intCliente == 0)
 				cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
 						"from tbl_cliente " +
-						"where run  ='" + txt_Rut.Text + "' " + " and id_estado=1 " +
+						"where run  ='" + txt_Rut.Text + "' " + " and id_estado=1"+
 						"order by id_cliente";
 			cmd.CommandType = CommandType.Text;
 
@@ -121,6 +121,7 @@ namespace ControlDosimetro
 				Cargar_Estado();
 				Cargar_CodServicio();
 				Listar_Personal();
+				picFiltrarpersonal_Click(null, null);
 			}
 		}
 
@@ -131,7 +132,9 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;
 
 			dtPersonal = Conectar.Listar(Clases.clsBD.BD, cmd);
-			grdDatos.DataSource = dtPersonal.Tables[0];
+
+			//dtPersonal.Tables[0].DefaultView.RowFilter = "Id_Estado=" + (chkActivo.Checked == true ? 1 : 0);
+			grdDatos.DataSource = dtPersonal.Tables[0].DefaultView;
 
 		}
 
@@ -248,6 +251,7 @@ namespace ControlDosimetro
 
 			Listar_Cliente(0);
 			Listar_Personal();
+			picFiltrarpersonal_Click(null, null);
 			btn_cargarCliente.Enabled = true;
 			txt_ref_cliente.Focus();
 
@@ -257,10 +261,12 @@ namespace ControlDosimetro
 		private void picFiltrarpersonal_Click(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
+
+			int intEstado = chkActivo.Checked ? 0 : 1;
 			if (chk_FecNac.Checked)
-				classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text, "01/01/1900");
+				classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text, "01/01/1900", intEstado);
 			else
-				classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text);
+				classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text, intEstado);
 			Cursor = Cursors.Default;
 		}
 
@@ -378,6 +384,21 @@ namespace ControlDosimetro
 			}
 		}
 
+		private void grdDatos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+		{
+			if (e.ListChangedType == ListChangedType.Reset)
+			{
+				foreach (DataGridViewRow item in grdDatos.Rows)
+				{
+					DataRow dtrFila = ((DataRowView)item.DataBoundItem).Row;
+					if (Convert.ToInt32(dtrFila["Id_estado"].ToString()) == 0)
+					{
+						item.DefaultCellStyle.BackColor = Color.Red;
+					}
+				}
+
+			}
+		}
 
 		#endregion
 
@@ -447,6 +468,7 @@ namespace ControlDosimetro
 			Cursor = Cursors.Default;
 
 		}
+
 
 		#endregion
 

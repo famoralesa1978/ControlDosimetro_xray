@@ -381,8 +381,8 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.MantCliente:
-					//objFrm = new frmBusquedaEmpresa()
-					objFrm = new frmMantenedorCliente()
+					objFrm = new frmBusquedaEmpresa()
+					//objFrm = new frmMantenedorCliente()
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen,
@@ -844,8 +844,8 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.MantCliente:
-					//objFrm = new frmBusquedaEmpresa()
-					objFrm = new frmMantenedorCliente()
+					objFrm = new frmBusquedaEmpresa()
+					//objFrm = new frmMantenedorCliente()
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen,

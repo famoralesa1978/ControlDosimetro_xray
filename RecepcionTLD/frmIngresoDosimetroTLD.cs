@@ -673,12 +673,13 @@ namespace ControlDosimetro
 						intExcel = intExcel + 1;
 						strpathcopiarInforme = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + (intExcel-1).ToString() + ".xlsx";
 
+						string strpathcopiarInformeV1 = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + (intExcel).ToString() + ".xlsx";
 
 						strPath = strpathcopiarInforme;
-						strPathRespaldo = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + (intExcel - 1).ToString() +"_" + strFecha + ".xlsx";
+						strPathRespaldo = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + (intExcel).ToString() +"_" + strFecha + ".xlsx";
 
-						if (File.Exists(strPath))
-							File.Copy(strPath, strPathRespaldo, true);
+						if (File.Exists(strpathcopiarInformeV1))
+							File.Copy(strpathcopiarInformeV1, strPathRespaldo, true);
 
 						File.Copy(strpathcopiarInforme, targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + (intExcel).ToString() + ".xlsx", true);
 
@@ -774,6 +775,38 @@ namespace ControlDosimetro
 			btn_Guardar.Enabled = false;
 			Cursor = Cursors.Default;
 		}
+		private void btn_Eliminar_Click(object sender, EventArgs e)
+		{
+			pnl_Progreso.Visible = true;
+			pgb_Barra.Minimum = 0;
+			pgb_Barra.Maximum = grdDatos.RowCount;
+			pnl_Progreso.Refresh();
+			DataGridViewCheckBoxCell checkEliminar;
+			DataGridViewTextBoxCell txtnpelicula;
+
+			//N_Documento
+			for (int i = 0; i <= grdDatos.RowCount - 1; i++)
+			{
+				pgb_Barra.Value = i + 1;
+				pgb_Barra.Refresh();
+				checkEliminar = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["ColEliminar"];
+				txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["N_pelicula"];
+
+				if (Convert.ToBoolean(checkEliminar.Value) == true)
+				{
+					SqlCommand cmdValorMax = new SqlCommand();
+					DataSet dtValorMax;
+					cmdValorMax.CommandText = "pa_DosimetroTLD_del " + txtnpelicula.Value + ",'" + Clases.clsUsuario.Usuario + "'";
+					cmdValorMax.CommandType = CommandType.Text;
+					dtValorMax = Conectar.Listar(Clases.clsBD.BD, cmdValorMax);
+				}
+			}
+			btn_cargar_Click(null, null);
+			MessageBox.Show("Informacion esta listo para generar el documento.");
+
+			btn_Corregir.Enabled = true;
+			pnl_Progreso.Visible = false;
+		}
 
 
 		private void btn_Cliente_Click(object sender, EventArgs e)
@@ -814,6 +847,31 @@ namespace ControlDosimetro
 			bolInicio = false;
 		}
 
+
+		#endregion
+
+		#region "CheckBox"
+
+		private void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+			DataGridViewCheckBoxCell checkEliminar;
+			DataGridViewCheckBoxCell checkGenerado;
+			DataGridViewCheckBoxCell checkgenerar; 
+			for (int i = 0; i <= grdDatos.RowCount - 1; i++)
+			{
+				checkEliminar = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["ColEliminar"];
+				checkGenerado = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["chkGenerado"];
+				checkgenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["Generar"];
+				if ((bool)checkEliminar.Value == false && (int)checkGenerado.Value == 0)
+				{
+					checkgenerar.Value = (int)checkgenerar.Value == 1 ? 0 : 1;
+				}
+
+			}
+
+			Cursor = Cursors.Default;
+		}
 
 		#endregion
 
@@ -1255,36 +1313,5 @@ namespace ControlDosimetro
 
 		#endregion
 
-		private void btn_Eliminar_Click(object sender, EventArgs e)
-		{
-			pnl_Progreso.Visible = true;
-			pgb_Barra.Minimum = 0;
-			pgb_Barra.Maximum = grdDatos.RowCount;
-			pnl_Progreso.Refresh();
-			DataGridViewCheckBoxCell checkEliminar;
-			DataGridViewTextBoxCell txtnpelicula;
-
-			//N_Documento
-			for (int i = 0; i <= grdDatos.RowCount - 1; i++)
-			{
-				pgb_Barra.Value = i + 1;
-				pgb_Barra.Refresh();
-				checkEliminar = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["ColEliminar"];
-				txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["N_pelicula"];
-				
-				if (Convert.ToBoolean( checkEliminar.Value) == true){
-					SqlCommand cmdValorMax = new SqlCommand();
-					DataSet dtValorMax;
-					cmdValorMax.CommandText = "pa_DosimetroTLD_del " + txtnpelicula.Value + ",'" + Clases.clsUsuario.Usuario + "'";
-					cmdValorMax.CommandType = CommandType.Text;
-					dtValorMax = Conectar.Listar(Clases.clsBD.BD, cmdValorMax);
-				}
-			}
-			btn_cargar_Click(null, null);
-			MessageBox.Show("Informacion esta listo para generar el documento.");
-
-			btn_Corregir.Enabled = true;
-			pnl_Progreso.Visible = false;
-		}
 	}
 }
