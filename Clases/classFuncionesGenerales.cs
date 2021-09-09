@@ -199,6 +199,39 @@ namespace classFuncionesGenerales
 			dt.DefaultView.RowFilter = strFiltro;
 		}
 
+		public static void FiltroPersonal(ref DataGridView grdGrilla, string NombrePersonal, string Rut, string FecNac, int intEstado,int Id_Seccion)
+		{
+
+			string strFiltro = "";
+			DataTable dt = new DataTable();
+			BindingSource bs = new BindingSource();
+			bs.DataSource = grdGrilla.DataSource;
+			dt = ((DataView)(bs.DataSource)).Table;
+			//Rut, Nombres,Paterno,Maternos
+			strFiltro = !String.IsNullOrEmpty(Rut) ? "Rut like '%" + Rut + "%'" : "";
+			strFiltro = strFiltro + (!String.IsNullOrEmpty(NombrePersonal) ? "(Nombres + ' '+  Paterno+ ' '+Maternos) like '%" + NombrePersonal + "%'" : "");
+			strFiltro = strFiltro + (!String.IsNullOrEmpty(FecNac) ? "Fecha_Nac = '" + FecNac + "'" : "");
+			strFiltro = strFiltro + "id_Estado=" + intEstado.ToString();
+			strFiltro = strFiltro + "(Id_Seccion=" + Id_Seccion.ToString() + " or " + Id_Seccion.ToString() + "=0)";
+			dt.DefaultView.RowFilter = strFiltro;
+		}
+		public static void FiltroPersonal(ref DataGridView grdGrilla, string NombrePersonal, string Rut, int intEstado,int Id_Seccion)
+		{
+
+			string strFiltro = "";
+			DataTable dt = new DataTable();
+			BindingSource bs = new BindingSource();
+			bs.DataSource = grdGrilla.DataSource;
+			dt = ((DataView)(bs.DataSource)).Table;
+			//Rut, Nombres,Paterno,Maternos
+			strFiltro = !String.IsNullOrEmpty(Rut) ? "Rut like '%" + Rut + "%'" : "";
+			strFiltro = strFiltro + (!String.IsNullOrEmpty(NombrePersonal) ? " and (Nombres + ' '+  Paterno+ ' '+Maternos) like '%" + NombrePersonal + "%'" : "");
+			strFiltro = strFiltro + (!String.IsNullOrEmpty(strFiltro) ? " and " : "") + "  (id_Estado=" + intEstado.ToString()+ ")";
+			strFiltro = strFiltro + (!String.IsNullOrEmpty(strFiltro) ? " and " : "") + "  (Id_Seccion=" + Id_Seccion.ToString()+" or "+ Id_Seccion.ToString()+  "=0)";
+			dt.DefaultView.RowFilter = strFiltro;
+		}
+
+
 		public static void FiltroCliente(ref DataGridView grdGrilla, string intId_Cliente)
 		{
 

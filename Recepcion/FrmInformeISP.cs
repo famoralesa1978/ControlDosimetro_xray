@@ -42,7 +42,7 @@ namespace ControlDosimetro
 		const string headerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.header+xml";
 		const string footerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml";
 		//        XmlNamespaceManager nsManager;
-
+		bool bolDesdeCodigo = false;
 		#endregion
 
 		public FrmInformeISP(Int64 intId_Cliente)
@@ -154,7 +154,7 @@ namespace ControlDosimetro
 		{
 			SqlCommand cmd = new SqlCommand();
 			DataSet dt;
-			cmd.CommandText = " pa_DosimetroISP_Cliente_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue;
+			cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue +","+ cbx_id_seccion.SelectedValue;
 			cmd.CommandType = CommandType.Text;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -252,9 +252,10 @@ namespace ControlDosimetro
 			};
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmdSucursal);
-			cbx_Sucursal.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
-			cbx_Sucursal.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
-			cbx_Sucursal.DataSource = dt.Tables[0];
+			
+			cbx_Sucursal.DisplayMember = "Direccion";
+			cbx_Sucursal.ValueMember = "Id_sucursal";
+			cbx_Sucursal.DataSource = dt.Tables[0].DefaultView;
 
 		}
 
@@ -264,6 +265,18 @@ namespace ControlDosimetro
 			lbl_id_cliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
 		}
 
+		private void Cargar_Seccion()
+		{
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "SELECT seccion,id_seccion " +
+							" FROM tbl_seccion  WHERE Id_cliente= " + lbl_id_cliente.Text.ToString() + " and id_estado=1";
+			DataSet dt;
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+			cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
+			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
+			cbx_id_seccion.DataSource = dt.Tables[0];
+		}
 		#endregion
 
 		#region "button"
@@ -294,7 +307,10 @@ namespace ControlDosimetro
 		private void Btn_cargar_Click(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
+			bolDesdeCodigo = true;
 			Cargar_Sucursal();
+			Cargar_Seccion();
+			bolDesdeCodigo = false;
 			Listar_Personal();
 
 			Cursor = Cursors.Default;
@@ -443,10 +459,10 @@ namespace ControlDosimetro
 				//string strN_Documento = dt.Tables[0].Rows[idatos]["N_Documento"].ToString();
 				string strId_sucursal = dt.Tables[0].Rows[idatos]["Id_sucursal"].ToString();
 				String strArchivoCopiar = "";
-				strArchivoCopiar = targetPath + "Cliente" + lbl_id_cliente.Text + "_" + strDireccionEmpresa + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text + ".docx";
+				strArchivoCopiar = targetPath + "Cliente" + lbl_id_cliente.Text + "_" + strDireccionEmpresa + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text +"_"+ cbx_id_seccion.Text + ".docx";
 
 
-				strpathcopiar = targetPath + "cliente " + lbl_id_cliente.Text + "_" + strDireccionEmpresa + ".xlsx";
+				strpathcopiar = targetPath + "cliente " + lbl_id_cliente.Text + "_" + strDireccionEmpresa + "_" + cbx_id_seccion.Text + ".xlsx";
 
 				// process.Start("c:\Ejemplo de Carpeta con Espacios");
 				File.Copy(strpath, strpathcopiar, true);
@@ -1163,8 +1179,14 @@ namespace ControlDosimetro
 
 		private void Cbx_Sucursal_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			Listar_Personal();
+			if(!bolDesdeCodigo)
+				Listar_Personal();
 		}
 
+		private void cbx_id_seccion_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (!bolDesdeCodigo)
+				Listar_Personal();
+		}
 	}
 }

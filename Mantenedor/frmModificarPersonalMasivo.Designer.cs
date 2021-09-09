@@ -59,6 +59,8 @@
 			this.txt_RunPersonal = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.chk_AsignarTLD = new System.Windows.Forms.CheckBox();
+			this.lbl_id_seccion = new System.Windows.Forms.Label();
+			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
 			this.groupBox1.SuspendLayout();
 			this.grp_Grilla.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -317,6 +319,8 @@
 			// 
 			// grpPersonal
 			// 
+			this.grpPersonal.Controls.Add(this.lbl_id_seccion);
+			this.grpPersonal.Controls.Add(this.cbx_id_seccion);
 			this.grpPersonal.Controls.Add(this.chkActivo);
 			this.grpPersonal.Controls.Add(this.chk_FecNac);
 			this.grpPersonal.Controls.Add(this.picFiltrarpersonal);
@@ -327,7 +331,7 @@
 			this.grpPersonal.Enabled = false;
 			this.grpPersonal.Location = new System.Drawing.Point(8, 145);
 			this.grpPersonal.Name = "grpPersonal";
-			this.grpPersonal.Size = new System.Drawing.Size(839, 58);
+			this.grpPersonal.Size = new System.Drawing.Size(839, 65);
 			this.grpPersonal.TabIndex = 8;
 			this.grpPersonal.TabStop = false;
 			this.grpPersonal.Text = "Filtrar";
@@ -366,7 +370,7 @@
 			// 
 			// txt_NombrePersonal
 			// 
-			this.txt_NombrePersonal.Location = new System.Drawing.Point(320, 18);
+			this.txt_NombrePersonal.Location = new System.Drawing.Point(320, 13);
 			this.txt_NombrePersonal.MaxLength = 50;
 			this.txt_NombrePersonal.Name = "txt_NombrePersonal";
 			this.txt_NombrePersonal.Size = new System.Drawing.Size(219, 20);
@@ -376,7 +380,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(198, 22);
+			this.label5.Location = new System.Drawing.Point(198, 17);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(104, 13);
 			this.label5.TabIndex = 5;
@@ -384,7 +388,7 @@
 			// 
 			// txt_RunPersonal
 			// 
-			this.txt_RunPersonal.Location = new System.Drawing.Point(57, 19);
+			this.txt_RunPersonal.Location = new System.Drawing.Point(57, 14);
 			this.txt_RunPersonal.MaxLength = 10;
 			this.txt_RunPersonal.Name = "txt_RunPersonal";
 			this.txt_RunPersonal.Size = new System.Drawing.Size(100, 20);
@@ -411,6 +415,25 @@
 			this.chk_AsignarTLD.Text = "Asignar a todos al personal servicio TLD";
 			this.chk_AsignarTLD.UseVisualStyleBackColor = true;
 			this.chk_AsignarTLD.CheckedChanged += new System.EventHandler(this.chk_AsignarTLD_CheckedChanged);
+			// 
+			// lbl_id_seccion
+			// 
+			this.lbl_id_seccion.AutoSize = true;
+			this.lbl_id_seccion.Location = new System.Drawing.Point(4, 40);
+			this.lbl_id_seccion.Name = "lbl_id_seccion";
+			this.lbl_id_seccion.Size = new System.Drawing.Size(46, 13);
+			this.lbl_id_seccion.TabIndex = 19;
+			this.lbl_id_seccion.Text = "Sección";
+			// 
+			// cbx_id_seccion
+			// 
+			this.cbx_id_seccion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_id_seccion.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbx_id_seccion.FormattingEnabled = true;
+			this.cbx_id_seccion.Location = new System.Drawing.Point(58, 37);
+			this.cbx_id_seccion.Name = "cbx_id_seccion";
+			this.cbx_id_seccion.Size = new System.Drawing.Size(236, 21);
+			this.cbx_id_seccion.TabIndex = 18;
 			// 
 			// frmModificarPersonalMasivo
 			// 
@@ -477,5 +500,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColFechaNac;
 		private System.Windows.Forms.DataGridViewComboBoxColumn ColEstado;
 		private System.Windows.Forms.CheckBox chkActivo;
+		private System.Windows.Forms.Label lbl_id_seccion;
+		private System.Windows.Forms.ComboBox cbx_id_seccion;
 	}
 }

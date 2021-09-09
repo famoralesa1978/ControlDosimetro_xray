@@ -71,12 +71,14 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.dbd_Archivo = new System.Windows.Forms.FolderBrowserDialog();
-			this.rbtOiginal = new System.Windows.Forms.RadioButton();
-			this.rbtAlternativa = new System.Windows.Forms.RadioButton();
-			this.lbl_Original = new System.Windows.Forms.Label();
-			this.label7 = new System.Windows.Forms.Label();
 			this.lbl_Alternativa = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
+			this.lbl_Original = new System.Windows.Forms.Label();
+			this.rbtAlternativa = new System.Windows.Forms.RadioButton();
+			this.rbtOiginal = new System.Windows.Forms.RadioButton();
+			this.dbd_Archivo = new System.Windows.Forms.FolderBrowserDialog();
+			this.lbl_id_seccion = new System.Windows.Forms.Label();
+			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -233,9 +235,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.pnl_Progreso);
 			this.groupBox2.Controls.Add(this.grdDatos);
-			this.groupBox2.Location = new System.Drawing.Point(5, 201);
+			this.groupBox2.Location = new System.Drawing.Point(5, 225);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(1079, 339);
+			this.groupBox2.Size = new System.Drawing.Size(1079, 315);
 			this.groupBox2.TabIndex = 6;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Listado";
@@ -287,7 +289,7 @@
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-			this.grdDatos.Size = new System.Drawing.Size(1073, 320);
+			this.grdDatos.Size = new System.Drawing.Size(1073, 296);
 			this.grdDatos.TabIndex = 8;
 			this.grdDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdDatos_CellContentClick);
 			this.grdDatos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdDatos_CellFormatting);
@@ -521,16 +523,31 @@
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Ruta archivo";
 			// 
-			// rbtOiginal
+			// lbl_Alternativa
 			// 
-			this.rbtOiginal.AutoSize = true;
-			this.rbtOiginal.Location = new System.Drawing.Point(7, 19);
-			this.rbtOiginal.Name = "rbtOiginal";
-			this.rbtOiginal.Size = new System.Drawing.Size(60, 17);
-			this.rbtOiginal.TabIndex = 2;
-			this.rbtOiginal.TabStop = true;
-			this.rbtOiginal.Text = "Original";
-			this.rbtOiginal.UseVisualStyleBackColor = true;
+			this.lbl_Alternativa.AutoSize = true;
+			this.lbl_Alternativa.Location = new System.Drawing.Point(6, 100);
+			this.lbl_Alternativa.Name = "lbl_Alternativa";
+			this.lbl_Alternativa.Size = new System.Drawing.Size(22, 13);
+			this.lbl_Alternativa.TabIndex = 6;
+			this.lbl_Alternativa.Text = "dfff";
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(193, 44);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(0, 13);
+			this.label7.TabIndex = 5;
+			// 
+			// lbl_Original
+			// 
+			this.lbl_Original.AutoSize = true;
+			this.lbl_Original.Location = new System.Drawing.Point(6, 50);
+			this.lbl_Original.Name = "lbl_Original";
+			this.lbl_Original.Size = new System.Drawing.Size(22, 13);
+			this.lbl_Original.TabIndex = 4;
+			this.lbl_Original.Text = "dfff";
 			// 
 			// rbtAlternativa
 			// 
@@ -543,37 +560,44 @@
 			this.rbtAlternativa.Text = "Alternativa";
 			this.rbtAlternativa.UseVisualStyleBackColor = true;
 			// 
-			// lbl_Original
+			// rbtOiginal
 			// 
-			this.lbl_Original.AutoSize = true;
-			this.lbl_Original.Location = new System.Drawing.Point(6, 50);
-			this.lbl_Original.Name = "lbl_Original";
-			this.lbl_Original.Size = new System.Drawing.Size(22, 13);
-			this.lbl_Original.TabIndex = 4;
-			this.lbl_Original.Text = "dfff";
+			this.rbtOiginal.AutoSize = true;
+			this.rbtOiginal.Location = new System.Drawing.Point(7, 19);
+			this.rbtOiginal.Name = "rbtOiginal";
+			this.rbtOiginal.Size = new System.Drawing.Size(60, 17);
+			this.rbtOiginal.TabIndex = 2;
+			this.rbtOiginal.TabStop = true;
+			this.rbtOiginal.Text = "Original";
+			this.rbtOiginal.UseVisualStyleBackColor = true;
 			// 
-			// label7
+			// lbl_id_seccion
 			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(193, 44);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(0, 13);
-			this.label7.TabIndex = 5;
+			this.lbl_id_seccion.AutoSize = true;
+			this.lbl_id_seccion.Location = new System.Drawing.Point(5, 201);
+			this.lbl_id_seccion.Name = "lbl_id_seccion";
+			this.lbl_id_seccion.Size = new System.Drawing.Size(46, 13);
+			this.lbl_id_seccion.TabIndex = 17;
+			this.lbl_id_seccion.Text = "Sección";
 			// 
-			// lbl_Alternativa
+			// cbx_id_seccion
 			// 
-			this.lbl_Alternativa.AutoSize = true;
-			this.lbl_Alternativa.Location = new System.Drawing.Point(6, 100);
-			this.lbl_Alternativa.Name = "lbl_Alternativa";
-			this.lbl_Alternativa.Size = new System.Drawing.Size(22, 13);
-			this.lbl_Alternativa.TabIndex = 6;
-			this.lbl_Alternativa.Text = "dfff";
+			this.cbx_id_seccion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_id_seccion.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbx_id_seccion.FormattingEnabled = true;
+			this.cbx_id_seccion.Location = new System.Drawing.Point(59, 198);
+			this.cbx_id_seccion.Name = "cbx_id_seccion";
+			this.cbx_id_seccion.Size = new System.Drawing.Size(236, 21);
+			this.cbx_id_seccion.TabIndex = 16;
+			this.cbx_id_seccion.SelectedIndexChanged += new System.EventHandler(this.cbx_id_seccion_SelectedIndexChanged);
 			// 
 			// FrmInformeISP
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1084, 578);
+			this.Controls.Add(this.lbl_id_seccion);
+			this.Controls.Add(this.cbx_id_seccion);
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.cbx_Sucursal);
 			this.Controls.Add(this.label4);
@@ -653,5 +677,7 @@
 		private System.Windows.Forms.RadioButton rbtOiginal;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Label lbl_Alternativa;
+		private System.Windows.Forms.Label lbl_id_seccion;
+		private System.Windows.Forms.ComboBox cbx_id_seccion;
 	}
 }

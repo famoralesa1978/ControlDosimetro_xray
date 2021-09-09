@@ -58,6 +58,7 @@ namespace ControlDosimetro
 		{
 			bolDesdeCodigo = false;
 			AsignarPermiso();
+			
 			grdDatos.AutoGenerateColumns = false;
 		}
 
@@ -104,6 +105,7 @@ namespace ControlDosimetro
 				bolDesdeCodigo = false;
 				chk_AsignarTLD.Checked = false;
 				btn_cargarCliente.Enabled = true;
+				
 			}
 			else
 			{
@@ -147,6 +149,11 @@ namespace ControlDosimetro
 			comboboxColumn.DataSource = dt.Tables[0];
 			comboboxColumn.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			comboboxColumn.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
+
+			cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
+			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
+			cbx_id_seccion.DataSource = dt.Tables[0];
+
 		}
 
 		private void Cargar_CodServicio()
@@ -184,8 +191,7 @@ namespace ControlDosimetro
 		}
 
 
-
-		#endregion
+#endregion
 
 		#region "Textbox"
 
@@ -232,6 +238,7 @@ namespace ControlDosimetro
 
 				tsbGuardar.Visible = false;
 			}
+				
 
 			Cursor = Cursors.Default;
 
@@ -264,9 +271,9 @@ namespace ControlDosimetro
 
 			int intEstado = chkActivo.Checked ? 0 : 1;
 			if (chk_FecNac.Checked)
-				classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text, "01/01/1900", intEstado);
+				classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text, "01/01/1900", intEstado,(int)cbx_id_seccion.SelectedValue);
 			else
-				classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text, intEstado);
+				classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text, intEstado, (int)cbx_id_seccion.SelectedValue);
 			Cursor = Cursors.Default;
 		}
 
