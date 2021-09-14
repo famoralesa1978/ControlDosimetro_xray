@@ -268,7 +268,7 @@ namespace ControlDosimetro
 		private void Cargar_Seccion()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "SELECT seccion,id_seccion " +
+			cmd.CommandText = "Select  'Todos' as Seccion, 0 as id_seccion union all   SELECT seccion,id_seccion " +
 							" FROM tbl_seccion  WHERE Id_cliente= " + lbl_id_cliente.Text.ToString() + " and id_estado=1";
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);

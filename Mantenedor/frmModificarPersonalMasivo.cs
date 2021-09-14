@@ -68,6 +68,7 @@ namespace ControlDosimetro
 		{
 			ClaseFunciones.Cargar_Permiso(Clases.clsUsuario.Id_perfil, Id_Menu, ref Lectura, ref Nuevo, ref Modificacion, ref Eliminar);
 			tsbGuardar.Visible = Modificacion;
+			tsbPersonal.Visible = Nuevo;
 		}
 
 		private void Listar_Cliente(Int64 intCliente)
@@ -101,7 +102,7 @@ namespace ControlDosimetro
 				txt_Rut.Text = "";
 				txt_RazonSocial.Text = "";
 				grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = false;
-				tsbGuardar.Visible = false;
+				tsbPersonal.Visible= tsbGuardar.Visible = false;
 				bolDesdeCodigo = false;
 				chk_AsignarTLD.Checked = false;
 				btn_cargarCliente.Enabled = true;
@@ -116,6 +117,7 @@ namespace ControlDosimetro
 				txt_Rut.ReadOnly = true;
 				grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = true;
 				tsbGuardar.Visible = Modificacion;
+				tsbPersonal.Visible = Nuevo;
 				txt_RazonSocial.ReadOnly = true;
 				btn_cargarCliente.Enabled = false;
 				bolDesdeCodigo = true;
@@ -236,7 +238,7 @@ namespace ControlDosimetro
 			if (txt_RazonSocial.Text == "")
 			{
 
-				tsbGuardar.Visible = false;
+				tsbPersonal.Visible= tsbGuardar.Visible = false;
 			}
 				
 
@@ -476,8 +478,29 @@ namespace ControlDosimetro
 
 		}
 
+		private void tsbPersonal_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+
+			frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), 0);
+			frm.ShowDialog(this);
+			Listar_Personal();
+
+			Cursor = Cursors.Default;
+		}
 
 		#endregion
 
+		private void grdDatos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			if(e.RowIndex>-1)
+			{
+				frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), Convert.ToInt64(grdDatos.Rows[e.RowIndex].Cells[Id_Personal.Index].Value.ToString()));
+				frm.ShowDialog(this);
+				Listar_Personal();
+				btn_Filtro_Click(null,null);
+			}
+			
+		}
 	}
 }

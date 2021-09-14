@@ -50,7 +50,10 @@
 			this.ColEstado = new System.Windows.Forms.DataGridViewComboBoxColumn();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.tsbGuardar = new System.Windows.Forms.ToolStripButton();
+			this.tsbPersonal = new System.Windows.Forms.ToolStripButton();
 			this.grpPersonal = new System.Windows.Forms.GroupBox();
+			this.lbl_id_seccion = new System.Windows.Forms.Label();
+			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
 			this.chkActivo = new System.Windows.Forms.CheckBox();
 			this.chk_FecNac = new System.Windows.Forms.CheckBox();
 			this.picFiltrarpersonal = new System.Windows.Forms.PictureBox();
@@ -59,8 +62,6 @@
 			this.txt_RunPersonal = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.chk_AsignarTLD = new System.Windows.Forms.CheckBox();
-			this.lbl_id_seccion = new System.Windows.Forms.Label();
-			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
 			this.groupBox1.SuspendLayout();
 			this.grp_Grilla.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -208,6 +209,7 @@
 			this.grdDatos.TabIndex = 5;
 			this.grdDatos.VirtualMode = true;
 			this.grdDatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellClick);
+			this.grdDatos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellDoubleClick);
 			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
 			this.grdDatos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdDatos_DataBindingComplete);
@@ -299,7 +301,8 @@
 			// 
 			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbGuardar});
+            this.tsbGuardar,
+            this.tsbPersonal});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(859, 39);
@@ -316,6 +319,17 @@
 			this.tsbGuardar.Size = new System.Drawing.Size(36, 36);
 			this.tsbGuardar.ToolTipText = "Grabar";
 			this.tsbGuardar.Click += new System.EventHandler(this.tsbGuardar_Click);
+			// 
+			// tsbPersonal
+			// 
+			this.tsbPersonal.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbPersonal.Image = global::ControlDosimetro.Properties.Resources.Agregar;
+			this.tsbPersonal.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.tsbPersonal.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbPersonal.Name = "tsbPersonal";
+			this.tsbPersonal.Size = new System.Drawing.Size(36, 36);
+			this.tsbPersonal.Text = "Agregar personal";
+			this.tsbPersonal.Click += new System.EventHandler(this.tsbPersonal_Click);
 			// 
 			// grpPersonal
 			// 
@@ -335,6 +349,25 @@
 			this.grpPersonal.TabIndex = 8;
 			this.grpPersonal.TabStop = false;
 			this.grpPersonal.Text = "Filtrar";
+			// 
+			// lbl_id_seccion
+			// 
+			this.lbl_id_seccion.AutoSize = true;
+			this.lbl_id_seccion.Location = new System.Drawing.Point(4, 40);
+			this.lbl_id_seccion.Name = "lbl_id_seccion";
+			this.lbl_id_seccion.Size = new System.Drawing.Size(46, 13);
+			this.lbl_id_seccion.TabIndex = 19;
+			this.lbl_id_seccion.Text = "Sección";
+			// 
+			// cbx_id_seccion
+			// 
+			this.cbx_id_seccion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_id_seccion.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbx_id_seccion.FormattingEnabled = true;
+			this.cbx_id_seccion.Location = new System.Drawing.Point(58, 37);
+			this.cbx_id_seccion.Name = "cbx_id_seccion";
+			this.cbx_id_seccion.Size = new System.Drawing.Size(236, 21);
+			this.cbx_id_seccion.TabIndex = 18;
 			// 
 			// chkActivo
 			// 
@@ -416,25 +449,6 @@
 			this.chk_AsignarTLD.UseVisualStyleBackColor = true;
 			this.chk_AsignarTLD.CheckedChanged += new System.EventHandler(this.chk_AsignarTLD_CheckedChanged);
 			// 
-			// lbl_id_seccion
-			// 
-			this.lbl_id_seccion.AutoSize = true;
-			this.lbl_id_seccion.Location = new System.Drawing.Point(4, 40);
-			this.lbl_id_seccion.Name = "lbl_id_seccion";
-			this.lbl_id_seccion.Size = new System.Drawing.Size(46, 13);
-			this.lbl_id_seccion.TabIndex = 19;
-			this.lbl_id_seccion.Text = "Sección";
-			// 
-			// cbx_id_seccion
-			// 
-			this.cbx_id_seccion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_id_seccion.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbx_id_seccion.FormattingEnabled = true;
-			this.cbx_id_seccion.Location = new System.Drawing.Point(58, 37);
-			this.cbx_id_seccion.Name = "cbx_id_seccion";
-			this.cbx_id_seccion.Size = new System.Drawing.Size(236, 21);
-			this.cbx_id_seccion.TabIndex = 18;
-			// 
 			// frmModificarPersonalMasivo
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -502,5 +516,6 @@
 		private System.Windows.Forms.CheckBox chkActivo;
 		private System.Windows.Forms.Label lbl_id_seccion;
 		private System.Windows.Forms.ComboBox cbx_id_seccion;
+		private System.Windows.Forms.ToolStripButton tsbPersonal;
 	}
 }
