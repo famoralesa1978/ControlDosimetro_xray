@@ -211,7 +211,7 @@ namespace classFuncionesGenerales
 			strFiltro = !String.IsNullOrEmpty(Rut) ? "Rut like '%" + Rut + "%'" : "";
 			strFiltro = strFiltro + (!String.IsNullOrEmpty(NombrePersonal) ? "(Nombres + ' '+  Paterno+ ' '+Maternos) like '%" + NombrePersonal + "%'" : "");
 			strFiltro = strFiltro + (!String.IsNullOrEmpty(FecNac) ? "Fecha_Nac = '" + FecNac + "'" : "");
-			strFiltro = strFiltro + "id_Estado=" + intEstado.ToString();
+			strFiltro = strFiltro + (intEstado==3?"":( "id_Estado=" + intEstado.ToString()));
 			strFiltro = strFiltro + "(Id_Seccion=" + Id_Seccion.ToString() + " or " + Id_Seccion.ToString() + "=0)";
 			dt.DefaultView.RowFilter = strFiltro;
 		}
@@ -226,7 +226,8 @@ namespace classFuncionesGenerales
 			//Rut, Nombres,Paterno,Maternos
 			strFiltro = !String.IsNullOrEmpty(Rut) ? "Rut like '%" + Rut + "%'" : "";
 			strFiltro = strFiltro + (!String.IsNullOrEmpty(NombrePersonal) ? " and (Nombres + ' '+  Paterno+ ' '+Maternos) like '%" + NombrePersonal + "%'" : "");
-			strFiltro = strFiltro + (!String.IsNullOrEmpty(strFiltro) ? " and " : "") + "  (id_Estado=" + intEstado.ToString()+ ")";
+
+			strFiltro = strFiltro + (!String.IsNullOrEmpty(strFiltro) ? " and " : "") + (intEstado == 3 ? "" : "  (id_Estado=" + intEstado.ToString()+ ")");
 			strFiltro = strFiltro + (!String.IsNullOrEmpty(strFiltro) ? " and " : "") + "  (Id_Seccion=" + Id_Seccion.ToString()+" or "+ Id_Seccion.ToString()+  "=0)";
 			dt.DefaultView.RowFilter = strFiltro;
 		}

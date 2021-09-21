@@ -271,7 +271,7 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 
-			int intEstado = chkActivo.Checked ? 0 : 1;
+			int intEstado = rbtAmbos.Checked?3: rbtActivo.Checked?1 : 0;
 			if (chk_FecNac.Checked)
 				classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text, "01/01/1900", intEstado,(int)cbx_id_seccion.SelectedValue);
 			else
@@ -368,28 +368,31 @@ namespace ControlDosimetro
 		{
 			if (e.RowIndex > -1)
 			{
+				DataTable dt = new DataTable();
+				BindingSource bs = new BindingSource();
+				bs.DataSource = grdDatos.DataSource;
+				dt = ((DataView)(bs.DataSource)).Table;
+
 				if (e.ColumnIndex == ColServicio.Index)
 				{
-					grdDatos.Rows[e.RowIndex].Cells[ColServicio.Index].Value = ((DataTable)grdDatos.DataSource).Rows[e.RowIndex]["Id_CodServicio"];
-					((DataTable)grdDatos.DataSource).Rows[e.RowIndex].AcceptChanges();
+					dt.AcceptChanges();
 				}
 				else
 				if (e.ColumnIndex == ColSeccion.Index)
 				{
-					grdDatos.Rows[e.RowIndex].Cells[ColSeccion.Index].Value = ((DataTable)grdDatos.DataSource).Rows[e.RowIndex]["Id_Seccion"];
-					((DataTable)grdDatos.DataSource).Rows[e.RowIndex].AcceptChanges();
+					dt.AcceptChanges();
 				}
 				else
 				if (e.ColumnIndex == ColFechaNac.Index)
 				{
-					((DataTable)grdDatos.DataSource).Rows[e.RowIndex].AcceptChanges();
+					dt.AcceptChanges();
 				}
 				if (e.ColumnIndex == ColEstado.Index)
 				{
-					((DataTable)grdDatos.DataSource).Rows[e.RowIndex].AcceptChanges();
+					dt.AcceptChanges();
 				}
-				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].RejectChanges();
-				((DataTable)grdDatos.DataSource).Rows[e.RowIndex].SetModified();
+				dt.Rows[e.RowIndex].RejectChanges();
+				dt.Rows[e.RowIndex].SetModified();
 			}
 		}
 
@@ -416,11 +419,15 @@ namespace ControlDosimetro
 		private void tsbGuardar_Click(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
-			if (((DataTable)grdDatos.DataSource).GetChanges(DataRowState.Modified) != null)
+			DataTable dt = new DataTable();
+			BindingSource bs = new BindingSource();
+			bs.DataSource = grdDatos.DataSource;
+			dt = ((DataView)(bs.DataSource)).Table;
+			if (dt.GetChanges(DataRowState.Modified) != null)
 			{
 				SqlCommand cmd = new SqlCommand();
 				//foreach (DataRow dr in ((DataTable)grdDatos.DataSource).Rows)
-				foreach (DataRow dr in ((DataTable)grdDatos.DataSource).GetChanges(DataRowState.Modified).Rows)
+				foreach (DataRow dr in dt.GetChanges(DataRowState.Modified).Rows)
 				{
 					//	if (dr["Id_CodServicio"] != dr["Id_CodServicio",DataRowVersion.Original])
 					if (dr.RowState == DataRowState.Modified)
@@ -498,7 +505,6 @@ namespace ControlDosimetro
 				frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), Convert.ToInt64(grdDatos.Rows[e.RowIndex].Cells[Id_Personal.Index].Value.ToString()));
 				frm.ShowDialog(this);
 				Listar_Personal();
-				btn_Filtro_Click(null,null);
 			}
 			
 		}

@@ -329,6 +329,371 @@ namespace ControlDosimetro
 			return dtArchivo.Tables[0].Rows[0]["Glosa"].ToString();
 		}
 
+		private void btnGenerar_Click(object sender, EventArgs e)
+		{
+			SqlCommand cmd = new SqlCommand();
+			//	  SqlCommand cmd = new SqlCommand();
+			SqlCommand cmdpersonal = new SqlCommand();
+			//  SqlCommand cmdpersonal = new SqlCommand();
+			SqlCommand cmdperiodo = new SqlCommand();
+			//  SqlCommand cmdperiodo = new SqlCommand();
+
+			// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
+			DataGridViewCheckBoxCell checkGenerar;
+			DataGridViewCheckBoxCell checkCell;
+			DataGridViewCheckBoxCell chkcondosis;
+			DataGridViewTextBoxCell txtvalor;
+			DataGridViewTextBoxCell txtndocumento;
+			DataGridViewTextBoxCell txtnpelicula;
+			DataGridViewComboBoxCell cbxEstado;
+			DataGridViewTextBoxCell txtid_sucursal;
+			string strn_cliente;
+			string strid_personal;
+			string strid_dosimetro;
+			string strpath;
+			string strpathcopiar;
+			string strEstado;
+			btn_Guardar.Enabled = false;
+
+			SqlCommand cmdArchivo = new SqlCommand();
+			DataSet dtArchivo;
+			cmdArchivo.CommandText = "" +
+				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=6 order by orden ";
+			cmdArchivo.CommandType = CommandType.Text;
+			dtArchivo = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
+
+			DataSet dtformato;
+			cmdArchivo.CommandText = "" +
+				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=5 order by orden ";
+			cmdArchivo.CommandType = CommandType.Text;
+			dtformato = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
+			//string targetPath = @ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text;
+			string targetPath = "";
+
+			if (rbtOiginal.Checked)
+				targetPath = @dtArchivo.Tables[0].Rows[0]["Glosa"].ToString() + "Cliente " + lbl_id_cliente.Text;
+			else
+				targetPath = @"C:\\Doc_Xray\\" + "Cliente " + lbl_id_cliente.Text;
+
+
+			if (!System.IO.Directory.Exists(targetPath))
+			{
+				System.IO.Directory.CreateDirectory(targetPath);
+			}
+
+
+
+			//  targetPath = dtArchivo.Tables[0].Rows[0]["Glosa"].ToString();
+
+
+			// targetPath = ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text + "\\" + cbx_anno.Text;
+			targetPath = targetPath + "\\" + cbx_anno.Text;
+			if (!System.IO.Directory.Exists(targetPath))
+			{
+				System.IO.Directory.CreateDirectory(targetPath);
+			}
+
+			// targetPath = ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text + "\\" + cbx_anno.Text + "\\" + cbx_id_periodo.Text + "\\";
+			targetPath = targetPath + "\\" + cbx_id_periodo.Text + "\\";
+
+			if (!System.IO.Directory.Exists(targetPath))
+			{
+				System.IO.Directory.CreateDirectory(targetPath);
+			}
+			//Environment.CurrentDirectory = (targetPath);
+
+			if (rbtOiginal.Checked)
+				strpath = dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "cliente.xlsx";//Application.StartupPath.ToString(); 
+			else
+				strpath = @"C:\\Doc_Xray\\baseCliente\\Plantilla\\cliente.xlsx";
+
+
+
+			//**************carga periodo
+			DataSet dtPeriodo;
+			// SqlCommand cmdPeriodo = new SqlCommand();
+			SqlCommand cmdPeriodo = new SqlCommand
+			{
+				CommandText = "SELECT fecha_inicio,fecha_termino " +
+										" FROM conf_periodo " +
+										//"where mes =3 and anno=" + cbx_anno.Text;  
+										"WHERE  Id_Periodo= " + cbx_id_periodo.SelectedValue,
+				CommandType = CommandType.Text
+			};
+			dtPeriodo = Conectar.Listar(Clases.clsBD.BD, cmdPeriodo);
+			string strfecha_inicio = dtPeriodo.Tables[0].Rows[0]["fecha_inicio"].ToString();
+			string strfecha_termino = dtPeriodo.Tables[0].Rows[0]["fecha_termino"].ToString();
+			//**************carga cliente
+			//SqlCommand cmdCliente = new SqlCommand();
+			SqlCommand cmdCliente = new SqlCommand
+			{
+				CommandText = "pa_DosimetroISPGenerar_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue,
+
+				CommandType = CommandType.Text
+			};
+
+			//clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(lbl_id_cliente.Text.ToString()), ref lbl_rut_cliente, ref lbl_nombreCliente);
+
+			DataSet dt;
+			DataSet dtCliente;
+			dt = Conectar.Listar(Clases.clsBD.BD, cmdCliente);
+
+			string strArchivo = "";
+			if (rbtOiginal.Checked)
+				strArchivo = dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "Plantillaword.docx";
+			else
+				strArchivo = @"C:\\Doc_Xray\\baseCliente\\Plantilla\\Plantillaword.docx";
+
+
+			//   string strArchivo = ConfigurationManager.AppSettings["Archivo"] + "Plantillaword.docx";
+
+			int i;
+			for (int idatos = 0; idatos <= dt.Tables[0].Rows.Count - 1; idatos++)
+			{
+				#region "Proceso"
+				i = 0;
+				string strRunEmpresa = dt.Tables[0].Rows[idatos]["run"].ToString();
+				string strRazon_SocialEmpresa = dt.Tables[0].Rows[idatos]["Razon_Social"].ToString();
+				string strDireccionEmpresa = (int)cbx_Sucursal.SelectedValue==0? lbl_nombreCliente.Text:  dt.Tables[0].Rows[idatos]["Direccion"].ToString();
+				string strTelefonoEmpresa = dt.Tables[0].Rows[idatos]["Telefono"].ToString();
+				string strregionEmpresa = dt.Tables[0].Rows[idatos]["region"].ToString();
+				string strProvinciaEmpresa = dt.Tables[0].Rows[idatos]["Provincia"].ToString();
+				string strcomunaEmpresa = dt.Tables[0].Rows[idatos]["comuna"].ToString();
+				string strSeccion = (int)cbx_id_seccion.SelectedValue == 0 ? "" : cbx_id_seccion.Text;
+				//string strN_Documento = dt.Tables[0].Rows[idatos]["N_Documento"].ToString();
+			//	string strId_sucursal = dt.Tables[0].Rows[idatos]["Id_sucursal"].ToString();
+				String strArchivoCopiar = "";
+				strArchivoCopiar = targetPath + "Cliente" + lbl_id_cliente.Text + "_" + strDireccionEmpresa + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text + "_" + strSeccion + ".docx";
+
+
+				strpathcopiar = targetPath + "cliente " + lbl_id_cliente.Text + "_" + strDireccionEmpresa + "_" + cbx_id_seccion.Text + ".xlsx";
+
+				// process.Start("c:\Ejemplo de Carpeta con Espacios");
+				File.Copy(strpath, strpathcopiar, true);
+				//strRunEmpresa + "_" + cbx_id_periodo.Text + ".docx";
+				//*************************************
+
+
+				File.Copy(strArchivo, strArchivoCopiar, true);
+
+
+				int intfila = 2;
+
+				string[] data1;
+				string[] data2;
+				string[] data3;
+				string[] data4;
+
+				data1 = new string[] { strRazon_SocialEmpresa };
+				data2 = new string[] { "" };
+				data3 = new string[] { "" };
+				data4 = new string[] { "" };
+
+				Array.Resize(ref data1, 2);
+				Array.Resize(ref data2, 2);
+				Array.Resize(ref data3, 2);
+				Array.Resize(ref data4, 2);
+
+				data1[1] = "NOMBRE";
+				data2[1] = cbx_id_periodo.Text;
+				data3[1] = "N°DOSIMETROS";
+				data4[1] = "RUT";
+
+				pnl_Progreso.Visible = true;
+				pgb_Barra.Minimum = 0;
+				pgb_Barra.Maximum = grdDatos.RowCount;
+				pnl_Progreso.Refresh();
+				for (int intfilagrid = 0; intfilagrid <= grdDatos.RowCount - 1; intfilagrid++)
+				{
+					pgb_Barra.Value = i + 1;
+					pgb_Barra.Refresh();
+					checkGenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[intfilagrid].Cells["Generar"];
+					checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[intfilagrid].Cells["enviado"];
+					chkcondosis = (DataGridViewCheckBoxCell)grdDatos.Rows[intfilagrid].Cells["condosis"];
+					txtvalor = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["valor"];
+					txtndocumento = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["NDocumento"];
+					txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["n_pelicula"];
+					cbxEstado = (DataGridViewComboBoxCell)grdDatos.Rows[intfilagrid].Cells["Estado"];
+					txtid_sucursal = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["id_sucursal"];
+
+					if (cbxEstado.Value.ToString() != "0")
+					{
+						DataSet dtcombo;
+						SqlCommand cmdcombo = new SqlCommand
+						{
+							CommandText = " " +
+							"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 and Id_DetParametro= " + cbxEstado.Value.ToString() +
+							"order by orden ",
+							CommandType = CommandType.Text
+						};
+						dtcombo = Conectar.Listar(Clases.clsBD.BD, cmdcombo);
+						strEstado = dtcombo.Tables[0].Rows[0]["glosa"].ToString();
+					}
+					else
+						strEstado = "";
+					strn_cliente = grdDatos.Rows[intfilagrid].Cells["N_Cliente"].Value.ToString();
+					strid_personal = grdDatos.Rows[intfilagrid].Cells["id_personal"].Value.ToString();
+					strid_dosimetro = grdDatos.Rows[intfilagrid].Cells["id_dosimetro"].Value.ToString();
+
+					cmdpersonal.CommandText = "SELECT Rut,SUBSTRING(UPPER (Nombres), 1, 1) + SubSTRING (LOWER (Nombres), 2,len(Nombres)) Nombres, " +
+										"SUBSTRING(UPPER (Paterno), 1, 1) + SUbSTRING (LOWER (Paterno), 2,len(Paterno)) Paterno," +
+										"SUBSTRING(UPPER (Maternos), 1, 1) + SUbSTRING (LOWER (Maternos), 2,len(Maternos))Maternos," +
+										"Id_Seccion,p.Id_estado, " +
+							 " cd.glosa,profesion,Fecha_inicio,fecha_termino,Usuario,Fecha_agregado,getdate()as Fecha_Modificacion " +
+							 " FROM tbl_personal P inner join conf_detparametro cd on p.Id_sexo=cd.Id_DetParametro" +
+							 " inner join glo_profesion pro on pro.id_profesion=p.Id_profesion " +
+							 " WHERE Id_Personal= " + strid_personal.ToString() + " and id_cliente=" + lbl_id_cliente.Text +
+							 "";
+					dtCliente = Conectar.Listar(Clases.clsBD.BD, cmdpersonal);
+
+					//if (strId_sucursal == txtid_sucursal.Value.ToString())
+					//{
+					//}
+						#region "Genera  word y excel"
+						if (checkGenerar.Value.ToString() == "1")
+						{
+							//cmd.CommandText = "update tbl_dosimetria " +
+							//                      "set enviado=0" +
+							//                  " where id_dosimetro=" + strid_dosimetro;
+							//cmd.CommandType = CommandType.Text;
+
+							//Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
+
+							//cmd.CommandText = "pa_DosimetroIngreso_upd " + txtnpelicula.Value.ToString() + ",12,'Clases.clsUsuario.Usuario',''";
+							//cmd.CommandType = CommandType.StoredProcedure;
+							//Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
+						}
+						else
+							 if ((txtndocumento.Value.ToString() == "") && (checkGenerar.Value.ToString() == "0"))
+						{
+							// MessageBox.Show("Ingrese el n° de  Documento");						  
+							grdDatos.Rows[i].DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Red;
+							//Selected=true ;
+							i = grdDatos.RowCount;
+						}
+						else
+						{
+							grdDatos.Rows[i].DefaultCellStyle.SelectionBackColor = System.Drawing.Color.White;
+							if ((strid_dosimetro != "0")) //&& (checkGenerar.Value.ToString() == "1")					 
+							{
+								document = SpreadsheetDocument.Open(strpathcopiar, true);
+								wbPart = document.WorkbookPart;
+								string wsName = cbx_id_periodo.Text.Replace(" ", "").Replace("RI", "");//4ºT//1ºT|
+								UpdateValue(wsName, "A" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Nombres"].ToString(), 0, true);
+								UpdateValue(wsName, "B" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Paterno"].ToString(), 0, true);
+								UpdateValue(wsName, "C" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Maternos"].ToString(), 0, true);
+								UpdateValue(wsName, "D" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Rut"].ToString(), 0, true);
+								UpdateValue(wsName, "E" + (intfila).ToString(), strfecha_inicio.Replace("/", "-"), 0, true);
+								UpdateValue(wsName, "F" + (intfila).ToString(), strfecha_termino.Replace("/", "-"), 0, true);
+
+								UpdateValue(wsName, "G" + (intfila).ToString(), txtvalor.Value.ToString(), 0, true);
+								UpdateValue(wsName, "H" + (intfila).ToString(), "TRIMESTRAL", 0, true);
+								UpdateValue(wsName, "I" + (intfila).ToString(), strEstado, 0, true);
+								UpdateValue(wsName, "J" + (intfila).ToString(), "CUERPO ENTERO", 0, true);
+								UpdateValue(wsName, "K" + (intfila).ToString(), "FILMICO", 0, true);
+
+								UpdateValue(wsName, "L" + (intfila).ToString(), "3", 0, false);
+								UpdateValue(wsName, "M" + (intfila).ToString(), "Rayos X otros", 0, true);
+								UpdateValue(wsName, "N" + (intfila).ToString(), "X-RAY", 0, true);
+
+								UpdateValue(wsName, "O" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["glosa"].ToString(), 0, true);
+								UpdateValue(wsName, "P" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["profesion"].ToString(), 0, true);
+								////							  UpdateValue(wsName, "S" + (intfila + 2).ToString(), dtCliente.Tables[0].Rows[0]["telefono"].ToString(), 0, true);
+								UpdateValue(wsName, "S" + (intfila).ToString(), strTelefonoEmpresa, 0, true);//telefono
+								UpdateValue(wsName, "X" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Fecha_inicio"].ToString().Replace("/", "-"), 0, true);
+								//°
+
+								UpdateValue(wsName, "Y" + (intfila).ToString(), strRunEmpresa, 0, true);
+								UpdateValue(wsName, "Z" + (intfila).ToString(), strRazon_SocialEmpresa, 0, true);
+
+								UpdateValue(wsName, "AA" + (intfila).ToString(), strDireccionEmpresa.ToString(), 0, true);
+								UpdateValue(wsName, "AB" + (intfila).ToString(), strcomunaEmpresa, 0, true);
+								UpdateValue(wsName, "AC" + (intfila).ToString(), strProvinciaEmpresa, 0, true);
+								UpdateValue(wsName, "AD" + (intfila).ToString(), strregionEmpresa, 0, true);
+								UpdateValue(wsName, "AE" + (intfila).ToString(), strTelefonoEmpresa, 0, false);
+								document.Close();
+								cmd.CommandText = "update tbl_dosimetria " +
+																	"set enviado=1" +
+																" where id_dosimetro=" + strid_dosimetro;
+								cmd.CommandType = CommandType.Text;
+
+								Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+
+								string strParametro = String.Format("{0},{1},{2},''", txtnpelicula.Value.ToString(), "5", Clases.clsUsuario.Usuario);
+								cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + strParametro;
+								cmd.CommandType = CommandType.Text;
+								Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+
+								Array.Resize(ref data1, i + 3);
+								Array.Resize(ref data2, i + 3);
+								Array.Resize(ref data3, i + 3);
+								Array.Resize(ref data4, i + 3);
+
+								data1[i + 2] = dtCliente.Tables[0].Rows[0]["Nombres"].ToString() + " " + dtCliente.Tables[0].Rows[0]["Paterno"].ToString() + " " + dtCliente.Tables[0].Rows[0]["Maternos"].ToString();
+								if (chkcondosis.Value.ToString() == "0")
+									data2[i + 2] = strEstado;
+								else
+									data2[i + 2] = txtvalor.Value.ToString();
+								data3[i + 2] = txtnpelicula.Value.ToString();
+								data4[i + 2] = dtCliente.Tables[0].Rows[0]["Rut"].ToString();
+								// this.p
+
+								intfila = intfila + 1;
+								i = i + 1;
+							}
+
+						}
+
+
+
+						#endregion
+					
+				}
+				#region Update Document Bookmarks Openxml
+				strcampoMarcador = "empresa";
+
+				using (WordprocessingDocument doc = WordprocessingDocument.Open(strArchivoCopiar, true))
+				{
+					string strSemetre1 = "";
+					if (cbx_id_periodo.Text.Replace("º TRI", "") == "1")
+						strSemetre1 = "primer";
+					if (cbx_id_periodo.Text.Replace("º TRI", "") == "2")
+						strSemetre1 = "segundo";
+					if (cbx_id_periodo.Text.Replace("º TRI", "") == "3")
+						strSemetre1 = "tercer";
+					if (cbx_id_periodo.Text.Replace("º TRI", "") == "4")
+						strSemetre1 = "cuarto";
+
+					strcampoMarcador = "empresa";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strRazon_SocialEmpresa);
+					strcampoMarcador = "comuna";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strcomunaEmpresa);
+					strcampoMarcador = "anno";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), cbx_anno.Text);
+					strcampoMarcador = "semestre";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strSemetre1);
+
+
+
+
+				}
+				if (data1.Count() > 1)
+					WDAddTable(strArchivoCopiar, data1, data2, data3, data4);
+
+				#endregion
+				#endregion
+			}
+
+
+
+			MessageBox.Show("Informacion grabada y archivo generado \n Ubicación Archivo:" + targetPath);
+
+			btn_Guardar.Enabled = true;
+			pnl_Progreso.Visible = false;
+
+			Listar_Personal();
+		}
+
 		private void Btn_Guardar_Click(object sender, EventArgs e)
 		{
 			SqlCommand cmd = new SqlCommand();
@@ -431,6 +796,9 @@ namespace ControlDosimetro
 
 				CommandType = CommandType.Text
 			};
+
+			//clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(lbl_id_cliente.Text.ToString()), ref lbl_rut_cliente, ref lbl_nombreCliente);
+
 			DataSet dt;
 			DataSet dtCliente;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmdCliente);
@@ -1188,5 +1556,7 @@ namespace ControlDosimetro
 			if (!bolDesdeCodigo)
 				Listar_Personal();
 		}
+
+	
 	}
 }

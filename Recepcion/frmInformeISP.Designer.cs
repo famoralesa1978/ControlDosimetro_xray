@@ -79,6 +79,7 @@
 			this.dbd_Archivo = new System.Windows.Forms.FolderBrowserDialog();
 			this.lbl_id_seccion = new System.Windows.Forms.Label();
 			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
+			this.btnGenerar = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -591,11 +592,23 @@
 			this.cbx_id_seccion.TabIndex = 16;
 			this.cbx_id_seccion.SelectedIndexChanged += new System.EventHandler(this.cbx_id_seccion_SelectedIndexChanged);
 			// 
+			// btnGenerar
+			// 
+			this.btnGenerar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.btnGenerar.Location = new System.Drawing.Point(613, 547);
+			this.btnGenerar.Name = "btnGenerar";
+			this.btnGenerar.Size = new System.Drawing.Size(139, 23);
+			this.btnGenerar.TabIndex = 18;
+			this.btnGenerar.Text = "Generar Archivo ISP";
+			this.btnGenerar.UseVisualStyleBackColor = true;
+			this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
+			// 
 			// FrmInformeISP
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1084, 578);
+			this.Controls.Add(this.btnGenerar);
 			this.Controls.Add(this.lbl_id_seccion);
 			this.Controls.Add(this.cbx_id_seccion);
 			this.Controls.Add(this.groupBox3);
@@ -679,5 +692,6 @@
 		private System.Windows.Forms.Label lbl_Alternativa;
 		private System.Windows.Forms.Label lbl_id_seccion;
 		private System.Windows.Forms.ComboBox cbx_id_seccion;
+		private System.Windows.Forms.Button btnGenerar;
 	}
 }
