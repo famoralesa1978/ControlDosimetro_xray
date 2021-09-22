@@ -215,6 +215,20 @@ namespace classFuncionesGenerales
 			strFiltro = strFiltro + "(Id_Seccion=" + Id_Seccion.ToString() + " or " + Id_Seccion.ToString() + "=0)";
 			dt.DefaultView.RowFilter = strFiltro;
 		}
+
+		public static DataSet FiltroPersonal(int intIdCliente,string NombrePersonal, string Rut, string FecNac, int intEstado, int Id_Seccion)
+		{
+			DataSet dt = new DataSet();
+			clsConectorSqlServer Conectar = new clsConectorSqlServer();
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = String.Format( "pa_ListarPersonalFiltro_sel {0},'{1}','{2}','{3}',{4},{5}",intIdCliente.ToString(), NombrePersonal, Rut,FecNac, intEstado,Id_Seccion);
+			cmd.CommandType = CommandType.Text;
+
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+			return dt;
+		}
+
 		public static void FiltroPersonal(ref DataGridView grdGrilla, string NombrePersonal, string Rut, int intEstado,int Id_Seccion)
 		{
 
@@ -225,9 +239,9 @@ namespace classFuncionesGenerales
 			dt = ((DataView)(bs.DataSource)).Table;
 			//Rut, Nombres,Paterno,Maternos
 			strFiltro = !String.IsNullOrEmpty(Rut) ? "Rut like '%" + Rut + "%'" : "";
-			strFiltro = strFiltro + (!String.IsNullOrEmpty(NombrePersonal) ? " and (Nombres + ' '+  Paterno+ ' '+Maternos) like '%" + NombrePersonal + "%'" : "");
+			strFiltro = strFiltro + (!String.IsNullOrEmpty(strFiltro) ? " and " : "") + (!String.IsNullOrEmpty(NombrePersonal) ? "  (Nombres + ' '+  Paterno+ ' '+Maternos) like '%" + NombrePersonal + "%'" : "");
 
-			strFiltro = strFiltro + (!String.IsNullOrEmpty(strFiltro) ? " and " : "") + (intEstado == 3 ? "" : "  (id_Estado=" + intEstado.ToString()+ ")");
+			strFiltro = strFiltro + (!String.IsNullOrEmpty(strFiltro)&& intEstado != 3 ? " and " : "") + (intEstado == 3 ? "" : "  (id_Estado=" + intEstado.ToString()+ ")");
 			strFiltro = strFiltro + (!String.IsNullOrEmpty(strFiltro) ? " and " : "") + "  (Id_Seccion=" + Id_Seccion.ToString()+" or "+ Id_Seccion.ToString()+  "=0)";
 			dt.DefaultView.RowFilter = strFiltro;
 		}

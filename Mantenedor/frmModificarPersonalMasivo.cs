@@ -270,12 +270,15 @@ namespace ControlDosimetro
 		private void picFiltrarpersonal_Click(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
-
-			int intEstado = rbtAmbos.Checked?3: rbtActivo.Checked?1 : 0;
+			DataSet ds;
+			int intEstado = rbtAmbos.Checked?-1: rbtActivo.Checked?1 : 0;
+			int intCliente = String.IsNullOrEmpty(txt_ref_cliente.Text) ? 0 : Convert.ToInt16(txt_ref_cliente.Text);
 			if (chk_FecNac.Checked)
-				classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text, "01/01/1900", intEstado,(int)cbx_id_seccion.SelectedValue);
+				ds=classFuncionesGenerales.Filtro.FiltroPersonal(intCliente, txt_NombrePersonal.Text, txt_RunPersonal.Text, "01/01/1900", intEstado,(int)cbx_id_seccion.SelectedValue);
 			else
-				classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text, intEstado, (int)cbx_id_seccion.SelectedValue);
+				ds = classFuncionesGenerales.Filtro.FiltroPersonal(intCliente, txt_NombrePersonal.Text, txt_RunPersonal.Text, "", intEstado, (int)cbx_id_seccion.SelectedValue);
+
+			grdDatos.DataSource = ds.Tables[0];
 			Cursor = Cursors.Default;
 		}
 
@@ -371,7 +374,7 @@ namespace ControlDosimetro
 				DataTable dt = new DataTable();
 				BindingSource bs = new BindingSource();
 				bs.DataSource = grdDatos.DataSource;
-				dt = ((DataView)(bs.DataSource)).Table;
+				dt = (DataTable)(bs.DataSource);
 
 				if (e.ColumnIndex == ColServicio.Index)
 				{
@@ -422,7 +425,8 @@ namespace ControlDosimetro
 			DataTable dt = new DataTable();
 			BindingSource bs = new BindingSource();
 			bs.DataSource = grdDatos.DataSource;
-			dt = ((DataView)(bs.DataSource)).Table;
+			dt = ((DataTable)(bs.DataSource));
+
 			if (dt.GetChanges(DataRowState.Modified) != null)
 			{
 				SqlCommand cmd = new SqlCommand();
@@ -475,10 +479,7 @@ namespace ControlDosimetro
 					}
 
 				}
-				string strIdCliente = txt_ref_cliente.Text;
-				btn_Filtro_Click(null, null);
-				txt_ref_cliente.Text = strIdCliente;
-				btn_cargarCliente_Click(null,null);
+				picFiltrarpersonal_Click(null, null);
 			}
 
 			Cursor = Cursors.Default;

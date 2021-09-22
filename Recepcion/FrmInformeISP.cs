@@ -68,7 +68,7 @@ namespace ControlDosimetro
 			AsignarEvento();
 			Cargar_Cliente(intId_Cliente);
 			Cargar_Anno();
-			btn_Guardar.Visible = false;
+			btnGenerar.Visible = false;
 			pnl_Progreso.Visible = false;
 			lbl_Original.Text = RutaArchivo().Replace("\\", "/");
 			lbl_Alternativa.Text = "C:/Doc_Xray/";
@@ -173,7 +173,7 @@ namespace ControlDosimetro
 
 			if (dt.Tables[0].Rows.Count == 0)
 			{
-				btn_Guardar.Visible = false;
+				btnGenerar.Visible = false;
 				LimpiarFormulario(3);
 				grdDatos.DataSource = dt.Tables[0];
 				MessageBox.Show("No se han cargado ningun personal");
@@ -181,7 +181,7 @@ namespace ControlDosimetro
 			else
 			{
 				LimpiarFormulario(4);
-				btn_Guardar.Visible = true;
+				btnGenerar.Visible = true;
 				grdDatos.DefaultCellStyle.BackColor = System.Drawing.Color.White;
 				grdDatos.DataSource = dt.Tables[0];
 			}
@@ -353,7 +353,7 @@ namespace ControlDosimetro
 			string strpath;
 			string strpathcopiar;
 			string strEstado;
-			btn_Guardar.Enabled = false;
+			btnGenerar.Enabled = false;
 
 			SqlCommand cmdArchivo = new SqlCommand();
 			DataSet dtArchivo;
@@ -688,7 +688,7 @@ namespace ControlDosimetro
 
 			MessageBox.Show("Informacion grabada y archivo generado \n Ubicación Archivo:" + targetPath);
 
-			btn_Guardar.Enabled = true;
+			btnGenerar.Enabled = true;
 			pnl_Progreso.Visible = false;
 
 			Listar_Personal();
@@ -718,7 +718,7 @@ namespace ControlDosimetro
 			string strpath;
 			string strpathcopiar;
 			string strEstado;
-			btn_Guardar.Enabled = false;
+			btnGenerar.Enabled = false;
 
 			SqlCommand cmdArchivo = new SqlCommand();
 			DataSet dtArchivo;
@@ -1051,7 +1051,7 @@ namespace ControlDosimetro
 
 			MessageBox.Show("Informacion grabada y archivo generado \n Ubicación Archivo:" + targetPath);
 
-			btn_Guardar.Enabled = true;
+			btnGenerar.Enabled = true;
 			pnl_Progreso.Visible = false;
 
 			Listar_Personal();

@@ -461,7 +461,7 @@
 			// btn_Guardar
 			// 
 			this.btn_Guardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Guardar.Location = new System.Drawing.Point(300, 547);
+			this.btn_Guardar.Location = new System.Drawing.Point(793, 546);
 			this.btn_Guardar.Name = "btn_Guardar";
 			this.btn_Guardar.Size = new System.Drawing.Size(139, 23);
 			this.btn_Guardar.TabIndex = 7;
@@ -595,7 +595,7 @@
 			// btnGenerar
 			// 
 			this.btnGenerar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btnGenerar.Location = new System.Drawing.Point(613, 547);
+			this.btnGenerar.Location = new System.Drawing.Point(304, 547);
 			this.btnGenerar.Name = "btnGenerar";
 			this.btnGenerar.Size = new System.Drawing.Size(139, 23);
 			this.btnGenerar.TabIndex = 18;
