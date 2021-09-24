@@ -339,6 +339,12 @@
     <Compile Include="Mantenedor\frmMantenedorCliente.Designer.cs">
       <DependentUpon>frmMantenedorCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mantenedor\frmMantenedorSeccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmMantenedorSeccion.Designer.cs">
+      <DependentUpon>frmMantenedorSeccion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mantenedor\Sistema\frmMantVersionesSistema.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -717,6 +723,9 @@
     <EmbeddedResource Include="Mantenedor\frmMantenedorCliente.resx">
       <DependentUpon>frmMantenedorCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmMantenedorSeccion.resx">
+      <DependentUpon>frmMantenedorSeccion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmModificarPersonalMasivo.resx">
       <DependentUpon>frmModificarPersonalMasivo.cs</DependentUpon>
     </EmbeddedResource>
@@ -995,6 +1004,8 @@
     <Content Include="Libreria\DocumentFormat.OpenXml.dll" />
     <Content Include="Libreria\GridExtension.dll" />
     <Content Include="Libreria\LibAdmSistema.dll" />
+    <None Include="Resources\Modify-32.png" />
+    <None Include="Resources\Modify-24.png" />
     <None Include="Resources\Verify_16.png" />
     <None Include="Resources\Verify_32.png" />
     <None Include="Resources\Verify_24.png" />

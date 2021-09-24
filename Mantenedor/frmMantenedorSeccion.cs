@@ -1,0 +1,360 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using dllConectorMysql;
+using dllLibreriaEvento;
+using dllLibreriaMysql;
+using System.Data.SqlClient;
+using System.Data.Sql;
+
+namespace ControlDosimetro
+{
+	public partial class frmMantenedorSeccion : Form
+	{
+		#region "Definicion variable"
+
+		TextBox txtBox = new TextBox();
+		bool Lectura;
+		bool Nuevo;
+		bool Modificacion;
+		bool Eliminar;
+
+
+		public int Id_Menu { get; private set; }
+
+		public object[] Parametros
+		{
+			set
+			{
+				if (value != null)
+				{
+					Id_Menu = (int)value[0];
+				}
+			}
+		}
+
+		enum ConfGrilla : int
+		{
+			id = 0,
+			descripcion = 1,
+			Id_estado = 2
+		};
+
+		clsConectorSqlServer Conectar = new clsConectorSqlServer();
+		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
+		clsEventoControl ClaseEvento = new clsEventoControl();
+		dllLibreriaMysql.clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
+		classFuncionesBD.ClsFunciones ClaseFunciones = new classFuncionesBD.ClsFunciones();
+
+		#endregion
+
+		#region "Inicio"
+
+		public frmMantenedorSeccion()
+		{
+			InitializeComponent();
+			
+		}
+
+		private void frmMantenedorSeccion_Load(object sender, EventArgs e)
+		{
+			scPrincipal.Panel2Collapsed = true;
+			AsignarPermiso();
+			Cargar_Reporte();
+			Cargar_Estado();
+			tsbGuardar.Enabled = false;
+			dgvGrilla.AutoGenerateColumns = false;
+			CargarGrilla();
+		}
+
+		#endregion
+
+		#region Procedimiento
+
+		private void Cargar_Reporte()
+		{
+			ToolStripMenuItem tsiMenu;
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "pa_ListarReporte_Sel " + Id_Menu.ToString();
+			DataSet dt;
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			if (dt == null)
+				tsdReporte.Visible = false;
+			else
+			{
+				tsdReporte.Visible = dt.Tables[0].Rows.Count == 0 ? false : true;
+				if (dt.Tables[0].Rows.Count > 0)
+				{
+					for (int intFila = 0; intFila <= dt.Tables[0].Rows.Count - 1; intFila++)
+					{
+						tsiMenu = new ToolStripMenuItem();
+						tsiMenu.Text = dt.Tables[0].Rows[intFila]["Nombre"].ToString();
+						tsiMenu.Name = dt.Tables[0].Rows[intFila]["nameMenu"].ToString();
+						tsiMenu.Tag = dt.Tables[0].Rows[intFila]["N_Reporte"].ToString();
+						tsiMenu.Click += new EventHandler(this.LLamadoReporte_Click);
+
+						tsdReporte.DropDownItems.Add(tsiMenu);
+					}
+				}
+			}
+
+		}
+
+		private void LLamadoReporte_Click(object sender, EventArgs e)
+		{
+			MDIPrincipal.LlamadaReporte(Convert.ToUInt16(((System.Windows.Forms.ToolStripItem)sender).Tag.ToString()));
+
+		}
+
+		private void AsignarPermiso()
+		{
+			ClaseFunciones.Cargar_Permiso(Clases.clsUsuario.Id_perfil, Id_Menu, ref Lectura, ref Nuevo, ref Modificacion, ref Eliminar);
+			tsbAgregar.Visible = Nuevo;
+			tsbGuardar.Visible = Nuevo || Modificacion;
+			tsmEliminar.Visible = Eliminar;
+		}
+
+		private void Cargar_Estado()
+		{
+			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_id_estado_Buscar, ref cbx_id_estado_Buscar);
+			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_Id_estado, ref cbx_Id_estado);
+		}
+	
+		private void LimpiarFormulario()
+		{
+			txt_Descripcion.Clear();
+			txt_Id_perfil.Clear();
+			cbx_Id_estado.SelectedIndex = 0;
+			btn_Guardar.Enabled = Modificacion || Nuevo;
+			tsbGuardar.Visible = Modificacion || Nuevo;
+		}
+	
+		private void Grabar()
+		{
+			Boolean bolResult;
+			bolResult = false;
+            string strMensaje="";
+
+            ClaseComun.ValidarFormulario(Clases.clsBD.BD, tbl_seccion, ref bolResult,ref strMensaje);
+            if (!bolResult)
+            {
+                classFuncionesGenerales.mensajes.MensajeError(strMensaje);
+                return;
+            }
+
+            if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+			{
+				if ((tssEstado.Text == "Nuevo") && (txt_Id_perfil.Text == "0"))
+				{
+					ClaseComun.Insertar(Clases.clsBD.BD, tbl_seccion, ref bolResult);
+                    if (bolResult == true)
+					{
+						CargarGrilla();
+						MessageBox.Show("Dato Guardado");
+					}
+				}
+				else
+				if (tssEstado.Text == "Modificar")
+				{
+					ClaseComun.Modificar(Clases.clsBD.BD, tbl_seccion, ref bolResult);
+					if (bolResult == true)
+					{
+						CargarGrilla();
+						MessageBox.Show("Dato modificado");
+					}
+				}
+			}
+		}
+
+		private void CargarGrilla()
+		{
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "SELECT  [Id_perfil] as id,Descripcion,Id_estado FROM [dbo].[tbl_perfil]  where id_estado= " + cbx_id_estado_Buscar.SelectedValue + "  order by Descripcion";
+
+			cmd.CommandType = CommandType.Text;
+
+			DataSet dt;
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+			dgvGrilla.DataSource = dt.Tables[0];
+		}
+
+		private void LlamadoAModificar(int intFila)
+		{
+			DataTable dt = (DataTable)dgvGrilla.DataSource;
+			DataRow currentRow = dt.Rows[intFila];
+			txt_Id_perfil.Text = currentRow[ConfGrilla.id.ToString()].ToString();
+			txt_Descripcion.Text = currentRow[ConfGrilla.descripcion.ToString()].ToString();
+			cbx_Id_estado.SelectedValue = currentRow[ConfGrilla.Id_estado.ToString()].ToString();
+			tssEstado.Text = "Modificar";
+			if (txt_Id_perfil.Text == "1")
+			{
+				btn_Guardar.Enabled = Modificacion || Nuevo;
+				tsbGuardar.Visible = Modificacion || Nuevo;
+			}
+			else
+			{
+				btn_Guardar.Enabled = Modificacion || Nuevo;
+				tsbGuardar.Enabled = Modificacion || Nuevo;
+			}
+			scPrincipal.Panel2Collapsed = false;
+		}
+
+		#endregion
+
+		#region " grilla"
+
+		private void dgvGrilla_Paint(object sender, PaintEventArgs e)
+		{
+			int columnIndex = 0;
+			Point headerCellLocation = this.dgvGrilla.GetCellDisplayRectangle(columnIndex, -1, true).Location;
+			txtBox.Location = new Point(headerCellLocation.X, headerCellLocation.Y + 20);
+			txtBox.BackColor = Color.AliceBlue;
+			txtBox.Width = Colperfil1.Width;
+			txtBox.TextChanged += new EventHandler(TextBox_Changed);
+			dgvGrilla.Controls.Add(txtBox);
+		}
+
+		private void dgvGrilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			int intFila = e.RowIndex;
+			LlamadoAModificar(intFila);
+		}
+
+		private void TextBox_Changed(object sender, EventArgs e)
+		{
+			BindingSource bs = new BindingSource();
+			bs.DataSource = dgvGrilla.DataSource;
+			bs.Filter = "Descripcion like '%" + (sender as TextBox).Text + "%'";
+			dgvGrilla.DataSource = bs;
+		}
+
+		#endregion
+
+		#region "boton"
+		private void btn_Limpiar_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+
+			LimpiarFormulario();
+			tssEstado.Text = "Nuevo";
+			txt_Id_perfil.Text = "0";
+
+			Cursor = Cursors.Default;
+		}
+
+		private void btn_Buscar_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+
+			CargarGrilla();
+
+			Cursor = Cursors.Default;
+		}
+
+		private void btn_Guardar_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+
+			Grabar();
+			LimpiarFormulario();
+			tssEstado.Text = "Nuevo";
+			txt_Id_perfil.Text = "0";
+
+			Cursor = Cursors.Default;
+		}
+
+		private void btn_Minimizar_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+
+			scPrincipal.Panel2Collapsed = true;
+			tsbGuardar.Enabled = false;
+
+			Cursor = Cursors.Default;
+		}
+
+		private void tsmEliminar_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+
+			if (MessageBox.Show("¿Desea Eliminar la información?", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+			{
+				DataTable dt = ((DataTable)((BindingSource)((BindingSource)dgvGrilla.DataSource).DataSource).DataSource);
+				DataRow currentRow = dt.Rows[dgvGrilla.CurrentRow.Index];
+				SqlCommand cmd = new SqlCommand();
+				cmd.CommandText = "pa_Perfil_del " + currentRow[ConfGrilla.id.ToString()].ToString();
+
+				cmd.CommandType = CommandType.Text;
+
+				DataSet dt1;
+				dt1 = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+				MessageBox.Show(dt1.Tables[0].Rows[0][1].ToString());
+				if (dt1.Tables[0].Rows[0][0].ToString() == "0")
+					CargarGrilla();
+			}
+
+			Cursor = Cursors.Default;
+		}
+
+		private void tsmActualizar_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+
+			LlamadoAModificar(dgvGrilla.CurrentRow.Index);
+
+			Cursor = Cursors.Default;
+		}
+
+		#endregion
+
+		#region Barra
+
+		private void tsbGuardar_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+
+			Grabar();
+
+			Cursor = Cursors.Default;
+		}
+		private void tsbAgregar_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+
+			if (scPrincipal.Panel2Collapsed == true)
+				scPrincipal.Panel2Collapsed = false;
+
+			if (scPrincipal.Panel2Collapsed == false)
+			{
+				tssEstado.Text = "Nuevo";
+				tsbGuardar.Enabled = true;
+				LimpiarFormulario();
+				txt_Id_perfil.Text = "0";
+			}
+			else
+			{
+				tssEstado.Text = "";
+				txt_Id_perfil.Text = "";
+			}
+
+			Cursor = Cursors.Default;
+
+		}
+
+
+		#endregion
+
+		private void dgvGrilla_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+		{
+			txtBox.Width = Colperfil1.Width;
+		}
+	}
+}

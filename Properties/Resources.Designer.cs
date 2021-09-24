@@ -361,6 +361,26 @@ namespace ControlDosimetro.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Modify_24 {
+            get {
+                object obj = ResourceManager.GetObject("Modify_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Modify_32 {
+            get {
+                object obj = ResourceManager.GetObject("Modify_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Confirmación.
         /// </summary>
         public static string msgCaptionConfirmacion {

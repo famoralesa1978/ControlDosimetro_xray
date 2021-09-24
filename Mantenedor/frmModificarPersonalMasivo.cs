@@ -307,6 +307,12 @@ namespace ControlDosimetro
 
 		private void grdDatos_CellClick(object sender, DataGridViewCellEventArgs e)
 		{
+			if (e.ColumnIndex == colMod.Index)
+			{
+				frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), Convert.ToInt64(grdDatos.Rows[e.RowIndex].Cells[Id_Personal.Index].Value.ToString()));
+				frm.ShowDialog(this);
+			}else
+
 			if (e.ColumnIndex == ColFechaNac.Index)
 			{
 				dateTimePicker1 = new DateTimePicker();
@@ -371,31 +377,17 @@ namespace ControlDosimetro
 		{
 			if (e.RowIndex > -1)
 			{
-				DataTable dt = new DataTable();
-				BindingSource bs = new BindingSource();
-				bs.DataSource = grdDatos.DataSource;
-				dt = (DataTable)(bs.DataSource);
+				if (e.ColumnIndex == ColServicio.Index || e.ColumnIndex == ColSeccion.Index || e.ColumnIndex == ColFechaNac.Index || e.ColumnIndex == ColEstado.Index)
+				{
+					DataTable dt = new DataTable();
+					BindingSource bs = new BindingSource();
+					bs.DataSource = grdDatos.DataSource;
+					dt = (DataTable)(bs.DataSource);
 
-				if (e.ColumnIndex == ColServicio.Index)
-				{
-					dt.AcceptChanges();
+					dt.Rows[e.RowIndex].AcceptChanges();
+					dt.Rows[e.RowIndex].SetModified();
 				}
-				else
-				if (e.ColumnIndex == ColSeccion.Index)
-				{
-					dt.AcceptChanges();
-				}
-				else
-				if (e.ColumnIndex == ColFechaNac.Index)
-				{
-					dt.AcceptChanges();
-				}
-				if (e.ColumnIndex == ColEstado.Index)
-				{
-					dt.AcceptChanges();
-				}
-				dt.Rows[e.RowIndex].RejectChanges();
-				dt.Rows[e.RowIndex].SetModified();
+				
 			}
 		}
 
@@ -431,7 +423,7 @@ namespace ControlDosimetro
 			{
 				SqlCommand cmd = new SqlCommand();
 				//foreach (DataRow dr in ((DataTable)grdDatos.DataSource).Rows)
-				foreach (DataRow dr in dt.GetChanges(DataRowState.Modified).Rows)
+				foreach (DataRow dr in dt.Rows)
 				{
 					//	if (dr["Id_CodServicio"] != dr["Id_CodServicio",DataRowVersion.Original])
 					if (dr.RowState == DataRowState.Modified)
@@ -499,15 +491,5 @@ namespace ControlDosimetro
 
 		#endregion
 
-		private void grdDatos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-		{
-			if(e.RowIndex>-1)
-			{
-				frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), Convert.ToInt64(grdDatos.Rows[e.RowIndex].Cells[Id_Personal.Index].Value.ToString()));
-				frm.ShowDialog(this);
-				Listar_Personal();
-			}
-			
-		}
 	}
 }
