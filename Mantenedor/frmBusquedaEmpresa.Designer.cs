@@ -54,6 +54,7 @@
 			this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cmsPopup = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmModificar = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.tsbAgregarCliente = new System.Windows.Forms.ToolStripButton();
 			this.tsbEmail = new System.Windows.Forms.ToolStripButton();
@@ -62,7 +63,7 @@
 			this.tsbIngresoDosimetro = new System.Windows.Forms.ToolStripButton();
 			this.btnIngresarDosisISP = new System.Windows.Forms.ToolStripButton();
 			this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
-			this.tsmModificar = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsbSeccion = new System.Windows.Forms.ToolStripButton();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -310,16 +311,23 @@
             this.tsmEliminar,
             this.tsmModificar});
 			this.cmsPopup.Name = "contextMenuStrip1";
-			this.cmsPopup.Size = new System.Drawing.Size(181, 70);
+			this.cmsPopup.Size = new System.Drawing.Size(126, 48);
 			// 
 			// tsmEliminar
 			// 
 			this.tsmEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 			this.tsmEliminar.Name = "tsmEliminar";
-			this.tsmEliminar.Size = new System.Drawing.Size(180, 22);
+			this.tsmEliminar.Size = new System.Drawing.Size(125, 22);
 			this.tsmEliminar.Text = "Eliminar";
 			this.tsmEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
 			this.tsmEliminar.Click += new System.EventHandler(this.tsmEliminar_Click);
+			// 
+			// tsmModificar
+			// 
+			this.tsmModificar.Name = "tsmModificar";
+			this.tsmModificar.Size = new System.Drawing.Size(125, 22);
+			this.tsmModificar.Text = "Modificar";
+			this.tsmModificar.Click += new System.EventHandler(this.tsmModificar_Click);
 			// 
 			// toolStrip1
 			// 
@@ -331,10 +339,11 @@
             this.tsbAgregarPersonal,
             this.tsbIngresoDosimetro,
             this.btnIngresarDosisISP,
-            this.tsdReporte});
+            this.tsdReporte,
+            this.tsbSeccion});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(980, 27);
+			this.toolStrip1.Size = new System.Drawing.Size(980, 39);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -342,9 +351,10 @@
 			// 
 			this.tsbAgregarCliente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.tsbAgregarCliente.Image = global::ControlDosimetro.Properties.Resources.Agregar;
+			this.tsbAgregarCliente.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.tsbAgregarCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbAgregarCliente.Name = "tsbAgregarCliente";
-			this.tsbAgregarCliente.Size = new System.Drawing.Size(24, 24);
+			this.tsbAgregarCliente.Size = new System.Drawing.Size(36, 36);
 			this.tsbAgregarCliente.Text = "toolStripButton1";
 			this.tsbAgregarCliente.ToolTipText = "Agregar Cliente";
 			this.tsbAgregarCliente.Click += new System.EventHandler(this.btn_Agregar_Click);
@@ -355,7 +365,7 @@
 			this.tsbEmail.Image = global::ControlDosimetro.Properties.Resources.EmailConf;
 			this.tsbEmail.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbEmail.Name = "tsbEmail";
-			this.tsbEmail.Size = new System.Drawing.Size(24, 24);
+			this.tsbEmail.Size = new System.Drawing.Size(24, 36);
 			this.tsbEmail.Text = "Conf. correo";
 			this.tsbEmail.ToolTipText = "Configurar correo";
 			this.tsbEmail.Click += new System.EventHandler(this.tsbEmail_Click);
@@ -366,7 +376,7 @@
 			this.tsbAgregarReferencia.Image = global::ControlDosimetro.Properties.Resources.REFERENCIA;
 			this.tsbAgregarReferencia.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbAgregarReferencia.Name = "tsbAgregarReferencia";
-			this.tsbAgregarReferencia.Size = new System.Drawing.Size(24, 24);
+			this.tsbAgregarReferencia.Size = new System.Drawing.Size(24, 36);
 			this.tsbAgregarReferencia.ToolTipText = "Referencia";
 			this.tsbAgregarReferencia.Click += new System.EventHandler(this.tsbAgregarReferencia_Click);
 			// 
@@ -376,7 +386,7 @@
 			this.tsbAgregarPersonal.Image = global::ControlDosimetro.Properties.Resources.Personal;
 			this.tsbAgregarPersonal.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbAgregarPersonal.Name = "tsbAgregarPersonal";
-			this.tsbAgregarPersonal.Size = new System.Drawing.Size(24, 24);
+			this.tsbAgregarPersonal.Size = new System.Drawing.Size(24, 36);
 			this.tsbAgregarPersonal.Text = "toolStripButton1";
 			this.tsbAgregarPersonal.ToolTipText = "Personal";
 			this.tsbAgregarPersonal.Click += new System.EventHandler(this.tsbAgregarPersonal_Click);
@@ -387,7 +397,7 @@
 			this.tsbIngresoDosimetro.Image = global::ControlDosimetro.Properties.Resources.Filmica;
 			this.tsbIngresoDosimetro.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbIngresoDosimetro.Name = "tsbIngresoDosimetro";
-			this.tsbIngresoDosimetro.Size = new System.Drawing.Size(24, 24);
+			this.tsbIngresoDosimetro.Size = new System.Drawing.Size(24, 36);
 			this.tsbIngresoDosimetro.Text = "toolStripButton1";
 			this.tsbIngresoDosimetro.ToolTipText = "Ingresar Dosis";
 			this.tsbIngresoDosimetro.Click += new System.EventHandler(this.tsbIngresoDosimetro_Click);
@@ -400,7 +410,7 @@
 			this.btnIngresarDosisISP.Image = ((System.Drawing.Image)(resources.GetObject("btnIngresarDosisISP.Image")));
 			this.btnIngresarDosisISP.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.btnIngresarDosisISP.Name = "btnIngresarDosisISP";
-			this.btnIngresarDosisISP.Size = new System.Drawing.Size(58, 24);
+			this.btnIngresarDosisISP.Size = new System.Drawing.Size(58, 36);
 			this.btnIngresarDosisISP.Text = "Dosis ISP";
 			this.btnIngresarDosisISP.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
 			this.btnIngresarDosisISP.Click += new System.EventHandler(this.btnIngresarDosisISP_Click);
@@ -411,15 +421,19 @@
 			this.tsdReporte.Image = ((System.Drawing.Image)(resources.GetObject("tsdReporte.Image")));
 			this.tsdReporte.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsdReporte.Name = "tsdReporte";
-			this.tsdReporte.Size = new System.Drawing.Size(61, 24);
+			this.tsdReporte.Size = new System.Drawing.Size(61, 36);
 			this.tsdReporte.Text = "Reporte";
 			// 
-			// tsmModificar
+			// tsbSeccion
 			// 
-			this.tsmModificar.Name = "tsmModificar";
-			this.tsmModificar.Size = new System.Drawing.Size(180, 22);
-			this.tsmModificar.Text = "Modificar";
-			this.tsmModificar.Click += new System.EventHandler(this.tsmModificar_Click);
+			this.tsbSeccion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbSeccion.Image = global::ControlDosimetro.Properties.Resources.Seccion_32;
+			this.tsbSeccion.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.tsbSeccion.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbSeccion.Name = "tsbSeccion";
+			this.tsbSeccion.Size = new System.Drawing.Size(36, 36);
+			this.tsbSeccion.Text = "toolStripButton1";
+			this.tsbSeccion.Click += new System.EventHandler(this.tsbSeccion_Click);
 			// 
 			// frmBusquedaEmpresa
 			// 
@@ -485,5 +499,6 @@
 		private System.Windows.Forms.ToolStripButton tsbEmail;
 		private System.Windows.Forms.ToolStripDropDownButton tsdReporte;
 		private System.Windows.Forms.ToolStripMenuItem tsmModificar;
+		private System.Windows.Forms.ToolStripButton tsbSeccion;
 	}
 }

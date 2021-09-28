@@ -537,6 +537,16 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Seccion {
+            get {
+                object obj = ResourceManager.GetObject("Seccion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Seccion_16 {
             get {
                 object obj = ResourceManager.GetObject("Seccion_16", resourceCulture);

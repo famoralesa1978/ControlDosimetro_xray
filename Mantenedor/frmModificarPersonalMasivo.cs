@@ -259,7 +259,7 @@ namespace ControlDosimetro
 			chk_AsignarTLD.Checked = false;
 
 			Listar_Cliente(0);
-			Listar_Personal();
+			//Listar_Personal();
 			picFiltrarpersonal_Click(null, null);
 			btn_cargarCliente.Enabled = true;
 			txt_ref_cliente.Focus();

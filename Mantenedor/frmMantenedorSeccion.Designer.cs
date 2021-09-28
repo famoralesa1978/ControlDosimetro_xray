@@ -43,7 +43,6 @@
 			this.pnlPrincipal = new System.Windows.Forms.Panel();
 			this.gpxListado = new System.Windows.Forms.GroupBox();
 			this.dgvGrilla = new System.Windows.Forms.DataGridView();
-			this.Colperfil1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cmsMenuContexto = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmActualizar = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -58,12 +57,14 @@
 			this.btn_Minimizar = new System.Windows.Forms.Button();
 			this.btn_Limpiar = new System.Windows.Forms.Button();
 			this.btn_Guardar = new System.Windows.Forms.Button();
-			this.cbx_Id_estado = new System.Windows.Forms.ComboBox();
-			this.lbl_Id_estado = new System.Windows.Forms.Label();
-			this.txt_Descripcion = new System.Windows.Forms.TextBox();
-			this.lbl_Descripcion = new System.Windows.Forms.Label();
-			this.txt_Id_perfil = new System.Windows.Forms.TextBox();
-			this.lbl_Id_perfil = new System.Windows.Forms.Label();
+			this.cbx_id_estado = new System.Windows.Forms.ComboBox();
+			this.lbl_id_estado = new System.Windows.Forms.Label();
+			this.txt_seccion = new System.Windows.Forms.TextBox();
+			this.lbl_seccion = new System.Windows.Forms.Label();
+			this.txt_id_seccion = new System.Windows.Forms.TextBox();
+			this.lbl_id_seccion = new System.Windows.Forms.Label();
+			this.lbl_id_cliente = new System.Windows.Forms.Label();
+			this.Colperfil1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.stsEstado.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.scPrincipal)).BeginInit();
@@ -232,14 +233,6 @@
 			this.dgvGrilla.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvGrilla_ColumnWidthChanged);
 			this.dgvGrilla.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvGrilla_Paint);
 			// 
-			// Colperfil1
-			// 
-			this.Colperfil1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Colperfil1.DataPropertyName = "Descripcion";
-			this.Colperfil1.HeaderText = "Nombre";
-			this.Colperfil1.Name = "Colperfil1";
-			this.Colperfil1.ReadOnly = true;
-			// 
 			// cmsMenuContexto
 			// 
 			this.cmsMenuContexto.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -329,15 +322,16 @@
 			// 
 			// tbl_seccion
 			// 
+			this.tbl_seccion.Controls.Add(this.lbl_id_cliente);
 			this.tbl_seccion.Controls.Add(this.btn_Minimizar);
 			this.tbl_seccion.Controls.Add(this.btn_Limpiar);
 			this.tbl_seccion.Controls.Add(this.btn_Guardar);
-			this.tbl_seccion.Controls.Add(this.cbx_Id_estado);
-			this.tbl_seccion.Controls.Add(this.lbl_Id_estado);
-			this.tbl_seccion.Controls.Add(this.txt_Descripcion);
-			this.tbl_seccion.Controls.Add(this.lbl_Descripcion);
-			this.tbl_seccion.Controls.Add(this.txt_Id_perfil);
-			this.tbl_seccion.Controls.Add(this.lbl_Id_perfil);
+			this.tbl_seccion.Controls.Add(this.cbx_id_estado);
+			this.tbl_seccion.Controls.Add(this.lbl_id_estado);
+			this.tbl_seccion.Controls.Add(this.txt_seccion);
+			this.tbl_seccion.Controls.Add(this.lbl_seccion);
+			this.tbl_seccion.Controls.Add(this.txt_id_seccion);
+			this.tbl_seccion.Controls.Add(this.lbl_id_seccion);
 			this.tbl_seccion.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tbl_seccion.Location = new System.Drawing.Point(0, 0);
 			this.tbl_seccion.Name = "tbl_seccion";
@@ -388,60 +382,78 @@
 			this.btn_Guardar.UseVisualStyleBackColor = true;
 			this.btn_Guardar.Click += new System.EventHandler(this.btn_Guardar_Click);
 			// 
-			// cbx_Id_estado
+			// cbx_id_estado
 			// 
-			this.cbx_Id_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_Id_estado.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbx_Id_estado.FormattingEnabled = true;
-			this.cbx_Id_estado.Location = new System.Drawing.Point(88, 43);
-			this.cbx_Id_estado.Name = "cbx_Id_estado";
-			this.cbx_Id_estado.Size = new System.Drawing.Size(121, 21);
-			this.cbx_Id_estado.TabIndex = 8;
+			this.cbx_id_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_id_estado.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbx_id_estado.FormattingEnabled = true;
+			this.cbx_id_estado.Location = new System.Drawing.Point(88, 43);
+			this.cbx_id_estado.Name = "cbx_id_estado";
+			this.cbx_id_estado.Size = new System.Drawing.Size(121, 21);
+			this.cbx_id_estado.TabIndex = 8;
 			// 
-			// lbl_Id_estado
+			// lbl_id_estado
 			// 
-			this.lbl_Id_estado.AutoSize = true;
-			this.lbl_Id_estado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_Id_estado.Location = new System.Drawing.Point(3, 46);
-			this.lbl_Id_estado.Name = "lbl_Id_estado";
-			this.lbl_Id_estado.Size = new System.Drawing.Size(40, 13);
-			this.lbl_Id_estado.TabIndex = 12;
-			this.lbl_Id_estado.Text = "Estado";
+			this.lbl_id_estado.AutoSize = true;
+			this.lbl_id_estado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbl_id_estado.Location = new System.Drawing.Point(3, 46);
+			this.lbl_id_estado.Name = "lbl_id_estado";
+			this.lbl_id_estado.Size = new System.Drawing.Size(40, 13);
+			this.lbl_id_estado.TabIndex = 12;
+			this.lbl_id_estado.Text = "Estado";
 			// 
-			// txt_Descripcion
+			// txt_seccion
 			// 
-			this.txt_Descripcion.Location = new System.Drawing.Point(88, 17);
-			this.txt_Descripcion.MaxLength = 50;
-			this.txt_Descripcion.Name = "txt_Descripcion";
-			this.txt_Descripcion.Size = new System.Drawing.Size(260, 20);
-			this.txt_Descripcion.TabIndex = 7;
+			this.txt_seccion.Location = new System.Drawing.Point(88, 17);
+			this.txt_seccion.MaxLength = 50;
+			this.txt_seccion.Name = "txt_seccion";
+			this.txt_seccion.Size = new System.Drawing.Size(260, 20);
+			this.txt_seccion.TabIndex = 7;
 			// 
-			// lbl_Descripcion
+			// lbl_seccion
 			// 
-			this.lbl_Descripcion.AutoSize = true;
-			this.lbl_Descripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_Descripcion.Location = new System.Drawing.Point(3, 20);
-			this.lbl_Descripcion.Name = "lbl_Descripcion";
-			this.lbl_Descripcion.Size = new System.Drawing.Size(63, 13);
-			this.lbl_Descripcion.TabIndex = 10;
-			this.lbl_Descripcion.Text = "Descripción";
+			this.lbl_seccion.AutoSize = true;
+			this.lbl_seccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbl_seccion.Location = new System.Drawing.Point(3, 20);
+			this.lbl_seccion.Name = "lbl_seccion";
+			this.lbl_seccion.Size = new System.Drawing.Size(63, 13);
+			this.lbl_seccion.TabIndex = 10;
+			this.lbl_seccion.Text = "Descripción";
 			// 
-			// txt_Id_perfil
+			// txt_id_seccion
 			// 
-			this.txt_Id_perfil.Enabled = false;
-			this.txt_Id_perfil.Location = new System.Drawing.Point(88, 70);
-			this.txt_Id_perfil.Name = "txt_Id_perfil";
-			this.txt_Id_perfil.Size = new System.Drawing.Size(66, 20);
-			this.txt_Id_perfil.TabIndex = 9;
+			this.txt_id_seccion.Enabled = false;
+			this.txt_id_seccion.Location = new System.Drawing.Point(88, 70);
+			this.txt_id_seccion.Name = "txt_id_seccion";
+			this.txt_id_seccion.Size = new System.Drawing.Size(66, 20);
+			this.txt_id_seccion.TabIndex = 9;
 			// 
-			// lbl_Id_perfil
+			// lbl_id_seccion
 			// 
-			this.lbl_Id_perfil.AutoSize = true;
-			this.lbl_Id_perfil.Location = new System.Drawing.Point(3, 73);
-			this.lbl_Id_perfil.Name = "lbl_Id_perfil";
-			this.lbl_Id_perfil.Size = new System.Drawing.Size(18, 13);
-			this.lbl_Id_perfil.TabIndex = 8;
-			this.lbl_Id_perfil.Text = "ID";
+			this.lbl_id_seccion.AutoSize = true;
+			this.lbl_id_seccion.Location = new System.Drawing.Point(3, 73);
+			this.lbl_id_seccion.Name = "lbl_id_seccion";
+			this.lbl_id_seccion.Size = new System.Drawing.Size(18, 13);
+			this.lbl_id_seccion.TabIndex = 8;
+			this.lbl_id_seccion.Text = "ID";
+			// 
+			// lbl_id_cliente
+			// 
+			this.lbl_id_cliente.AutoSize = true;
+			this.lbl_id_cliente.Location = new System.Drawing.Point(7, 105);
+			this.lbl_id_cliente.Name = "lbl_id_cliente";
+			this.lbl_id_cliente.Size = new System.Drawing.Size(52, 13);
+			this.lbl_id_cliente.TabIndex = 14;
+			this.lbl_id_cliente.Text = "id_cliente";
+			this.lbl_id_cliente.Visible = false;
+			// 
+			// Colperfil1
+			// 
+			this.Colperfil1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Colperfil1.DataPropertyName = "seccion";
+			this.Colperfil1.HeaderText = "Nombre";
+			this.Colperfil1.Name = "Colperfil1";
+			this.Colperfil1.ReadOnly = true;
 			// 
 			// frmMantenedorSeccion
 			// 
@@ -494,12 +506,12 @@
         private System.Windows.Forms.Button btn_Buscar;
         private System.Windows.Forms.GroupBox gpxListado;
         private System.Windows.Forms.GroupBox tbl_seccion;
-        private System.Windows.Forms.ComboBox cbx_Id_estado;
-        private System.Windows.Forms.Label lbl_Id_estado;
-        private System.Windows.Forms.TextBox txt_Descripcion;
-        private System.Windows.Forms.Label lbl_Descripcion;
-        private System.Windows.Forms.TextBox txt_Id_perfil;
-        private System.Windows.Forms.Label lbl_Id_perfil;
+        private System.Windows.Forms.ComboBox cbx_id_estado;
+        private System.Windows.Forms.Label lbl_id_estado;
+        private System.Windows.Forms.TextBox txt_seccion;
+        private System.Windows.Forms.Label lbl_seccion;
+        private System.Windows.Forms.TextBox txt_id_seccion;
+        private System.Windows.Forms.Label lbl_id_seccion;
         private System.Windows.Forms.ContextMenuStrip cmsMenuContexto;
         private System.Windows.Forms.ToolStripMenuItem tsmActualizar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
@@ -512,7 +524,8 @@
         private System.Windows.Forms.Button btn_Guardar;
         private System.Windows.Forms.Button btn_Minimizar;
         private System.Windows.Forms.DataGridView dgvGrilla;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Colperfil1;
 		private System.Windows.Forms.ToolStripDropDownButton tsdReporte;
+		private System.Windows.Forms.Label lbl_id_cliente;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Colperfil1;
 	}
 }

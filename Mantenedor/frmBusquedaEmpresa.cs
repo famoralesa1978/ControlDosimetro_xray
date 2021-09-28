@@ -290,6 +290,15 @@ namespace ControlDosimetro
 
 		#region "barra"
 
+		private void tsbSeccion_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+
+			frmMantenedorSeccion frm = new frmMantenedorSeccion(Convert.ToInt16(grdDatos.SelectedCells[0].Value.ToString()));
+			frm.ShowDialog(this);
+
+			Cursor = Cursors.Default;
+		}
 		private void tsmEliminar_Click(object sender, EventArgs e)
 		{
 			SqlCommand cmd = new SqlCommand();
@@ -327,8 +336,8 @@ namespace ControlDosimetro
 
 		}
 
-		#endregion
 
+		#endregion
 
 	}
 }

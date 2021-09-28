@@ -1004,6 +1004,7 @@
     <Content Include="Libreria\DocumentFormat.OpenXml.dll" />
     <Content Include="Libreria\GridExtension.dll" />
     <Content Include="Libreria\LibAdmSistema.dll" />
+    <None Include="Resources\Seccion.png" />
     <None Include="Resources\Modify-32.png" />
     <None Include="Resources\Modify-24.png" />
     <None Include="Resources\Verify_16.png" />

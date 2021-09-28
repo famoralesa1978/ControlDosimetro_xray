@@ -37,6 +37,7 @@ namespace ControlDosimetro
 			MantPermiso = 109,
 			MantMasivoPersonal = 110,
 			MantVersionesSistema = 111,
+			mnuMantSeccion=112,
 
 			IngresoPel = 201,
 			CorreccionDcto = 202,
