@@ -337,10 +337,10 @@
             this.tsbEmail,
             this.tsbAgregarReferencia,
             this.tsbAgregarPersonal,
+            this.tsbSeccion,
             this.tsbIngresoDosimetro,
             this.btnIngresarDosisISP,
-            this.tsdReporte,
-            this.tsbSeccion});
+            this.tsdReporte});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(980, 39);
@@ -432,7 +432,7 @@
 			this.tsbSeccion.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbSeccion.Name = "tsbSeccion";
 			this.tsbSeccion.Size = new System.Drawing.Size(36, 36);
-			this.tsbSeccion.Text = "toolStripButton1";
+			this.tsbSeccion.Text = "Sección";
 			this.tsbSeccion.Click += new System.EventHandler(this.tsbSeccion_Click);
 			// 
 			// frmBusquedaEmpresa

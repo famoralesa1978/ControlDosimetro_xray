@@ -28,11 +28,12 @@ namespace ControlDosimetro
 
 
 		public int Id_Menu { get; private set; }
+		classFuncionesBD.ClsFunciones Func = new classFuncionesBD.ClsFunciones();
 
 		enum ConfGrilla : int
 		{
-			id = 0,
-			descripcion = 1,
+			id_Seccion = 0,
+			seccion = 1,
 			Id_estado = 2
 		};
 
@@ -51,6 +52,8 @@ namespace ControlDosimetro
 			InitializeComponent();
 			Id_Menu = (int)MDIPrincipal.MENU.mnuMantSeccion;
 			Id_Cliente = intId_Cliente;
+			Func.Cargar_Cliente((long)Id_Cliente,ref lblRut, ref lbl_Nombre);
+			lbl_id_cliente.Text = intId_Cliente.ToString();
 		}
 
 		private void frmMantenedorSeccion_Load(object sender, EventArgs e)
@@ -59,7 +62,6 @@ namespace ControlDosimetro
 			AsignarPermiso();
 			Cargar_Reporte();
 			Cargar_Estado();
-			tsbGuardar.Enabled = false;
 			dgvGrilla.AutoGenerateColumns = false;
 			CargarGrilla(Id_Cliente);
 		}
@@ -107,7 +109,7 @@ namespace ControlDosimetro
 		{
 			ClaseFunciones.Cargar_Permiso(Clases.clsUsuario.Id_perfil, Id_Menu, ref Lectura, ref Nuevo, ref Modificacion, ref Eliminar);
 			tsbAgregar.Visible = Nuevo;
-			tsbGuardar.Visible = Nuevo || Modificacion;
+			btn_Guardar.Visible = tsbGuardar.Visible = Nuevo || Modificacion;
 			tsmEliminar.Visible = Eliminar;
 		}
 
@@ -116,35 +118,34 @@ namespace ControlDosimetro
 			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_id_estado_Buscar, ref cbx_id_estado_Buscar);
 			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_id_estado, ref cbx_id_estado);
 		}
-	
+
 		private void LimpiarFormulario()
 		{
 			txt_seccion.Clear();
 			txt_id_seccion.Clear();
 			cbx_id_estado.SelectedIndex = 0;
-			btn_Guardar.Enabled = Modificacion || Nuevo;
 			tsbGuardar.Visible = Modificacion || Nuevo;
 		}
-	
+
 		private void Grabar()
 		{
 			Boolean bolResult;
 			bolResult = false;
-            string strMensaje="";
+			string strMensaje = "";
 
-            ClaseComun.ValidarFormulario(Clases.clsBD.BD, tbl_seccion, ref bolResult,ref strMensaje);
-            if (!bolResult)
-            {
-                classFuncionesGenerales.mensajes.MensajeError(strMensaje);
-                return;
-            }
+			ClaseComun.ValidarFormulario(Clases.clsBD.BD, tbl_seccion, ref bolResult, ref strMensaje);
+			if (!String.IsNullOrEmpty( strMensaje))
+			{
+				classFuncionesGenerales.mensajes.MensajeError(strMensaje);
+				return;
+			}
 
-            if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+			if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
 			{
 				if ((tssEstado.Text == "Nuevo") && (txt_id_seccion.Text == "0"))
 				{
 					ClaseComun.Insertar(Clases.clsBD.BD, tbl_seccion, ref bolResult);
-                    if (bolResult == true)
+					if (bolResult == true)
 					{
 						CargarGrilla(Id_Cliente);
 						MessageBox.Show("Dato Guardado");
@@ -174,16 +175,18 @@ namespace ControlDosimetro
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
 			dgvGrilla.DataSource = dt.Tables[0];
+
 		}
 
 		private void LlamadoAModificar(int intFila)
 		{
 			DataTable dt = (DataTable)dgvGrilla.DataSource;
 			DataRow currentRow = dt.Rows[intFila];
-			txt_id_seccion.Text = currentRow[ConfGrilla.id.ToString()].ToString();
-			txt_seccion.Text = currentRow[ConfGrilla.descripcion.ToString()].ToString();
+			txt_id_seccion.Text = currentRow[ConfGrilla.id_Seccion.ToString()].ToString();
+			txt_seccion.Text = currentRow[ConfGrilla.seccion.ToString()].ToString();
 			cbx_id_estado.SelectedValue = currentRow[ConfGrilla.Id_estado.ToString()].ToString();
 			tssEstado.Text = "Modificar";
+			btn_Guardar.Visible= tsbGuardar.Visible = Modificacion;
 			scPrincipal.Panel2Collapsed = false;
 		}
 
@@ -256,7 +259,6 @@ namespace ControlDosimetro
 			Cursor = Cursors.WaitCursor;
 
 			scPrincipal.Panel2Collapsed = true;
-			tsbGuardar.Enabled = false;
 
 			Cursor = Cursors.Default;
 		}
@@ -270,7 +272,7 @@ namespace ControlDosimetro
 				DataTable dt = ((DataTable)((BindingSource)((BindingSource)dgvGrilla.DataSource).DataSource).DataSource);
 				DataRow currentRow = dt.Rows[dgvGrilla.CurrentRow.Index];
 				SqlCommand cmd = new SqlCommand();
-				cmd.CommandText = "pa_Seccion_del " + currentRow[ConfGrilla.id.ToString()].ToString();
+				cmd.CommandText = "pa_Seccion_del " + currentRow[ConfGrilla.id_Seccion.ToString()].ToString();
 
 				cmd.CommandType = CommandType.Text;
 
@@ -316,9 +318,9 @@ namespace ControlDosimetro
 			if (scPrincipal.Panel2Collapsed == false)
 			{
 				tssEstado.Text = "Nuevo";
-				tsbGuardar.Enabled = true;
 				LimpiarFormulario();
-				txt_id_seccion.Text = "0";
+				btn_Guardar.Visible = tsbGuardar.Visible = Nuevo;
+			txt_id_seccion.Text = "0";
 			}
 			else
 			{

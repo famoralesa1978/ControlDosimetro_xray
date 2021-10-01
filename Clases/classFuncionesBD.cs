@@ -72,7 +72,28 @@ namespace classFuncionesBD
 			}
 		}
 
+		public void Cargar_Cliente(int intPeriodo, Int64 intCodCliente, ref Label RazonSocial)
+		{
+			DataSet ds;
 
+
+			SqlCommand cmd = new SqlCommand
+			{
+				CommandText = "pa_ObtieneCliente_sel  " + intPeriodo.ToString() + "," + intCodCliente.ToString()
+			};
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				RazonSocial.Text = ds.Tables[0].Rows[0]["Razon_Social"].ToString();
+			}
+			else
+			{
+				RazonSocial.Text = "";
+				if (intCodCliente != -1)
+					classFuncionesGenerales.mensajes.MensajeError(ControlDosimetro.Properties.Resources.msgClientePeriodoError);
+			}
+		}
 		public void Cargar_Cliente(int intPeriodo, Int64 intCodCliente, ref Label Rut, ref Label RazonSocial)
 		{
 			DataSet ds;

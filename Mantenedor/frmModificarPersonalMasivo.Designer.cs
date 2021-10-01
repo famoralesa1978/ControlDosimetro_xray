@@ -66,6 +66,7 @@
 			this.ColSeccion = new System.Windows.Forms.DataGridViewComboBoxColumn();
 			this.ColFechaNac = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ColEstado = new System.Windows.Forms.DataGridViewComboBoxColumn();
+			this.colRevision = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.groupBox1.SuspendLayout();
 			this.grp_Grilla.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -181,7 +182,7 @@
 			this.grp_Grilla.Enabled = false;
 			this.grp_Grilla.Location = new System.Drawing.Point(5, 294);
 			this.grp_Grilla.Name = "grp_Grilla";
-			this.grp_Grilla.Size = new System.Drawing.Size(842, 408);
+			this.grp_Grilla.Size = new System.Drawing.Size(898, 408);
 			this.grp_Grilla.TabIndex = 6;
 			this.grp_Grilla.TabStop = false;
 			this.grp_Grilla.Text = "Listado";
@@ -203,14 +204,15 @@
             this.ColServicio,
             this.ColSeccion,
             this.ColFechaNac,
-            this.ColEstado});
+            this.ColEstado,
+            this.colRevision});
 			this.grdDatos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.grdDatos.Location = new System.Drawing.Point(3, 16);
 			this.grdDatos.MultiSelect = false;
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-			this.grdDatos.Size = new System.Drawing.Size(836, 389);
+			this.grdDatos.Size = new System.Drawing.Size(892, 389);
 			this.grdDatos.TabIndex = 5;
 			this.grdDatos.VirtualMode = true;
 			this.grdDatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellClick);
@@ -226,7 +228,7 @@
             this.tsbPersonal});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(859, 39);
+			this.toolStrip1.Size = new System.Drawing.Size(915, 39);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -496,12 +498,23 @@
 			this.ColEstado.Name = "ColEstado";
 			this.ColEstado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
 			this.ColEstado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.ColEstado.Width = 80;
+			// 
+			// colRevision
+			// 
+			this.colRevision.DataPropertyName = "Revision";
+			this.colRevision.FalseValue = "0";
+			this.colRevision.HeaderText = "Rev";
+			this.colRevision.Name = "colRevision";
+			this.colRevision.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.colRevision.TrueValue = "1";
+			this.colRevision.Width = 40;
 			// 
 			// frmModificarPersonalMasivo
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(859, 702);
+			this.ClientSize = new System.Drawing.Size(915, 702);
 			this.Controls.Add(this.chk_AsignarTLD);
 			this.Controls.Add(this.grpPersonal);
 			this.Controls.Add(this.toolStrip1);
@@ -569,5 +582,6 @@
 		private System.Windows.Forms.DataGridViewComboBoxColumn ColSeccion;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColFechaNac;
 		private System.Windows.Forms.DataGridViewComboBoxColumn ColEstado;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn colRevision;
 	}
 }
