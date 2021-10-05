@@ -448,7 +448,10 @@ namespace ControlDosimetro
 				classFuncionesGenerales.mensajes.MensajeError(strMensaje);
 			}
 			else
+			{
 				Grabar();
+			}		
+
 			Cursor = Cursors.Default;
 
 		}

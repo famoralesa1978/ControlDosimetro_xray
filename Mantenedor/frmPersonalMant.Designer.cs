@@ -563,9 +563,11 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(492, 484);
 			this.Controls.Add(this.tbl_personal);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "frmPersonalMant";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Personal";
 			this.tbl_personal.ResumeLayout(false);
 			this.tbl_personal.PerformLayout();

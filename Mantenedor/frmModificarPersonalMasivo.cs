@@ -34,6 +34,8 @@ namespace ControlDosimetro
 		DataSet dtPersonal;
 		public int Id_Menu { get; private set; }
 
+		public bool bolGrabar;
+
 		public object[] Parametros
 		{
 			set
@@ -311,7 +313,9 @@ namespace ControlDosimetro
 			{
 				frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), Convert.ToInt64(grdDatos.Rows[e.RowIndex].Cells[Id_Personal.Index].Value.ToString()));
 				frm.ShowDialog(this);
-			}else
+				picFiltrarpersonal_Click(null,null);
+			}
+			else
 
 			if (e.ColumnIndex == ColFechaNac.Index)
 			{
