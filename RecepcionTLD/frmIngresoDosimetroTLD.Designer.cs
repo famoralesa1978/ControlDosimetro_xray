@@ -44,6 +44,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.chkSeleccionar = new System.Windows.Forms.CheckBox();
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
@@ -86,7 +87,7 @@
 			this.txt_RunPersonal = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.btn_Eliminar = new System.Windows.Forms.Button();
-			this.chkSeleccionar = new System.Windows.Forms.CheckBox();
+			this.btnAgregarRef = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -251,6 +252,17 @@
 			this.groupBox2.TabIndex = 6;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Listado";
+			// 
+			// chkSeleccionar
+			// 
+			this.chkSeleccionar.AutoSize = true;
+			this.chkSeleccionar.Location = new System.Drawing.Point(313, -1);
+			this.chkSeleccionar.Name = "chkSeleccionar";
+			this.chkSeleccionar.Size = new System.Drawing.Size(111, 17);
+			this.chkSeleccionar.TabIndex = 10;
+			this.chkSeleccionar.Text = "Seleccionar todos";
+			this.chkSeleccionar.UseVisualStyleBackColor = true;
+			this.chkSeleccionar.CheckedChanged += new System.EventHandler(this.chkSeleccionar_CheckedChanged);
 			// 
 			// pnl_Progreso
 			// 
@@ -491,7 +503,7 @@
 			// btn_Guardar
 			// 
 			this.btn_Guardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Guardar.Location = new System.Drawing.Point(300, 631);
+			this.btn_Guardar.Location = new System.Drawing.Point(491, 631);
 			this.btn_Guardar.Name = "btn_Guardar";
 			this.btn_Guardar.Size = new System.Drawing.Size(139, 23);
 			this.btn_Guardar.TabIndex = 7;
@@ -502,7 +514,7 @@
 			// btn_Cerrar
 			// 
 			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Cerrar.Location = new System.Drawing.Point(624, 631);
+			this.btn_Cerrar.Location = new System.Drawing.Point(815, 631);
 			this.btn_Cerrar.Name = "btn_Cerrar";
 			this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
 			this.btn_Cerrar.TabIndex = 8;
@@ -513,7 +525,7 @@
 			// btn_Corregir
 			// 
 			this.btn_Corregir.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Corregir.Location = new System.Drawing.Point(143, 630);
+			this.btn_Corregir.Location = new System.Drawing.Point(334, 630);
 			this.btn_Corregir.Name = "btn_Corregir";
 			this.btn_Corregir.Size = new System.Drawing.Size(126, 23);
 			this.btn_Corregir.TabIndex = 9;
@@ -670,7 +682,7 @@
 			// btn_Eliminar
 			// 
 			this.btn_Eliminar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Eliminar.Location = new System.Drawing.Point(459, 631);
+			this.btn_Eliminar.Location = new System.Drawing.Point(650, 631);
 			this.btn_Eliminar.Name = "btn_Eliminar";
 			this.btn_Eliminar.Size = new System.Drawing.Size(139, 23);
 			this.btn_Eliminar.TabIndex = 18;
@@ -678,22 +690,21 @@
 			this.btn_Eliminar.UseVisualStyleBackColor = true;
 			this.btn_Eliminar.Click += new System.EventHandler(this.btn_Eliminar_Click);
 			// 
-			// chkSeleccionar
+			// btnAgregarRef
 			// 
-			this.chkSeleccionar.AutoSize = true;
-			this.chkSeleccionar.Location = new System.Drawing.Point(313, -1);
-			this.chkSeleccionar.Name = "chkSeleccionar";
-			this.chkSeleccionar.Size = new System.Drawing.Size(111, 17);
-			this.chkSeleccionar.TabIndex = 10;
-			this.chkSeleccionar.Text = "Seleccionar todos";
-			this.chkSeleccionar.UseVisualStyleBackColor = true;
-			this.chkSeleccionar.CheckedChanged += new System.EventHandler(this.chkSeleccionar_CheckedChanged);
+			this.btnAgregarRef.Location = new System.Drawing.Point(160, 630);
+			this.btnAgregarRef.Name = "btnAgregarRef";
+			this.btnAgregarRef.Size = new System.Drawing.Size(147, 23);
+			this.btnAgregarRef.TabIndex = 11;
+			this.btnAgregarRef.Text = "Agregar referencia";
+			this.btnAgregarRef.UseVisualStyleBackColor = true;
 			// 
 			// frmIngresoDosimetroTLD
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1084, 662);
+			this.Controls.Add(this.btnAgregarRef);
 			this.Controls.Add(this.btn_Eliminar);
 			this.Controls.Add(this.grpFiltro);
 			this.Controls.Add(this.textBox1);
@@ -794,5 +805,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn id_sucursal;
 		private System.Windows.Forms.DataGridViewTextBoxColumn id_estadodosimetro;
 		private System.Windows.Forms.CheckBox chkSeleccionar;
+		private System.Windows.Forms.Button btnAgregarRef;
 	}
 }
