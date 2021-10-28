@@ -75,7 +75,8 @@ namespace ControlDosimetro
 
 
 
-			btn_Guardar.Visible = false;
+			btnAgregarRef.Visible= btn_Guardar.Visible = false;
+			
 			pnl_Progreso.Visible = false;
 			grpFiltro.Enabled = false;
 			lbl_ValorMax.Text = "";
@@ -160,14 +161,14 @@ namespace ControlDosimetro
 
 			if (dt.Tables[0].Rows.Count == 0)
 			{
-				btn_Guardar.Visible = false;
+				btnAgregarRef.Visible = btn_Guardar.Visible = false;
 				grdDatos.DataSource = dt.Tables[0];
 				grpFiltro.Enabled = false;
 				
 			}
 			else
 			{
-				btn_Guardar.Visible = true;
+				btnAgregarRef.Visible = btn_Guardar.Visible = true;
 				grpFiltro.Enabled = true;
 				grdDatos.DefaultCellStyle.BackColor = System.Drawing.Color.White;
 				grdDatos.DataSource = dt.Tables[0];
@@ -313,7 +314,7 @@ namespace ControlDosimetro
 			cbx_id_periodo.Enabled = false;
 			btn_cargar.Enabled = false;
 			btn_Corregir.Enabled = true;
-			btn_Guardar.Enabled = true;
+			btnAgregarRef.Enabled = btn_Guardar.Enabled = true;
 			grdDatos.Focus();
 			SqlCommand cmdValorMax = new SqlCommand();
 			DataSet dtValorMax;
@@ -335,7 +336,7 @@ namespace ControlDosimetro
 			//  SqlCommand cmdperiodo = new SqlCommand();
 
 			// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);            
-			btn_Guardar.Enabled = false;
+			btnAgregarRef.Enabled = btn_Guardar.Enabled = false;
 
 
 			//   //**************carga periodo
@@ -439,7 +440,7 @@ namespace ControlDosimetro
 			btn_cargar.Enabled = true;
 			btn_Cargar_cliente.Enabled = true;
 			btn_Corregir.Enabled = false;
-			btn_Guardar.Enabled = false;
+			btnAgregarRef.Enabled = btn_Guardar.Enabled = false;
 			lbl_id_cliente.Enabled = true;
 			Listar_Personal();
 			lbl_id_cliente.Text = "0";
@@ -772,7 +773,7 @@ namespace ControlDosimetro
 			Cargar_Sucursal();
 			Cargar_Seccion();
 			btn_Corregir.Enabled = false;
-			btn_Guardar.Enabled = false;
+			btnAgregarRef.Enabled = btn_Guardar.Enabled = false;
 			Cursor = Cursors.Default;
 		}
 		private void btn_Eliminar_Click(object sender, EventArgs e)
@@ -1313,5 +1314,18 @@ namespace ControlDosimetro
 
 		#endregion
 
+		private void btnAgregarRef_Click(object sender, EventArgs e)
+		{
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "pa_PersonalReferencia_ins " +
+							lbl_id_cliente.Text.ToString() + "," +//@Id_cliente int,
+							"'" + lbl_rut.Text + "'," +
+							cbx_id_seccion.SelectedValue;
+			//@id_estadodosimetro int
+			cmd.CommandType = CommandType.Text;
+			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+
+			Listar_Personal();
+		}
 	}
 }

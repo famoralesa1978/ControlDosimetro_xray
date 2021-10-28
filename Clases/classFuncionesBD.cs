@@ -242,6 +242,21 @@ namespace classFuncionesBD
 			return dt;
 		}
 
+		public DataSet Cargar_SeccionMasivo(int intId_Cliente)
+		{
+			DataSet dt;
+
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "select ' ' as seccion, 0 as id_seccion union all" +
+							 "		SELECT seccion,id_seccion " +
+							" FROM tbl_seccion  WHERE Id_cliente= " + intId_Cliente.ToString() + "";
+
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+
+			return dt;
+		}
+
 		public void DescargarDocumento(int Id, ref byte[] Convert)
 		{
 			DataSet ds;

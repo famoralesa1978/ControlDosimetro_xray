@@ -567,9 +567,10 @@
 			// lbl_ValorMax
 			// 
 			this.lbl_ValorMax.AutoSize = true;
+			this.lbl_ValorMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_ValorMax.Location = new System.Drawing.Point(265, 22);
 			this.lbl_ValorMax.Name = "lbl_ValorMax";
-			this.lbl_ValorMax.Size = new System.Drawing.Size(35, 13);
+			this.lbl_ValorMax.Size = new System.Drawing.Size(41, 13);
 			this.lbl_ValorMax.TabIndex = 2;
 			this.lbl_ValorMax.Text = "label6";
 			// 
@@ -698,6 +699,7 @@
 			this.btnAgregarRef.TabIndex = 11;
 			this.btnAgregarRef.Text = "Agregar referencia";
 			this.btnAgregarRef.UseVisualStyleBackColor = true;
+			this.btnAgregarRef.Click += new System.EventHandler(this.btnAgregarRef_Click);
 			// 
 			// frmIngresoDosimetroTLD
 			// 

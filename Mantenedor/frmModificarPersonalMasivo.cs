@@ -147,7 +147,7 @@ namespace ControlDosimetro
 		private void Cargar_Seccion()
 		{
 
-			dt = ClaseFunciones.Cargar_Seccion(Convert.ToInt16(txt_ref_cliente.Text.ToString()));
+			dt = ClaseFunciones.Cargar_SeccionMasivo(Convert.ToInt16(txt_ref_cliente.Text.ToString()));
 
 			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns[ColSeccion.Index] as DataGridViewComboBoxColumn;
 			comboboxColumn.DataSource = dt.Tables[0];
