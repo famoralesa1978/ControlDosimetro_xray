@@ -246,10 +246,38 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 
-			Grabar();
-			LimpiarFormulario();
-			tssEstado.Text = "Nuevo";
-			txt_id_seccion.Text = "0";
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "pa_ValidarSeccionEliminar_del " + txt_id_seccion.Text ;
+
+			cmd.CommandType = CommandType.Text;
+
+			DataSet dt1;
+			dt1 = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+			if ((dt1.Tables[0].Rows.Count>0)&&((int)cbx_id_estado.SelectedValue==0))
+			{
+				if(Convert.ToInt16(dt1.Tables[0].Rows[0]["Cantidad"].ToString())>0)
+				{
+					classFuncionesGenerales.mensajes.MensajeError(String.Format("Existen {0} personal con esta seccion, Cambie de sección antes dejarlo inactivo ", dt1.Tables[0].Rows[0]["Cantidad"]));
+					Cursor = Cursors.Default;
+				}
+				else
+				{
+					Grabar();
+					LimpiarFormulario();
+					tssEstado.Text = "Nuevo";
+					txt_id_seccion.Text = "0";
+				}
+			}
+			else
+			{
+				Grabar();
+				LimpiarFormulario();
+				tssEstado.Text = "Nuevo";
+				txt_id_seccion.Text = "0";
+			}
+
+		
 
 			Cursor = Cursors.Default;
 		}
