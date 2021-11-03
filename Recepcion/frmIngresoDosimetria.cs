@@ -82,14 +82,8 @@ namespace ControlDosimetro
 			DataSet dt;
 
 
-			cmd.CommandText = "SELECT N_pelicula,N_Documento,p.id_cliente,p.Id_Personal,Rut,Paterno,Maternos,Nombres,isnull( d.Controlado,0)Controlado, " +
-															"isnull(d.ConDosis,0)condosis,d.Dosis,isnull(d.Id_EstadoDosis,0)estadodosis, isnull(d.Id_Dosimetro,0)Id_Dosimetro " +
-															//"isnull(d.enviado,0)enviado " +
-															" FROM tbl_personal p left join tbl_dosimetria d on d.id_cliente=p.id_cliente   and  p.id_personal=d.id_personal " +
-															" and id_periodo=" + cbx_id_periodo.SelectedValue + " " +
-					" WHERE p.id_cliente=" + lbl_id_cliente.Text + " and p.id_estado=1 and isnull(d.enviado,0)=0" +
-															" and rut_cliente='" + lbl_rut_cliente.Text + "'" +
-					" order by Paterno,Maternos;";
+			cmd.CommandText = String.Format("pa_ListarPersonalPorPeriodo_sel {0},'{1}',{2}", lbl_id_cliente.Text, lbl_rut_cliente.Text, cbx_id_periodo.SelectedValue);
+
 			cmd.CommandType = CommandType.Text;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
