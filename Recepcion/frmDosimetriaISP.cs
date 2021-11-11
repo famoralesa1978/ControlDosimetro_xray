@@ -186,8 +186,8 @@ namespace ControlDosimetro
 									"SELECT distinct s.Id_sucursal, " +
 									"case when s.Direccion is null or s.Direccion ='' then c.Direccion else s.Direccion end + ',' + comuna as Direccion" + //N_Documento,
 									  " FROM [dbo].[ges_DosimetriaPersonal] dos inner join tbl_cliente c on c.Id_cliente=dos.Id_cliente " +
-									  " inner join tbl_sucursal s on s.Id_sucursal=dos.Id_Sucursal " +
-									  " inner  join glo_region R on s.id_region=r.id_region inner join glo_provincia p on p.id_provincia=s.Id_Provincia  " +
+										" inner join tbl_sucursal s on s.Id_sucursal=dos.Id_Sucursal    and  s.run='" + lbl_rut_cliente.Text + "'" +
+										" inner  join glo_region R on s.id_region=r.id_region inner join glo_provincia p on p.id_provincia=s.Id_Provincia  " +
 									  " inner join glo_comuna co on co.Id_Comuna=s.Id_Comuna " +
 									  "WHERE c.Id_cliente= " + lbl_id_cliente.Text + " and dos.id_periodo=" + cbx_id_periodo.SelectedValue + "";
 			cmdSucursal.CommandType = CommandType.Text;
@@ -356,11 +356,11 @@ namespace ControlDosimetro
 										"case when s.Razon_Social is null or s.Razon_Social ='' then c.Razon_Social else s.Razon_Social end as Razon_Social," +
 										" region,Provincia,comuna,s.Telefono,s.Id_sucursal" + //N_Documento,
 									 " FROM [dbo].[ges_DosimetriaPersonal] dos inner join tbl_cliente c on c.Id_cliente=dos.Id_cliente " +
-									 " inner join tbl_sucursal s on s.Id_sucursal=dos.Id_Sucursal " +
+									 " inner join tbl_sucursal s on s.Id_sucursal=dos.Id_Sucursal   and  s.run='" + lbl_rut_cliente.Text + "'" +
 									 " inner  join glo_region R on s.id_region=r.id_region inner join glo_provincia p on p.id_provincia=s.Id_Provincia  " +
 									 " inner join glo_comuna co on co.Id_Comuna=s.Id_Comuna " +
 									 "WHERE c.Id_cliente= " + lbl_id_cliente.Text + " and dos.id_periodo=" + cbx_id_periodo.SelectedValue + "" +
-									 " and (dos.Id_Sucursal =" + cbx_Sucursal.SelectedValue + ")";
+									 " and (dos.Id_Sucursal =" + cbx_Sucursal.SelectedValue + ")and  C.run='" + lbl_rut_cliente.Text+"'";
 			}
 			else
 			{
@@ -369,10 +369,10 @@ namespace ControlDosimetro
 									 "case when s.Razon_Social is null or s.Razon_Social ='' then c.Razon_Social else s.Razon_Social end as Razon_Social," +
 									 " region,Provincia,comuna,s.Telefono,s.Id_sucursal" + //N_Documento,
 								  " FROM [dbo].[ges_DosimetriaPersonal] dos inner join tbl_cliente c on c.Id_cliente=dos.Id_cliente " +
-								  " inner join tbl_sucursal s on s.Id_sucursal=dos.Id_Sucursal " +
+									" inner join tbl_sucursal s on s.Id_sucursal=dos.Id_Sucursal  and  s.run='" + lbl_rut_cliente.Text + "'" +
 								  " inner  join glo_region R on s.id_region=r.id_region inner join glo_provincia p on p.id_provincia=s.Id_Provincia  " +
 								  " inner join glo_comuna co on co.Id_Comuna=s.Id_Comuna " +
-								  "WHERE c.Id_cliente= " + lbl_id_cliente.Text + " and dos.id_periodo=" + cbx_id_periodo.SelectedValue + "";
+								  "WHERE c.Id_cliente= " + lbl_id_cliente.Text + " and dos.id_periodo=" + cbx_id_periodo.SelectedValue + " and  C.run='" + lbl_rut_cliente.Text + "'";
 			}
 			cmdCliente.CommandType = CommandType.Text;
 			DataSet dt;

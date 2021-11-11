@@ -376,13 +376,13 @@ namespace ControlDosimetro
 					if (bolResult == true)
 					{
 
-						MessageBox.Show("Dato Guardado y se va a generar documento de Certificado");
+						
 
-						SqlCommand cmd = new SqlCommand();
-						cmd.CommandText = "pa_Sucursal_ins '" + txt_run.Text + "','" + txt_direccion.Text + "'," + cbx_id_region.SelectedValue + "," +
-														cbx_id_provincia.SelectedValue + "," + cbx_id_comuna.SelectedValue + ",'" + txt_telefono.Text + "',1,1";
-						cmd.CommandType = CommandType.Text;
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+						//SqlCommand cmd = new SqlCommand();
+						//cmd.CommandText = "pa_Sucursal_ins '" + txt_run.Text + "','" + txt_direccion.Text + "'," + cbx_id_region.SelectedValue + "," +
+						//								cbx_id_provincia.SelectedValue + "," + cbx_id_comuna.SelectedValue + ",'" + txt_telefono.Text + "',1,1";
+						//cmd.CommandType = CommandType.Text;
+						//Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 
 						SqlCommand cmd1 = new SqlCommand();
 						cmd1.CommandText = "pa_ClienteHistorial_ins " + txt_id_cliente.Text;
@@ -404,10 +404,11 @@ namespace ControlDosimetro
 						dtformato = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
 						string targetPath = dtArchivo.Tables[0].Rows[0]["Glosa"].ToString() + "Cliente " + lbl_id_cliente.Text;
 
-						//if (!System.IO.Directory.Exists(targetPath))
-						//{
-						//    System.IO.Directory.CreateDirectory(targetPath);
-						//}
+						MessageBox.Show("Dato Guardado ");//y se va a generar documento de Certificado
+																							//if (!System.IO.Directory.Exists(targetPath))
+																							//{
+																							//    System.IO.Directory.CreateDirectory(targetPath);
+																							//}
 
 
 
