@@ -376,13 +376,13 @@ namespace ControlDosimetro
 					if (bolResult == true)
 					{
 
-						
 
-						//SqlCommand cmd = new SqlCommand();
-						//cmd.CommandText = "pa_Sucursal_ins '" + txt_run.Text + "','" + txt_direccion.Text + "'," + cbx_id_region.SelectedValue + "," +
-						//								cbx_id_provincia.SelectedValue + "," + cbx_id_comuna.SelectedValue + ",'" + txt_telefono.Text + "',1,1";
-						//cmd.CommandType = CommandType.Text;
-						//Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+
+						SqlCommand cmd = new SqlCommand();
+						cmd.CommandText = "pa_Sucursal_ins '" + txt_run.Text + "','" + txt_direccion.Text + "'," + cbx_id_region.SelectedValue + "," +
+														cbx_id_provincia.SelectedValue + "," + cbx_id_comuna.SelectedValue + ",'" + txt_telefono.Text + "',1,1," + txt_id_cliente.Text + ",'" + txt_Email.Text +"'";
+						cmd.CommandType = CommandType.Text;
+						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 
 						SqlCommand cmd1 = new SqlCommand();
 						cmd1.CommandText = "pa_ClienteHistorial_ins " + txt_id_cliente.Text;
