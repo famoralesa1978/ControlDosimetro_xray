@@ -32,10 +32,10 @@
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.grpDatosCliente = new System.Windows.Forms.GroupBox();
-			this.cbx_SucCambio = new System.Windows.Forms.ComboBox();
+			this.cbx_PersonalCambio = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
-			this.cbx_SucActual = new System.Windows.Forms.ComboBox();
+			this.cbx_PersonalActual = new System.Windows.Forms.ComboBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.btn_Cargar = new System.Windows.Forms.Button();
 			this.lbl_NombreCliente = new System.Windows.Forms.Label();
@@ -65,6 +65,7 @@
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.btn_EliminarSeleccion = new System.Windows.Forms.ToolStripMenuItem();
+			this.lblRut = new System.Windows.Forms.Label();
 			this.grpDatosCliente.SuspendLayout();
 			this.cmsPopup.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
@@ -72,10 +73,11 @@
 			// 
 			// grpDatosCliente
 			// 
-			this.grpDatosCliente.Controls.Add(this.cbx_SucCambio);
+			this.grpDatosCliente.Controls.Add(this.lblRut);
+			this.grpDatosCliente.Controls.Add(this.cbx_PersonalCambio);
 			this.grpDatosCliente.Controls.Add(this.label5);
 			this.grpDatosCliente.Controls.Add(this.label4);
-			this.grpDatosCliente.Controls.Add(this.cbx_SucActual);
+			this.grpDatosCliente.Controls.Add(this.cbx_PersonalActual);
 			this.grpDatosCliente.Controls.Add(this.label3);
 			this.grpDatosCliente.Controls.Add(this.btn_Cargar);
 			this.grpDatosCliente.Controls.Add(this.lbl_NombreCliente);
@@ -87,59 +89,60 @@
 			this.grpDatosCliente.Controls.Add(this.label2);
 			this.grpDatosCliente.Location = new System.Drawing.Point(5, 28);
 			this.grpDatosCliente.Name = "grpDatosCliente";
-			this.grpDatosCliente.Size = new System.Drawing.Size(432, 213);
+			this.grpDatosCliente.Size = new System.Drawing.Size(432, 221);
 			this.grpDatosCliente.TabIndex = 1;
 			this.grpDatosCliente.TabStop = false;
 			this.grpDatosCliente.Text = "Dato ";
 			// 
-			// cbx_SucCambio
+			// cbx_PersonalCambio
 			// 
-			this.cbx_SucCambio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_SucCambio.FormattingEnabled = true;
-			this.cbx_SucCambio.Location = new System.Drawing.Point(109, 123);
-			this.cbx_SucCambio.Name = "cbx_SucCambio";
-			this.cbx_SucCambio.Size = new System.Drawing.Size(317, 21);
-			this.cbx_SucCambio.TabIndex = 43;
+			this.cbx_PersonalCambio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_PersonalCambio.FormattingEnabled = true;
+			this.cbx_PersonalCambio.Location = new System.Drawing.Point(109, 143);
+			this.cbx_PersonalCambio.Name = "cbx_PersonalCambio";
+			this.cbx_PersonalCambio.Size = new System.Drawing.Size(317, 21);
+			this.cbx_PersonalCambio.TabIndex = 43;
 			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(16, 123);
+			this.label5.Location = new System.Drawing.Point(16, 143);
 			this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(48, 13);
 			this.label5.TabIndex = 42;
-			this.label5.Text = "Sucursal";
+			this.label5.Text = "Personal";
 			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(14, 97);
+			this.label4.Location = new System.Drawing.Point(14, 117);
 			this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(97, 13);
 			this.label4.TabIndex = 41;
-			this.label4.Text = "Sucursal a modicar";
+			this.label4.Text = "Personal a modicar";
 			// 
-			// cbx_SucActual
+			// cbx_PersonalActual
 			// 
-			this.cbx_SucActual.Enabled = false;
-			this.cbx_SucActual.FormattingEnabled = true;
-			this.cbx_SucActual.Location = new System.Drawing.Point(109, 63);
-			this.cbx_SucActual.Margin = new System.Windows.Forms.Padding(2);
-			this.cbx_SucActual.Name = "cbx_SucActual";
-			this.cbx_SucActual.Size = new System.Drawing.Size(317, 21);
-			this.cbx_SucActual.TabIndex = 40;
+			this.cbx_PersonalActual.Enabled = false;
+			this.cbx_PersonalActual.FormattingEnabled = true;
+			this.cbx_PersonalActual.Location = new System.Drawing.Point(109, 83);
+			this.cbx_PersonalActual.Margin = new System.Windows.Forms.Padding(2);
+			this.cbx_PersonalActual.Name = "cbx_PersonalActual";
+			this.cbx_PersonalActual.Size = new System.Drawing.Size(317, 21);
+			this.cbx_PersonalActual.TabIndex = 40;
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(12, 69);
+			this.label3.Enabled = false;
+			this.label3.Location = new System.Drawing.Point(12, 89);
 			this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(80, 13);
 			this.label3.TabIndex = 39;
-			this.label3.Text = "Sucursal actual";
+			this.label3.Text = "Personal actual";
 			// 
 			// btn_Cargar
 			// 
@@ -184,7 +187,7 @@
 			// 
 			// btn_filtro
 			// 
-			this.btn_filtro.Location = new System.Drawing.Point(201, 168);
+			this.btn_filtro.Location = new System.Drawing.Point(201, 188);
 			this.btn_filtro.Name = "btn_filtro";
 			this.btn_filtro.Size = new System.Drawing.Size(95, 23);
 			this.btn_filtro.TabIndex = 4;
@@ -202,11 +205,11 @@
 			// 
 			// btn_Guardar
 			// 
-			this.btn_Guardar.Location = new System.Drawing.Point(81, 168);
+			this.btn_Guardar.Location = new System.Drawing.Point(81, 188);
 			this.btn_Guardar.Name = "btn_Guardar";
 			this.btn_Guardar.Size = new System.Drawing.Size(114, 23);
 			this.btn_Guardar.TabIndex = 3;
-			this.btn_Guardar.Text = "Modificar sucursal";
+			this.btn_Guardar.Text = "Modificar personal";
 			this.btn_Guardar.UseVisualStyleBackColor = true;
 			this.btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
 			// 
@@ -215,9 +218,9 @@
 			this.label2.AutoSize = true;
 			this.label2.Location = new System.Drawing.Point(12, 20);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(78, 13);
+			this.label2.Size = new System.Drawing.Size(46, 13);
 			this.label2.TabIndex = 34;
-			this.label2.Text = "N°  documento";
+			this.label2.Text = "N°  TLD";
 			// 
 			// cmsPopup
 			// 
@@ -366,12 +369,22 @@
 			this.btn_EliminarSeleccion.Name = "btn_EliminarSeleccion";
 			this.btn_EliminarSeleccion.Size = new System.Drawing.Size(67, 22);
 			// 
+			// lblRut
+			// 
+			this.lblRut.AutoSize = true;
+			this.lblRut.Location = new System.Drawing.Point(109, 62);
+			this.lblRut.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.lblRut.Name = "lblRut";
+			this.lblRut.Size = new System.Drawing.Size(29, 13);
+			this.lblRut.TabIndex = 44;
+			this.lblRut.Text = "Num";
+			// 
 			// frmCambioPersonalTLD
 			// 
 			this.AcceptButton = this.btn_Cargar;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(446, 249);
+			this.ClientSize = new System.Drawing.Size(446, 264);
 			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this.grpDatosCliente);
 			this.MaximizeBox = false;
@@ -420,10 +433,11 @@
 		private System.Windows.Forms.Label lbl_NCliente;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button btn_Cargar;
-		private System.Windows.Forms.ComboBox cbx_SucActual;
+		private System.Windows.Forms.ComboBox cbx_PersonalActual;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.ComboBox cbx_SucCambio;
+		private System.Windows.Forms.ComboBox cbx_PersonalCambio;
+		private System.Windows.Forms.Label lblRut;
 	}
 }

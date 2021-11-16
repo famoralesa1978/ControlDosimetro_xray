@@ -40,11 +40,10 @@ namespace ControlDosimetro
 
 		#region "Llamada de carga"      
 
-		private void Cargar_Documento(Int64 intNDocumento)
+		private void Cargar_TLD(Int64 intNTLD)
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "select P.Id_cliente,run,Razon_Social,Id_sucursal " +
-								 "  FROM ges_DosimetriaPersonal P inner join tbl_cliente C on P.Id_cliente=C.Id_cliente WHERE N_Documento= " + intNDocumento.ToString();
+			cmd.CommandText = "pa_ListarDatosTLD_sel " + intNTLD.ToString();
 			DataSet dt;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -52,8 +51,9 @@ namespace ControlDosimetro
 			{
 				lbl_NCliente.Text = dt.Tables[0].Rows[0]["Id_cliente"].ToString();
 				lbl_NombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
-				Cargar_Sucursal(dt.Tables[0].Rows[0]["run"].ToString());
-				cbx_SucActual.SelectedValue = dt.Tables[0].Rows[0]["Id_sucursal"];
+				lblRut.Text = dt.Tables[0].Rows[0]["rut_cliente"].ToString();
+				Cargar_Personal(dt.Tables[0].Rows[0]["rut_cliente"].ToString(), lblRut.Text);
+				cbx_PersonalActual.SelectedValue = dt.Tables[0].Rows[0]["Id_sucursal"];
 				btn_Cargar.Enabled = false;
 				txt_NDoc.Enabled = false;
 				btn_Guardar.Enabled = true;
@@ -63,6 +63,7 @@ namespace ControlDosimetro
 			{
 				lbl_NCliente.Text = "";
 				lbl_NombreCliente.Text = "";
+				lblRut.Text = "";
 				btn_Guardar.Enabled = false;
 
 				MessageBox.Show("Existe mas cliente con el mismo N° documento");
@@ -73,33 +74,31 @@ namespace ControlDosimetro
 			{
 				lbl_NCliente.Text = "";
 				lbl_NombreCliente.Text = "";
+				lblRut.Text = "";
 				btn_Guardar.Enabled = false;
-				MessageBox.Show("Documento no existe");
+				MessageBox.Show("TLD no existe");
 
 			}
 
 		}
 
-		private void Cargar_Sucursal(string rut)
+		private void Cargar_Personal(string Id_Cliente,string rut)
 		{
 			SqlCommand cmd = new SqlCommand();
 
-			cmd.CommandText = "select id_sucursal, direccion + ','+co.comuna as Dato " +
-				 "from [dbo].[tbl_sucursal] s " +
-				 "inner join glo_region r on r.Id_region=s.Id_Region " +
-				 "inner join glo_comuna co on co.id_comuna=s.Id_Comuna " +
-				 "where run='" + rut + "'";
+			cmd.CommandText = String.Format("select P.Nombres + ' ' + P.Paterno + ' ' + P.Maternos  as NombreCompleto,P.Id_Personal " +
+									 " from tbl_personal P where id_cliente={0} and rut_cliente='{1}'", Id_Cliente, rut);
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 			DataSet dtCopia;
 			dtCopia = dt.Copy();
-			cbx_SucActual.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
-			cbx_SucActual.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
-			cbx_SucActual.DataSource = dt.Tables[0];
+			cbx_PersonalActual.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
+			cbx_PersonalActual.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
+			cbx_PersonalActual.DataSource = dt.Tables[0];
 
-			cbx_SucCambio.DisplayMember = dtCopia.Tables[0].Columns[1].Caption.ToString();
-			cbx_SucCambio.ValueMember = dtCopia.Tables[0].Columns[0].Caption.ToString();
-			cbx_SucCambio.DataSource = dtCopia.Tables[0];
+			cbx_PersonalCambio.DisplayMember = dtCopia.Tables[0].Columns[0].Caption.ToString();
+			cbx_PersonalCambio.ValueMember = dtCopia.Tables[0].Columns[1].Caption.ToString();
+			cbx_PersonalCambio.DataSource = dtCopia.Tables[0];
 		}
 
 		private void AsignarEvento()
@@ -113,15 +112,15 @@ namespace ControlDosimetro
 
 		private void btn_Cargar_Click(object sender, EventArgs e)
 		{
-			Cargar_Documento(Convert.ToInt64(  txt_NDoc.Text));
+			Cargar_TLD(Convert.ToInt64(  txt_NDoc.Text));
 		}
 
 		private void Btn_Guardar_Click(object sender, EventArgs e)
 		{
 			SqlCommand cmd = new SqlCommand();
 			DataSet ds;
-			string strParametro = String.Format("{0},{1},{2}", txt_NDoc.Text, cbx_SucActual.SelectedValue, cbx_SucCambio.SelectedValue);
-			cmd.CommandText = "pa_ModificarSucursal_upd " + strParametro;
+			string strParametro = String.Format("{0},{1},{2}", txt_NDoc.Text, cbx_PersonalActual.SelectedValue, cbx_PersonalCambio.SelectedValue);
+			cmd.CommandText = "pa_ModificarPersonalTLD_upd " + strParametro;
 			cmd.CommandType = CommandType.Text;
 
 
