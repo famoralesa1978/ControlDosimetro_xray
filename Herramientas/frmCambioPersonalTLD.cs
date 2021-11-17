@@ -51,9 +51,9 @@ namespace ControlDosimetro
 			{
 				lbl_NCliente.Text = dt.Tables[0].Rows[0]["Id_cliente"].ToString();
 				lbl_NombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
-				lblRut.Text = dt.Tables[0].Rows[0]["rut_cliente"].ToString();
-				Cargar_Personal(dt.Tables[0].Rows[0]["rut_cliente"].ToString(), lblRut.Text);
-				cbx_PersonalActual.SelectedValue = dt.Tables[0].Rows[0]["Id_sucursal"];
+				lblRut.Text = dt.Tables[0].Rows[0]["run"].ToString();
+				Cargar_Personal(dt.Tables[0].Rows[0]["Id_cliente"].ToString(), lblRut.Text);
+				cbx_PersonalActual.SelectedValue = dt.Tables[0].Rows[0]["Id_Personal"];
 				btn_Cargar.Enabled = false;
 				txt_NDoc.Enabled = false;
 				btn_Guardar.Enabled = true;
@@ -66,7 +66,7 @@ namespace ControlDosimetro
 				lblRut.Text = "";
 				btn_Guardar.Enabled = false;
 
-				MessageBox.Show("Existe mas cliente con el mismo N° documento");
+				MessageBox.Show("No existe el número TLD");
 
 			}
 			else
@@ -75,6 +75,7 @@ namespace ControlDosimetro
 				lbl_NCliente.Text = "";
 				lbl_NombreCliente.Text = "";
 				lblRut.Text = "";
+				
 				btn_Guardar.Enabled = false;
 				MessageBox.Show("TLD no existe");
 
@@ -87,7 +88,7 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 
 			cmd.CommandText = String.Format("select P.Nombres + ' ' + P.Paterno + ' ' + P.Maternos  as NombreCompleto,P.Id_Personal " +
-									 " from tbl_personal P where id_cliente={0} and rut_cliente='{1}'", Id_Cliente, rut);
+									 " from tbl_personal P where id_cliente={0} and rut_cliente='{1}' order by P.Nombres + ' ' + P.Paterno + ' ' + P.Maternos", Id_Cliente, rut);
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 			DataSet dtCopia;
@@ -144,6 +145,7 @@ namespace ControlDosimetro
 			txt_NDoc.Clear();
 			lbl_NombreCliente.Text = "";
 			lbl_NCliente.Text = "";
+			lblRut.Text = "";
 			btn_Cargar.Enabled = true;
 			txt_NDoc.Enabled = true;
 			lbl_NCliente.Text = "";

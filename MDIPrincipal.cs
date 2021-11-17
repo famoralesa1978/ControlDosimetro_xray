@@ -82,6 +82,7 @@ namespace ControlDosimetro
 			TraspasoPersonal = 808,
 			CambioSucursal = 809,
 			MantClienteRazonSocial = 810,
+			HerrCambioTLD = 811,
 
 			Ayuda = 900,
 			AcercaDe = 901,
@@ -749,6 +750,15 @@ namespace ControlDosimetro
 					break;
 				case (int)MENU.CambioSucursal:
 					objFrm = new frmCambioSucursal()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.ShowDialog(this);
+					break;
+				case (int)MENU.HerrCambioTLD:
+					objFrm = new frmCambioPersonalTLD()
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
