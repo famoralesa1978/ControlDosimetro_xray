@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-			this.grpDatosCliente = new System.Windows.Forms.GroupBox();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+			this.lblRut = new System.Windows.Forms.Label();
 			this.cbx_PersonalCambio = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
@@ -65,48 +65,41 @@
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.btn_EliminarSeleccion = new System.Windows.Forms.ToolStripMenuItem();
-			this.lblRut = new System.Windows.Forms.Label();
-			this.grpDatosCliente.SuspendLayout();
+			this.grpDatos = new System.Windows.Forms.GroupBox();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPersonal = new System.Windows.Forms.TabPage();
+			this.panel1 = new System.Windows.Forms.Panel();
 			this.cmsPopup.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
+			this.grpDatos.SuspendLayout();
+			this.tabControl1.SuspendLayout();
+			this.tabPersonal.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// grpDatosCliente
+			// lblRut
 			// 
-			this.grpDatosCliente.Controls.Add(this.lblRut);
-			this.grpDatosCliente.Controls.Add(this.cbx_PersonalCambio);
-			this.grpDatosCliente.Controls.Add(this.label5);
-			this.grpDatosCliente.Controls.Add(this.label4);
-			this.grpDatosCliente.Controls.Add(this.cbx_PersonalActual);
-			this.grpDatosCliente.Controls.Add(this.label3);
-			this.grpDatosCliente.Controls.Add(this.btn_Cargar);
-			this.grpDatosCliente.Controls.Add(this.lbl_NombreCliente);
-			this.grpDatosCliente.Controls.Add(this.lbl_NCliente);
-			this.grpDatosCliente.Controls.Add(this.label1);
-			this.grpDatosCliente.Controls.Add(this.btn_filtro);
-			this.grpDatosCliente.Controls.Add(this.txt_NDoc);
-			this.grpDatosCliente.Controls.Add(this.btn_Guardar);
-			this.grpDatosCliente.Controls.Add(this.label2);
-			this.grpDatosCliente.Location = new System.Drawing.Point(5, 28);
-			this.grpDatosCliente.Name = "grpDatosCliente";
-			this.grpDatosCliente.Size = new System.Drawing.Size(432, 221);
-			this.grpDatosCliente.TabIndex = 1;
-			this.grpDatosCliente.TabStop = false;
-			this.grpDatosCliente.Text = "Dato ";
+			this.lblRut.AutoSize = true;
+			this.lblRut.Location = new System.Drawing.Point(109, 73);
+			this.lblRut.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.lblRut.Name = "lblRut";
+			this.lblRut.Size = new System.Drawing.Size(29, 13);
+			this.lblRut.TabIndex = 44;
+			this.lblRut.Text = "Num";
 			// 
 			// cbx_PersonalCambio
 			// 
 			this.cbx_PersonalCambio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_PersonalCambio.FormattingEnabled = true;
-			this.cbx_PersonalCambio.Location = new System.Drawing.Point(109, 143);
+			this.cbx_PersonalCambio.Location = new System.Drawing.Point(111, 97);
 			this.cbx_PersonalCambio.Name = "cbx_PersonalCambio";
 			this.cbx_PersonalCambio.Size = new System.Drawing.Size(317, 21);
-			this.cbx_PersonalCambio.TabIndex = 43;
+			this.cbx_PersonalCambio.TabIndex = 1;
 			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(16, 143);
+			this.label5.Location = new System.Drawing.Point(11, 100);
 			this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(48, 13);
@@ -116,10 +109,11 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(14, 117);
+			this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label4.Location = new System.Drawing.Point(11, 68);
 			this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(97, 13);
+			this.label4.Size = new System.Drawing.Size(115, 13);
 			this.label4.TabIndex = 41;
 			this.label4.Text = "Personal a modicar";
 			// 
@@ -127,17 +121,17 @@
 			// 
 			this.cbx_PersonalActual.Enabled = false;
 			this.cbx_PersonalActual.FormattingEnabled = true;
-			this.cbx_PersonalActual.Location = new System.Drawing.Point(109, 83);
+			this.cbx_PersonalActual.Location = new System.Drawing.Point(111, 23);
 			this.cbx_PersonalActual.Margin = new System.Windows.Forms.Padding(2);
 			this.cbx_PersonalActual.Name = "cbx_PersonalActual";
 			this.cbx_PersonalActual.Size = new System.Drawing.Size(317, 21);
-			this.cbx_PersonalActual.TabIndex = 40;
+			this.cbx_PersonalActual.TabIndex = 0;
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Enabled = false;
-			this.label3.Location = new System.Drawing.Point(12, 89);
+			this.label3.Location = new System.Drawing.Point(11, 26);
 			this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(80, 13);
@@ -146,11 +140,11 @@
 			// 
 			// btn_Cargar
 			// 
-			this.btn_Cargar.Location = new System.Drawing.Point(187, 15);
+			this.btn_Cargar.Location = new System.Drawing.Point(187, 26);
 			this.btn_Cargar.Margin = new System.Windows.Forms.Padding(2);
 			this.btn_Cargar.Name = "btn_Cargar";
-			this.btn_Cargar.Size = new System.Drawing.Size(57, 20);
-			this.btn_Cargar.TabIndex = 38;
+			this.btn_Cargar.Size = new System.Drawing.Size(57, 24);
+			this.btn_Cargar.TabIndex = 1;
 			this.btn_Cargar.Text = "Cargar";
 			this.btn_Cargar.UseVisualStyleBackColor = true;
 			this.btn_Cargar.Click += new System.EventHandler(this.btn_Cargar_Click);
@@ -158,7 +152,7 @@
 			// lbl_NombreCliente
 			// 
 			this.lbl_NombreCliente.AutoSize = true;
-			this.lbl_NombreCliente.Location = new System.Drawing.Point(142, 41);
+			this.lbl_NombreCliente.Location = new System.Drawing.Point(142, 52);
 			this.lbl_NombreCliente.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.lbl_NombreCliente.Name = "lbl_NombreCliente";
 			this.lbl_NombreCliente.Size = new System.Drawing.Size(79, 13);
@@ -168,7 +162,7 @@
 			// lbl_NCliente
 			// 
 			this.lbl_NCliente.AutoSize = true;
-			this.lbl_NCliente.Location = new System.Drawing.Point(109, 41);
+			this.lbl_NCliente.Location = new System.Drawing.Point(109, 52);
 			this.lbl_NCliente.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.lbl_NCliente.Name = "lbl_NCliente";
 			this.lbl_NCliente.Size = new System.Drawing.Size(29, 13);
@@ -178,7 +172,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(12, 41);
+			this.label1.Location = new System.Drawing.Point(12, 52);
 			this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(39, 13);
@@ -187,28 +181,28 @@
 			// 
 			// btn_filtro
 			// 
-			this.btn_filtro.Location = new System.Drawing.Point(201, 188);
+			this.btn_filtro.Location = new System.Drawing.Point(262, 25);
 			this.btn_filtro.Name = "btn_filtro";
-			this.btn_filtro.Size = new System.Drawing.Size(95, 23);
-			this.btn_filtro.TabIndex = 4;
+			this.btn_filtro.Size = new System.Drawing.Size(95, 25);
+			this.btn_filtro.TabIndex = 2;
 			this.btn_filtro.Text = "Limpiar filtro";
 			this.btn_filtro.UseVisualStyleBackColor = true;
 			this.btn_filtro.Click += new System.EventHandler(this.Btn_filtro_Click);
 			// 
 			// txt_NDoc
 			// 
-			this.txt_NDoc.Location = new System.Drawing.Point(109, 17);
+			this.txt_NDoc.Location = new System.Drawing.Point(109, 28);
 			this.txt_NDoc.MaxLength = 10;
 			this.txt_NDoc.Name = "txt_NDoc";
 			this.txt_NDoc.Size = new System.Drawing.Size(74, 20);
-			this.txt_NDoc.TabIndex = 1;
+			this.txt_NDoc.TabIndex = 0;
 			// 
 			// btn_Guardar
 			// 
-			this.btn_Guardar.Location = new System.Drawing.Point(81, 188);
+			this.btn_Guardar.Location = new System.Drawing.Point(78, 145);
 			this.btn_Guardar.Name = "btn_Guardar";
 			this.btn_Guardar.Size = new System.Drawing.Size(114, 23);
-			this.btn_Guardar.TabIndex = 3;
+			this.btn_Guardar.TabIndex = 2;
 			this.btn_Guardar.Text = "Modificar personal";
 			this.btn_Guardar.UseVisualStyleBackColor = true;
 			this.btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
@@ -216,7 +210,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(12, 20);
+			this.label2.Location = new System.Drawing.Point(12, 31);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(46, 13);
 			this.label2.TabIndex = 34;
@@ -240,7 +234,7 @@
 			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(446, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(520, 25);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -325,9 +319,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle1.Format = "N2";
-			dataGridViewCellStyle1.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle13.Format = "N2";
+			dataGridViewCellStyle13.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle13;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -345,9 +339,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle2.Format = "N2";
-			dataGridViewCellStyle2.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle14.Format = "N2";
+			dataGridViewCellStyle14.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle14;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -369,42 +363,88 @@
 			this.btn_EliminarSeleccion.Name = "btn_EliminarSeleccion";
 			this.btn_EliminarSeleccion.Size = new System.Drawing.Size(67, 22);
 			// 
-			// lblRut
+			// grpDatos
 			// 
-			this.lblRut.AutoSize = true;
-			this.lblRut.Location = new System.Drawing.Point(109, 62);
-			this.lblRut.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.lblRut.Name = "lblRut";
-			this.lblRut.Size = new System.Drawing.Size(29, 13);
-			this.lblRut.TabIndex = 44;
-			this.lblRut.Text = "Num";
+			this.grpDatos.Controls.Add(this.tabControl1);
+			this.grpDatos.Location = new System.Drawing.Point(0, 96);
+			this.grpDatos.Name = "grpDatos";
+			this.grpDatos.Size = new System.Drawing.Size(514, 238);
+			this.grpDatos.TabIndex = 3;
+			this.grpDatos.TabStop = false;
+			this.grpDatos.Text = "Datos a modificar";
+			// 
+			// tabControl1
+			// 
+			this.tabControl1.Controls.Add(this.tabPersonal);
+			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabControl1.Location = new System.Drawing.Point(3, 16);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(508, 219);
+			this.tabControl1.TabIndex = 0;
+			// 
+			// tabPersonal
+			// 
+			this.tabPersonal.BackColor = System.Drawing.SystemColors.Control;
+			this.tabPersonal.Controls.Add(this.panel1);
+			this.tabPersonal.Location = new System.Drawing.Point(4, 22);
+			this.tabPersonal.Name = "tabPersonal";
+			this.tabPersonal.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPersonal.Size = new System.Drawing.Size(500, 193);
+			this.tabPersonal.TabIndex = 0;
+			this.tabPersonal.Text = "Personal";
+			// 
+			// panel1
+			// 
+			this.panel1.BackColor = System.Drawing.SystemColors.Control;
+			this.panel1.Controls.Add(this.cbx_PersonalCambio);
+			this.panel1.Controls.Add(this.btn_Guardar);
+			this.panel1.Controls.Add(this.label3);
+			this.panel1.Controls.Add(this.label5);
+			this.panel1.Controls.Add(this.cbx_PersonalActual);
+			this.panel1.Controls.Add(this.label4);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel1.Location = new System.Drawing.Point(3, 3);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(494, 187);
+			this.panel1.TabIndex = 0;
 			// 
 			// frmCambioPersonalTLD
 			// 
 			this.AcceptButton = this.btn_Cargar;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(446, 264);
+			this.ClientSize = new System.Drawing.Size(520, 343);
+			this.Controls.Add(this.btn_filtro);
+			this.Controls.Add(this.grpDatos);
+			this.Controls.Add(this.lblRut);
 			this.Controls.Add(this.toolStrip1);
-			this.Controls.Add(this.grpDatosCliente);
+			this.Controls.Add(this.txt_NDoc);
+			this.Controls.Add(this.label2);
+			this.Controls.Add(this.btn_Cargar);
+			this.Controls.Add(this.label1);
+			this.Controls.Add(this.lbl_NombreCliente);
+			this.Controls.Add(this.lbl_NCliente);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "frmCambioPersonalTLD";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Cambio personal TLD";
-			this.grpDatosCliente.ResumeLayout(false);
-			this.grpDatosCliente.PerformLayout();
+			this.Text = "Cambio datos TLD";
 			this.cmsPopup.ResumeLayout(false);
 			this.contextMenuStrip1.ResumeLayout(false);
+			this.grpDatos.ResumeLayout(false);
+			this.tabControl1.ResumeLayout(false);
+			this.tabPersonal.ResumeLayout(false);
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox grpDatosCliente;
 		  private System.Windows.Forms.ToolStrip toolStrip1;
           private System.Windows.Forms.Label label2;
           private System.Windows.Forms.Button btn_Guardar;
@@ -439,5 +479,9 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.ComboBox cbx_PersonalCambio;
 		private System.Windows.Forms.Label lblRut;
+		private System.Windows.Forms.GroupBox grpDatos;
+		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabPage tabPersonal;
+		private System.Windows.Forms.Panel panel1;
 	}
 }

@@ -57,6 +57,7 @@ namespace ControlDosimetro
 				btn_Cargar.Enabled = false;
 				txt_NDoc.Enabled = false;
 				btn_Guardar.Enabled = true;
+				grpDatos.Enabled = true;
 			}
 			else
 			if (dt.Tables[0].Rows.Count > 1)
@@ -65,7 +66,7 @@ namespace ControlDosimetro
 				lbl_NombreCliente.Text = "";
 				lblRut.Text = "";
 				btn_Guardar.Enabled = false;
-
+				grpDatos.Enabled = false;
 				MessageBox.Show("No existe el número TLD");
 
 			}
@@ -75,7 +76,7 @@ namespace ControlDosimetro
 				lbl_NCliente.Text = "";
 				lbl_NombreCliente.Text = "";
 				lblRut.Text = "";
-				
+				grpDatos.Enabled = false;
 				btn_Guardar.Enabled = false;
 				MessageBox.Show("TLD no existe");
 
@@ -150,6 +151,7 @@ namespace ControlDosimetro
 			txt_NDoc.Enabled = true;
 			lbl_NCliente.Text = "";
 			lbl_NombreCliente.Text = "";
+			grpDatos.Enabled = false;
 			btn_Guardar.Enabled = false;
 		}
 

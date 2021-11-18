@@ -63,7 +63,7 @@ namespace ControlDosimetro
 							"isnull(d.ConDosis,0)condosis,d.Dosis,isnull(d.Id_EstadoDosis,0)estadodosis, isnull(d.Id_Dosimetro,0)Id_Dosimetro,Cristal1,Cristal2,tld.id_periodo " +
 							" FROM tbl_personal p inner join ges_dosimetro_estado_TLD tld on p.Id_Personal=tld.Id_Personal	 " +
 							" left outer  join tbl_dosimetria d on N_Pelicula=n_dosimetro  and TLD=1  " +
-						" where id_estadodosimetro=12    order by PosicionDisco";
+						" where id_estadodosimetro in(12,5)    order by PosicionDisco";
 			cmd.CommandType = CommandType.Text;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
