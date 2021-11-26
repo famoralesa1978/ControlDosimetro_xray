@@ -303,16 +303,25 @@ namespace ControlDosimetro
 		{
 			SqlCommand cmd = new SqlCommand();
 
-			cmd.CommandText = "pa_Cliente_del " + grdDatos.SelectedCells[0].Value.ToString() + "";
+			cmd.CommandText = "pa_Cliente_del " + grdDatos.SelectedCells[0].Value.ToString() + ",'" + grdDatos.SelectedCells[1].Value.ToString()  + "'";
 			cmd.CommandType = CommandType.Text;
 			DataSet ds;
 
 			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
 			if (ds.Tables[0].Rows.Count > 0)
 			{
-				MessageBox.Show("Cliente se dejo Inactivo,Debe ingresar una observación porque se dejo inactivo");
-				frmObservacionCliente frm1 = new frmObservacionCliente(grdDatos.SelectedCells[0].Value.ToString(), ds.Tables[0].Rows[0]["FechaInicio"].ToString());
-				frm1.ShowDialog(this);
+
+				if ((int)ds.Tables[0].Rows[0]["Resultado"] == 0)
+				{
+					classFuncionesGenerales.mensajes.MensajeAdvertencia("Cliente se dejo Inactivo, Debe ingresar una observación porque se dejo inactivo");
+					frmObservacionCliente frm1 = new frmObservacionCliente(grdDatos.SelectedCells[0].Value.ToString(), ds.Tables[0].Rows[0]["FechaInicio"].ToString());
+					frm1.ShowDialog(this);
+				}
+				else
+					classFuncionesGenerales.mensajes.MensajeAdvertencia(ds.Tables[0].Rows[0]["Mensaje"].ToString());
+
+
+
 			}
 			Listar_Cliente();
 		}

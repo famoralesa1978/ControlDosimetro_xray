@@ -60,10 +60,10 @@
 			this.tsbEmail = new System.Windows.Forms.ToolStripButton();
 			this.tsbAgregarReferencia = new System.Windows.Forms.ToolStripButton();
 			this.tsbAgregarPersonal = new System.Windows.Forms.ToolStripButton();
+			this.tsbSeccion = new System.Windows.Forms.ToolStripButton();
 			this.tsbIngresoDosimetro = new System.Windows.Forms.ToolStripButton();
 			this.btnIngresarDosisISP = new System.Windows.Forms.ToolStripButton();
 			this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
-			this.tsbSeccion = new System.Windows.Forms.ToolStripButton();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -391,6 +391,17 @@
 			this.tsbAgregarPersonal.ToolTipText = "Personal";
 			this.tsbAgregarPersonal.Click += new System.EventHandler(this.tsbAgregarPersonal_Click);
 			// 
+			// tsbSeccion
+			// 
+			this.tsbSeccion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbSeccion.Image = global::ControlDosimetro.Properties.Resources.Seccion_32;
+			this.tsbSeccion.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.tsbSeccion.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbSeccion.Name = "tsbSeccion";
+			this.tsbSeccion.Size = new System.Drawing.Size(36, 36);
+			this.tsbSeccion.Text = "Sección";
+			this.tsbSeccion.Click += new System.EventHandler(this.tsbSeccion_Click);
+			// 
 			// tsbIngresoDosimetro
 			// 
 			this.tsbIngresoDosimetro.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -423,17 +434,6 @@
 			this.tsdReporte.Name = "tsdReporte";
 			this.tsdReporte.Size = new System.Drawing.Size(61, 36);
 			this.tsdReporte.Text = "Reporte";
-			// 
-			// tsbSeccion
-			// 
-			this.tsbSeccion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.tsbSeccion.Image = global::ControlDosimetro.Properties.Resources.Seccion_32;
-			this.tsbSeccion.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-			this.tsbSeccion.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbSeccion.Name = "tsbSeccion";
-			this.tsbSeccion.Size = new System.Drawing.Size(36, 36);
-			this.tsbSeccion.Text = "Sección";
-			this.tsbSeccion.Click += new System.EventHandler(this.tsbSeccion_Click);
 			// 
 			// frmBusquedaEmpresa
 			// 
