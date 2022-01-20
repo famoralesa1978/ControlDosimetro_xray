@@ -34,6 +34,7 @@ namespace ControlDosimetro
 			InitializeComponent();
 			Cargar_Anno(ref cbx_anno);
 			Cargar_Anno(ref cbx_annoCambio);
+			Cargar_Anno(ref cbx_annoCambioTLD);
 			Cargar_Periodo();
 
 		}
@@ -67,14 +68,17 @@ namespace ControlDosimetro
 			cbx_id_periodoCambio.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
 			cbx_id_periodoCambio.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_id_periodoCambio.DataSource = dt.Tables[0];
+
+			cbx_id_periodoCambioTLD.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
+			cbx_id_periodoCambioTLD.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
+			cbx_id_periodoCambioTLD.DataSource = dt.Tables[0];
 		}
 
 		private void Cargar_PeriodoExistente()
 		{
 			SqlCommand cmd = new SqlCommand
 			{
-				CommandText = "SELECT  distinct per.Id_Periodo,Mes, cast((mes/3) as varchar(10))+ '°T' " +
-				 "FROM conf_periodo  per inner join ges_dosimetro_estado ges on per.Id_Periodo=ges.Id_Periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text + "  and id_cliente=" + lbl_id_cliente.Text + " order by mes"
+				CommandText = String.Format("pa_ConsultaCorregirTrimestreo_sel {0},{1}", lbl_id_cliente.Text, cbx_anno.Text)
 			};
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -99,7 +103,26 @@ namespace ControlDosimetro
 				cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
 				cbx_id_periodo.DataSource = dt.Tables[0];
 			}
-
+			if (dt.Tables[1].Rows.Count > 0)
+			{
+				grpPrincipal.Enabled = true;
+				cbx_anno.Enabled = false;
+				lbl_id_cliente.Enabled = false;
+				btn_cargar.Enabled = false;
+				cbx_id_periodoTLD.DisplayMember = dt.Tables[1].Columns[2].Caption.ToString();
+				cbx_id_periodoTLD.ValueMember = dt.Tables[1].Columns[0].Caption.ToString();
+				cbx_id_periodoTLD.DataSource = dt.Tables[1];
+			}
+			else
+			{
+				cbx_anno.Enabled = true;
+				lbl_id_cliente.Enabled = true;
+				btn_cargar.Enabled = true;
+				grpPrincipal.Enabled = false;
+				cbx_id_periodoTLD.DisplayMember = dt.Tables[1].Columns[2].Caption.ToString();
+				cbx_id_periodoTLD.ValueMember = dt.Tables[1].Columns[0].Caption.ToString();
+				cbx_id_periodoTLD.DataSource = dt.Tables[1];
+			}
 		}
 
 		private void AsignarEvento()
@@ -186,6 +209,23 @@ namespace ControlDosimetro
 			lbl_id_cliente.Text = "";
 		}
 
+		private void btn_GuardarTLD_Click(object sender, EventArgs e)
+		{
+			if (MessageBox.Show("Esta seguro de cambiar de trimestre?", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+			{
+				SqlCommand cmd = new SqlCommand();
+				DataSet ds;
 
+				cmd.CommandText = "pa_CambiarNDocumentoTrimestreTLD_upd " + lbl_id_cliente.Text + "," + cbx_id_periodoTLD.SelectedValue + "," + cbx_id_periodoCambioTLD.SelectedValue;
+				cmd.CommandType = CommandType.Text;
+				ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+
+				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
+
+				Btn_filtro_Click(null, null);
+
+			}
+		}
 	}
 }

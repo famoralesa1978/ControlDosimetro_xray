@@ -119,7 +119,7 @@ namespace ControlDosimetro
 			if (dt.Tables[0].Rows.Count > 0)
 			{
 				btn_Guardar.Visible = false;
-				btnIniciar.Visible = false;
+		//		btnIniciar.Visible = false;
 				MessageBox.Show("No se puede agregar mas TLD, el motivo es por que el proceso de lectura se inicio \n y no se terminado de registrar las dosis en el proceso anterior");
 			}
 			else
