@@ -64,6 +64,7 @@
 			this.tsbIngresoDosimetro = new System.Windows.Forms.ToolStripButton();
 			this.btnIngresarDosisISP = new System.Windows.Forms.ToolStripButton();
 			this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
+			this.tsb_Eliminar = new System.Windows.Forms.ToolStripButton();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -334,6 +335,7 @@
 			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbAgregarCliente,
+            this.tsb_Eliminar,
             this.tsbEmail,
             this.tsbAgregarReferencia,
             this.tsbAgregarPersonal,
@@ -435,6 +437,18 @@
 			this.tsdReporte.Size = new System.Drawing.Size(61, 36);
 			this.tsdReporte.Text = "Reporte";
 			// 
+			// tsb_Eliminar
+			// 
+			this.tsb_Eliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsb_Eliminar.Image = global::ControlDosimetro.Properties.Resources.delete_32;
+			this.tsb_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.tsb_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsb_Eliminar.Name = "tsb_Eliminar";
+			this.tsb_Eliminar.Size = new System.Drawing.Size(36, 36);
+			this.tsb_Eliminar.Text = "Eliminar";
+			this.tsb_Eliminar.ToolTipText = "Elimina un personal";
+			this.tsb_Eliminar.Click += new System.EventHandler(this.tsb_Eliminar_Click);
+			// 
 			// frmBusquedaEmpresa
 			// 
 			this.AcceptButton = this.btn_cargarCliente;
@@ -500,5 +514,6 @@
 		private System.Windows.Forms.ToolStripDropDownButton tsdReporte;
 		private System.Windows.Forms.ToolStripMenuItem tsmModificar;
 		private System.Windows.Forms.ToolStripButton tsbSeccion;
+		private System.Windows.Forms.ToolStripButton tsb_Eliminar;
 	}
 }
