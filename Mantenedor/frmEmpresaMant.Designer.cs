@@ -478,7 +478,7 @@
 			// 
 			this.btn_cerrar.Image = global::ControlDosimetro.Properties.Resources.Close_24;
 			this.btn_cerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_cerrar.Location = new System.Drawing.Point(275, 604);
+			this.btn_cerrar.Location = new System.Drawing.Point(292, 604);
 			this.btn_cerrar.Name = "btn_cerrar";
 			this.btn_cerrar.Size = new System.Drawing.Size(97, 38);
 			this.btn_cerrar.TabIndex = 23;
@@ -490,7 +490,7 @@
 			// 
 			this.btn_Grabar.Image = global::ControlDosimetro.Properties.Resources.Save_24;
 			this.btn_Grabar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_Grabar.Location = new System.Drawing.Point(88, 604);
+			this.btn_Grabar.Location = new System.Drawing.Point(105, 604);
 			this.btn_Grabar.Name = "btn_Grabar";
 			this.btn_Grabar.Size = new System.Drawing.Size(104, 38);
 			this.btn_Grabar.TabIndex = 22;
