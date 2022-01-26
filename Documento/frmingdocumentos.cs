@@ -134,8 +134,8 @@ namespace ControlDosimetro
 					SqlCommand sqlcmd = new SqlCommand();
 					sqlcmd.CommandText = "" +
 
-	"   INSERT INTO ges_documentos ([Id_cliente],[Id_periodo],[Nombre],[Descripcion],[Extension],[Archivo],[Id_TipoDocumento],Id_Usuario) " +
-	"   VALUES (@Doc_Id_cliente,@Doc_Id_periodo,@Doc_Nombre,@Doc_Descripcion,@Doc_Extension,@Doc_Archivo,@Doc_Id_Tipo_Documento,@Id_Usuario)  ";
+	"   INSERT INTO ges_documentos ([Id_cliente],Rut,[Id_periodo],[Nombre],[Descripcion],[Extension],[Archivo],[Id_TipoDocumento],Id_Usuario) " +
+	"   VALUES (@Doc_Id_cliente,@Rut,@Doc_Id_periodo,@Doc_Nombre,@Doc_Descripcion,@Doc_Extension,@Doc_Archivo,@Doc_Id_Tipo_Documento,@Id_Usuario)  ";
 
 					sqlcmd.CommandType = CommandType.Text;
 					sqlcmd.Parameters.Add("@Doc_Id_Cliente", SqlDbType.Int).Value = Convert.ToInt16(lbl_id_cliente.Text);
@@ -146,6 +146,7 @@ namespace ControlDosimetro
 					sqlcmd.Parameters.Add("@Doc_Nombre", SqlDbType.VarChar, 200).Value = nombrearchivo;
 					sqlcmd.Parameters.Add("@Doc_Archivo", SqlDbType.Image).Value = buffer;
 					sqlcmd.Parameters.Add("@Id_Usuario", SqlDbType.Int).Value = Clases.clsUsuario.Id_Usuario;
+					sqlcmd.Parameters.Add("@Rut", SqlDbType.Int).Value = lbl_rut.Text;
 
 					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, sqlcmd);
 					// sqlcmd.CommandText = "" + "VALUES (" + Convert.ToInt32(lbl_id_cliente.Text) +""+ ;   
