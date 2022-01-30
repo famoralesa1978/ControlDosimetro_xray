@@ -540,9 +540,6 @@ namespace ControlDosimetro
 
 			btn_Corregir.Enabled = true;
 			pnl_Progreso.Visible = false;
-			btn_cargar_Click(null, null);
-
-			//  Listar_Personal();
 		}
 
 		private void btn_Excel_Click(object sender, EventArgs e)
