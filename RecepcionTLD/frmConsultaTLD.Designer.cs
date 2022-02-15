@@ -60,6 +60,7 @@
 			this.N_pelicula = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.id_dosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ColEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colEstadoproxi = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.N_Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.NDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -240,6 +241,7 @@
             this.N_pelicula,
             this.id_dosimetro,
             this.ColEstado,
+            this.colEstadoproxi,
             this.N_Cliente,
             this.NDocumento,
             this.Rut,
@@ -415,10 +417,18 @@
 			// ColEstado
 			// 
 			this.ColEstado.DataPropertyName = "Estado";
-			this.ColEstado.HeaderText = "Estado";
+			this.ColEstado.HeaderText = "Estado actual";
 			this.ColEstado.Name = "ColEstado";
 			this.ColEstado.ReadOnly = true;
-			this.ColEstado.Width = 65;
+			this.ColEstado.Width = 97;
+			// 
+			// colEstadoproxi
+			// 
+			this.colEstadoproxi.DataPropertyName = "proximoEstado";
+			this.colEstadoproxi.HeaderText = "Estado Proximo";
+			this.colEstadoproxi.Name = "colEstadoproxi";
+			this.colEstadoproxi.ReadOnly = true;
+			this.colEstadoproxi.Width = 105;
 			// 
 			// N_Cliente
 			// 
@@ -576,6 +586,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn N_pelicula;
 		private System.Windows.Forms.DataGridViewTextBoxColumn id_dosimetro;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColEstado;
+		private System.Windows.Forms.DataGridViewTextBoxColumn colEstadoproxi;
 		private System.Windows.Forms.DataGridViewTextBoxColumn N_Cliente;
 		private System.Windows.Forms.DataGridViewTextBoxColumn NDocumento;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Rut;
