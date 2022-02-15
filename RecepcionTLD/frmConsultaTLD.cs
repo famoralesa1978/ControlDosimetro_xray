@@ -140,9 +140,14 @@ namespace ControlDosimetro
 			DataRow[] drarray1;
 			drarray1 = dt.Tables[0].Select(filterExp1, sortExp1, DataViewRowState.CurrentRows);
 
-			groupBox2.Text = "Listado       Registro Generado:" + drarray.Count().ToString() + ", registro Faltante: " + drarray1.Count().ToString();
+			string filterExp2 = "Nombres like 'Referencia%'";
+			string sortExp2 = "";
+			DataRow[] drarray2;
+			drarray2 = dt.Tables[0].Select(filterExp2, sortExp2, DataViewRowState.CurrentRows);
 
+			groupBox2.Text = "Listado       Registro Generado:" + drarray.Count().ToString() + ", registro Faltante: " + drarray1.Count().ToString() + ", registro Referencia: " + drarray2.Count().ToString();
 
+			//
 			if (dt.Tables[0].Rows.Count == 0)
 			{
 				grdDatos.DataSource = dt.Tables[0];
