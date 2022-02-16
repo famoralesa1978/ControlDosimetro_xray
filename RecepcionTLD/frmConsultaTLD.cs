@@ -145,7 +145,7 @@ namespace ControlDosimetro
 			DataRow[] drarray2;
 			drarray2 = dt.Tables[0].Select(filterExp2, sortExp2, DataViewRowState.CurrentRows);
 
-			groupBox2.Text = "Listado       Registro Generado:" + drarray.Count().ToString() + ", registro Faltante: " + drarray1.Count().ToString() + ", registro Referencia: " + drarray2.Count().ToString();
+			groupBox2.Text = "Listado       Registro Generado:" + drarray.Count().ToString() + ", registro Faltante: " + (drarray1.Count()- drarray2.Count()).ToString() + ", registro Referencia: " + drarray2.Count().ToString();
 
 			//
 			if (dt.Tables[0].Rows.Count == 0)

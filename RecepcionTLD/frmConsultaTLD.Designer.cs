@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.lbl_id_cliente = new System.Windows.Forms.TextBox();
@@ -70,6 +71,7 @@
 			this.Maternos = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.id_sucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.id_estadodosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colFechaIng = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ColMedicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -206,7 +208,7 @@
 			this.groupBox2.Controls.Add(this.grdDatos);
 			this.groupBox2.Location = new System.Drawing.Point(5, 266);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(1079, 358);
+			this.groupBox2.Size = new System.Drawing.Size(1279, 358);
 			this.groupBox2.TabIndex = 6;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Listado";
@@ -251,6 +253,7 @@
             this.Maternos,
             this.id_sucursal,
             this.id_estadodosimetro,
+            this.colFechaIng,
             this.ColMedicion});
 			this.grdDatos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.grdDatos.Location = new System.Drawing.Point(3, 16);
@@ -258,7 +261,7 @@
 			this.grdDatos.ReadOnly = true;
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-			this.grdDatos.Size = new System.Drawing.Size(1073, 339);
+			this.grdDatos.Size = new System.Drawing.Size(1273, 339);
 			this.grdDatos.TabIndex = 8;
 			this.grdDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellContentClick);
 			this.grdDatos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdDatos_CellFormatting);
@@ -271,14 +274,14 @@
 			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(1084, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(1284, 25);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
 			// btn_Cerrar
 			// 
 			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Cerrar.Location = new System.Drawing.Point(472, 630);
+			this.btn_Cerrar.Location = new System.Drawing.Point(572, 630);
 			this.btn_Cerrar.Name = "btn_Cerrar";
 			this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
 			this.btn_Cerrar.TabIndex = 8;
@@ -509,6 +512,18 @@
 			this.id_estadodosimetro.Visible = false;
 			this.id_estadodosimetro.Width = 123;
 			// 
+			// colFechaIng
+			// 
+			this.colFechaIng.DataPropertyName = "FechaIng";
+			dataGridViewCellStyle2.Format = "d";
+			dataGridViewCellStyle2.NullValue = null;
+			this.colFechaIng.DefaultCellStyle = dataGridViewCellStyle2;
+			this.colFechaIng.HeaderText = "Fecha Ing.";
+			this.colFechaIng.Name = "colFechaIng";
+			this.colFechaIng.ReadOnly = true;
+			this.colFechaIng.ToolTipText = "Fecha ingreso";
+			this.colFechaIng.Width = 83;
+			// 
 			// ColMedicion
 			// 
 			this.ColMedicion.DataPropertyName = "Medicion";
@@ -521,7 +536,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1084, 662);
+			this.ClientSize = new System.Drawing.Size(1284, 662);
 			this.Controls.Add(this.grpFiltro);
 			this.Controls.Add(this.lbl_id_seccion);
 			this.Controls.Add(this.cbx_id_seccion);
@@ -596,6 +611,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Maternos;
 		private System.Windows.Forms.DataGridViewTextBoxColumn id_sucursal;
 		private System.Windows.Forms.DataGridViewTextBoxColumn id_estadodosimetro;
+		private System.Windows.Forms.DataGridViewTextBoxColumn colFechaIng;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColMedicion;
 	}
 }
