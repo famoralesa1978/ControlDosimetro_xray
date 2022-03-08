@@ -610,7 +610,7 @@
 			this.MinimumSize = new System.Drawing.Size(776, 464);
 			this.Name = "FrmInformeDetalleISP";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Informe  detalle ISP";
+			this.Text = "Informe  detalle ISP por trimestre";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);

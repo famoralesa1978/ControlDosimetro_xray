@@ -43,9 +43,10 @@ namespace ControlDosimetro
 		const string footerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml";
 		//        XmlNamespaceManager nsManager;
 		bool bolDesdeCodigo = false;
+		Int64 intId_Cliente;
 		#endregion
 
-		public FrmInformeDetalleISP(Int64 intId_Cliente)
+		public FrmInformeDetalleISP()
 		{
 			InitializeComponent();
 
