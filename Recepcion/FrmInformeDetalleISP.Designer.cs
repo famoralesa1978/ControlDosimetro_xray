@@ -65,7 +65,6 @@
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.btn_Guardar = new System.Windows.Forms.Button();
 			this.btn_Cerrar = new System.Windows.Forms.Button();
-			this.btn_Corregir = new System.Windows.Forms.Button();
 			this.label4 = new System.Windows.Forms.Label();
 			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -466,16 +465,6 @@
 			this.btn_Cerrar.UseVisualStyleBackColor = true;
 			this.btn_Cerrar.Click += new System.EventHandler(this.Btn_Cerrar_Click);
 			// 
-			// btn_Corregir
-			// 
-			this.btn_Corregir.Location = new System.Drawing.Point(141, 546);
-			this.btn_Corregir.Name = "btn_Corregir";
-			this.btn_Corregir.Size = new System.Drawing.Size(126, 23);
-			this.btn_Corregir.TabIndex = 9;
-			this.btn_Corregir.Text = "Grabar Dato Corregir";
-			this.btn_Corregir.UseVisualStyleBackColor = true;
-			this.btn_Corregir.Click += new System.EventHandler(this.Btn_Corregir_Click);
-			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
@@ -599,7 +588,6 @@
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.cbx_Sucursal);
 			this.Controls.Add(this.label4);
-			this.Controls.Add(this.btn_Corregir);
 			this.Controls.Add(this.btn_Cerrar);
 			this.Controls.Add(this.btn_Guardar);
 			this.Controls.Add(this.toolStrip1);
@@ -641,7 +629,6 @@
         private System.Windows.Forms.Button btn_filtro;
         private System.Windows.Forms.GroupBox pnl_Progreso;
         private System.Windows.Forms.ProgressBar pgb_Barra;
-        private System.Windows.Forms.Button btn_Corregir;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbx_Sucursal;
         private System.Windows.Forms.Label lbl_rut_cliente;

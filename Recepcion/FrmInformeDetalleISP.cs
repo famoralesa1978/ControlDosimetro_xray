@@ -118,7 +118,6 @@ namespace ControlDosimetro
 				groupBox2.Text = "Listado";
 				groupBox2.Enabled = false;
 				cbx_Sucursal.Enabled = false;
-				btn_Corregir.Enabled = false;
 			}
 			else if (bolLimpiar == 2)
 			{
@@ -134,19 +133,16 @@ namespace ControlDosimetro
 				groupBox2.Enabled = false;
 				lbl_id_cliente.Text = "";
 				cbx_Sucursal.Enabled = true;
-				btn_Corregir.Enabled = false;
 				lbl_id_cliente.Focus();
 
 			}
 			else if (bolLimpiar == 3)
 			{
 				groupBox2.Enabled = false;
-				btn_Corregir.Enabled = false;
 			}
 			else if (bolLimpiar == 4)
 			{
 				groupBox2.Enabled = true;
-				btn_Corregir.Enabled = true;
 				cbx_Sucursal.Enabled = true;
 			}
 		}
@@ -458,20 +454,8 @@ namespace ControlDosimetro
 				//string strN_Documento = dt.Tables[0].Rows[idatos]["N_Documento"].ToString();
 			//	string strId_sucursal = dt.Tables[0].Rows[idatos]["Id_sucursal"].ToString();
 				String strArchivoCopiar = "";
-				strArchivoCopiar = targetPath + "Cliente" + lbl_id_cliente.Text + "_" + strDireccionEmpresa + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text + "_" + strSeccion + ".docx";
-
-
-				strpathcopiar = targetPath + "cliente " + lbl_id_cliente.Text + "_" + strDireccionEmpresa + "_" + cbx_id_seccion.Text + ".xlsx";
-
-				// process.Start("c:\Ejemplo de Carpeta con Espacios");
-				File.Copy(strpath, strpathcopiar, true);
-				//strRunEmpresa + "_" + cbx_id_periodo.Text + ".docx";
+			
 				//*************************************
-
-
-				File.Copy(strArchivo, strArchivoCopiar, true);
-
-
 				int intfila = 2;
 
 				string[] data1;
@@ -530,6 +514,8 @@ namespace ControlDosimetro
 					strid_personal = grdDatos.Rows[intfilagrid].Cells["id_personal"].Value.ToString();
 					strid_dosimetro = grdDatos.Rows[intfilagrid].Cells["id_dosimetro"].Value.ToString();
 
+					
+
 					cmdpersonal.CommandText = "SELECT Rut,SUBSTRING(UPPER (Nombres), 1, 1) + SubSTRING (LOWER (Nombres), 2,len(Nombres)) Nombres, " +
 										"SUBSTRING(UPPER (Paterno), 1, 1) + SUbSTRING (LOWER (Paterno), 2,len(Paterno)) Paterno," +
 										"SUBSTRING(UPPER (Maternos), 1, 1) + SUbSTRING (LOWER (Maternos), 2,len(Maternos))Maternos," +
@@ -541,11 +527,18 @@ namespace ControlDosimetro
 							 "";
 					dtCliente = Conectar.Listar(Clases.clsBD.BD, cmdpersonal);
 
+					strArchivoCopiar = targetPath + "Cliente" + lbl_id_cliente.Text + "_" + strDireccionEmpresa + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text + "_" + strSeccion + ".docx";
+
+
+					strpathcopiar = targetPath + "cliente " + lbl_id_cliente.Text + "_" + strDireccionEmpresa + "_" + cbx_id_seccion.Text + ".xlsx";
+					File.Copy(strpath, strpathcopiar, true);
+					File.Copy(strArchivo, strArchivoCopiar, true);
+
 					//if (strId_sucursal == txtid_sucursal.Value.ToString())
 					//{
 					//}
-						#region "Genera  word y excel"
-						if (checkGenerar.Value.ToString() == "1")
+					#region "Genera  word y excel"
+					if (checkGenerar.Value.ToString() == "1")
 						{
 							//cmd.CommandText = "update tbl_dosimetria " +
 							//                      "set enviado=0" +
@@ -571,7 +564,14 @@ namespace ControlDosimetro
 							grdDatos.Rows[i].DefaultCellStyle.SelectionBackColor = System.Drawing.Color.White;
 							if ((strid_dosimetro != "0")) //&& (checkGenerar.Value.ToString() == "1")					 
 							{
-								document = SpreadsheetDocument.Open(strpathcopiar, true);
+							strArchivoCopiar = targetPath + cbx_id_periodo.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text + "_Rut(" + dtCliente.Tables[0].Rows[0]["Rut"].ToString() + ").docx";//Cliente" + lbl_id_cliente.Text + "_"
+
+
+							strpathcopiar = targetPath + "_Rut(" + dtCliente.Tables[0].Rows[0]["Rut"].ToString() + ").xlsx";//"cliente " + lbl_id_cliente.Text + 
+
+							File.Copy(strpath, strpathcopiar, true);
+							File.Copy(strArchivo, strArchivoCopiar, true);
+							document = SpreadsheetDocument.Open(strpathcopiar, true);
 								wbPart = document.WorkbookPart;
 								string wsName = cbx_id_periodo.Text.Replace(" ", "").Replace("RI", "");//4ºT//1ºT|
 								UpdateValue(wsName, "A" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Nombres"].ToString(), 0, true);
@@ -607,17 +607,7 @@ namespace ControlDosimetro
 								UpdateValue(wsName, "AD" + (intfila).ToString(), strregionEmpresa, 0, true);
 								UpdateValue(wsName, "AE" + (intfila).ToString(), strTelefonoEmpresa, 0, false);
 								document.Close();
-								cmd.CommandText = "update tbl_dosimetria " +
-																	"set enviado=1" +
-																" where id_dosimetro=" + strid_dosimetro;
-								cmd.CommandType = CommandType.Text;
-
-								Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-
-								string strParametro = String.Format("{0},{1},{2},''", txtnpelicula.Value.ToString(), "5", Clases.clsUsuario.Usuario);
-								cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + strParametro;
-								cmd.CommandType = CommandType.Text;
-								Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+						
 
 								Array.Resize(ref data1, i + 3);
 								Array.Resize(ref data2, i + 3);
@@ -631,10 +621,42 @@ namespace ControlDosimetro
 									data2[i + 2] = txtvalor.Value.ToString();
 								data3[i + 2] = txtnpelicula.Value.ToString();
 								data4[i + 2] = dtCliente.Tables[0].Rows[0]["Rut"].ToString();
-								// this.p
 
-								intfila = intfila + 1;
-								i = i + 1;
+							#region Update Document Bookmarks Openxml
+							strcampoMarcador = "empresa";
+
+							using (WordprocessingDocument doc = WordprocessingDocument.Open(strArchivoCopiar, true))
+							{
+								string strSemetre1 = "";
+								if (cbx_id_periodo.Text.Replace("º TRI", "") == "1")
+									strSemetre1 = "primer";
+								if (cbx_id_periodo.Text.Replace("º TRI", "") == "2")
+									strSemetre1 = "segundo";
+								if (cbx_id_periodo.Text.Replace("º TRI", "") == "3")
+									strSemetre1 = "tercer";
+								if (cbx_id_periodo.Text.Replace("º TRI", "") == "4")
+									strSemetre1 = "cuarto";
+
+								strcampoMarcador = "empresa";
+								BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strRazon_SocialEmpresa);
+								strcampoMarcador = "comuna";
+								BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strcomunaEmpresa);
+								strcampoMarcador = "anno";
+								BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), cbx_anno.Text);
+								strcampoMarcador = "semestre";
+								BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strSemetre1);
+
+
+
+
+							}
+							if (data1.Count() > 1)
+								WDAddTable(strArchivoCopiar, data1, data2, data3, data4);
+
+							#endregion
+
+							intfila = intfila + 1;
+								i =  0;
 							}
 
 						}
@@ -644,38 +666,7 @@ namespace ControlDosimetro
 						#endregion
 					
 				}
-				#region Update Document Bookmarks Openxml
-				strcampoMarcador = "empresa";
-
-				using (WordprocessingDocument doc = WordprocessingDocument.Open(strArchivoCopiar, true))
-				{
-					string strSemetre1 = "";
-					if (cbx_id_periodo.Text.Replace("º TRI", "") == "1")
-						strSemetre1 = "primer";
-					if (cbx_id_periodo.Text.Replace("º TRI", "") == "2")
-						strSemetre1 = "segundo";
-					if (cbx_id_periodo.Text.Replace("º TRI", "") == "3")
-						strSemetre1 = "tercer";
-					if (cbx_id_periodo.Text.Replace("º TRI", "") == "4")
-						strSemetre1 = "cuarto";
-
-					strcampoMarcador = "empresa";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strRazon_SocialEmpresa);
-					strcampoMarcador = "comuna";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strcomunaEmpresa);
-					strcampoMarcador = "anno";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), cbx_anno.Text);
-					strcampoMarcador = "semestre";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strSemetre1);
-
-
-
-
-				}
-				if (data1.Count() > 1)
-					WDAddTable(strArchivoCopiar, data1, data2, data3, data4);
-
-				#endregion
+		
 				#endregion
 			}
 
@@ -1062,78 +1053,6 @@ namespace ControlDosimetro
 			this.Close();
 		}
 
-		private void Btn_Corregir_Click(object sender, EventArgs e)
-		{
-			SqlCommand cmd = new SqlCommand();
-			SqlCommand cmd2 = new SqlCommand();
-			//	  SqlCommand cmd = new SqlCommand();
-			SqlCommand cmdpersonal = new SqlCommand();
-			//  SqlCommand cmdpersonal = new SqlCommand();
-			SqlCommand cmdperiodo = new SqlCommand();
-			//  SqlCommand cmdperiodo = new SqlCommand();
-
-			// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
-			DataGridViewCheckBoxCell checkGenerar;
-			DataGridViewCheckBoxCell checkCell;
-			DataGridViewCheckBoxCell chkcondosis;
-			DataGridViewTextBoxCell txtvalor;
-			DataGridViewTextBoxCell txtndocumento;
-			DataGridViewTextBoxCell txtnpelicula;
-			DataGridViewComboBoxCell cbxEstado;
-			DataGridViewCheckBoxCell checkTLD;
-			string strn_cliente;
-			string strid_personal;
-			string strid_dosimetro;
-			btn_Corregir.Enabled = false;
-
-			pnl_Progreso.Visible = true;
-			pgb_Barra.Minimum = 0;
-			pgb_Barra.Maximum = grdDatos.RowCount;
-			pnl_Progreso.Refresh();
-			for (int i = 0; i <= grdDatos.RowCount - 1; i++)
-			{
-				pgb_Barra.Value = i + 1;
-				pgb_Barra.Refresh();
-				checkGenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["Generar"];
-				checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["enviado"];
-				chkcondosis = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["condosis"];
-				txtvalor = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["valor"];
-				txtndocumento = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["NDocumento"];
-				txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["n_pelicula"];
-				cbxEstado = (DataGridViewComboBoxCell)grdDatos.Rows[i].Cells["Estado"];
-
-				checkTLD = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["tld"];
-				strn_cliente = grdDatos.Rows[i].Cells["N_Cliente"].Value.ToString();
-				strid_personal = grdDatos.Rows[i].Cells["id_personal"].Value.ToString();
-				strid_dosimetro = grdDatos.Rows[i].Cells["id_dosimetro"].Value.ToString();
-
-
-				if (checkGenerar.Value.ToString() == "1")
-				{
-					cmd.CommandText = "update tbl_dosimetria " +
-											  "set enviado=0" +
-										 " where id_dosimetro=" + strid_dosimetro;
-					cmd.CommandType = CommandType.Text;
-
-					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-
-					if (checkTLD.Value.ToString() == "0")
-						cmd2.CommandText = "pa_DevolverEstado_upd " + txtnpelicula.Value.ToString() + "," + cbxEstado.Value + ",'" + Clases.clsUsuario.Usuario +
-																  "',''," + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;
-					else
-						cmd2.CommandText = "pa_DevolverEstadoTLD_upd " + txtnpelicula.Value.ToString() + "," + cbxEstado.Value + ",'" + Clases.clsUsuario.Usuario +
-																  "',''," + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;
-					cmd2.CommandType = CommandType.Text;
-					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd2);
-				}
-			}
-			MessageBox.Show("Informacion esta listo para corregir su dosis.");
-
-			btn_Corregir.Enabled = true;
-			pnl_Progreso.Visible = false;
-
-			Listar_Personal();
-		}
 		#endregion
 
 		#region "combobox"
