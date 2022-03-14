@@ -151,7 +151,7 @@ namespace ControlDosimetro
 		{
 			SqlCommand cmd = new SqlCommand();
 			DataSet dt;
-			cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue +","+ cbx_id_seccion.SelectedValue;
+			cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue + "," + cbx_id_seccion.SelectedValue;
 			cmd.CommandType = CommandType.Text;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -232,11 +232,11 @@ namespace ControlDosimetro
 				CommandText = "select 0 as Id_sucursal, 'Todos' as Direccion union all " +
 									"SELECT distinct s.Id_sucursal, " +
 									"case when s.Direccion is null or s.Direccion ='' then c.Direccion else s.Direccion end + ',' + comuna as Direccion" + //N_Documento,
-									  " FROM [dbo].[ges_DosimetriaPersonal] dos inner join tbl_cliente c on c.Id_cliente=dos.Id_cliente " +
-									  " inner join tbl_sucursal s on s.Id_sucursal=dos.Id_Sucursal " +
-									  " inner  join glo_region R on s.id_region=r.id_region inner join glo_provincia p on p.id_provincia=s.Id_Provincia  " +
-									  " inner join glo_comuna co on co.Id_Comuna=s.Id_Comuna " +
-									  "WHERE c.Id_cliente= " + lbl_id_cliente.Text + " and dos.id_periodo=" + cbx_id_periodo.SelectedValue + " union all " +
+										" FROM [dbo].[ges_DosimetriaPersonal] dos inner join tbl_cliente c on c.Id_cliente=dos.Id_cliente " +
+										" inner join tbl_sucursal s on s.Id_sucursal=dos.Id_Sucursal " +
+										" inner  join glo_region R on s.id_region=r.id_region inner join glo_provincia p on p.id_provincia=s.Id_Provincia  " +
+										" inner join glo_comuna co on co.Id_Comuna=s.Id_Comuna " +
+										"WHERE c.Id_cliente= " + lbl_id_cliente.Text + " and dos.id_periodo=" + cbx_id_periodo.SelectedValue + " union all " +
 										"SELECT distinct s.Id_sucursal, " +
 									"case when s.Direccion is null or s.Direccion ='' then c.Direccion else s.Direccion end + ',' + comuna as Direccion" + //N_Documento,
 										" FROM  ges_dosimetro_estado_TLD tld inner join tbl_dosimetria dos on dos.id_cliente = tld.id_cliente and TLD = 1 inner join tbl_cliente c on c.Id_cliente=dos.Id_cliente " +
@@ -249,7 +249,7 @@ namespace ControlDosimetro
 			};
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmdSucursal);
-			
+
 			cbx_Sucursal.DisplayMember = "Direccion";
 			cbx_Sucursal.ValueMember = "Id_sucursal";
 			cbx_Sucursal.DataSource = dt.Tables[0].DefaultView;
@@ -445,16 +445,16 @@ namespace ControlDosimetro
 				i = 0;
 				string strRunEmpresa = dt.Tables[0].Rows[idatos]["run"].ToString();
 				string strRazon_SocialEmpresa = dt.Tables[0].Rows[idatos]["Razon_Social"].ToString();
-				string strDireccionEmpresa = (int)cbx_Sucursal.SelectedValue==0? lbl_nombreCliente.Text:  dt.Tables[0].Rows[idatos]["Direccion"].ToString();
+				string strDireccionEmpresa = (int)cbx_Sucursal.SelectedValue == 0 ? lbl_nombreCliente.Text : dt.Tables[0].Rows[idatos]["Direccion"].ToString();
 				string strTelefonoEmpresa = dt.Tables[0].Rows[idatos]["Telefono"].ToString();
 				string strregionEmpresa = dt.Tables[0].Rows[idatos]["region"].ToString();
 				string strProvinciaEmpresa = dt.Tables[0].Rows[idatos]["Provincia"].ToString();
 				string strcomunaEmpresa = dt.Tables[0].Rows[idatos]["comuna"].ToString();
 				string strSeccion = (int)cbx_id_seccion.SelectedValue == 0 ? "" : cbx_id_seccion.Text;
 				//string strN_Documento = dt.Tables[0].Rows[idatos]["N_Documento"].ToString();
-			//	string strId_sucursal = dt.Tables[0].Rows[idatos]["Id_sucursal"].ToString();
+				//	string strId_sucursal = dt.Tables[0].Rows[idatos]["Id_sucursal"].ToString();
 				String strArchivoCopiar = "";
-			
+
 				//*************************************
 				int intfila = 2;
 
@@ -494,65 +494,67 @@ namespace ControlDosimetro
 					txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["n_pelicula"];
 					cbxEstado = (DataGridViewComboBoxCell)grdDatos.Rows[intfilagrid].Cells["Estado"];
 					txtid_sucursal = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["id_sucursal"];
-
-					if (cbxEstado.Value.ToString() != "0")
-					{
-						DataSet dtcombo;
-						SqlCommand cmdcombo = new SqlCommand
-						{
-							CommandText = " " +
-							"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 and Id_DetParametro= " + cbxEstado.Value.ToString() +
-							"order by orden ",
-							CommandType = CommandType.Text
-						};
-						dtcombo = Conectar.Listar(Clases.clsBD.BD, cmdcombo);
-						strEstado = dtcombo.Tables[0].Rows[0]["glosa"].ToString();
-					}
-					else
-						strEstado = "";
-					strn_cliente = grdDatos.Rows[intfilagrid].Cells["N_Cliente"].Value.ToString();
-					strid_personal = grdDatos.Rows[intfilagrid].Cells["id_personal"].Value.ToString();
-					strid_dosimetro = grdDatos.Rows[intfilagrid].Cells["id_dosimetro"].Value.ToString();
-
-					
-
-					cmdpersonal.CommandText = "SELECT Rut,SUBSTRING(UPPER (Nombres), 1, 1) + SubSTRING (LOWER (Nombres), 2,len(Nombres)) Nombres, " +
-										"SUBSTRING(UPPER (Paterno), 1, 1) + SUbSTRING (LOWER (Paterno), 2,len(Paterno)) Paterno," +
-										"SUBSTRING(UPPER (Maternos), 1, 1) + SUbSTRING (LOWER (Maternos), 2,len(Maternos))Maternos," +
-										"Id_Seccion,p.Id_estado, " +
-							 " cd.glosa,profesion,Fecha_inicio,fecha_termino,Usuario,Fecha_agregado,getdate()as Fecha_Modificacion " +
-							 " FROM tbl_personal P inner join conf_detparametro cd on p.Id_sexo=cd.Id_DetParametro" +
-							 " inner join glo_profesion pro on pro.id_profesion=p.Id_profesion " +
-							 " WHERE Id_Personal= " + strid_personal.ToString() + " and id_cliente=" + lbl_id_cliente.Text +
-							 "";
-					dtCliente = Conectar.Listar(Clases.clsBD.BD, cmdpersonal);
-
-					strArchivoCopiar = targetPath + "Cliente" + lbl_id_cliente.Text + "_" + strDireccionEmpresa + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text + "_" + strSeccion + ".docx";
-
-
-					strpathcopiar = targetPath + "cliente " + lbl_id_cliente.Text + "_" + strDireccionEmpresa + "_" + cbx_id_seccion.Text + ".xlsx";
-					File.Copy(strpath, strpathcopiar, true);
-					File.Copy(strArchivo, strArchivoCopiar, true);
-
-					//if (strId_sucursal == txtid_sucursal.Value.ToString())
-					//{
-					//}
-					#region "Genera  word y excel"
 					if (checkGenerar.Value.ToString() == "1")
+					{
+
+						if (cbxEstado.Value.ToString() != "0")
 						{
-							//cmd.CommandText = "update tbl_dosimetria " +
-							//                      "set enviado=0" +
-							//                  " where id_dosimetro=" + strid_dosimetro;
-							//cmd.CommandType = CommandType.Text;
-
-							//Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
-
-							//cmd.CommandText = "pa_DosimetroIngreso_upd " + txtnpelicula.Value.ToString() + ",12,'Clases.clsUsuario.Usuario',''";
-							//cmd.CommandType = CommandType.StoredProcedure;
-							//Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
+							DataSet dtcombo;
+							SqlCommand cmdcombo = new SqlCommand
+							{
+								CommandText = " " +
+								"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 and Id_DetParametro= " + cbxEstado.Value.ToString() +
+								"order by orden ",
+								CommandType = CommandType.Text
+							};
+							dtcombo = Conectar.Listar(Clases.clsBD.BD, cmdcombo);
+							strEstado = dtcombo.Tables[0].Rows[0]["glosa"].ToString();
 						}
 						else
-							 if ((txtndocumento.Value.ToString() == "") && (checkGenerar.Value.ToString() == "0"))
+							strEstado = "";
+						strn_cliente = grdDatos.Rows[intfilagrid].Cells["N_Cliente"].Value.ToString();
+						strid_personal = grdDatos.Rows[intfilagrid].Cells["id_personal"].Value.ToString();
+						strid_dosimetro = grdDatos.Rows[intfilagrid].Cells["id_dosimetro"].Value.ToString();
+
+
+
+						cmdpersonal.CommandText = "SELECT Rut,SUBSTRING(UPPER (Nombres), 1, 1) + SubSTRING (LOWER (Nombres), 2,len(Nombres)) Nombres, " +
+											"SUBSTRING(UPPER (Paterno), 1, 1) + SUbSTRING (LOWER (Paterno), 2,len(Paterno)) Paterno," +
+											"SUBSTRING(UPPER (Maternos), 1, 1) + SUbSTRING (LOWER (Maternos), 2,len(Maternos))Maternos," +
+											"Id_Seccion,p.Id_estado, " +
+								 " cd.glosa,profesion,Fecha_inicio,fecha_termino,Usuario,Fecha_agregado,getdate()as Fecha_Modificacion " +
+								 " FROM tbl_personal P inner join conf_detparametro cd on p.Id_sexo=cd.Id_DetParametro" +
+								 " inner join glo_profesion pro on pro.id_profesion=p.Id_profesion " +
+								 " WHERE Id_Personal= " + strid_personal.ToString() + " and id_cliente=" + lbl_id_cliente.Text +
+								 "";
+						dtCliente = Conectar.Listar(Clases.clsBD.BD, cmdpersonal);
+
+						strArchivoCopiar = targetPath + "Cliente" + lbl_id_cliente.Text + "_" + strDireccionEmpresa + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text + "_" + strSeccion + ".docx";
+
+
+						strpathcopiar = targetPath + "cliente " + lbl_id_cliente.Text + "_" + strDireccionEmpresa + "_" + cbx_id_seccion.Text + ".xlsx";
+						File.Copy(strpath, strpathcopiar, true);
+						File.Copy(strArchivo, strArchivoCopiar, true);
+
+						//if (strId_sucursal == txtid_sucursal.Value.ToString())
+						//{
+						//}
+						#region "Genera  word y excel"
+						//if (checkGenerar.Value.ToString() == "1")
+						//	{
+						//		//cmd.CommandText = "update tbl_dosimetria " +
+						//		//                      "set enviado=0" +
+						//		//                  " where id_dosimetro=" + strid_dosimetro;
+						//		//cmd.CommandType = CommandType.Text;
+
+						//		//Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
+
+						//		//cmd.CommandText = "pa_DosimetroIngreso_upd " + txtnpelicula.Value.ToString() + ",12,'Clases.clsUsuario.Usuario',''";
+						//		//cmd.CommandType = CommandType.StoredProcedure;
+						//		//Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
+						//	}
+						//	else
+						if ((txtndocumento.Value.ToString() == "") && (checkGenerar.Value.ToString() == "0"))
 						{
 							// MessageBox.Show("Ingrese el n° de  Documento");						  
 							grdDatos.Rows[i].DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Red;
@@ -564,14 +566,14 @@ namespace ControlDosimetro
 							grdDatos.Rows[i].DefaultCellStyle.SelectionBackColor = System.Drawing.Color.White;
 							if ((strid_dosimetro != "0")) //&& (checkGenerar.Value.ToString() == "1")					 
 							{
-							strArchivoCopiar = targetPath + cbx_id_periodo.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text + "_Rut(" + dtCliente.Tables[0].Rows[0]["Rut"].ToString() + ").docx";//Cliente" + lbl_id_cliente.Text + "_"
+								strArchivoCopiar = targetPath + cbx_id_periodo.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text + "_Rut(" + dtCliente.Tables[0].Rows[0]["Rut"].ToString() + ").docx";//Cliente" + lbl_id_cliente.Text + "_"
 
 
-							strpathcopiar = targetPath + "_Rut(" + dtCliente.Tables[0].Rows[0]["Rut"].ToString() + ").xlsx";//"cliente " + lbl_id_cliente.Text + 
+								strpathcopiar = targetPath + "_Rut(" + dtCliente.Tables[0].Rows[0]["Rut"].ToString() + ").xlsx";//"cliente " + lbl_id_cliente.Text + 
 
-							File.Copy(strpath, strpathcopiar, true);
-							File.Copy(strArchivo, strArchivoCopiar, true);
-							document = SpreadsheetDocument.Open(strpathcopiar, true);
+								File.Copy(strpath, strpathcopiar, true);
+								File.Copy(strArchivo, strArchivoCopiar, true);
+								document = SpreadsheetDocument.Open(strpathcopiar, true);
 								wbPart = document.WorkbookPart;
 								string wsName = cbx_id_periodo.Text.Replace(" ", "").Replace("RI", "");//4ºT//1ºT|
 								UpdateValue(wsName, "A" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Nombres"].ToString(), 0, true);
@@ -607,7 +609,7 @@ namespace ControlDosimetro
 								UpdateValue(wsName, "AD" + (intfila).ToString(), strregionEmpresa, 0, true);
 								UpdateValue(wsName, "AE" + (intfila).ToString(), strTelefonoEmpresa, 0, false);
 								document.Close();
-						
+
 
 								Array.Resize(ref data1, i + 3);
 								Array.Resize(ref data2, i + 3);
@@ -622,41 +624,41 @@ namespace ControlDosimetro
 								data3[i + 2] = txtnpelicula.Value.ToString();
 								data4[i + 2] = dtCliente.Tables[0].Rows[0]["Rut"].ToString();
 
-							#region Update Document Bookmarks Openxml
-							strcampoMarcador = "empresa";
-
-							using (WordprocessingDocument doc = WordprocessingDocument.Open(strArchivoCopiar, true))
-							{
-								string strSemetre1 = "";
-								if (cbx_id_periodo.Text.Replace("º TRI", "") == "1")
-									strSemetre1 = "primer";
-								if (cbx_id_periodo.Text.Replace("º TRI", "") == "2")
-									strSemetre1 = "segundo";
-								if (cbx_id_periodo.Text.Replace("º TRI", "") == "3")
-									strSemetre1 = "tercer";
-								if (cbx_id_periodo.Text.Replace("º TRI", "") == "4")
-									strSemetre1 = "cuarto";
-
+								#region Update Document Bookmarks Openxml
 								strcampoMarcador = "empresa";
-								BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strRazon_SocialEmpresa);
-								strcampoMarcador = "comuna";
-								BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strcomunaEmpresa);
-								strcampoMarcador = "anno";
-								BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), cbx_anno.Text);
-								strcampoMarcador = "semestre";
-								BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strSemetre1);
+
+								using (WordprocessingDocument doc = WordprocessingDocument.Open(strArchivoCopiar, true))
+								{
+									string strSemetre1 = "";
+									if (cbx_id_periodo.Text.Replace("º TRI", "") == "1")
+										strSemetre1 = "primer";
+									if (cbx_id_periodo.Text.Replace("º TRI", "") == "2")
+										strSemetre1 = "segundo";
+									if (cbx_id_periodo.Text.Replace("º TRI", "") == "3")
+										strSemetre1 = "tercer";
+									if (cbx_id_periodo.Text.Replace("º TRI", "") == "4")
+										strSemetre1 = "cuarto";
+
+									strcampoMarcador = "empresa";
+									BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strRazon_SocialEmpresa);
+									strcampoMarcador = "comuna";
+									BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strcomunaEmpresa);
+									strcampoMarcador = "anno";
+									BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), cbx_anno.Text);
+									strcampoMarcador = "semestre";
+									BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strSemetre1);
 
 
 
 
-							}
-							if (data1.Count() > 1)
-								WDAddTable(strArchivoCopiar, data1, data2, data3, data4);
+								}
+								if (data1.Count() > 1)
+									WDAddTable(strArchivoCopiar, data1, data2, data3, data4);
 
-							#endregion
+								#endregion
 
-							intfila = intfila + 1;
-								i =  0;
+								intfila = intfila + 1;
+								i = 0;
 							}
 
 						}
@@ -664,9 +666,10 @@ namespace ControlDosimetro
 
 
 						#endregion
-					
+
+					}
 				}
-		
+
 				#endregion
 			}
 
@@ -709,13 +712,13 @@ namespace ControlDosimetro
 			SqlCommand cmdArchivo = new SqlCommand();
 			DataSet dtArchivo;
 			cmdArchivo.CommandText = "" +
-			  "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=6 order by orden ";
+				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=6 order by orden ";
 			cmdArchivo.CommandType = CommandType.Text;
 			dtArchivo = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
 
 			DataSet dtformato;
 			cmdArchivo.CommandText = "" +
-			  "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=5 order by orden ";
+				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=5 order by orden ";
 			cmdArchivo.CommandType = CommandType.Text;
 			dtformato = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
 			//string targetPath = @ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text;
@@ -813,7 +816,7 @@ namespace ControlDosimetro
 				//string strN_Documento = dt.Tables[0].Rows[idatos]["N_Documento"].ToString();
 				string strId_sucursal = dt.Tables[0].Rows[idatos]["Id_sucursal"].ToString();
 				String strArchivoCopiar = "";
-				strArchivoCopiar = targetPath + "Cliente" + lbl_id_cliente.Text + "_" + strDireccionEmpresa + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text +"_"+ cbx_id_seccion.Text + ".docx";
+				strArchivoCopiar = targetPath + "Cliente" + lbl_id_cliente.Text + "_" + strDireccionEmpresa + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text + "_" + cbx_id_seccion.Text + ".docx";
 
 
 				strpathcopiar = targetPath + "cliente " + lbl_id_cliente.Text + "_" + strDireccionEmpresa + "_" + cbx_id_seccion.Text + ".xlsx";
@@ -872,8 +875,8 @@ namespace ControlDosimetro
 						SqlCommand cmdcombo = new SqlCommand
 						{
 							CommandText = " " +
-						  "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 and Id_DetParametro= " + cbxEstado.Value.ToString() +
-						  "order by orden ",
+							"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 and Id_DetParametro= " + cbxEstado.Value.ToString() +
+							"order by orden ",
 							CommandType = CommandType.Text
 						};
 						dtcombo = Conectar.Listar(Clases.clsBD.BD, cmdcombo);
@@ -886,9 +889,9 @@ namespace ControlDosimetro
 					strid_dosimetro = grdDatos.Rows[intfilagrid].Cells["id_dosimetro"].Value.ToString();
 
 					cmdpersonal.CommandText = "SELECT Rut,SUBSTRING(UPPER (Nombres), 1, 1) + SubSTRING (LOWER (Nombres), 2,len(Nombres)) Nombres, " +
-									  "SUBSTRING(UPPER (Paterno), 1, 1) + SUbSTRING (LOWER (Paterno), 2,len(Paterno)) Paterno," +
-									  "SUBSTRING(UPPER (Maternos), 1, 1) + SUbSTRING (LOWER (Maternos), 2,len(Maternos))Maternos," +
-									  "Id_Seccion,p.Id_estado, " +
+										"SUBSTRING(UPPER (Paterno), 1, 1) + SUbSTRING (LOWER (Paterno), 2,len(Paterno)) Paterno," +
+										"SUBSTRING(UPPER (Maternos), 1, 1) + SUbSTRING (LOWER (Maternos), 2,len(Maternos))Maternos," +
+										"Id_Seccion,p.Id_estado, " +
 							 " cd.glosa,profesion,Fecha_inicio,fecha_termino,Usuario,Fecha_agregado,getdate()as Fecha_Modificacion " +
 							 " FROM tbl_personal P inner join conf_detparametro cd on p.Id_sexo=cd.Id_DetParametro" +
 							 " inner join glo_profesion pro on pro.id_profesion=p.Id_profesion " +
@@ -963,7 +966,7 @@ namespace ControlDosimetro
 								document.Close();
 								cmd.CommandText = "update tbl_dosimetria " +
 																	"set enviado=1" +
-															  " where id_dosimetro=" + strid_dosimetro;
+																" where id_dosimetro=" + strid_dosimetro;
 								cmd.CommandType = CommandType.Text;
 
 								Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
@@ -1314,7 +1317,7 @@ namespace ControlDosimetro
 				//  doc.MainDocumentPart.Document.Body.Elements<Table>().First();
 
 				TableProperties props = new TableProperties(
-				  new TableBorders(
+					new TableBorders(
 					 new DocumentFormat.OpenXml.Wordprocessing.TopBorder
 					 {
 						 Val = new EnumValue<BorderValues>(BorderValues.None),
@@ -1368,7 +1371,7 @@ namespace ControlDosimetro
 															 new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
 															 new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" },
 															 new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data1[i])),
-																  new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" })
+																	new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" })
 															 ));
 
 						tr.Append(tc);
@@ -1394,7 +1397,7 @@ namespace ControlDosimetro
 															 new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
 															 new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" },
 															 new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data1[i])),
-																  new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" })
+																	new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" })
 															 ));
 
 						tr.Append(tc);
@@ -1461,7 +1464,7 @@ namespace ControlDosimetro
 
 		private void Cbx_Sucursal_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if(!bolDesdeCodigo)
+			if (!bolDesdeCodigo)
 				Listar_Personal();
 		}
 
@@ -1471,6 +1474,6 @@ namespace ControlDosimetro
 				Listar_Personal();
 		}
 
-	
+
 	}
 }
