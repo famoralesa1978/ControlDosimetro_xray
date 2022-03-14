@@ -69,6 +69,7 @@ namespace ControlDosimetro
 			repCliente = 503,
 			repConsultaTLD = 505,
 			mnuInformeISPTri=506,
+			mnuInformeISPAnual=507,
 
 			LinkVigDosimetrica = 601,
 
@@ -681,6 +682,15 @@ namespace ControlDosimetro
 					break;
 				case (int)MENU.mnuInformeISPTri:
 					objFrm = new FrmInformeDetalleISP()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.mnuInformeISPAnual:
+					objFrm = new FrmInformeDetalleISPAnual()
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen

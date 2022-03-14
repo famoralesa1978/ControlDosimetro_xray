@@ -483,6 +483,12 @@
     <Compile Include="Dosimetro\frmConsultaFilmico.Designer.cs">
       <DependentUpon>frmConsultaFilmico.cs</DependentUpon>
     </Compile>
+    <Compile Include="Recepcion\FrmInformeDetalleISPAnual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\FrmInformeDetalleISPAnual.Designer.cs">
+      <DependentUpon>FrmInformeDetalleISPAnual.cs</DependentUpon>
+    </Compile>
     <Compile Include="Recepcion\FrmInformeDetalleISP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -803,6 +809,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dosimetro\frmConsultaFilmico.resx">
       <DependentUpon>frmConsultaFilmico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepcion\FrmInformeDetalleISPAnual.resx">
+      <DependentUpon>FrmInformeDetalleISPAnual.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Recepcion\FrmInformeDetalleISP.resx">
       <DependentUpon>FrmInformeDetalleISP.cs</DependentUpon>
