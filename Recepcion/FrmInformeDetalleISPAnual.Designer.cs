@@ -32,15 +32,11 @@
 			this.label6 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.btn_CargarCli = new System.Windows.Forms.Button();
-			this.lbl_id_cliente = new System.Windows.Forms.TextBox();
-			this.lbl_rut_cliente = new System.Windows.Forms.Label();
+			this.lbl_Id_cliente = new System.Windows.Forms.Label();
 			this.btn_filtro = new System.Windows.Forms.Button();
 			this.btn_cargar = new System.Windows.Forms.Button();
-			this.cbx_id_periodo = new System.Windows.Forms.ComboBox();
 			this.lbl_nombreCliente = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
 			this.cbx_anno = new System.Windows.Forms.ComboBox();
-			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
@@ -65,18 +61,18 @@
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.btn_Guardar = new System.Windows.Forms.Button();
 			this.btn_Cerrar = new System.Windows.Forms.Button();
-			this.label4 = new System.Windows.Forms.Label();
-			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.lbl_Alternativa = new System.Windows.Forms.Label();
-			this.label7 = new System.Windows.Forms.Label();
 			this.lbl_Original = new System.Windows.Forms.Label();
 			this.rbtAlternativa = new System.Windows.Forms.RadioButton();
 			this.rbtOiginal = new System.Windows.Forms.RadioButton();
 			this.dbd_Archivo = new System.Windows.Forms.FolderBrowserDialog();
-			this.lbl_id_seccion = new System.Windows.Forms.Label();
-			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
 			this.btnGenerar = new System.Windows.Forms.Button();
+			this.label1 = new System.Windows.Forms.Label();
+			this.cbxSucursal = new System.Windows.Forms.ComboBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.txt_run = new System.Windows.Forms.TextBox();
+			this.lbl_run = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -86,18 +82,19 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.label4);
+			this.groupBox1.Controls.Add(this.txt_run);
+			this.groupBox1.Controls.Add(this.lbl_run);
+			this.groupBox1.Controls.Add(this.cbxSucursal);
+			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Controls.Add(this.label6);
 			this.groupBox1.Controls.Add(this.label5);
 			this.groupBox1.Controls.Add(this.btn_CargarCli);
-			this.groupBox1.Controls.Add(this.lbl_id_cliente);
-			this.groupBox1.Controls.Add(this.lbl_rut_cliente);
+			this.groupBox1.Controls.Add(this.lbl_Id_cliente);
 			this.groupBox1.Controls.Add(this.btn_filtro);
 			this.groupBox1.Controls.Add(this.btn_cargar);
-			this.groupBox1.Controls.Add(this.cbx_id_periodo);
 			this.groupBox1.Controls.Add(this.lbl_nombreCliente);
-			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Controls.Add(this.cbx_anno);
-			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Location = new System.Drawing.Point(5, 28);
 			this.groupBox1.Name = "groupBox1";
@@ -109,16 +106,16 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(12, 58);
+			this.label6.Location = new System.Drawing.Point(12, 39);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(24, 13);
+			this.label6.Size = new System.Drawing.Size(53, 13);
 			this.label6.TabIndex = 50;
-			this.label6.Text = "Rut";
+			this.label6.Text = "N° cliente";
 			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(12, 39);
+			this.label5.Location = new System.Drawing.Point(14, 58);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(68, 13);
 			this.label5.TabIndex = 49;
@@ -126,7 +123,7 @@
 			// 
 			// btn_CargarCli
 			// 
-			this.btn_CargarCli.Location = new System.Drawing.Point(205, 8);
+			this.btn_CargarCli.Location = new System.Drawing.Point(332, 10);
 			this.btn_CargarCli.Name = "btn_CargarCli";
 			this.btn_CargarCli.Size = new System.Drawing.Size(106, 23);
 			this.btn_CargarCli.TabIndex = 48;
@@ -134,25 +131,18 @@
 			this.btn_CargarCli.UseVisualStyleBackColor = true;
 			this.btn_CargarCli.Click += new System.EventHandler(this.Btn_CargarCli_Click);
 			// 
-			// lbl_id_cliente
+			// lbl_Id_cliente
 			// 
-			this.lbl_id_cliente.Location = new System.Drawing.Point(87, 12);
-			this.lbl_id_cliente.Name = "lbl_id_cliente";
-			this.lbl_id_cliente.Size = new System.Drawing.Size(100, 20);
-			this.lbl_id_cliente.TabIndex = 47;
-			// 
-			// lbl_rut_cliente
-			// 
-			this.lbl_rut_cliente.AutoSize = true;
-			this.lbl_rut_cliente.Location = new System.Drawing.Point(84, 58);
-			this.lbl_rut_cliente.Name = "lbl_rut_cliente";
-			this.lbl_rut_cliente.Size = new System.Drawing.Size(53, 13);
-			this.lbl_rut_cliente.TabIndex = 46;
-			this.lbl_rut_cliente.Text = "rut cliente";
+			this.lbl_Id_cliente.AutoSize = true;
+			this.lbl_Id_cliente.Location = new System.Drawing.Point(84, 39);
+			this.lbl_Id_cliente.Name = "lbl_Id_cliente";
+			this.lbl_Id_cliente.Size = new System.Drawing.Size(53, 13);
+			this.lbl_Id_cliente.TabIndex = 46;
+			this.lbl_Id_cliente.Text = "rut cliente";
 			// 
 			// btn_filtro
 			// 
-			this.btn_filtro.Location = new System.Drawing.Point(317, 8);
+			this.btn_filtro.Location = new System.Drawing.Point(444, 11);
 			this.btn_filtro.Name = "btn_filtro";
 			this.btn_filtro.Size = new System.Drawing.Size(95, 23);
 			this.btn_filtro.TabIndex = 44;
@@ -162,7 +152,7 @@
 			// 
 			// btn_cargar
 			// 
-			this.btn_cargar.Location = new System.Drawing.Point(216, 108);
+			this.btn_cargar.Location = new System.Drawing.Point(507, 108);
 			this.btn_cargar.Name = "btn_cargar";
 			this.btn_cargar.Size = new System.Drawing.Size(147, 23);
 			this.btn_cargar.TabIndex = 3;
@@ -170,32 +160,14 @@
 			this.btn_cargar.UseVisualStyleBackColor = true;
 			this.btn_cargar.Click += new System.EventHandler(this.Btn_cargar_Click);
 			// 
-			// cbx_id_periodo
-			// 
-			this.cbx_id_periodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_id_periodo.FormattingEnabled = true;
-			this.cbx_id_periodo.Location = new System.Drawing.Point(87, 108);
-			this.cbx_id_periodo.Name = "cbx_id_periodo";
-			this.cbx_id_periodo.Size = new System.Drawing.Size(121, 21);
-			this.cbx_id_periodo.TabIndex = 43;
-			// 
 			// lbl_nombreCliente
 			// 
 			this.lbl_nombreCliente.AutoSize = true;
-			this.lbl_nombreCliente.Location = new System.Drawing.Point(84, 39);
+			this.lbl_nombreCliente.Location = new System.Drawing.Point(86, 58);
 			this.lbl_nombreCliente.Name = "lbl_nombreCliente";
 			this.lbl_nombreCliente.Size = new System.Drawing.Size(35, 13);
 			this.lbl_nombreCliente.TabIndex = 42;
 			this.lbl_nombreCliente.Text = "label1";
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(12, 113);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(42, 13);
-			this.label1.TabIndex = 36;
-			this.label1.Text = "periodo";
 			// 
 			// cbx_anno
 			// 
@@ -205,16 +177,6 @@
 			this.cbx_anno.Name = "cbx_anno";
 			this.cbx_anno.Size = new System.Drawing.Size(121, 21);
 			this.cbx_anno.TabIndex = 1;
-			this.cbx_anno.SelectedIndexChanged += new System.EventHandler(this.Cbx_anno_SelectedIndexChanged);
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(12, 20);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(57, 13);
-			this.label2.TabIndex = 34;
-			this.label2.Text = "N°  Cliente";
 			// 
 			// label3
 			// 
@@ -232,9 +194,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.pnl_Progreso);
 			this.groupBox2.Controls.Add(this.grdDatos);
-			this.groupBox2.Location = new System.Drawing.Point(5, 225);
+			this.groupBox2.Location = new System.Drawing.Point(5, 171);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(1079, 315);
+			this.groupBox2.Size = new System.Drawing.Size(1079, 369);
 			this.groupBox2.TabIndex = 6;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Listado";
@@ -286,7 +248,7 @@
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-			this.grdDatos.Size = new System.Drawing.Size(1073, 296);
+			this.grdDatos.Size = new System.Drawing.Size(1073, 350);
 			this.grdDatos.TabIndex = 8;
 			this.grdDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdDatos_CellContentClick);
 			this.grdDatos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdDatos_CellFormatting);
@@ -452,7 +414,6 @@
 			this.btn_Guardar.Text = "Generar Archivo ISP";
 			this.btn_Guardar.UseVisualStyleBackColor = true;
 			this.btn_Guardar.Visible = false;
-			this.btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
 			// 
 			// btn_Cerrar
 			// 
@@ -465,29 +426,9 @@
 			this.btn_Cerrar.UseVisualStyleBackColor = true;
 			this.btn_Cerrar.Click += new System.EventHandler(this.Btn_Cerrar_Click);
 			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(5, 174);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(48, 13);
-			this.label4.TabIndex = 10;
-			this.label4.Text = "Sucursal";
-			// 
-			// cbx_Sucursal
-			// 
-			this.cbx_Sucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_Sucursal.FormattingEnabled = true;
-			this.cbx_Sucursal.Location = new System.Drawing.Point(59, 171);
-			this.cbx_Sucursal.Name = "cbx_Sucursal";
-			this.cbx_Sucursal.Size = new System.Drawing.Size(526, 21);
-			this.cbx_Sucursal.TabIndex = 11;
-			this.cbx_Sucursal.SelectedIndexChanged += new System.EventHandler(this.Cbx_Sucursal_SelectedIndexChanged);
-			// 
 			// groupBox3
 			// 
 			this.groupBox3.Controls.Add(this.lbl_Alternativa);
-			this.groupBox3.Controls.Add(this.label7);
 			this.groupBox3.Controls.Add(this.lbl_Original);
 			this.groupBox3.Controls.Add(this.rbtAlternativa);
 			this.groupBox3.Controls.Add(this.rbtOiginal);
@@ -506,14 +447,6 @@
 			this.lbl_Alternativa.Size = new System.Drawing.Size(22, 13);
 			this.lbl_Alternativa.TabIndex = 6;
 			this.lbl_Alternativa.Text = "dfff";
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(193, 44);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(0, 13);
-			this.label7.TabIndex = 5;
 			// 
 			// lbl_Original
 			// 
@@ -546,26 +479,6 @@
 			this.rbtOiginal.Text = "Original";
 			this.rbtOiginal.UseVisualStyleBackColor = true;
 			// 
-			// lbl_id_seccion
-			// 
-			this.lbl_id_seccion.AutoSize = true;
-			this.lbl_id_seccion.Location = new System.Drawing.Point(5, 201);
-			this.lbl_id_seccion.Name = "lbl_id_seccion";
-			this.lbl_id_seccion.Size = new System.Drawing.Size(46, 13);
-			this.lbl_id_seccion.TabIndex = 17;
-			this.lbl_id_seccion.Text = "Sección";
-			// 
-			// cbx_id_seccion
-			// 
-			this.cbx_id_seccion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_id_seccion.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbx_id_seccion.FormattingEnabled = true;
-			this.cbx_id_seccion.Location = new System.Drawing.Point(59, 198);
-			this.cbx_id_seccion.Name = "cbx_id_seccion";
-			this.cbx_id_seccion.Size = new System.Drawing.Size(236, 21);
-			this.cbx_id_seccion.TabIndex = 16;
-			this.cbx_id_seccion.SelectedIndexChanged += new System.EventHandler(this.cbx_id_seccion_SelectedIndexChanged);
-			// 
 			// btnGenerar
 			// 
 			this.btnGenerar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -577,17 +490,58 @@
 			this.btnGenerar.UseVisualStyleBackColor = true;
 			this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(12, 113);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(48, 13);
+			this.label1.TabIndex = 51;
+			this.label1.Text = "Sucursal";
+			// 
+			// cbxSucursal
+			// 
+			this.cbxSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbxSucursal.FormattingEnabled = true;
+			this.cbxSucursal.Location = new System.Drawing.Point(87, 110);
+			this.cbxSucursal.Name = "cbxSucursal";
+			this.cbxSucursal.Size = new System.Drawing.Size(414, 21);
+			this.cbxSucursal.TabIndex = 52;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(213, 16);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(108, 13);
+			this.label4.TabIndex = 55;
+			this.label4.Text = "Formato: 12345678-9";
+			// 
+			// txt_run
+			// 
+			this.txt_run.Location = new System.Drawing.Point(87, 13);
+			this.txt_run.MaxLength = 10;
+			this.txt_run.Name = "txt_run";
+			this.txt_run.Size = new System.Drawing.Size(120, 20);
+			this.txt_run.TabIndex = 54;
+			// 
+			// lbl_run
+			// 
+			this.lbl_run.AutoSize = true;
+			this.lbl_run.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbl_run.Location = new System.Drawing.Point(14, 16);
+			this.lbl_run.Name = "lbl_run";
+			this.lbl_run.Size = new System.Drawing.Size(24, 13);
+			this.lbl_run.TabIndex = 53;
+			this.lbl_run.Text = "Rut";
+			// 
 			// FrmInformeDetalleISPAnual
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1084, 578);
 			this.Controls.Add(this.btnGenerar);
-			this.Controls.Add(this.lbl_id_seccion);
-			this.Controls.Add(this.cbx_id_seccion);
 			this.Controls.Add(this.groupBox3);
-			this.Controls.Add(this.cbx_Sucursal);
-			this.Controls.Add(this.label4);
 			this.Controls.Add(this.btn_Cerrar);
 			this.Controls.Add(this.btn_Guardar);
 			this.Controls.Add(this.toolStrip1);
@@ -618,21 +572,15 @@
         private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.DataGridView grdDatos;
 		private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ComboBox cbx_anno;
 		private System.Windows.Forms.Label lbl_nombreCliente;
-		private System.Windows.Forms.ComboBox cbx_id_periodo;
 		private System.Windows.Forms.Button btn_cargar;
 		private System.Windows.Forms.Button btn_Guardar;
 		private System.Windows.Forms.Button btn_Cerrar;
         private System.Windows.Forms.Button btn_filtro;
         private System.Windows.Forms.GroupBox pnl_Progreso;
         private System.Windows.Forms.ProgressBar pgb_Barra;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cbx_Sucursal;
-        private System.Windows.Forms.Label lbl_rut_cliente;
-        private System.Windows.Forms.TextBox lbl_id_cliente;
+        private System.Windows.Forms.Label lbl_Id_cliente;
         private System.Windows.Forms.Button btn_CargarCli;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -641,10 +589,7 @@
 		private System.Windows.Forms.Label lbl_Original;
 		private System.Windows.Forms.RadioButton rbtAlternativa;
 		private System.Windows.Forms.RadioButton rbtOiginal;
-		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Label lbl_Alternativa;
-		private System.Windows.Forms.Label lbl_id_seccion;
-		private System.Windows.Forms.ComboBox cbx_id_seccion;
 		private System.Windows.Forms.Button btnGenerar;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Id_Personal;
 		private System.Windows.Forms.DataGridViewTextBoxColumn N_pelicula;
@@ -662,5 +607,10 @@
 		private System.Windows.Forms.DataGridViewComboBoxColumn Estado;
 		private System.Windows.Forms.DataGridViewTextBoxColumn id_sucursal;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn tld;
+		private System.Windows.Forms.ComboBox cbxSucursal;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.TextBox txt_run;
+		private System.Windows.Forms.Label lbl_run;
 	}
 }
