@@ -50,25 +50,10 @@ namespace ControlDosimetro
 		{
 			InitializeComponent();
 
-
-			SqlCommand cmdcombo = new SqlCommand();
-			//SqlCommand cmdcombo = new SqlCommand();
-			DataSet dtcombo;
-			cmdcombo.CommandText = "select 0 as Id_DetParametro, 'Seleccione' as Glosa, 0 as orden union all " +
-				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 order by orden ";
-			cmdcombo.CommandType = CommandType.Text;
-			dtcombo = Conectar.Listar(Clases.clsBD.BD, cmdcombo);
-
-			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns["Estado"] as DataGridViewComboBoxColumn;
-			//
-			comboboxColumn.DataSource = dtcombo.Tables[0];
-			comboboxColumn.DisplayMember = "Glosa";
-			comboboxColumn.ValueMember = "Id_DetParametro";
-
-
 			AsignarEvento();
-			Cargar_Cliente(intId_Cliente);
-			Cargar_Anno();
+			LimpiarFormulario(2);
+			LimpiarFormulario(3);
+			//	Cargar_Anno();
 			btnGenerar.Visible = false;
 			pnl_Progreso.Visible = false;
 			lbl_Original.Text = RutaArchivo().Replace("\\", "/");
@@ -78,28 +63,33 @@ namespace ControlDosimetro
 
 		#region "Llamada de carga"
 
-		private void Cargar_Cliente(Int64 intCodCliente)
+		private void Cargar_Cliente()
 		{
 			SqlCommand cmd = new SqlCommand
 			{
-				//	SqlCommand cmd = new SqlCommand();
+				//	SqlCommand cmd = new SqlCommand();CargarClientePorRun
 
-				CommandText = "SELECT run,Razon_Social,N_Cliente_Ref,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
-								 " FROM tbl_cliente WHERE Id_cliente= " + intCodCliente.ToString()
+				CommandText = String.Format("CargarClientePorRun '{0}'",txt_run.Text)
 			};
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
 			if (dt.Tables[0].Rows.Count > 0)
 			{
-		//		txt_id_cliente.Text = intCodCliente.ToString();
+				//		id_cliente,Run,Razon_Social
 				lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
-				lbl_Id_cliente.Text = dt.Tables[0].Rows[0]["run"].ToString();
-				LimpiarFormulario(1);
+				lbl_Id_cliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
+
+				cbx_anno.DataSource = dt.Tables[1];
+				cbxSucursal.DataSource = dt.Tables[2];
+
+				LimpiarFormulario(4);
 			}
 			else
 			{
+				classFuncionesGenerales.mensajes.MensajeError("No existe el cliente");
 				LimpiarFormulario(2);
+				LimpiarFormulario(3);
 			}
 
 
@@ -114,31 +104,38 @@ namespace ControlDosimetro
 
 				cbx_anno.Enabled = true;
 				btn_cargar.Enabled = true;
-				groupBox2.Text = "Listado";
-				groupBox2.Enabled = false;
+				grpInformacion.Text = "Listado";
+				grpInformacion.Enabled = false;
 			}
 			else if (bolLimpiar == 2)
 			{
-				//txt_id_cliente.Enabled = true;
-				//txt_id_cliente.Text = "";
 				lbl_nombreCliente.Text = "";
 				lbl_Id_cliente.Text = "";
-				cbx_anno.Enabled = false;
+				txt_run.Clear();
 				btn_cargar.Enabled = false;
 				btn_CargarCli.Enabled = true;
-				groupBox2.Text = "Listado";
-				groupBox2.Enabled = false;
-				//txt_id_cliente.Text = "";
-				//txt_id_cliente.Focus();
-
+				grpInformacion.Text = "Listado";
+				grpInformacion.Enabled = false;
+				cbx_anno.DataSource = null;
+				cbxSucursal.DataSource = null;
+				txt_run.Focus();
+				grpInformacion.Enabled = false;
+				btnGenerar.Enabled = false;
+				btn_cargar.Enabled = false;
 			}
 			else if (bolLimpiar == 3)
 			{
-				groupBox2.Enabled = false;
+				grpInformacion.Enabled = false;
+				btnGenerar.Enabled = false;
+				btn_cargar.Enabled = false;
 			}
 			else if (bolLimpiar == 4)
 			{
-				groupBox2.Enabled = true;
+				grpInformacion.Enabled = true;
+				grpInformacion.Enabled = true;
+				cbx_anno.Enabled = true;
+				btn_cargar.Enabled = true;
+				btnGenerar.Enabled = true;
 			}
 		}
 
@@ -209,7 +206,7 @@ namespace ControlDosimetro
 
 		private void Btn_CargarCli_Click(object sender, EventArgs e)
 		{
-		//	Cargar_Cliente(Convert.ToInt64(txt_id_cliente.Text));
+			Cargar_Cliente();
 		}
 
 		private void Btn_Filtro_Click(object sender, EventArgs e)

@@ -281,6 +281,8 @@ namespace ControlDosimetro
 				ds = classFuncionesGenerales.Filtro.FiltroPersonal(intCliente, txt_NombrePersonal.Text, txt_RunPersonal.Text, "", intEstado, (int)cbx_id_seccion.SelectedValue);
 
 			grdDatos.DataSource = ds.Tables[0];
+
+			grp_Grilla.Text = "Listado personal   - Cantidad :" + ds.Tables[0].Rows.Count.ToString();
 			Cursor = Cursors.Default;
 		}
 
