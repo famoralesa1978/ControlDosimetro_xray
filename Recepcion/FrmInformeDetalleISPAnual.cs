@@ -141,7 +141,7 @@ namespace ControlDosimetro
 
 		private void Listar_Personal()
 		{
-			//SqlCommand cmd = new SqlCommand();
+			//SqlCommand cmd = new SqlCommand();pa_DosimetroISP_ClientePorTrimestre_sel @run varchar(11),	@Anno int
 			//DataSet dt;
 			//cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue + "," + cbx_id_seccion.SelectedValue;
 			//cmd.CommandType = CommandType.Text;
