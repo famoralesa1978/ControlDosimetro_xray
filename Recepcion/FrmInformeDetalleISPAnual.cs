@@ -83,7 +83,7 @@ namespace ControlDosimetro
 				cbx_anno.DataSource = dt.Tables[1];
 				cbxSucursal.DataSource = dt.Tables[2];
 
-				LimpiarFormulario(4);
+				LimpiarFormulario(1);
 			}
 			else
 			{
@@ -127,7 +127,7 @@ namespace ControlDosimetro
 			{
 				grpInformacion.Enabled = false;
 				btnGenerar.Enabled = false;
-				btn_cargar.Enabled = false;
+				btn_cargar.Enabled = true;
 			}
 			else if (bolLimpiar == 4)
 			{
@@ -141,39 +141,38 @@ namespace ControlDosimetro
 
 		private void Listar_Personal()
 		{
-			//SqlCommand cmd = new SqlCommand();pa_DosimetroISP_ClientePorTrimestre_sel @run varchar(11),	@Anno int
-			//DataSet dt;
-			//cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue + "," + cbx_id_seccion.SelectedValue;
-			//cmd.CommandType = CommandType.Text;
+			SqlCommand cmd = new SqlCommand();
+			 DataSet dt;
+			cmd.CommandText = String.Format("pa_DosimetroISP_ClientePorTrimestre_sel '{0}',{1},{2}", txt_run.Text, cbx_anno.SelectedValue, cbxSucursal.SelectedValue);
+			cmd.CommandType = CommandType.Text;
 
-			//dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-			//string filterExp = "enviado = 1";
-			//string sortExp = "N_pelicula";
-			//DataRow[] drarray;
-			//drarray = dt.Tables[0].Select(filterExp, sortExp, DataViewRowState.CurrentRows);
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			string filterExp = "";
+			DataRow[] drarray;
+			drarray = dt.Tables[0].Select(filterExp, "", DataViewRowState.CurrentRows);
 
-			//string filterExp1 = "enviado = 0";
-			//string sortExp1 = "N_pelicula";
-			//DataRow[] drarray1;
-			//drarray1 = dt.Tables[0].Select(filterExp1, sortExp1, DataViewRowState.CurrentRows);
+			string filterExp1 = "";
+			string sortExp1 = "";
+			DataRow[] drarray1;
+			drarray1 = dt.Tables[0].Select(filterExp1, sortExp1, DataViewRowState.CurrentRows);
 
-			//groupBox2.Text = "Listado       Registro Generado:" + drarray.Count().ToString() + ", registro Faltante: " + drarray1.Count().ToString();
+			grpInformacion.Text = "Listado       Registro Generado:" + drarray.Count().ToString() + ", registro Faltante: " + drarray1.Count().ToString();
 
 
-			//if (dt.Tables[0].Rows.Count == 0)
-			//{
-			//	btnGenerar.Visible = false;
-			//	LimpiarFormulario(3);
-			//	grdDatos.DataSource = dt.Tables[0];
-			//	MessageBox.Show("No se han cargado ningun personal");
-			//}
-			//else
-			//{
-			//	LimpiarFormulario(4);
-			//	btnGenerar.Visible = true;
-			//	grdDatos.DefaultCellStyle.BackColor = System.Drawing.Color.White;
-			//	grdDatos.DataSource = dt.Tables[0];
-			//}
+			if (dt.Tables[0].Rows.Count == 0)
+			{
+				btnGenerar.Visible = false;
+				LimpiarFormulario(3);
+				grdDatos.DataSource = dt.Tables[0];
+				MessageBox.Show("No se han cargado ningun personal");
+			}
+			else
+			{
+				LimpiarFormulario(4);
+				btnGenerar.Visible = true;
+				grdDatos.DefaultCellStyle.BackColor = System.Drawing.Color.White;
+				grdDatos.DataSource = dt.Tables[0];
+			}
 		}
 
 		private void Cargar_Anno()
@@ -1037,6 +1036,11 @@ namespace ControlDosimetro
 		}
 
 		private void lbl_id_cliente_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void FrmInformeDetalleISPAnual_Load(object sender, EventArgs e)
 		{
 
 		}

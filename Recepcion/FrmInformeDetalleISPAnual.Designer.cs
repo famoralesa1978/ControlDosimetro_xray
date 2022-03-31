@@ -57,11 +57,7 @@
 			this.rbtOiginal = new System.Windows.Forms.RadioButton();
 			this.dbd_Archivo = new System.Windows.Forms.FolderBrowserDialog();
 			this.btnGenerar = new System.Windows.Forms.Button();
-			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.N_pelicula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.id_dosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.N_Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.NDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colGenerar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Paterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -273,11 +269,7 @@
 			this.grdDatos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.grdDatos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			this.grdDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id_Personal,
-            this.N_pelicula,
-            this.id_dosimetro,
-            this.N_Cliente,
-            this.NDocumento,
+            this.colGenerar,
             this.Rut,
             this.Nombres,
             this.Paterno,
@@ -289,7 +281,6 @@
 			this.grdDatos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.grdDatos.Location = new System.Drawing.Point(3, 16);
 			this.grdDatos.Name = "grdDatos";
-			this.grdDatos.ReadOnly = true;
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
 			this.grdDatos.Size = new System.Drawing.Size(969, 350);
@@ -393,47 +384,14 @@
 			this.btnGenerar.UseVisualStyleBackColor = true;
 			this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
 			// 
-			// Id_Personal
+			// colGenerar
 			// 
-			this.Id_Personal.DataPropertyName = "Id_Personal";
-			this.Id_Personal.HeaderText = "Id_Personal";
-			this.Id_Personal.Name = "Id_Personal";
-			this.Id_Personal.ReadOnly = true;
-			this.Id_Personal.Visible = false;
-			this.Id_Personal.Width = 88;
-			// 
-			// N_pelicula
-			// 
-			this.N_pelicula.DataPropertyName = "N_pelicula";
-			this.N_pelicula.HeaderText = "Nº Pelicula";
-			this.N_pelicula.Name = "N_pelicula";
-			this.N_pelicula.ReadOnly = true;
-			this.N_pelicula.Width = 84;
-			// 
-			// id_dosimetro
-			// 
-			this.id_dosimetro.DataPropertyName = "id_dosimetro";
-			this.id_dosimetro.HeaderText = "Id_dosimetro";
-			this.id_dosimetro.Name = "id_dosimetro";
-			this.id_dosimetro.ReadOnly = true;
-			this.id_dosimetro.Visible = false;
-			this.id_dosimetro.Width = 92;
-			// 
-			// N_Cliente
-			// 
-			this.N_Cliente.DataPropertyName = "Id_Cliente";
-			this.N_Cliente.HeaderText = "N° Cliente";
-			this.N_Cliente.Name = "N_Cliente";
-			this.N_Cliente.ReadOnly = true;
-			this.N_Cliente.Width = 79;
-			// 
-			// NDocumento
-			// 
-			this.NDocumento.DataPropertyName = "N_Documento";
-			this.NDocumento.HeaderText = "N° Documento";
-			this.NDocumento.Name = "NDocumento";
-			this.NDocumento.ReadOnly = true;
-			this.NDocumento.Width = 102;
+			this.colGenerar.DataPropertyName = "Generar";
+			this.colGenerar.HeaderText = "Generar";
+			this.colGenerar.Name = "colGenerar";
+			this.colGenerar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.colGenerar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.colGenerar.Width = 70;
 			// 
 			// Rut
 			// 
@@ -523,6 +481,7 @@
 			this.Name = "FrmInformeDetalleISPAnual";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Informe  detalle ISP anual";
+			this.Load += new System.EventHandler(this.FrmInformeDetalleISPAnual_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.grpInformacion.ResumeLayout(false);
@@ -566,11 +525,7 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.TextBox txt_run;
 		private System.Windows.Forms.Label lbl_run;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Id_Personal;
-		private System.Windows.Forms.DataGridViewTextBoxColumn N_pelicula;
-		private System.Windows.Forms.DataGridViewTextBoxColumn id_dosimetro;
-		private System.Windows.Forms.DataGridViewTextBoxColumn N_Cliente;
-		private System.Windows.Forms.DataGridViewTextBoxColumn NDocumento;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn colGenerar;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Rut;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Paterno;
