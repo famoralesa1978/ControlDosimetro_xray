@@ -271,10 +271,10 @@ namespace ControlDosimetro
 			//string targetPath = @ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text;
 			string targetPath = "";
 
-			//if (rbtOiginal.Checked)
-			//	targetPath = @dtArchivo.Tables[0].Rows[0]["Glosa"].ToString() + "Cliente " + txt_id_cliente.Text;
-			//else
-			//	targetPath = @"C:\\Doc_Xray\\" + "Cliente " + txt_id_cliente.Text;
+			if (rbtOiginal.Checked)
+				targetPath = @dtArchivo.Tables[0].Rows[0]["Glosa"].ToString() + "Cliente " + lbl_Id_cliente.Text;
+			else
+				targetPath = @"C:\\Doc_Xray\\" + "Cliente "+ lbl_Id_cliente.Text;
 
 
 			if (!System.IO.Directory.Exists(targetPath))
@@ -294,30 +294,6 @@ namespace ControlDosimetro
 				System.IO.Directory.CreateDirectory(targetPath);
 			}
 
-			// targetPath = ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text + "\\" + cbx_anno.Text + "\\" + cbx_id_periodo.Text + "\\";
-			targetPath = targetPath + "\\" + cbx_anno.Text + "\\";
-
-			if (!System.IO.Directory.Exists(targetPath))
-			{
-				System.IO.Directory.CreateDirectory(targetPath);
-			}
-
-
-
-			//**************carga periodo
-			DataSet dtPeriodo;
-			// SqlCommand cmdPeriodo = new SqlCommand();
-			SqlCommand cmdPeriodo = new SqlCommand
-			{
-				CommandText = "SELECT fecha_inicio,fecha_termino " +
-										" FROM conf_periodo " +
-										//"where mes =3 and anno=" + cbx_anno.Text;  
-										"WHERE  Id_Periodo= " + cbx_anno.SelectedValue,
-				CommandType = CommandType.Text
-			};
-			dtPeriodo = Conectar.Listar(Clases.clsBD.BD, cmdPeriodo);
-			string strfecha_inicio = dtPeriodo.Tables[0].Rows[0]["fecha_inicio"].ToString();
-			string strfecha_termino = dtPeriodo.Tables[0].Rows[0]["fecha_termino"].ToString();
 			//**************carga cliente
 			SqlCommand cmdCliente = new SqlCommand
 			{
@@ -377,8 +353,8 @@ namespace ControlDosimetro
 				Array.Resize(ref data5, 2);
 				Array.Resize(ref data6, 2);
 
-				data1[1] = "NOMBRE";
-				data2[1] = "RUT";
+				data1[1] = "Rut";
+				data2[1] = "Nombre";
 				data3[1] = "1° Tri";
 				data4[1] = "2° Tri";
 				data5[1] = "3° Tri";
@@ -393,8 +369,8 @@ namespace ControlDosimetro
 					i = 0;
 					pgb_Barra.Value = i + 1;
 					pgb_Barra.Refresh();
-					checkGenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[intfilagrid].Cells["Generar"];
-					if (checkGenerar.Value.ToString() == "1")
+					checkGenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[intfilagrid].Cells["colGenerar"];
+					if ((bool)checkGenerar.Value == true)
 					{
 						#region "Genera  word y excel"
 						{
@@ -403,7 +379,7 @@ namespace ControlDosimetro
 							//{
 							//strArchivoCopiar = targetPath + cbx_anno.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text + "_Rut(" + dtCliente.Tables[0].Rows[0]["Rut"].ToString() + ").docx";//Cliente" + lbl_id_cliente.Text + "_"
 
-							strArchivoCopiar = String.Format("{0}{1}_{2}.docx", targetPath,cbx_anno.SelectedValue, grdDatos.Rows[intfilagrid].Cells[Rut.Index].ToString());
+							strArchivoCopiar = String.Format("{0}\\{1}_{2}.docx", targetPath, lbl_nombreCliente.Text, grdDatos.Rows[intfilagrid].Cells[1].Value);
 								
 								
 							//	+ "T_" + cbx_anno.Text + "_Rut(" + dtCliente.Tables[0].Rows[0]["Rut"].ToString() + ").docx";//Cliente" + lbl_id_cliente.Text + "_"
@@ -416,14 +392,14 @@ namespace ControlDosimetro
 								Array.Resize(ref data2, i + 3);
 								Array.Resize(ref data3, i + 3);
 								Array.Resize(ref data4, i + 3);
-							Array.Resize(ref data4, i + 3);
+							Array.Resize(ref data5, i + 3);
 							Array.Resize(ref data6, i + 3);
-							data1[i + 2] = grdDatos.Rows[intfilagrid].Cells[Rut.Index].ToString();
-							data2[i + 2] = grdDatos.Rows[intfilagrid].Cells[Nombres.Index].ToString() +" "+ grdDatos.Rows[intfilagrid].Cells[Paterno.Index].ToString() + " " + grdDatos.Rows[intfilagrid].Cells[Maternos.Index].ToString();
-							data3[i + 2] = grdDatos.Rows[intfilagrid].Cells[col1ertri.Index].ToString();
-							data4[i + 2] = grdDatos.Rows[intfilagrid].Cells[col2dotri.Index].ToString();
-							data5[i + 2] = grdDatos.Rows[intfilagrid].Cells[col3ertri.Index].ToString();
-							data6[i + 2] = grdDatos.Rows[intfilagrid].Cells[col4totri.Index].ToString();
+							data1[i + 2] = grdDatos.Rows[intfilagrid].Cells[1].Value.ToString();
+							data2[i + 2] = grdDatos.Rows[intfilagrid].Cells[2].Value.ToString() + " "+ grdDatos.Rows[intfilagrid].Cells[3].Value.ToString() + " " + grdDatos.Rows[intfilagrid].Cells[4].Value.ToString();
+							data3[i + 2] = grdDatos.Rows[intfilagrid].Cells[5].Value.ToString();
+							data4[i + 2] = grdDatos.Rows[intfilagrid].Cells[6].Value.ToString();
+							data5[i + 2] = grdDatos.Rows[intfilagrid].Cells[7].Value.ToString();
+							data6[i + 2] = grdDatos.Rows[intfilagrid].Cells[8].Value.ToString();
 							#region Update Document Bookmarks Openxml
 							strcampoMarcador = "empresa";
 
@@ -790,7 +766,7 @@ namespace ControlDosimetro
 
 
 						tc.Append(new TableCellProperties(
-															 new TableCellWidth { Type = TableWidthUnitValues.Auto },
+															 new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "130" },
 															 new DocumentFormat.OpenXml.Wordprocessing.Bold(),
 															 new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
 															 new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" },
@@ -809,7 +785,7 @@ namespace ControlDosimetro
 															 ));
 
 						tc3.Append(new TableCellProperties(
-					 new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "600" },
+					 new TableCellWidth { Type = TableWidthUnitValues.Auto },
 					 new DocumentFormat.OpenXml.Wordprocessing.Bold(),
 															 new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" }
 															 ));
@@ -817,7 +793,7 @@ namespace ControlDosimetro
 					else
 					{
 						tc.Append(new TableCellProperties(
-															 new TableCellWidth { Type = TableWidthUnitValues.Auto },
+															 new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "130" },
 															 new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
 															 new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" },
 															 new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data1[i])),
@@ -834,18 +810,10 @@ namespace ControlDosimetro
 															 ));
 
 						tc3.Append(new TableCellProperties(
-					 new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "600" },
+						new TableCellWidth { Type = TableWidthUnitValues.Auto },
 															 new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" }
 															 ));
 					}
-					//tc.Append(new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data1[i]))),
-					//    new TableCellProperties(
-					//                              new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "500" },
-					//                               new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" }
-					//                               )
-					//    );
-					//tr.Append(tc);
-
 
 					tc2.Append(new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data2[i]))));
 					// Assume you want columns that are automatically sized.

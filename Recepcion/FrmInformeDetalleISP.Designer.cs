@@ -65,7 +65,7 @@
 			this.N_pelicula = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.id_dosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Generar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.enviado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.colGenerar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.N_Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.NDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -269,7 +269,7 @@
             this.N_pelicula,
             this.id_dosimetro,
             this.Generar,
-            this.enviado,
+            this.colGenerar,
             this.N_Cliente,
             this.NDocumento,
             this.Rut,
@@ -470,15 +470,15 @@
 			this.Generar.TrueValue = "1";
 			this.Generar.Width = 28;
 			// 
-			// enviado
+			// colGenerar
 			// 
-			this.enviado.DataPropertyName = "enviado";
-			this.enviado.FalseValue = "0";
-			this.enviado.HeaderText = "Generado";
-			this.enviado.IndeterminateValue = "";
-			this.enviado.Name = "enviado";
-			this.enviado.TrueValue = "1";
-			this.enviado.Width = 60;
+			this.colGenerar.DataPropertyName = "enviado";
+			this.colGenerar.FalseValue = "0";
+			this.colGenerar.HeaderText = "Generado";
+			this.colGenerar.IndeterminateValue = "";
+			this.colGenerar.Name = "colGenerar";
+			this.colGenerar.TrueValue = "1";
+			this.colGenerar.Width = 60;
 			// 
 			// N_Cliente
 			// 
@@ -650,7 +650,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn N_pelicula;
 		private System.Windows.Forms.DataGridViewTextBoxColumn id_dosimetro;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn Generar;
-		private System.Windows.Forms.DataGridViewCheckBoxColumn enviado;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn colGenerar;
 		private System.Windows.Forms.DataGridViewTextBoxColumn N_Cliente;
 		private System.Windows.Forms.DataGridViewTextBoxColumn NDocumento;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Rut;
