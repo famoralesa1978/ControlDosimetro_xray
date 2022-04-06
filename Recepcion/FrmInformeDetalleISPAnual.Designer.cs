@@ -47,6 +47,15 @@
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
+			this.colGenerar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Paterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Maternos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col1ertri = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col2dotri = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col3ertri = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col4totri = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.btn_Guardar = new System.Windows.Forms.Button();
 			this.btn_Cerrar = new System.Windows.Forms.Button();
@@ -57,15 +66,6 @@
 			this.rbtOiginal = new System.Windows.Forms.RadioButton();
 			this.dbd_Archivo = new System.Windows.Forms.FolderBrowserDialog();
 			this.btnGenerar = new System.Windows.Forms.Button();
-			this.colGenerar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Paterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Maternos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col1ertri = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col2dotri = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col3ertri = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col4totri = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			this.grpInformacion.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -99,7 +99,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(213, 16);
+			this.label4.Location = new System.Drawing.Point(248, 16);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(108, 13);
 			this.label4.TabIndex = 55;
@@ -163,7 +163,7 @@
 			// 
 			// btn_CargarCli
 			// 
-			this.btn_CargarCli.Location = new System.Drawing.Point(332, 10);
+			this.btn_CargarCli.Location = new System.Drawing.Point(367, 10);
 			this.btn_CargarCli.Name = "btn_CargarCli";
 			this.btn_CargarCli.Size = new System.Drawing.Size(106, 23);
 			this.btn_CargarCli.TabIndex = 48;
@@ -182,7 +182,7 @@
 			// 
 			// btn_filtro
 			// 
-			this.btn_filtro.Location = new System.Drawing.Point(444, 11);
+			this.btn_filtro.Location = new System.Drawing.Point(479, 11);
 			this.btn_filtro.Name = "btn_filtro";
 			this.btn_filtro.Size = new System.Drawing.Size(95, 23);
 			this.btn_filtro.TabIndex = 44;
@@ -290,6 +290,85 @@
 			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdDatos_CellValueChanged);
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdDatos_CurrentCellDirtyStateChanged);
 			// 
+			// colGenerar
+			// 
+			this.colGenerar.DataPropertyName = "Generar";
+			this.colGenerar.HeaderText = "Generar";
+			this.colGenerar.Name = "colGenerar";
+			this.colGenerar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.colGenerar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.colGenerar.Width = 70;
+			// 
+			// Rut
+			// 
+			this.Rut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Rut.DataPropertyName = "Rut";
+			this.Rut.HeaderText = "Rut";
+			this.Rut.Name = "Rut";
+			this.Rut.ReadOnly = true;
+			this.Rut.Width = 49;
+			// 
+			// Nombres
+			// 
+			this.Nombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Nombres.DataPropertyName = "Nombres";
+			this.Nombres.HeaderText = "Nombres";
+			this.Nombres.Name = "Nombres";
+			this.Nombres.ReadOnly = true;
+			this.Nombres.Width = 74;
+			// 
+			// Paterno
+			// 
+			this.Paterno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Paterno.DataPropertyName = "Paterno";
+			this.Paterno.FillWeight = 300F;
+			this.Paterno.HeaderText = "Paterno";
+			this.Paterno.Name = "Paterno";
+			this.Paterno.ReadOnly = true;
+			this.Paterno.Width = 69;
+			// 
+			// Maternos
+			// 
+			this.Maternos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Maternos.DataPropertyName = "Maternos";
+			this.Maternos.HeaderText = "Maternos";
+			this.Maternos.MinimumWidth = 150;
+			this.Maternos.Name = "Maternos";
+			this.Maternos.ReadOnly = true;
+			this.Maternos.Width = 150;
+			// 
+			// col1ertri
+			// 
+			this.col1ertri.DataPropertyName = "1er tri";
+			this.col1ertri.HeaderText = "1er tri";
+			this.col1ertri.Name = "col1ertri";
+			this.col1ertri.ReadOnly = true;
+			this.col1ertri.Width = 58;
+			// 
+			// col2dotri
+			// 
+			this.col2dotri.DataPropertyName = "2do tri";
+			this.col2dotri.HeaderText = "2do tri";
+			this.col2dotri.Name = "col2dotri";
+			this.col2dotri.ReadOnly = true;
+			this.col2dotri.Width = 61;
+			// 
+			// col3ertri
+			// 
+			this.col3ertri.DataPropertyName = "3er tri";
+			this.col3ertri.HeaderText = "3er tri";
+			this.col3ertri.Name = "col3ertri";
+			this.col3ertri.ReadOnly = true;
+			this.col3ertri.Width = 58;
+			// 
+			// col4totri
+			// 
+			this.col4totri.DataPropertyName = "4to tri";
+			this.col4totri.HeaderText = "4to tri";
+			this.col4totri.Name = "col4totri";
+			this.col4totri.ReadOnly = true;
+			this.col4totri.Width = 58;
+			// 
 			// toolStrip1
 			// 
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -383,85 +462,6 @@
 			this.btnGenerar.Text = "Generar Archivo ISP";
 			this.btnGenerar.UseVisualStyleBackColor = true;
 			this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
-			// 
-			// colGenerar
-			// 
-			this.colGenerar.DataPropertyName = "Generar";
-			this.colGenerar.HeaderText = "Generar";
-			this.colGenerar.Name = "colGenerar";
-			this.colGenerar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.colGenerar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.colGenerar.Width = 70;
-			// 
-			// Rut
-			// 
-			this.Rut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-			this.Rut.DataPropertyName = "Rut";
-			this.Rut.HeaderText = "Rut";
-			this.Rut.Name = "Rut";
-			this.Rut.ReadOnly = true;
-			this.Rut.Width = 49;
-			// 
-			// Nombres
-			// 
-			this.Nombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-			this.Nombres.DataPropertyName = "Nombres";
-			this.Nombres.HeaderText = "Nombres";
-			this.Nombres.Name = "Nombres";
-			this.Nombres.ReadOnly = true;
-			this.Nombres.Width = 74;
-			// 
-			// Paterno
-			// 
-			this.Paterno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-			this.Paterno.DataPropertyName = "Paterno";
-			this.Paterno.FillWeight = 300F;
-			this.Paterno.HeaderText = "Paterno";
-			this.Paterno.Name = "Paterno";
-			this.Paterno.ReadOnly = true;
-			this.Paterno.Width = 69;
-			// 
-			// Maternos
-			// 
-			this.Maternos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-			this.Maternos.DataPropertyName = "Maternos";
-			this.Maternos.HeaderText = "Maternos";
-			this.Maternos.MinimumWidth = 150;
-			this.Maternos.Name = "Maternos";
-			this.Maternos.ReadOnly = true;
-			this.Maternos.Width = 150;
-			// 
-			// col1ertri
-			// 
-			this.col1ertri.DataPropertyName = "1er tri";
-			this.col1ertri.HeaderText = "1er tri";
-			this.col1ertri.Name = "col1ertri";
-			this.col1ertri.ReadOnly = true;
-			this.col1ertri.Width = 58;
-			// 
-			// col2dotri
-			// 
-			this.col2dotri.DataPropertyName = "2do tri";
-			this.col2dotri.HeaderText = "2do tri";
-			this.col2dotri.Name = "col2dotri";
-			this.col2dotri.ReadOnly = true;
-			this.col2dotri.Width = 61;
-			// 
-			// col3ertri
-			// 
-			this.col3ertri.DataPropertyName = "3er tri";
-			this.col3ertri.HeaderText = "3er tri";
-			this.col3ertri.Name = "col3ertri";
-			this.col3ertri.ReadOnly = true;
-			this.col3ertri.Width = 58;
-			// 
-			// col4totri
-			// 
-			this.col4totri.DataPropertyName = "4to tri";
-			this.col4totri.HeaderText = "4to tri";
-			this.col4totri.Name = "col4totri";
-			this.col4totri.ReadOnly = true;
-			this.col4totri.Width = 58;
 			// 
 			// FrmInformeDetalleISPAnual
 			// 

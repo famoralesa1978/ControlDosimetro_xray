@@ -81,4 +81,14 @@ namespace Clases
 
 	}
 
+	class ClsCliente
+	{
+		private static string strRut;
+		private static string strNombres;
+		private static int intId_Cliente;
+
+		public static string Rut { get => strRut; set => strRut = value; }
+		public static string Nombres { get => strNombres; set => strNombres = value; }
+		public static int Id_Cliente { get => intId_Cliente; set => intId_Cliente = value; }
+	}
 }
