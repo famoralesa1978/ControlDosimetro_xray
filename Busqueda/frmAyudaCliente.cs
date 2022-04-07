@@ -47,11 +47,7 @@ namespace ControlDosimetro
 
 			//if (intCliente != 0)
 			//{
-			//	cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
-			//			"from tbl_cliente " +
-			//			"where  (id_cliente=" + intCliente.ToString() + ") or run ='" + txt_Rut.Text + "' " +
-			//			" and id_estado=1 " +
-			//			"order by id_cliente";
+			//	cmd.CommandText = String.Format("pa_AyudaCliente_sel {0}",intId_Cliente);
 			//	txt_ref_cliente.Text = intCliente.ToString();
 			//}
 			//if (intCliente == 0)
@@ -168,11 +164,10 @@ namespace ControlDosimetro
 		{
 			if (e.RowIndex > -1)
 			{
-				Clases.ClsPersonal.Id_Personal = (int)grdDatos.Rows[e.RowIndex].Cells[0].Value;
-				Clases.ClsPersonal.Materno = grdDatos.Rows[e.RowIndex].Cells[4].Value.ToString();
-				Clases.ClsPersonal.Nombres = grdDatos.Rows[e.RowIndex].Cells[2].Value.ToString();
-				Clases.ClsPersonal.Paterno = grdDatos.Rows[e.RowIndex].Cells[3].Value.ToString();
-				Clases.ClsPersonal.Rut = grdDatos.Rows[e.RowIndex].Cells[1].Value.ToString();
+				Clases.ClsCliente.Rut = grdDatos.Rows[e.RowIndex].Cells[0].Value.ToString();
+				Clases.ClsCliente.Direccion = grdDatos.Rows[e.RowIndex].Cells[2].Value.ToString();
+				Clases.ClsCliente.Nombres = grdDatos.Rows[e.RowIndex].Cells[1].Value.ToString();
+				Clases.ClsCliente.Id_Cliente = Convert.ToInt16(txt_IdCliente.Text);
 
 				DialogResult = System.Windows.Forms.DialogResult.OK;
 			}

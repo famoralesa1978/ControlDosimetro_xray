@@ -30,14 +30,14 @@
         {
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label4 = new System.Windows.Forms.Label();
-			this.txt_run = new System.Windows.Forms.TextBox();
+			this.txt_IdCliente = new System.Windows.Forms.TextBox();
 			this.lbl_run = new System.Windows.Forms.Label();
 			this.cbxSucursal = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.btn_CargarCli = new System.Windows.Forms.Button();
-			this.lbl_Id_cliente = new System.Windows.Forms.Label();
+			this.lbl_Rut = new System.Windows.Forms.Label();
 			this.btn_filtro = new System.Windows.Forms.Button();
 			this.btn_cargar = new System.Windows.Forms.Button();
 			this.lbl_nombreCliente = new System.Windows.Forms.Label();
@@ -76,14 +76,14 @@
 			// groupBox1
 			// 
 			this.groupBox1.Controls.Add(this.label4);
-			this.groupBox1.Controls.Add(this.txt_run);
+			this.groupBox1.Controls.Add(this.txt_IdCliente);
 			this.groupBox1.Controls.Add(this.lbl_run);
 			this.groupBox1.Controls.Add(this.cbxSucursal);
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Controls.Add(this.label6);
 			this.groupBox1.Controls.Add(this.label5);
 			this.groupBox1.Controls.Add(this.btn_CargarCli);
-			this.groupBox1.Controls.Add(this.lbl_Id_cliente);
+			this.groupBox1.Controls.Add(this.lbl_Rut);
 			this.groupBox1.Controls.Add(this.btn_filtro);
 			this.groupBox1.Controls.Add(this.btn_cargar);
 			this.groupBox1.Controls.Add(this.lbl_nombreCliente);
@@ -105,19 +105,19 @@
 			this.label4.TabIndex = 55;
 			this.label4.Text = "Formato: 12345678-9";
 			// 
-			// txt_run
+			// txt_IdCliente
 			// 
-			this.txt_run.Location = new System.Drawing.Point(87, 13);
-			this.txt_run.MaxLength = 10;
-			this.txt_run.Name = "txt_run";
-			this.txt_run.Size = new System.Drawing.Size(120, 20);
-			this.txt_run.TabIndex = 54;
+			this.txt_IdCliente.Location = new System.Drawing.Point(87, 13);
+			this.txt_IdCliente.MaxLength = 10;
+			this.txt_IdCliente.Name = "txt_IdCliente";
+			this.txt_IdCliente.Size = new System.Drawing.Size(120, 20);
+			this.txt_IdCliente.TabIndex = 54;
 			// 
 			// lbl_run
 			// 
 			this.lbl_run.AutoSize = true;
 			this.lbl_run.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_run.Location = new System.Drawing.Point(14, 16);
+			this.lbl_run.Location = new System.Drawing.Point(14, 39);
 			this.lbl_run.Name = "lbl_run";
 			this.lbl_run.Size = new System.Drawing.Size(24, 13);
 			this.lbl_run.TabIndex = 53;
@@ -146,7 +146,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(12, 39);
+			this.label6.Location = new System.Drawing.Point(12, 16);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(53, 13);
 			this.label6.TabIndex = 50;
@@ -171,14 +171,14 @@
 			this.btn_CargarCli.UseVisualStyleBackColor = true;
 			this.btn_CargarCli.Click += new System.EventHandler(this.Btn_CargarCli_Click);
 			// 
-			// lbl_Id_cliente
+			// lbl_Rut
 			// 
-			this.lbl_Id_cliente.AutoSize = true;
-			this.lbl_Id_cliente.Location = new System.Drawing.Point(84, 39);
-			this.lbl_Id_cliente.Name = "lbl_Id_cliente";
-			this.lbl_Id_cliente.Size = new System.Drawing.Size(53, 13);
-			this.lbl_Id_cliente.TabIndex = 46;
-			this.lbl_Id_cliente.Text = "rut cliente";
+			this.lbl_Rut.AutoSize = true;
+			this.lbl_Rut.Location = new System.Drawing.Point(84, 39);
+			this.lbl_Rut.Name = "lbl_Rut";
+			this.lbl_Rut.Size = new System.Drawing.Size(53, 13);
+			this.lbl_Rut.TabIndex = 46;
+			this.lbl_Rut.Text = "rut cliente";
 			// 
 			// btn_filtro
 			// 
@@ -509,7 +509,7 @@
         private System.Windows.Forms.Button btn_filtro;
         private System.Windows.Forms.GroupBox pnl_Progreso;
         private System.Windows.Forms.ProgressBar pgb_Barra;
-        private System.Windows.Forms.Label lbl_Id_cliente;
+        private System.Windows.Forms.Label lbl_Rut;
         private System.Windows.Forms.Button btn_CargarCli;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -523,7 +523,7 @@
 		private System.Windows.Forms.ComboBox cbxSucursal;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.TextBox txt_run;
+		private System.Windows.Forms.TextBox txt_IdCliente;
 		private System.Windows.Forms.Label lbl_run;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn colGenerar;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Rut;

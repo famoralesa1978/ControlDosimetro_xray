@@ -69,7 +69,7 @@ namespace ControlDosimetro
 			{
 				//	SqlCommand cmd = new SqlCommand();CargarClientePorRun
 
-				CommandText = String.Format("CargarClientePorRun '{0}'",txt_run.Text)
+				CommandText = String.Format("CargarClientePorRun '{0}'",txt_IdCliente.Text)
 			};
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -78,7 +78,7 @@ namespace ControlDosimetro
 			{
 				//		id_cliente,Run,Razon_Social
 				lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
-				lbl_Id_cliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
+				lbl_Rut.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
 
 				cbx_anno.DataSource = dt.Tables[1];
 				cbxSucursal.DataSource = dt.Tables[2];
@@ -110,15 +110,15 @@ namespace ControlDosimetro
 			else if (bolLimpiar == 2)
 			{
 				lbl_nombreCliente.Text = "";
-				lbl_Id_cliente.Text = "";
-				txt_run.Clear();
+				lbl_Rut.Text = "";
+				txt_IdCliente.Clear();
 				btn_cargar.Enabled = false;
 				btn_CargarCli.Enabled = true;
 				grpInformacion.Text = "Listado";
 				grpInformacion.Enabled = false;
 				cbx_anno.DataSource = null;
 				cbxSucursal.DataSource = null;
-				txt_run.Focus();
+				txt_IdCliente.Focus();
 				grpInformacion.Enabled = false;
 				btnGenerar.Enabled = false;
 				btn_cargar.Enabled = false;
@@ -143,7 +143,7 @@ namespace ControlDosimetro
 		{
 			SqlCommand cmd = new SqlCommand();
 			 DataSet dt;
-			cmd.CommandText = String.Format("pa_DosimetroISP_ClientePorTrimestre_sel '{0}',{1},{2}", txt_run.Text, cbx_anno.SelectedValue, cbxSucursal.SelectedValue);
+			cmd.CommandText = String.Format("pa_DosimetroISP_ClientePorTrimestre_sel '{0}',{1},{2}", txt_IdCliente.Text, cbx_anno.SelectedValue, cbxSucursal.SelectedValue);
 			cmd.CommandType = CommandType.Text;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -196,7 +196,7 @@ namespace ControlDosimetro
 		private void AsignarEvento()
 		{
 			Clases.ClassEvento evt = new Clases.ClassEvento();
-			evt.AsignarRut(ref txt_run);
+			evt.AsignarNumero(ref txt_IdCliente);
 		}
 
 		#endregion
@@ -272,9 +272,9 @@ namespace ControlDosimetro
 			string targetPath = "";
 
 			if (rbtOiginal.Checked)
-				targetPath = @dtArchivo.Tables[0].Rows[0]["Glosa"].ToString() + "Cliente " + lbl_Id_cliente.Text;
+				targetPath = @dtArchivo.Tables[0].Rows[0]["Glosa"].ToString() + "Cliente " + lbl_Rut.Text;
 			else
-				targetPath = @"C:\\Doc_Xray\\" + "Cliente "+ lbl_Id_cliente.Text;
+				targetPath = @"C:\\Doc_Xray\\" + "Cliente "+ lbl_Rut.Text;
 
 
 			if (!System.IO.Directory.Exists(targetPath))
@@ -297,7 +297,7 @@ namespace ControlDosimetro
 			//**************carga cliente
 			SqlCommand cmdCliente = new SqlCommand
 			{
-				CommandText = "pa_DosimetroISPGenerarSinPeriodo_sel " + lbl_Id_cliente.Text + "," + cbxSucursal.SelectedValue,
+				CommandText = "pa_DosimetroISPGenerarSinPeriodo_sel " + lbl_Rut.Text + "," + cbxSucursal.SelectedValue,
 
 				CommandType = CommandType.Text
 			};
