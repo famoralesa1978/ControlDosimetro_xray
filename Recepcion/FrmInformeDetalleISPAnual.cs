@@ -65,32 +65,60 @@ namespace ControlDosimetro
 
 		private void Cargar_Cliente()
 		{
-			SqlCommand cmd = new SqlCommand
+			frmAyudaCliente frm = new frmAyudaCliente(Convert.ToInt64(txt_IdCliente.Text));
+
+			if(frm.ShowDialog()==DialogResult.OK)
 			{
-				//	SqlCommand cmd = new SqlCommand();CargarClientePorRun
+				lbl_nombreCliente.Text = Clases.ClsCliente.Nombres;
+				lbl_Rut.Text = Clases.ClsCliente.Rut;
 
-				CommandText = String.Format("CargarClientePorRun '{0}'",txt_IdCliente.Text)
-			};
-			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+				SqlCommand cmd = new SqlCommand
+				{
+					//	SqlCommand cmd = new SqlCommand();CargarClientePorRun
 
-			if (dt.Tables[0].Rows.Count > 0)
-			{
-				//		id_cliente,Run,Razon_Social
-				lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
-				lbl_Rut.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
+					CommandText = String.Format("CargarClientePorRun '{0}'", lbl_Rut.Text)
+				};
+				DataSet dt;
+				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
-				cbx_anno.DataSource = dt.Tables[1];
-				cbxSucursal.DataSource = dt.Tables[2];
+				if (dt.Tables[0].Rows.Count > 0)
+				{
+					cbx_anno.DataSource = dt.Tables[1];
+					cbxSucursal.DataSource = dt.Tables[2];
 
-				LimpiarFormulario(1);
+					LimpiarFormulario(1);
+				}
+
 			}
 			else
 			{
-				classFuncionesGenerales.mensajes.MensajeError("No existe el cliente");
 				LimpiarFormulario(2);
 				LimpiarFormulario(3);
 			}
+
+			
+
+
+			//SqlCommand cmd = new SqlCommand
+			//{
+			//	//	SqlCommand cmd = new SqlCommand();CargarClientePorRun
+
+			//	CommandText = String.Format("CargarClientePorRun '{0}'",txt_IdCliente.Text)
+			//};
+			//DataSet dt;
+			//dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+			//if (dt.Tables[0].Rows.Count > 0)
+			//{
+			//	//		id_cliente,Run,Razon_Social
+			
+
+			//	cbx_anno.DataSource = dt.Tables[1];
+			//	cbxSucursal.DataSource = dt.Tables[2];
+
+			//	LimpiarFormulario(1);
+			//}
+		
 
 
 		}
@@ -117,7 +145,11 @@ namespace ControlDosimetro
 				grpInformacion.Text = "Listado";
 				grpInformacion.Enabled = false;
 				cbx_anno.DataSource = null;
+				cbx_anno.ValueMember = "anno";
+				cbx_anno.DisplayMember = "anno";
 				cbxSucursal.DataSource = null;
+				cbxSucursal.ValueMember = "Id_sucursal";
+				cbxSucursal.DisplayMember = "Direccion";
 				txt_IdCliente.Focus();
 				grpInformacion.Enabled = false;
 				btnGenerar.Enabled = false;

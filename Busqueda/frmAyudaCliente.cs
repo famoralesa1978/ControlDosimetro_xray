@@ -24,8 +24,8 @@ namespace ControlDosimetro
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
-		
 
+		Int64 IdCliente;
 
 		#endregion
 
@@ -33,57 +33,55 @@ namespace ControlDosimetro
 		{
 			InitializeComponent();
 			AsignarEvento();
-			Listar_Cliente(intId_Cliente);
+			IdCliente = intId_Cliente;
 
+		}
+
+		private void frmAyudaCliente_Load(object sender, EventArgs e)
+		{
+			Listar_Cliente(IdCliente);
 		}
 
 		#region "Llamada de carga"
 
 		private void Listar_Cliente(Int64 intCliente)
 		{
-			////SqlCommand cmd = new SqlCommand();
-			//SqlCommand cmd = new SqlCommand();
+			SqlCommand cmd = new SqlCommand();
 			////MessageBox.Show("Conectado al servidor");
 
-			//if (intCliente != 0)
-			//{
-			//	cmd.CommandText = String.Format("pa_AyudaCliente_sel {0}",intId_Cliente);
-			//	txt_ref_cliente.Text = intCliente.ToString();
-			//}
-			//if (intCliente == 0)
-			//	cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
-			//			"from tbl_cliente " +
-			//			"where run  ='" + txt_Rut.Text + "' " + " and id_estado=1 " +
-			//			"order by id_cliente";
-			//cmd.CommandType = CommandType.Text;
+			if (intCliente != 0)
+			{
+				cmd.CommandText = String.Format("pa_AyudaCliente_sel {0}", intCliente);
+				txt_IdCliente.Text = intCliente.ToString();
+				cmd.CommandType = CommandType.Text;
 
-			//DataSet dt;
-			//dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+				DataSet dt;
+				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
-			//if (dt.Tables[0].Rows.Count == 0)
-			//{
-			//	txt_ref_cliente.Text = "";
-			//	txt_Rut.Text = "";
-			//	txt_RazonSocial.Text = "";
-			//	tsb_Agregar.Visible = false;
-			//}
-			//else
-			//{
-			//	txt_ref_cliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
-			//	txt_Rut.Text = dt.Tables[0].Rows[0]["run"].ToString();
-			//	txt_RazonSocial.Text = dt.Tables[0].Rows[0]["razon_social"].ToString();
-			//	txt_ref_cliente.ReadOnly = true;
-			//	txt_Rut.ReadOnly = true;
-			//	tsb_Agregar.Visible = true;
-			//	txt_RazonSocial.ReadOnly = true;
-			//	Listar_Personal();
-			//}
+				if (dt.Tables[0].Rows.Count > 0)
+				{
+					if (dt.Tables[0].Rows.Count == 1)
+					{
+						Clases.ClsCliente.Rut = dt.Tables[0].Rows[0]["run"].ToString();
+						Clases.ClsCliente.Direccion = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
+						Clases.ClsCliente.Nombres = dt.Tables[0].Rows[0]["Direccion"].ToString();
+						Clases.ClsCliente.Id_Cliente = Convert.ToInt16(dt.Tables[0].Rows[0]["Id_cliente"].ToString());
 
-			//Clases.ClsPersonal.Id_Personal = 0;
-			//Clases.ClsPersonal.Materno = "";
-			//Clases.ClsPersonal.Nombres = "";
-			//Clases.ClsPersonal.Paterno ="";
-			//Clases.ClsPersonal.Rut = "";
+						DialogResult = System.Windows.Forms.DialogResult.OK;
+					}
+					else
+					if (dt.Tables[0].Rows.Count > 1)
+					{
+						grdDatos.DataSource = dt.Tables[0];
+
+					}
+				}
+				else
+				{
+					classFuncionesGenerales.mensajes.MensajeError("El número de cliente no existe");
+					DialogResult = System.Windows.Forms.DialogResult.Cancel;
+				}
+			}
 		}
 
 		private void Listar_Personal()
@@ -179,5 +177,7 @@ namespace ControlDosimetro
 		#region Barra
 
 		#endregion
+
+
 	}
 }
