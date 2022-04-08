@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.lbl_id_cliente = new System.Windows.Forms.TextBox();
@@ -45,18 +45,6 @@
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
-			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-			this.btn_Cerrar = new System.Windows.Forms.Button();
-			this.label4 = new System.Windows.Forms.Label();
-			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
-			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
-			this.lbl_id_seccion = new System.Windows.Forms.Label();
-			this.grpFiltro = new System.Windows.Forms.GroupBox();
-			this.picFiltrarpersonal = new System.Windows.Forms.PictureBox();
-			this.txt_NombrePersonal = new System.Windows.Forms.TextBox();
-			this.label6 = new System.Windows.Forms.Label();
-			this.txt_RunPersonal = new System.Windows.Forms.TextBox();
-			this.label7 = new System.Windows.Forms.Label();
 			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.N_pelicula = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.id_dosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,6 +61,19 @@
 			this.id_estadodosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colFechaIng = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ColMedicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.btn_Cerrar = new System.Windows.Forms.Button();
+			this.label4 = new System.Windows.Forms.Label();
+			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
+			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
+			this.lbl_id_seccion = new System.Windows.Forms.Label();
+			this.grpFiltro = new System.Windows.Forms.GroupBox();
+			this.picFiltrarpersonal = new System.Windows.Forms.PictureBox();
+			this.txt_NombrePersonal = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.txt_RunPersonal = new System.Windows.Forms.TextBox();
+			this.label7 = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -83,6 +84,7 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.label5);
 			this.groupBox1.Controls.Add(this.label11);
 			this.groupBox1.Controls.Add(this.lbl_id_cliente);
 			this.groupBox1.Controls.Add(this.lbl_nombreCliente);
@@ -104,7 +106,7 @@
 			// label11
 			// 
 			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(13, 97);
+			this.label11.Location = new System.Drawing.Point(19, 52);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(24, 13);
 			this.label11.TabIndex = 53;
@@ -112,7 +114,7 @@
 			// 
 			// lbl_id_cliente
 			// 
-			this.lbl_id_cliente.Location = new System.Drawing.Point(88, 66);
+			this.lbl_id_cliente.Location = new System.Drawing.Point(94, 11);
 			this.lbl_id_cliente.Name = "lbl_id_cliente";
 			this.lbl_id_cliente.Size = new System.Drawing.Size(53, 20);
 			this.lbl_id_cliente.TabIndex = 50;
@@ -120,7 +122,7 @@
 			// lbl_nombreCliente
 			// 
 			this.lbl_nombreCliente.AutoSize = true;
-			this.lbl_nombreCliente.Location = new System.Drawing.Point(147, 67);
+			this.lbl_nombreCliente.Location = new System.Drawing.Point(96, 34);
 			this.lbl_nombreCliente.Name = "lbl_nombreCliente";
 			this.lbl_nombreCliente.Size = new System.Drawing.Size(0, 13);
 			this.lbl_nombreCliente.TabIndex = 51;
@@ -128,14 +130,14 @@
 			// lbl_rut_cliente
 			// 
 			this.lbl_rut_cliente.AutoSize = true;
-			this.lbl_rut_cliente.Location = new System.Drawing.Point(85, 97);
+			this.lbl_rut_cliente.Location = new System.Drawing.Point(96, 52);
 			this.lbl_rut_cliente.Name = "lbl_rut_cliente";
 			this.lbl_rut_cliente.Size = new System.Drawing.Size(0, 13);
 			this.lbl_rut_cliente.TabIndex = 46;
 			// 
 			// btn_filtro
 			// 
-			this.btn_filtro.Location = new System.Drawing.Point(295, 97);
+			this.btn_filtro.Location = new System.Drawing.Point(267, 11);
 			this.btn_filtro.Name = "btn_filtro";
 			this.btn_filtro.Size = new System.Drawing.Size(95, 23);
 			this.btn_filtro.TabIndex = 44;
@@ -145,7 +147,7 @@
 			// 
 			// btn_cargar
 			// 
-			this.btn_cargar.Location = new System.Drawing.Point(214, 97);
+			this.btn_cargar.Location = new System.Drawing.Point(172, 9);
 			this.btn_cargar.Name = "btn_cargar";
 			this.btn_cargar.Size = new System.Drawing.Size(75, 23);
 			this.btn_cargar.TabIndex = 3;
@@ -155,17 +157,19 @@
 			// 
 			// cbx_id_periodo
 			// 
+			this.cbx_id_periodo.DisplayMember = "Trimestre";
 			this.cbx_id_periodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_id_periodo.FormattingEnabled = true;
-			this.cbx_id_periodo.Location = new System.Drawing.Point(88, 39);
+			this.cbx_id_periodo.Location = new System.Drawing.Point(94, 97);
 			this.cbx_id_periodo.Name = "cbx_id_periodo";
 			this.cbx_id_periodo.Size = new System.Drawing.Size(121, 21);
 			this.cbx_id_periodo.TabIndex = 43;
+			this.cbx_id_periodo.ValueMember = "Id_Periodo";
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(13, 44);
+			this.label1.Location = new System.Drawing.Point(19, 102);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(42, 13);
 			this.label1.TabIndex = 36;
@@ -173,18 +177,20 @@
 			// 
 			// cbx_anno
 			// 
+			this.cbx_anno.DisplayMember = "anno";
 			this.cbx_anno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_anno.FormattingEnabled = true;
-			this.cbx_anno.Location = new System.Drawing.Point(88, 14);
+			this.cbx_anno.Location = new System.Drawing.Point(94, 72);
 			this.cbx_anno.Name = "cbx_anno";
 			this.cbx_anno.Size = new System.Drawing.Size(121, 21);
 			this.cbx_anno.TabIndex = 1;
+			this.cbx_anno.ValueMember = "anno";
 			this.cbx_anno.SelectedIndexChanged += new System.EventHandler(this.Cbx_anno_SelectedIndexChanged);
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(13, 69);
+			this.label2.Location = new System.Drawing.Point(19, 14);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(57, 13);
 			this.label2.TabIndex = 34;
@@ -193,7 +199,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(13, 17);
+			this.label3.Location = new System.Drawing.Point(19, 75);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(26, 13);
 			this.label3.TabIndex = 4;
@@ -269,127 +275,6 @@
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
 			this.grdDatos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdDatos_KeyDown);
 			// 
-			// toolStrip1
-			// 
-			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(1284, 25);
-			this.toolStrip1.TabIndex = 2;
-			this.toolStrip1.Text = "toolStrip1";
-			// 
-			// btn_Cerrar
-			// 
-			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Cerrar.Location = new System.Drawing.Point(572, 630);
-			this.btn_Cerrar.Name = "btn_Cerrar";
-			this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
-			this.btn_Cerrar.TabIndex = 8;
-			this.btn_Cerrar.Text = "Cerrar";
-			this.btn_Cerrar.UseVisualStyleBackColor = true;
-			this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click);
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(8, 160);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(48, 13);
-			this.label4.TabIndex = 10;
-			this.label4.Text = "Sucursal";
-			// 
-			// cbx_Sucursal
-			// 
-			this.cbx_Sucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_Sucursal.FormattingEnabled = true;
-			this.cbx_Sucursal.Location = new System.Drawing.Point(62, 157);
-			this.cbx_Sucursal.Name = "cbx_Sucursal";
-			this.cbx_Sucursal.Size = new System.Drawing.Size(526, 21);
-			this.cbx_Sucursal.TabIndex = 11;
-			this.cbx_Sucursal.SelectionChangeCommitted += new System.EventHandler(this.cbx_Sucursal_SelectionChangeCommitted);
-			// 
-			// cbx_id_seccion
-			// 
-			this.cbx_id_seccion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_id_seccion.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbx_id_seccion.FormattingEnabled = true;
-			this.cbx_id_seccion.Location = new System.Drawing.Point(62, 184);
-			this.cbx_id_seccion.Name = "cbx_id_seccion";
-			this.cbx_id_seccion.Size = new System.Drawing.Size(236, 21);
-			this.cbx_id_seccion.TabIndex = 14;
-			this.cbx_id_seccion.SelectedIndexChanged += new System.EventHandler(this.cbx_id_seccion_SelectedIndexChanged);
-			// 
-			// lbl_id_seccion
-			// 
-			this.lbl_id_seccion.AutoSize = true;
-			this.lbl_id_seccion.Location = new System.Drawing.Point(8, 187);
-			this.lbl_id_seccion.Name = "lbl_id_seccion";
-			this.lbl_id_seccion.Size = new System.Drawing.Size(46, 13);
-			this.lbl_id_seccion.TabIndex = 15;
-			this.lbl_id_seccion.Text = "Sección";
-			// 
-			// grpFiltro
-			// 
-			this.grpFiltro.Controls.Add(this.picFiltrarpersonal);
-			this.grpFiltro.Controls.Add(this.txt_NombrePersonal);
-			this.grpFiltro.Controls.Add(this.label6);
-			this.grpFiltro.Controls.Add(this.txt_RunPersonal);
-			this.grpFiltro.Controls.Add(this.label7);
-			this.grpFiltro.Location = new System.Drawing.Point(8, 211);
-			this.grpFiltro.Name = "grpFiltro";
-			this.grpFiltro.Size = new System.Drawing.Size(705, 51);
-			this.grpFiltro.TabIndex = 17;
-			this.grpFiltro.TabStop = false;
-			this.grpFiltro.Text = "Filtrar personal";
-			// 
-			// picFiltrarpersonal
-			// 
-			this.picFiltrarpersonal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.picFiltrarpersonal.Image = global::ControlDosimetro.Properties.Resources.Buscar;
-			this.picFiltrarpersonal.Location = new System.Drawing.Point(545, 13);
-			this.picFiltrarpersonal.Name = "picFiltrarpersonal";
-			this.picFiltrarpersonal.Size = new System.Drawing.Size(36, 36);
-			this.picFiltrarpersonal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-			this.picFiltrarpersonal.TabIndex = 7;
-			this.picFiltrarpersonal.TabStop = false;
-			this.picFiltrarpersonal.Click += new System.EventHandler(this.picFiltrarpersonal_Click);
-			// 
-			// txt_NombrePersonal
-			// 
-			this.txt_NombrePersonal.Location = new System.Drawing.Point(320, 22);
-			this.txt_NombrePersonal.MaxLength = 50;
-			this.txt_NombrePersonal.Name = "txt_NombrePersonal";
-			this.txt_NombrePersonal.Size = new System.Drawing.Size(219, 20);
-			this.txt_NombrePersonal.TabIndex = 6;
-			this.txt_NombrePersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_NombrePersonal_KeyDown);
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(198, 26);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(104, 13);
-			this.label6.TabIndex = 5;
-			this.label6.Text = "Nombre del personal";
-			// 
-			// txt_RunPersonal
-			// 
-			this.txt_RunPersonal.Location = new System.Drawing.Point(57, 23);
-			this.txt_RunPersonal.MaxLength = 10;
-			this.txt_RunPersonal.Name = "txt_RunPersonal";
-			this.txt_RunPersonal.Size = new System.Drawing.Size(100, 20);
-			this.txt_RunPersonal.TabIndex = 4;
-			this.txt_RunPersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_RunPersonal_KeyDown);
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(14, 26);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(24, 13);
-			this.label7.TabIndex = 3;
-			this.label7.Text = "Rut";
-			// 
 			// Id_Personal
 			// 
 			this.Id_Personal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -398,7 +283,6 @@
 			this.Id_Personal.Name = "Id_Personal";
 			this.Id_Personal.ReadOnly = true;
 			this.Id_Personal.Visible = false;
-			this.Id_Personal.Width = 88;
 			// 
 			// N_pelicula
 			// 
@@ -515,9 +399,9 @@
 			// colFechaIng
 			// 
 			this.colFechaIng.DataPropertyName = "FechaIng";
-			dataGridViewCellStyle2.Format = "d";
-			dataGridViewCellStyle2.NullValue = null;
-			this.colFechaIng.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle7.Format = "d";
+			dataGridViewCellStyle7.NullValue = null;
+			this.colFechaIng.DefaultCellStyle = dataGridViewCellStyle7;
 			this.colFechaIng.HeaderText = "Fecha Ing.";
 			this.colFechaIng.Name = "colFechaIng";
 			this.colFechaIng.ReadOnly = true;
@@ -531,6 +415,138 @@
 			this.ColMedicion.Name = "ColMedicion";
 			this.ColMedicion.ReadOnly = true;
 			this.ColMedicion.Width = 58;
+			// 
+			// toolStrip1
+			// 
+			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.Size = new System.Drawing.Size(1284, 25);
+			this.toolStrip1.TabIndex = 2;
+			this.toolStrip1.Text = "toolStrip1";
+			// 
+			// btn_Cerrar
+			// 
+			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.btn_Cerrar.Location = new System.Drawing.Point(572, 630);
+			this.btn_Cerrar.Name = "btn_Cerrar";
+			this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
+			this.btn_Cerrar.TabIndex = 8;
+			this.btn_Cerrar.Text = "Cerrar";
+			this.btn_Cerrar.UseVisualStyleBackColor = true;
+			this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click);
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(8, 160);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(48, 13);
+			this.label4.TabIndex = 10;
+			this.label4.Text = "Sucursal";
+			// 
+			// cbx_Sucursal
+			// 
+			this.cbx_Sucursal.DisplayMember = "Direccion";
+			this.cbx_Sucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_Sucursal.FormattingEnabled = true;
+			this.cbx_Sucursal.Location = new System.Drawing.Point(62, 157);
+			this.cbx_Sucursal.Name = "cbx_Sucursal";
+			this.cbx_Sucursal.Size = new System.Drawing.Size(526, 21);
+			this.cbx_Sucursal.TabIndex = 11;
+			this.cbx_Sucursal.ValueMember = "Id_sucursal";
+			this.cbx_Sucursal.SelectionChangeCommitted += new System.EventHandler(this.cbx_Sucursal_SelectionChangeCommitted);
+			// 
+			// cbx_id_seccion
+			// 
+			this.cbx_id_seccion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_id_seccion.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbx_id_seccion.FormattingEnabled = true;
+			this.cbx_id_seccion.Location = new System.Drawing.Point(62, 184);
+			this.cbx_id_seccion.Name = "cbx_id_seccion";
+			this.cbx_id_seccion.Size = new System.Drawing.Size(236, 21);
+			this.cbx_id_seccion.TabIndex = 14;
+			this.cbx_id_seccion.SelectedIndexChanged += new System.EventHandler(this.cbx_id_seccion_SelectedIndexChanged);
+			// 
+			// lbl_id_seccion
+			// 
+			this.lbl_id_seccion.AutoSize = true;
+			this.lbl_id_seccion.Location = new System.Drawing.Point(8, 187);
+			this.lbl_id_seccion.Name = "lbl_id_seccion";
+			this.lbl_id_seccion.Size = new System.Drawing.Size(46, 13);
+			this.lbl_id_seccion.TabIndex = 15;
+			this.lbl_id_seccion.Text = "Sección";
+			// 
+			// grpFiltro
+			// 
+			this.grpFiltro.Controls.Add(this.picFiltrarpersonal);
+			this.grpFiltro.Controls.Add(this.txt_NombrePersonal);
+			this.grpFiltro.Controls.Add(this.label6);
+			this.grpFiltro.Controls.Add(this.txt_RunPersonal);
+			this.grpFiltro.Controls.Add(this.label7);
+			this.grpFiltro.Location = new System.Drawing.Point(8, 211);
+			this.grpFiltro.Name = "grpFiltro";
+			this.grpFiltro.Size = new System.Drawing.Size(705, 51);
+			this.grpFiltro.TabIndex = 17;
+			this.grpFiltro.TabStop = false;
+			this.grpFiltro.Text = "Filtrar personal";
+			// 
+			// picFiltrarpersonal
+			// 
+			this.picFiltrarpersonal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.picFiltrarpersonal.Image = global::ControlDosimetro.Properties.Resources.Buscar;
+			this.picFiltrarpersonal.Location = new System.Drawing.Point(545, 13);
+			this.picFiltrarpersonal.Name = "picFiltrarpersonal";
+			this.picFiltrarpersonal.Size = new System.Drawing.Size(36, 36);
+			this.picFiltrarpersonal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+			this.picFiltrarpersonal.TabIndex = 7;
+			this.picFiltrarpersonal.TabStop = false;
+			this.picFiltrarpersonal.Click += new System.EventHandler(this.picFiltrarpersonal_Click);
+			// 
+			// txt_NombrePersonal
+			// 
+			this.txt_NombrePersonal.Location = new System.Drawing.Point(320, 22);
+			this.txt_NombrePersonal.MaxLength = 50;
+			this.txt_NombrePersonal.Name = "txt_NombrePersonal";
+			this.txt_NombrePersonal.Size = new System.Drawing.Size(219, 20);
+			this.txt_NombrePersonal.TabIndex = 6;
+			this.txt_NombrePersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_NombrePersonal_KeyDown);
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(198, 26);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(104, 13);
+			this.label6.TabIndex = 5;
+			this.label6.Text = "Nombre del personal";
+			// 
+			// txt_RunPersonal
+			// 
+			this.txt_RunPersonal.Location = new System.Drawing.Point(57, 23);
+			this.txt_RunPersonal.MaxLength = 10;
+			this.txt_RunPersonal.Name = "txt_RunPersonal";
+			this.txt_RunPersonal.Size = new System.Drawing.Size(100, 20);
+			this.txt_RunPersonal.TabIndex = 4;
+			this.txt_RunPersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_RunPersonal_KeyDown);
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(14, 26);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(24, 13);
+			this.label7.TabIndex = 3;
+			this.label7.Text = "Rut";
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(19, 34);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(44, 13);
+			this.label5.TabIndex = 54;
+			this.label5.Text = "Nombre";
 			// 
 			// frmConsultaTLD
 			// 
@@ -613,5 +629,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn id_estadodosimetro;
 		private System.Windows.Forms.DataGridViewTextBoxColumn colFechaIng;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColMedicion;
+		private System.Windows.Forms.Label label5;
 	}
 }

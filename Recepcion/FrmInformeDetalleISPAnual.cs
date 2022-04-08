@@ -95,32 +95,6 @@ namespace ControlDosimetro
 				LimpiarFormulario(2);
 				LimpiarFormulario(3);
 			}
-
-			
-
-
-			//SqlCommand cmd = new SqlCommand
-			//{
-			//	//	SqlCommand cmd = new SqlCommand();CargarClientePorRun
-
-			//	CommandText = String.Format("CargarClientePorRun '{0}'",txt_IdCliente.Text)
-			//};
-			//DataSet dt;
-			//dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-			//if (dt.Tables[0].Rows.Count > 0)
-			//{
-			//	//		id_cliente,Run,Razon_Social
-			
-
-			//	cbx_anno.DataSource = dt.Tables[1];
-			//	cbxSucursal.DataSource = dt.Tables[2];
-
-			//	LimpiarFormulario(1);
-			//}
-		
-
-
 		}
 
 		void LimpiarFormulario(int bolLimpiar)

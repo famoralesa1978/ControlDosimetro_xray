@@ -71,49 +71,10 @@ namespace ControlDosimetro
 
 			pnl_Progreso.Visible = false;
 			grpFiltro.Enabled = false;
-			Cargar_Anno();
+			//Cargar_Anno();
 		}
 
 		#region "Llamada de carga"
-
-		//private void Cargar_Cliente(Int64 intCodCliente)
-		//{
-
-
-		//	SqlCommand cmd = new SqlCommand();
-		//	cmd.CommandText = "select run,Razon_Social,N_Cliente_Ref, Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio,Servicio,r.region,co.Comuna " +
-		//									"  FROM tbl_cliente c inner join [dbo].[glo_region] r on c.Id_Region=r.Id_Region inner join glo_comuna co on co.id_comuna=c.id_comuna" +
-		//									" WHERE Id_cliente= " + intCodCliente.ToString();//comuna +','+ region
-		//	DataSet dt;
-
-		//	dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-		//	if (dt.Tables[0].Rows.Count > 0)
-		//	{
-		//		lbl_id_cliente.Text = intCodCliente.ToString();
-		//		lbl_rut.Text = dt.Tables[0].Rows[0]["run"].ToString();
-		//		lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
-		//		strDireccion = dt.Tables[0].Rows[0]["Direccion"].ToString();
-		//		strServicio= dt.Tables[0].Rows[0]["Servicio"].ToString();
-		//		strRegion = dt.Tables[0].Rows[0]["region"].ToString();
-		//		strComuna = dt.Tables[0].Rows[0]["Comuna"].ToString();
-		//		btn_cargar.Enabled = true;
-		//		btn_Cargar_cliente.Enabled = false;
-		//		lbl_id_cliente.Enabled = false;
-		//		cbx_anno.Enabled = true;
-		//		cbx_id_periodo.Enabled = true;
-		//	}
-		//	else
-		//	{
-		//		btn_Cargar_cliente.Enabled = true;
-		//		//lbl_id_cliente.Text = "";
-		//		btn_cargar.Enabled = false;
-		//		lbl_id_cliente.Enabled = true;
-		//		lbl_nombreCliente.Text = "";
-		//		if (intCodCliente != 0)
-		//			MessageBox.Show("El cliente no existe");
-
-		//	}
-		//}
 
 		private void Listar_Personal()
 		{
@@ -169,7 +130,7 @@ namespace ControlDosimetro
 
 		private void Cargar_Periodo()
 		{
-			clsFunc.Cargar_Periodo(ref cbx_id_periodo, 3, (int)cbx_anno.SelectedValue);
+	//		clsFunc.Cargar_Periodo(ref cbx_id_periodo, 3, (int)cbx_anno.SelectedValue);
 		}
 
 		private void Cargar_Sucursal()
@@ -240,15 +201,50 @@ namespace ControlDosimetro
 			Cursor = Cursors.WaitCursor;
 			Inicializar = false;
 
-			clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(lbl_id_cliente.Text.ToString()), ref lbl_rut_cliente, ref lbl_nombreCliente);
-			
-			Cargar_Sucursal();
-			Cargar_Seccion();
+			frmAyudaCliente frm = new frmAyudaCliente(Convert.ToInt64(lbl_id_cliente.Text));
 
-			Listar_Personal();
-			cbx_anno.Enabled = false;
-			cbx_id_periodo.Enabled = false;
-			btn_cargar.Enabled = false;
+			if (frm.ShowDialog() == DialogResult.OK)
+			{
+				lbl_nombreCliente.Text = Clases.ClsCliente.Nombres;
+				lbl_rut_cliente.Text = Clases.ClsCliente.Rut;
+
+				SqlCommand cmd = new SqlCommand
+				{
+					//	SqlCommand cmd = new SqlCommand();CargarClientePorRun
+
+					CommandText = String.Format("CargarClientePorRun '{0}'", lbl_rut_cliente.Text)
+				};
+				DataSet dt;
+				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+				if (dt.Tables[0].Rows.Count > 0)
+				{
+					cbx_anno.DataSource = dt.Tables[1];
+
+					cbx_id_periodo.DataSource = dt.Tables[3];
+					cbx_Sucursal.DataSource = dt.Tables[2];
+
+					Cargar_Seccion();
+
+					Listar_Personal();
+					//cbx_anno.Enabled = false;
+					//cbx_id_periodo.Enabled = false;
+					btn_cargar.Enabled = false;
+				}
+
+			}
+			else
+			{
+				//LimpiarFormulario(2);
+				//LimpiarFormulario(3);
+			}
+
+	//		clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(lbl_id_cliente.Text.ToString()), ref lbl_rut_cliente, ref lbl_nombreCliente);
+			
+		//	Cargar_Sucursal();
+
+
+			
 			//grdDatos.Focus();
 			Cursor = Cursors.Default;
 		}
