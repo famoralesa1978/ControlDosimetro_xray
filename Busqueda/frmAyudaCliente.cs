@@ -49,38 +49,41 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			////MessageBox.Show("Conectado al servidor");
 
-			if (intCliente != 0)
+			cmd.CommandText = String.Format("pa_AyudaCliente_sel {0}", intCliente);
+			txt_IdCliente.Text = intCliente.ToString();
+			cmd.CommandType = CommandType.Text;
+
+			DataSet dt;
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+			if (dt.Tables[0].Rows.Count > 0)
 			{
-				cmd.CommandText = String.Format("pa_AyudaCliente_sel {0}", intCliente);
-				txt_IdCliente.Text = intCliente.ToString();
-				cmd.CommandType = CommandType.Text;
-
-				DataSet dt;
-				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-				if (dt.Tables[0].Rows.Count > 0)
+				if (dt.Tables[0].Rows.Count == 1)
 				{
-					if (dt.Tables[0].Rows.Count == 1)
-					{
-						Clases.ClsCliente.Rut = dt.Tables[0].Rows[0]["run"].ToString();
-						Clases.ClsCliente.Direccion = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
-						Clases.ClsCliente.Nombres = dt.Tables[0].Rows[0]["Direccion"].ToString();
-						Clases.ClsCliente.Id_Cliente = Convert.ToInt16(dt.Tables[0].Rows[0]["Id_cliente"].ToString());
+					Clases.ClsCliente.Rut = dt.Tables[0].Rows[0]["run"].ToString();
+					Clases.ClsCliente.Direccion = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
+					Clases.ClsCliente.Nombres = dt.Tables[0].Rows[0]["Direccion"].ToString();
+					Clases.ClsCliente.Id_Cliente = Convert.ToInt16(dt.Tables[0].Rows[0]["Id_cliente"].ToString());
 
-						DialogResult = System.Windows.Forms.DialogResult.OK;
-					}
-					else
-					if (dt.Tables[0].Rows.Count > 1)
-					{
-						grdDatos.DataSource = dt.Tables[0];
-
-					}
+					DialogResult = System.Windows.Forms.DialogResult.OK;
 				}
 				else
+				if (dt.Tables[0].Rows.Count > 1)
+				{
+					grdDatos.DataSource = dt.Tables[0];
+
+				}
+			}
+			else
+			{
+				if (intCliente > 0)
 				{
 					classFuncionesGenerales.mensajes.MensajeError("El número de cliente no existe");
 					DialogResult = System.Windows.Forms.DialogResult.Cancel;
 				}
+				else
+					DialogResult = System.Windows.Forms.DialogResult.OK;
+
 			}
 		}
 

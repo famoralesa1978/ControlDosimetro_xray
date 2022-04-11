@@ -44,6 +44,7 @@ namespace ControlDosimetro
 		//        XmlNamespaceManager nsManager;
 		bool bolDesdeCodigo = false;
 		Int64 intId_Cliente;
+		DataTable dtPeriodo;
 		#endregion
 
 		public FrmInformeDetalleISPAnual()
@@ -906,5 +907,6 @@ namespace ControlDosimetro
 		{
 
 		}
+
 	}
 }

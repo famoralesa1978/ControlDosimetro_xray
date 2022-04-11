@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.label5 = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
 			this.lbl_id_cliente = new System.Windows.Forms.TextBox();
 			this.lbl_nombreCliente = new System.Windows.Forms.Label();
@@ -73,7 +74,7 @@
 			this.label6 = new System.Windows.Forms.Label();
 			this.txt_RunPersonal = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
+			this.btnResfrescar = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -102,6 +103,15 @@
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Dato Cliente";
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(19, 34);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(44, 13);
+			this.label5.TabIndex = 54;
+			this.label5.Text = "Nombre";
 			// 
 			// label11
 			// 
@@ -399,9 +409,9 @@
 			// colFechaIng
 			// 
 			this.colFechaIng.DataPropertyName = "FechaIng";
-			dataGridViewCellStyle7.Format = "d";
-			dataGridViewCellStyle7.NullValue = null;
-			this.colFechaIng.DefaultCellStyle = dataGridViewCellStyle7;
+			dataGridViewCellStyle2.Format = "d";
+			dataGridViewCellStyle2.NullValue = null;
+			this.colFechaIng.DefaultCellStyle = dataGridViewCellStyle2;
 			this.colFechaIng.HeaderText = "Fecha Ing.";
 			this.colFechaIng.Name = "colFechaIng";
 			this.colFechaIng.ReadOnly = true;
@@ -539,20 +549,22 @@
 			this.label7.TabIndex = 3;
 			this.label7.Text = "Rut";
 			// 
-			// label5
+			// btnResfrescar
 			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(19, 34);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(44, 13);
-			this.label5.TabIndex = 54;
-			this.label5.Text = "Nombre";
+			this.btnResfrescar.Image = global::ControlDosimetro.Properties.Resources.filter_16;
+			this.btnResfrescar.Location = new System.Drawing.Point(304, 184);
+			this.btnResfrescar.Name = "btnResfrescar";
+			this.btnResfrescar.Size = new System.Drawing.Size(26, 23);
+			this.btnResfrescar.TabIndex = 18;
+			this.btnResfrescar.UseVisualStyleBackColor = true;
+			this.btnResfrescar.Click += new System.EventHandler(this.btnResfrescar_Click);
 			// 
 			// frmConsultaTLD
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1284, 662);
+			this.Controls.Add(this.btnResfrescar);
 			this.Controls.Add(this.grpFiltro);
 			this.Controls.Add(this.lbl_id_seccion);
 			this.Controls.Add(this.cbx_id_seccion);
@@ -630,5 +642,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn colFechaIng;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColMedicion;
 		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Button btnResfrescar;
 	}
 }
