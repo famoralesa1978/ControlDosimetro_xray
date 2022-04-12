@@ -150,7 +150,7 @@ namespace ControlDosimetro
 		{
 			SqlCommand cmd = new SqlCommand();
 			 DataSet dt;
-			cmd.CommandText = String.Format("pa_DosimetroISP_ClientePorTrimestre_sel '{0}',{1},{2}", txt_IdCliente.Text, cbx_anno.SelectedValue, cbxSucursal.SelectedValue);
+			cmd.CommandText = String.Format("pa_DosimetroISP_ClientePorTrimestre_sel '{0}',{1},{2}", lbl_Rut.Text, cbx_anno.SelectedValue, cbxSucursal.SelectedValue);
 			cmd.CommandType = CommandType.Text;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
