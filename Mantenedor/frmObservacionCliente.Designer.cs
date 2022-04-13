@@ -38,7 +38,7 @@
 			this.rtb_Observacion = new System.Windows.Forms.RichTextBox();
 			this.lbl_nombre = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.lbl_Id_Cliente = new System.Windows.Forms.Label();
+			this.lbl_id_cliente = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.btn_Grabar = new System.Windows.Forms.Button();
 			this.dtp_FechaTermino = new System.Windows.Forms.DateTimePicker();
@@ -56,7 +56,7 @@
 			this.tbl_observacioncliente.Controls.Add(this.rtb_Observacion);
 			this.tbl_observacioncliente.Controls.Add(this.lbl_nombre);
 			this.tbl_observacioncliente.Controls.Add(this.label2);
-			this.tbl_observacioncliente.Controls.Add(this.lbl_Id_Cliente);
+			this.tbl_observacioncliente.Controls.Add(this.lbl_id_cliente);
 			this.tbl_observacioncliente.Controls.Add(this.label6);
 			this.tbl_observacioncliente.Controls.Add(this.btn_Grabar);
 			this.tbl_observacioncliente.Controls.Add(this.dtp_FechaTermino);
@@ -122,7 +122,7 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(16, 122);
+			this.label1.Location = new System.Drawing.Point(16, 97);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(67, 13);
 			this.label1.TabIndex = 27;
@@ -155,14 +155,14 @@
 			this.label2.TabIndex = 24;
 			this.label2.Text = "-";
 			// 
-			// lbl_Id_Cliente
+			// lbl_id_cliente
 			// 
-			this.lbl_Id_Cliente.AutoSize = true;
-			this.lbl_Id_Cliente.Location = new System.Drawing.Point(162, 16);
-			this.lbl_Id_Cliente.Name = "lbl_Id_Cliente";
-			this.lbl_Id_Cliente.Size = new System.Drawing.Size(10, 13);
-			this.lbl_Id_Cliente.TabIndex = 23;
-			this.lbl_Id_Cliente.Text = "-";
+			this.lbl_id_cliente.AutoSize = true;
+			this.lbl_id_cliente.Location = new System.Drawing.Point(162, 16);
+			this.lbl_id_cliente.Name = "lbl_id_cliente";
+			this.lbl_id_cliente.Size = new System.Drawing.Size(10, 13);
+			this.lbl_id_cliente.TabIndex = 23;
+			this.lbl_id_cliente.Text = "-";
 			// 
 			// label6
 			// 
@@ -186,9 +186,8 @@
 			// dtp_FechaTermino
 			// 
 			this.dtp_FechaTermino.CustomFormat = "dd/MM/yyyy";
-			this.dtp_FechaTermino.Enabled = false;
 			this.dtp_FechaTermino.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dtp_FechaTermino.Location = new System.Drawing.Point(165, 105);
+			this.dtp_FechaTermino.Location = new System.Drawing.Point(292, 68);
 			this.dtp_FechaTermino.Name = "dtp_FechaTermino";
 			this.dtp_FechaTermino.Size = new System.Drawing.Size(98, 20);
 			this.dtp_FechaTermino.TabIndex = 37;
@@ -218,7 +217,7 @@
 								private System.Windows.Forms.Button btn_Grabar;
         private System.Windows.Forms.Label lbl_nombre;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lbl_Id_Cliente;
+        private System.Windows.Forms.Label lbl_id_cliente;
         private System.Windows.Forms.Label label6;
 								private System.Windows.Forms.RichTextBox rtb_Observacion;
 								private System.Windows.Forms.Label label1;
