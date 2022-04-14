@@ -71,12 +71,10 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 
-			Boolean bolResult;
-			bolResult = false;
 			if (rtb_Observacion.Text.Trim() == "")
 				MessageBox.Show("Debe ingresar una observación");
 			else
-				if (MessageBox.Show("Desea grabar la observación", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+			if (MessageBox.Show("Desea grabar la observación", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
 			{
 
 				SqlCommand cmd = new SqlCommand();

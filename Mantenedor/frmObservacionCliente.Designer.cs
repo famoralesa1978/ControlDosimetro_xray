@@ -203,7 +203,6 @@
 			this.label3.Size = new System.Drawing.Size(87, 13);
 			this.label3.TabIndex = 45;
 			this.label3.Text = "Fecha propuesta";
-			this.label3.Visible = false;
 			// 
 			// frmObservacionCliente
 			// 
