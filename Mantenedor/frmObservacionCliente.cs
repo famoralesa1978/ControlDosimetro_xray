@@ -79,18 +79,21 @@ namespace ControlDosimetro
 				if (MessageBox.Show("Desea grabar la observación", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
 			{
 
-				ClaseComun.Insertar(Clases.clsBD.BD, tbl_observacioncliente, ref bolResult);
-				if (bolResult == true)
-				{
-					SqlCommand cmd = new SqlCommand();
-					cmd.CommandText = "update tbl_cliente_Historial set FechaTermino=" + dtp_FechaTermino.Text + " where FechaTermino is null and id_cliente=" + lbl_id_cliente.Text + " and run='" + lbl_rut.Text + "'";
-					cmd.CommandType = CommandType.Text;
+				SqlCommand cmd = new SqlCommand();
 
-					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-					MessageBox.Show("Observación  Ingresada");
-					this.Close();
-				}
 
+				cmd.CommandText = String.Format("pa_ClienteObservacion_ins {0},'{1}','{2}','{3}'", lbl_id_cliente.Text, dtp_FechaInicio.Text, dtp_FechaTermino.Text, rtb_Observacion.Text);
+				cmd.CommandType = CommandType.Text;
+
+				Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+
+				cmd = new SqlCommand();
+				cmd.CommandText = "update tbl_cliente_Historial set FechaTermino=" + dtp_FechaTermino.Text + " where FechaTermino is null and id_cliente=" + lbl_id_cliente.Text + " and run='" + lbl_rut.Text + "'";
+				cmd.CommandType = CommandType.Text;
+
+				Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+				MessageBox.Show("Observación  Ingresada");
+				this.Close();
 			}
 
 			Cursor = Cursors.Default;

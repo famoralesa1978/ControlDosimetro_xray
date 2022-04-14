@@ -42,11 +42,13 @@
 			this.label6 = new System.Windows.Forms.Label();
 			this.btn_Grabar = new System.Windows.Forms.Button();
 			this.dtp_FechaTermino = new System.Windows.Forms.DateTimePicker();
+			this.label3 = new System.Windows.Forms.Label();
 			this.tbl_observacioncliente.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tbl_observacioncliente
 			// 
+			this.tbl_observacioncliente.Controls.Add(this.label3);
 			this.tbl_observacioncliente.Controls.Add(this.cbx_id_periodo);
 			this.tbl_observacioncliente.Controls.Add(this.lbl_rut);
 			this.tbl_observacioncliente.Controls.Add(this.dtp_FechaInicio);
@@ -72,7 +74,7 @@
 			// 
 			this.cbx_id_periodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_id_periodo.FormattingEnabled = true;
-			this.cbx_id_periodo.Location = new System.Drawing.Point(165, 67);
+			this.cbx_id_periodo.Location = new System.Drawing.Point(281, 67);
 			this.cbx_id_periodo.Name = "cbx_id_periodo";
 			this.cbx_id_periodo.Size = new System.Drawing.Size(121, 21);
 			this.cbx_id_periodo.TabIndex = 44;
@@ -187,11 +189,21 @@
 			// 
 			this.dtp_FechaTermino.CustomFormat = "dd/MM/yyyy";
 			this.dtp_FechaTermino.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dtp_FechaTermino.Location = new System.Drawing.Point(292, 68);
+			this.dtp_FechaTermino.Location = new System.Drawing.Point(165, 68);
 			this.dtp_FechaTermino.Name = "dtp_FechaTermino";
 			this.dtp_FechaTermino.Size = new System.Drawing.Size(98, 20);
 			this.dtp_FechaTermino.TabIndex = 37;
 			this.dtp_FechaTermino.Value = new System.DateTime(2018, 2, 14, 0, 0, 0, 0);
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(278, 49);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(87, 13);
+			this.label3.TabIndex = 45;
+			this.label3.Text = "Fecha propuesta";
+			this.label3.Visible = false;
 			// 
 			// frmObservacionCliente
 			// 
@@ -227,5 +239,6 @@
 								private System.Windows.Forms.DateTimePicker dtp_FechaInicio;
                                 private System.Windows.Forms.Label lbl_rut;
                                 private System.Windows.Forms.ComboBox cbx_id_periodo;
-    }
+		private System.Windows.Forms.Label label3;
+	}
 }
