@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
 			this.tbl_observacioncliente = new System.Windows.Forms.GroupBox();
+			this.label3 = new System.Windows.Forms.Label();
 			this.cbx_id_periodo = new System.Windows.Forms.ComboBox();
 			this.lbl_rut = new System.Windows.Forms.Label();
 			this.dtp_FechaInicio = new System.Windows.Forms.DateTimePicker();
@@ -42,7 +43,6 @@
 			this.label6 = new System.Windows.Forms.Label();
 			this.btn_Grabar = new System.Windows.Forms.Button();
 			this.dtp_FechaTermino = new System.Windows.Forms.DateTimePicker();
-			this.label3 = new System.Windows.Forms.Label();
 			this.tbl_observacioncliente.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -69,6 +69,15 @@
 			this.tbl_observacioncliente.TabIndex = 0;
 			this.tbl_observacioncliente.TabStop = false;
 			this.tbl_observacioncliente.Text = "Datos";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(278, 49);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(142, 13);
+			this.label3.TabIndex = 45;
+			this.label3.Text = "Fecha propuesta  de termino";
 			// 
 			// cbx_id_periodo
 			// 
@@ -194,15 +203,6 @@
 			this.dtp_FechaTermino.Size = new System.Drawing.Size(98, 20);
 			this.dtp_FechaTermino.TabIndex = 37;
 			this.dtp_FechaTermino.Value = new System.DateTime(2018, 2, 14, 0, 0, 0, 0);
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(278, 49);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(87, 13);
-			this.label3.TabIndex = 45;
-			this.label3.Text = "Fecha propuesta";
 			// 
 			// frmObservacionCliente
 			// 

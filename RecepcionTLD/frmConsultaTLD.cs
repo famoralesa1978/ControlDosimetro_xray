@@ -239,6 +239,7 @@ namespace ControlDosimetro
 						btn_cargar.Enabled = false;
 					//}
 				}
+
 			}
 			else
 			{
