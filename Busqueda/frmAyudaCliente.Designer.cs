@@ -135,6 +135,7 @@
 			this.grdDatos.Size = new System.Drawing.Size(737, 378);
 			this.grdDatos.TabIndex = 5;
 			this.grdDatos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellDoubleClick);
+			this.grdDatos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdDatos_DataBindingComplete);
 			// 
 			// Rut
 			// 

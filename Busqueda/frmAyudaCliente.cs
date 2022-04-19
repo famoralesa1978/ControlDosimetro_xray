@@ -33,6 +33,7 @@ namespace ControlDosimetro
 		{
 			InitializeComponent();
 			AsignarEvento();
+			grdDatos.AutoGenerateColumns = false;
 			IdCliente = intId_Cliente;
 
 		}
@@ -161,6 +162,22 @@ namespace ControlDosimetro
 
 		#region "grilla"
 
+		private void grdDatos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+		{
+			if (e.ListChangedType == ListChangedType.Reset)
+			{
+				foreach (DataGridViewRow item in grdDatos.Rows)
+				{
+					DataRow dtrFila = ((DataRowView)item.DataBoundItem).Row;
+					if (Convert.ToInt32(dtrFila["Id_estado"].ToString()) == 0)
+					{
+						item.DefaultCellStyle.BackColor = Color.Red;
+					}
+				}
+
+			}
+		}
+
 		private void grdDatos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
 		{
 			if (e.RowIndex > -1)
@@ -175,12 +192,13 @@ namespace ControlDosimetro
 		}
 
 
+
 		#endregion
 
 		#region Barra
 
 		#endregion
 
-
+	
 	}
 }
