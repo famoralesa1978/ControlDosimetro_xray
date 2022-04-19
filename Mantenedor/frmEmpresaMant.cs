@@ -328,6 +328,15 @@ namespace ControlDosimetro
 					{
 						if (lbl_Estado_mod.Text != cbx_id_estado.Text)
 						{
+							SqlCommand cmd1 = new SqlCommand();
+							cmd1.CommandText = "pa_ClienteHistorial_upd " + txt_id_cliente.Text + ",'" + dtp_FechaInicio.Value.ToShortDateString().Replace("-","/") + "'";
+							cmd1.CommandType = CommandType.Text;
+							DataSet ds = Conectar.Listar(Clases.clsBD.BD, cmd1);
+
+							if ((int)ds.Tables[0].Rows[0]["Resultado"] == 0)
+								MessageBox.Show(ds.Tables[0].Rows[0]["Mensaje"].ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
 							MessageBox.Show("Dato modificado,Debe ingresar una observación porque se dejo inactivo");
 							frmObservacionCliente frm1 = new frmObservacionCliente(txt_id_cliente.Text, dtp_FechaInicio.Text);
 							frm1.ShowDialog(this);
@@ -336,7 +345,7 @@ namespace ControlDosimetro
 						else
 						{
 							SqlCommand cmd1 = new SqlCommand();
-							cmd1.CommandText = "pa_ClienteHistorial_upd " + txt_id_cliente.Text + ",'" + dtp_FechaInicio.Value + "'";
+							cmd1.CommandText = "pa_ClienteHistorial_upd " + txt_id_cliente.Text + ",'" + dtp_FechaInicio.Value.ToShortDateString().Replace("-", "/") + "'";
 							cmd1.CommandType = CommandType.Text;
 							DataSet ds = Conectar.Listar(Clases.clsBD.BD, cmd1);
 
@@ -352,7 +361,7 @@ namespace ControlDosimetro
 					{
 
 						SqlCommand cmd1 = new SqlCommand();
-						cmd1.CommandText = "pa_ClienteHistorial_upd " + txt_id_cliente.Text + ",'" + dtp_FechaInicio.Value + "'";
+						cmd1.CommandText = "pa_ClienteHistorial_upd " + txt_id_cliente.Text + ",'" + dtp_FechaInicio.Value.ToShortDateString().Replace("-", "/") + "'";
 						cmd1.CommandType = CommandType.Text;
 						DataSet ds = Conectar.Listar(Clases.clsBD.BD, cmd1);
 
@@ -473,11 +482,11 @@ namespace ControlDosimetro
 
 							MessageBox.Show("Dato Guardado");
 
-							//SqlCommand cmd = new SqlCommand();
-							//cmd.CommandText = "pa_Sucursal_ins '" + txt_run.Text + "','" + txt_direccion.Text + "'," + cbx_id_region.SelectedValue + "," +
-							//								cbx_id_provincia.SelectedValue + "," + cbx_id_comuna.SelectedValue + ",'" + txt_telefono.Text + "',1";
-							//cmd.CommandType = CommandType.Text;
-							//Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+							SqlCommand cmd = new SqlCommand();
+							cmd.CommandText = "pa_Sucursal_ins '" + txt_run.Text + "','" + txt_direccion.Text + "'," + cbx_id_region.SelectedValue + "," +
+														cbx_id_provincia.SelectedValue + "," + cbx_id_comuna.SelectedValue + ",'" + txt_telefono.Text + "',1,1," + txt_id_cliente.Text + ",'" + txt_Email.Text + "','" + txt_Razon_Social.Text + "'";
+							cmd.CommandType = CommandType.Text;
+							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 
 
 

@@ -86,42 +86,23 @@ namespace ControlDosimetro
 
 		#region "Llamada de carga"
 
-		private void Cargar_Cliente(Int64 intCodCliente)
+		private void Cargar_Cliente()
 		{
 
 
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = "select run,Razon_Social,N_Cliente_Ref, Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio,Servicio,r.region,co.Comuna " +
 											"  FROM tbl_cliente c inner join [dbo].[glo_region] r on c.Id_Region=r.Id_Region inner join glo_comuna co on co.id_comuna=c.id_comuna" +
-											" WHERE Id_cliente= " + intCodCliente.ToString();//comuna +','+ region
+											" WHERE Id_cliente= " + lbl_id_cliente.Text.ToString() + " and run ='" + lbl_rut_cliente.Text + "'";//comuna +','+ region
 			DataSet dt;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 			if (dt.Tables[0].Rows.Count > 0)
 			{
-				lbl_id_cliente.Text = intCodCliente.ToString();
-				lbl_rut_cliente.Text = dt.Tables[0].Rows[0]["run"].ToString();
-				lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
 				strDireccion = dt.Tables[0].Rows[0]["Direccion"].ToString();
-				strServicio= dt.Tables[0].Rows[0]["Servicio"].ToString();
+				strServicio = dt.Tables[0].Rows[0]["Servicio"].ToString();
 				strRegion = dt.Tables[0].Rows[0]["region"].ToString();
 				strComuna = dt.Tables[0].Rows[0]["Comuna"].ToString();
-				btn_cargar.Enabled = true;
-				btn_Cargar_cliente.Enabled = false;
-				lbl_id_cliente.Enabled = false;
-				cbx_anno.Enabled = true;
-				cbx_id_periodo.Enabled = true;
-			}
-			else
-			{
-				btn_Cargar_cliente.Enabled = true;
-				//lbl_id_cliente.Text = "";
-				btn_cargar.Enabled = false;
-				lbl_id_cliente.Enabled = true;
-				lbl_nombreCliente.Text = "";
-				lbl_rut_cliente.Text = "";
-				if (intCodCliente != 0)
-					MessageBox.Show("El cliente no existe");
 			}
 
 		}
@@ -612,7 +593,7 @@ namespace ControlDosimetro
 			dtPeriodo = Conectar.Listar(Clases.clsBD.BD, cmdPeriodo);
 			string strfecha_inicio = "From " + dtPeriodo.Tables[0].Rows[0]["fecha_inicio"].ToString().Substring(0, 6) + dtPeriodo.Tables[0].Rows[0]["fecha_inicio"].ToString().Substring(8, 2);
 			strfecha_inicio = strfecha_inicio + " to " + dtPeriodo.Tables[0].Rows[0]["fecha_termino"].ToString().Substring(0, 6) + dtPeriodo.Tables[0].Rows[0]["fecha_termino"].ToString().Substring(8, 2);
-
+			Cargar_Cliente();
 			string strfecha_Per = dtPeriodo.Tables[0].Rows[0]["Finicio"].ToString() + " al " + dtPeriodo.Tables[0].Rows[0]["FTermino"].ToString();
 
 			string strfecha_Fin = dtPeriodo.Tables[0].Rows[0]["FTermino"].ToString();
@@ -681,6 +662,7 @@ namespace ControlDosimetro
 				Nombres = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Nombres"];
 				id_sucursal = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["id_sucursal"];
 				Id_Personal = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Id_Personal"];
+				strDireccion = cbx_Sucursal.Text.ToString().ToUpper();
 				string wsName = "Sheet1";
 				if ((checkCell.Value.ToString() == "1"))//(checkGenerar.Value.ToString() == "1") &&&& (txtid_estadodosimetro.Value.ToString() == "-1")
 				{
@@ -752,7 +734,7 @@ namespace ControlDosimetro
 					//UpdateValue(wsName, "D2" , strfecha_Per, 0, true);
 					//UpdateValue(wsName, "D18", strfecha_Fin, 0, true);
 					UpdateValue(wsName, "B16", strUsados, 0, true);
-					UpdateValue(wsName, "C12", strDireccion.ToUpper(), 0, true);
+					UpdateValue(wsName, "C12", strDireccion, 0, true);
 					UpdateValue(wsName, "C14", lbl_rut_cliente.Text.ToUpper(), 0, true);
 					UpdateValue(wsName, "F14", cbx_id_seccion.Text.ToUpper(), 0, true);
 					//	UpdateValue(wsName, "M4", strRegion, 0, true);
