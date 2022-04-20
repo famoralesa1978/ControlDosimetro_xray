@@ -23,13 +23,15 @@ namespace ControlDosimetro
 		clsEventoControl ClaseEvento = new clsEventoControl();
 		Clases.ClassEvento Evento = new Clases.ClassEvento();
 		classFuncionesBD.ClsFunciones ClaseFunciones = new classFuncionesBD.ClsFunciones();
+		string run;
 		#endregion
 
 
-		public frmPersonalMant(Int64 intCodCliente, Int64 intCodPersonal)
+		public frmPersonalMant(Int64 intCodCliente, Int64 intCodPersonal,string srtRun)
 		{
 			InitializeComponent();
 			AsignarEvento();
+			run = srtRun;
 			Cargar_Cliente(intCodCliente);
 			Cargar_Estado();
 			Cargar_Seccion();
@@ -236,7 +238,7 @@ namespace ControlDosimetro
 		private void Cargar_Seccion()
 		{
 			DataSet dt;
-			dt = ClaseFunciones.Cargar_Seccion(Convert.ToInt16(lbl_id_cliente.Text.ToString()));
+			dt = ClaseFunciones.Cargar_SeccionPorRun(Convert.ToInt16(lbl_id_cliente.Text.ToString()),run);
 			cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
 			cbx_id_seccion.DataSource = dt.Tables[0];
@@ -460,7 +462,7 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 
-			frmSeccionMant frm = new frmSeccionMant(Convert.ToInt64(lbl_id_cliente.Text), 0);
+			frmSeccionMant frm = new frmSeccionMant(Convert.ToInt64(lbl_id_cliente.Text), 0,run);
 			frm.ShowDialog(this);
 			Cargar_Seccion();
 

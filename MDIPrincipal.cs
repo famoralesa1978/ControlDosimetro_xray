@@ -451,6 +451,7 @@ namespace ControlDosimetro
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
 					break;
+
 				#endregion
 
 

@@ -23,9 +23,10 @@ namespace ControlDosimetro
 		#endregion
 
 
-		public frmSeccionMant(Int64 intCodCliente, Int64 intCodSeccion)
+		public frmSeccionMant(Int64 intCodCliente, Int64 intCodSeccion,string strRun)
 		{
 			InitializeComponent();
+			lbl_Run.Text = strRun;
 			Cargar_Estado();
 			Cargar_Cliente(intCodCliente);
 

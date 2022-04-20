@@ -55,6 +55,11 @@
 			this.cbx_id_estado_Buscar = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.tbl_seccion = new System.Windows.Forms.GroupBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.lbl_Run = new System.Windows.Forms.Label();
+			this.lbl_Nombre = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
 			this.lbl_id_cliente = new System.Windows.Forms.Label();
 			this.btn_Minimizar = new System.Windows.Forms.Button();
 			this.btn_Limpiar = new System.Windows.Forms.Button();
@@ -65,11 +70,6 @@
 			this.lbl_seccion = new System.Windows.Forms.Label();
 			this.txt_id_seccion = new System.Windows.Forms.TextBox();
 			this.lbl_id_seccion = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
-			this.lbl_Nombre = new System.Windows.Forms.Label();
-			this.lblRut = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
 			this.stsEstado.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.scPrincipal)).BeginInit();
@@ -337,7 +337,7 @@
 			// 
 			this.tbl_seccion.Controls.Add(this.label4);
 			this.tbl_seccion.Controls.Add(this.label3);
-			this.tbl_seccion.Controls.Add(this.lblRut);
+			this.tbl_seccion.Controls.Add(this.lbl_Run);
 			this.tbl_seccion.Controls.Add(this.lbl_Nombre);
 			this.tbl_seccion.Controls.Add(this.label2);
 			this.tbl_seccion.Controls.Add(this.lbl_id_cliente);
@@ -357,6 +357,51 @@
 			this.tbl_seccion.TabIndex = 6;
 			this.tbl_seccion.TabStop = false;
 			this.tbl_seccion.Text = "Datos";
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(3, 40);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(71, 13);
+			this.label4.TabIndex = 20;
+			this.label4.Text = "Razón  social";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(3, 63);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(24, 13);
+			this.label3.TabIndex = 19;
+			this.label3.Text = "Rut";
+			// 
+			// lbl_Run
+			// 
+			this.lbl_Run.AutoSize = true;
+			this.lbl_Run.Location = new System.Drawing.Point(85, 63);
+			this.lbl_Run.Name = "lbl_Run";
+			this.lbl_Run.Size = new System.Drawing.Size(44, 13);
+			this.lbl_Run.TabIndex = 18;
+			this.lbl_Run.Text = "Nombre";
+			// 
+			// lbl_Nombre
+			// 
+			this.lbl_Nombre.AutoSize = true;
+			this.lbl_Nombre.Location = new System.Drawing.Point(85, 40);
+			this.lbl_Nombre.Name = "lbl_Nombre";
+			this.lbl_Nombre.Size = new System.Drawing.Size(44, 13);
+			this.lbl_Nombre.TabIndex = 16;
+			this.lbl_Nombre.Text = "Nombre";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(3, 20);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(54, 13);
+			this.label2.TabIndex = 15;
+			this.label2.Text = "N° Cliente";
 			// 
 			// lbl_id_cliente
 			// 
@@ -464,51 +509,6 @@
 			this.lbl_id_seccion.TabIndex = 8;
 			this.lbl_id_seccion.Text = "ID";
 			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(3, 20);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(54, 13);
-			this.label2.TabIndex = 15;
-			this.label2.Text = "N° Cliente";
-			// 
-			// lbl_Nombre
-			// 
-			this.lbl_Nombre.AutoSize = true;
-			this.lbl_Nombre.Location = new System.Drawing.Point(85, 40);
-			this.lbl_Nombre.Name = "lbl_Nombre";
-			this.lbl_Nombre.Size = new System.Drawing.Size(44, 13);
-			this.lbl_Nombre.TabIndex = 16;
-			this.lbl_Nombre.Text = "Nombre";
-			// 
-			// lblRut
-			// 
-			this.lblRut.AutoSize = true;
-			this.lblRut.Location = new System.Drawing.Point(85, 63);
-			this.lblRut.Name = "lblRut";
-			this.lblRut.Size = new System.Drawing.Size(44, 13);
-			this.lblRut.TabIndex = 18;
-			this.lblRut.Text = "Nombre";
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(3, 63);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(24, 13);
-			this.label3.TabIndex = 19;
-			this.label3.Text = "Rut";
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(3, 40);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(71, 13);
-			this.label4.TabIndex = 20;
-			this.label4.Text = "Razón  social";
-			// 
 			// frmMantenedorSeccion
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -585,6 +585,6 @@
 		private System.Windows.Forms.Label lbl_Nombre;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Label lblRut;
+		private System.Windows.Forms.Label lbl_Run;
 	}
 }

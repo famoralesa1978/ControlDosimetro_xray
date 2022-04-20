@@ -42,11 +42,15 @@
 			this.lbl_seccion = new System.Windows.Forms.Label();
 			this.lbl_id_cliente1 = new System.Windows.Forms.Label();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.lbl_Run = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
 			this.tbl_seccion.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tbl_seccion
 			// 
+			this.tbl_seccion.Controls.Add(this.lbl_Run);
+			this.tbl_seccion.Controls.Add(this.label2);
 			this.tbl_seccion.Controls.Add(this.lbl_id_seccion);
 			this.tbl_seccion.Controls.Add(this.lbl_nombreCliente);
 			this.tbl_seccion.Controls.Add(this.lbl_id_cliente);
@@ -61,7 +65,7 @@
 			this.tbl_seccion.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tbl_seccion.Location = new System.Drawing.Point(0, 0);
 			this.tbl_seccion.Name = "tbl_seccion";
-			this.tbl_seccion.Size = new System.Drawing.Size(489, 172);
+			this.tbl_seccion.Size = new System.Drawing.Size(489, 206);
 			this.tbl_seccion.TabIndex = 0;
 			this.tbl_seccion.TabStop = false;
 			this.tbl_seccion.Text = "Datos";
@@ -69,7 +73,7 @@
 			// lbl_id_seccion
 			// 
 			this.lbl_id_seccion.AutoSize = true;
-			this.lbl_id_seccion.Location = new System.Drawing.Point(166, 44);
+			this.lbl_id_seccion.Location = new System.Drawing.Point(166, 65);
 			this.lbl_id_seccion.Name = "lbl_id_seccion";
 			this.lbl_id_seccion.Size = new System.Drawing.Size(35, 13);
 			this.lbl_id_seccion.TabIndex = 41;
@@ -98,7 +102,7 @@
 			this.cbx_id_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_id_estado.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.cbx_id_estado.FormattingEnabled = true;
-			this.cbx_id_estado.Location = new System.Drawing.Point(164, 95);
+			this.cbx_id_estado.Location = new System.Drawing.Point(164, 118);
 			this.cbx_id_estado.Name = "cbx_id_estado";
 			this.cbx_id_estado.Size = new System.Drawing.Size(121, 21);
 			this.cbx_id_estado.TabIndex = 30;
@@ -107,7 +111,7 @@
 			// 
 			this.lbl_id_estado.AutoSize = true;
 			this.lbl_id_estado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_id_estado.Location = new System.Drawing.Point(11, 98);
+			this.lbl_id_estado.Location = new System.Drawing.Point(11, 121);
 			this.lbl_id_estado.Name = "lbl_id_estado";
 			this.lbl_id_estado.Size = new System.Drawing.Size(40, 13);
 			this.lbl_id_estado.TabIndex = 28;
@@ -117,7 +121,7 @@
 			// 
 			this.btn_cerrar.Image = global::ControlDosimetro.Properties.Resources.Close_24;
 			this.btn_cerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_cerrar.Location = new System.Drawing.Point(241, 127);
+			this.btn_cerrar.Location = new System.Drawing.Point(241, 150);
 			this.btn_cerrar.Name = "btn_cerrar";
 			this.btn_cerrar.Size = new System.Drawing.Size(112, 33);
 			this.btn_cerrar.TabIndex = 10;
@@ -130,7 +134,7 @@
 			// 
 			this.btn_Grabar.Image = global::ControlDosimetro.Properties.Resources.Save_24;
 			this.btn_Grabar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_Grabar.Location = new System.Drawing.Point(92, 127);
+			this.btn_Grabar.Location = new System.Drawing.Point(92, 150);
 			this.btn_Grabar.Name = "btn_Grabar";
 			this.btn_Grabar.Size = new System.Drawing.Size(109, 34);
 			this.btn_Grabar.TabIndex = 9;
@@ -142,7 +146,7 @@
 			// lbl_id_secciondesc
 			// 
 			this.lbl_id_secciondesc.AutoSize = true;
-			this.lbl_id_secciondesc.Location = new System.Drawing.Point(11, 45);
+			this.lbl_id_secciondesc.Location = new System.Drawing.Point(11, 66);
 			this.lbl_id_secciondesc.Name = "lbl_id_secciondesc";
 			this.lbl_id_secciondesc.Size = new System.Drawing.Size(71, 13);
 			this.lbl_id_secciondesc.TabIndex = 11;
@@ -150,7 +154,7 @@
 			// 
 			// txt_seccion
 			// 
-			this.txt_seccion.Location = new System.Drawing.Point(164, 65);
+			this.txt_seccion.Location = new System.Drawing.Point(164, 88);
 			this.txt_seccion.MaxLength = 100;
 			this.txt_seccion.Name = "txt_seccion";
 			this.txt_seccion.Size = new System.Drawing.Size(313, 20);
@@ -160,7 +164,7 @@
 			// 
 			this.lbl_seccion.AutoSize = true;
 			this.lbl_seccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_seccion.Location = new System.Drawing.Point(11, 68);
+			this.lbl_seccion.Location = new System.Drawing.Point(11, 91);
 			this.lbl_seccion.Name = "lbl_seccion";
 			this.lbl_seccion.Size = new System.Drawing.Size(46, 13);
 			this.lbl_seccion.TabIndex = 7;
@@ -175,11 +179,29 @@
 			this.lbl_id_cliente1.TabIndex = 5;
 			this.lbl_id_cliente1.Text = "N° Cliente";
 			// 
+			// lbl_Run
+			// 
+			this.lbl_Run.AutoSize = true;
+			this.lbl_Run.Location = new System.Drawing.Point(166, 43);
+			this.lbl_Run.Name = "lbl_Run";
+			this.lbl_Run.Size = new System.Drawing.Size(35, 13);
+			this.lbl_Run.TabIndex = 43;
+			this.lbl_Run.Text = "label1";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(10, 44);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(24, 13);
+			this.label2.TabIndex = 42;
+			this.label2.Text = "Rut";
+			// 
 			// frmSeccionMant
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(489, 172);
+			this.ClientSize = new System.Drawing.Size(489, 206);
 			this.Controls.Add(this.tbl_seccion);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
@@ -208,5 +230,7 @@
 								private System.Windows.Forms.Label lbl_nombreCliente;
 								private System.Windows.Forms.Label lbl_id_seccion;
 		private System.Windows.Forms.ToolTip toolTip1;
+		private System.Windows.Forms.Label lbl_Run;
+		private System.Windows.Forms.Label label2;
 	}
 }

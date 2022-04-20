@@ -52,7 +52,7 @@ namespace ControlDosimetro
 			InitializeComponent();
 			Id_Menu = (int)MDIPrincipal.MENU.mnuMantSeccion;
 			Id_Cliente = intId_Cliente;
-			Func.Cargar_Cliente((long)Id_Cliente,ref lblRut, ref lbl_Nombre);
+			Func.Cargar_Cliente((long)Id_Cliente,ref lbl_Run, ref lbl_Nombre);
 			lbl_id_cliente.Text = intId_Cliente.ToString();
 		}
 
@@ -167,7 +167,7 @@ namespace ControlDosimetro
 		private void CargarGrilla(int intId_Cliente)
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = String.Format("select id_Seccion,seccion,Id_Estado,id_cliente from tbl_seccion  where id_estado={0} and id_cliente={1} order by seccion", cbx_id_estado_Buscar.SelectedValue, intId_Cliente);
+			cmd.CommandText = String.Format("select id_Seccion,seccion,Id_Estado,id_cliente from tbl_seccion  where id_estado={0} and id_cliente={1} and run='{2}' order by seccion", cbx_id_estado_Buscar.SelectedValue, intId_Cliente, lbl_Run.Text);
 
 			cmd.CommandType = CommandType.Text;
 

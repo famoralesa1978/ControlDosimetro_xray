@@ -38,6 +38,7 @@ namespace ControlDosimetro
 		public string Id_Menu { get; private set; }
 		private bool Inicializar = true;
 		DataTable dtPeriodo;
+		classFuncionesBD.ClsFunciones ClaseFunciones = new classFuncionesBD.ClsFunciones();
 		public object[] Parametros
 		{
 			set
@@ -152,12 +153,8 @@ namespace ControlDosimetro
 
 		private void Cargar_Seccion()
 		{
-			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "select 'Todos' as seccion,-1 as id_seccion union SELECT seccion,id_seccion " +
-							" FROM tbl_seccion  WHERE Id_cliente= " + lbl_id_cliente.Text.ToString() + " and id_estado=1 order by id_seccion";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-			
+			dt = ClaseFunciones.Cargar_SeccionPorRun(Convert.ToInt16(lbl_id_cliente.Text.ToString()), lbl_rut_cliente.Text);
 			cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
 			cbx_id_seccion.DataSource = dt.Tables[0];

@@ -241,6 +241,32 @@ namespace classFuncionesBD
 
 			return dt;
 		}
+		public DataSet Cargar_SeccionPorRun(int intId_Cliente,string run )
+		{
+			DataSet dt;
+
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "" +
+							 "		SELECT seccion,id_seccion " +
+							" FROM tbl_seccion  WHERE Id_cliente= " + intId_Cliente.ToString() + " and Run='" + run + "' and id_estado=1";
+
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+
+			return dt;
+		}
+		public DataSet Cargar_SeccionMasivoPorRun(int intId_Cliente,string run)
+		{
+			DataSet dt;
+
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "pa_CargarSeccionPorRun_Sel " + intId_Cliente.ToString() + ",'" + run + "'";
+
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+
+			return dt;
+		}
 
 		public DataSet Cargar_SeccionMasivo(int intId_Cliente)
 		{

@@ -147,7 +147,7 @@ namespace ControlDosimetro
 		private void Cargar_Seccion()
 		{
 
-			dt = ClaseFunciones.Cargar_SeccionMasivo(Convert.ToInt16(txt_ref_cliente.Text.ToString()));
+			dt = ClaseFunciones.Cargar_SeccionMasivoPorRun(Convert.ToInt16(txt_ref_cliente.Text.ToString()), txt_Rut.Text);
 
 			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns[ColSeccion.Index] as DataGridViewComboBoxColumn;
 			comboboxColumn.DataSource = dt.Tables[0];
@@ -313,7 +313,7 @@ namespace ControlDosimetro
 		{
 			if (e.ColumnIndex == colMod.Index)
 			{
-				frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), Convert.ToInt64(grdDatos.Rows[e.RowIndex].Cells[Id_Personal.Index].Value.ToString()));
+				frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), Convert.ToInt64(grdDatos.Rows[e.RowIndex].Cells[Id_Personal.Index].Value.ToString()), txt_Rut.Text);
 				frm.ShowDialog(this);
 				picFiltrarpersonal_Click(null,null);
 			}
@@ -488,7 +488,7 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 
-			frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), 0);
+			frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), 0, txt_Rut.Text);
 			frm.ShowDialog(this);
 			Listar_Personal();
 

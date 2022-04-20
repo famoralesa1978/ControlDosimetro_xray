@@ -194,7 +194,7 @@ namespace ControlDosimetro
 		private void btn_Agregar_Click(object sender, EventArgs e)
 		{
 			verificar_Grabado();
-			frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(lbl_id_cliente.Text), 0);
+			frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(lbl_id_cliente.Text), 0, lbl_rut_cliente.Text);
 			frm.ShowDialog(this);
 			Listar_Personal();
 
@@ -621,7 +621,7 @@ namespace ControlDosimetro
 			string strid_personal;
 			strn_cliente = grdDatos.Rows[Convert.ToInt16(grdDatos.CurrentRow.Index)].Cells["N_Cliente"].Value.ToString();
 			strid_personal = grdDatos.Rows[Convert.ToInt16(grdDatos.CurrentRow.Index)].Cells["id_personal"].Value.ToString();
-			frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(strn_cliente), Convert.ToInt64(strid_personal));
+			frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(strn_cliente), Convert.ToInt64(strid_personal), lbl_rut_cliente.Text);
 			frm.ShowDialog(this);
 			Listar_Personal();
 		}
