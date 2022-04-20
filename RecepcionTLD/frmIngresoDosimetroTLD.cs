@@ -773,7 +773,7 @@ namespace ControlDosimetro
 
 				SqlCommand cmd = new SqlCommand
 				{
-					CommandText = String.Format("CargarClientePorRun '{0}'", lbl_rut_cliente.Text)
+					CommandText = String.Format("CargarClientePorRun '{0}',{1}", lbl_rut_cliente.Text, lbl_id_cliente.Text)
 				};
 				DataSet dt;
 				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
