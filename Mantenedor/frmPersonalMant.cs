@@ -47,9 +47,11 @@ namespace ControlDosimetro
 				cbx_id_estado.Enabled = false;
 				dtp_fecha_termino.Enabled = false;
 				dtp_fecha_termino.Text = "01/01/1900";
+				lbl_Id_Personal.Text = "0";
 				lbl_Usuario.Text = Clases.clsUsuario.Usuario;
 				lbl_Fecha_agregado.Text = DateTime.Now.Date.ToString().Substring(1, 10);
 				lbl_Fecha_Modificacion.Text = DateTime.Now.Date.ToString().Substring(1, 10);
+				Cargar_Sucursal(intCodPersonal);
 				HabDesa_Controles(false);
 				picVerificar.Visible = true;
 			}
@@ -60,6 +62,7 @@ namespace ControlDosimetro
 
 				Cargar_Personal(intCodPersonal);
 				lbl_Id_Personal.Text = intCodPersonal.ToString();
+				Cargar_Sucursal(intCodPersonal);
 				HabDesa_Controles(true);
 				picVerificar.Visible = true;
 				//txt_rut.Enabled = false;
@@ -88,6 +91,26 @@ namespace ControlDosimetro
 			lbl_id_cliente.Text = intCodCliente.ToString();
 			lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
 			lbl_rut_cliente.Text = dt.Tables[0].Rows[0]["run"].ToString();
+		}
+
+		private void Cargar_Sucursal(long idPersonal)
+		{
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = String.Format("pa_ListarPersonalSucursal {0},'{1}',{2}", lbl_id_cliente.Text,run, idPersonal);
+			DataSet dt;
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+			((ListBox)chkLista).DataSource = dt.Tables[0];
+			((ListBox)chkLista).DisplayMember = "Direccion";
+			((ListBox)chkLista).ValueMember = "Id_sucursal";
+
+			for (int intFilaLista = 0; intFilaLista < chkLista.Items.Count; intFilaLista++)
+			{
+				var dr = ((DataRowView)chkLista.Items[intFilaLista]).Row;
+				bool bolMarca = (bool)dr.ItemArray[2];
+
+				chkLista.SetItemChecked(intFilaLista, bolMarca);
+			}
 		}
 
 		private void Cargar_Personal(Int64 intCodpersonal)
@@ -378,6 +401,10 @@ namespace ControlDosimetro
 			lbl_Usuario.Text = Clases.clsUsuario.Usuario;
 			lbl_Fecha_agregado.Text = DateTime.Now.Date.ToString().Substring(1, 10);
 			lbl_Fecha_Modificacion.Text = DateTime.Now.Date.ToString().Substring(1, 10);
+			for (int intFila = 0; intFila < chkLista.Items.Count; intFila++)
+			{
+				chkLista.SetItemChecked(intFila, false);
+			}
 			txt_rut.Focus();
 		}
 
@@ -390,6 +417,7 @@ namespace ControlDosimetro
 				ClaseComun.Modificar(Clases.clsBD.BD, tbl_personal, ref bolResult);
 				if (bolResult == true)
 				{
+					GrabarSucursal();
 					if (cbx_id_estado.Text == "2")
 					{
 						if (lbl_Fecha_Modificacion.Text != cbx_id_estado.Text)
@@ -414,11 +442,38 @@ namespace ControlDosimetro
 				ClaseComun.Insertar(Clases.clsBD.BD, tbl_personal, ref bolResult);
 				if (bolResult == true)
 				{
+					GrabarSucursal();
 					MessageBox.Show("Dato Guardado");
 
 					LimpiarControles();
 				}
 			}
+		}
+
+		void GrabarSucursal()
+		{
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = String.Format("PersonalSucursalUpd {0},'{1}','{2}',{3},'{4}'", 
+																			lbl_id_cliente.Text,run, txt_rut.Text, lbl_Id_Personal.Text, xmlSucursal());
+			cmd.CommandType = CommandType.Text;
+			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+		}
+		private string xmlSucursal()
+		{
+			StringBuilder strbSucursal = new StringBuilder();
+			
+			int intId;
+
+			foreach (object itemChecked in chkLista.CheckedItems)
+			{
+				DataRowView ItemFila = itemChecked as DataRowView;
+				intId = (int)ItemFila["Id_sucursal"];
+				strbSucursal.AppendFormat(@"<a e=""{0}""/>",
+					intId
+				);
+			}
+			return String.IsNullOrWhiteSpace(strbSucursal.ToString())?"": strbSucursal.ToString();
+
 		}
 
 		#endregion

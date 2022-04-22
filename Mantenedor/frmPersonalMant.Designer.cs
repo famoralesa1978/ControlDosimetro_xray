@@ -73,8 +73,11 @@
 			this.txt_rut = new System.Windows.Forms.TextBox();
 			this.lbl_rut = new System.Windows.Forms.Label();
 			this.topSeccion = new System.Windows.Forms.ToolTip(this.components);
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.chkLista = new System.Windows.Forms.CheckedListBox();
 			this.tbl_personal.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picVerificar)).BeginInit();
+			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tbl_personal
@@ -121,7 +124,6 @@
 			this.tbl_personal.Controls.Add(this.lbl_id_cliente1);
 			this.tbl_personal.Controls.Add(this.txt_rut);
 			this.tbl_personal.Controls.Add(this.lbl_rut);
-			this.tbl_personal.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tbl_personal.Location = new System.Drawing.Point(0, 0);
 			this.tbl_personal.Name = "tbl_personal";
 			this.tbl_personal.Size = new System.Drawing.Size(492, 484);
@@ -557,11 +559,33 @@
 			this.lbl_rut.TabIndex = 0;
 			this.lbl_rut.Text = "Rut";
 			// 
+			// groupBox1
+			// 
+			this.groupBox1.Controls.Add(this.chkLista);
+			this.groupBox1.Location = new System.Drawing.Point(498, 0);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.Size = new System.Drawing.Size(539, 484);
+			this.groupBox1.TabIndex = 2;
+			this.groupBox1.TabStop = false;
+			this.groupBox1.Text = "Asociar dirección";
+			// 
+			// chkLista
+			// 
+			this.chkLista.CheckOnClick = true;
+			this.chkLista.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.chkLista.FormattingEnabled = true;
+			this.chkLista.Location = new System.Drawing.Point(3, 16);
+			this.chkLista.Name = "chkLista";
+			this.chkLista.Size = new System.Drawing.Size(533, 465);
+			this.chkLista.TabIndex = 0;
+			this.chkLista.ThreeDCheckBoxes = true;
+			// 
 			// frmPersonalMant
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(492, 484);
+			this.ClientSize = new System.Drawing.Size(1041, 490);
+			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.tbl_personal);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
@@ -572,6 +596,7 @@
 			this.tbl_personal.ResumeLayout(false);
 			this.tbl_personal.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picVerificar)).EndInit();
+			this.groupBox1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -622,5 +647,7 @@
         private System.Windows.Forms.Label lbl_Id_CodServicio;
 		private System.Windows.Forms.ToolTip topSeccion;
 		private System.Windows.Forms.PictureBox picVerificar;
+		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.CheckedListBox chkLista;
 	}
 }
