@@ -119,7 +119,7 @@ namespace ControlDosimetro
 			int intSeccion = cbx_id_seccion.SelectedValue == null ? 0 : (int)cbx_id_seccion.SelectedValue;
 			int intPeriodo = cbx_id_periodo.SelectedValue == null ? 0 : (int)cbx_id_periodo.SelectedValue;
 
-			cmd.CommandText = "pa_ListarPersonalTLDPorSeccion_sel " + intPeriodo.ToString() + "," + lbl_id_cliente.Text + "," + intSeccion.ToString() + "," + intSucursal.ToString();
+			cmd.CommandText = "pa_ListarPersonalTLDPorSeccionDireccion_sel " + intPeriodo.ToString() + "," + lbl_id_cliente.Text + "," + intSeccion.ToString() + "," + intSucursal.ToString();
 
 			cmd.CommandType = CommandType.Text;
 
