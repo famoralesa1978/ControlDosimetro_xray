@@ -217,7 +217,7 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 
-			frmBusquedaReferencia frm = new frmBusquedaReferencia(Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
+			frmBusquedaReferencia frm = new frmBusquedaReferencia(Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()), grdDatos.SelectedCells[1].Value.ToString());
 			frm.ShowDialog(this);
 
 			Cursor = Cursors.Default;
