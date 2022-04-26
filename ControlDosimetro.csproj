@@ -363,6 +363,12 @@
     <Compile Include="Mantenedor\frmMantenedorSeccion.Designer.cs">
       <DependentUpon>frmMantenedorSeccion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mantenedor\frmAsignarDireccionPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmAsignarDireccionPersonal.Designer.cs">
+      <DependentUpon>frmAsignarDireccionPersonal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mantenedor\Sistema\frmMantVersionesSistema.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -782,6 +788,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmMantenedorPerfil.resx">
       <DependentUpon>frmMantenedorPerfil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmAsignarDireccionPersonal.resx">
+      <DependentUpon>frmAsignarDireccionPersonal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmSucursalMant.resx">
       <DependentUpon>frmSucursalMant.cs</DependentUpon>
