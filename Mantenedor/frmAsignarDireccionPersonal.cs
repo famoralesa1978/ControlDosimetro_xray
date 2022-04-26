@@ -92,7 +92,7 @@ namespace ControlDosimetro
 		{
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = String.Format("SucursalPersonalUpd {0},'{1}'", 
-																			lbl_id_cliente.Text, xmlSucursal());
+																			cbxDireccion.SelectedValue, xmlSucursal());
 			cmd.CommandType = CommandType.Text;
 			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 		}
