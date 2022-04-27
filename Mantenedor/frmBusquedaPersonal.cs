@@ -213,6 +213,11 @@ namespace ControlDosimetro
 		#endregion
 
 		#region Barra
+		private void tsbAsignarSeccion_Click(object sender, EventArgs e)
+		{
+			frmAsignarSeccionPersonal frm = new frmAsignarSeccionPersonal(Convert.ToInt32(txt_ref_cliente.Text), txt_Rut.Text);
+			frm.ShowDialog(this);
+		}
 		private void tsbAsignarSucursal_Click(object sender, EventArgs e)
 		{
 			frmAsignarDireccionPersonal frm = new frmAsignarDireccionPersonal(Convert.ToInt32(txt_ref_cliente.Text), txt_Rut.Text);
@@ -250,8 +255,9 @@ namespace ControlDosimetro
 			}
 		}
 
+
 		#endregion
 
-	
+		
 	}
 }

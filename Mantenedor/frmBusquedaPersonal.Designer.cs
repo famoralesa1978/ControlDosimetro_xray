@@ -53,6 +53,7 @@
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.tsb_Agregar = new System.Windows.Forms.ToolStripButton();
 			this.tsb_Eliminar = new System.Windows.Forms.ToolStripButton();
+			this.tsbAsignarSucursal = new System.Windows.Forms.ToolStripButton();
 			this.grpPersonal = new System.Windows.Forms.GroupBox();
 			this.picFiltrarpersonal = new System.Windows.Forms.PictureBox();
 			this.txt_NombrePersonal = new System.Windows.Forms.TextBox();
@@ -60,7 +61,7 @@
 			this.txt_RunPersonal = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.tsbAsignarSucursal = new System.Windows.Forms.ToolStripButton();
+			this.tsbAsignarSeccion = new System.Windows.Forms.ToolStripButton();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -296,7 +297,8 @@
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsb_Agregar,
             this.tsb_Eliminar,
-            this.tsbAsignarSucursal});
+            this.tsbAsignarSucursal,
+            this.tsbAsignarSeccion});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(859, 27);
@@ -324,6 +326,16 @@
 			this.tsb_Eliminar.Text = "Eliminar";
 			this.tsb_Eliminar.ToolTipText = "Elimina un personal";
 			this.tsb_Eliminar.Click += new System.EventHandler(this.tsb_Eliminar_Click);
+			// 
+			// tsbAsignarSucursal
+			// 
+			this.tsbAsignarSucursal.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbAsignarSucursal.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignarSucursal.Image")));
+			this.tsbAsignarSucursal.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbAsignarSucursal.Name = "tsbAsignarSucursal";
+			this.tsbAsignarSucursal.Size = new System.Drawing.Size(98, 24);
+			this.tsbAsignarSucursal.Text = "Asignar Sucursal";
+			this.tsbAsignarSucursal.Click += new System.EventHandler(this.tsbAsignarSucursal_Click);
 			// 
 			// grpPersonal
 			// 
@@ -392,15 +404,15 @@
 			// 
 			this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
 			// 
-			// tsbAsignarSucursal
+			// tsbAsignarSeccion
 			// 
-			this.tsbAsignarSucursal.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tsbAsignarSucursal.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignarSucursal.Image")));
-			this.tsbAsignarSucursal.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbAsignarSucursal.Name = "tsbAsignarSucursal";
-			this.tsbAsignarSucursal.Size = new System.Drawing.Size(98, 24);
-			this.tsbAsignarSucursal.Text = "Asignar Sucursal";
-			this.tsbAsignarSucursal.Click += new System.EventHandler(this.tsbAsignarSucursal_Click);
+			this.tsbAsignarSeccion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbAsignarSeccion.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignarSeccion.Image")));
+			this.tsbAsignarSeccion.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbAsignarSeccion.Name = "tsbAsignarSeccion";
+			this.tsbAsignarSeccion.Size = new System.Drawing.Size(95, 24);
+			this.tsbAsignarSeccion.Text = "Asignar Sección";
+			this.tsbAsignarSeccion.Click += new System.EventHandler(this.tsbAsignarSeccion_Click);
 			// 
 			// frmBusquedaPersonal
 			// 
@@ -465,5 +477,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Fecha_inicio;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Fecha_termino;
 		private System.Windows.Forms.ToolStripButton tsbAsignarSucursal;
+		private System.Windows.Forms.ToolStripButton tsbAsignarSeccion;
 	}
 }
