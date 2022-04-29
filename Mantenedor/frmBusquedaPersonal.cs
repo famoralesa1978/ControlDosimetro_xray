@@ -66,7 +66,7 @@ namespace ControlDosimetro
 				txt_Rut.Text = "";
 				txt_RazonSocial.Text = "";
 				grpPersonal.Enabled = false;
-				tsb_Eliminar.Visible = tsb_Agregar.Visible = false;
+				tsb_Eliminar.Visible = tsb_Agregar.Visible = tsbAsignarSucursal.Visible = tsbAsignarSeccion.Visible= false;
 			}
 			else
 			{
@@ -75,7 +75,7 @@ namespace ControlDosimetro
 				txt_RazonSocial.Text = dt.Tables[0].Rows[0]["razon_social"].ToString();
 				txt_ref_cliente.ReadOnly = true;
 				txt_Rut.ReadOnly = true;
-				tsb_Eliminar.Visible = tsb_Agregar.Visible = true;
+				tsbAsignarSucursal.Visible = tsbAsignarSeccion.Visible = tsb_Eliminar.Visible = tsb_Agregar.Visible = true;
 				txt_RazonSocial.ReadOnly = true;
 				Listar_Personal();
 			}
@@ -151,7 +151,7 @@ namespace ControlDosimetro
 			if (txt_RazonSocial.Text == "")
 			{
 
-				tsb_Eliminar.Visible = tsb_Agregar.Visible = false;
+				tsbAsignarSucursal.Visible = tsbAsignarSeccion.Visible = tsb_Eliminar.Visible = tsb_Agregar.Visible = false;
 				grpPersonal.Enabled = false;
 			}
 
@@ -229,9 +229,9 @@ namespace ControlDosimetro
 			string strMensaje = "";
 			if (MessageBox.Show("Desea eliminar el personal?", "Eliminación del personal", MessageBoxButtons.OKCancel) == DialogResult.OK)
 			{
-				for (int intFila = 0; intFila < grdDatos.SelectedRows.Count; intFila++)
-				{
-					int intIdPersonal = Convert.ToUInt16(grdDatos.Rows[intFila].Cells[0].Value);
+				//for (int intFila = 0; intFila < grdDatos.SelectedRows.Count; intFila++)
+				//{
+					int intIdPersonal = Convert.ToUInt16(grdDatos.SelectedCells[0].Value);
 					SqlCommand cmd = new SqlCommand();
 					cmd.CommandText = "pa_EliminarPersonal_del " + intIdPersonal.ToString();
 					cmd.CommandType = CommandType.Text;
@@ -244,9 +244,9 @@ namespace ControlDosimetro
 					else
 					{
 						if (dt.Tables[0].Rows[0][1].ToString() == "0")
-							strMensaje += strMensaje == "" ? grdDatos.Rows[intFila].Cells[1].Value : ", " + grdDatos.Rows[intFila].Cells[1].Value;
+							strMensaje += strMensaje == "" ? grdDatos.SelectedCells[1].Value : ", " + grdDatos.SelectedCells[1].Value;
 					}
-				}
+				//}
 
 				if (strMensaje != "")
 					MessageBox.Show("No se puede eliminar los siguiente rut, hay datos relacionados : \n" + strMensaje);

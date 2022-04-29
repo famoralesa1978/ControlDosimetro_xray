@@ -30,6 +30,9 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			this.tbl_personal = new System.Windows.Forms.GroupBox();
+			this.cbxDireccion = new System.Windows.Forms.ComboBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.chkLista = new System.Windows.Forms.CheckedListBox();
 			this.lbl_Id_Personal = new System.Windows.Forms.Label();
 			this.lbl_nombreCliente = new System.Windows.Forms.Label();
 			this.lbl_id_cliente = new System.Windows.Forms.Label();
@@ -37,14 +40,19 @@
 			this.btn_Grabar = new System.Windows.Forms.Button();
 			this.lbl_id_cliente1 = new System.Windows.Forms.Label();
 			this.topSeccion = new System.Windows.Forms.ToolTip(this.components);
-			this.chkLista = new System.Windows.Forms.CheckedListBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.cbxDireccion = new System.Windows.Forms.ComboBox();
+			this.btnInvertir = new System.Windows.Forms.Button();
+			this.btnDesmarcar = new System.Windows.Forms.Button();
+			this.btnMarcarTodos = new System.Windows.Forms.Button();
+			this.label2 = new System.Windows.Forms.Label();
 			this.tbl_personal.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tbl_personal
 			// 
+			this.tbl_personal.Controls.Add(this.label2);
+			this.tbl_personal.Controls.Add(this.btnInvertir);
+			this.tbl_personal.Controls.Add(this.btnDesmarcar);
+			this.tbl_personal.Controls.Add(this.btnMarcarTodos);
 			this.tbl_personal.Controls.Add(this.cbxDireccion);
 			this.tbl_personal.Controls.Add(this.label1);
 			this.tbl_personal.Controls.Add(this.chkLista);
@@ -60,6 +68,37 @@
 			this.tbl_personal.TabIndex = 0;
 			this.tbl_personal.TabStop = false;
 			this.tbl_personal.Text = "Datos";
+			// 
+			// cbxDireccion
+			// 
+			this.cbxDireccion.DisplayMember = "Direccion";
+			this.cbxDireccion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbxDireccion.FormattingEnabled = true;
+			this.cbxDireccion.Location = new System.Drawing.Point(62, 46);
+			this.cbxDireccion.Name = "cbxDireccion";
+			this.cbxDireccion.Size = new System.Drawing.Size(424, 21);
+			this.cbxDireccion.TabIndex = 49;
+			this.cbxDireccion.ValueMember = "Id_sucursal";
+			this.cbxDireccion.SelectedIndexChanged += new System.EventHandler(this.cbxDireccion_SelectedIndexChanged);
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(3, 49);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(52, 13);
+			this.label1.TabIndex = 48;
+			this.label1.Text = "Dirección";
+			// 
+			// chkLista
+			// 
+			this.chkLista.CheckOnClick = true;
+			this.chkLista.FormattingEnabled = true;
+			this.chkLista.Location = new System.Drawing.Point(6, 108);
+			this.chkLista.Name = "chkLista";
+			this.chkLista.Size = new System.Drawing.Size(480, 304);
+			this.chkLista.TabIndex = 0;
+			this.chkLista.ThreeDCheckBoxes = true;
 			// 
 			// lbl_Id_Personal
 			// 
@@ -126,36 +165,44 @@
 			this.lbl_id_cliente1.TabIndex = 5;
 			this.lbl_id_cliente1.Text = "N° Cliente";
 			// 
-			// chkLista
+			// btnInvertir
 			// 
-			this.chkLista.CheckOnClick = true;
-			this.chkLista.FormattingEnabled = true;
-			this.chkLista.Location = new System.Drawing.Point(6, 78);
-			this.chkLista.Name = "chkLista";
-			this.chkLista.Size = new System.Drawing.Size(480, 334);
-			this.chkLista.TabIndex = 0;
-			this.chkLista.ThreeDCheckBoxes = true;
+			this.btnInvertir.Location = new System.Drawing.Point(403, 78);
+			this.btnInvertir.Name = "btnInvertir";
+			this.btnInvertir.Size = new System.Drawing.Size(79, 23);
+			this.btnInvertir.TabIndex = 56;
+			this.btnInvertir.Text = "Invertir";
+			this.btnInvertir.UseVisualStyleBackColor = true;
+			this.btnInvertir.Click += new System.EventHandler(this.btnInvertir_Click);
 			// 
-			// label1
+			// btnDesmarcar
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(3, 49);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(52, 13);
-			this.label1.TabIndex = 48;
-			this.label1.Text = "Dirección";
+			this.btnDesmarcar.Location = new System.Drawing.Point(279, 78);
+			this.btnDesmarcar.Name = "btnDesmarcar";
+			this.btnDesmarcar.Size = new System.Drawing.Size(118, 23);
+			this.btnDesmarcar.TabIndex = 55;
+			this.btnDesmarcar.Text = "Desmarcar todos";
+			this.btnDesmarcar.UseVisualStyleBackColor = true;
+			this.btnDesmarcar.Click += new System.EventHandler(this.btnDesmarcar_Click);
 			// 
-			// cbxDireccion
+			// btnMarcarTodos
 			// 
-			this.cbxDireccion.DisplayMember = "Direccion";
-			this.cbxDireccion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbxDireccion.FormattingEnabled = true;
-			this.cbxDireccion.Location = new System.Drawing.Point(62, 46);
-			this.cbxDireccion.Name = "cbxDireccion";
-			this.cbxDireccion.Size = new System.Drawing.Size(424, 21);
-			this.cbxDireccion.TabIndex = 49;
-			this.cbxDireccion.ValueMember = "Id_sucursal";
-			this.cbxDireccion.SelectedIndexChanged += new System.EventHandler(this.cbxDireccion_SelectedIndexChanged);
+			this.btnMarcarTodos.Location = new System.Drawing.Point(180, 78);
+			this.btnMarcarTodos.Name = "btnMarcarTodos";
+			this.btnMarcarTodos.Size = new System.Drawing.Size(93, 23);
+			this.btnMarcarTodos.TabIndex = 54;
+			this.btnMarcarTodos.Text = "Marcar todos";
+			this.btnMarcarTodos.UseVisualStyleBackColor = true;
+			this.btnMarcarTodos.Click += new System.EventHandler(this.btnMarcarTodos_Click);
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(6, 88);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(87, 13);
+			this.label2.TabIndex = 57;
+			this.label2.Text = "Lista de personal";
 			// 
 			// frmAsignarDireccionPersonal
 			// 
@@ -188,5 +235,9 @@
 		private System.Windows.Forms.CheckedListBox chkLista;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ComboBox cbxDireccion;
+		private System.Windows.Forms.Button btnInvertir;
+		private System.Windows.Forms.Button btnDesmarcar;
+		private System.Windows.Forms.Button btnMarcarTodos;
+		private System.Windows.Forms.Label label2;
 	}
 }

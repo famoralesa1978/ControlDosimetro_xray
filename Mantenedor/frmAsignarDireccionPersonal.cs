@@ -128,7 +128,32 @@ namespace ControlDosimetro
 			Cursor = Cursors.Default;
 		}
 
+		private void btnMarcarTodos_Click(object sender, EventArgs e)
+		{
+			for (int intFilaLista = 0; intFilaLista < chkLista.Items.Count; intFilaLista++)
+			{
+				var dr = ((DataRowView)chkLista.Items[intFilaLista]).Row;
 
+				chkLista.SetItemChecked(intFilaLista, true);
+			}
+		}
+
+		private void btnDesmarcar_Click(object sender, EventArgs e)
+		{
+			for (int intFilaLista = 0; intFilaLista < chkLista.Items.Count; intFilaLista++)
+			{
+				var dr = ((DataRowView)chkLista.Items[intFilaLista]).Row;
+				chkLista.SetItemChecked(intFilaLista, false);
+			}
+		}
+
+		private void btnInvertir_Click(object sender, EventArgs e)
+		{
+			for (int intFilaLista = 0; intFilaLista < chkLista.Items.Count; intFilaLista++)
+			{
+				chkLista.SetItemChecked(intFilaLista, !chkLista.GetItemChecked(intFilaLista));
+			}
+		}
 
 		private void btn_Grabar_Click(object sender, EventArgs e)
 		{
