@@ -119,7 +119,7 @@ namespace ControlDosimetro
 			int intSeccion = cbx_id_seccion.SelectedValue == null ? 0 : (int)cbx_id_seccion.SelectedValue;
 			int intPeriodo = cbx_id_periodo.SelectedValue == null ? 0 : (int)cbx_id_periodo.SelectedValue;
 
-			cmd.CommandText = "pa_ListarPersonalTLDPorSeccionDireccion_sel " + intPeriodo.ToString() + "," + lbl_id_cliente.Text + "," + intSeccion.ToString() + "," + intSucursal.ToString();
+			cmd.CommandText = String.Format("pa_ListarPersonalTLDPorSeccionDireccion_sel {0},{1},'{2}',{3},{4}",intPeriodo.ToString(),lbl_id_cliente.Text, lbl_rut_cliente.Text,intSeccion.ToString(),intSucursal.ToString());
 
 			cmd.CommandType = CommandType.Text;
 
@@ -370,6 +370,8 @@ namespace ControlDosimetro
 			//     string strArchivo = "";// dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "Plantillaword.docx";
 			//     int i;                
 			string fmt = "00000000";
+			String strError = "";
+			String strCorrecto = "";
 			for (int idatos = 0; idatos <= grdDatos.Rows.Count - 1; idatos++)
 			{
 				checkGenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[idatos].Cells["Generar"];
@@ -398,7 +400,13 @@ namespace ControlDosimetro
 									txtnpelicula.Value.ToString() + ",-1,'" +//@n_dosimetro int,
 									Clases.clsUsuario.Usuario + "'";
 						cmd.CommandType = CommandType.Text;
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+						DataSet ds=Conectar.Listar(Clases.clsBD.BD, cmd);
+
+						if (Convert.ToInt16(ds.Tables[0].Rows[0]["Valor"].ToString()) == -1)//error
+								strError = strError + "," + txtnpelicula.Value.ToString();
+						else
+							strCorrecto= strCorrecto + "," + txtnpelicula.Value.ToString();
+
 					}
 				}
 				if ((checkGenerar.Value.ToString() == "1") && (checkCell.Value.ToString() == "0") && (txtid_estadodosimetro.Value.ToString() != "-1"))
@@ -418,7 +426,7 @@ namespace ControlDosimetro
 
 			}
 
-			MessageBox.Show("Informacion grabada");
+			MessageBox.Show("Los TLD fueron generado con exito: " + strCorrecto +" y con errores : " + strError);
 			btn_Guardar.Enabled = true;
 			Listar_Personal();
 		}
