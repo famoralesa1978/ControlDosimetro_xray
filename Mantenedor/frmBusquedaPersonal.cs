@@ -84,12 +84,13 @@ namespace ControlDosimetro
 		private void Listar_Personal()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "pa_ListarPersonal_sel " + (String.IsNullOrWhiteSpace(txt_ref_cliente.Text)?"0": txt_ref_cliente.Text);
+			cmd.CommandText = String.Format("pa_ListarPersonal_sel {0},'{1}'", (String.IsNullOrWhiteSpace(txt_ref_cliente.Text)?"0": txt_ref_cliente.Text),txt_Rut.Text);
 			cmd.CommandType = CommandType.Text;
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 			grpPersonal.Enabled = true;
-			grdDatos.DataSource = dt.Tables[0];
+			dt.Tables[0].DefaultView.RowFilter = "Id_estado=1";
+			grdDatos.DataSource = dt.Tables[0].DefaultView.ToTable();
 		}
 
 		private void AsignarEvento()

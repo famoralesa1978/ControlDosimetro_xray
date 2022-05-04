@@ -21,6 +21,7 @@ namespace ControlDosimetro
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
+		string rut;
 		//    Int64 intTempId_Estado;
 		//   Int64 intTempId_Cliente;
 		//   Int64 intTempPeriodo;
@@ -32,6 +33,7 @@ namespace ControlDosimetro
 			lbl_Id_cliente.Text = lbl_Id_clienteDestino.Text = "";
 			lbl_RazonSocial.Text = lbl_RazonSocialDestino.Text = "";
 			btn_Traspaso.Enabled = false;
+			rut = "";
 		}
 		public frmTraspasoPersonal()
 		{

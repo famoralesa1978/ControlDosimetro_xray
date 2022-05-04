@@ -134,7 +134,7 @@ namespace ControlDosimetro
 		private void Listar_Personal()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "pa_ListarPersonal_sel " + (String.IsNullOrEmpty( txt_ref_cliente.Text)?"0": txt_ref_cliente.Text) + "";
+			cmd.CommandText = String.Format("pa_ListarPersonal_sel {0},'{1}'", (String.IsNullOrWhiteSpace(txt_ref_cliente.Text) ? "0" : txt_ref_cliente.Text), txt_Rut.Text);
 			cmd.CommandType = CommandType.Text;
 
 			dtPersonal = Conectar.Listar(Clases.clsBD.BD, cmd);
