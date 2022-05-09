@@ -89,6 +89,9 @@
 			this.btnAgregarRef = new System.Windows.Forms.Button();
 			this.btnResfrescar = new System.Windows.Forms.Button();
 			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
+			this.tsbGenerar = new System.Windows.Forms.ToolStripDropDownButton();
+			this.tsbGenerarTodos = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsbGenerarSeleccionado = new System.Windows.Forms.ToolStripMenuItem();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -468,7 +471,8 @@
             this.btn_Cliente,
             this.btn_Sucursal,
             this.btn_Excel,
-            this.tsdReporte});
+            this.tsdReporte,
+            this.tsbGenerar});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(1084, 27);
@@ -718,6 +722,30 @@
 			this.cbx_Sucursal.TabIndex = 20;
 			this.cbx_Sucursal.ValueMember = "Id_sucursal";
 			// 
+			// tsbGenerar
+			// 
+			this.tsbGenerar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbGenerar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbGenerarTodos,
+            this.tsbGenerarSeleccionado});
+			this.tsbGenerar.Image = global::ControlDosimetro.Properties.Resources.excel;
+			this.tsbGenerar.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbGenerar.Name = "tsbGenerar";
+			this.tsbGenerar.Size = new System.Drawing.Size(33, 24);
+			this.tsbGenerar.Text = "toolStripDropDownButton1";
+			// 
+			// tsbGenerarTodos
+			// 
+			this.tsbGenerarTodos.Name = "tsbGenerarTodos";
+			this.tsbGenerarTodos.Size = new System.Drawing.Size(187, 22);
+			this.tsbGenerarTodos.Text = "Generar todos";
+			// 
+			// tsbGenerarSeleccionado
+			// 
+			this.tsbGenerarSeleccionado.Name = "tsbGenerarSeleccionado";
+			this.tsbGenerarSeleccionado.Size = new System.Drawing.Size(187, 22);
+			this.tsbGenerarSeleccionado.Text = "Generar seleccionado";
+			// 
 			// frmIngresoDosimetroTLD
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -826,5 +854,8 @@
 		private System.Windows.Forms.ComboBox cbx_id_periodo;
 		private System.Windows.Forms.ComboBox cbx_anno;
 		private System.Windows.Forms.ComboBox cbx_Sucursal;
+		private System.Windows.Forms.ToolStripDropDownButton tsbGenerar;
+		private System.Windows.Forms.ToolStripMenuItem tsbGenerarTodos;
+		private System.Windows.Forms.ToolStripMenuItem tsbGenerarSeleccionado;
 	}
 }

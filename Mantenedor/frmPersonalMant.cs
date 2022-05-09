@@ -439,11 +439,23 @@ namespace ControlDosimetro
 			}
 			else
 			{
+				SqlCommand cmd = new SqlCommand();
+				cmd.CommandText = String.Format("pa_ValidarPersonal '{0}','{1}',{2}", txt_rut.Text, run, lbl_id_cliente.Text);
+
+				DataSet dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+				if ((bool)dt.Tables[0].Rows[0]["Existe"])
+				{
+					classFuncionesGenerales.mensajes.MensajeError("El personal ya existe en los registros");
+					return;
+				}
+				
+
 				ClaseComun.Insertar(Clases.clsBD.BD, tbl_personal, ref bolResult);
 				if (bolResult == true)
 				{
 					GrabarSucursal();
-					MessageBox.Show("Dato Guardado");
+					classFuncionesGenerales.mensajes.MensajeConfirmacion("El información fue grabada con exito");
 
 					LimpiarControles();
 				}
@@ -499,6 +511,9 @@ namespace ControlDosimetro
 			Boolean bolResult = false;
 			string strMensaje = "";
 			bolResult = false;
+
+
+
 			if (!ClaseComun.ValidarFormulario(Clases.clsBD.BD, tbl_personal, ref bolResult, ref strMensaje))
 			{
 				Cursor = Cursors.Default;

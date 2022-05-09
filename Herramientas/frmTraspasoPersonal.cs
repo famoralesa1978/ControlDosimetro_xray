@@ -83,7 +83,7 @@ namespace ControlDosimetro
 				String intIdCliente = bolOrigen == true ? lbl_Id_cliente.Text : lbl_Id_clienteDestino.Text;
 				SqlCommand cmdPersonal = new SqlCommand
 				{
-					CommandText = "pa_ListarPersonal_sel " + intIdCliente + ""
+					CommandText = String.Format("pa_ListarPersonal_sel {0},'{1}'",intIdCliente, strRut)
 				};
 				DataSet dtPersonal;
 
