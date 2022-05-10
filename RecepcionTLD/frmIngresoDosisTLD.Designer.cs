@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngresoDosisTLD));
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
 			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,6 +75,9 @@
 			this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.btn_Cargar = new System.Windows.Forms.Button();
+			this.lbl_id_cliente = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
 			this.panel1.SuspendLayout();
@@ -243,9 +246,9 @@
 			// valor
 			// 
 			this.valor.DataPropertyName = "dosis";
-			dataGridViewCellStyle1.Format = "N2";
-			dataGridViewCellStyle1.NullValue = "0";
-			this.valor.DefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle4.Format = "N2";
+			dataGridViewCellStyle4.NullValue = "0";
+			this.valor.DefaultCellStyle = dataGridViewCellStyle4;
 			this.valor.HeaderText = "Valor Ingresar";
 			this.valor.Name = "valor";
 			this.valor.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -299,6 +302,9 @@
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.btn_Cargar);
+			this.panel1.Controls.Add(this.lbl_id_cliente);
+			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.chkMarcar);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.chkControlado);
@@ -496,9 +502,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle2.Format = "N2";
-			dataGridViewCellStyle2.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle5.Format = "N2";
+			dataGridViewCellStyle5.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle5;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -516,12 +522,38 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle3.Format = "N2";
-			dataGridViewCellStyle3.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle6.Format = "N2";
+			dataGridViewCellStyle6.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle6;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
+			// 
+			// btn_Cargar
+			// 
+			this.btn_Cargar.Location = new System.Drawing.Point(219, 6);
+			this.btn_Cargar.Name = "btn_Cargar";
+			this.btn_Cargar.Size = new System.Drawing.Size(106, 23);
+			this.btn_Cargar.TabIndex = 51;
+			this.btn_Cargar.Text = "Cargar";
+			this.btn_Cargar.UseVisualStyleBackColor = true;
+			this.btn_Cargar.Click += new System.EventHandler(this.btn_Cargar_Click);
+			// 
+			// lbl_id_cliente
+			// 
+			this.lbl_id_cliente.Location = new System.Drawing.Point(101, 10);
+			this.lbl_id_cliente.Name = "lbl_id_cliente";
+			this.lbl_id_cliente.Size = new System.Drawing.Size(100, 20);
+			this.lbl_id_cliente.TabIndex = 50;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(26, 13);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(57, 13);
+			this.label2.TabIndex = 49;
+			this.label2.Text = "N°  Cliente";
 			// 
 			// frmIngresoDosisTLD
 			// 
@@ -596,5 +628,8 @@
 		private System.Windows.Forms.CheckBox chkMarcar;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.CheckBox chkControlado;
+		private System.Windows.Forms.Button btn_Cargar;
+		private System.Windows.Forms.TextBox lbl_id_cliente;
+		private System.Windows.Forms.Label label2;
 	}
 }

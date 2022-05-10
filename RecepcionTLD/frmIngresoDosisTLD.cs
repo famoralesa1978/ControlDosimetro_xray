@@ -22,6 +22,7 @@ namespace ControlDosimetro
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
+		Clases.ClassEvento clsEvento = new Clases.ClassEvento();
 		bool bolValidarGrilla = false;
 		int intContar = 0;
 		#endregion
@@ -29,6 +30,7 @@ namespace ControlDosimetro
 		public frmIngresoDosisTLD(Int64 intId_Cliente)
 		{
 			InitializeComponent();
+			AsignarEvento();
 			grdDatos.AutoGenerateColumns = false;
 			SqlCommand cmdcombo = new SqlCommand();
 			//	SqlCommand cmdcombo = new SqlCommand();
@@ -44,7 +46,7 @@ namespace ControlDosimetro
 			comboboxColumn.DisplayMember = "Glosa";
 			comboboxColumn.ValueMember = "Id_DetParametro";
 			AsignarEvento();
-			Listar_Personal();
+			//Listar_Personal();
 			pnl_Progreso.Visible = false;
 		}
 
@@ -58,12 +60,13 @@ namespace ControlDosimetro
 
 			DataSet dt;
 
+			String strcadena = String.IsNullOrEmpty(lbl_id_cliente.Text) ? "" : String.Format(" and D.id_cliente = Isnull({0},D.id_cliente)", lbl_id_cliente.Text);
 
-			cmd.CommandText = "SELECT PosicionDisco,n_dosimetro,tld.N_Documento,p.id_cliente,p.Id_Personal,Rut,Paterno,Maternos,Nombres,isnull( d.Controlado,0)Controlado," +
+			cmd.CommandText = String.Format("SELECT PosicionDisco,n_dosimetro,tld.N_Documento,p.id_cliente,p.Id_Personal,Rut,Paterno,Maternos,Nombres,isnull( d.Controlado,0)Controlado," +
 							"isnull(d.ConDosis,0)condosis,d.Dosis,isnull(d.Id_EstadoDosis,0)estadodosis, isnull(d.Id_Dosimetro,0)Id_Dosimetro,Cristal1,Cristal2,tld.id_periodo " +
 							" FROM tbl_personal p inner join ges_dosimetro_estado_TLD tld on p.Id_Personal=tld.Id_Personal	 " +
 							" left outer  join tbl_dosimetria d on N_Pelicula=n_dosimetro  and TLD=1  " +
-						" where id_estadodosimetro in(12,5)    order by PosicionDisco";
+						" where id_estadodosimetro in(12,5)  {0}    order by PosicionDisco", strcadena);//
 			cmd.CommandType = CommandType.Text;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -91,6 +94,7 @@ namespace ControlDosimetro
 
 		private void AsignarEvento()
 		{
+			clsEvento.AsignarNumero(ref lbl_id_cliente);
 		}
 
 		#endregion
@@ -489,6 +493,10 @@ namespace ControlDosimetro
 		}
 
 		#endregion
+		private void btn_Cargar_Click(object sender, EventArgs e)
+		{
+			Listar_Personal();
+		}
 
 		private void btn_ocultar_Click(object sender, EventArgs e)
 		{
@@ -554,6 +562,7 @@ namespace ControlDosimetro
 
 			Cursor = Cursors.Default;
 		}
+
 
 	}
 }
