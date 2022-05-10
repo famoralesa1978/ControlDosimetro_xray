@@ -80,6 +80,7 @@
 			this.lbl_id_seccion = new System.Windows.Forms.Label();
 			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
 			this.btnGenerar = new System.Windows.Forms.Button();
+			this.btnResfrescar = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -172,16 +173,19 @@
 			this.btn_cargar.TabIndex = 3;
 			this.btn_cargar.Text = "Cargar datos periodo";
 			this.btn_cargar.UseVisualStyleBackColor = true;
+			this.btn_cargar.Visible = false;
 			this.btn_cargar.Click += new System.EventHandler(this.Btn_cargar_Click);
 			// 
 			// cbx_id_periodo
 			// 
+			this.cbx_id_periodo.DisplayMember = "Trimestre";
 			this.cbx_id_periodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_id_periodo.FormattingEnabled = true;
 			this.cbx_id_periodo.Location = new System.Drawing.Point(87, 108);
 			this.cbx_id_periodo.Name = "cbx_id_periodo";
 			this.cbx_id_periodo.Size = new System.Drawing.Size(121, 21);
 			this.cbx_id_periodo.TabIndex = 43;
+			this.cbx_id_periodo.ValueMember = "Id_Periodo";
 			// 
 			// lbl_nombreCliente
 			// 
@@ -203,13 +207,15 @@
 			// 
 			// cbx_anno
 			// 
+			this.cbx_anno.DisplayMember = "anno";
 			this.cbx_anno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_anno.FormattingEnabled = true;
 			this.cbx_anno.Location = new System.Drawing.Point(87, 83);
 			this.cbx_anno.Name = "cbx_anno";
 			this.cbx_anno.Size = new System.Drawing.Size(121, 21);
 			this.cbx_anno.TabIndex = 1;
-			this.cbx_anno.SelectedIndexChanged += new System.EventHandler(this.Cbx_anno_SelectedIndexChanged);
+			this.cbx_anno.ValueMember = "anno";
+			this.cbx_anno.SelectedValueChanged += new System.EventHandler(this.cbx_anno_SelectedValueChanged);
 			// 
 			// label2
 			// 
@@ -502,12 +508,14 @@
 			// 
 			// cbx_Sucursal
 			// 
+			this.cbx_Sucursal.DisplayMember = "Direccion";
 			this.cbx_Sucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_Sucursal.FormattingEnabled = true;
 			this.cbx_Sucursal.Location = new System.Drawing.Point(59, 171);
 			this.cbx_Sucursal.Name = "cbx_Sucursal";
 			this.cbx_Sucursal.Size = new System.Drawing.Size(526, 21);
 			this.cbx_Sucursal.TabIndex = 11;
+			this.cbx_Sucursal.ValueMember = "Id_sucursal";
 			this.cbx_Sucursal.SelectedIndexChanged += new System.EventHandler(this.Cbx_Sucursal_SelectedIndexChanged);
 			// 
 			// groupBox3
@@ -603,11 +611,22 @@
 			this.btnGenerar.UseVisualStyleBackColor = true;
 			this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
 			// 
+			// btnResfrescar
+			// 
+			this.btnResfrescar.Image = global::ControlDosimetro.Properties.Resources.filter_16;
+			this.btnResfrescar.Location = new System.Drawing.Point(304, 196);
+			this.btnResfrescar.Name = "btnResfrescar";
+			this.btnResfrescar.Size = new System.Drawing.Size(26, 23);
+			this.btnResfrescar.TabIndex = 20;
+			this.btnResfrescar.UseVisualStyleBackColor = true;
+			this.btnResfrescar.Click += new System.EventHandler(this.btnResfrescar_Click);
+			// 
 			// FrmInformeISP
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1084, 578);
+			this.Controls.Add(this.btnResfrescar);
 			this.Controls.Add(this.btnGenerar);
 			this.Controls.Add(this.lbl_id_seccion);
 			this.Controls.Add(this.cbx_id_seccion);
@@ -693,5 +712,6 @@
 		private System.Windows.Forms.Label lbl_id_seccion;
 		private System.Windows.Forms.ComboBox cbx_id_seccion;
 		private System.Windows.Forms.Button btnGenerar;
+		private System.Windows.Forms.Button btnResfrescar;
 	}
 }

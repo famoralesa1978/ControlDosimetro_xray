@@ -864,10 +864,7 @@ namespace ControlDosimetro
 		private void btnAgregarRef_Click(object sender, EventArgs e)
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "pa_PersonalReferencia_ins " +
-							lbl_id_cliente.Text.ToString() + "," +//@Id_cliente int,
-							"'" + lbl_rut_cliente.Text + "'," +
-							cbx_id_seccion.SelectedValue;
+			cmd.CommandText = String.Format("pa_PersonalReferencia_ins {0},'{1}',{2},{3}" ,lbl_id_cliente.Text.ToString(),lbl_rut_cliente.Text,cbx_id_seccion.SelectedValue ,cbx_Sucursal.SelectedValue);
 			//@id_estadodosimetro int
 			cmd.CommandType = CommandType.Text;
 			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);

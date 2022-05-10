@@ -51,7 +51,7 @@ namespace ControlDosimetro
 				lbl_Usuario.Text = Clases.clsUsuario.Usuario;
 				lbl_Fecha_agregado.Text = DateTime.Now.Date.ToString().Substring(1, 10);
 				lbl_Fecha_Modificacion.Text = DateTime.Now.Date.ToString().Substring(1, 10);
-				Cargar_Sucursal(intCodPersonal);
+				Cargar_Sucursal(intCodPersonal,true);
 				HabDesa_Controles(false);
 				picVerificar.Visible = true;
 			}
@@ -62,7 +62,7 @@ namespace ControlDosimetro
 
 				Cargar_Personal(intCodPersonal);
 				lbl_Id_Personal.Text = intCodPersonal.ToString();
-				Cargar_Sucursal(intCodPersonal);
+				Cargar_Sucursal(intCodPersonal,false);
 				HabDesa_Controles(true);
 				picVerificar.Visible = true;
 				//txt_rut.Enabled = false;
@@ -93,7 +93,7 @@ namespace ControlDosimetro
 			lbl_rut_cliente.Text = dt.Tables[0].Rows[0]["run"].ToString();
 		}
 
-		private void Cargar_Sucursal(long idPersonal)
+		private void Cargar_Sucursal(long idPersonal,bool bolNUevo=false)
 		{
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = String.Format("pa_ListarPersonalSucursal {0},'{1}',{2}", lbl_id_cliente.Text,run, idPersonal);
@@ -107,7 +107,7 @@ namespace ControlDosimetro
 			for (int intFilaLista = 0; intFilaLista < chkLista.Items.Count; intFilaLista++)
 			{
 				var dr = ((DataRowView)chkLista.Items[intFilaLista]).Row;
-				bool bolMarca = (bool)dr.ItemArray[2];
+				bool bolMarca = bolNUevo?true: (bool)dr.ItemArray[2];
 
 				chkLista.SetItemChecked(intFilaLista, bolMarca);
 			}
