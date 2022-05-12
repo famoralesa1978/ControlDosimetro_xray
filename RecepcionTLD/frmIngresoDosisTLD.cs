@@ -60,7 +60,7 @@ namespace ControlDosimetro
 
 			DataSet dt;
 
-			String strcadena = String.IsNullOrEmpty(lbl_id_cliente.Text) ? "" : String.Format(" and D.id_cliente = Isnull({0},D.id_cliente)", lbl_id_cliente.Text);
+			String strcadena = String.IsNullOrEmpty(lbl_id_cliente.Text) ? "" : String.Format(" and tld.id_cliente = Isnull({0},tld.id_cliente)", lbl_id_cliente.Text);
 
 			cmd.CommandText = String.Format("SELECT PosicionDisco,n_dosimetro,tld.N_Documento,p.id_cliente,p.Id_Personal,Rut,Paterno,Maternos,Nombres,isnull( d.Controlado,0)Controlado," +
 							"isnull(d.ConDosis,0)condosis,d.Dosis,isnull(d.Id_EstadoDosis,0)estadodosis, isnull(d.Id_Dosimetro,0)Id_Dosimetro,Cristal1,Cristal2,tld.id_periodo " +
