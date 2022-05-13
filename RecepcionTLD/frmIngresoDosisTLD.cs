@@ -60,13 +60,9 @@ namespace ControlDosimetro
 
 			DataSet dt;
 
-			String strcadena = String.IsNullOrEmpty(lbl_id_cliente.Text) ? "" : String.Format(" and tld.id_cliente = Isnull({0},tld.id_cliente)", lbl_id_cliente.Text);
+			String strcadena = String.IsNullOrEmpty(lbl_id_cliente.Text) ? "" : String.Format("{0}", lbl_id_cliente.Text);
 
-			cmd.CommandText = String.Format("SELECT PosicionDisco,n_dosimetro,tld.N_Documento,p.id_cliente,p.Id_Personal,Rut,Paterno,Maternos,Nombres,isnull( d.Controlado,0)Controlado," +
-							"isnull(d.ConDosis,0)condosis,d.Dosis,isnull(d.Id_EstadoDosis,0)estadodosis, isnull(d.Id_Dosimetro,0)Id_Dosimetro,Cristal1,Cristal2,tld.id_periodo " +
-							" FROM tbl_personal p inner join ges_dosimetro_estado_TLD tld on p.Id_Personal=tld.Id_Personal	 " +
-							" left outer  join tbl_dosimetria d on N_Pelicula=n_dosimetro  and TLD=1  " +
-						" where id_estadodosimetro in(12,5)  {0}    order by PosicionDisco", strcadena);//
+			cmd.CommandText = String.Format("pa_IngresoDosis_sel {0}", strcadena);//
 			cmd.CommandType = CommandType.Text;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);

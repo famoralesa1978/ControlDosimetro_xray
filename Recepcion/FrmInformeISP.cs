@@ -467,7 +467,7 @@ namespace ControlDosimetro
 			//SqlCommand cmdCliente = new SqlCommand();
 			SqlCommand cmdCliente = new SqlCommand
 			{
-				CommandText = "pa_DosimetroISPGenerar_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue,
+				CommandText = "pa_DosimetroISPGenerar_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue +",'" + lbl_rut_cliente.Text + "'",
 
 				CommandType = CommandType.Text
 			};
@@ -492,8 +492,8 @@ namespace ControlDosimetro
 			{
 				#region "Proceso"
 				i = 0;
-				string strRunEmpresa = dt.Tables[0].Rows[idatos]["run"].ToString();
-				string strRazon_SocialEmpresa = dt.Tables[0].Rows[idatos]["Razon_Social"].ToString();
+				string strRunEmpresa = lbl_rut_cliente.Text;
+				string strRazon_SocialEmpresa = lbl_nombreCliente.Text;
 				string strDireccionEmpresa = (int)cbx_Sucursal.SelectedValue==0? lbl_nombreCliente.Text:  dt.Tables[0].Rows[idatos]["Direccion"].ToString();
 				string strTelefonoEmpresa = dt.Tables[0].Rows[idatos]["Telefono"].ToString();
 				string strregionEmpresa = dt.Tables[0].Rows[idatos]["region"].ToString();
@@ -618,7 +618,7 @@ namespace ControlDosimetro
 							{
 								document = SpreadsheetDocument.Open(strpathcopiar, true);
 								wbPart = document.WorkbookPart;
-								string wsName = cbx_id_periodo.Text.Replace(" ", "").Replace("RI", "");//4ºT//1ºT|
+								string wsName = String.Format("{0}{1}",cbx_id_periodo.Text.Substring(0,1), "ºT");//4ºT//1ºT|
 								UpdateValue(wsName, "A" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Nombres"].ToString(), 0, true);
 								UpdateValue(wsName, "B" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Paterno"].ToString(), 0, true);
 								UpdateValue(wsName, "C" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Maternos"].ToString(), 0, true);
