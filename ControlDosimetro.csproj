@@ -579,6 +579,11 @@
     <Compile Include="Recepcion\frmIngresoPelicula.Designer.cs">
       <DependentUpon>frmIngresoPelicula.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReporteDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="reporte\frmRpDosimetriaTLD.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1067,6 +1072,17 @@
     <Content Include="Libreria\DocumentFormat.OpenXml.dll" />
     <Content Include="Libreria\GridExtension.dll" />
     <Content Include="Libreria\LibAdmSistema.dll" />
+    <None Include="ReporteDS.xsc">
+      <DependentUpon>ReporteDS.xsd</DependentUpon>
+    </None>
+    <None Include="ReporteDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReporteDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ReporteDS.xss">
+      <DependentUpon>ReporteDS.xsd</DependentUpon>
+    </None>
     <None Include="Resources\Seccion.png" />
     <None Include="Resources\Modify-32.png" />
     <None Include="Resources\Modify-24.png" />
