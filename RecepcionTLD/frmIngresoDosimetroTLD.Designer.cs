@@ -69,6 +69,9 @@
 			this.btn_Sucursal = new System.Windows.Forms.ToolStripButton();
 			this.btn_Excel = new System.Windows.Forms.ToolStripButton();
 			this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
+			this.tsbGenerar = new System.Windows.Forms.ToolStripDropDownButton();
+			this.tsbGenerarTodos = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsbGenerarSeleccionado = new System.Windows.Forms.ToolStripMenuItem();
 			this.btn_Guardar = new System.Windows.Forms.Button();
 			this.btn_Cerrar = new System.Windows.Forms.Button();
 			this.btn_Corregir = new System.Windows.Forms.Button();
@@ -89,9 +92,6 @@
 			this.btnAgregarRef = new System.Windows.Forms.Button();
 			this.btnResfrescar = new System.Windows.Forms.Button();
 			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
-			this.tsbGenerar = new System.Windows.Forms.ToolStripDropDownButton();
-			this.tsbGenerarTodos = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsbGenerarSeleccionado = new System.Windows.Forms.ToolStripMenuItem();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -518,6 +518,31 @@
 			this.tsdReporte.Size = new System.Drawing.Size(61, 24);
 			this.tsdReporte.Text = "Reporte";
 			// 
+			// tsbGenerar
+			// 
+			this.tsbGenerar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbGenerar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbGenerarTodos,
+            this.tsbGenerarSeleccionado});
+			this.tsbGenerar.Image = global::ControlDosimetro.Properties.Resources.excel;
+			this.tsbGenerar.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbGenerar.Name = "tsbGenerar";
+			this.tsbGenerar.Size = new System.Drawing.Size(33, 24);
+			this.tsbGenerar.Text = "toolStripDropDownButton1";
+			this.tsbGenerar.Visible = false;
+			// 
+			// tsbGenerarTodos
+			// 
+			this.tsbGenerarTodos.Name = "tsbGenerarTodos";
+			this.tsbGenerarTodos.Size = new System.Drawing.Size(187, 22);
+			this.tsbGenerarTodos.Text = "Generar todos";
+			// 
+			// tsbGenerarSeleccionado
+			// 
+			this.tsbGenerarSeleccionado.Name = "tsbGenerarSeleccionado";
+			this.tsbGenerarSeleccionado.Size = new System.Drawing.Size(187, 22);
+			this.tsbGenerarSeleccionado.Text = "Generar seleccionado";
+			// 
 			// btn_Guardar
 			// 
 			this.btn_Guardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -721,30 +746,6 @@
 			this.cbx_Sucursal.Size = new System.Drawing.Size(526, 21);
 			this.cbx_Sucursal.TabIndex = 20;
 			this.cbx_Sucursal.ValueMember = "Id_sucursal";
-			// 
-			// tsbGenerar
-			// 
-			this.tsbGenerar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.tsbGenerar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbGenerarTodos,
-            this.tsbGenerarSeleccionado});
-			this.tsbGenerar.Image = global::ControlDosimetro.Properties.Resources.excel;
-			this.tsbGenerar.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbGenerar.Name = "tsbGenerar";
-			this.tsbGenerar.Size = new System.Drawing.Size(33, 24);
-			this.tsbGenerar.Text = "toolStripDropDownButton1";
-			// 
-			// tsbGenerarTodos
-			// 
-			this.tsbGenerarTodos.Name = "tsbGenerarTodos";
-			this.tsbGenerarTodos.Size = new System.Drawing.Size(187, 22);
-			this.tsbGenerarTodos.Text = "Generar todos";
-			// 
-			// tsbGenerarSeleccionado
-			// 
-			this.tsbGenerarSeleccionado.Name = "tsbGenerarSeleccionado";
-			this.tsbGenerarSeleccionado.Size = new System.Drawing.Size(187, 22);
-			this.tsbGenerarSeleccionado.Text = "Generar seleccionado";
 			// 
 			// frmIngresoDosimetroTLD
 			// 
