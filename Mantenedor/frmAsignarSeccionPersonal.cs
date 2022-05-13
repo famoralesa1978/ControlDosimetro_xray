@@ -113,6 +113,14 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "button"
+
+		private void btn_Agregar_Click(object sender, EventArgs e)
+		{
+			frmSeccionMant frm = new frmSeccionMant(Convert.ToInt64(lbl_id_cliente.Text), 0, run);
+			frm.ShowDialog(this);
+			Cargar_seccion();
+		}
+
 		private void btnMarcarTodos_Click(object sender, EventArgs e)
 		{
 			for (int intFilaLista = 0; intFilaLista < chkLista.Items.Count; intFilaLista++)

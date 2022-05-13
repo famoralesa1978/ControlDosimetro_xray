@@ -30,6 +30,10 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			this.tbl_personal = new System.Windows.Forms.GroupBox();
+			this.btnInvertir = new System.Windows.Forms.Button();
+			this.btnDesmarcar = new System.Windows.Forms.Button();
+			this.btnMarcarTodos = new System.Windows.Forms.Button();
+			this.label2 = new System.Windows.Forms.Label();
 			this.cbxSeccion = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.chkLista = new System.Windows.Forms.CheckedListBox();
@@ -40,15 +44,13 @@
 			this.btn_Grabar = new System.Windows.Forms.Button();
 			this.lbl_id_cliente1 = new System.Windows.Forms.Label();
 			this.topSeccion = new System.Windows.Forms.ToolTip(this.components);
-			this.label2 = new System.Windows.Forms.Label();
-			this.btnMarcarTodos = new System.Windows.Forms.Button();
-			this.btnDesmarcar = new System.Windows.Forms.Button();
-			this.btnInvertir = new System.Windows.Forms.Button();
+			this.btn_Agregar = new System.Windows.Forms.Button();
 			this.tbl_personal.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tbl_personal
 			// 
+			this.tbl_personal.Controls.Add(this.btn_Agregar);
 			this.tbl_personal.Controls.Add(this.btnInvertir);
 			this.tbl_personal.Controls.Add(this.btnDesmarcar);
 			this.tbl_personal.Controls.Add(this.btnMarcarTodos);
@@ -68,6 +70,45 @@
 			this.tbl_personal.TabIndex = 0;
 			this.tbl_personal.TabStop = false;
 			this.tbl_personal.Text = "Datos";
+			// 
+			// btnInvertir
+			// 
+			this.btnInvertir.Location = new System.Drawing.Point(386, 79);
+			this.btnInvertir.Name = "btnInvertir";
+			this.btnInvertir.Size = new System.Drawing.Size(79, 23);
+			this.btnInvertir.TabIndex = 53;
+			this.btnInvertir.Text = "Invertir";
+			this.btnInvertir.UseVisualStyleBackColor = true;
+			this.btnInvertir.Click += new System.EventHandler(this.btnInvertir_Click);
+			// 
+			// btnDesmarcar
+			// 
+			this.btnDesmarcar.Location = new System.Drawing.Point(262, 79);
+			this.btnDesmarcar.Name = "btnDesmarcar";
+			this.btnDesmarcar.Size = new System.Drawing.Size(118, 23);
+			this.btnDesmarcar.TabIndex = 52;
+			this.btnDesmarcar.Text = "Desmarcar todos";
+			this.btnDesmarcar.UseVisualStyleBackColor = true;
+			this.btnDesmarcar.Click += new System.EventHandler(this.btnDesmarcar_Click);
+			// 
+			// btnMarcarTodos
+			// 
+			this.btnMarcarTodos.Location = new System.Drawing.Point(163, 79);
+			this.btnMarcarTodos.Name = "btnMarcarTodos";
+			this.btnMarcarTodos.Size = new System.Drawing.Size(93, 23);
+			this.btnMarcarTodos.TabIndex = 51;
+			this.btnMarcarTodos.Text = "Marcar todos";
+			this.btnMarcarTodos.UseVisualStyleBackColor = true;
+			this.btnMarcarTodos.Click += new System.EventHandler(this.btnMarcarTodos_Click);
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(7, 89);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(87, 13);
+			this.label2.TabIndex = 50;
+			this.label2.Text = "Lista de personal";
 			// 
 			// cbxSeccion
 			// 
@@ -165,44 +206,17 @@
 			this.lbl_id_cliente1.TabIndex = 5;
 			this.lbl_id_cliente1.Text = "N° Cliente";
 			// 
-			// label2
+			// btn_Agregar
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(7, 89);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(87, 13);
-			this.label2.TabIndex = 50;
-			this.label2.Text = "Lista de personal";
-			// 
-			// btnMarcarTodos
-			// 
-			this.btnMarcarTodos.Location = new System.Drawing.Point(163, 79);
-			this.btnMarcarTodos.Name = "btnMarcarTodos";
-			this.btnMarcarTodos.Size = new System.Drawing.Size(93, 23);
-			this.btnMarcarTodos.TabIndex = 51;
-			this.btnMarcarTodos.Text = "Marcar todos";
-			this.btnMarcarTodos.UseVisualStyleBackColor = true;
-			this.btnMarcarTodos.Click += new System.EventHandler(this.btnMarcarTodos_Click);
-			// 
-			// btnDesmarcar
-			// 
-			this.btnDesmarcar.Location = new System.Drawing.Point(262, 79);
-			this.btnDesmarcar.Name = "btnDesmarcar";
-			this.btnDesmarcar.Size = new System.Drawing.Size(118, 23);
-			this.btnDesmarcar.TabIndex = 52;
-			this.btnDesmarcar.Text = "Desmarcar todos";
-			this.btnDesmarcar.UseVisualStyleBackColor = true;
-			this.btnDesmarcar.Click += new System.EventHandler(this.btnDesmarcar_Click);
-			// 
-			// btnInvertir
-			// 
-			this.btnInvertir.Location = new System.Drawing.Point(386, 79);
-			this.btnInvertir.Name = "btnInvertir";
-			this.btnInvertir.Size = new System.Drawing.Size(79, 23);
-			this.btnInvertir.TabIndex = 53;
-			this.btnInvertir.Text = "Invertir";
-			this.btnInvertir.UseVisualStyleBackColor = true;
-			this.btnInvertir.Click += new System.EventHandler(this.btnInvertir_Click);
+			this.btn_Agregar.Image = global::ControlDosimetro.Properties.Resources.Seccion_24;
+			this.btn_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btn_Agregar.Location = new System.Drawing.Point(451, 12);
+			this.btn_Agregar.Name = "btn_Agregar";
+			this.btn_Agregar.Size = new System.Drawing.Size(35, 31);
+			this.btn_Agregar.TabIndex = 54;
+			this.topSeccion.SetToolTip(this.btn_Agregar, "Agregar sección");
+			this.btn_Agregar.UseVisualStyleBackColor = true;
+			this.btn_Agregar.Click += new System.EventHandler(this.btn_Agregar_Click);
 			// 
 			// frmAsignarSeccionPersonal
 			// 
@@ -239,5 +253,6 @@
 		private System.Windows.Forms.Button btnInvertir;
 		private System.Windows.Forms.Button btnDesmarcar;
 		private System.Windows.Forms.Button btnMarcarTodos;
+		private System.Windows.Forms.Button btn_Agregar;
 	}
 }

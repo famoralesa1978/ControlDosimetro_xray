@@ -81,6 +81,8 @@
 			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
 			this.btnGenerar = new System.Windows.Forms.Button();
 			this.btnResfrescar = new System.Windows.Forms.Button();
+			this.tsbAsignarSucursal = new System.Windows.Forms.ToolStripButton();
+			this.tsbAsignarSeccion = new System.Windows.Forms.ToolStripButton();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -447,7 +449,9 @@
 			// toolStrip1
 			// 
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btn_Sucursal});
+            this.btn_Sucursal,
+            this.tsbAsignarSucursal,
+            this.tsbAsignarSeccion});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(1084, 25);
@@ -621,6 +625,26 @@
 			this.btnResfrescar.UseVisualStyleBackColor = true;
 			this.btnResfrescar.Click += new System.EventHandler(this.btnResfrescar_Click);
 			// 
+			// tsbAsignarSucursal
+			// 
+			this.tsbAsignarSucursal.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbAsignarSucursal.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignarSucursal.Image")));
+			this.tsbAsignarSucursal.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbAsignarSucursal.Name = "tsbAsignarSucursal";
+			this.tsbAsignarSucursal.Size = new System.Drawing.Size(98, 22);
+			this.tsbAsignarSucursal.Text = "Asignar Sucursal";
+			this.tsbAsignarSucursal.Click += new System.EventHandler(this.tsbAsignarSucursal_Click);
+			// 
+			// tsbAsignarSeccion
+			// 
+			this.tsbAsignarSeccion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbAsignarSeccion.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignarSeccion.Image")));
+			this.tsbAsignarSeccion.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbAsignarSeccion.Name = "tsbAsignarSeccion";
+			this.tsbAsignarSeccion.Size = new System.Drawing.Size(95, 22);
+			this.tsbAsignarSeccion.Text = "Asignar Sección";
+			this.tsbAsignarSeccion.Click += new System.EventHandler(this.tsbAsignarSeccion_Click);
+			// 
 			// FrmInformeISP
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -713,5 +737,7 @@
 		private System.Windows.Forms.ComboBox cbx_id_seccion;
 		private System.Windows.Forms.Button btnGenerar;
 		private System.Windows.Forms.Button btnResfrescar;
+		private System.Windows.Forms.ToolStripButton tsbAsignarSucursal;
+		private System.Windows.Forms.ToolStripButton tsbAsignarSeccion;
 	}
 }

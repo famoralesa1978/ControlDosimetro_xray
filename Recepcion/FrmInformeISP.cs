@@ -1610,6 +1610,16 @@ namespace ControlDosimetro
 			//this.grdDatos.Columns["Dosis"].DefaultCellStyle.Format = "N2";
 		}
 
+		private void tsbAsignarSucursal_Click(object sender, EventArgs e)
+		{
+			frmAsignarDireccionPersonal frm = new frmAsignarDireccionPersonal(Convert.ToInt32(lbl_id_cliente.Text), lbl_rut_cliente.Text);
+			frm.ShowDialog(this);
+		}
 
+		private void tsbAsignarSeccion_Click(object sender, EventArgs e)
+		{
+			frmAsignarSeccionPersonal frm = new frmAsignarSeccionPersonal(Convert.ToInt32(lbl_id_cliente.Text), lbl_rut_cliente.Text);
+			frm.ShowDialog(this);
+		}
 	}
 }
