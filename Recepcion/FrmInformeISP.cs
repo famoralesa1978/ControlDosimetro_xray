@@ -211,39 +211,50 @@ namespace ControlDosimetro
 
 		private void Listar_Personal()
 		{
-			SqlCommand cmd = new SqlCommand();
-			DataSet dt;
-			cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue +","+ cbx_id_seccion.SelectedValue +",'"+ lbl_rut_cliente.Text +"'";
-			cmd.CommandType = CommandType.Text;
-
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-			string filterExp = "enviado = 1";
-			string sortExp = "N_pelicula";
-			DataRow[] drarray;
-			drarray = dt.Tables[0].Select(filterExp, sortExp, DataViewRowState.CurrentRows);
-
-			string filterExp1 = "enviado = 0";
-			string sortExp1 = "N_pelicula";
-			DataRow[] drarray1;
-			drarray1 = dt.Tables[0].Select(filterExp1, sortExp1, DataViewRowState.CurrentRows);
-
-			groupBox2.Text = "Listado       Registro Generado:" + drarray.Count().ToString() + ", registro Faltante: " + drarray1.Count().ToString();
-
-
-			if (dt.Tables[0].Rows.Count == 0)
+			if (!String.IsNullOrWhiteSpace(lbl_id_cliente.Text))
 			{
-				btnGenerar.Visible = false;
-				LimpiarFormulario(3);
-				grdDatos.DataSource = dt.Tables[0];
-				MessageBox.Show("No se han cargado ningun personal");
+				if(cbx_id_seccion.SelectedValue != null)
+				{
+					SqlCommand cmd = new SqlCommand();
+					DataSet dt;
+					cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue + "," + cbx_id_seccion.SelectedValue + ",'" + lbl_rut_cliente.Text + "'";
+					cmd.CommandType = CommandType.Text;
+
+					dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+					string filterExp = "enviado = 1";
+					string sortExp = "N_pelicula";
+					DataRow[] drarray;
+					drarray = dt.Tables[0].Select(filterExp, sortExp, DataViewRowState.CurrentRows);
+
+					string filterExp1 = "enviado = 0";
+					string sortExp1 = "N_pelicula";
+					DataRow[] drarray1;
+					drarray1 = dt.Tables[0].Select(filterExp1, sortExp1, DataViewRowState.CurrentRows);
+
+					groupBox2.Text = "Listado       Registro Generado:" + drarray.Count().ToString() + ", registro Faltante: " + drarray1.Count().ToString();
+
+
+					if (dt.Tables[0].Rows.Count == 0)
+					{
+						btnGenerar.Visible = false;
+						LimpiarFormulario(3);
+						grdDatos.DataSource = dt.Tables[0];
+						MessageBox.Show("No se han cargado ningun personal");
+					}
+					else
+					{
+						LimpiarFormulario(4);
+						btnGenerar.Visible = true;
+						grdDatos.DefaultCellStyle.BackColor = System.Drawing.Color.White;
+						grdDatos.DataSource = dt.Tables[0];
+					}
+				}else
+				{
+					classFuncionesGenerales.mensajes.MensajeError("Debe tener una seccion  seleccionada");
+				}
+				
 			}
-			else
-			{
-				LimpiarFormulario(4);
-				btnGenerar.Visible = true;
-				grdDatos.DefaultCellStyle.BackColor = System.Drawing.Color.White;
-				grdDatos.DataSource = dt.Tables[0];
-			}
+	
 		}
 
 		private void Cargar_Anno()
@@ -320,6 +331,24 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "button"
+		private void tsbAsignarSucursal_Click(object sender, EventArgs e)
+		{
+			if (!String.IsNullOrWhiteSpace(lbl_id_cliente.Text))
+			{
+				frmAsignarDireccionPersonal frm = new frmAsignarDireccionPersonal(Convert.ToInt32(lbl_id_cliente.Text), lbl_rut_cliente.Text);
+				frm.ShowDialog(this);
+			}
+
+		}
+
+		private void tsbAsignarSeccion_Click(object sender, EventArgs e)
+		{
+			if (!String.IsNullOrWhiteSpace(lbl_id_cliente.Text))
+			{
+				frmAsignarSeccionPersonal frm = new frmAsignarSeccionPersonal(Convert.ToInt32(lbl_id_cliente.Text), lbl_rut_cliente.Text);
+				frm.ShowDialog(this);
+			}
+		}
 
 		private void Btn_Sucursal_Click(object sender, EventArgs e)
 		{
@@ -329,7 +358,8 @@ namespace ControlDosimetro
 
 		private void Btn_CargarCli_Click(object sender, EventArgs e)
 		{
-			Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
+			if(!String.IsNullOrWhiteSpace(lbl_id_cliente.Text))
+				Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
 		}
 
 		private void Btn_Filtro_Click(object sender, EventArgs e)
@@ -1610,16 +1640,6 @@ namespace ControlDosimetro
 			//this.grdDatos.Columns["Dosis"].DefaultCellStyle.Format = "N2";
 		}
 
-		private void tsbAsignarSucursal_Click(object sender, EventArgs e)
-		{
-			frmAsignarDireccionPersonal frm = new frmAsignarDireccionPersonal(Convert.ToInt32(lbl_id_cliente.Text), lbl_rut_cliente.Text);
-			frm.ShowDialog(this);
-		}
-
-		private void tsbAsignarSeccion_Click(object sender, EventArgs e)
-		{
-			frmAsignarSeccionPersonal frm = new frmAsignarSeccionPersonal(Convert.ToInt32(lbl_id_cliente.Text), lbl_rut_cliente.Text);
-			frm.ShowDialog(this);
-		}
+	
 	}
 }
