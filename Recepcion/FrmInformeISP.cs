@@ -695,13 +695,13 @@ namespace ControlDosimetro
 				using (WordprocessingDocument doc = WordprocessingDocument.Open(strArchivoCopiar, true))
 				{
 					string strSemetre1 = "";
-					if (cbx_id_periodo.Text.Replace("º TRI", "") == "1")
+					if (cbx_id_periodo.Text.Substring(0,1) == "1")
 						strSemetre1 = "primer";
-					if (cbx_id_periodo.Text.Replace("º TRI", "") == "2")
+					if (cbx_id_periodo.Text.Substring(0, 1) == "2")
 						strSemetre1 = "segundo";
-					if (cbx_id_periodo.Text.Replace("º TRI", "") == "3")
+					if (cbx_id_periodo.Text.Substring(0, 1) == "3")
 						strSemetre1 = "tercer";
-					if (cbx_id_periodo.Text.Replace("º TRI", "") == "4")
+					if (cbx_id_periodo.Text.Substring(0, 1) == "4")
 						strSemetre1 = "cuarto";
 
 					strcampoMarcador = "empresa";
