@@ -65,6 +65,8 @@
 			this.tld = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.btn_Sucursal = new System.Windows.Forms.ToolStripButton();
+			this.tsbAsignarSucursal = new System.Windows.Forms.ToolStripButton();
+			this.tsbAsignarSeccion = new System.Windows.Forms.ToolStripButton();
 			this.btn_Guardar = new System.Windows.Forms.Button();
 			this.btn_Cerrar = new System.Windows.Forms.Button();
 			this.btn_Corregir = new System.Windows.Forms.Button();
@@ -81,8 +83,6 @@
 			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
 			this.btnGenerar = new System.Windows.Forms.Button();
 			this.btnResfrescar = new System.Windows.Forms.Button();
-			this.tsbAsignarSucursal = new System.Windows.Forms.ToolStripButton();
-			this.tsbAsignarSeccion = new System.Windows.Forms.ToolStripButton();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -464,9 +464,29 @@
 			this.btn_Sucursal.Image = ((System.Drawing.Image)(resources.GetObject("btn_Sucursal.Image")));
 			this.btn_Sucursal.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.btn_Sucursal.Name = "btn_Sucursal";
-			this.btn_Sucursal.Size = new System.Drawing.Size(55, 22);
-			this.btn_Sucursal.Text = "Sucursal";
+			this.btn_Sucursal.Size = new System.Drawing.Size(61, 22);
+			this.btn_Sucursal.Text = "Dirección";
 			this.btn_Sucursal.Click += new System.EventHandler(this.Btn_Sucursal_Click);
+			// 
+			// tsbAsignarSucursal
+			// 
+			this.tsbAsignarSucursal.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbAsignarSucursal.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignarSucursal.Image")));
+			this.tsbAsignarSucursal.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbAsignarSucursal.Name = "tsbAsignarSucursal";
+			this.tsbAsignarSucursal.Size = new System.Drawing.Size(103, 22);
+			this.tsbAsignarSucursal.Text = "Asignar dirección";
+			this.tsbAsignarSucursal.Click += new System.EventHandler(this.tsbAsignarSucursal_Click);
+			// 
+			// tsbAsignarSeccion
+			// 
+			this.tsbAsignarSeccion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbAsignarSeccion.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignarSeccion.Image")));
+			this.tsbAsignarSeccion.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbAsignarSeccion.Name = "tsbAsignarSeccion";
+			this.tsbAsignarSeccion.Size = new System.Drawing.Size(95, 22);
+			this.tsbAsignarSeccion.Text = "Asignar Sección";
+			this.tsbAsignarSeccion.Click += new System.EventHandler(this.tsbAsignarSeccion_Click);
 			// 
 			// btn_Guardar
 			// 
@@ -624,26 +644,6 @@
 			this.btnResfrescar.TabIndex = 20;
 			this.btnResfrescar.UseVisualStyleBackColor = true;
 			this.btnResfrescar.Click += new System.EventHandler(this.btnResfrescar_Click);
-			// 
-			// tsbAsignarSucursal
-			// 
-			this.tsbAsignarSucursal.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tsbAsignarSucursal.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignarSucursal.Image")));
-			this.tsbAsignarSucursal.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbAsignarSucursal.Name = "tsbAsignarSucursal";
-			this.tsbAsignarSucursal.Size = new System.Drawing.Size(98, 22);
-			this.tsbAsignarSucursal.Text = "Asignar Sucursal";
-			this.tsbAsignarSucursal.Click += new System.EventHandler(this.tsbAsignarSucursal_Click);
-			// 
-			// tsbAsignarSeccion
-			// 
-			this.tsbAsignarSeccion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tsbAsignarSeccion.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignarSeccion.Image")));
-			this.tsbAsignarSeccion.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbAsignarSeccion.Name = "tsbAsignarSeccion";
-			this.tsbAsignarSeccion.Size = new System.Drawing.Size(95, 22);
-			this.tsbAsignarSeccion.Text = "Asignar Sección";
-			this.tsbAsignarSeccion.Click += new System.EventHandler(this.tsbAsignarSeccion_Click);
 			// 
 			// FrmInformeISP
 			// 

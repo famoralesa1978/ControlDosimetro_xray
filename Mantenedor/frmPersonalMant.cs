@@ -403,7 +403,7 @@ namespace ControlDosimetro
 			lbl_Fecha_Modificacion.Text = DateTime.Now.Date.ToString().Substring(1, 10);
 			for (int intFila = 0; intFila < chkLista.Items.Count; intFila++)
 			{
-				chkLista.SetItemChecked(intFila, false);
+				chkLista.SetItemChecked(intFila, true);
 			}
 			txt_rut.Focus();
 		}

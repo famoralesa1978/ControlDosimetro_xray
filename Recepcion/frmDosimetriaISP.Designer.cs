@@ -419,8 +419,8 @@
 			this.btn_Sucursal.Image = ((System.Drawing.Image)(resources.GetObject("btn_Sucursal.Image")));
 			this.btn_Sucursal.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.btn_Sucursal.Name = "btn_Sucursal";
-			this.btn_Sucursal.Size = new System.Drawing.Size(55, 22);
-			this.btn_Sucursal.Text = "Sucursal";
+			this.btn_Sucursal.Size = new System.Drawing.Size(61, 22);
+			this.btn_Sucursal.Text = "Dirección";
 			this.btn_Sucursal.Click += new System.EventHandler(this.btn_Sucursal_Click);
 			// 
 			// btn_Guardar

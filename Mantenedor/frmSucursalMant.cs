@@ -53,6 +53,7 @@ namespace ControlDosimetro
 				this.Text = "Agregar Sucursal";
 				txt_id_cliente.Enabled = false;
 				cbx_id_estado.Enabled = false;
+				btnCopiar.Visible = false;
 				casa_matriz_ins = 0;
 				//cargar_valor_maximo();
 				//
@@ -103,6 +104,7 @@ namespace ControlDosimetro
 
 				txt_runsuc.Enabled = false;
 				txt_Email.Text = dt.Tables[0].Rows[0]["email"].ToString().Trim() != "" ? dt.Tables[0].Rows[0]["email"].ToString() : "";
+				btnCopiar.Visible = true;
 			}
 		}
 
@@ -213,6 +215,17 @@ namespace ControlDosimetro
 
 		#region "button"
 
+		private void btnCopiar_Click(object sender, EventArgs e)
+		{
+			btn_Grabar.Text = "Grabar";
+			this.Text = "Agregar Sucursal";
+			lbl_id_Sucursal.Text = "0";
+			txt_id_cliente.Enabled = false;
+			cbx_id_estado.Enabled = false;
+			btnCopiar.Visible = false;
+			casa_matriz_ins = 0;
+		}
+
 		private void btn_cerrar_Click(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
@@ -321,7 +334,6 @@ namespace ControlDosimetro
 			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
 
 		}
-
 
 
 	}

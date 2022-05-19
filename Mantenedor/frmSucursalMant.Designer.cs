@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
 			this.tbl_sucursal = new System.Windows.Forms.GroupBox();
+			this.btnCopiar = new System.Windows.Forms.Button();
 			this.lbl_Email = new System.Windows.Forms.Label();
 			this.txt_Email = new System.Windows.Forms.TextBox();
 			this.chk_CasaMatriz = new System.Windows.Forms.CheckBox();
@@ -61,6 +62,7 @@
 			// 
 			// tbl_sucursal
 			// 
+			this.tbl_sucursal.Controls.Add(this.btnCopiar);
 			this.tbl_sucursal.Controls.Add(this.lbl_Email);
 			this.tbl_sucursal.Controls.Add(this.txt_Email);
 			this.tbl_sucursal.Controls.Add(this.chk_CasaMatriz);
@@ -95,6 +97,16 @@
 			this.tbl_sucursal.TabIndex = 0;
 			this.tbl_sucursal.TabStop = false;
 			this.tbl_sucursal.Text = "Datos";
+			// 
+			// btnCopiar
+			// 
+			this.btnCopiar.Image = global::ControlDosimetro.Properties.Resources.CopiarDatos;
+			this.btnCopiar.Location = new System.Drawing.Point(438, 285);
+			this.btnCopiar.Name = "btnCopiar";
+			this.btnCopiar.Size = new System.Drawing.Size(47, 56);
+			this.btnCopiar.TabIndex = 43;
+			this.btnCopiar.UseVisualStyleBackColor = true;
+			this.btnCopiar.Click += new System.EventHandler(this.btnCopiar_Click);
 			// 
 			// lbl_Email
 			// 
@@ -365,7 +377,7 @@
 			this.ClientSize = new System.Drawing.Size(491, 355);
 			this.Controls.Add(this.tbl_sucursal);
 			this.Name = "frmSucursalMant";
-			this.Text = "Sucursal";
+			this.Text = "Dirección";
 			this.tbl_sucursal.ResumeLayout(false);
 			this.tbl_sucursal.PerformLayout();
 			this.ResumeLayout(false);
@@ -402,5 +414,6 @@
         private System.Windows.Forms.CheckBox chk_CasaMatriz;
         private System.Windows.Forms.Label lbl_Email;
         private System.Windows.Forms.TextBox txt_Email;
-    }
+		private System.Windows.Forms.Button btnCopiar;
+	}
 }

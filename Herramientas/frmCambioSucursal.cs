@@ -106,7 +106,40 @@ namespace ControlDosimetro
 		{
 			txt_NDoc.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
 			txt_NDoc.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+
+			lbl_id_cliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+			lbl_id_cliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
 		}
+		private void Cargar_Cliente(Int64 intCodCliente)
+		{
+			Cursor = Cursors.WaitCursor;
+
+			frmAyudaCliente frm = new frmAyudaCliente(Convert.ToInt64(lbl_id_cliente.Text));
+
+			if (frm.ShowDialog() == DialogResult.OK)
+			{
+				lblRazonSocialTLD.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 1) ? Clases.ClsCliente.Nombres : "";
+				lbl_rut_cliente.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 1) ? Clases.ClsCliente.Rut : "";
+
+				SqlCommand cmd = new SqlCommand
+				{
+					CommandText = String.Format("CargarClientePorRun '{0}',{1}", lbl_rut_cliente.Text, lbl_id_cliente.Text)
+				};
+				DataSet dt;
+				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+				if (dt != null)
+				{
+					cbx_Sucursal.DataSource = dt.Tables[2];
+					cbx_SucursalCambiar.DataSource = dt.Tables[2];
+
+					btn_CargarCli.Enabled = false;
+				}
+
+			}
+			Cursor = Cursors.Default;
+		}
+
 		#endregion
 
 		#region "button"
@@ -116,6 +149,24 @@ namespace ControlDosimetro
 			Cargar_Documento(Convert.ToInt64(  txt_NDoc.Text));
 		}
 
+		private void btnModificarTLD_Click(object sender, EventArgs e)
+		{
+			SqlCommand cmd = new SqlCommand();
+			DataSet ds;
+			string strParametro = String.Format("{0},{1},{2}", txt_NDoc.Text, cbx_SucActual.SelectedValue, cbx_SucCambio.SelectedValue);
+			cmd.CommandText = "pa_ModificarSucursalTLD_upd " + strParametro;
+			cmd.CommandType = CommandType.Text;
+
+
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
+			{
+				MessageBox.Show("Error en actualizar la información");
+			}
+
+			else
+				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
+		}
 		private void Btn_Guardar_Click(object sender, EventArgs e)
 		{
 			SqlCommand cmd = new SqlCommand();
@@ -151,6 +202,12 @@ namespace ControlDosimetro
 			lbl_NombreCliente.Text = "";
 			btn_Guardar.Enabled = false;
 		}
+		private void btn_CargarCli_Click(object sender, EventArgs e)
+		{
+			if (!String.IsNullOrWhiteSpace(lbl_id_cliente.Text))
+				Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
+		}
+
 
 		#endregion
 
@@ -162,6 +219,7 @@ namespace ControlDosimetro
 		#region "grilla"
 
 		#endregion
+
 
 	}
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
 			this.tbl_cliente = new System.Windows.Forms.GroupBox();
+			this.btn_Excel = new System.Windows.Forms.Button();
 			this.lbl_Emailfacturacion = new System.Windows.Forms.Label();
 			this.txt_Emailfacturacion = new System.Windows.Forms.TextBox();
 			this.lbl_Nombre_fantasia = new System.Windows.Forms.Label();
@@ -84,6 +85,7 @@
 			// 
 			// tbl_cliente
 			// 
+			this.tbl_cliente.Controls.Add(this.btn_Excel);
 			this.tbl_cliente.Controls.Add(this.lbl_Emailfacturacion);
 			this.tbl_cliente.Controls.Add(this.txt_Emailfacturacion);
 			this.tbl_cliente.Controls.Add(this.lbl_Nombre_fantasia);
@@ -141,6 +143,16 @@
 			this.tbl_cliente.TabIndex = 0;
 			this.tbl_cliente.TabStop = false;
 			this.tbl_cliente.Text = "Datos";
+			// 
+			// btn_Excel
+			// 
+			this.btn_Excel.Image = global::ControlDosimetro.Properties.Resources.ImportarExcel;
+			this.btn_Excel.Location = new System.Drawing.Point(24, 604);
+			this.btn_Excel.Name = "btn_Excel";
+			this.btn_Excel.Size = new System.Drawing.Size(41, 38);
+			this.btn_Excel.TabIndex = 60;
+			this.btn_Excel.UseVisualStyleBackColor = true;
+			this.btn_Excel.Click += new System.EventHandler(this.btn_Excel_Click);
 			// 
 			// lbl_Emailfacturacion
 			// 
@@ -696,5 +708,6 @@
         private System.Windows.Forms.TextBox txt_Nombre_fantasia;
 		private System.Windows.Forms.Label lbl_Emailfacturacion;
 		private System.Windows.Forms.TextBox txt_Emailfacturacion;
+		private System.Windows.Forms.Button btn_Excel;
 	}
 }

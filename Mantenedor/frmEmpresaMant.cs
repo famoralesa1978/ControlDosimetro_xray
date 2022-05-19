@@ -38,23 +38,7 @@ namespace ControlDosimetro
 		dllLibreriaMysql.clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
 		#endregion
 
-		private void LeerExcel()
-		{
-			HSSFWorkbook hssfwb;
-			using (FileStream file = new FileStream(@"c:\test.xls", FileMode.Open, FileAccess.Read))
-			{
-				hssfwb = new HSSFWorkbook(file);
-			}
 
-			ISheet sheet = hssfwb.GetSheet("Arkusz1");
-			for (int row = 0; row <= sheet.LastRowNum; row++)
-			{
-				if (sheet.GetRow(row) != null) //null is when the row only contains empty cells 
-				{
-					MessageBox.Show(string.Format("Row {0} = {1}", row, sheet.GetRow(row).GetCell(0).StringCellValue));
-				}
-			}
-		}
 
 		public frmEmpresaMant(Int64 intCodigo)
 		{
@@ -67,6 +51,7 @@ namespace ControlDosimetro
 			Cargar_Estado();
 			Cargar_Fecha();
 			Cargar_Sector();
+			btn_Excel.Visible = false;
 			if (intCodigo == 0)
 			{
 				btn_Grabar.Text = "Grabar";
@@ -78,6 +63,7 @@ namespace ControlDosimetro
 				txt_Clave.Visible = true;
 				lbl_Clave.Visible = true;
 				dtp_FechaInicio.Text = cbx_id_periodo.Text;
+				btn_Excel.Visible = true;
 				//cargar_valor_maximo();
 				//
 			}
@@ -679,7 +665,27 @@ namespace ControlDosimetro
 		{
 
 		}
+		private void LeerExcel()
+		{
+			HSSFWorkbook hssfwb;
+			using (FileStream file = new FileStream(@"c:\test.xls", FileMode.Open, FileAccess.Read))
+			{
+				hssfwb = new HSSFWorkbook(file);
+			}
 
+			ISheet sheet = hssfwb.GetSheet("Arkusz1");
+			for (int row = 0; row <= sheet.LastRowNum; row++)
+			{
+				if (sheet.GetRow(row) != null) //null is when the row only contains empty cells 
+				{
+					MessageBox.Show(string.Format("Row {0} = {1}", row, sheet.GetRow(row).GetCell(0).StringCellValue));
+				}
+			}
+		}
 
+		private void btn_Excel_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

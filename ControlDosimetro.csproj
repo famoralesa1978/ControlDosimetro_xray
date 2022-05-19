@@ -1090,6 +1090,8 @@
     <Content Include="Libreria\DocumentFormat.OpenXml.dll" />
     <Content Include="Libreria\GridExtension.dll" />
     <Content Include="Libreria\LibAdmSistema.dll" />
+    <None Include="Resources\CopiarDatos.png" />
+    <None Include="Resources\ImportarExcel.png" />
     <None Include="ReporteDS.xsc">
       <DependentUpon>ReporteDS.xsd</DependentUpon>
     </None>
