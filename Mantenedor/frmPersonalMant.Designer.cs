@@ -75,9 +75,14 @@
 			this.topSeccion = new System.Windows.Forms.ToolTip(this.components);
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.chkLista = new System.Windows.Forms.CheckedListBox();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.btnInvertir = new System.Windows.Forms.Button();
+			this.btnDesmarcar = new System.Windows.Forms.Button();
+			this.btnMarcarTodos = new System.Windows.Forms.Button();
 			this.tbl_personal.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picVerificar)).BeginInit();
 			this.groupBox1.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tbl_personal
@@ -562,6 +567,7 @@
 			// groupBox1
 			// 
 			this.groupBox1.Controls.Add(this.chkLista);
+			this.groupBox1.Controls.Add(this.panel1);
 			this.groupBox1.Location = new System.Drawing.Point(498, 0);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(539, 484);
@@ -574,11 +580,52 @@
 			this.chkLista.CheckOnClick = true;
 			this.chkLista.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.chkLista.FormattingEnabled = true;
-			this.chkLista.Location = new System.Drawing.Point(3, 16);
+			this.chkLista.Location = new System.Drawing.Point(3, 62);
 			this.chkLista.Name = "chkLista";
-			this.chkLista.Size = new System.Drawing.Size(533, 465);
+			this.chkLista.Size = new System.Drawing.Size(533, 419);
 			this.chkLista.TabIndex = 0;
 			this.chkLista.ThreeDCheckBoxes = true;
+			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.btnInvertir);
+			this.panel1.Controls.Add(this.btnDesmarcar);
+			this.panel1.Controls.Add(this.btnMarcarTodos);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel1.Location = new System.Drawing.Point(3, 16);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(533, 46);
+			this.panel1.TabIndex = 1;
+			// 
+			// btnInvertir
+			// 
+			this.btnInvertir.Location = new System.Drawing.Point(338, 12);
+			this.btnInvertir.Name = "btnInvertir";
+			this.btnInvertir.Size = new System.Drawing.Size(79, 23);
+			this.btnInvertir.TabIndex = 59;
+			this.btnInvertir.Text = "Invertir";
+			this.btnInvertir.UseVisualStyleBackColor = true;
+			this.btnInvertir.Click += new System.EventHandler(this.btnInvertir_Click);
+			// 
+			// btnDesmarcar
+			// 
+			this.btnDesmarcar.Location = new System.Drawing.Point(214, 12);
+			this.btnDesmarcar.Name = "btnDesmarcar";
+			this.btnDesmarcar.Size = new System.Drawing.Size(118, 23);
+			this.btnDesmarcar.TabIndex = 58;
+			this.btnDesmarcar.Text = "Desmarcar todos";
+			this.btnDesmarcar.UseVisualStyleBackColor = true;
+			this.btnDesmarcar.Click += new System.EventHandler(this.btnDesmarcar_Click);
+			// 
+			// btnMarcarTodos
+			// 
+			this.btnMarcarTodos.Location = new System.Drawing.Point(115, 12);
+			this.btnMarcarTodos.Name = "btnMarcarTodos";
+			this.btnMarcarTodos.Size = new System.Drawing.Size(93, 23);
+			this.btnMarcarTodos.TabIndex = 57;
+			this.btnMarcarTodos.Text = "Marcar todos";
+			this.btnMarcarTodos.UseVisualStyleBackColor = true;
+			this.btnMarcarTodos.Click += new System.EventHandler(this.btnMarcarTodos_Click);
 			// 
 			// frmPersonalMant
 			// 
@@ -597,6 +644,7 @@
 			this.tbl_personal.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picVerificar)).EndInit();
 			this.groupBox1.ResumeLayout(false);
+			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -649,5 +697,9 @@
 		private System.Windows.Forms.PictureBox picVerificar;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.CheckedListBox chkLista;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Button btnInvertir;
+		private System.Windows.Forms.Button btnDesmarcar;
+		private System.Windows.Forms.Button btnMarcarTodos;
 	}
 }

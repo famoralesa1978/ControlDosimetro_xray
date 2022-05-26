@@ -22,8 +22,9 @@ using System.Xml;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System.IO.Packaging;
 using System.Diagnostics;
-using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using NPOI.HSSF.UserModel;
 
 namespace ControlDosimetro
 {
@@ -334,7 +335,7 @@ namespace ControlDosimetro
 						if (lbl_Estado_mod.Text != cbx_id_estado.Text)
 						{
 							SqlCommand cmd1 = new SqlCommand();
-							cmd1.CommandText = "pa_ClienteHistorial_upd " + txt_id_cliente.Text + ",'" + dtp_FechaInicio.Value.ToShortDateString().Replace("-","/") + "'";
+							cmd1.CommandText = "pa_ClienteHistorial_upd " + txt_id_cliente.Text + ",'" + dtp_FechaInicio.Value.ToShortDateString().Replace("-", "/") + "'";
 							cmd1.CommandType = CommandType.Text;
 							DataSet ds = Conectar.Listar(Clases.clsBD.BD, cmd1);
 
@@ -394,7 +395,7 @@ namespace ControlDosimetro
 
 						SqlCommand cmd = new SqlCommand();
 						cmd.CommandText = "pa_Sucursal_ins '" + txt_run.Text + "','" + txt_direccion.Text + "'," + cbx_id_region.SelectedValue + "," +
-														cbx_id_provincia.SelectedValue + "," + cbx_id_comuna.SelectedValue + ",'" + txt_telefono.Text + "',1,1," + txt_id_cliente.Text + ",'" + txt_Email.Text +"','"+ txt_Razon_Social.Text + "'";
+														cbx_id_provincia.SelectedValue + "," + cbx_id_comuna.SelectedValue + ",'" + txt_telefono.Text + "',1,1," + txt_id_cliente.Text + ",'" + txt_Email.Text + "','" + txt_Razon_Social.Text + "'";
 						cmd.CommandType = CommandType.Text;
 						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 
@@ -665,27 +666,42 @@ namespace ControlDosimetro
 		{
 
 		}
-		private void LeerExcel()
+		private void LeerExcel(string archivo, string extension)
 		{
-			HSSFWorkbook hssfwb;
-			using (FileStream file = new FileStream(@"c:\test.xls", FileMode.Open, FileAccess.Read))
+			//	HSSFWorkbook hssfwb;
+			IWorkbook hssfwb = null;
+			using (FileStream file = new FileStream(@archivo, FileMode.Open, FileAccess.Read))
 			{
-				hssfwb = new HSSFWorkbook(file);
+				//hssfwb = new HSSFWorkbook(file);
+				if (extension == ".xlsx")
+					hssfwb = new XSSFWorkbook(file);
+				else if (extension == ".xls")
+					hssfwb = new HSSFWorkbook(file);
 			}
 
-			ISheet sheet = hssfwb.GetSheet("Arkusz1");
-			for (int row = 0; row <= sheet.LastRowNum; row++)
-			{
-				if (sheet.GetRow(row) != null) //null is when the row only contains empty cells 
-				{
-					MessageBox.Show(string.Format("Row {0} = {1}", row, sheet.GetRow(row).GetCell(0).StringCellValue));
-				}
-			}
+			ISheet sheet = hssfwb.GetSheetAt(0);
+			string Sheet_name = hssfwb.GetSheetAt(0).SheetName;
+			txt_run.Text = sheet.GetRow(10).GetCell(1).StringCellValue;
+			txt_Razon_Social.Text = sheet.GetRow(8).GetCell(2).StringCellValue;
+			txt_Nombre_fantasia.Text = sheet.GetRow(9).GetCell(2).StringCellValue;
+			txt_direccion.Text = sheet.GetRow(13).GetCell(1).StringCellValue;
+			txt_Email.Text = sheet.GetRow(10).GetCell(5).StringCellValue;
+			txt_telefono.Text = sheet.GetRow(11).GetCell(5).ToString();
 		}
 
 		private void btn_Excel_Click(object sender, EventArgs e)
 		{
-
+			using (OpenFileDialog openFileDialog = new OpenFileDialog())
+			{
+				openFileDialog.Filter = "Excel (*.xlsx;*.xls)|*.xlsx;*.xls";
+				openFileDialog.FilterIndex = 1;
+				openFileDialog.RestoreDirectory = true;
+				if (openFileDialog.ShowDialog() == DialogResult.OK)
+				{
+					FileInfo fi = new FileInfo(openFileDialog.FileName);
+					LeerExcel(openFileDialog.FileName, fi.Extension);
+				}
+			}
 		}
 	}
 }
