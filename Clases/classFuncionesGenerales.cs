@@ -12,6 +12,10 @@ using System.Data;
 using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using NPOI.HSSF.UserModel;
+
 
 namespace classFuncionesGenerales
 {
@@ -258,6 +262,57 @@ namespace classFuncionesGenerales
 		}//id_cliente
 	}
 
+	public class ExcelNpoin
+	{
+		public ISheet LeerExcel(string archivo, string extension,int intHoja, ref string nomHoja)
+		{
+			ISheet sheet = null;
+			IWorkbook hssfwb = null;
+			using (FileStream file = new FileStream(@archivo, FileMode.Open, FileAccess.Read))
+			{
+				//hssfwb = new HSSFWorkbook(file);
+				if (extension == ".xlsx")
+					hssfwb = new XSSFWorkbook(file);
+				else if (extension == ".xls")
+					hssfwb = new HSSFWorkbook(file);
+			}
+
+			sheet = hssfwb.GetSheetAt(intHoja);
+			nomHoja=hssfwb.GetSheetAt(intHoja).SheetName;
+			return sheet;
+		}
+
+		public void CopiarHoja(string archivo, int intHoja,string NombreHoja)
+		{
+			ISheet sheet = null;
+			IWorkbook hssfwb = null;
+			FileInfo fi = new FileInfo(archivo);
+			string extension = fi.Extension;
+			using (FileStream file = new FileStream(@archivo, FileMode.Open, FileAccess.Read))
+			{
+				//hssfwb = new HSSFWorkbook(file);
+				if (extension == ".xlsx")
+				{
+					hssfwb = new XSSFWorkbook(file);
+				}
+					
+				else if (extension == ".xls")
+				{
+					hssfwb = new HSSFWorkbook(file);
+
+				}
+				
+			}
+			sheet = hssfwb.GetSheetAt(intHoja);
+			sheet.CopyTo(hssfwb, $"{NombreHoja}", true, true);
+
+			using (FileStream fs = new FileStream(@archivo, FileMode.Create, FileAccess.Write))
+			{
+				hssfwb.Write(fs);
+			}
+		}
+
+	}
 }
 
 

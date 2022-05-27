@@ -670,17 +670,10 @@ namespace ControlDosimetro
 		{
 			//	HSSFWorkbook hssfwb;
 			IWorkbook hssfwb = null;
-			using (FileStream file = new FileStream(@archivo, FileMode.Open, FileAccess.Read))
-			{
-				//hssfwb = new HSSFWorkbook(file);
-				if (extension == ".xlsx")
-					hssfwb = new XSSFWorkbook(file);
-				else if (extension == ".xls")
-					hssfwb = new HSSFWorkbook(file);
-			}
+			string Sheet_name = "";
+			classFuncionesGenerales.ExcelNpoin ExcelNpoin = new classFuncionesGenerales.ExcelNpoin();
 
-			ISheet sheet = hssfwb.GetSheetAt(0);
-			string Sheet_name = hssfwb.GetSheetAt(0).SheetName;
+			ISheet sheet = ExcelNpoin.LeerExcel(archivo, extension,0,ref Sheet_name);
 			txt_run.Text = sheet.GetRow(10).GetCell(1).StringCellValue;
 			txt_Razon_Social.Text = sheet.GetRow(8).GetCell(2).StringCellValue;
 			txt_Nombre_fantasia.Text = sheet.GetRow(9).GetCell(2).StringCellValue;
