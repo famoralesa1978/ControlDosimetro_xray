@@ -25,8 +25,8 @@ namespace ControlDosimetro
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
 		WorkbookPart wbPart = null;
-		//SpreadsheetDocument document = null;
-		//SpreadsheetDocument documentInforme = null;
+		SpreadsheetDocument document = null;
+		SpreadsheetDocument documentInforme = null;
 		//	SpreadsheetDocument document2 = null;
 		object missing = System.Reflection.Missing.Value;
 		//     object strcampoMarcador;
@@ -546,92 +546,24 @@ namespace ControlDosimetro
 			pnl_Progreso.Visible = false;
 		}
 
-		public static void InsertWorksheet(string docName, int intCantidadHoja, string strFormato)
+		public static void InsertWorksheet(string docName, int intCantidadHoja, string strFormato, string NombreHoja)
 		{
 			classFuncionesGenerales.ExcelNpoin ExcelNpoin = new classFuncionesGenerales.ExcelNpoin();
-			string strNombreHoja = String.Format("Registro{0}", intCantidadHoja);
+			string strNombreHoja = String.Format("{0}{1}", NombreHoja, intCantidadHoja);
 			ExcelNpoin.CopiarHoja(docName, 0, strNombreHoja);
-
-			// Add a blank WorksheetPart.
-			//using (SpreadsheetDocument spreadSheetFormato = SpreadsheetDocument.Open(strFormato, true))
-			//using (SpreadsheetDocument spreadSheet = SpreadsheetDocument.Open(docName, true))
-			//{
-			//	WorksheetPart newWorksheetPart = spreadSheet.WorkbookPart.AddNewPart<WorksheetPart>();
-			//	newWorksheetPart.Worksheet = new Worksheet(new SheetData());
-
-			//	Sheets sheets = spreadSheet.WorkbookPart.Workbook.GetFirstChild<Sheets>();
-			//	string relationshipId = spreadSheet.WorkbookPart.GetIdOfPart(newWorksheetPart);
-
-			//	// Get a unique ID for the new worksheet.
-			//	uint sheetId = 1;
-			//	if (sheets.Elements<Sheet>().Count() > 0)
-			//	{
-			//		sheetId = sheets.Elements<Sheet>().Select(s => s.SheetId.Value).Max() + 1;
-			//	}
-
-			//	// Give the new worksheet a name.
-			//	string sheetName = strNombreHoja;
-
-			//	// Append the new worksheet and associate it with the workbook.
-			//	//Sheet sheet = new Sheet() { Id = relationshipId, SheetId = sheetId, Name = sheetName }; ori
-			//	var sheet = (Sheet)spreadSheetFormato.WorkbookPart.Workbook.Sheets.FirstChild.Clone();
-			//	sheet.Name = strNombreHoja;
-			//	sheet.Id = relationshipId;
-			//	sheet.SheetId = sheetId;
-			//	sheets.Append(sheet);
-			//	spreadSheet.WorkbookPart.Workbook.Save();
-
-
-			//	}
-
-			//// Open the document for editing.
-			//string strNombreHoja = String.Format("Informe{0}", intCantidadHoja);
-			//using (SpreadsheetDocument spreadSheetFormato = SpreadsheetDocument.Open(strFormato, true))
-			//using (SpreadsheetDocument spreadSheet = SpreadsheetDocument.Open(docName, true))
-			//{
-			//	WorksheetPart newWorksheetPart = spreadSheet.WorkbookPart.AddNewPart<WorksheetPart>();
-			//	// Add a blank WorksheetPart.
-
-
-			//	newWorksheetPart.Worksheet = new Worksheet(new SheetData());
-			//	Sheets sheets = spreadSheet.WorkbookPart.Workbook.GetFirstChild<Sheets>();
-			//	string relationshipId = spreadSheet.WorkbookPart.GetIdOfPart(newWorksheetPart);
-
-			//	// Get a unique ID for the new worksheet.
-			//	uint sheetId = Convert.ToUInt16(intCantidadHoja-1);
-			//	if (sheets.Elements<Sheet>().Count() > 0)
-			//	{
-			//		sheetId = sheets.Elements<Sheet>().Select(s => s.SheetId.Value).Max() + 1;
-			//	}
-
-			//	// Give the new worksheet a name.
-			//	string sheetName = strNombreHoja;
-
-			//	// Append the new worksheet and associate it with the workbook.
-			//	//	Sheet sheet = new Sheet() { Id = relationshipId, SheetId = sheetId, Name = sheetName };
-			//	spreadSheetFormato.WorkbookPart.Workbook.Sheets.FirstChild.ClearAllAttributes();
-			//	var sheet = (Sheet)spreadSheetFormato.WorkbookPart.Workbook.Sheets.FirstChild.Clone();
-			//	sheet.Name = strNombreHoja;
-			//	sheet.Id = relationshipId;
-			//	sheet.SheetId = sheetId;
-			//	sheets.Append(sheet);
-
-
-			//	//newWorksheetPart.Worksheet = new Worksheet(new SheetData(sheet));
-
-			//	//	spreadSheet.Close();
-			//	//spreadSheet.WorkbookPart.Workbook.AppendChild(new Worksheet(sheets));
-			//}
-
 		}
 
 		private void btn_Excel_Click(object sender, EventArgs e)
 		{
-			string targetPathFormato = "C:\\BaseTLD\\formato\\" + "FormatoTLD.xlsx";
+			bool bolArchivoGenerado = true;
+			Cursor = Cursors.WaitCursor;
+
+			string targetPathFormatoCodigoBarra = "C:\\BaseTLD\\formato\\" + "FormatoTLD.xlsx";
 			string targetPathFormatoInfome = "C:\\BaseTLD\\formato\\" + "FORMULARIO DESPACHO.xlsx";
 			grdDatos.Sort(grdDatos.Columns["N_pelicula"], ListSortDirection.Ascending);
 
 			string targetPathConf = "C:\\BaseTLD\\Cliente";
+			string targetPathCodigoBarra = "C:\\BaseTLD\\Cliente";
 			string targetPathFormatoFormulario = "C:\\BaseTLD\\Cliente";
 			if (!System.IO.Directory.Exists(targetPathConf))
 			{
@@ -651,10 +583,10 @@ namespace ControlDosimetro
 
 			string strDirCliente = @targetPathConf;
 
-			targetPathConf = "C:\\BaseTLD\\Cliente\\Cliente" + lbl_id_cliente.Text + "\\CodigoBarra";
-			if (!System.IO.Directory.Exists(targetPathConf))
+			targetPathCodigoBarra = "C:\\BaseTLD\\Cliente\\Cliente" + lbl_id_cliente.Text + "\\CodigoBarra";
+			if (!System.IO.Directory.Exists(targetPathCodigoBarra))
 			{
-				System.IO.Directory.CreateDirectory(targetPathConf);
+				System.IO.Directory.CreateDirectory(targetPathCodigoBarra);
 			}
 
 			targetPathFormatoFormulario = "C:\\BaseTLD\\Cliente\\Cliente" + lbl_id_cliente.Text + "\\Formulario";
@@ -664,7 +596,6 @@ namespace ControlDosimetro
 			}
 
 			DataSet dtPeriodo;
-			// SqlCommand cmdPeriodo = new SqlCommand();
 			SqlCommand cmdPeriodo = new SqlCommand();
 
 			cmdPeriodo.CommandText = "SELECT fecha_inicio,fecha_termino, " +
@@ -724,28 +655,29 @@ namespace ControlDosimetro
 																																									strFecha
 																																							);
 
-			if (File.Exists(strPath))
-				File.Copy(strPath, strPathRespaldo, true);
+			string strNombreArchivoCodigoBarra = targetPathCodigoBarra + String.Format("\\ET_Cliente{0}_{1}_{2}_{3}.xlsx", lbl_id_cliente.Text, cbx_id_seccion.Text, cbx_anno.Text.ToString(), cbx_id_periodo.Text.ToString().Substring(0, 1));
+			string strNombreArchivoCodigoBarraRespaldo = targetPathCodigoBarra + String.Format("\\ET_Cliente{0}_{1}_{2}_{3}_{4}.xlsx", lbl_id_cliente.Text, cbx_id_seccion.Text, cbx_anno.Text.ToString(), cbx_id_periodo.Text.ToString().Substring(0, 1), strFecha);
 
-			File.Copy(targetPathFormato, targetPathConf + "\\ET_Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri.xlsx", true);
+			//Crea el excel para imrpimir el codigo de barra
+			if (File.Exists(strNombreArchivoCodigoBarra))
+			{
+				File.Copy(strNombreArchivoCodigoBarra, strNombreArchivoCodigoBarraRespaldo, true);
+				File.Delete(strNombreArchivoCodigoBarra);
+			}
+			File.Copy(targetPathFormatoCodigoBarra, strNombreArchivoCodigoBarra, true);
 
 
-			strPath = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + intExcel.ToString() + ".xlsx";
-			strPathRespaldo = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + intExcel.ToString() + "_" + strFecha + ".xlsx";
-			//Crea el excel para imrpimir el codigo
+			//Crea el excel para imrpimir el cliente
 			if (File.Exists(strNombreArchivoCodigo))
 			{
 				File.Copy(strNombreArchivoCodigo, strNombreArchivoCodigoRespaldo, true);
 				File.Delete(strNombreArchivoCodigo);
 			}
+			File.Copy(targetPathFormatoInfome, strNombreArchivoCodigo, true);
 
-
-			File.Copy(targetPathFormatoInfome, strNombreArchivoCodigo); //targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri" + ".xlsx", true);
-
-
-			string strpathcopiar = targetPathConf + "\\ET_Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri.xlsx";
 
 			int intFila = 2;
+			int intNumRegistro = 1;
 			int intHojaExcel = 20;
 
 			string strpathcopiarInforme = "";// targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + intExcel.ToString() + ".xlsx";
@@ -754,121 +686,94 @@ namespace ControlDosimetro
 
 			strpathcopiarInforme = strNombreArchivoCodigo;
 
-			int intcantidadHoja = (grdDatos.Rows.Count / 14) + (grdDatos.Rows.Count % 14) == 0 ? 0 : 1;
+			int intcantidadHoja = (grdDatos.Rows.Count / 14) + ((grdDatos.Rows.Count % 14) == 0 ? 0 : 1);
+			string strNombreHoja = "Registro";
 			for (int intnumHoja = 1; intnumHoja <= intcantidadHoja; intnumHoja++)
 			{
 
-				InsertWorksheet(strNombreArchivoCodigo, intnumHoja, targetPathFormatoInfome);
+				InsertWorksheet(strNombreArchivoCodigo, intnumHoja, targetPathFormatoInfome, strNombreHoja);
 			}
 
 
-			//for (int idatos = 0; idatos <= grdDatos.Rows.Count - 1; idatos++)
-			//{
 
-			//	checkGenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[idatos].Cells["Generar"];
-			//	checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[idatos].Cells["chkGenerado"];
-			//	txtndocumento = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["NDocumento"];
-			//	txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["N_pelicula"];
-			//	txtid_estadodosimetro = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["id_estadodosimetro"];
-			//	Rut = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Rut"];
-			//	id_dosimetro = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["id_dosimetro"];
-			//	Paterno = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Paterno"];
-			//	Maternos = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Maternos"];
-			//	Nombres = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Nombres"];
-			//	id_sucursal = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["id_sucursal"];
-			//	Id_Personal = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Id_Personal"];
-			//	strDireccion = cbx_Sucursal.Text.ToString().ToUpper();
-			//	string wsName = "Sheet1";
-			//	if ((checkCell.Value.ToString() == "1"))//(checkGenerar.Value.ToString() == "1") &&&& (txtid_estadodosimetro.Value.ToString() == "-1")
-			//	{
-			//		if(intHojaExcel==34)
-			//		{
-			//			intHojaExcel = 20;
-			//			intExcel = intExcel + 1;
-			//			strpathcopiarInforme = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + (intExcel-1).ToString() + ".xlsx";
+			for (int idatos = 0; idatos <= grdDatos.Rows.Count - 1; idatos++)
+			{
+				try
+				{
+					checkGenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[idatos].Cells["Generar"];
+					checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[idatos].Cells["chkGenerado"];
+					txtndocumento = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["NDocumento"];
+					txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["N_pelicula"];
+					txtid_estadodosimetro = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["id_estadodosimetro"];
+					Rut = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Rut"];
+					id_dosimetro = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["id_dosimetro"];
+					Paterno = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Paterno"];
+					Maternos = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Maternos"];
+					Nombres = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Nombres"];
+					id_sucursal = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["id_sucursal"];
+					Id_Personal = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Id_Personal"];
+					strDireccion = cbx_Sucursal.Text.ToString().ToUpper();
+					//	if ((checkCell.Value.ToString() == "1"))//(checkGenerar.Value.ToString() == "1") &&&& (txtid_estadodosimetro.Value.ToString() == "-1")
+					//	{
+					if (intHojaExcel == 34)
+					{
+						intHojaExcel = 20;
+						intExcel = intExcel + 1;
+						intNumRegistro = intNumRegistro + 1;
+					}
+					string wsName = String.Format("Registro{0}", intNumRegistro);
+					string wsNameCodigoBarra = String.Format("Sheet1");
+					//INform para imprimir el codigo barra
+					document = SpreadsheetDocument.Open(strNombreArchivoCodigoBarra, true);
+					wbPart = document.WorkbookPart;
+					UpdateValue(wsNameCodigoBarra, "A" + (intFila).ToString(), int.Parse(txtnpelicula.Value.ToString()).ToString(fmt), 0, true);
+					UpdateValue(wsNameCodigoBarra, "B" + (intFila).ToString(), Paterno.Value.ToString().ToUpper(), 0, true);
+					UpdateValue(wsNameCodigoBarra, "C" + (intFila).ToString(), Maternos.Value.ToString().ToUpper(), 0, true);
+					UpdateValue(wsNameCodigoBarra, "D" + (intFila).ToString(), Nombres.Value.ToString().ToUpper(), 0, true);// Nombres.Value.ToString().Substring(0, 1).ToUpper() + Nombres.Value.ToString().Substring(1, Nombres.Value.ToString().Length - 1).ToLower(), 0, true);
+					UpdateValue(wsNameCodigoBarra, "E" + (intFila).ToString(), Rut.Value.ToString().ToUpperInvariant(), 0, true);
+					UpdateValue(wsNameCodigoBarra, "F" + (intFila).ToString(), strTri, 0, true);
+					UpdateValue(wsNameCodigoBarra, "G" + (intFila).ToString(), strfecha_inicio, 0, true);
+					document.Close();
 
-			//			string strpathcopiarInformeV1 = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + (intExcel).ToString() + ".xlsx";
+					//Genera informe para el cliente
+					document = SpreadsheetDocument.Open(strpathcopiarInforme, true);
+					wbPart = document.WorkbookPart;
 
-			//			strPath = strpathcopiarInforme;
-			//			strPathRespaldo = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + (intExcel).ToString() +"_" + strFecha + ".xlsx";
+					UpdateValue(wsName, "B" + (intHojaExcel).ToString(), int.Parse(txtnpelicula.Value.ToString()).ToString(fmt), 0, true);
+					UpdateValue(wsName, "C" + (intHojaExcel).ToString(), Paterno.Value.ToString().ToUpper(), 0, true);
+					UpdateValue(wsName, "D" + (intHojaExcel).ToString(), Maternos.Value.ToString().ToUpper(), 0, true);
+					UpdateValue(wsName, "E" + (intHojaExcel).ToString(), Nombres.Value.ToString().ToUpper(), 0, true);
+					UpdateValue(wsName, "F" + (intHojaExcel).ToString(), Rut.Value.ToString().ToUpperInvariant(), 0, true);
+					//UpdateValue(wsName, "D2" , strfecha_Per, 0, true);
+					//UpdateValue(wsName, "D18", strfecha_Fin, 0, true);
+					UpdateValue(wsName, "B16", strUsados, 0, true);
+					UpdateValue(wsName, "C12", strDireccion, 0, true);
+					UpdateValue(wsName, "C14", lbl_rut_cliente.Text.ToUpper(), 0, true);
+					UpdateValue(wsName, "F14", cbx_id_seccion.Text.ToUpper(), 0, true);
+					//	UpdateValue(wsName, "M4", strRegion, 0, true);
+					UpdateValue(wsName, "C13", strComuna.ToUpper() + ", " + strRegion.ToUpper(), 0, true);
+					UpdateValue(wsName, "C11", lbl_nombreCliente.Text.ToUpper(), 0, true);
+					UpdateValue(wsName, "G11", lbl_id_cliente.Text, 0, true);
+					document.Close();
 
-			//			if (File.Exists(strpathcopiarInformeV1))
-			//				File.Copy(strpathcopiarInformeV1, strPathRespaldo, true);
+					intFila = intFila + 1;
+					intHojaExcel = intHojaExcel + 1;
+					bolArchivoGenerado = true;
+				}
+				catch (Exception ex)
+				{
+					classFuncionesGenerales.mensajes.MensajeError(ex.Message);
+					bolArchivoGenerado = false;
+					break;
+				}
 
-			//			File.Copy(strpathcopiarInforme, targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + (intExcel).ToString() + ".xlsx", true);
-
-			//			strpathcopiarInforme = targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + intExcel.ToString() + ".xlsx";
-
-			//			for (int intFilalimpiar= intHojaExcel; intFilalimpiar<=33; intFilalimpiar++){
-			//				wsName = "Informe";
-			//				document = SpreadsheetDocument.Open(strpathcopiarInforme, true);
-			//				wbPart = document.WorkbookPart;
-			//				UpdateValue(wsName, "B" + (intFilalimpiar).ToString(), "", 0, true);
-			//				UpdateValue(wsName, "C" + (intFilalimpiar).ToString(), "", 0, true);
-			//				UpdateValue(wsName, "D" + (intFilalimpiar).ToString(), "", 0, true);
-			//				UpdateValue(wsName, "E" + (intFilalimpiar).ToString(), "", 0, true);
-			//				UpdateValue(wsName, "F" + (intFilalimpiar).ToString(),"", 0, true);
-			//				UpdateValue(wsName, "G" + (intFilalimpiar).ToString(), "", 0, true);
-			//				UpdateValue(wsName, "B16", strUsados, 0, true);
-			//		//		UpdateValue(wsName, "D18", strfecha_Fin, 0, true);
-			//	//			UpdateValue(wsName, "J4", strServicio, 0, true);
-			//				UpdateValue(wsName, "C12", strDireccion.ToUpper(), 0, true);
-			//				UpdateValue(wsName, "C14", lbl_rut_cliente.Text, 0, true);
-
-			//			//	UpdateValue(wsName, "M4", strRegion, 0, true);
-			//				UpdateValue(wsName, "C13", strComuna.ToUpper() + ", " + strRegion.ToUpper(), 0, true);
-			//				UpdateValue(wsName, "C11", lbl_nombreCliente.Text.ToUpper(), 0, true);
-			//				UpdateValue(wsName, "G11", lbl_id_cliente.Text, 0, true);
-			//				UpdateValue(wsName, "F14", cbx_id_seccion.Text.ToUpper(), 0, true);
-			//				//lbl_id_cliente
-			//				document.Close();
-			//			}
-			//		}
-
-			//		document = SpreadsheetDocument.Open(strpathcopiar, true);
-			//		wbPart = document.WorkbookPart;
-			//		wsName = "Sheet1";
-			//		UpdateValue(wsName, "A" + (intFila).ToString(), int.Parse(txtnpelicula.Value.ToString()).ToString(fmt), 0, true);
-			//		UpdateValue(wsName, "B" + (intFila).ToString(), Paterno.Value.ToString().ToUpper(), 0, true);
-			//		UpdateValue(wsName, "C" + (intFila).ToString(), Maternos.Value.ToString().ToUpper(), 0, true);
-			//		UpdateValue(wsName, "D" + (intFila).ToString(), Nombres.Value.ToString().ToUpper(), 0,true);// Nombres.Value.ToString().Substring(0, 1).ToUpper() + Nombres.Value.ToString().Substring(1, Nombres.Value.ToString().Length - 1).ToLower(), 0, true);
-			//		UpdateValue(wsName, "E" + (intFila).ToString(), Rut.Value.ToString().ToUpperInvariant(), 0, true);
-			//		UpdateValue(wsName, "F" + (intFila).ToString(), strTri, 0, true);
-			//		UpdateValue(wsName, "G" + (intFila).ToString(), strfecha_inicio, 0, true);
-			//		document.Close();
-
-			//		wsName = "Informe";
-			//		document = SpreadsheetDocument.Open(strpathcopiarInforme, true);
-			//		wbPart = document.WorkbookPart;
-
-			//		UpdateValue(wsName, "B" + (intHojaExcel).ToString(), int.Parse(txtnpelicula.Value.ToString()).ToString(fmt), 0, true);
-			//		UpdateValue(wsName, "C" + (intHojaExcel).ToString(), Paterno.Value.ToString().ToUpper(), 0, true);
-			//		UpdateValue(wsName, "D" + (intHojaExcel).ToString(), Maternos.Value.ToString().ToUpper(), 0, true);
-			//		UpdateValue(wsName, "E" + (intHojaExcel).ToString(), Nombres.Value.ToString().ToUpper(), 0, true);
-			//		UpdateValue(wsName, "F" + (intHojaExcel).ToString(), Rut.Value.ToString().ToUpperInvariant(), 0, true);
-			//		//UpdateValue(wsName, "D2" , strfecha_Per, 0, true);
-			//		//UpdateValue(wsName, "D18", strfecha_Fin, 0, true);
-			//		UpdateValue(wsName, "B16", strUsados, 0, true);
-			//		UpdateValue(wsName, "C12", strDireccion, 0, true);
-			//		UpdateValue(wsName, "C14", lbl_rut_cliente.Text.ToUpper(), 0, true);
-			//		UpdateValue(wsName, "F14", cbx_id_seccion.Text.ToUpper(), 0, true);
-			//		//	UpdateValue(wsName, "M4", strRegion, 0, true);
-			//		UpdateValue(wsName, "C13", strComuna.ToUpper() + ", " + strRegion.ToUpper(), 0, true);
-			//		UpdateValue(wsName, "C11", lbl_nombreCliente.Text.ToUpper(), 0, true);
-			//		UpdateValue(wsName, "G11", lbl_id_cliente.Text, 0, true);
-			//		document.Close();
-
-
-			//		intFila = intFila + 1;
-			//		intHojaExcel = intHojaExcel + 1;
-			//		//
-			//	}
-
-
-
-			//}
-			Process.Start("explorer.exe", strDirCliente);
-			MessageBox.Show("El archivo fue generado");
+			}
+			if(bolArchivoGenerado == true)
+			{
+				Process.Start("explorer.exe", strDirCliente);
+				MessageBox.Show("El archivo fue generado");
+			}
+			Cursor = Cursors.Default;
 		}
 
 		private void btn_Sucursal_Click(object sender, EventArgs e)
