@@ -680,6 +680,9 @@ namespace ControlDosimetro
 			int intNumRegistro = 1;
 			int intHojaExcel = 20;
 
+			String strTitulo = String.Format("Dosimetria Personal TLD {0} Trimestre {1}",
+													cbx_id_periodo.Text.Substring(0,1).ToString()=="1"?"Primer": cbx_id_periodo.Text.Substring(0, 1).ToString() == "2" ? "Segundo": cbx_id_periodo.Text.Substring(0, 1).ToString() == "3" ? "Tercer":"Cuarto", 
+													cbx_anno.Text);
 			string strpathcopiarInforme = "";// targetPathFormatoFormulario + "\\Formulario Cliente" + lbl_id_cliente.Text + "_" + cbx_id_seccion.Text + "_" + cbx_anno.Text.ToString() + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "Tri_" + intExcel.ToString() + ".xlsx";
 			string strUsados = "Estos dosimetros deben ser usados entre el " + strfecha_Per;// + " al " + strfecha_Fin;
 			string fmt = "00000000";
@@ -738,7 +741,7 @@ namespace ControlDosimetro
 					//Genera informe para el cliente
 					document = SpreadsheetDocument.Open(strpathcopiarInforme, true);
 					wbPart = document.WorkbookPart;
-
+					
 					UpdateValue(wsName, "B" + (intHojaExcel).ToString(), int.Parse(txtnpelicula.Value.ToString()).ToString(fmt), 0, true);
 					UpdateValue(wsName, "C" + (intHojaExcel).ToString(), Paterno.Value.ToString().ToUpper(), 0, true);
 					UpdateValue(wsName, "D" + (intHojaExcel).ToString(), Maternos.Value.ToString().ToUpper(), 0, true);
@@ -746,6 +749,7 @@ namespace ControlDosimetro
 					UpdateValue(wsName, "F" + (intHojaExcel).ToString(), Rut.Value.ToString().ToUpperInvariant(), 0, true);
 					//UpdateValue(wsName, "D2" , strfecha_Per, 0, true);
 					//UpdateValue(wsName, "D18", strfecha_Fin, 0, true);
+					UpdateValue(wsName, "B9", strTitulo, 0, true);
 					UpdateValue(wsName, "B16", strUsados, 0, true);
 					UpdateValue(wsName, "C12", strDireccion, 0, true);
 					UpdateValue(wsName, "C14", lbl_rut_cliente.Text.ToUpper(), 0, true);
