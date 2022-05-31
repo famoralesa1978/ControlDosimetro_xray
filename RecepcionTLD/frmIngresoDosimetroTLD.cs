@@ -556,15 +556,17 @@ namespace ControlDosimetro
 		private void btn_Excel_Click(object sender, EventArgs e)
 		{
 			bool bolArchivoGenerado = true;
-			Cursor = Cursors.WaitCursor;
-
+			Cursor = Cursors.WaitCursor;//FORMULARIO DESPACHO_Laboratorio
+																	//FormularioLaboratorio
 			string targetPathFormatoCodigoBarra = "C:\\BaseTLD\\formato\\" + "FormatoTLD.xlsx";
 			string targetPathFormatoInfome = "C:\\BaseTLD\\formato\\" + "FORMULARIO DESPACHO.xlsx";
+			string targetPathFormatoFomratoLaboratorio= "C:\\BaseTLD\\formato\\" + "FORMULARIO DESPACHO_Laboratorio.xlsx";
 			grdDatos.Sort(grdDatos.Columns["N_pelicula"], ListSortDirection.Ascending);
 
 			string targetPathConf = "C:\\BaseTLD\\Cliente";
 			string targetPathCodigoBarra = "C:\\BaseTLD\\Cliente";
 			string targetPathFormatoFormulario = "C:\\BaseTLD\\Cliente";
+			string targetPathLaboratorio = "C:\\BaseTLD\\Cliente";
 			if (!System.IO.Directory.Exists(targetPathConf))
 			{
 				System.IO.Directory.CreateDirectory(targetPathConf);
@@ -589,10 +591,16 @@ namespace ControlDosimetro
 				System.IO.Directory.CreateDirectory(targetPathCodigoBarra);
 			}
 
-			targetPathFormatoFormulario = "C:\\BaseTLD\\Cliente\\Cliente" + lbl_id_cliente.Text + "\\Formulario";
+			targetPathFormatoFormulario = "C:\\BaseTLD\\Cliente\\Cliente" + lbl_id_cliente.Text + "\\Informe";
 			if (!System.IO.Directory.Exists(targetPathFormatoFormulario))
 			{
 				System.IO.Directory.CreateDirectory(targetPathFormatoFormulario);
+			}
+
+			targetPathLaboratorio = "C:\\BaseTLD\\Cliente\\Cliente" + lbl_id_cliente.Text + "\\Laboratorio";
+			if (!System.IO.Directory.Exists(targetPathLaboratorio))
+			{
+				System.IO.Directory.CreateDirectory(targetPathLaboratorio);
 			}
 
 			DataSet dtPeriodo;
@@ -654,9 +662,32 @@ namespace ControlDosimetro
 																																									cbx_id_periodo.Text.ToString().Substring(0, 1),
 																																									strFecha
 																																							);
+			string strNombreArchivoLabotatorio = String.Format(targetPathLaboratorio + "\\Formulario Laboratorio{0}{1}{2}{3}Tri.xlsx",
+																																									lbl_id_cliente.Text + "_",
+																																								//	cbx_Sucursal.Text + "_",
+																																									String.IsNullOrWhiteSpace(cbx_id_seccion.Text) ? "" : cbx_id_seccion.Text + "_",
+																																									cbx_anno.Text.ToString() + "_",
+																																									cbx_id_periodo.Text.ToString().Substring(0, 1)
+																																							);
+			string strNombreArchivoLabotatorioRespaldo = String.Format(targetPathLaboratorio + "\\Formulario Laboratorio{0}{1}{2}{3}{4}Tri.xlsx",
+																																									lbl_id_cliente.Text + "_",
+																																								//	cbx_Sucursal.Text + "_",
+																																									String.IsNullOrWhiteSpace(cbx_id_seccion.Text) ? "" : cbx_id_seccion.Text + "_",
+																																									cbx_anno.Text.ToString() + "_",
+																																									cbx_id_periodo.Text.ToString().Substring(0, 1),
+																																									strFecha
+																																							);
 
-			string strNombreArchivoCodigoBarra = targetPathCodigoBarra + String.Format("\\ET_Cliente{0}_{1}_{2}_{3}.xlsx", lbl_id_cliente.Text, cbx_id_seccion.Text, cbx_anno.Text.ToString(), cbx_id_periodo.Text.ToString().Substring(0, 1));
-			string strNombreArchivoCodigoBarraRespaldo = targetPathCodigoBarra + String.Format("\\ET_Cliente{0}_{1}_{2}_{3}_{4}.xlsx", lbl_id_cliente.Text, cbx_id_seccion.Text, cbx_anno.Text.ToString(), cbx_id_periodo.Text.ToString().Substring(0, 1), strFecha);
+			string strNombreArchivoCodigoBarra = targetPathCodigoBarra + String.Format("\\ET_Cliente{0}_{1}_{2}_{3}Tri.xlsx", lbl_id_cliente.Text, cbx_id_seccion.Text, cbx_anno.Text.ToString(), cbx_id_periodo.Text.ToString().Substring(0, 1));
+			string strNombreArchivoCodigoBarraRespaldo = targetPathCodigoBarra + String.Format("\\ET_Cliente{0}_{1}_{2}_{3}_{4}Tri.xlsx", lbl_id_cliente.Text, cbx_id_seccion.Text, cbx_anno.Text.ToString(), cbx_id_periodo.Text.ToString().Substring(0, 1), strFecha);
+
+			//Crea el excel para imrpimir el laboratorio
+			if (File.Exists(strNombreArchivoLabotatorio))
+			{
+				File.Copy(strNombreArchivoLabotatorio, strNombreArchivoLabotatorioRespaldo, true);
+				File.Delete(strNombreArchivoLabotatorio);
+			}
+			File.Copy(targetPathFormatoFomratoLaboratorio, strNombreArchivoLabotatorio, true);
 
 			//Crea el excel para imrpimir el codigo de barra
 			if (File.Exists(strNombreArchivoCodigoBarra))
@@ -695,6 +726,7 @@ namespace ControlDosimetro
 			{
 
 				InsertWorksheet(strNombreArchivoCodigo, intnumHoja, targetPathFormatoInfome, strNombreHoja);
+				InsertWorksheet(strNombreArchivoLabotatorio, intnumHoja, targetPathFormatoFomratoLaboratorio, strNombreHoja);
 			}
 
 
@@ -742,6 +774,28 @@ namespace ControlDosimetro
 					document = SpreadsheetDocument.Open(strpathcopiarInforme, true);
 					wbPart = document.WorkbookPart;
 					
+					UpdateValue(wsName, "B" + (intHojaExcel).ToString(), int.Parse(txtnpelicula.Value.ToString()).ToString(fmt), 0, true);
+					UpdateValue(wsName, "C" + (intHojaExcel).ToString(), Paterno.Value.ToString().ToUpper(), 0, true);
+					UpdateValue(wsName, "D" + (intHojaExcel).ToString(), Maternos.Value.ToString().ToUpper(), 0, true);
+					UpdateValue(wsName, "E" + (intHojaExcel).ToString(), Nombres.Value.ToString().ToUpper(), 0, true);
+					UpdateValue(wsName, "F" + (intHojaExcel).ToString(), Rut.Value.ToString().ToUpperInvariant(), 0, true);
+					//UpdateValue(wsName, "D2" , strfecha_Per, 0, true);
+					//UpdateValue(wsName, "D18", strfecha_Fin, 0, true);
+					UpdateValue(wsName, "B9", strTitulo, 0, true);
+					UpdateValue(wsName, "B16", strUsados, 0, true);
+					UpdateValue(wsName, "C12", strDireccion, 0, true);
+					UpdateValue(wsName, "C14", lbl_rut_cliente.Text.ToUpper(), 0, true);
+					UpdateValue(wsName, "F14", cbx_id_seccion.Text.ToUpper(), 0, true);
+					//	UpdateValue(wsName, "M4", strRegion, 0, true);
+					UpdateValue(wsName, "C13", strComuna.ToUpper() + ", " + strRegion.ToUpper(), 0, true);
+					UpdateValue(wsName, "C11", lbl_nombreCliente.Text.ToUpper(), 0, true);
+					UpdateValue(wsName, "G11", lbl_id_cliente.Text, 0, true);
+					document.Close();
+
+					//Genera informe para el laboratorio
+					document = SpreadsheetDocument.Open(strNombreArchivoLabotatorio, true);
+					wbPart = document.WorkbookPart;
+
 					UpdateValue(wsName, "B" + (intHojaExcel).ToString(), int.Parse(txtnpelicula.Value.ToString()).ToString(fmt), 0, true);
 					UpdateValue(wsName, "C" + (intHojaExcel).ToString(), Paterno.Value.ToString().ToUpper(), 0, true);
 					UpdateValue(wsName, "D" + (intHojaExcel).ToString(), Maternos.Value.ToString().ToUpper(), 0, true);
