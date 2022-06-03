@@ -153,9 +153,8 @@
 			this.lbl_rut_cliente.AutoSize = true;
 			this.lbl_rut_cliente.Location = new System.Drawing.Point(84, 58);
 			this.lbl_rut_cliente.Name = "lbl_rut_cliente";
-			this.lbl_rut_cliente.Size = new System.Drawing.Size(53, 13);
+			this.lbl_rut_cliente.Size = new System.Drawing.Size(0, 13);
 			this.lbl_rut_cliente.TabIndex = 46;
-			this.lbl_rut_cliente.Text = "rut cliente";
 			// 
 			// btn_filtro
 			// 
@@ -194,9 +193,8 @@
 			this.lbl_nombreCliente.AutoSize = true;
 			this.lbl_nombreCliente.Location = new System.Drawing.Point(84, 39);
 			this.lbl_nombreCliente.Name = "lbl_nombreCliente";
-			this.lbl_nombreCliente.Size = new System.Drawing.Size(35, 13);
+			this.lbl_nombreCliente.Size = new System.Drawing.Size(0, 13);
 			this.lbl_nombreCliente.TabIndex = 42;
-			this.lbl_nombreCliente.Text = "label1";
 			// 
 			// label1
 			// 
@@ -526,9 +524,9 @@
 			this.label4.AutoSize = true;
 			this.label4.Location = new System.Drawing.Point(5, 174);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(48, 13);
+			this.label4.Size = new System.Drawing.Size(52, 13);
 			this.label4.TabIndex = 10;
-			this.label4.Text = "Sucursal";
+			this.label4.Text = "Dirección";
 			// 
 			// cbx_Sucursal
 			// 
