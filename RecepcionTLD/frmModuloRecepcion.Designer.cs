@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.rbtTLD = new System.Windows.Forms.RadioButton();
 			this.rbtDosimetria = new System.Windows.Forms.RadioButton();
@@ -41,7 +41,6 @@
 			this.btn_filtro = new System.Windows.Forms.Button();
 			this.btn_cargar = new System.Windows.Forms.Button();
 			this.cbx_id_periodo = new System.Windows.Forms.ComboBox();
-			this.lbl_nombreCliente = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.cbx_anno = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
@@ -81,6 +80,12 @@
 			this.btn_Guardar = new System.Windows.Forms.Button();
 			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.label7 = new System.Windows.Forms.Label();
+			this.label8 = new System.Windows.Forms.Label();
+			this.label11 = new System.Windows.Forms.Label();
+			this.lbl_rut_cliente = new System.Windows.Forms.Label();
+			this.btn_Cargar_cliente = new System.Windows.Forms.Button();
+			this.label10 = new System.Windows.Forms.Label();
+			this.lbl_nombreCliente = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -90,6 +95,12 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.label10);
+			this.groupBox1.Controls.Add(this.lbl_nombreCliente);
+			this.groupBox1.Controls.Add(this.btn_Cargar_cliente);
+			this.groupBox1.Controls.Add(this.label8);
+			this.groupBox1.Controls.Add(this.label11);
+			this.groupBox1.Controls.Add(this.lbl_rut_cliente);
 			this.groupBox1.Controls.Add(this.rbtTLD);
 			this.groupBox1.Controls.Add(this.rbtDosimetria);
 			this.groupBox1.Controls.Add(this.txt_Observacion);
@@ -100,14 +111,13 @@
 			this.groupBox1.Controls.Add(this.btn_filtro);
 			this.groupBox1.Controls.Add(this.btn_cargar);
 			this.groupBox1.Controls.Add(this.cbx_id_periodo);
-			this.groupBox1.Controls.Add(this.lbl_nombreCliente);
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Controls.Add(this.cbx_anno);
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Location = new System.Drawing.Point(5, 28);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(635, 164);
+			this.groupBox1.Size = new System.Drawing.Size(635, 174);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Dato Cliente";
@@ -137,7 +147,7 @@
 			// 
 			// txt_Observacion
 			// 
-			this.txt_Observacion.Location = new System.Drawing.Point(87, 108);
+			this.txt_Observacion.Location = new System.Drawing.Point(87, 145);
 			this.txt_Observacion.MaxLength = 200;
 			this.txt_Observacion.Name = "txt_Observacion";
 			this.txt_Observacion.Size = new System.Drawing.Size(366, 20);
@@ -146,7 +156,7 @@
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(12, 111);
+			this.label9.Location = new System.Drawing.Point(12, 148);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(67, 13);
 			this.label9.TabIndex = 46;
@@ -154,7 +164,7 @@
 			// 
 			// txt_NDocumento
 			// 
-			this.txt_NDocumento.Location = new System.Drawing.Point(87, 82);
+			this.txt_NDocumento.Location = new System.Drawing.Point(87, 119);
 			this.txt_NDocumento.Name = "txt_NDocumento";
 			this.txt_NDocumento.Size = new System.Drawing.Size(100, 20);
 			this.txt_NDocumento.TabIndex = 4;
@@ -162,7 +172,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(12, 85);
+			this.label4.Location = new System.Drawing.Point(12, 122);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(77, 13);
 			this.label4.TabIndex = 45;
@@ -187,7 +197,7 @@
 			// 
 			// btn_cargar
 			// 
-			this.btn_cargar.Location = new System.Drawing.Point(489, 36);
+			this.btn_cargar.Location = new System.Drawing.Point(220, 94);
 			this.btn_cargar.Name = "btn_cargar";
 			this.btn_cargar.Size = new System.Drawing.Size(75, 23);
 			this.btn_cargar.TabIndex = 5;
@@ -197,26 +207,19 @@
 			// 
 			// cbx_id_periodo
 			// 
+			this.cbx_id_periodo.DisplayMember = "Trimestre";
 			this.cbx_id_periodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_id_periodo.FormattingEnabled = true;
-			this.cbx_id_periodo.Location = new System.Drawing.Point(87, 59);
+			this.cbx_id_periodo.Location = new System.Drawing.Point(87, 96);
 			this.cbx_id_periodo.Name = "cbx_id_periodo";
 			this.cbx_id_periodo.Size = new System.Drawing.Size(121, 21);
 			this.cbx_id_periodo.TabIndex = 43;
-			// 
-			// lbl_nombreCliente
-			// 
-			this.lbl_nombreCliente.AutoSize = true;
-			this.lbl_nombreCliente.Location = new System.Drawing.Point(146, 19);
-			this.lbl_nombreCliente.Name = "lbl_nombreCliente";
-			this.lbl_nombreCliente.Size = new System.Drawing.Size(35, 13);
-			this.lbl_nombreCliente.TabIndex = 42;
-			this.lbl_nombreCliente.Text = "label1";
+			this.cbx_id_periodo.ValueMember = "Id_Periodo";
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(12, 62);
+			this.label1.Location = new System.Drawing.Point(12, 99);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(42, 13);
 			this.label1.TabIndex = 36;
@@ -224,12 +227,14 @@
 			// 
 			// cbx_anno
 			// 
+			this.cbx_anno.DisplayMember = "anno";
 			this.cbx_anno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_anno.FormattingEnabled = true;
-			this.cbx_anno.Location = new System.Drawing.Point(87, 35);
+			this.cbx_anno.Location = new System.Drawing.Point(87, 72);
 			this.cbx_anno.Name = "cbx_anno";
 			this.cbx_anno.Size = new System.Drawing.Size(121, 21);
 			this.cbx_anno.TabIndex = 2;
+			this.cbx_anno.ValueMember = "anno";
 			this.cbx_anno.SelectedIndexChanged += new System.EventHandler(this.cbx_anno_SelectedIndexChanged);
 			// 
 			// label2
@@ -244,7 +249,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(12, 38);
+			this.label3.Location = new System.Drawing.Point(12, 75);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(26, 13);
 			this.label3.TabIndex = 4;
@@ -262,7 +267,7 @@
 			this.groupBox2.Controls.Add(this.label5);
 			this.groupBox2.Controls.Add(this.pnl_Progreso);
 			this.groupBox2.Controls.Add(this.grdDatos);
-			this.groupBox2.Location = new System.Drawing.Point(5, 198);
+			this.groupBox2.Location = new System.Drawing.Point(5, 202);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(836, 329);
 			this.groupBox2.TabIndex = 7;
@@ -540,9 +545,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle1.Format = "N2";
-			dataGridViewCellStyle1.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle19.Format = "N2";
+			dataGridViewCellStyle19.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle19;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -560,9 +565,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle2.Format = "N2";
-			dataGridViewCellStyle2.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle20.Format = "N2";
+			dataGridViewCellStyle20.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle20;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -595,7 +600,7 @@
 			this.checkBox2.Checked = true;
 			this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBox2.Enabled = false;
-			this.checkBox2.Location = new System.Drawing.Point(657, 175);
+			this.checkBox2.Location = new System.Drawing.Point(657, 179);
 			this.checkBox2.Name = "checkBox2";
 			this.checkBox2.Size = new System.Drawing.Size(145, 17);
 			this.checkBox2.TabIndex = 17;
@@ -611,6 +616,58 @@
 			this.label7.Size = new System.Drawing.Size(46, 13);
 			this.label7.TabIndex = 18;
 			this.label7.Text = "Estado";
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(12, 36);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(44, 13);
+			this.label8.TabIndex = 63;
+			this.label8.Text = "Nombre";
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Location = new System.Drawing.Point(12, 54);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(24, 13);
+			this.label11.TabIndex = 62;
+			this.label11.Text = "Rut";
+			// 
+			// lbl_rut_cliente
+			// 
+			this.lbl_rut_cliente.AutoSize = true;
+			this.lbl_rut_cliente.Location = new System.Drawing.Point(89, 54);
+			this.lbl_rut_cliente.Name = "lbl_rut_cliente";
+			this.lbl_rut_cliente.Size = new System.Drawing.Size(0, 13);
+			this.lbl_rut_cliente.TabIndex = 60;
+			// 
+			// btn_Cargar_cliente
+			// 
+			this.btn_Cargar_cliente.Location = new System.Drawing.Point(146, 10);
+			this.btn_Cargar_cliente.Name = "btn_Cargar_cliente";
+			this.btn_Cargar_cliente.Size = new System.Drawing.Size(119, 23);
+			this.btn_Cargar_cliente.TabIndex = 64;
+			this.btn_Cargar_cliente.Text = "Cargar Cliente";
+			this.btn_Cargar_cliente.UseVisualStyleBackColor = true;
+			this.btn_Cargar_cliente.Click += new System.EventHandler(this.btn_Cargar_cliente_Click);
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Location = new System.Drawing.Point(89, 35);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(0, 13);
+			this.label10.TabIndex = 66;
+			// 
+			// lbl_nombreCliente
+			// 
+			this.lbl_nombreCliente.AutoSize = true;
+			this.lbl_nombreCliente.Location = new System.Drawing.Point(83, 35);
+			this.lbl_nombreCliente.Name = "lbl_nombreCliente";
+			this.lbl_nombreCliente.Size = new System.Drawing.Size(0, 13);
+			this.lbl_nombreCliente.TabIndex = 65;
 			// 
 			// frmModuloRecepcion
 			// 
@@ -652,7 +709,6 @@
           private System.Windows.Forms.Label label2;
 								private System.Windows.Forms.Label label1;
                                 private System.Windows.Forms.ComboBox cbx_anno;
-                                private System.Windows.Forms.Label lbl_nombreCliente;
 								private System.Windows.Forms.ComboBox cbx_id_periodo;
                                 private System.Windows.Forms.Button btn_cargar;
                                 private System.Windows.Forms.Button btn_filtro;
@@ -695,5 +751,11 @@
                                 private System.Windows.Forms.RadioButton rbtTLD;
                                 private System.Windows.Forms.RadioButton rbtDosimetria;
         private System.Windows.Forms.ToolStripButton btn_Cliente;
-    }
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.Label lbl_rut_cliente;
+		private System.Windows.Forms.Button btn_Cargar_cliente;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.Label lbl_nombreCliente;
+	}
 }

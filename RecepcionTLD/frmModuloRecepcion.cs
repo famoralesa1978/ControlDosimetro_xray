@@ -24,6 +24,7 @@ namespace ControlDosimetro
 		clsEventoControl ClaseEvento = new clsEventoControl();
 		int intContar = 0;
 		int intintId_Estado_temp;
+		DataTable dtPeriodo;
 		#endregion
 
 		public frmModuloRecepcion(int intId_Estado,bool bolTLD)
@@ -63,7 +64,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "',' " + this.Text + "'";
 			cmd.CommandType = CommandType.Text;
 			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-			Cargar_Anno();
+
 			lbl_nombreCliente.Text = "";
 			txt_CodCliente.Focus();
 			pnl_Progreso.Visible = false;
@@ -168,17 +169,10 @@ namespace ControlDosimetro
 
 		private void Cargar_Periodo()
 		{
-			SqlCommand cmd = new SqlCommand();
+			DataTable dtPeriodoCopia = dtPeriodo.Copy();
+			dtPeriodoCopia.DefaultView.RowFilter = String.Format("anno={0}", cbx_anno.SelectedValue);
 
-			//	  SqlCommand cmd = new SqlCommand();
-
-			cmd.CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ '°T' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text;
-			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-			cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
-			cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
-			cbx_id_periodo.DataSource = dt.Tables[0];
+			cbx_id_periodo.DataSource = dtPeriodoCopia.DefaultView.ToTable();
 		}
 
 		private void AsignarEvento()
@@ -310,8 +304,8 @@ namespace ControlDosimetro
 			cbx_id_periodo.Enabled = true;
 			txt_CodCliente.Text = "";
 			txt_CodCliente.Enabled = true;
-			txt_CodCliente.Text = "0";
-
+			txt_CodCliente.Text = "-1";
+			btn_Cargar_cliente_Click(null,null);
 			if (rbtDosimetria.Checked == true)
 				Listar_Grilla_Dosimetria();
 			if (rbtTLD.Checked == true)
@@ -320,6 +314,7 @@ namespace ControlDosimetro
 			chk_marcar.Checked = false;
 			txt_CodCliente.Text = "";
 			txt_CodCliente.Focus();
+			btn_Cargar_cliente.Enabled = true;
 			intContar = 0;
 		}
 
@@ -458,5 +453,41 @@ namespace ControlDosimetro
 			pnl_Progreso.Visible = false;
 		}
 
+		private void btn_Cargar_cliente_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+
+			frmAyudaCliente frm = new frmAyudaCliente(Convert.ToInt64(txt_CodCliente.Text));
+
+			if (frm.ShowDialog() == DialogResult.OK)
+			{
+				lbl_nombreCliente.Text = (Convert.ToInt64(txt_CodCliente.Text) > 1) ? Clases.ClsCliente.Nombres : "";
+				lbl_rut_cliente.Text = (Convert.ToInt64(txt_CodCliente.Text) > 1) ? Clases.ClsCliente.Rut : "";
+
+				SqlCommand cmd = new SqlCommand
+				{
+					CommandText = String.Format("CargarClientePorRun '{0}',{1}", lbl_rut_cliente.Text, txt_CodCliente.Text)
+				};
+				DataSet dt;
+				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+				if (dt != null)
+				{
+					dtPeriodo = new DataTable();
+					//if (dt.Tables[0].Rows.Count > 0)
+					//{
+					dtPeriodo = dt.Tables[3];
+					cbx_anno.DataSource = dt.Tables[1];
+
+					if ((Convert.ToInt64(txt_CodCliente.Text) < 1))
+						cbx_id_periodo.DataSource = dtPeriodo;
+
+					btn_Cargar_cliente.Enabled = false;
+					//}
+				}
+
+			}
+			Cursor = Cursors.Default;
+		}
 	}
 }

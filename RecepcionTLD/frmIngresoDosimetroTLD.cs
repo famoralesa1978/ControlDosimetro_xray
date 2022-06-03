@@ -179,7 +179,6 @@ namespace ControlDosimetro
 			dtPeriodoCopia.DefaultView.RowFilter = String.Format("anno={0}", cbx_anno.SelectedValue);
 
 			cbx_id_periodo.DataSource = dtPeriodoCopia.DefaultView.ToTable();
-			//		clsFunc.Cargar_Periodo(ref cbx_id_periodo, 3, (int)cbx_anno.SelectedValue);
 		}
 
 		private void Cargar_Sucursal()
@@ -878,21 +877,7 @@ namespace ControlDosimetro
 				}
 
 			}
-			else
-			{
-				//LimpiarFormulario(2);
-				//LimpiarFormulario(3);
-			}
 			Cursor = Cursors.Default;
-			//Cursor = Cursors.WaitCursor;
-			//bolInicio = true;
-			//Inicializar = true;
-			//Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
-			//Cargar_Sucursal();
-			//Cargar_Seccion();
-			//btn_Corregir.Enabled = false;
-			//btnAgregarRef.Enabled = btn_Guardar.Enabled = false;
-			//Cursor = Cursors.Default;
 		}
 		private void btn_Eliminar_Click(object sender, EventArgs e)
 		{
