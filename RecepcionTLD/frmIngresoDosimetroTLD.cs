@@ -841,6 +841,12 @@ namespace ControlDosimetro
 
 		private void btn_Cargar_cliente_Click(object sender, EventArgs e)
 		{
+			
+			if(String.IsNullOrWhiteSpace(lbl_id_cliente.Text))
+			{
+				classFuncionesGenerales.mensajes.MensajeError("Ingrese le número de cliente");
+				return;
+			}
 			Cursor = Cursors.WaitCursor;
 			Inicializar = false;
 
@@ -869,7 +875,10 @@ namespace ControlDosimetro
 					if ((Convert.ToInt64(lbl_id_cliente.Text) < 1))
 						cbx_id_periodo.DataSource = dtPeriodo;
 
-					cbx_Sucursal.DataSource = dt.Tables[2];
+					DataTable dtSeccion = dt.Tables[2].Copy();
+					dtSeccion.DefaultView.RowFilter = "Id_estado=1";
+
+					cbx_Sucursal.DataSource = dtSeccion.DefaultView.Table;
 
 					Cargar_Seccion();
 					btn_Cargar_cliente.Enabled = false;

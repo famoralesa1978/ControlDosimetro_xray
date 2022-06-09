@@ -35,10 +35,11 @@
 			this.txt_IdCliente = new System.Windows.Forms.TextBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Razon_Social = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.colFechaInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -124,7 +125,8 @@
 			this.grdDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Rut,
             this.Razon_Social,
-            this.Direccion});
+            this.Direccion,
+            this.colFechaInicio});
 			this.grdDatos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.grdDatos.Location = new System.Drawing.Point(3, 16);
 			this.grdDatos.MultiSelect = false;
@@ -136,6 +138,15 @@
 			this.grdDatos.TabIndex = 5;
 			this.grdDatos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellDoubleClick);
 			this.grdDatos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdDatos_DataBindingComplete);
+			// 
+			// toolStrip1
+			// 
+			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.Size = new System.Drawing.Size(760, 25);
+			this.toolStrip1.TabIndex = 2;
+			this.toolStrip1.Text = "toolStrip1";
 			// 
 			// Rut
 			// 
@@ -164,14 +175,13 @@
 			this.Direccion.Name = "Direccion";
 			this.Direccion.ReadOnly = true;
 			// 
-			// toolStrip1
+			// colFechaInicio
 			// 
-			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(760, 25);
-			this.toolStrip1.TabIndex = 2;
-			this.toolStrip1.Text = "toolStrip1";
+			this.colFechaInicio.DataPropertyName = "FechaInicio";
+			this.colFechaInicio.HeaderText = "Fec. Inicio";
+			this.colFechaInicio.Name = "colFechaInicio";
+			this.colFechaInicio.ReadOnly = true;
+			this.colFechaInicio.Width = 81;
 			// 
 			// frmAyudaCliente
 			// 
@@ -212,5 +222,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Rut;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Razon_Social;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Direccion;
+		private System.Windows.Forms.DataGridViewTextBoxColumn colFechaInicio;
 	}
 }
