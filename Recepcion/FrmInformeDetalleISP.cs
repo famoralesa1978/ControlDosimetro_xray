@@ -280,6 +280,11 @@ namespace ControlDosimetro
 
 		private void Btn_CargarCli_Click(object sender, EventArgs e)
 		{
+			if (String.IsNullOrWhiteSpace(lbl_id_cliente.Text))
+			{
+				classFuncionesGenerales.mensajes.MensajeError("Debe ingresar el número de cliente");
+				return;
+			}
 			Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
 		}
 

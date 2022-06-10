@@ -455,6 +455,12 @@ namespace ControlDosimetro
 
 		private void btn_Cargar_cliente_Click(object sender, EventArgs e)
 		{
+			if (String.IsNullOrWhiteSpace(txt_CodCliente.Text))
+			{
+				classFuncionesGenerales.mensajes.MensajeError("Debe ingresar el número de cliente");
+				return;
+			}
+
 			Cursor = Cursors.WaitCursor;
 
 			frmAyudaCliente frm = new frmAyudaCliente(Convert.ToInt64(txt_CodCliente.Text));

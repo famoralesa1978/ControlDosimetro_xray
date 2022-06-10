@@ -212,6 +212,7 @@ namespace ControlDosimetro
 
 		private void Btn_CargarCli_Click(object sender, EventArgs e)
 		{
+
 			Cargar_Cliente();
 		}
 
