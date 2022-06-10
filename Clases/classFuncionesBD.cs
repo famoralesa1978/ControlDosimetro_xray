@@ -255,6 +255,20 @@ namespace classFuncionesBD
 
 			return dt;
 		}
+
+		public DataSet Cargar_SeccionRunPeriodoClienteDireccion(int intIdPeriodo,int intId_Cliente, string run,int idDireccion)
+		{
+			DataSet dt;
+
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = String.Format("pa_CargarSeccionRunPorPeriodoTLD_Sel {0},{1},'{2}',{3}" , intIdPeriodo, intId_Cliente, run, idDireccion);
+
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+
+			return dt;
+		}
+
 		public DataSet Cargar_SeccionMasivoPorRun(int intId_Cliente,string run)
 		{
 			DataSet dt;
