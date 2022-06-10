@@ -111,7 +111,7 @@ namespace ControlDosimetro
 				intN_Documento = Convert.ToInt64(txt_NDocumento.Text);
 
 			DataSet dt;
-			cmd.CommandText = "pa_DosimetroRecepcionTLD_sel " + txt_CodCliente.Text + "," + cbx_id_periodo.SelectedValue + ",1," + intN_Documento.ToString();
+			cmd.CommandText = String.Format("pa_DosimetroRecepcionTLD_sel  {0},{1},{2},{3}",txt_CodCliente.Text,(cbx_id_periodo.SelectedValue==null?-1: cbx_id_periodo.SelectedValue),"1", intN_Documento.ToString());
 			cmd.CommandType = CommandType.Text;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
