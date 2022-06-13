@@ -590,7 +590,7 @@ namespace ControlDosimetro
 				System.IO.Directory.CreateDirectory(targetPathCodigoBarra);
 			}
 
-			targetPathFormatoFormulario = "C:\\BaseTLD\\Cliente\\Cliente" + lbl_id_cliente.Text + "\\Informe";
+			targetPathFormatoFormulario = "C:\\BaseTLD\\Cliente\\Cliente" + lbl_id_cliente.Text + "\\Formulario";
 			if (!System.IO.Directory.Exists(targetPathFormatoFormulario))
 			{
 				System.IO.Directory.CreateDirectory(targetPathFormatoFormulario);
@@ -648,15 +648,15 @@ namespace ControlDosimetro
 
 			string strNombreArchivoCodigo = String.Format(targetPathFormatoFormulario + "\\Formulario Cliente{0}{1}{2}{3}{4}Tri.xlsx",
 																																									lbl_id_cliente.Text + "_",
-																																									cbx_Sucursal.Text + "_",
 																																									String.IsNullOrWhiteSpace(cbx_id_seccion.Text) ? "" : cbx_id_seccion.Text + "_",
+																																									cbx_Sucursal.Text + "_",
 																																									cbx_anno.Text.ToString() + "_",
 																																									cbx_id_periodo.Text.ToString().Substring(0, 1)
 																																							);
 			string strNombreArchivoCodigoRespaldo = String.Format(targetPathFormatoFormulario + "\\Formulario Cliente{0}{1}{2}{3}{4}{5}Tri.xlsx",
 																																									lbl_id_cliente.Text + "_",
-																																									cbx_Sucursal.Text + "_",
 																																									String.IsNullOrWhiteSpace(cbx_id_seccion.Text) ? "" : cbx_id_seccion.Text + "_",
+																																									cbx_Sucursal.Text + "_",
 																																									cbx_anno.Text.ToString() + "_",
 																																									cbx_id_periodo.Text.ToString().Substring(0, 1),
 																																									strFecha
