@@ -134,8 +134,10 @@ namespace ControlDosimetro
 			else
 				intN_Documento = Convert.ToInt64(txt_NDocumento.Text);
 
+			int intPeriodo = cbx_id_periodo.SelectedValue == null ? 0: (int)cbx_id_periodo.SelectedValue;
+
 			DataSet dt;
-			cmd.CommandText = "pa_DosimetroRecepcion_sel " + txt_CodCliente.Text + "," + cbx_id_periodo.SelectedValue + "," + intintId_Estado_temp.ToString() + "," + intN_Documento.ToString();
+			cmd.CommandText = "pa_DosimetroRecepcion_sel " + txt_CodCliente.Text + "," + intPeriodo + "," + intintId_Estado_temp.ToString() + "," + intN_Documento.ToString();
 
 			cmd.CommandType = CommandType.Text;
 
@@ -146,7 +148,7 @@ namespace ControlDosimetro
 
 
 			if (txt_CodCliente.Text != "0")
-				if (dt.Tables[0].Rows.Count == 0)
+				if (dt.Tables[0].Rows.Count == 0 && intPeriodo>0)
 					MessageBox.Show("No se ha ingresado información");
 
 		}
