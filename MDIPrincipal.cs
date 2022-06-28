@@ -84,6 +84,7 @@ namespace ControlDosimetro
 			CambioSucursal = 809,
 			MantClienteRazonSocial = 810,
 			HerrCambioTLD = 811,
+			HerrCorrecionCliente = 812,
 
 			Ayuda = 900,
 			AcercaDe = 901,
@@ -786,6 +787,16 @@ namespace ControlDosimetro
 					Graba_log(objFrm.Text);
 					objFrm.ShowDialog(this);
 					break;
+				case (int)MENU.HerrCorrecionCliente:
+					objFrm = new frmCorreccionHistorial()
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.ShowDialog(this);
+					break;
+					
 				#endregion
 
 				#region "Acerca De 900"
