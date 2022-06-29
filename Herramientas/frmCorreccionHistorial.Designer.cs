@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.grpDatosCliente = new System.Windows.Forms.GroupBox();
 			this.btn_filtro = new System.Windows.Forms.Button();
 			this.lbl_id_cliente = new System.Windows.Forms.TextBox();
@@ -57,18 +57,19 @@
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.btn_EliminarSeleccion = new System.Windows.Forms.ToolStripMenuItem();
 			this.grpPrincipal = new System.Windows.Forms.GroupBox();
-			this.grpCliente = new System.Windows.Forms.GroupBox();
 			this.grpHistorial = new System.Windows.Forms.GroupBox();
-			this.grdCliente = new System.Windows.Forms.DataGridView();
 			this.dtgHistorial = new System.Windows.Forms.DataGridView();
+			this.grpCliente = new System.Windows.Forms.GroupBox();
+			this.grdCliente = new System.Windows.Forms.DataGridView();
+			this.btnGrabarAgregarHistorial = new System.Windows.Forms.Button();
 			this.grpDatosCliente.SuspendLayout();
 			this.cmsPopup.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.grpPrincipal.SuspendLayout();
-			this.grpCliente.SuspendLayout();
 			this.grpHistorial.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.grdCliente)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dtgHistorial)).BeginInit();
+			this.grpCliente.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.grdCliente)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// grpDatosCliente
@@ -221,9 +222,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle1.Format = "N2";
-			dataGridViewCellStyle1.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle5.Format = "N2";
+			dataGridViewCellStyle5.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle5;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -241,9 +242,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle2.Format = "N2";
-			dataGridViewCellStyle2.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle6.Format = "N2";
+			dataGridViewCellStyle6.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle6;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -276,17 +277,6 @@
 			this.grpPrincipal.TabStop = false;
 			this.grpPrincipal.Text = "Datos a corregir";
 			// 
-			// grpCliente
-			// 
-			this.grpCliente.Controls.Add(this.grdCliente);
-			this.grpCliente.Dock = System.Windows.Forms.DockStyle.Top;
-			this.grpCliente.Location = new System.Drawing.Point(3, 16);
-			this.grpCliente.Name = "grpCliente";
-			this.grpCliente.Size = new System.Drawing.Size(813, 118);
-			this.grpCliente.TabIndex = 0;
-			this.grpCliente.TabStop = false;
-			this.grpCliente.Text = "Cliente";
-			// 
 			// grpHistorial
 			// 
 			this.grpHistorial.Controls.Add(this.dtgHistorial);
@@ -297,22 +287,6 @@
 			this.grpHistorial.TabIndex = 1;
 			this.grpHistorial.TabStop = false;
 			this.grpHistorial.Text = "Historial";
-			// 
-			// grdCliente
-			// 
-			this.grdCliente.AllowUserToAddRows = false;
-			this.grdCliente.AllowUserToDeleteRows = false;
-			this.grdCliente.AllowUserToResizeColumns = false;
-			this.grdCliente.AllowUserToResizeRows = false;
-			this.grdCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-			this.grdCliente.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-			this.grdCliente.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.grdCliente.Location = new System.Drawing.Point(3, 16);
-			this.grdCliente.Name = "grdCliente";
-			this.grdCliente.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-			this.grdCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-			this.grdCliente.Size = new System.Drawing.Size(807, 99);
-			this.grdCliente.TabIndex = 9;
 			// 
 			// dtgHistorial
 			// 
@@ -325,16 +299,56 @@
 			this.dtgHistorial.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dtgHistorial.Location = new System.Drawing.Point(3, 16);
 			this.dtgHistorial.Name = "dtgHistorial";
+			this.dtgHistorial.ReadOnly = true;
 			this.dtgHistorial.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.dtgHistorial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
 			this.dtgHistorial.Size = new System.Drawing.Size(807, 147);
 			this.dtgHistorial.TabIndex = 10;
+			// 
+			// grpCliente
+			// 
+			this.grpCliente.Controls.Add(this.grdCliente);
+			this.grpCliente.Dock = System.Windows.Forms.DockStyle.Top;
+			this.grpCliente.Location = new System.Drawing.Point(3, 16);
+			this.grpCliente.Name = "grpCliente";
+			this.grpCliente.Size = new System.Drawing.Size(813, 118);
+			this.grpCliente.TabIndex = 0;
+			this.grpCliente.TabStop = false;
+			this.grpCliente.Text = "Cliente";
+			// 
+			// grdCliente
+			// 
+			this.grdCliente.AllowUserToAddRows = false;
+			this.grdCliente.AllowUserToDeleteRows = false;
+			this.grdCliente.AllowUserToResizeColumns = false;
+			this.grdCliente.AllowUserToResizeRows = false;
+			this.grdCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+			this.grdCliente.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+			this.grdCliente.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.grdCliente.Location = new System.Drawing.Point(3, 16);
+			this.grdCliente.Name = "grdCliente";
+			this.grdCliente.ReadOnly = true;
+			this.grdCliente.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+			this.grdCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+			this.grdCliente.Size = new System.Drawing.Size(807, 99);
+			this.grdCliente.TabIndex = 9;
+			// 
+			// btnGrabarAgregarHistorial
+			// 
+			this.btnGrabarAgregarHistorial.Location = new System.Drawing.Point(473, 28);
+			this.btnGrabarAgregarHistorial.Name = "btnGrabarAgregarHistorial";
+			this.btnGrabarAgregarHistorial.Size = new System.Drawing.Size(166, 23);
+			this.btnGrabarAgregarHistorial.TabIndex = 2;
+			this.btnGrabarAgregarHistorial.Text = "Agregar cliente en el historial";
+			this.btnGrabarAgregarHistorial.UseVisualStyleBackColor = true;
+			this.btnGrabarAgregarHistorial.Click += new System.EventHandler(this.btnGrabarAgregarHistorial_Click);
 			// 
 			// frmCorreccionHistorial
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(819, 412);
+			this.Controls.Add(this.btnGrabarAgregarHistorial);
 			this.Controls.Add(this.grpPrincipal);
 			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this.grpDatosCliente);
@@ -348,10 +362,10 @@
 			this.cmsPopup.ResumeLayout(false);
 			this.contextMenuStrip1.ResumeLayout(false);
 			this.grpPrincipal.ResumeLayout(false);
-			this.grpCliente.ResumeLayout(false);
 			this.grpHistorial.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.grdCliente)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dtgHistorial)).EndInit();
+			this.grpCliente.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.grdCliente)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -389,5 +403,6 @@
 		private System.Windows.Forms.GroupBox grpCliente;
 		private System.Windows.Forms.DataGridView dtgHistorial;
 		private System.Windows.Forms.DataGridView grdCliente;
+		private System.Windows.Forms.Button btnGrabarAgregarHistorial;
 	}
 }

@@ -90,7 +90,22 @@ namespace ControlDosimetro
 		{
 			this.Close();
 		}
+		private void btnGrabarAgregarHistorial_Click(object sender, EventArgs e)
+		{
+			if (MessageBox.Show("Esta seguro de agregar el cliente al historial?", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+			{
+				SqlCommand cmd = new SqlCommand();
+				DataSet ds;
 
+				cmd.CommandText = String.Format("pa_ConsultaCorregirHistorial_ins {0}",lbl_id_cliente.Text);
+				cmd.CommandType = CommandType.Text;
+				ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+
+				MessageBox.Show(ds.Tables[0].Rows[0][0].ToString());
+
+			}
+		}
 
 		#endregion
 
@@ -102,6 +117,7 @@ namespace ControlDosimetro
 		#region "grilla"
 
 		#endregion
-	
+
+
 	}
 }
