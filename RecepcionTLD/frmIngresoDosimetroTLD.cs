@@ -423,8 +423,8 @@ namespace ControlDosimetro
 				}
 
 			}
-
-			MessageBox.Show("Los TLD fueron generado con exito: " + strCorrecto + " y con errores : " + strError);
+			string strMensaje = String.Format("Los TLD fueron generado con exito: {0} {1}", strCorrecto, String.IsNullOrEmpty(strError)?"": " y con errores : " + strError);
+			MessageBox.Show(strMensaje);
 			btn_Guardar.Enabled = true;
 			Listar_Personal();
 		}
