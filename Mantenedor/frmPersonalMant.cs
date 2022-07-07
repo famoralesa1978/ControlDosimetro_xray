@@ -538,17 +538,20 @@ namespace ControlDosimetro
 			string strMensaje = "";
 			bolResult = false;
 
-
-
-			if (!ClaseComun.ValidarFormulario(Clases.clsBD.BD, tbl_personal, ref bolResult, ref strMensaje))
+			if(ValidacionFormulario())
 			{
-				Cursor = Cursors.Default;
-				classFuncionesGenerales.mensajes.MensajeError(strMensaje);
+				if (!ClaseComun.ValidarFormulario(Clases.clsBD.BD, tbl_personal, ref bolResult, ref strMensaje))
+				{
+					Cursor = Cursors.Default;
+					classFuncionesGenerales.mensajes.MensajeError(strMensaje);
+				}
+				else
+				{
+
+					Grabar();
+				}
 			}
-			else
-			{
-				Grabar();
-			}		
+			
 
 			Cursor = Cursors.Default;
 
@@ -633,6 +636,31 @@ namespace ControlDosimetro
 
 		#endregion
 
+		#region "Funcion"
 
+		private bool ValidacionFormulario()
+		{
+			bool bolValidar = true;
+			String strMensaje = "";
+			string strFiltro = xmlSucursal();
+
+			if (String.IsNullOrWhiteSpace(strFiltro))
+				strMensaje += "Dirección es requerido. \n";
+
+			if (cbx_id_seccion.SelectedValue==null)
+				strMensaje += "Sección es requerido. \n";
+			else
+			if (string.IsNullOrWhiteSpace(cbx_id_seccion.Text))
+				strMensaje += "Sección es requerido. \n";
+
+			if (!String.IsNullOrWhiteSpace(strMensaje))
+			{
+				bolValidar = false;
+				classFuncionesGenerales.mensajes.MensajeError(String.Format("Tiene siguiente errores : \n {0}", strMensaje) );
+			}
+			return bolValidar;
+		}
+
+		#endregion
 	}
 }
