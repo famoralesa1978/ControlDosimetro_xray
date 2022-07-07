@@ -27,7 +27,7 @@ namespace ControlDosimetro
 		DataTable dtPeriodo;
 		#endregion
 
-		public frmModuloRecepcion(int intId_Estado,bool bolTLD)
+		public frmModuloRecepcion(int intId_Estado, bool bolTLD)
 		{
 			InitializeComponent();
 
@@ -72,8 +72,9 @@ namespace ControlDosimetro
 			if (bolTLD)
 			{
 				rbtDosimetria.Visible = false;
-				rbtTLD.Checked =true;
-			}else
+				rbtTLD.Checked = true;
+			}
+			else
 			{
 				rbtDosimetria.Checked = true;
 				rbtTLD.Visible = false;
@@ -99,7 +100,7 @@ namespace ControlDosimetro
 				lbl_nombreCliente.Text = "";
 		}//[]
 
-		private void Listar_Grilla_TLD()
+		private void Listar_Grilla_TLD(bool DesdeLimpiar)
 		{
 			SqlCommand cmd = new SqlCommand();
 			Int64 intN_Documento;
@@ -111,19 +112,23 @@ namespace ControlDosimetro
 				intN_Documento = Convert.ToInt64(txt_NDocumento.Text);
 
 			DataSet dt;
-			cmd.CommandText = String.Format("pa_DosimetroRecepcionTLD_sel  {0},{1},{2},{3}",txt_CodCliente.Text,(cbx_id_periodo.SelectedValue==null?-1: cbx_id_periodo.SelectedValue),"1", intN_Documento.ToString());
+			if(DesdeLimpiar==false)
+				cmd.CommandText = String.Format("pa_DosimetroRecepcionTLD_sel  {0},{1},{2},{3}", txt_CodCliente.Text, (cbx_id_periodo.SelectedValue == null ? -1 : cbx_id_periodo.SelectedValue), "1", intN_Documento.ToString());
+			else
+				cmd.CommandText = String.Format("pa_DosimetroRecepcionTLD_sel  0,0,0,0");
+
 			cmd.CommandType = CommandType.Text;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 			grdDatos.DataSource = dt.Tables[0];
 			btn_Guardar.Enabled = dt.Tables[0].Rows.Count > 0 ? true : false;
 
-			if (txt_CodCliente.Text != "0")
+			if (txt_CodCliente.Text != "0" && DesdeLimpiar == false)
 				if (dt.Tables[0].Rows.Count == 0)
 					MessageBox.Show("No se ha ingresado información");
 		}
 
-		private void Listar_Grilla_Dosimetria()
+		private void Listar_Grilla_Dosimetria(bool bolLimpiar)
 		{
 			SqlCommand cmd = new SqlCommand();
 			Int64 intN_Documento;
@@ -134,10 +139,13 @@ namespace ControlDosimetro
 			else
 				intN_Documento = Convert.ToInt64(txt_NDocumento.Text);
 
-			int intPeriodo = cbx_id_periodo.SelectedValue == null ? 0: (int)cbx_id_periodo.SelectedValue;
+			int intPeriodo = cbx_id_periodo.SelectedValue == null ? 0 : (int)cbx_id_periodo.SelectedValue;
 
 			DataSet dt;
-			cmd.CommandText = "pa_DosimetroRecepcion_sel " + txt_CodCliente.Text + "," + intPeriodo + "," + intintId_Estado_temp.ToString() + "," + intN_Documento.ToString();
+			if (bolLimpiar == false)
+				cmd.CommandText = "pa_DosimetroRecepcion_sel " + txt_CodCliente.Text + "," + intPeriodo + "," + intintId_Estado_temp.ToString() + "," + intN_Documento.ToString();
+			else
+				cmd.CommandText = "pa_DosimetroRecepcion_sel -1,0,-1,0";
 
 			cmd.CommandType = CommandType.Text;
 
@@ -147,8 +155,8 @@ namespace ControlDosimetro
 
 
 
-			if (txt_CodCliente.Text != "0")
-				if (dt.Tables[0].Rows.Count == 0 && intPeriodo>0)
+			if (txt_CodCliente.Text != "0" && !bolLimpiar)
+				if (dt.Tables[0].Rows.Count == 0 && intPeriodo > 0)
 					MessageBox.Show("No se ha ingresado información");
 
 		}
@@ -260,9 +268,9 @@ namespace ControlDosimetro
 
 			}
 			if (rbtDosimetria.Checked == true)
-				Listar_Grilla_Dosimetria();
+				Listar_Grilla_Dosimetria(false);
 			if (rbtTLD.Checked == true)
-				Listar_Grilla_TLD();
+				Listar_Grilla_TLD(false);
 			MessageBox.Show("Informacion grabada");
 			btn_Guardar.Enabled = true;
 			pnl_Progreso.Visible = false;
@@ -286,9 +294,9 @@ namespace ControlDosimetro
 			if (lbl_nombreCliente.Text != "")
 			{
 				if (rbtDosimetria.Checked == true)
-					Listar_Grilla_Dosimetria();
+					Listar_Grilla_Dosimetria(false);
 				if (rbtTLD.Checked == true)
-					Listar_Grilla_TLD();
+					Listar_Grilla_TLD(false);
 
 				cbx_anno.Enabled = false;
 				cbx_id_periodo.Enabled = false;
@@ -306,15 +314,13 @@ namespace ControlDosimetro
 			cbx_id_periodo.Enabled = true;
 			txt_CodCliente.Text = "";
 			txt_CodCliente.Enabled = true;
-			txt_CodCliente.Text = "-1";
-			btn_Cargar_cliente_Click(null,null);
+			cargarDatos(true);
 			if (rbtDosimetria.Checked == true)
-				Listar_Grilla_Dosimetria();
+				Listar_Grilla_Dosimetria(true);
 			if (rbtTLD.Checked == true)
-				Listar_Grilla_TLD();
+				Listar_Grilla_TLD(true);
 
 			chk_marcar.Checked = false;
-			txt_CodCliente.Text = "";
 			txt_CodCliente.Focus();
 			btn_Cargar_cliente.Enabled = true;
 			intContar = 0;
@@ -457,7 +463,12 @@ namespace ControlDosimetro
 
 		private void btn_Cargar_cliente_Click(object sender, EventArgs e)
 		{
-			if (String.IsNullOrWhiteSpace(txt_CodCliente.Text))
+			cargarDatos(false);
+		}
+
+		void cargarDatos(bool bolDesdeLimpiar)
+		{
+			if (String.IsNullOrWhiteSpace(txt_CodCliente.Text) && !bolDesdeLimpiar)
 			{
 				classFuncionesGenerales.mensajes.MensajeError("Debe ingresar el número de cliente");
 				return;
@@ -465,16 +476,11 @@ namespace ControlDosimetro
 
 			Cursor = Cursors.WaitCursor;
 
-			frmAyudaCliente frm = new frmAyudaCliente(Convert.ToInt64(txt_CodCliente.Text));
-
-			if (frm.ShowDialog() == DialogResult.OK)
+			if (bolDesdeLimpiar)
 			{
-				lbl_nombreCliente.Text = (Convert.ToInt64(txt_CodCliente.Text) > 1) ? Clases.ClsCliente.Nombres : "";
-				lbl_rut_cliente.Text = (Convert.ToInt64(txt_CodCliente.Text) > 1) ? Clases.ClsCliente.Rut : "";
-
 				SqlCommand cmd = new SqlCommand
 				{
-					CommandText = String.Format("CargarClientePorRun '{0}',{1}", lbl_rut_cliente.Text, txt_CodCliente.Text)
+					CommandText = String.Format("CargarClientePorRun '{0}',{1}", (!bolDesdeLimpiar ? lbl_rut_cliente.Text : "0"), (!bolDesdeLimpiar ? txt_CodCliente.Text : "-1"))
 				};
 				DataSet dt;
 				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -486,15 +492,46 @@ namespace ControlDosimetro
 					//{
 					dtPeriodo = dt.Tables[3];
 					cbx_anno.DataSource = dt.Tables[1];
-
-					if ((Convert.ToInt64(txt_CodCliente.Text) < 1))
-						cbx_id_periodo.DataSource = dtPeriodo;
-
-					btn_Cargar_cliente.Enabled = false;
-					//}
+					lbl_nombreCliente.Text = "";
+					lbl_rut_cliente.Text = "";
+					cbx_id_periodo.DataSource = dtPeriodo;
 				}
-
 			}
+			else
+			{
+				frmAyudaCliente frm = new frmAyudaCliente(Convert.ToInt64(txt_CodCliente.Text));
+
+				if (frm.ShowDialog() == DialogResult.OK)
+				{
+					lbl_nombreCliente.Text = (Convert.ToInt64(txt_CodCliente.Text) > 1) ? Clases.ClsCliente.Nombres : "";
+					lbl_rut_cliente.Text = (Convert.ToInt64(txt_CodCliente.Text) > 1) ? Clases.ClsCliente.Rut : "";
+
+					SqlCommand cmd = new SqlCommand
+					{
+						CommandText = String.Format("CargarClientePorRun '{0}',{1}", (!bolDesdeLimpiar ? lbl_rut_cliente.Text : "0"), (!bolDesdeLimpiar ? txt_CodCliente.Text : "-1"))
+					};
+					DataSet dt;
+					dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+					if (dt != null)
+					{
+						dtPeriodo = new DataTable();
+						//if (dt.Tables[0].Rows.Count > 0)
+						//{
+						dtPeriodo = dt.Tables[3];
+						cbx_anno.DataSource = dt.Tables[1];
+
+						if ((Convert.ToInt64(txt_CodCliente.Text) < 1))
+							cbx_id_periodo.DataSource = dtPeriodo;
+
+						btn_Cargar_cliente.Enabled = false;
+						//}
+					}
+
+				}
+			}
+
+
 			Cursor = Cursors.Default;
 		}
 	}
