@@ -236,9 +236,10 @@ namespace ControlDosimetro
 					if ((Convert.ToInt64(lbl_id_cliente.Text) <1))
 						cbx_id_periodo.DataSource = dtPeriodo;
 
-						cbx_Sucursal.DataSource = dt.Tables[2];
+					//	cbx_Sucursal.DataSource = dt.Tables[2];
+            Cargar_Sucursal();
 
-						Cargar_Seccion();
+            Cargar_Seccion();
 						btn_cargar.Enabled = false;
 					//}
 				}
@@ -311,13 +312,16 @@ namespace ControlDosimetro
 
 			bolInicio = false;
 		}
+    private void cbx_id_periodo_SelectedValueChanged(object sender, EventArgs e)
+    {
+      Cargar_Sucursal();
+    }
 
+    #endregion
 
-		#endregion
+    #region "grilla"
 
-		#region "grilla"
-
-		private void grdDatos_KeyDown(object sender, KeyEventArgs e)
+    private void grdDatos_KeyDown(object sender, KeyEventArgs e)
 		{
 			if ((grdDatos.CurrentCell.ColumnIndex == N_pelicula.Index + 2))
 			{
@@ -754,8 +758,9 @@ namespace ControlDosimetro
 				picFiltrarpersonal_Click(null, null);
 		}
 
-		#endregion
 
+    #endregion
 
-	}
+  
+  }
 }
