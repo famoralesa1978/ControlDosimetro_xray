@@ -184,7 +184,7 @@ namespace ControlDosimetro
 		private void Cargar_Sucursal()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "select id_sucursal, direccion + ','+co.comuna as Dato " +
+			cmd.CommandText = "select id_sucursal, direccion + ','+co.comuna as Dato,co.comuna, direccion" +
 					"from [dbo].[tbl_sucursal] s " +
 					"inner join glo_region r on r.Id_region=s.Id_Region " +
 					"inner join glo_comuna co on co.id_comuna=s.Id_Comuna " +
@@ -555,7 +555,16 @@ namespace ControlDosimetro
 		private void btn_Excel_Click(object sender, EventArgs e)
 		{
 			bool bolArchivoGenerado = true;
-			Cursor = Cursors.WaitCursor;//FORMULARIO DESPACHO_Laboratorio
+
+      //cbx_Sucursal
+
+      DataTable dt = ((DataTable)cbx_Sucursal.DataSource).Copy();
+
+      dt.DefaultView.RowFilter = String.Format("Id_sucursal={0}", cbx_Sucursal.SelectedValue);
+
+      strComuna = dt.DefaultView.ToTable().Rows[0]["Comuna"].ToString();
+
+      Cursor = Cursors.WaitCursor;//FORMULARIO DESPACHO_Laboratorio
 																	//FormularioLaboratorio
 			string targetPathFormatoCodigoBarra = "C:\\BaseTLD\\formato\\" + "FormatoTLD.xlsx";
 			string targetPathFormatoInfome = "C:\\BaseTLD\\formato\\" + "FORMULARIO DESPACHO.xlsx";

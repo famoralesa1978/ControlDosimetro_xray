@@ -37,6 +37,7 @@ namespace ControlDosimetro
 
 		public string Id_Menu { get; private set; }
 		private bool Inicializar = true;
+    private bool DesdeLimpiar = false;
 		DataTable dtPeriodo;
 		classFuncionesBD.ClsFunciones ClaseFunciones = new classFuncionesBD.ClsFunciones();
 		public object[] Parametros
@@ -141,8 +142,11 @@ namespace ControlDosimetro
 		private void Cargar_Sucursal()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "BusClienteSucursal_TLD " +"'" + lbl_rut_cliente.Text + "',"+ lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue;
-			DataSet dt;
+      if(!DesdeLimpiar)
+			  cmd.CommandText = "BusClienteSucursal_TLD " +"'" + lbl_rut_cliente.Text + "',"+ lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue;
+      else
+        cmd.CommandText = "BusClienteSucursal_TLD " + "'0',0,0";
+      DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
 			cbx_Sucursal.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
@@ -154,8 +158,11 @@ namespace ControlDosimetro
 		private void Cargar_Seccion()
 		{
 			DataSet dt;
-			dt = ClaseFunciones.Cargar_SeccionPorRun(Convert.ToInt16(lbl_id_cliente.Text.ToString()), lbl_rut_cliente.Text);
-			cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
+      if (!DesdeLimpiar)
+        dt = ClaseFunciones.Cargar_SeccionPorRun(Convert.ToInt16(lbl_id_cliente.Text.ToString()), lbl_rut_cliente.Text);
+      else
+        dt = ClaseFunciones.Cargar_SeccionPorRun(Convert.ToInt16(0), "0");
+      cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
 			cbx_id_seccion.DataSource = dt.Tables[0];
 		}
@@ -202,7 +209,7 @@ namespace ControlDosimetro
 
 		private void btn_cargar_Click(object sender, EventArgs e)
 		{
-			if (String.IsNullOrWhiteSpace(lbl_id_cliente.Text))
+			if (String.IsNullOrWhiteSpace(lbl_id_cliente.Text) && !DesdeLimpiar)
 			{
 				classFuncionesGenerales.mensajes.MensajeError("Debe ingresar el número de cliente");
 				return;
@@ -211,70 +218,100 @@ namespace ControlDosimetro
 			Cursor = Cursors.WaitCursor;
 			Inicializar = false;
 
-			frmAyudaCliente frm = new frmAyudaCliente(Convert.ToInt64(lbl_id_cliente.Text));
+      if(!DesdeLimpiar)
+      {
+        frmAyudaCliente frm = new frmAyudaCliente(Convert.ToInt64(lbl_id_cliente.Text));
 
-			if (frm.ShowDialog() == DialogResult.OK)
-			{
-				lbl_nombreCliente.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 1)?Clases.ClsCliente.Nombres:"";
-				lbl_rut_cliente.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 1) ? Clases.ClsCliente.Rut:"";
+        if (frm.ShowDialog() == DialogResult.OK)
+        {
+          lbl_nombreCliente.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 1) ? Clases.ClsCliente.Nombres : "";
+          lbl_rut_cliente.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 1) ? Clases.ClsCliente.Rut : "";
 
-				SqlCommand cmd = new SqlCommand
-				{
-					CommandText = String.Format("CargarClientePorRun '{0}',{1}", lbl_rut_cliente.Text, lbl_id_cliente.Text)
-				};
-				DataSet dt;
-				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+          SqlCommand cmd = new SqlCommand
+          {
+            CommandText = String.Format("CargarClientePorRun '{0}',{1}", lbl_rut_cliente.Text, lbl_id_cliente.Text)
+          };
+          DataSet dt;
+          dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
-				if(dt != null)
-				{
-					dtPeriodo = new DataTable();
-					//if (dt.Tables[0].Rows.Count > 0)
-					//{
-						dtPeriodo = dt.Tables[3];
-						cbx_anno.DataSource = dt.Tables[1];
+          if (dt != null)
+          {
+            dtPeriodo = new DataTable();
+            //if (dt.Tables[0].Rows.Count > 0)
+            //{
+            dtPeriodo = dt.Tables[3];
+            cbx_anno.DataSource = dt.Tables[1];
 
-					if ((Convert.ToInt64(lbl_id_cliente.Text) <1))
-						cbx_id_periodo.DataSource = dtPeriodo;
+            if ((Convert.ToInt64(lbl_id_cliente.Text) < 1))
+              cbx_id_periodo.DataSource = dtPeriodo;
 
-					//	cbx_Sucursal.DataSource = dt.Tables[2];
+            //	cbx_Sucursal.DataSource = dt.Tables[2];
             Cargar_Sucursal();
 
             Cargar_Seccion();
-						btn_cargar.Enabled = false;
-					//}
-				}
+            btn_cargar.Enabled = false;
+            //}
+          }
 
-			}
-			else
-			{
-				//LimpiarFormulario(2);
-				//LimpiarFormulario(3);
-			}
+        }
+      }
+      else
+      {
+        SqlCommand cmd = new SqlCommand
+        {
+          CommandText = String.Format("CargarClientePorRun '0',0")
+        };
+        DataSet dt;
+        dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+        if (dt != null)
+        {
+          dtPeriodo = new DataTable();
+          //if (dt.Tables[0].Rows.Count > 0)
+          //{
+          dtPeriodo = dt.Tables[3];
+          cbx_anno.DataSource = dt.Tables[1];
+
+          cbx_id_periodo.DataSource = dtPeriodo;
+
+          //	cbx_Sucursal.DataSource = dt.Tables[2];
+          Cargar_Sucursal();
+
+          Cargar_Seccion();
+          btn_cargar.Enabled = false;
+          //}
+        }
+      }
+
+		
 			Cursor = Cursors.Default;
 		}
 
 		private void btn_filtro_Click_1(object sender, EventArgs e)
 		{
+      DesdeLimpiar = true;
 
-			cbx_anno.Enabled = true;
+      cbx_anno.Enabled = true;
 			cbx_id_periodo.Enabled = true;
 			groupBox2.Text = "Listado";
-			lbl_id_cliente.Text = "-1";
 			lbl_rut_cliente.Text = "";
 			lbl_nombreCliente.Text = "";
-			btn_cargar.Enabled = true;
+      lbl_id_cliente.Text = "";
+
+
+      btn_cargar.Enabled = true;
 			lbl_id_cliente.Enabled = true;
-			
-			lbl_id_cliente.Text = "-1";
-			lbl_id_cliente.Focus();
-			
-			btn_cargar_Click(null, null);
-			lbl_id_cliente.Text = "";
-			cbx_anno.Enabled = true;
+      grdDatos.DataSource = null;
+
+      btn_cargar_Click(null, null);
+      lbl_id_cliente.Focus();
+      cbx_anno.Enabled = true;
 			cbx_id_periodo.Enabled = true;
 			btn_cargar.Enabled = true;
 			Inicializar = true;
-		}
+      DesdeLimpiar = false;
+
+    }
 
 		private void btn_Cerrar_Click(object sender, EventArgs e)
 		{
