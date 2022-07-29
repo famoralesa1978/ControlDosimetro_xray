@@ -312,6 +312,37 @@ namespace classFuncionesGenerales
 			}
 		}
 
+		public void EliminarHoja(string archivo)
+		{
+			ISheet sheet = null;
+			IWorkbook hssfwb = null;
+			FileInfo fi = new FileInfo(archivo);
+			string extension = fi.Extension;
+			using (FileStream file = new FileStream(@archivo, FileMode.Open, FileAccess.Read))
+			{
+				//hssfwb = new HSSFWorkbook(file);
+				if (extension == ".xlsx")
+				{
+					hssfwb = new XSSFWorkbook(file);
+				}
+
+				else if (extension == ".xls")
+				{
+					hssfwb = new HSSFWorkbook(file);
+
+				}
+			
+			}
+			using (FileStream fs = new FileStream(@archivo, FileMode.OpenOrCreate, FileAccess.Write))
+			{
+				hssfwb.RemoveSheetAt(0);
+
+				hssfwb.Write(fs);
+			}
+		
+
+		}
+
 	}
 }
 

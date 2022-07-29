@@ -36,7 +36,6 @@ namespace ControlDosimetro
 		string strDireccion;
 		string strServicio;
 		string strRegion;
-		string strComuna;
 		public string Id_Menu { get; private set; }
 		private bool Inicializar = true;
 		DataTable dtPeriodo;
@@ -102,7 +101,6 @@ namespace ControlDosimetro
 				strDireccion = dt.Tables[0].Rows[0]["Direccion"].ToString();
 				strServicio = dt.Tables[0].Rows[0]["Servicio"].ToString();
 				strRegion = dt.Tables[0].Rows[0]["region"].ToString();
-				strComuna = dt.Tables[0].Rows[0]["Comuna"].ToString();
 			}
 
 		}
@@ -551,6 +549,11 @@ namespace ControlDosimetro
 			string strNombreHoja = String.Format("{0}{1}", NombreHoja, intCantidadHoja);
 			ExcelNpoin.CopiarHoja(docName, 0, strNombreHoja);
 		}
+		public static void BorrarWorksheet(string docName)
+		{
+			classFuncionesGenerales.ExcelNpoin ExcelNpoin = new classFuncionesGenerales.ExcelNpoin();
+			ExcelNpoin.EliminarHoja(docName);
+		}
 
 		private void btn_Excel_Click(object sender, EventArgs e)
 		{
@@ -562,7 +565,7 @@ namespace ControlDosimetro
 
       dt.DefaultView.RowFilter = String.Format("Id_sucursal={0}", cbx_Sucursal.SelectedValue);
 
-      strComuna = dt.DefaultView.ToTable().Rows[0]["Comuna"].ToString();
+      String strComuna = dt.DefaultView.ToTable().Rows[0]["Comuna"].ToString();
 
       Cursor = Cursors.WaitCursor;//FORMULARIO DESPACHO_Laboratorio
 																	//FormularioLaboratorio
@@ -736,9 +739,7 @@ namespace ControlDosimetro
 				InsertWorksheet(strNombreArchivoCodigo, intnumHoja, targetPathFormatoInfome, strNombreHoja);
 				InsertWorksheet(strNombreArchivoLabotatorio, intnumHoja, targetPathFormatoFomratoLaboratorio, strNombreHoja);
 			}
-
-
-
+			
 			for (int idatos = 0; idatos <= grdDatos.Rows.Count - 1; idatos++)
 			{
 				try
@@ -836,6 +837,8 @@ namespace ControlDosimetro
 			}
 			if(bolArchivoGenerado == true)
 			{
+				BorrarWorksheet(strNombreArchivoCodigo);
+				BorrarWorksheet(strNombreArchivoLabotatorio);
 				Process.Start("explorer.exe", strDirCliente);
 				MessageBox.Show("El archivo fue generado");
 			}
