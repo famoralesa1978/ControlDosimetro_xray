@@ -312,7 +312,7 @@ namespace classFuncionesGenerales
 			}
 		}
 
-		public void EliminarHoja(string archivo)
+		public void EliminarHoja(string archivo,int intHoja= 0)
 		{
 			ISheet sheet = null;
 			IWorkbook hssfwb = null;
@@ -335,7 +335,7 @@ namespace classFuncionesGenerales
 			}
 			using (FileStream fs = new FileStream(@archivo, FileMode.OpenOrCreate, FileAccess.Write))
 			{
-				hssfwb.RemoveSheetAt(0);
+				hssfwb.RemoveSheetAt(intHoja);
 
 				hssfwb.Write(fs);
 			}

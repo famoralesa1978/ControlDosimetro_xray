@@ -549,7 +549,7 @@ namespace ControlDosimetro
 			string strNombreHoja = String.Format("{0}{1}", NombreHoja, intCantidadHoja);
 			ExcelNpoin.CopiarHoja(docName, 0, strNombreHoja);
 		}
-		public static void BorrarWorksheet(string docName)
+		public static void BorrarWorksheet(string docName, int intHoja=0)
 		{
 			classFuncionesGenerales.ExcelNpoin ExcelNpoin = new classFuncionesGenerales.ExcelNpoin();
 			ExcelNpoin.EliminarHoja(docName);
