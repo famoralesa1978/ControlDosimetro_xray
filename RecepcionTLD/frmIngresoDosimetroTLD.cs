@@ -394,7 +394,8 @@ namespace ControlDosimetro
 									cbx_id_periodo.SelectedValue + "," +//@id_periodo int,
 									txtndocumento.Value.ToString() + "," +//@N_Documento int,
 									txtnpelicula.Value.ToString() + ",-1,'" +//@n_dosimetro int,
-									Clases.clsUsuario.Usuario + "'";
+									Clases.clsUsuario.Usuario + "'," +
+								cbx_id_seccion.SelectedValue;
 						cmd.CommandType = CommandType.Text;
 						DataSet ds = Conectar.Listar(Clases.clsBD.BD, cmd);
 
@@ -414,7 +415,8 @@ namespace ControlDosimetro
 								cbx_id_periodo.SelectedValue + "," +//@id_periodo int,
 								txtndocumento.Value.ToString() + "," +//@N_Documento int,
 								txtnpelicula.Value.ToString() + ",-1,'" +//@n_dosimetro int,
-								Clases.clsUsuario.Usuario + "'";
+								Clases.clsUsuario.Usuario + "',"+
+								cbx_id_seccion.SelectedValue;
 					//@id_estadodosimetro int
 					cmd.CommandType = CommandType.Text;
 					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
