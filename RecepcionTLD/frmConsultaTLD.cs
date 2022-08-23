@@ -39,6 +39,7 @@ namespace ControlDosimetro
 		private bool Inicializar = true;
     private bool DesdeLimpiar = false;
 		DataTable dtPeriodo;
+		DataTable dtSeccion;
 		classFuncionesBD.ClsFunciones ClaseFunciones = new classFuncionesBD.ClsFunciones();
 		public object[] Parametros
 		{
@@ -153,18 +154,29 @@ namespace ControlDosimetro
 			cbx_Sucursal.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_Sucursal.DataSource = dt.Tables[0];
 
-		}
+			dtSeccion = dt.Tables[1];
+			Cargar_Seccion();
+		}	
 
 		private void Cargar_Seccion()
 		{
 			DataSet dt;
       if (!DesdeLimpiar)
-        dt = ClaseFunciones.Cargar_SeccionPorRun(Convert.ToInt16(lbl_id_cliente.Text.ToString()), lbl_rut_cliente.Text);
-      else
-        dt = ClaseFunciones.Cargar_SeccionPorRun(Convert.ToInt16(0), "0");
-      cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
-			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
-			cbx_id_seccion.DataSource = dt.Tables[0];
+			// dt = ClaseFunciones.Cargar_SeccionPorRun(Convert.ToInt16(lbl_id_cliente.Text.ToString()), lbl_rut_cliente.Text);
+			{
+				dtSeccion.DefaultView.RowFilter = String.Format("Id_sucursal={0}", cbx_Sucursal.SelectedValue == null?0:(int?)cbx_Sucursal.SelectedValue) ;
+				cbx_id_seccion.DisplayMember = dtSeccion.Columns[1].Caption.ToString();
+				cbx_id_seccion.ValueMember = dtSeccion.Columns[0].Caption.ToString();
+				cbx_id_seccion.DataSource = dtSeccion.DefaultView.ToTable();
+			}
+			else
+			{
+				dt = ClaseFunciones.Cargar_SeccionPorRun(Convert.ToInt16(0), "0");
+				cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
+				cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
+				cbx_id_seccion.DataSource = dt.Tables[0];
+			}
+      
 		}
 
 		private void AsignarEvento()
@@ -337,7 +349,7 @@ namespace ControlDosimetro
 		private void cbx_id_seccion_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
-			if (!Inicializar)
+		//	if (!Inicializar)
 				Listar_Personal();
 			Cursor = Cursors.Default;
 		}
@@ -345,7 +357,8 @@ namespace ControlDosimetro
 		private void cbx_Sucursal_SelectionChangeCommitted(object sender, EventArgs e)
 		{
 			if (!bolInicio)
-				Listar_Personal();
+				Cargar_Seccion();
+				
 
 			bolInicio = false;
 		}
