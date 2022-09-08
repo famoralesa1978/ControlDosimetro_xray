@@ -337,9 +337,9 @@ namespace classFuncionesGenerales
 			{
 				hssfwb.RemoveSheetAt(intHoja);
 
-				hssfwb.Write(fs);
+				//hssfwb.Write(fs);
 			}
-		
+			hssfwb.Close();
 
 		}
 

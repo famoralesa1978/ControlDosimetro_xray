@@ -761,73 +761,82 @@ namespace ControlDosimetro
 					strDireccion = cbx_Sucursal.Text.ToString().ToUpper();
 					//	if ((checkCell.Value.ToString() == "1"))//(checkGenerar.Value.ToString() == "1") &&&& (txtid_estadodosimetro.Value.ToString() == "-1")
 					//	{
-					if (intHojaExcel == 34)
+
+					if(int.Parse(txtnpelicula.Value.ToString()) !=0)
 					{
-						intHojaExcel = 20;
-						intExcel = intExcel + 1;
-						intNumRegistro = intNumRegistro + 1;
+						if (intHojaExcel == 34)
+						{
+							intHojaExcel = 20;
+							intExcel = intExcel + 1;
+							intNumRegistro = intNumRegistro + 1;
+						}
+						string wsName = String.Format("Registro{0}", intNumRegistro);
+						string wsNameCodigoBarra = String.Format("Sheet1");
+						//INform para imprimir el codigo barra
+						document = SpreadsheetDocument.Open(strNombreArchivoCodigoBarra, true);
+						wbPart = document.WorkbookPart;
+						UpdateValue(wsNameCodigoBarra, "A" + (intFila).ToString(), int.Parse(txtnpelicula.Value.ToString()).ToString(fmt), 0, true);
+						UpdateValue(wsNameCodigoBarra, "B" + (intFila).ToString(), Paterno.Value.ToString().ToUpper(), 0, true);
+						UpdateValue(wsNameCodigoBarra, "C" + (intFila).ToString(), Maternos.Value.ToString().ToUpper(), 0, true);
+						UpdateValue(wsNameCodigoBarra, "D" + (intFila).ToString(), Nombres.Value.ToString().ToUpper(), 0, true);// Nombres.Value.ToString().Substring(0, 1).ToUpper() + Nombres.Value.ToString().Substring(1, Nombres.Value.ToString().Length - 1).ToLower(), 0, true);
+						UpdateValue(wsNameCodigoBarra, "E" + (intFila).ToString(), Rut.Value.ToString().ToUpperInvariant(), 0, true);
+						UpdateValue(wsNameCodigoBarra, "F" + (intFila).ToString(), strTri, 0, true);
+						UpdateValue(wsNameCodigoBarra, "G" + (intFila).ToString(), strfecha_inicio, 0, true);
+						document.Close();
+
+						//Genera informe para el cliente
+						document = SpreadsheetDocument.Open(strpathcopiarInforme, true);
+						wbPart = document.WorkbookPart;
+
+						UpdateValue(wsName, "B" + (intHojaExcel).ToString(), int.Parse(txtnpelicula.Value.ToString()).ToString(fmt), 0, true);
+						UpdateValue(wsName, "C" + (intHojaExcel).ToString(), Paterno.Value.ToString().ToUpper(), 0, true);
+						UpdateValue(wsName, "D" + (intHojaExcel).ToString(), Maternos.Value.ToString().ToUpper(), 0, true);
+						UpdateValue(wsName, "E" + (intHojaExcel).ToString(), Nombres.Value.ToString().ToUpper(), 0, true);
+						UpdateValue(wsName, "F" + (intHojaExcel).ToString(), Rut.Value.ToString().ToUpperInvariant(), 0, true);
+						//UpdateValue(wsName, "D2" , strfecha_Per, 0, true);
+						//UpdateValue(wsName, "D18", strfecha_Fin, 0, true);
+						UpdateValue(wsName, "B9", strTitulo, 0, true);
+						UpdateValue(wsName, "B16", strUsados, 0, true);
+						UpdateValue(wsName, "C12", strDireccion, 0, true);
+						UpdateValue(wsName, "C14", lbl_rut_cliente.Text.ToUpper(), 0, true);
+						UpdateValue(wsName, "F14", cbx_id_seccion.Text.ToUpper(), 0, true);
+						//	UpdateValue(wsName, "M4", strRegion, 0, true);
+						UpdateValue(wsName, "C13", strComuna.ToUpper() + ", " + strRegion.ToUpper(), 0, true);
+						UpdateValue(wsName, "C11", lbl_nombreCliente.Text.ToUpper(), 0, true);
+						UpdateValue(wsName, "G11", lbl_id_cliente.Text, 0, true);
+						DataRow dtr = ((DataRowView)cbx_id_periodo.SelectedItem).Row;
+						UpdateValue(wsName, "B43", dtr["Glosa"].ToString(), 0, true);
+						document.Close();
+
+						//Genera informe para el laboratorio
+						document = SpreadsheetDocument.Open(strNombreArchivoLabotatorio, true);
+						wbPart = document.WorkbookPart;
+
+						UpdateValue(wsName, "B" + (intHojaExcel).ToString(), int.Parse(txtnpelicula.Value.ToString()).ToString(fmt), 0, true);
+						UpdateValue(wsName, "C" + (intHojaExcel).ToString(), Paterno.Value.ToString().ToUpper(), 0, true);
+						UpdateValue(wsName, "D" + (intHojaExcel).ToString(), Maternos.Value.ToString().ToUpper(), 0, true);
+						UpdateValue(wsName, "E" + (intHojaExcel).ToString(), Nombres.Value.ToString().ToUpper(), 0, true);
+						UpdateValue(wsName, "F" + (intHojaExcel).ToString(), Rut.Value.ToString().ToUpperInvariant(), 0, true);
+						//UpdateValue(wsName, "D2" , strfecha_Per, 0, true);
+						//UpdateValue(wsName, "D18", strfecha_Fin, 0, true);
+						UpdateValue(wsName, "B9", strTitulo, 0, true);
+						UpdateValue(wsName, "B16", strUsados, 0, true);
+						UpdateValue(wsName, "C12", strDireccion, 0, true);
+						UpdateValue(wsName, "C14", lbl_rut_cliente.Text.ToUpper(), 0, true);
+						UpdateValue(wsName, "F14", cbx_id_seccion.Text.ToUpper(), 0, true);
+						//	UpdateValue(wsName, "M4", strRegion, 0, true);
+						UpdateValue(wsName, "C13", strComuna.ToUpper() + ", " + strRegion.ToUpper(), 0, true);
+						UpdateValue(wsName, "C11", lbl_nombreCliente.Text.ToUpper(), 0, true);
+						UpdateValue(wsName, "G11", lbl_id_cliente.Text, 0, true);
+						document.Close();
+
+						intFila = intFila + 1;
+						intHojaExcel = intHojaExcel + 1;
+						bolArchivoGenerado = true;
 					}
-					string wsName = String.Format("Registro{0}", intNumRegistro);
-					string wsNameCodigoBarra = String.Format("Sheet1");
-					//INform para imprimir el codigo barra
-					document = SpreadsheetDocument.Open(strNombreArchivoCodigoBarra, true);
-					wbPart = document.WorkbookPart;
-					UpdateValue(wsNameCodigoBarra, "A" + (intFila).ToString(), int.Parse(txtnpelicula.Value.ToString()).ToString(fmt), 0, true);
-					UpdateValue(wsNameCodigoBarra, "B" + (intFila).ToString(), Paterno.Value.ToString().ToUpper(), 0, true);
-					UpdateValue(wsNameCodigoBarra, "C" + (intFila).ToString(), Maternos.Value.ToString().ToUpper(), 0, true);
-					UpdateValue(wsNameCodigoBarra, "D" + (intFila).ToString(), Nombres.Value.ToString().ToUpper(), 0, true);// Nombres.Value.ToString().Substring(0, 1).ToUpper() + Nombres.Value.ToString().Substring(1, Nombres.Value.ToString().Length - 1).ToLower(), 0, true);
-					UpdateValue(wsNameCodigoBarra, "E" + (intFila).ToString(), Rut.Value.ToString().ToUpperInvariant(), 0, true);
-					UpdateValue(wsNameCodigoBarra, "F" + (intFila).ToString(), strTri, 0, true);
-					UpdateValue(wsNameCodigoBarra, "G" + (intFila).ToString(), strfecha_inicio, 0, true);
-					document.Close();
 
-					//Genera informe para el cliente
-					document = SpreadsheetDocument.Open(strpathcopiarInforme, true);
-					wbPart = document.WorkbookPart;
-					
-					UpdateValue(wsName, "B" + (intHojaExcel).ToString(), int.Parse(txtnpelicula.Value.ToString()).ToString(fmt), 0, true);
-					UpdateValue(wsName, "C" + (intHojaExcel).ToString(), Paterno.Value.ToString().ToUpper(), 0, true);
-					UpdateValue(wsName, "D" + (intHojaExcel).ToString(), Maternos.Value.ToString().ToUpper(), 0, true);
-					UpdateValue(wsName, "E" + (intHojaExcel).ToString(), Nombres.Value.ToString().ToUpper(), 0, true);
-					UpdateValue(wsName, "F" + (intHojaExcel).ToString(), Rut.Value.ToString().ToUpperInvariant(), 0, true);
-					//UpdateValue(wsName, "D2" , strfecha_Per, 0, true);
-					//UpdateValue(wsName, "D18", strfecha_Fin, 0, true);
-					UpdateValue(wsName, "B9", strTitulo, 0, true);
-					UpdateValue(wsName, "B16", strUsados, 0, true);
-					UpdateValue(wsName, "C12", strDireccion, 0, true);
-					UpdateValue(wsName, "C14", lbl_rut_cliente.Text.ToUpper(), 0, true);
-					UpdateValue(wsName, "F14", cbx_id_seccion.Text.ToUpper(), 0, true);
-					//	UpdateValue(wsName, "M4", strRegion, 0, true);
-					UpdateValue(wsName, "C13", strComuna.ToUpper() + ", " + strRegion.ToUpper(), 0, true);
-					UpdateValue(wsName, "C11", lbl_nombreCliente.Text.ToUpper(), 0, true);
-					UpdateValue(wsName, "G11", lbl_id_cliente.Text, 0, true);
-					document.Close();
 
-					//Genera informe para el laboratorio
-					document = SpreadsheetDocument.Open(strNombreArchivoLabotatorio, true);
-					wbPart = document.WorkbookPart;
-
-					UpdateValue(wsName, "B" + (intHojaExcel).ToString(), int.Parse(txtnpelicula.Value.ToString()).ToString(fmt), 0, true);
-					UpdateValue(wsName, "C" + (intHojaExcel).ToString(), Paterno.Value.ToString().ToUpper(), 0, true);
-					UpdateValue(wsName, "D" + (intHojaExcel).ToString(), Maternos.Value.ToString().ToUpper(), 0, true);
-					UpdateValue(wsName, "E" + (intHojaExcel).ToString(), Nombres.Value.ToString().ToUpper(), 0, true);
-					UpdateValue(wsName, "F" + (intHojaExcel).ToString(), Rut.Value.ToString().ToUpperInvariant(), 0, true);
-					//UpdateValue(wsName, "D2" , strfecha_Per, 0, true);
-					//UpdateValue(wsName, "D18", strfecha_Fin, 0, true);
-					UpdateValue(wsName, "B9", strTitulo, 0, true);
-					UpdateValue(wsName, "B16", strUsados, 0, true);
-					UpdateValue(wsName, "C12", strDireccion, 0, true);
-					UpdateValue(wsName, "C14", lbl_rut_cliente.Text.ToUpper(), 0, true);
-					UpdateValue(wsName, "F14", cbx_id_seccion.Text.ToUpper(), 0, true);
-					//	UpdateValue(wsName, "M4", strRegion, 0, true);
-					UpdateValue(wsName, "C13", strComuna.ToUpper() + ", " + strRegion.ToUpper(), 0, true);
-					UpdateValue(wsName, "C11", lbl_nombreCliente.Text.ToUpper(), 0, true);
-					UpdateValue(wsName, "G11", lbl_id_cliente.Text, 0, true);
-					document.Close();
-
-					intFila = intFila + 1;
-					intHojaExcel = intHojaExcel + 1;
-					bolArchivoGenerado = true;
+				
 				}
 				catch (Exception ex)
 				{
