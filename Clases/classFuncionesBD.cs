@@ -351,7 +351,7 @@ namespace classFuncionesBD
 			if (intEstado != 0)
 				ds.Tables[0].DefaultView.RowFilter = "Id_estado=" + intEstado.ToString();
 			else
-				ds.Tables[0].DefaultView.RowFilter = "Id_estado in (1,2)";
+				ds.Tables[0].DefaultView.RowFilter = "Id_estado in (1,2,0)";
 
 			cbx.ValueMember = ds.Tables[0].Columns[0].Caption.ToString();
 			cbx.DisplayMember = ds.Tables[0].Columns[1].Caption.ToString();

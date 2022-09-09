@@ -54,6 +54,7 @@
 			this.tsbGuardar = new System.Windows.Forms.ToolStripButton();
 			this.tsbPersonal = new System.Windows.Forms.ToolStripButton();
 			this.grpPersonal = new System.Windows.Forms.GroupBox();
+			this.chkVerificarSinDireccion = new System.Windows.Forms.CheckBox();
 			this.rbtInactivo = new System.Windows.Forms.RadioButton();
 			this.rbtActivo = new System.Windows.Forms.RadioButton();
 			this.rbtAmbos = new System.Windows.Forms.RadioButton();
@@ -67,7 +68,8 @@
 			this.txt_RunPersonal = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.chk_AsignarTLD = new System.Windows.Forms.CheckBox();
-			this.chkVerificarSinDireccion = new System.Windows.Forms.CheckBox();
+			this.cbx_Direccin = new System.Windows.Forms.ComboBox();
+			this.chkDireccion = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.grp_Grilla.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -360,6 +362,8 @@
 			// 
 			// grpPersonal
 			// 
+			this.grpPersonal.Controls.Add(this.chkDireccion);
+			this.grpPersonal.Controls.Add(this.cbx_Direccin);
 			this.grpPersonal.Controls.Add(this.chkVerificarSinDireccion);
 			this.grpPersonal.Controls.Add(this.rbtInactivo);
 			this.grpPersonal.Controls.Add(this.rbtActivo);
@@ -380,6 +384,16 @@
 			this.grpPersonal.TabIndex = 8;
 			this.grpPersonal.TabStop = false;
 			this.grpPersonal.Text = "Filtrar";
+			// 
+			// chkVerificarSinDireccion
+			// 
+			this.chkVerificarSinDireccion.AutoSize = true;
+			this.chkVerificarSinDireccion.Location = new System.Drawing.Point(518, 15);
+			this.chkVerificarSinDireccion.Name = "chkVerificarSinDireccion";
+			this.chkVerificarSinDireccion.Size = new System.Drawing.Size(272, 17);
+			this.chkVerificarSinDireccion.TabIndex = 9;
+			this.chkVerificarSinDireccion.Text = "Verificar el personal que no tiene dirección asignada";
+			this.chkVerificarSinDireccion.UseVisualStyleBackColor = true;
 			// 
 			// rbtInactivo
 			// 
@@ -445,7 +459,7 @@
 			// chk_FecNac
 			// 
 			this.chk_FecNac.AutoSize = true;
-			this.chk_FecNac.Location = new System.Drawing.Point(329, 46);
+			this.chk_FecNac.Location = new System.Drawing.Point(518, 38);
 			this.chk_FecNac.Name = "chk_FecNac";
 			this.chk_FecNac.Size = new System.Drawing.Size(153, 17);
 			this.chk_FecNac.TabIndex = 8;
@@ -456,7 +470,7 @@
 			// 
 			this.picFiltrarpersonal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.picFiltrarpersonal.Image = global::ControlDosimetro.Properties.Resources.Buscar;
-			this.picFiltrarpersonal.Location = new System.Drawing.Point(717, 23);
+			this.picFiltrarpersonal.Location = new System.Drawing.Point(797, 38);
 			this.picFiltrarpersonal.Name = "picFiltrarpersonal";
 			this.picFiltrarpersonal.Size = new System.Drawing.Size(36, 36);
 			this.picFiltrarpersonal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -512,15 +526,27 @@
 			this.chk_AsignarTLD.UseVisualStyleBackColor = true;
 			this.chk_AsignarTLD.CheckedChanged += new System.EventHandler(this.chk_AsignarTLD_CheckedChanged);
 			// 
-			// chkVerificarSinDireccion
+			// cbx_Direccin
 			// 
-			this.chkVerificarSinDireccion.AutoSize = true;
-			this.chkVerificarSinDireccion.Location = new System.Drawing.Point(329, 71);
-			this.chkVerificarSinDireccion.Name = "chkVerificarSinDireccion";
-			this.chkVerificarSinDireccion.Size = new System.Drawing.Size(272, 17);
-			this.chkVerificarSinDireccion.TabIndex = 9;
-			this.chkVerificarSinDireccion.Text = "Verificar el personal que no tiene dirección asignada";
-			this.chkVerificarSinDireccion.UseVisualStyleBackColor = true;
+			this.cbx_Direccin.DisplayMember = "Descripcion";
+			this.cbx_Direccin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_Direccin.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbx_Direccin.FormattingEnabled = true;
+			this.cbx_Direccin.Location = new System.Drawing.Point(382, 69);
+			this.cbx_Direccin.Name = "cbx_Direccin";
+			this.cbx_Direccin.Size = new System.Drawing.Size(397, 21);
+			this.cbx_Direccin.TabIndex = 24;
+			this.cbx_Direccin.ValueMember = "Id_sucursal";
+			// 
+			// chkDireccion
+			// 
+			this.chkDireccion.AutoSize = true;
+			this.chkDireccion.Location = new System.Drawing.Point(308, 71);
+			this.chkDireccion.Name = "chkDireccion";
+			this.chkDireccion.Size = new System.Drawing.Size(71, 17);
+			this.chkDireccion.TabIndex = 25;
+			this.chkDireccion.Text = "Dirección";
+			this.chkDireccion.UseVisualStyleBackColor = true;
 			// 
 			// frmModificarPersonalMasivo
 			// 
@@ -596,5 +622,7 @@
 		private System.Windows.Forms.DataGridViewComboBoxColumn ColEstado;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn colRevision;
 		private System.Windows.Forms.CheckBox chkVerificarSinDireccion;
+		private System.Windows.Forms.ComboBox cbx_Direccin;
+		private System.Windows.Forms.CheckBox chkDireccion;
 	}
 }

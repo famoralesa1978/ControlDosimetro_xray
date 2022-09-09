@@ -220,12 +220,12 @@ namespace classFuncionesGenerales
 			dt.DefaultView.RowFilter = strFiltro;
 		}
 
-		public static DataSet FiltroPersonal(int intIdCliente,string NombrePersonal, string Rut, string FecNac, int intEstado, int Id_Seccion, bool bolListarSinDireccion)
+		public static DataSet FiltroPersonal(int intIdCliente,string NombrePersonal, string Rut, string FecNac, int intEstado, int Id_Seccion, bool bolListarSinDireccion,int id_Direccion=0)
 		{
 			DataSet dt = new DataSet();
 			clsConectorSqlServer Conectar = new clsConectorSqlServer();
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = String.Format( "pa_ListarPersonalFiltro_sel {0},'{1}','{2}','{3}',{4},{5},{6}",intIdCliente.ToString(), NombrePersonal, Rut,FecNac, intEstado,Id_Seccion, (bolListarSinDireccion?1:0));
+			cmd.CommandText = String.Format( "pa_ListarPersonalFiltro_sel {0},'{1}','{2}','{3}',{4},{5},{6},{7}",intIdCliente.ToString(), NombrePersonal, Rut,FecNac, intEstado,Id_Seccion, (bolListarSinDireccion?1:0), id_Direccion);
 			cmd.CommandType = CommandType.Text;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);

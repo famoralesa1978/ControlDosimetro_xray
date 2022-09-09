@@ -126,6 +126,7 @@ namespace ControlDosimetro
 				Cargar_Seccion();
 				Cargar_Estado();
 				Cargar_CodServicio();
+				Cargar_Direccion();
 				Listar_Personal();
 				picFiltrarpersonal_Click(null, null);
 			}
@@ -157,6 +158,12 @@ namespace ControlDosimetro
 			cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
 			cbx_id_seccion.DataSource = dt.Tables[0];
+
+		}
+		private void Cargar_Direccion()
+		{
+
+			ClaseFunciones.Cargar_Sucursal(ref cbx_Direccin, txt_Rut.Text.ToString(), Convert.ToInt16(txt_ref_cliente.Text.ToString()), 0);
 
 		}
 
@@ -274,11 +281,12 @@ namespace ControlDosimetro
 			Cursor = Cursors.WaitCursor;
 			DataSet ds;
 			int intEstado = rbtAmbos.Checked?-1: rbtActivo.Checked?1 : 0;
+			int intIdDireccion = chkDireccion.Checked ? (int)cbx_Direccin.SelectedValue : 0;
 			int intCliente = String.IsNullOrEmpty(txt_ref_cliente.Text) ? 0 : Convert.ToInt16(txt_ref_cliente.Text);
 			if (chk_FecNac.Checked)
-				ds=classFuncionesGenerales.Filtro.FiltroPersonal(intCliente, txt_NombrePersonal.Text, txt_RunPersonal.Text, "01/01/1900", intEstado,(int)cbx_id_seccion.SelectedValue,chkVerificarSinDireccion.Checked);
+				ds=classFuncionesGenerales.Filtro.FiltroPersonal(intCliente, txt_NombrePersonal.Text, txt_RunPersonal.Text, "01/01/1900", intEstado,(int)cbx_id_seccion.SelectedValue,chkVerificarSinDireccion.Checked, intIdDireccion);
 			else
-				ds = classFuncionesGenerales.Filtro.FiltroPersonal(intCliente, txt_NombrePersonal.Text, txt_RunPersonal.Text, "", intEstado, (int)cbx_id_seccion.SelectedValue, chkVerificarSinDireccion.Checked);
+				ds = classFuncionesGenerales.Filtro.FiltroPersonal(intCliente, txt_NombrePersonal.Text, txt_RunPersonal.Text, "", intEstado, (int)cbx_id_seccion.SelectedValue, chkVerificarSinDireccion.Checked, intIdDireccion);
 
 			grdDatos.DataSource = ds.Tables[0];
 
