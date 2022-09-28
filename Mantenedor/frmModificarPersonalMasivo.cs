@@ -30,6 +30,8 @@ namespace ControlDosimetro
 		bool Modificacion;
 		bool Eliminar;
 		DateTimePicker dateTimePicker1;
+		DateTimePicker dtpFechaInicio;
+		DateTimePicker dtpFechaTermino;
 		DataSet dt;
 		DataSet dtPersonal;
 		public int Id_Menu { get; private set; }
@@ -327,9 +329,11 @@ namespace ControlDosimetro
 			}
 			else
 
-			if (e.ColumnIndex == ColFechaNac.Index)
+			if (e.ColumnIndex == ColFechaNac.Index )
 			{
 				dateTimePicker1 = new DateTimePicker();
+				dateTimePicker1.CustomFormat = "dd/MM/yyyy";
+				dateTimePicker1.Format = DateTimePickerFormat.Custom;
 				//Agregamos el control de fecha dentro del DataGridView 
 				dateTimePicker1.Text = grdDatos.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
 				grdDatos.Controls.Add(dateTimePicker1);
@@ -358,13 +362,103 @@ namespace ControlDosimetro
 				// Generamos el evento de cierre del control fecha
 				dateTimePicker1.CloseUp += new EventHandler(dateTimePicker1_CloseUp);
 
+			}else
+			if ((e.ColumnIndex == ColFechaTermino.Index && ColFechaTermino.ReadOnly == false))
+			{
+				dtpFechaTermino = new DateTimePicker();
+				dtpFechaTermino.Format = DateTimePickerFormat.Custom;
+				dtpFechaTermino.CustomFormat = "dd/MM/yyyy";
+				
+				//Agregamos el control de fecha dentro del DataGridView 
+				dtpFechaTermino.Text = grdDatos.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+				grdDatos.Controls.Add(dtpFechaTermino);
+
+				// Hacemos que el control sea invisible (para que no moleste visualmente)
+				dtpFechaTermino.Visible = false;
+
+				// Establecemos el formato (depende de tu localización en tu PC)
+				dtpFechaTermino.Format = DateTimePickerFormat.Short;  //Ej: 24/08/2016
+
+				// Agregamos el evento para cuando seleccionemos una fecha
+				dtpFechaTermino.TextChanged += new EventHandler(dtpFechaTermino_OnTextChange);
+
+				// Lo hacemos visible
+				dtpFechaTermino.Visible = true;
+
+				// Creamos un rectángulo que representa el área visible de la celda
+				Rectangle rectangle1 = grdDatos.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+
+				//Establecemos el tamaño del control DateTimePicker (que sería el tamaño total de la celda)
+				dtpFechaTermino.Size = new Size(rectangle1.Width, rectangle1.Height);
+
+				// Establecemos la ubicación del control
+				dtpFechaTermino.Location = new Point(rectangle1.X, rectangle1.Y);
+
+				// Generamos el evento de cierre del control fecha
+				dtpFechaTermino.CloseUp += new EventHandler(dtpFechaTermino_CloseUp);
+
+			}
+			else
+			if (e.ColumnIndex == colFecha_inicio.Index)
+			{
+				dtpFechaInicio = new DateTimePicker();
+				dtpFechaInicio.Format = DateTimePickerFormat.Custom;
+				dtpFechaInicio.CustomFormat = "dd/MM/yyyy";
+				
+				//Agregamos el control de fecha dentro del DataGridView 
+				dtpFechaInicio.Text = grdDatos.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+				grdDatos.Controls.Add(dtpFechaInicio);
+
+				// Hacemos que el control sea invisible (para que no moleste visualmente)
+				dtpFechaInicio.Visible = false;
+
+				// Establecemos el formato (depende de tu localización en tu PC)
+				dtpFechaInicio.Format = DateTimePickerFormat.Short;  //Ej: 24/08/2016
+
+				// Agregamos el evento para cuando seleccionemos una fecha
+				dtpFechaInicio.TextChanged += new EventHandler(dtpFechaInicio_OnTextChange);
+
+				// Lo hacemos visible
+				dtpFechaInicio.Visible = true;
+
+				// Creamos un rectángulo que representa el área visible de la celda
+				Rectangle rectangle1 = grdDatos.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+
+				//Establecemos el tamaño del control DateTimePicker (que sería el tamaño total de la celda)
+				dtpFechaInicio.Size = new Size(rectangle1.Width, rectangle1.Height);
+
+				// Establecemos la ubicación del control
+				dtpFechaInicio.Location = new Point(rectangle1.X, rectangle1.Y);
+
+				// Generamos el evento de cierre del control fecha
+				dtpFechaInicio.CloseUp += new EventHandler(dtpFechaInicio_CloseUp);
+
 			}
 		}
-
+		private void dtpFechaInicio_OnTextChange(object sender, EventArgs e)
+		{
+			//Asignamos a la celda el valor de la feha seleccionada
+			grdDatos.CurrentCell.Value = dtpFechaInicio.Text.ToString().Replace("-","/");
+		}
+		private void dtpFechaTermino_OnTextChange(object sender, EventArgs e)
+		{
+			//Asignamos a la celda el valor de la feha seleccionada
+			grdDatos.CurrentCell.Value = dtpFechaTermino.Text.ToString().Replace("-", "/");
+		}
 		private void dateTimePicker1_OnTextChange(object sender, EventArgs e)
 		{
 			//Asignamos a la celda el valor de la feha seleccionada
-			grdDatos.CurrentCell.Value = dateTimePicker1.Text.ToString();
+			grdDatos.CurrentCell.Value = dateTimePicker1.Text.ToString().Replace("-", "/");
+		}
+		void dtpFechaInicio_CloseUp(object sender, EventArgs e)
+		{
+			//Volvemos a colocar en invisible el control
+			dtpFechaInicio.Visible = false;
+		}
+		void dtpFechaTermino_CloseUp(object sender, EventArgs e)
+		{
+			//Volvemos a colocar en invisible el control
+			dtpFechaTermino.Visible = false;
 		}
 
 		void dateTimePicker1_CloseUp(object sender, EventArgs e)
@@ -391,7 +485,7 @@ namespace ControlDosimetro
 		{
 			if (e.RowIndex > -1)
 			{
-				if (e.ColumnIndex == ColServicio.Index || e.ColumnIndex == ColSeccion.Index || e.ColumnIndex == ColFechaNac.Index || e.ColumnIndex == ColEstado.Index)
+				if (e.ColumnIndex == ColServicio.Index || e.ColumnIndex == ColSeccion.Index || e.ColumnIndex == ColFechaNac.Index || e.ColumnIndex == ColFechaTermino.Index || e.ColumnIndex == ColEstado.Index)
 				{
 					DataTable dt = new DataTable();
 					BindingSource bs = new BindingSource();
@@ -413,10 +507,14 @@ namespace ControlDosimetro
 				{
 
 					DataRow dtrFila = ((DataRowView)item.DataBoundItem).Row;
-					if (Convert.ToInt32(dtrFila["Id_estado"].ToString()) == 0)
+					DataGridViewTextBoxCell TextBox = ((DataGridViewTextBoxCell)item.Cells[ColFechaTermino.Index]);
+					if (Convert.ToInt32(dtrFila["Id_estado"].ToString())!=1)
 					{
 						item.DefaultCellStyle.BackColor = Color.Red;
+						TextBox.ReadOnly = false;
 					}
+					else
+						TextBox.ReadOnly = true;
 				}
 
 			}
@@ -476,9 +574,19 @@ namespace ControlDosimetro
 							strParametro = strParametro + "'" + dr["Fecha_Nac"].ToString() + "',";
 
 						if (dr["Id_estado"] == DBNull.Value)
-							strParametro = strParametro + "'1";
+							strParametro = strParametro + "1,";
 						else
-							strParametro = strParametro + "" + dr["Id_estado"].ToString() + "";
+							strParametro = strParametro + "" + dr["Id_estado"].ToString() + ",";
+
+						if (dr["fecha_termino"] == DBNull.Value)
+							strParametro = strParametro + "'01/01/1900'";
+						else
+							strParametro = strParametro + "'" + dr["fecha_termino"].ToString() + "',";
+
+						if (dr["Fecha_inicio"] == DBNull.Value)
+							strParametro = strParametro + "'01/01/1900'";
+						else
+							strParametro = strParametro + "'" + dr["Fecha_inicio"].ToString() + "'";
 
 						cmd.CommandText = "pa_PersonalMasivo_Upd " + dr["Id_Personal"] + "," + strParametro;
 						cmd.CommandType = CommandType.Text;
