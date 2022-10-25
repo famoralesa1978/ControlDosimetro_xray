@@ -53,10 +53,14 @@ namespace ControlDosimetro
 				lbl_NombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
 				lblRut.Text = dt.Tables[0].Rows[0]["run"].ToString();
 				Cargar_Personal(dt.Tables[0].Rows[0]["Id_cliente"].ToString(), lblRut.Text);
-				cbx_PersonalActual.SelectedValue = dt.Tables[0].Rows[0]["Id_Personal"];
+				Cargar_Seccion();
+				cbx_PersonalActual.SelectedValue = dt.Tables[1].Rows[0]["Id_Personal"];
+				cbx_id_seccion.SelectedValue = dt.Tables[1].Rows[0]["Id_SeccionTLD"];
+				
 				btn_Cargar.Enabled = false;
 				txt_NDoc.Enabled = false;
 				btn_Guardar.Enabled = true;
+				btn_ModificarSeccion.Enabled = true;
 				grpDatos.Enabled = true;
 			}
 			else
@@ -101,6 +105,21 @@ namespace ControlDosimetro
 			cbx_PersonalCambio.DisplayMember = dtCopia.Tables[0].Columns[0].Caption.ToString();
 			cbx_PersonalCambio.ValueMember = dtCopia.Tables[0].Columns[1].Caption.ToString();
 			cbx_PersonalCambio.DataSource = dtCopia.Tables[0];
+
+		}
+		private void Cargar_Seccion()
+		{
+
+			DataSet dt = clsFunc.Cargar_SeccionMasivoPorRun(Convert.ToInt16(lbl_NCliente.Text.ToString()), lblRut.Text);
+			DataSet dtCopia = dt.Copy();
+
+			cbx_id_seccion.DisplayMember = dt.Tables[1].Columns[0].Caption.ToString();
+			cbx_id_seccion.ValueMember = dt.Tables[1].Columns[1].Caption.ToString();
+			cbx_id_seccion.DataSource = dt.Tables[1];
+
+			cbx_id_seccionMod.DisplayMember = dtCopia.Tables[0].Columns[0].Caption.ToString();
+			cbx_id_seccionMod.ValueMember = dtCopia.Tables[0].Columns[1].Caption.ToString();
+			cbx_id_seccionMod.DataSource = dtCopia.Tables[0];
 		}
 
 		private void AsignarEvento()
@@ -123,7 +142,7 @@ namespace ControlDosimetro
 			DataSet ds;
 			string strParametro = String.Format("{0},{1},{2}", txt_NDoc.Text, cbx_PersonalActual.SelectedValue, cbx_PersonalCambio.SelectedValue);
 			cmd.CommandText = "pa_ModificarPersonalTLD_upd " + strParametro;
-			cmd.CommandType = CommandType.Text;
+			cmd.CommandType = CommandType.Text;//pa_ModificarSeccionTLD_upd
 
 
 			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -153,6 +172,25 @@ namespace ControlDosimetro
 			lbl_NombreCliente.Text = "";
 			grpDatos.Enabled = false;
 			btn_Guardar.Enabled = false;
+			btn_ModificarSeccion.Enabled = false;
+		}
+		private void btn_ModificarSeccion_Click(object sender, EventArgs e)
+		{
+			SqlCommand cmd = new SqlCommand();
+			DataSet ds;
+			string strParametro = String.Format("{0},{1},{2}", txt_NDoc.Text, cbx_id_seccion.SelectedValue, cbx_id_seccionMod.SelectedValue);
+			cmd.CommandText = "pa_ModificarSeccionTLD_upd " + strParametro;
+			cmd.CommandType = CommandType.Text;//
+
+
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
+			{
+				MessageBox.Show("Error en actualizar la información");
+			}
+
+			else
+				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
 		}
 
 		#endregion
@@ -165,6 +203,7 @@ namespace ControlDosimetro
 		#region "grilla"
 
 		#endregion
+
 
 	}
 }
