@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.lblRut = new System.Windows.Forms.Label();
 			this.cbx_PersonalCambio = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
@@ -76,6 +76,13 @@
 			this.label7 = new System.Windows.Forms.Label();
 			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
 			this.label8 = new System.Windows.Forms.Label();
+			this.tabDireccion = new System.Windows.Forms.TabPage();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.button1 = new System.Windows.Forms.Button();
+			this.label9 = new System.Windows.Forms.Label();
+			this.label10 = new System.Windows.Forms.Label();
+			this.comboBox2 = new System.Windows.Forms.ComboBox();
+			this.label11 = new System.Windows.Forms.Label();
 			this.cmsPopup.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.grpDatos.SuspendLayout();
@@ -83,6 +90,7 @@
 			this.tabPersonal.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.tabSeccion.SuspendLayout();
+			this.tabDireccion.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// lblRut
@@ -327,9 +335,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle1.Format = "N2";
-			dataGridViewCellStyle1.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle3.Format = "N2";
+			dataGridViewCellStyle3.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle3;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -347,9 +355,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle2.Format = "N2";
-			dataGridViewCellStyle2.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle4.Format = "N2";
+			dataGridViewCellStyle4.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle4;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -385,6 +393,7 @@
 			// 
 			this.tabControl1.Controls.Add(this.tabPersonal);
 			this.tabControl1.Controls.Add(this.tabSeccion);
+			this.tabControl1.Controls.Add(this.tabDireccion);
 			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl1.Location = new System.Drawing.Point(3, 16);
 			this.tabControl1.Name = "tabControl1";
@@ -495,6 +504,81 @@
 			this.label8.TabIndex = 47;
 			this.label8.Text = "Sección a modicar";
 			// 
+			// tabDireccion
+			// 
+			this.tabDireccion.Controls.Add(this.comboBox1);
+			this.tabDireccion.Controls.Add(this.button1);
+			this.tabDireccion.Controls.Add(this.label9);
+			this.tabDireccion.Controls.Add(this.label10);
+			this.tabDireccion.Controls.Add(this.comboBox2);
+			this.tabDireccion.Controls.Add(this.label11);
+			this.tabDireccion.Location = new System.Drawing.Point(4, 22);
+			this.tabDireccion.Name = "tabDireccion";
+			this.tabDireccion.Size = new System.Drawing.Size(500, 193);
+			this.tabDireccion.TabIndex = 2;
+			this.tabDireccion.Text = "Dirección";
+			this.tabDireccion.UseVisualStyleBackColor = true;
+			// 
+			// comboBox1
+			// 
+			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(123, 90);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(317, 21);
+			this.comboBox1.TabIndex = 44;
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(90, 138);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(114, 23);
+			this.button1.TabIndex = 45;
+			this.button1.Text = "Modificar dirección";
+			this.button1.UseVisualStyleBackColor = true;
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Enabled = false;
+			this.label9.Location = new System.Drawing.Point(23, 19);
+			this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(84, 13);
+			this.label9.TabIndex = 46;
+			this.label9.Text = "Dirección actual";
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Location = new System.Drawing.Point(23, 93);
+			this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(52, 13);
+			this.label10.TabIndex = 48;
+			this.label10.Text = "Dirección";
+			// 
+			// comboBox2
+			// 
+			this.comboBox2.Enabled = false;
+			this.comboBox2.FormattingEnabled = true;
+			this.comboBox2.Location = new System.Drawing.Point(123, 16);
+			this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
+			this.comboBox2.Name = "comboBox2";
+			this.comboBox2.Size = new System.Drawing.Size(317, 21);
+			this.comboBox2.TabIndex = 43;
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label11.Location = new System.Drawing.Point(23, 61);
+			this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(120, 13);
+			this.label11.TabIndex = 47;
+			this.label11.Text = "Dirección a modicar";
+			// 
 			// frmCambioPersonalTLD
 			// 
 			this.AcceptButton = this.btn_Cargar;
@@ -527,6 +611,8 @@
 			this.panel1.PerformLayout();
 			this.tabSeccion.ResumeLayout(false);
 			this.tabSeccion.PerformLayout();
+			this.tabDireccion.ResumeLayout(false);
+			this.tabDireccion.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -578,5 +664,12 @@
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.ComboBox cbx_id_seccion;
 		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.TabPage tabDireccion;
+		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.ComboBox comboBox2;
+		private System.Windows.Forms.Label label11;
 	}
 }
