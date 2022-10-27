@@ -99,7 +99,7 @@ namespace ControlDosimetro
 				" order by direccion";
 			else
 				cmd.CommandText = "SELECT s.id_sucursal,s.direccion,r.region,p.provincia,co.comuna,s.telefono,est.Descripcion as Estado " +
-													"FROM  [dbo].[tbl_cliente] c inner join tbl_sucursal s on s.id_cliente=c.id_cliente " +
+													"FROM  [dbo].[tbl_cliente] c inner join tbl_sucursal s on s.id_cliente=c.id_cliente and s.run=c.run " +
 													"inner join glo_region r on r.Id_region=s.id_region " +
 													"inner join glo_provincia p on p.id_provincia=s.id_provincia " +
 													"inner join glo_comuna co on co.id_comuna=s.id_comuna " +
