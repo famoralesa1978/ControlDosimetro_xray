@@ -77,11 +77,11 @@
 			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.tabDireccion = new System.Windows.Forms.TabPage();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
-			this.button1 = new System.Windows.Forms.Button();
+			this.cbxDireccionMod = new System.Windows.Forms.ComboBox();
+			this.btnDireccionMod = new System.Windows.Forms.Button();
 			this.label9 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
-			this.comboBox2 = new System.Windows.Forms.ComboBox();
+			this.cbxDireccionActual = new System.Windows.Forms.ComboBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.cmsPopup.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
@@ -506,11 +506,11 @@
 			// 
 			// tabDireccion
 			// 
-			this.tabDireccion.Controls.Add(this.comboBox1);
-			this.tabDireccion.Controls.Add(this.button1);
+			this.tabDireccion.Controls.Add(this.cbxDireccionMod);
+			this.tabDireccion.Controls.Add(this.btnDireccionMod);
 			this.tabDireccion.Controls.Add(this.label9);
 			this.tabDireccion.Controls.Add(this.label10);
-			this.tabDireccion.Controls.Add(this.comboBox2);
+			this.tabDireccion.Controls.Add(this.cbxDireccionActual);
 			this.tabDireccion.Controls.Add(this.label11);
 			this.tabDireccion.Location = new System.Drawing.Point(4, 22);
 			this.tabDireccion.Name = "tabDireccion";
@@ -519,23 +519,26 @@
 			this.tabDireccion.Text = "Dirección";
 			this.tabDireccion.UseVisualStyleBackColor = true;
 			// 
-			// comboBox1
+			// cbxDireccionMod
 			// 
-			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(123, 90);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(317, 21);
-			this.comboBox1.TabIndex = 44;
+			this.cbxDireccionMod.DisplayMember = "Descripcion";
+			this.cbxDireccionMod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbxDireccionMod.FormattingEnabled = true;
+			this.cbxDireccionMod.Location = new System.Drawing.Point(123, 90);
+			this.cbxDireccionMod.Name = "cbxDireccionMod";
+			this.cbxDireccionMod.Size = new System.Drawing.Size(317, 21);
+			this.cbxDireccionMod.TabIndex = 44;
+			this.cbxDireccionMod.ValueMember = "Id_sucursal";
 			// 
-			// button1
+			// btnDireccionMod
 			// 
-			this.button1.Location = new System.Drawing.Point(90, 138);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(114, 23);
-			this.button1.TabIndex = 45;
-			this.button1.Text = "Modificar dirección";
-			this.button1.UseVisualStyleBackColor = true;
+			this.btnDireccionMod.Location = new System.Drawing.Point(90, 138);
+			this.btnDireccionMod.Name = "btnDireccionMod";
+			this.btnDireccionMod.Size = new System.Drawing.Size(114, 23);
+			this.btnDireccionMod.TabIndex = 45;
+			this.btnDireccionMod.Text = "Modificar dirección";
+			this.btnDireccionMod.UseVisualStyleBackColor = true;
+			this.btnDireccionMod.Click += new System.EventHandler(this.btnDireccionMod_Click);
 			// 
 			// label9
 			// 
@@ -558,15 +561,17 @@
 			this.label10.TabIndex = 48;
 			this.label10.Text = "Dirección";
 			// 
-			// comboBox2
+			// cbxDireccionActual
 			// 
-			this.comboBox2.Enabled = false;
-			this.comboBox2.FormattingEnabled = true;
-			this.comboBox2.Location = new System.Drawing.Point(123, 16);
-			this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
-			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(317, 21);
-			this.comboBox2.TabIndex = 43;
+			this.cbxDireccionActual.DisplayMember = "Descripcion";
+			this.cbxDireccionActual.Enabled = false;
+			this.cbxDireccionActual.FormattingEnabled = true;
+			this.cbxDireccionActual.Location = new System.Drawing.Point(123, 16);
+			this.cbxDireccionActual.Margin = new System.Windows.Forms.Padding(2);
+			this.cbxDireccionActual.Name = "cbxDireccionActual";
+			this.cbxDireccionActual.Size = new System.Drawing.Size(317, 21);
+			this.cbxDireccionActual.TabIndex = 43;
+			this.cbxDireccionActual.ValueMember = "Id_sucursal";
 			// 
 			// label11
 			// 
@@ -665,11 +670,11 @@
 		private System.Windows.Forms.ComboBox cbx_id_seccion;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.TabPage tabDireccion;
-		private System.Windows.Forms.ComboBox comboBox1;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.ComboBox cbxDireccionMod;
+		private System.Windows.Forms.Button btnDireccionMod;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.ComboBox comboBox2;
+		private System.Windows.Forms.ComboBox cbxDireccionActual;
 		private System.Windows.Forms.Label label11;
 	}
 }

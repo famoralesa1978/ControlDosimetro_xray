@@ -54,9 +54,10 @@ namespace ControlDosimetro
 				lblRut.Text = dt.Tables[0].Rows[0]["run"].ToString();
 				Cargar_Personal(dt.Tables[0].Rows[0]["Id_cliente"].ToString(), lblRut.Text);
 				Cargar_Seccion();
+				Cargar_Direccion();
 				cbx_PersonalActual.SelectedValue = dt.Tables[1].Rows[0]["Id_Personal"];
 				cbx_id_seccion.SelectedValue = dt.Tables[1].Rows[0]["Id_SeccionTLD"];
-				
+				cbxDireccionActual.SelectedValue= dt.Tables[1].Rows[0]["Id_sucursal"]; 
 				btn_Cargar.Enabled = false;
 				txt_NDoc.Enabled = false;
 				btn_Guardar.Enabled = true;
@@ -121,7 +122,18 @@ namespace ControlDosimetro
 			cbx_id_seccionMod.ValueMember = dtCopia.Tables[0].Columns[1].Caption.ToString();
 			cbx_id_seccionMod.DataSource = dtCopia.Tables[0];
 		}
+		private void Cargar_Direccion()
+		{
+			SqlCommand cmd = new SqlCommand();
 
+			cmd.CommandText = String.Format("pa_CargarSucursalPorRun_Sel {0},'{1}'", lbl_NCliente.Text, lblRut.Text);
+			DataSet dt;
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			DataSet dtCopia = dt.Copy();
+			
+			cbxDireccionActual.DataSource = dt.Tables[0];
+			cbxDireccionMod.DataSource = dtCopia.Tables[1];
+		}
 		private void AsignarEvento()
 		{
 			txt_NDoc.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
@@ -180,6 +192,24 @@ namespace ControlDosimetro
 			DataSet ds;
 			string strParametro = String.Format("{0},{1},{2}", txt_NDoc.Text, cbx_id_seccion.SelectedValue, cbx_id_seccionMod.SelectedValue);
 			cmd.CommandText = "pa_ModificarSeccionTLD_upd " + strParametro;
+			cmd.CommandType = CommandType.Text;//
+
+
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
+			{
+				MessageBox.Show("Error en actualizar la información");
+			}
+
+			else
+				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
+		}
+		private void btnDireccionMod_Click(object sender, EventArgs e)
+		{
+			SqlCommand cmd = new SqlCommand();
+			DataSet ds;
+			string strParametro = String.Format("{0},{1},{2}", txt_NDoc.Text, cbxDireccionActual.SelectedValue, cbxDireccionMod.SelectedValue);
+			cmd.CommandText = "pa_ModificarDireccionTLD_upd " + strParametro;
 			cmd.CommandType = CommandType.Text;//
 
 
