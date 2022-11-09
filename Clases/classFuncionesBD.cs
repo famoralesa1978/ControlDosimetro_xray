@@ -234,7 +234,8 @@ namespace classFuncionesBD
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = "select 'Todos' as seccion, 0 as id_seccion union all" +
 							 "		SELECT seccion,id_seccion " +
-							" FROM tbl_seccion  WHERE Id_cliente= " + intId_Cliente.ToString() + " and id_estado=1";
+							" FROM tbl_seccion  WHERE Id_cliente= " + intId_Cliente.ToString() + " and id_estado=1"+
+							" ";
 			
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
@@ -255,7 +256,21 @@ namespace classFuncionesBD
 
 			return dt;
 		}
+		public DataSet Cargar_SeccionPorRunTodos(int intId_Cliente, string run)
+		{
+			DataSet dt;
 
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "select 'Todos' as seccion, 0 as id_seccion union all" +
+							 "		SELECT seccion,id_seccion " +
+							" FROM tbl_seccion  WHERE Id_cliente= " + intId_Cliente.ToString() + " and Run='" + run + "' and id_estado=1" +
+							" Order by id_seccion";
+
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+
+			return dt;
+		}
 		public DataSet Cargar_SeccionRunPeriodoClienteDireccion(int intIdPeriodo,int intId_Cliente, string run,int idDireccion)
 		{
 			DataSet dt;

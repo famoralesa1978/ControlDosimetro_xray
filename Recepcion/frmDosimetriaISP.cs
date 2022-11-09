@@ -88,8 +88,6 @@ namespace ControlDosimetro
 			//string targetPath = @ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text;
 			return dtArchivo.Tables[0].Rows[0]["Glosa"].ToString();
 		}
-
-
 		private void Cargar_Cliente(Int64 intCodCliente)
 		{
 			SqlCommand cmd = new SqlCommand();
@@ -210,6 +208,15 @@ namespace ControlDosimetro
 
 			//txt_RazonSocial.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 
+
+		}
+
+		private void Generar_Todos()
+		{
+
+		}
+		private void GenerarPorSucursal()
+		{
 
 		}
 
@@ -720,10 +727,20 @@ namespace ControlDosimetro
 
 			Listar_Personal();
 		}
+
+		private void btn_Sucursal_Click(object sender, EventArgs e)
+		{
+			frmBusquedaSucursal frm = new frmBusquedaSucursal(0);
+			frm.ShowDialog(this);
+		}
+
 		#endregion
 
 		#region "combobox"
-
+		private void cbx_Sucursal_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			Listar_Personal();
+		}
 		private void cbx_anno_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			Cargar_Periodo();
@@ -1122,16 +1139,9 @@ namespace ControlDosimetro
 			//this.grdDatos.Columns["Dosis"].DefaultCellStyle.Format = "N2";
 		}
 
-		private void cbx_Sucursal_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			Listar_Personal();
-		}
+	
 
-		private void btn_Sucursal_Click(object sender, EventArgs e)
-		{
-			frmBusquedaSucursal frm = new frmBusquedaSucursal(0);
-			frm.ShowDialog(this);
-		}
+		
 
 
 
