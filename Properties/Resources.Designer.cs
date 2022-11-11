@@ -19,7 +19,7 @@ namespace ControlDosimetro.Properties {
     // a través de una herramienta como ResGen o Visual Studio.
     // Para agregar o quitar un miembro, edite el archivo .ResX y, a continuación, vuelva a ejecutar ResGen
     // con la opción /str o recompile su proyecto de VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -415,6 +415,15 @@ namespace ControlDosimetro.Properties {
         public static string msgCaptionError {
             get {
                 return ResourceManager.GetString("msgCaptionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Mensaje.
+        /// </summary>
+        public static string msgCaptionProcesoOK {
+            get {
+                return ResourceManager.GetString("msgCaptionProcesoOK", resourceCulture);
             }
         }
         

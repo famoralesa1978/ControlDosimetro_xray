@@ -362,6 +362,7 @@ namespace ControlDosimetro
 				GenerarPorSucursalTodos();
 				
 			}
+			classFuncionesGenerales.mensajes.MensajeProcesoOK("Proceso terminado");
 			Cursor = Cursors.Default;
 		}
 		private void GenerarPorSucursal()
@@ -1098,7 +1099,7 @@ namespace ControlDosimetro
 			btnGenerar.Enabled = true;
 			pnl_Progreso.Visible = false;
 
-			Listar_Personal();
+		//	Listar_Personal();
 		}
 
 		#endregion

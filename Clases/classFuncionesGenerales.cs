@@ -127,7 +127,10 @@ namespace classFuncionesGenerales
 
 	public class mensajes
 	{
-
+		public static void MensajeProcesoOK(string strmensaje)
+		{
+			MessageBox.Show(strmensaje, ControlDosimetro.Properties.Resources.msgCaptionProcesoOK, MessageBoxButtons.OK, MessageBoxIcon.Information);
+		}
 		public static void MensajeError(string strmensaje)
 		{
 			MessageBox.Show(strmensaje, ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -147,6 +150,8 @@ namespace classFuncionesGenerales
             MessageBox.Show(strmensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
+
+
 
 	public class Filtro
 	{
