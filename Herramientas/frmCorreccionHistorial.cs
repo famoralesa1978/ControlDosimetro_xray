@@ -107,6 +107,7 @@ namespace ControlDosimetro
 			}
 		}
 
+
 		#endregion
 
 		#region "combobox"
@@ -115,9 +116,20 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "grilla"
+		private void dtgHistorial_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (dtgHistorial.Rows.Count > 0)
+			{
+				if (!e.Control && e.KeyCode == Keys.Delete)
+				{
+					if(classFuncionesGenerales.mensajes.MensajeConfirmacion("¿Desea eliminar del historial?"))
+					{
 
+					}
+				}
+			}
+		}
 		#endregion
-
 
 	}
 }
