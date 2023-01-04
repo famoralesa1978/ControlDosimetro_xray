@@ -301,7 +301,7 @@ namespace ControlDosimetro
 
 			//	  SqlCommand cmd = new SqlCommand();
 
-			cmd.CommandText = "SELECT Fecha_Inicio FROM conf_periodo   where  Anno <=  DATEPART(year, GETDATE()) and  Mes<=DATEPART(MONTH, GETDATE())+1  Order by id_periodo desc";
+			cmd.CommandText = "ListarPeriodo";
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
