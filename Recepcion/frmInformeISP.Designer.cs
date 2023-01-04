@@ -45,6 +45,7 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
+			this.lblRuta = new System.Windows.Forms.Label();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
 			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,7 +85,6 @@
 			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
 			this.btnGenerar = new System.Windows.Forms.Button();
 			this.btnResfrescar = new System.Windows.Forms.Button();
-			this.lblRuta = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -262,6 +262,16 @@
 			this.pnl_Progreso.TabIndex = 9;
 			this.pnl_Progreso.TabStop = false;
 			this.pnl_Progreso.Text = "Progreso de Grabado";
+			// 
+			// lblRuta
+			// 
+			this.lblRuta.AutoSize = true;
+			this.lblRuta.Location = new System.Drawing.Point(159, 83);
+			this.lblRuta.Name = "lblRuta";
+			this.lblRuta.Size = new System.Drawing.Size(35, 13);
+			this.lblRuta.TabIndex = 1;
+			this.lblRuta.Text = "label8";
+			this.lblRuta.Visible = false;
 			// 
 			// pgb_Barra
 			// 
@@ -658,16 +668,6 @@
 			this.btnResfrescar.UseVisualStyleBackColor = true;
 			this.btnResfrescar.Click += new System.EventHandler(this.btnResfrescar_Click);
 			// 
-			// lblRuta
-			// 
-			this.lblRuta.AutoSize = true;
-			this.lblRuta.Location = new System.Drawing.Point(159, 83);
-			this.lblRuta.Name = "lblRuta";
-			this.lblRuta.Size = new System.Drawing.Size(35, 13);
-			this.lblRuta.TabIndex = 1;
-			this.lblRuta.Text = "label8";
-			this.lblRuta.Visible = false;
-			// 
 			// FrmInformeISP
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -691,7 +691,7 @@
 			this.MinimumSize = new System.Drawing.Size(776, 464);
 			this.Name = "FrmInformeISP";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Dosis ISP";
+			this.Text = "Informe ISP";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
