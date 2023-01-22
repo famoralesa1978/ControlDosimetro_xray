@@ -476,9 +476,9 @@ namespace ControlDosimetro
 
 			string strArchivo = "";
 			if (rbtOiginal.Checked)
-				strArchivo = dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "Plantillaword.docx";
+				strArchivo = dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "INFORME DE DOSIMETRIA.docx";//Plantillaword.docx
 			else
-				strArchivo = @"C:\\Doc_Xray\\baseCliente\\Plantilla\\Plantillaword.docx";
+				strArchivo = @"C:\\Doc_Xray\\baseCliente\\Plantilla\\INFORME DE DOSIMETRIA.docx";
 
 
 			//   string strArchivo = ConfigurationManager.AppSettings["Archivo"] + "Plantillaword.docx";
@@ -691,25 +691,45 @@ namespace ControlDosimetro
 				using (WordprocessingDocument doc = WordprocessingDocument.Open(strArchivoCopiar, true))
 				{
 					string strSemetre1 = "";
+
+					//Version anterior
+					//if (cbx_id_periodo.Text.Substring(0, 1) == "1")
+					//	strSemetre1 = "primer";
+					//if (cbx_id_periodo.Text.Substring(0, 1) == "2")
+					//	strSemetre1 = "segundo";
+					//if (cbx_id_periodo.Text.Substring(0, 1) == "3")
+					//	strSemetre1 = "tercer";
+					//if (cbx_id_periodo.Text.Substring(0, 1) == "4")
+					//	strSemetre1 = "cuarto";
+					//strcampoMarcador = "empresa";
+					//BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strRazon_SocialEmpresa);
+					//strcampoMarcador = "comuna";
+					//BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strcomunaEmpresa);
+					//strcampoMarcador = "anno";
+					//BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), cbx_anno.Text);
+					//strcampoMarcador = "semestre";
+					//BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strSemetre1);
+					//****************************+
+					//Version Nueva
 					if (cbx_id_periodo.Text.Substring(0, 1) == "1")
-						strSemetre1 = "primer";
+						strSemetre1 = "1T "+ cbx_anno.Text;
 					if (cbx_id_periodo.Text.Substring(0, 1) == "2")
-						strSemetre1 = "segundo";
+						strSemetre1 = "2T " + cbx_anno.Text;
 					if (cbx_id_periodo.Text.Substring(0, 1) == "3")
-						strSemetre1 = "tercer";
+						strSemetre1 = "3T " + cbx_anno.Text;
 					if (cbx_id_periodo.Text.Substring(0, 1) == "4")
-						strSemetre1 = "cuarto";
-
-					strcampoMarcador = "empresa";
+						strSemetre1 = "4T  " + cbx_anno.Text;
+					strcampoMarcador = "Empresa";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strRazon_SocialEmpresa);
-					strcampoMarcador = "comuna";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strcomunaEmpresa);
-					strcampoMarcador = "anno";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), cbx_anno.Text);
-					strcampoMarcador = "semestre";
+					strcampoMarcador = "Sucursal";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strDireccionEmpresa);
+					strcampoMarcador = "Rut";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strRunEmpresa);//
+					strcampoMarcador = "Direccion";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strDireccionEmpresa);
+					strcampoMarcador = "Periodo";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strSemetre1);
-
-
+					//****************************+
 
 
 				}

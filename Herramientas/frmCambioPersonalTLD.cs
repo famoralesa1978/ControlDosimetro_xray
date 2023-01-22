@@ -142,7 +142,24 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "button"
+		private void btnAsociarTLDEnviadoAlCLiente_Click(object sender, EventArgs e)
+		{
+			SqlCommand cmd = new SqlCommand();
+			DataSet ds;
+			string strParametro = String.Format("{0},{1}", txt_NDoc.Text, nudTLDReemplazo.Value);
+			cmd.CommandText = "pa_AsociarTLDEnviadoAlCliente_upd " + strParametro;
+			cmd.CommandType = CommandType.Text;//pa_ModificarSeccionTLD_upd
 
+
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
+			{
+				MessageBox.Show("Error en actualizar la información");
+			}
+
+			else
+				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
+		}
 		private void btn_Cargar_Click(object sender, EventArgs e)
 		{
 			Cargar_TLD(Convert.ToInt64(  txt_NDoc.Text));
@@ -223,6 +240,7 @@ namespace ControlDosimetro
 				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
 		}
 
+
 		#endregion
 
 		#region "combobox"
@@ -233,7 +251,6 @@ namespace ControlDosimetro
 		#region "grilla"
 
 		#endregion
-
 
 	}
 }
