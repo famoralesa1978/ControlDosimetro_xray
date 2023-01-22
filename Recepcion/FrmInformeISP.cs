@@ -548,7 +548,7 @@ namespace ControlDosimetro
 					chkcondosis = (DataGridViewCheckBoxCell)grdDatos.Rows[intfilagrid].Cells["condosis"];
 					txtvalor = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["valor"];
 					txtndocumento = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["NDocumento"];
-					txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["n_pelicula"];
+					txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["N_TLD_Original"];
 					cbxEstado = (DataGridViewComboBoxCell)grdDatos.Rows[intfilagrid].Cells["Estado"];
 					txtid_sucursal = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["id_sucursal"];
 
