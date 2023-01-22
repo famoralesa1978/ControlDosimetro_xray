@@ -66,6 +66,7 @@
 			this.NDocumento = new GridExtension.IntegerGridColumn();
 			this.colPeriodo = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.n_dosimetro = new GridExtension.IntegerGridColumn();
+			this.colNTLDEnviado = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Paterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Maternos = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -98,7 +99,7 @@
 			this.groupBox2.Controls.Add(this.pnl_Progreso);
 			this.groupBox2.Location = new System.Drawing.Point(0, 28);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(1552, 460);
+			this.groupBox2.Size = new System.Drawing.Size(1601, 460);
 			this.groupBox2.TabIndex = 6;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Listado";
@@ -118,6 +119,7 @@
             this.NDocumento,
             this.colPeriodo,
             this.n_dosimetro,
+            this.colNTLDEnviado,
             this.Rut,
             this.Paterno,
             this.Maternos,
@@ -138,7 +140,7 @@
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-			this.grdDatos.Size = new System.Drawing.Size(1546, 406);
+			this.grdDatos.Size = new System.Drawing.Size(1595, 406);
 			this.grdDatos.TabIndex = 8;
 			this.grdDatos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdDatos_CellFormatting);
 			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
@@ -157,7 +159,7 @@
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel1.Location = new System.Drawing.Point(3, 16);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(1546, 35);
+			this.panel1.Size = new System.Drawing.Size(1595, 35);
 			this.panel1.TabIndex = 11;
 			// 
 			// btn_Cargar
@@ -241,7 +243,7 @@
             this.btnIngresarDosisISP});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(1557, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(1606, 25);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -272,7 +274,7 @@
 			this.btn_Guardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.btn_Guardar.Image = global::ControlDosimetro.Properties.Resources.Save_24;
 			this.btn_Guardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_Guardar.Location = new System.Drawing.Point(524, 494);
+			this.btn_Guardar.Location = new System.Drawing.Point(549, 494);
 			this.btn_Guardar.Name = "btn_Guardar";
 			this.btn_Guardar.Size = new System.Drawing.Size(101, 33);
 			this.btn_Guardar.TabIndex = 7;
@@ -285,7 +287,7 @@
 			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.btn_Cerrar.Image = global::ControlDosimetro.Properties.Resources.Close_24;
 			this.btn_Cerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_Cerrar.Location = new System.Drawing.Point(798, 494);
+			this.btn_Cerrar.Location = new System.Drawing.Point(823, 494);
 			this.btn_Cerrar.Name = "btn_Cerrar";
 			this.btn_Cerrar.Size = new System.Drawing.Size(96, 30);
 			this.btn_Cerrar.TabIndex = 8;
@@ -454,6 +456,14 @@
 			this.n_dosimetro.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
 			this.n_dosimetro.Width = 68;
 			// 
+			// colNTLDEnviado
+			// 
+			this.colNTLDEnviado.DataPropertyName = "NTLD_Enviado";
+			this.colNTLDEnviado.HeaderText = "N° TLD enviado";
+			this.colNTLDEnviado.Name = "colNTLDEnviado";
+			this.colNTLDEnviado.ReadOnly = true;
+			this.colNTLDEnviado.Width = 109;
+			// 
 			// Rut
 			// 
 			this.Rut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -590,7 +600,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1557, 555);
+			this.ClientSize = new System.Drawing.Size(1606, 555);
 			this.Controls.Add(this.btn_Cerrar);
 			this.Controls.Add(this.btn_Guardar);
 			this.Controls.Add(this.toolStrip1);
@@ -650,6 +660,7 @@
 		private GridExtension.IntegerGridColumn NDocumento;
 		private System.Windows.Forms.DataGridViewTextBoxColumn colPeriodo;
 		private GridExtension.IntegerGridColumn n_dosimetro;
+		private System.Windows.Forms.DataGridViewTextBoxColumn colNTLDEnviado;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Rut;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Paterno;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Maternos;
