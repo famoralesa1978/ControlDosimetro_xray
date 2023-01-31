@@ -123,6 +123,12 @@ namespace ControlDosimetro
 
 					this.reportViewer1.LocalReport.DataSources.Add(datasource);
 					break;
+				case 10:
+					reportViewer1.LocalReport.ReportEmbeddedResource = "ControlDosimetro.reporte.rptPersonalActivo.rdlc";
+					this.reportViewer1.LocalReport.DataSources.Clear();
+
+					this.reportViewer1.LocalReport.DataSources.Add(datasource);
+					break;
 				default:
 					Console.WriteLine("Default case");
 					break;
