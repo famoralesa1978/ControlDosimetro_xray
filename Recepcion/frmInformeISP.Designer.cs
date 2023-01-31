@@ -545,6 +545,7 @@
 			this.ColN_TLD_Original.Name = "ColN_TLD_Original";
 			this.ColN_TLD_Original.ReadOnly = true;
 			this.ColN_TLD_Original.ToolTipText = "N° de pelicula  orginal";
+			this.ColN_TLD_Original.Visible = false;
 			this.ColN_TLD_Original.Width = 103;
 			// 
 			// id_dosimetro
