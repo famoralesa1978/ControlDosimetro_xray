@@ -66,7 +66,7 @@
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.btn_EliminarSeleccion = new System.Windows.Forms.ToolStripMenuItem();
 			this.grpDatos = new System.Windows.Forms.GroupBox();
-			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPrincipal = new System.Windows.Forms.TabControl();
 			this.tabPersonal = new System.Windows.Forms.TabPage();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.tabSeccion = new System.Windows.Forms.TabPage();
@@ -83,20 +83,20 @@
 			this.label10 = new System.Windows.Forms.Label();
 			this.cbxDireccionActual = new System.Windows.Forms.ComboBox();
 			this.label11 = new System.Windows.Forms.Label();
-			this.tabCorregirNTLDEnviadoAlCliente = new System.Windows.Forms.TabPage();
-			this.lblNumeroTldEnviadoACliente = new System.Windows.Forms.Label();
-			this.nudTLDReemplazo = new System.Windows.Forms.NumericUpDown();
-			this.btnAsociarTLDEnviadoAlCLiente = new System.Windows.Forms.Button();
+			this.tabAsociarTLDEnviadoAlCliente = new System.Windows.Forms.TabPage();
+			this.nudTLDEnviadoAlCliente = new System.Windows.Forms.NumericUpDown();
+			this.label12 = new System.Windows.Forms.Label();
+			this.btnAsociarTLDConElOriginal = new System.Windows.Forms.Button();
 			this.cmsPopup.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.grpDatos.SuspendLayout();
-			this.tabControl1.SuspendLayout();
+			this.tabPrincipal.SuspendLayout();
 			this.tabPersonal.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.tabSeccion.SuspendLayout();
 			this.tabDireccion.SuspendLayout();
-			this.tabCorregirNTLDEnviadoAlCliente.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.nudTLDReemplazo)).BeginInit();
+			this.tabAsociarTLDEnviadoAlCliente.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nudTLDEnviadoAlCliente)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// lblRut
@@ -387,7 +387,7 @@
 			// 
 			// grpDatos
 			// 
-			this.grpDatos.Controls.Add(this.tabControl1);
+			this.grpDatos.Controls.Add(this.tabPrincipal);
 			this.grpDatos.Location = new System.Drawing.Point(0, 96);
 			this.grpDatos.Name = "grpDatos";
 			this.grpDatos.Size = new System.Drawing.Size(514, 238);
@@ -395,18 +395,18 @@
 			this.grpDatos.TabStop = false;
 			this.grpDatos.Text = "Datos a modificar";
 			// 
-			// tabControl1
+			// tabPrincipal
 			// 
-			this.tabControl1.Controls.Add(this.tabPersonal);
-			this.tabControl1.Controls.Add(this.tabSeccion);
-			this.tabControl1.Controls.Add(this.tabDireccion);
-			this.tabControl1.Controls.Add(this.tabCorregirNTLDEnviadoAlCliente);
-			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tabControl1.Location = new System.Drawing.Point(3, 16);
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(508, 219);
-			this.tabControl1.TabIndex = 0;
+			this.tabPrincipal.Controls.Add(this.tabPersonal);
+			this.tabPrincipal.Controls.Add(this.tabSeccion);
+			this.tabPrincipal.Controls.Add(this.tabDireccion);
+			this.tabPrincipal.Controls.Add(this.tabAsociarTLDEnviadoAlCliente);
+			this.tabPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabPrincipal.Location = new System.Drawing.Point(3, 16);
+			this.tabPrincipal.Name = "tabPrincipal";
+			this.tabPrincipal.SelectedIndex = 0;
+			this.tabPrincipal.Size = new System.Drawing.Size(508, 219);
+			this.tabPrincipal.TabIndex = 0;
 			// 
 			// tabPersonal
 			// 
@@ -591,48 +591,44 @@
 			this.label11.TabIndex = 47;
 			this.label11.Text = "Dirección a modicar";
 			// 
-			// tabCorregirNTLDEnviadoAlCliente
+			// tabAsociarTLDEnviadoAlCliente
 			// 
-			this.tabCorregirNTLDEnviadoAlCliente.Controls.Add(this.btnAsociarTLDEnviadoAlCLiente);
-			this.tabCorregirNTLDEnviadoAlCliente.Controls.Add(this.nudTLDReemplazo);
-			this.tabCorregirNTLDEnviadoAlCliente.Controls.Add(this.lblNumeroTldEnviadoACliente);
-			this.tabCorregirNTLDEnviadoAlCliente.Location = new System.Drawing.Point(4, 22);
-			this.tabCorregirNTLDEnviadoAlCliente.Name = "tabCorregirNTLDEnviadoAlCliente";
-			this.tabCorregirNTLDEnviadoAlCliente.Size = new System.Drawing.Size(500, 193);
-			this.tabCorregirNTLDEnviadoAlCliente.TabIndex = 3;
-			this.tabCorregirNTLDEnviadoAlCliente.Text = "asociar n° TLD enviado ";
-			this.tabCorregirNTLDEnviadoAlCliente.UseVisualStyleBackColor = true;
+			this.tabAsociarTLDEnviadoAlCliente.Controls.Add(this.btnAsociarTLDConElOriginal);
+			this.tabAsociarTLDEnviadoAlCliente.Controls.Add(this.label12);
+			this.tabAsociarTLDEnviadoAlCliente.Controls.Add(this.nudTLDEnviadoAlCliente);
+			this.tabAsociarTLDEnviadoAlCliente.Location = new System.Drawing.Point(4, 22);
+			this.tabAsociarTLDEnviadoAlCliente.Name = "tabAsociarTLDEnviadoAlCliente";
+			this.tabAsociarTLDEnviadoAlCliente.Padding = new System.Windows.Forms.Padding(3);
+			this.tabAsociarTLDEnviadoAlCliente.Size = new System.Drawing.Size(500, 193);
+			this.tabAsociarTLDEnviadoAlCliente.TabIndex = 3;
+			this.tabAsociarTLDEnviadoAlCliente.Text = "Asociar TLD  enviado al cliente";
+			this.tabAsociarTLDEnviadoAlCliente.UseVisualStyleBackColor = true;
 			// 
-			// lblNumeroTldEnviadoACliente
+			// nudTLDEnviadoAlCliente
 			// 
-			this.lblNumeroTldEnviadoACliente.AutoSize = true;
-			this.lblNumeroTldEnviadoACliente.Location = new System.Drawing.Point(20, 29);
-			this.lblNumeroTldEnviadoACliente.Name = "lblNumeroTldEnviadoACliente";
-			this.lblNumeroTldEnviadoACliente.Size = new System.Drawing.Size(129, 13);
-			this.lblNumeroTldEnviadoACliente.TabIndex = 0;
-			this.lblNumeroTldEnviadoACliente.Text = "N° TLD enviado al cliente";
+			this.nudTLDEnviadoAlCliente.Location = new System.Drawing.Point(180, 32);
+			this.nudTLDEnviadoAlCliente.Name = "nudTLDEnviadoAlCliente";
+			this.nudTLDEnviadoAlCliente.Size = new System.Drawing.Size(120, 20);
+			this.nudTLDEnviadoAlCliente.TabIndex = 0;
 			// 
-			// nudTLDReemplazo
+			// label12
 			// 
-			this.nudTLDReemplazo.Location = new System.Drawing.Point(155, 27);
-			this.nudTLDReemplazo.Maximum = new decimal(new int[] {
-            99999999,
-            0,
-            0,
-            0});
-			this.nudTLDReemplazo.Name = "nudTLDReemplazo";
-			this.nudTLDReemplazo.Size = new System.Drawing.Size(120, 20);
-			this.nudTLDReemplazo.TabIndex = 1;
+			this.label12.AutoSize = true;
+			this.label12.Location = new System.Drawing.Point(30, 34);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(129, 13);
+			this.label12.TabIndex = 1;
+			this.label12.Text = "N° TLD enviado al cliente";
 			// 
-			// btnAsociarTLDEnviadoAlCLiente
+			// btnAsociarTLDConElOriginal
 			// 
-			this.btnAsociarTLDEnviadoAlCLiente.Location = new System.Drawing.Point(23, 79);
-			this.btnAsociarTLDEnviadoAlCLiente.Name = "btnAsociarTLDEnviadoAlCLiente";
-			this.btnAsociarTLDEnviadoAlCLiente.Size = new System.Drawing.Size(214, 23);
-			this.btnAsociarTLDEnviadoAlCLiente.TabIndex = 46;
-			this.btnAsociarTLDEnviadoAlCLiente.Text = "Asociar n° TLD enviado al cliente ";
-			this.btnAsociarTLDEnviadoAlCLiente.UseVisualStyleBackColor = true;
-			this.btnAsociarTLDEnviadoAlCLiente.Click += new System.EventHandler(this.btnAsociarTLDEnviadoAlCLiente_Click);
+			this.btnAsociarTLDConElOriginal.Location = new System.Drawing.Point(89, 105);
+			this.btnAsociarTLDConElOriginal.Name = "btnAsociarTLDConElOriginal";
+			this.btnAsociarTLDConElOriginal.Size = new System.Drawing.Size(185, 23);
+			this.btnAsociarTLDConElOriginal.TabIndex = 46;
+			this.btnAsociarTLDConElOriginal.Text = "Asociar TLD con el original";
+			this.btnAsociarTLDConElOriginal.UseVisualStyleBackColor = true;
+			this.btnAsociarTLDConElOriginal.Click += new System.EventHandler(this.btnAsociarTLDConElOriginal_Click);
 			// 
 			// frmCambioPersonalTLD
 			// 
@@ -660,7 +656,7 @@
 			this.cmsPopup.ResumeLayout(false);
 			this.contextMenuStrip1.ResumeLayout(false);
 			this.grpDatos.ResumeLayout(false);
-			this.tabControl1.ResumeLayout(false);
+			this.tabPrincipal.ResumeLayout(false);
 			this.tabPersonal.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
@@ -668,9 +664,9 @@
 			this.tabSeccion.PerformLayout();
 			this.tabDireccion.ResumeLayout(false);
 			this.tabDireccion.PerformLayout();
-			this.tabCorregirNTLDEnviadoAlCliente.ResumeLayout(false);
-			this.tabCorregirNTLDEnviadoAlCliente.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.nudTLDReemplazo)).EndInit();
+			this.tabAsociarTLDEnviadoAlCliente.ResumeLayout(false);
+			this.tabAsociarTLDEnviadoAlCliente.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nudTLDEnviadoAlCliente)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -712,7 +708,7 @@
 		private System.Windows.Forms.ComboBox cbx_PersonalCambio;
 		private System.Windows.Forms.Label lblRut;
 		private System.Windows.Forms.GroupBox grpDatos;
-		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabControl tabPrincipal;
 		private System.Windows.Forms.TabPage tabPersonal;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.TabPage tabSeccion;
@@ -729,9 +725,9 @@
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.ComboBox cbxDireccionActual;
 		private System.Windows.Forms.Label label11;
-		private System.Windows.Forms.TabPage tabCorregirNTLDEnviadoAlCliente;
-		private System.Windows.Forms.Button btnAsociarTLDEnviadoAlCLiente;
-		private System.Windows.Forms.NumericUpDown nudTLDReemplazo;
-		private System.Windows.Forms.Label lblNumeroTldEnviadoACliente;
+		private System.Windows.Forms.TabPage tabAsociarTLDEnviadoAlCliente;
+		private System.Windows.Forms.Button btnAsociarTLDConElOriginal;
+		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.NumericUpDown nudTLDEnviadoAlCliente;
 	}
 }

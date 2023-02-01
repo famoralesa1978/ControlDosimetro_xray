@@ -12,6 +12,7 @@ using dllLibreriaEvento;
 using dllLibreriaMysql;
 using System.Data.SqlClient;
 using System.Data.Sql;
+using System.Diagnostics;
 
 namespace ControlDosimetro
 {
@@ -64,6 +65,7 @@ namespace ControlDosimetro
 			AsignarPermiso();
 			
 			grdDatos.AutoGenerateColumns = false;
+			btnDescargarExcel.Enabled = false;
 		}
 
 		#region "Llamada de carga"
@@ -107,6 +109,7 @@ namespace ControlDosimetro
 				txt_RazonSocial.Text = "";
 				grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = false;
 				tsbPersonal.Visible= tsbGuardar.Visible = false;
+				btnDescargarExcel.Enabled = false;
 				bolDesdeCodigo = false;
 				chk_AsignarTLD.Checked = false;
 				btn_cargarCliente.Enabled = true;
@@ -121,6 +124,7 @@ namespace ControlDosimetro
 				txt_Rut.ReadOnly = true;
 				grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = true;
 				tsbGuardar.Visible = Modificacion;
+
 				tsbPersonal.Visible = Nuevo;
 				txt_RazonSocial.ReadOnly = true;
 				btn_cargarCliente.Enabled = false;
@@ -144,6 +148,7 @@ namespace ControlDosimetro
 
 			//dtPersonal.Tables[0].DefaultView.RowFilter = "Id_Estado=" + (chkActivo.Checked == true ? 1 : 0);
 			grdDatos.DataSource = dtPersonal.Tables[0].DefaultView;
+			btnDescargarExcel.Enabled = true;
 
 		}
 
@@ -235,7 +240,25 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "button"       
+		private void btnDescargarExcel_Click(object sender, EventArgs e)
+		{
+			//SqlCommand cmd = new SqlCommand();
+			SqlCommand cmd = new SqlCommand();
+			
+			cmd.CommandText = "pa_ListarPersonal_selExcel " + txt_ref_cliente.Text + ",'" + txt_Rut.Text + "' ";
+			cmd.CommandType = CommandType.Text;
 
+			DataSet dt;
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+			if (dt.Tables[0].Rows.Count> 0)
+			{
+				frmreporte frm = new frmreporte(dt, dt, 10);
+				frm.Show(this);
+
+			}
+
+		}
 
 		private void btn_cargarCliente_Click(object sender, EventArgs e)
 		{
@@ -272,6 +295,7 @@ namespace ControlDosimetro
 			Listar_Cliente(0);
 			//Listar_Personal();
 			picFiltrarpersonal_Click(null, null);
+			btnDescargarExcel.Enabled = false;
 			btn_cargarCliente.Enabled = true;
 			txt_ref_cliente.Focus();
 
@@ -613,6 +637,7 @@ namespace ControlDosimetro
 		}
 
 		#endregion
+
 
 	}
 }

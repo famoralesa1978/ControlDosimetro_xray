@@ -15,6 +15,7 @@ using System.Diagnostics;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using NPOI.HSSF.UserModel;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 
 namespace classFuncionesGenerales
@@ -123,7 +124,59 @@ namespace classFuncionesGenerales
 			}
 		}
 
+		public static bool ExportExcel(DataTable dt,string fileName, string strHoja)
+		{
+
+			bool result = false;
+			IWorkbook workbook = null;
+			FileStream fs = null;
+			IRow row = null;
+			ISheet sheet = null;
+			ICell cell = null;
+			try
+			{
+				if (dt != null && dt.Rows.Count > 0)
+				{
+					//fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+					workbook = new HSSFWorkbook();
+					sheet = workbook.CreateSheet(strHoja);
+					int rowCount = dt.Rows.Count;
+					int columnCount = dt.Columns.Count;
+					row = sheet.CreateRow(0);
+					for (int c = 0; c < columnCount; c++)
+					{
+						cell = row.CreateCell(c);
+						cell.SetCellValue(dt.Columns[c].ColumnName);
+					}
+					for (int i = 0; i < rowCount; i++)
+					{
+						row = sheet.CreateRow(i + 1);
+						for (int j = 0; j < columnCount; j++)
+						{
+							cell = row.CreateCell(j);//excel第二行开始写入数据  
+							cell.SetCellValue(dt.Rows[i][j].ToString());
+						}
+					}
+					using (fs = File.Create(fileName))
+					{
+						workbook.Write(fs);//向打开的这个xls文件中写入数据  
+						workbook.Close();
+						result = true;
+					}
+				}
+				return result;
+			}
+			catch (Exception ex)
+			{
+				if (fs != null)
+				{
+					fs.Close();
+				}
+				return result;
+			}
+		}
 	}
+
 
 	public class mensajes
 	{

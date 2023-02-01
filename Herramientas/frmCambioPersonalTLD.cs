@@ -142,11 +142,11 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "button"
-		private void btnAsociarTLDEnviadoAlCLiente_Click(object sender, EventArgs e)
+		private void btnAsociarTLDConElOriginal_Click(object sender, EventArgs e)
 		{
 			SqlCommand cmd = new SqlCommand();
 			DataSet ds;
-			string strParametro = String.Format("{0},{1}", txt_NDoc.Text, nudTLDReemplazo.Value);
+			string strParametro = String.Format("{0},{1}", txt_NDoc.Text,nudTLDEnviadoAlCliente.Value);
 			cmd.CommandText = "pa_AsociarTLDEnviadoAlCliente_upd " + strParametro;
 			cmd.CommandType = CommandType.Text;//pa_ModificarSeccionTLD_upd
 

@@ -381,6 +381,7 @@ namespace ControlDosimetro
 			DataGridViewTextBoxCell txtvalor;
 			DataGridViewTextBoxCell txtndocumento;
 			DataGridViewTextBoxCell txtnpelicula;
+			DataGridViewTextBoxCell txtnpeliculaoriginal;
 			DataGridViewComboBoxCell cbxEstado;
 			DataGridViewTextBoxCell txtid_sucursal;
 			string strn_cliente;
@@ -548,7 +549,9 @@ namespace ControlDosimetro
 					chkcondosis = (DataGridViewCheckBoxCell)grdDatos.Rows[intfilagrid].Cells["condosis"];
 					txtvalor = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["valor"];
 					txtndocumento = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["NDocumento"];
-					txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["n_pelicula"];
+					txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["N_pelicula"];
+					txtnpeliculaoriginal = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["N_TLD_Original"];
+					
 					cbxEstado = (DataGridViewComboBoxCell)grdDatos.Rows[intfilagrid].Cells["Estado"];
 					txtid_sucursal = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["id_sucursal"];
 
@@ -655,7 +658,7 @@ namespace ControlDosimetro
 
 							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 
-							string strParametro = String.Format("{0},{1},{2},''", txtnpelicula.Value.ToString(), "5", Clases.clsUsuario.Usuario);
+							string strParametro = String.Format("{0},{1},{2},''", txtnpeliculaoriginal.Value.ToString(), "5", Clases.clsUsuario.Usuario);
 							cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + strParametro;
 							cmd.CommandType = CommandType.Text;
 							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);

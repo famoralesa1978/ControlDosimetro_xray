@@ -32,10 +32,10 @@
     <TargetCulture>es-CL</TargetCulture>
     <ProductName>X-Ray Dosimetro</ProductName>
     <SuiteName>Sistema Dosimetro</SuiteName>
-    <MinimumRequiredVersion>9.0.1.81</MinimumRequiredVersion>
+    <MinimumRequiredVersion>9.0.1.85</MinimumRequiredVersion>
     <WebPage>instalacion.html</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>82</ApplicationRevision>
+    <ApplicationRevision>86</ApplicationRevision>
     <ApplicationVersion>9.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -972,6 +972,7 @@
     <EmbeddedResource Include="reporte\frmRptcliente.resx">
       <DependentUpon>frmRptcliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="reporte\rptPersonalActivo.rdlc" />
     <EmbeddedResource Include="reporte\rptDosimetriaEnc.rdlc" />
     <EmbeddedResource Include="reporte\rptDosimetriaAnualPorSucursal.rdlc" />
     <EmbeddedResource Include="reporte\frmRptPorEstado.resx">
