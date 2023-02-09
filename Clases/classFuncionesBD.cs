@@ -295,7 +295,19 @@ namespace classFuncionesBD
 
 
 			return dt;
-		}
+		}//
+		public DataSet Cargar_EstadoTLD(int intMostrarTodo=0)
+		{
+			DataSet dt;
+
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = String.Format("ListarEstadoTLD {0}", intMostrarTodo);
+
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+
+			return dt;
+		}//ListarEstadoTLD
 
 		public DataSet Cargar_SeccionMasivo(int intId_Cliente)
 		{

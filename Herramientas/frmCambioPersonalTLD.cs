@@ -52,9 +52,13 @@ namespace ControlDosimetro
 				lbl_NCliente.Text = dt.Tables[0].Rows[0]["Id_cliente"].ToString();
 				lbl_NombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
 				lblRut.Text = dt.Tables[0].Rows[0]["run"].ToString();
+				lblNombrePersonal.Text = dt.Tables[1].Rows[0]["NombreCompleto"].ToString();
+				lblEstadoActual.Text = dt.Tables[1].Rows[0]["Estado"].ToString();
+				
 				Cargar_Personal(dt.Tables[0].Rows[0]["Id_cliente"].ToString(), lblRut.Text);
 				Cargar_Seccion();
 				Cargar_Direccion();
+				Cargar_Estado();
 				cbx_PersonalActual.SelectedValue = dt.Tables[1].Rows[0]["Id_Personal"];
 				cbx_id_seccion.SelectedValue = dt.Tables[1].Rows[0]["Id_SeccionTLD"];
 				cbxDireccionActual.SelectedValue= dt.Tables[1].Rows[0]["Id_sucursal"]; 
@@ -122,6 +126,16 @@ namespace ControlDosimetro
 			cbx_id_seccionMod.ValueMember = dtCopia.Tables[0].Columns[1].Caption.ToString();
 			cbx_id_seccionMod.DataSource = dtCopia.Tables[0];
 		}
+		private void Cargar_Estado()
+		{
+
+			DataSet dt = clsFunc.Cargar_EstadoTLD(1);
+			DataSet dtCopia = dt.Copy();
+
+			cbxEstado.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
+			cbxEstado.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
+			cbxEstado.DataSource = dt.Tables[0];
+		}
 		private void Cargar_Direccion()
 		{
 			SqlCommand cmd = new SqlCommand();
@@ -171,6 +185,24 @@ namespace ControlDosimetro
 			DataSet ds;
 			string strParametro = String.Format("{0},{1},{2}", txt_NDoc.Text, cbx_PersonalActual.SelectedValue, cbx_PersonalCambio.SelectedValue);
 			cmd.CommandText = "pa_ModificarPersonalTLD_upd " + strParametro;
+			cmd.CommandType = CommandType.Text;//pa_ModificarSeccionTLD_upd
+
+
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
+			{
+				MessageBox.Show("Error en actualizar la información");
+			}
+
+			else
+				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
+		}
+		private void btnCambioestado_Click(object sender, EventArgs e)
+		{
+			SqlCommand cmd = new SqlCommand();
+			DataSet ds;
+			string strParametro = String.Format("{0},{1}", txt_NDoc.Text,cbxEstado.SelectedValue);
+			cmd.CommandText = "pa_ModificarEstadoTLD_upd " + strParametro;
 			cmd.CommandType = CommandType.Text;//pa_ModificarSeccionTLD_upd
 
 
@@ -251,6 +283,7 @@ namespace ControlDosimetro
 		#region "grilla"
 
 		#endregion
+
 
 	}
 }

@@ -48,6 +48,24 @@
 			this.lblRuta = new System.Windows.Forms.Label();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
+			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.N_pelicula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.id_dosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Generar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.enviado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.N_Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.NDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Paterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Maternos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.condosis = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Estado = new System.Windows.Forms.DataGridViewComboBoxColumn();
+			this.id_sucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.tld = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.N_TLD_Original = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colSeccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.btn_Sucursal = new System.Windows.Forms.ToolStripButton();
 			this.tsbAsignarSucursal = new System.Windows.Forms.ToolStripButton();
@@ -68,24 +86,7 @@
 			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
 			this.btnGenerar = new System.Windows.Forms.Button();
 			this.btnResfrescar = new System.Windows.Forms.Button();
-			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.N_pelicula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColN_TLD_Original = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.id_dosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Generar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.enviado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.N_Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.NDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Paterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Maternos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.condosis = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Estado = new System.Windows.Forms.DataGridViewComboBoxColumn();
-			this.id_sucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.tld = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.colSeccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.btnGenerarArchivoNuevo = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -248,7 +249,7 @@
 			this.groupBox2.Controls.Add(this.grdDatos);
 			this.groupBox2.Location = new System.Drawing.Point(5, 225);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(1289, 315);
+			this.groupBox2.Size = new System.Drawing.Size(1345, 315);
 			this.groupBox2.TabIndex = 6;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Listado";
@@ -292,7 +293,6 @@
 			this.grdDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id_Personal,
             this.N_pelicula,
-            this.ColN_TLD_Original,
             this.id_dosimetro,
             this.Generar,
             this.enviado,
@@ -307,218 +307,19 @@
             this.Estado,
             this.id_sucursal,
             this.tld,
+            this.N_TLD_Original,
             this.colSeccion});
 			this.grdDatos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.grdDatos.Location = new System.Drawing.Point(3, 16);
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-			this.grdDatos.Size = new System.Drawing.Size(1283, 296);
+			this.grdDatos.Size = new System.Drawing.Size(1339, 296);
 			this.grdDatos.TabIndex = 8;
 			this.grdDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdDatos_CellContentClick);
 			this.grdDatos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdDatos_CellFormatting);
 			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdDatos_CellValueChanged);
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdDatos_CurrentCellDirtyStateChanged);
-			// 
-			// toolStrip1
-			// 
-			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btn_Sucursal,
-            this.tsbAsignarSucursal,
-            this.tsbAsignarSeccion});
-			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(1294, 25);
-			this.toolStrip1.TabIndex = 2;
-			this.toolStrip1.Text = "toolStrip1";
-			// 
-			// btn_Sucursal
-			// 
-			this.btn_Sucursal.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.btn_Sucursal.Image = ((System.Drawing.Image)(resources.GetObject("btn_Sucursal.Image")));
-			this.btn_Sucursal.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.btn_Sucursal.Name = "btn_Sucursal";
-			this.btn_Sucursal.Size = new System.Drawing.Size(61, 22);
-			this.btn_Sucursal.Text = "Dirección";
-			this.btn_Sucursal.Click += new System.EventHandler(this.Btn_Sucursal_Click);
-			// 
-			// tsbAsignarSucursal
-			// 
-			this.tsbAsignarSucursal.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tsbAsignarSucursal.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignarSucursal.Image")));
-			this.tsbAsignarSucursal.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbAsignarSucursal.Name = "tsbAsignarSucursal";
-			this.tsbAsignarSucursal.Size = new System.Drawing.Size(103, 22);
-			this.tsbAsignarSucursal.Text = "Asignar dirección";
-			this.tsbAsignarSucursal.Click += new System.EventHandler(this.tsbAsignarSucursal_Click);
-			// 
-			// tsbAsignarSeccion
-			// 
-			this.tsbAsignarSeccion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tsbAsignarSeccion.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignarSeccion.Image")));
-			this.tsbAsignarSeccion.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbAsignarSeccion.Name = "tsbAsignarSeccion";
-			this.tsbAsignarSeccion.Size = new System.Drawing.Size(95, 22);
-			this.tsbAsignarSeccion.Text = "Asignar Sección";
-			this.tsbAsignarSeccion.Click += new System.EventHandler(this.tsbAsignarSeccion_Click);
-			// 
-			// btn_Guardar
-			// 
-			this.btn_Guardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Guardar.Location = new System.Drawing.Point(898, 546);
-			this.btn_Guardar.Name = "btn_Guardar";
-			this.btn_Guardar.Size = new System.Drawing.Size(139, 23);
-			this.btn_Guardar.TabIndex = 7;
-			this.btn_Guardar.Text = "Generar Archivo ISP";
-			this.btn_Guardar.UseVisualStyleBackColor = true;
-			this.btn_Guardar.Visible = false;
-			this.btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
-			// 
-			// btn_Cerrar
-			// 
-			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Cerrar.Location = new System.Drawing.Point(577, 546);
-			this.btn_Cerrar.Name = "btn_Cerrar";
-			this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
-			this.btn_Cerrar.TabIndex = 8;
-			this.btn_Cerrar.Text = "Cerrar";
-			this.btn_Cerrar.UseVisualStyleBackColor = true;
-			this.btn_Cerrar.Click += new System.EventHandler(this.Btn_Cerrar_Click);
-			// 
-			// btn_Corregir
-			// 
-			this.btn_Corregir.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Corregir.Location = new System.Drawing.Point(141, 546);
-			this.btn_Corregir.Name = "btn_Corregir";
-			this.btn_Corregir.Size = new System.Drawing.Size(126, 23);
-			this.btn_Corregir.TabIndex = 9;
-			this.btn_Corregir.Text = "Grabar Dato Corregir";
-			this.btn_Corregir.UseVisualStyleBackColor = true;
-			this.btn_Corregir.Click += new System.EventHandler(this.Btn_Corregir_Click);
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(5, 174);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(52, 13);
-			this.label4.TabIndex = 10;
-			this.label4.Text = "Dirección";
-			// 
-			// cbx_Sucursal
-			// 
-			this.cbx_Sucursal.DisplayMember = "Direccion";
-			this.cbx_Sucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_Sucursal.FormattingEnabled = true;
-			this.cbx_Sucursal.Location = new System.Drawing.Point(59, 171);
-			this.cbx_Sucursal.Name = "cbx_Sucursal";
-			this.cbx_Sucursal.Size = new System.Drawing.Size(526, 21);
-			this.cbx_Sucursal.TabIndex = 11;
-			this.cbx_Sucursal.ValueMember = "Id_sucursal";
-			this.cbx_Sucursal.SelectedIndexChanged += new System.EventHandler(this.Cbx_Sucursal_SelectedIndexChanged);
-			// 
-			// groupBox3
-			// 
-			this.groupBox3.Controls.Add(this.lbl_Alternativa);
-			this.groupBox3.Controls.Add(this.label7);
-			this.groupBox3.Controls.Add(this.lbl_Original);
-			this.groupBox3.Controls.Add(this.rbtAlternativa);
-			this.groupBox3.Controls.Add(this.rbtOiginal);
-			this.groupBox3.Location = new System.Drawing.Point(685, 36);
-			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(387, 129);
-			this.groupBox3.TabIndex = 12;
-			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "Ruta archivo";
-			// 
-			// lbl_Alternativa
-			// 
-			this.lbl_Alternativa.AutoSize = true;
-			this.lbl_Alternativa.Location = new System.Drawing.Point(6, 100);
-			this.lbl_Alternativa.Name = "lbl_Alternativa";
-			this.lbl_Alternativa.Size = new System.Drawing.Size(22, 13);
-			this.lbl_Alternativa.TabIndex = 6;
-			this.lbl_Alternativa.Text = "dfff";
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(193, 44);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(0, 13);
-			this.label7.TabIndex = 5;
-			// 
-			// lbl_Original
-			// 
-			this.lbl_Original.AutoSize = true;
-			this.lbl_Original.Location = new System.Drawing.Point(6, 50);
-			this.lbl_Original.Name = "lbl_Original";
-			this.lbl_Original.Size = new System.Drawing.Size(22, 13);
-			this.lbl_Original.TabIndex = 4;
-			this.lbl_Original.Text = "dfff";
-			// 
-			// rbtAlternativa
-			// 
-			this.rbtAlternativa.AutoSize = true;
-			this.rbtAlternativa.Location = new System.Drawing.Point(7, 69);
-			this.rbtAlternativa.Name = "rbtAlternativa";
-			this.rbtAlternativa.Size = new System.Drawing.Size(75, 17);
-			this.rbtAlternativa.TabIndex = 3;
-			this.rbtAlternativa.TabStop = true;
-			this.rbtAlternativa.Text = "Alternativa";
-			this.rbtAlternativa.UseVisualStyleBackColor = true;
-			// 
-			// rbtOiginal
-			// 
-			this.rbtOiginal.AutoSize = true;
-			this.rbtOiginal.Location = new System.Drawing.Point(7, 19);
-			this.rbtOiginal.Name = "rbtOiginal";
-			this.rbtOiginal.Size = new System.Drawing.Size(60, 17);
-			this.rbtOiginal.TabIndex = 2;
-			this.rbtOiginal.TabStop = true;
-			this.rbtOiginal.Text = "Original";
-			this.rbtOiginal.UseVisualStyleBackColor = true;
-			// 
-			// lbl_id_seccion
-			// 
-			this.lbl_id_seccion.AutoSize = true;
-			this.lbl_id_seccion.Location = new System.Drawing.Point(5, 201);
-			this.lbl_id_seccion.Name = "lbl_id_seccion";
-			this.lbl_id_seccion.Size = new System.Drawing.Size(46, 13);
-			this.lbl_id_seccion.TabIndex = 17;
-			this.lbl_id_seccion.Text = "Sección";
-			// 
-			// cbx_id_seccion
-			// 
-			this.cbx_id_seccion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_id_seccion.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbx_id_seccion.FormattingEnabled = true;
-			this.cbx_id_seccion.Location = new System.Drawing.Point(59, 198);
-			this.cbx_id_seccion.Name = "cbx_id_seccion";
-			this.cbx_id_seccion.Size = new System.Drawing.Size(236, 21);
-			this.cbx_id_seccion.TabIndex = 16;
-			this.cbx_id_seccion.SelectedIndexChanged += new System.EventHandler(this.cbx_id_seccion_SelectedIndexChanged);
-			// 
-			// btnGenerar
-			// 
-			this.btnGenerar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btnGenerar.Location = new System.Drawing.Point(409, 547);
-			this.btnGenerar.Name = "btnGenerar";
-			this.btnGenerar.Size = new System.Drawing.Size(139, 23);
-			this.btnGenerar.TabIndex = 18;
-			this.btnGenerar.Text = "Generar Archivo ISP";
-			this.btnGenerar.UseVisualStyleBackColor = true;
-			this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
-			// 
-			// btnResfrescar
-			// 
-			this.btnResfrescar.Image = global::ControlDosimetro.Properties.Resources.filter_16;
-			this.btnResfrescar.Location = new System.Drawing.Point(304, 196);
-			this.btnResfrescar.Name = "btnResfrescar";
-			this.btnResfrescar.Size = new System.Drawing.Size(26, 23);
-			this.btnResfrescar.TabIndex = 20;
-			this.btnResfrescar.UseVisualStyleBackColor = true;
-			this.btnResfrescar.Click += new System.EventHandler(this.btnResfrescar_Click);
 			// 
 			// Id_Personal
 			// 
@@ -537,16 +338,6 @@
 			this.N_pelicula.ReadOnly = true;
 			this.N_pelicula.ToolTipText = "N° de pelicula de enviado al cliente";
 			this.N_pelicula.Width = 84;
-			// 
-			// ColN_TLD_Original
-			// 
-			this.ColN_TLD_Original.DataPropertyName = "N_TLD_Original";
-			this.ColN_TLD_Original.HeaderText = "N° Pelicula Ori.";
-			this.ColN_TLD_Original.Name = "ColN_TLD_Original";
-			this.ColN_TLD_Original.ReadOnly = true;
-			this.ColN_TLD_Original.ToolTipText = "N° de pelicula  orginal";
-			this.ColN_TLD_Original.Visible = false;
-			this.ColN_TLD_Original.Width = 103;
 			// 
 			// id_dosimetro
 			// 
@@ -672,6 +463,15 @@
 			this.tld.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
 			this.tld.Width = 53;
 			// 
+			// N_TLD_Original
+			// 
+			this.N_TLD_Original.DataPropertyName = "N_TLD_Original";
+			this.N_TLD_Original.HeaderText = "N° Pelicula Env.";
+			this.N_TLD_Original.Name = "N_TLD_Original";
+			this.N_TLD_Original.ReadOnly = true;
+			this.N_TLD_Original.ToolTipText = "N° Pelicula Enviado";
+			this.N_TLD_Original.Width = 109;
+			// 
 			// colSeccion
 			// 
 			this.colSeccion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -681,11 +481,223 @@
 			this.colSeccion.ReadOnly = true;
 			this.colSeccion.Width = 150;
 			// 
+			// toolStrip1
+			// 
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btn_Sucursal,
+            this.tsbAsignarSucursal,
+            this.tsbAsignarSeccion});
+			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.Size = new System.Drawing.Size(1350, 25);
+			this.toolStrip1.TabIndex = 2;
+			this.toolStrip1.Text = "toolStrip1";
+			// 
+			// btn_Sucursal
+			// 
+			this.btn_Sucursal.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.btn_Sucursal.Image = ((System.Drawing.Image)(resources.GetObject("btn_Sucursal.Image")));
+			this.btn_Sucursal.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.btn_Sucursal.Name = "btn_Sucursal";
+			this.btn_Sucursal.Size = new System.Drawing.Size(61, 22);
+			this.btn_Sucursal.Text = "Dirección";
+			this.btn_Sucursal.Click += new System.EventHandler(this.Btn_Sucursal_Click);
+			// 
+			// tsbAsignarSucursal
+			// 
+			this.tsbAsignarSucursal.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbAsignarSucursal.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignarSucursal.Image")));
+			this.tsbAsignarSucursal.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbAsignarSucursal.Name = "tsbAsignarSucursal";
+			this.tsbAsignarSucursal.Size = new System.Drawing.Size(103, 22);
+			this.tsbAsignarSucursal.Text = "Asignar dirección";
+			this.tsbAsignarSucursal.Click += new System.EventHandler(this.tsbAsignarSucursal_Click);
+			// 
+			// tsbAsignarSeccion
+			// 
+			this.tsbAsignarSeccion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbAsignarSeccion.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignarSeccion.Image")));
+			this.tsbAsignarSeccion.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbAsignarSeccion.Name = "tsbAsignarSeccion";
+			this.tsbAsignarSeccion.Size = new System.Drawing.Size(95, 22);
+			this.tsbAsignarSeccion.Text = "Asignar Sección";
+			this.tsbAsignarSeccion.Click += new System.EventHandler(this.tsbAsignarSeccion_Click);
+			// 
+			// btn_Guardar
+			// 
+			this.btn_Guardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.btn_Guardar.Location = new System.Drawing.Point(926, 546);
+			this.btn_Guardar.Name = "btn_Guardar";
+			this.btn_Guardar.Size = new System.Drawing.Size(139, 23);
+			this.btn_Guardar.TabIndex = 7;
+			this.btn_Guardar.Text = "Generar Archivo ISP";
+			this.btn_Guardar.UseVisualStyleBackColor = true;
+			this.btn_Guardar.Visible = false;
+			this.btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
+			// 
+			// btn_Cerrar
+			// 
+			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.btn_Cerrar.Location = new System.Drawing.Point(605, 546);
+			this.btn_Cerrar.Name = "btn_Cerrar";
+			this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
+			this.btn_Cerrar.TabIndex = 8;
+			this.btn_Cerrar.Text = "Cerrar";
+			this.btn_Cerrar.UseVisualStyleBackColor = true;
+			this.btn_Cerrar.Click += new System.EventHandler(this.Btn_Cerrar_Click);
+			// 
+			// btn_Corregir
+			// 
+			this.btn_Corregir.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.btn_Corregir.Location = new System.Drawing.Point(169, 546);
+			this.btn_Corregir.Name = "btn_Corregir";
+			this.btn_Corregir.Size = new System.Drawing.Size(126, 23);
+			this.btn_Corregir.TabIndex = 9;
+			this.btn_Corregir.Text = "Grabar Dato Corregir";
+			this.btn_Corregir.UseVisualStyleBackColor = true;
+			this.btn_Corregir.Click += new System.EventHandler(this.Btn_Corregir_Click);
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(5, 174);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(52, 13);
+			this.label4.TabIndex = 10;
+			this.label4.Text = "Dirección";
+			// 
+			// cbx_Sucursal
+			// 
+			this.cbx_Sucursal.DisplayMember = "Direccion";
+			this.cbx_Sucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_Sucursal.FormattingEnabled = true;
+			this.cbx_Sucursal.Location = new System.Drawing.Point(59, 171);
+			this.cbx_Sucursal.Name = "cbx_Sucursal";
+			this.cbx_Sucursal.Size = new System.Drawing.Size(526, 21);
+			this.cbx_Sucursal.TabIndex = 11;
+			this.cbx_Sucursal.ValueMember = "Id_sucursal";
+			this.cbx_Sucursal.SelectedIndexChanged += new System.EventHandler(this.Cbx_Sucursal_SelectedIndexChanged);
+			// 
+			// groupBox3
+			// 
+			this.groupBox3.Controls.Add(this.lbl_Alternativa);
+			this.groupBox3.Controls.Add(this.label7);
+			this.groupBox3.Controls.Add(this.lbl_Original);
+			this.groupBox3.Controls.Add(this.rbtAlternativa);
+			this.groupBox3.Controls.Add(this.rbtOiginal);
+			this.groupBox3.Location = new System.Drawing.Point(685, 36);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.Size = new System.Drawing.Size(387, 129);
+			this.groupBox3.TabIndex = 12;
+			this.groupBox3.TabStop = false;
+			this.groupBox3.Text = "Ruta archivo";
+			// 
+			// lbl_Alternativa
+			// 
+			this.lbl_Alternativa.AutoSize = true;
+			this.lbl_Alternativa.Location = new System.Drawing.Point(6, 100);
+			this.lbl_Alternativa.Name = "lbl_Alternativa";
+			this.lbl_Alternativa.Size = new System.Drawing.Size(22, 13);
+			this.lbl_Alternativa.TabIndex = 6;
+			this.lbl_Alternativa.Text = "dfff";
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(193, 44);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(0, 13);
+			this.label7.TabIndex = 5;
+			// 
+			// lbl_Original
+			// 
+			this.lbl_Original.AutoSize = true;
+			this.lbl_Original.Location = new System.Drawing.Point(6, 50);
+			this.lbl_Original.Name = "lbl_Original";
+			this.lbl_Original.Size = new System.Drawing.Size(22, 13);
+			this.lbl_Original.TabIndex = 4;
+			this.lbl_Original.Text = "dfff";
+			// 
+			// rbtAlternativa
+			// 
+			this.rbtAlternativa.AutoSize = true;
+			this.rbtAlternativa.Location = new System.Drawing.Point(7, 69);
+			this.rbtAlternativa.Name = "rbtAlternativa";
+			this.rbtAlternativa.Size = new System.Drawing.Size(75, 17);
+			this.rbtAlternativa.TabIndex = 3;
+			this.rbtAlternativa.TabStop = true;
+			this.rbtAlternativa.Text = "Alternativa";
+			this.rbtAlternativa.UseVisualStyleBackColor = true;
+			// 
+			// rbtOiginal
+			// 
+			this.rbtOiginal.AutoSize = true;
+			this.rbtOiginal.Location = new System.Drawing.Point(7, 19);
+			this.rbtOiginal.Name = "rbtOiginal";
+			this.rbtOiginal.Size = new System.Drawing.Size(60, 17);
+			this.rbtOiginal.TabIndex = 2;
+			this.rbtOiginal.TabStop = true;
+			this.rbtOiginal.Text = "Original";
+			this.rbtOiginal.UseVisualStyleBackColor = true;
+			// 
+			// lbl_id_seccion
+			// 
+			this.lbl_id_seccion.AutoSize = true;
+			this.lbl_id_seccion.Location = new System.Drawing.Point(5, 201);
+			this.lbl_id_seccion.Name = "lbl_id_seccion";
+			this.lbl_id_seccion.Size = new System.Drawing.Size(46, 13);
+			this.lbl_id_seccion.TabIndex = 17;
+			this.lbl_id_seccion.Text = "Sección";
+			// 
+			// cbx_id_seccion
+			// 
+			this.cbx_id_seccion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_id_seccion.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbx_id_seccion.FormattingEnabled = true;
+			this.cbx_id_seccion.Location = new System.Drawing.Point(59, 198);
+			this.cbx_id_seccion.Name = "cbx_id_seccion";
+			this.cbx_id_seccion.Size = new System.Drawing.Size(236, 21);
+			this.cbx_id_seccion.TabIndex = 16;
+			this.cbx_id_seccion.SelectedIndexChanged += new System.EventHandler(this.cbx_id_seccion_SelectedIndexChanged);
+			// 
+			// btnGenerar
+			// 
+			this.btnGenerar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.btnGenerar.Location = new System.Drawing.Point(437, 547);
+			this.btnGenerar.Name = "btnGenerar";
+			this.btnGenerar.Size = new System.Drawing.Size(139, 23);
+			this.btnGenerar.TabIndex = 18;
+			this.btnGenerar.Text = "Generar Archivo ISP";
+			this.btnGenerar.UseVisualStyleBackColor = true;
+			this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
+			// 
+			// btnResfrescar
+			// 
+			this.btnResfrescar.Image = global::ControlDosimetro.Properties.Resources.filter_16;
+			this.btnResfrescar.Location = new System.Drawing.Point(304, 196);
+			this.btnResfrescar.Name = "btnResfrescar";
+			this.btnResfrescar.Size = new System.Drawing.Size(26, 23);
+			this.btnResfrescar.TabIndex = 20;
+			this.btnResfrescar.UseVisualStyleBackColor = true;
+			this.btnResfrescar.Click += new System.EventHandler(this.btnResfrescar_Click);
+			// 
+			// btnGenerarArchivoNuevo
+			// 
+			this.btnGenerarArchivoNuevo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.btnGenerarArchivoNuevo.Location = new System.Drawing.Point(708, 547);
+			this.btnGenerarArchivoNuevo.Name = "btnGenerarArchivoNuevo";
+			this.btnGenerarArchivoNuevo.Size = new System.Drawing.Size(212, 23);
+			this.btnGenerarArchivoNuevo.TabIndex = 21;
+			this.btnGenerarArchivoNuevo.Text = "Generar Archivo ISP PRUEBA";
+			this.btnGenerarArchivoNuevo.UseVisualStyleBackColor = true;
+			this.btnGenerarArchivoNuevo.Click += new System.EventHandler(this.btnGenerarArchivoNuevo_Click);
+			// 
 			// FrmInformeISP
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1294, 578);
+			this.ClientSize = new System.Drawing.Size(1350, 578);
+			this.Controls.Add(this.btnGenerarArchivoNuevo);
 			this.Controls.Add(this.btnResfrescar);
 			this.Controls.Add(this.btnGenerar);
 			this.Controls.Add(this.lbl_id_seccion);
@@ -763,7 +775,6 @@
 		private System.Windows.Forms.Label lblRuta;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Id_Personal;
 		private System.Windows.Forms.DataGridViewTextBoxColumn N_pelicula;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ColN_TLD_Original;
 		private System.Windows.Forms.DataGridViewTextBoxColumn id_dosimetro;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn Generar;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn enviado;
@@ -778,6 +789,8 @@
 		private System.Windows.Forms.DataGridViewComboBoxColumn Estado;
 		private System.Windows.Forms.DataGridViewTextBoxColumn id_sucursal;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn tld;
+		private System.Windows.Forms.DataGridViewTextBoxColumn N_TLD_Original;
 		private System.Windows.Forms.DataGridViewTextBoxColumn colSeccion;
+		private System.Windows.Forms.Button btnGenerarArchivoNuevo;
 	}
 }

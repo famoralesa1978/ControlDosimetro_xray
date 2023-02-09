@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.lblRut = new System.Windows.Forms.Label();
 			this.cbx_PersonalCambio = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
@@ -84,9 +84,17 @@
 			this.cbxDireccionActual = new System.Windows.Forms.ComboBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.tabAsociarTLDEnviadoAlCliente = new System.Windows.Forms.TabPage();
-			this.nudTLDEnviadoAlCliente = new System.Windows.Forms.NumericUpDown();
-			this.label12 = new System.Windows.Forms.Label();
 			this.btnAsociarTLDConElOriginal = new System.Windows.Forms.Button();
+			this.label12 = new System.Windows.Forms.Label();
+			this.nudTLDEnviadoAlCliente = new System.Windows.Forms.NumericUpDown();
+			this.tabCambioEstado = new System.Windows.Forms.TabPage();
+			this.lblEstadoActual = new System.Windows.Forms.Label();
+			this.label16 = new System.Windows.Forms.Label();
+			this.btnCambioestado = new System.Windows.Forms.Button();
+			this.label14 = new System.Windows.Forms.Label();
+			this.cbxEstado = new System.Windows.Forms.ComboBox();
+			this.lblNombrePersonal = new System.Windows.Forms.Label();
+			this.label13 = new System.Windows.Forms.Label();
 			this.cmsPopup.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.grpDatos.SuspendLayout();
@@ -97,6 +105,7 @@
 			this.tabDireccion.SuspendLayout();
 			this.tabAsociarTLDEnviadoAlCliente.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudTLDEnviadoAlCliente)).BeginInit();
+			this.tabCambioEstado.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// lblRut
@@ -152,7 +161,6 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Enabled = false;
 			this.label3.Location = new System.Drawing.Point(11, 26);
 			this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label3.Name = "label3";
@@ -341,9 +349,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle3.Format = "N2";
-			dataGridViewCellStyle3.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle1.Format = "N2";
+			dataGridViewCellStyle1.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -361,9 +369,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle4.Format = "N2";
-			dataGridViewCellStyle4.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle2.Format = "N2";
+			dataGridViewCellStyle2.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -401,6 +409,7 @@
 			this.tabPrincipal.Controls.Add(this.tabSeccion);
 			this.tabPrincipal.Controls.Add(this.tabDireccion);
 			this.tabPrincipal.Controls.Add(this.tabAsociarTLDEnviadoAlCliente);
+			this.tabPrincipal.Controls.Add(this.tabCambioEstado);
 			this.tabPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabPrincipal.Location = new System.Drawing.Point(3, 16);
 			this.tabPrincipal.Name = "tabPrincipal";
@@ -472,7 +481,6 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Enabled = false;
 			this.label6.Location = new System.Drawing.Point(16, 19);
 			this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label6.Name = "label6";
@@ -550,7 +558,6 @@
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Enabled = false;
 			this.label9.Location = new System.Drawing.Point(23, 19);
 			this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label9.Name = "label9";
@@ -604,12 +611,15 @@
 			this.tabAsociarTLDEnviadoAlCliente.Text = "Asociar TLD  enviado al cliente";
 			this.tabAsociarTLDEnviadoAlCliente.UseVisualStyleBackColor = true;
 			// 
-			// nudTLDEnviadoAlCliente
+			// btnAsociarTLDConElOriginal
 			// 
-			this.nudTLDEnviadoAlCliente.Location = new System.Drawing.Point(180, 32);
-			this.nudTLDEnviadoAlCliente.Name = "nudTLDEnviadoAlCliente";
-			this.nudTLDEnviadoAlCliente.Size = new System.Drawing.Size(120, 20);
-			this.nudTLDEnviadoAlCliente.TabIndex = 0;
+			this.btnAsociarTLDConElOriginal.Location = new System.Drawing.Point(89, 105);
+			this.btnAsociarTLDConElOriginal.Name = "btnAsociarTLDConElOriginal";
+			this.btnAsociarTLDConElOriginal.Size = new System.Drawing.Size(185, 23);
+			this.btnAsociarTLDConElOriginal.TabIndex = 46;
+			this.btnAsociarTLDConElOriginal.Text = "Asociar TLD con el original";
+			this.btnAsociarTLDConElOriginal.UseVisualStyleBackColor = true;
+			this.btnAsociarTLDConElOriginal.Click += new System.EventHandler(this.btnAsociarTLDConElOriginal_Click);
 			// 
 			// label12
 			// 
@@ -620,15 +630,100 @@
 			this.label12.TabIndex = 1;
 			this.label12.Text = "N° TLD enviado al cliente";
 			// 
-			// btnAsociarTLDConElOriginal
+			// nudTLDEnviadoAlCliente
 			// 
-			this.btnAsociarTLDConElOriginal.Location = new System.Drawing.Point(89, 105);
-			this.btnAsociarTLDConElOriginal.Name = "btnAsociarTLDConElOriginal";
-			this.btnAsociarTLDConElOriginal.Size = new System.Drawing.Size(185, 23);
-			this.btnAsociarTLDConElOriginal.TabIndex = 46;
-			this.btnAsociarTLDConElOriginal.Text = "Asociar TLD con el original";
-			this.btnAsociarTLDConElOriginal.UseVisualStyleBackColor = true;
-			this.btnAsociarTLDConElOriginal.Click += new System.EventHandler(this.btnAsociarTLDConElOriginal_Click);
+			this.nudTLDEnviadoAlCliente.Location = new System.Drawing.Point(180, 32);
+			this.nudTLDEnviadoAlCliente.Name = "nudTLDEnviadoAlCliente";
+			this.nudTLDEnviadoAlCliente.Size = new System.Drawing.Size(120, 20);
+			this.nudTLDEnviadoAlCliente.TabIndex = 0;
+			// 
+			// tabCambioEstado
+			// 
+			this.tabCambioEstado.Controls.Add(this.lblEstadoActual);
+			this.tabCambioEstado.Controls.Add(this.label16);
+			this.tabCambioEstado.Controls.Add(this.btnCambioestado);
+			this.tabCambioEstado.Controls.Add(this.label14);
+			this.tabCambioEstado.Controls.Add(this.cbxEstado);
+			this.tabCambioEstado.Controls.Add(this.lblNombrePersonal);
+			this.tabCambioEstado.Controls.Add(this.label13);
+			this.tabCambioEstado.Location = new System.Drawing.Point(4, 22);
+			this.tabCambioEstado.Name = "tabCambioEstado";
+			this.tabCambioEstado.Padding = new System.Windows.Forms.Padding(3);
+			this.tabCambioEstado.Size = new System.Drawing.Size(500, 193);
+			this.tabCambioEstado.TabIndex = 4;
+			this.tabCambioEstado.Text = "Cambio Estado";
+			this.tabCambioEstado.UseVisualStyleBackColor = true;
+			// 
+			// lblEstadoActual
+			// 
+			this.lblEstadoActual.AutoSize = true;
+			this.lblEstadoActual.Location = new System.Drawing.Point(95, 39);
+			this.lblEstadoActual.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.lblEstadoActual.Name = "lblEstadoActual";
+			this.lblEstadoActual.Size = new System.Drawing.Size(54, 13);
+			this.lblEstadoActual.TabIndex = 51;
+			this.lblEstadoActual.Text = "Personal :";
+			// 
+			// label16
+			// 
+			this.label16.AutoSize = true;
+			this.label16.Location = new System.Drawing.Point(14, 39);
+			this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(72, 13);
+			this.label16.TabIndex = 50;
+			this.label16.Text = "Estado actual";
+			// 
+			// btnCambioestado
+			// 
+			this.btnCambioestado.Location = new System.Drawing.Point(98, 92);
+			this.btnCambioestado.Name = "btnCambioestado";
+			this.btnCambioestado.Size = new System.Drawing.Size(114, 23);
+			this.btnCambioestado.TabIndex = 49;
+			this.btnCambioestado.Text = "Cambio estado";
+			this.btnCambioestado.UseVisualStyleBackColor = true;
+			this.btnCambioestado.Click += new System.EventHandler(this.btnCambioestado_Click);
+			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.label14.Location = new System.Drawing.Point(14, 69);
+			this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(40, 13);
+			this.label14.TabIndex = 48;
+			this.label14.Text = "Estado";
+			// 
+			// cbxEstado
+			// 
+			this.cbxEstado.DisplayMember = "Descripcion";
+			this.cbxEstado.FormattingEnabled = true;
+			this.cbxEstado.Location = new System.Drawing.Point(98, 66);
+			this.cbxEstado.Margin = new System.Windows.Forms.Padding(2);
+			this.cbxEstado.Name = "cbxEstado";
+			this.cbxEstado.Size = new System.Drawing.Size(157, 21);
+			this.cbxEstado.TabIndex = 47;
+			this.cbxEstado.ValueMember = "id";
+			// 
+			// lblNombrePersonal
+			// 
+			this.lblNombrePersonal.AutoSize = true;
+			this.lblNombrePersonal.Location = new System.Drawing.Point(95, 17);
+			this.lblNombrePersonal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.lblNombrePersonal.Name = "lblNombrePersonal";
+			this.lblNombrePersonal.Size = new System.Drawing.Size(54, 13);
+			this.lblNombrePersonal.TabIndex = 41;
+			this.lblNombrePersonal.Text = "Personal :";
+			// 
+			// label13
+			// 
+			this.label13.AutoSize = true;
+			this.label13.Location = new System.Drawing.Point(14, 17);
+			this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(48, 13);
+			this.label13.TabIndex = 40;
+			this.label13.Text = "Personal";
 			// 
 			// frmCambioPersonalTLD
 			// 
@@ -667,6 +762,8 @@
 			this.tabAsociarTLDEnviadoAlCliente.ResumeLayout(false);
 			this.tabAsociarTLDEnviadoAlCliente.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudTLDEnviadoAlCliente)).EndInit();
+			this.tabCambioEstado.ResumeLayout(false);
+			this.tabCambioEstado.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -729,5 +826,13 @@
 		private System.Windows.Forms.Button btnAsociarTLDConElOriginal;
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.NumericUpDown nudTLDEnviadoAlCliente;
+		private System.Windows.Forms.TabPage tabCambioEstado;
+		private System.Windows.Forms.Button btnCambioestado;
+		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.ComboBox cbxEstado;
+		private System.Windows.Forms.Label lblNombrePersonal;
+		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.Label lblEstadoActual;
+		private System.Windows.Forms.Label label16;
 	}
 }
