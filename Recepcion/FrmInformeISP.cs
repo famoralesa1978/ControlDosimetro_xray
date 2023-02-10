@@ -492,6 +492,7 @@ namespace ControlDosimetro
 				string strRunEmpresa = lbl_rut_cliente.Text;
 				string strRazon_SocialEmpresa = lbl_nombreCliente.Text;
 				string strDireccionEmpresa = (int)cbx_Sucursal.SelectedValue == 0 ? lbl_nombreCliente.Text : dt.Tables[0].Rows[idatos]["Direccion"].ToString();
+				string strDireccionEmpresaSucursal = cbx_Sucursal.Text;
 				string strTelefonoEmpresa = dt.Tables[0].Rows[idatos]["Telefono"].ToString();
 				string strregionEmpresa = dt.Tables[0].Rows[idatos]["region"].ToString();
 				string strProvinciaEmpresa = dt.Tables[0].Rows[idatos]["Provincia"].ToString();
@@ -713,8 +714,17 @@ namespace ControlDosimetro
 					//if (cbx_id_periodo.Text.Substring(0, 1) == "4")
 					//	strSemetre1 = "cuarto";
 
-					//strcampoMarcador = "empresa";
-					//BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strRazon_SocialEmpresa);
+					strcampoMarcador = "Empresa";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), lbl_nombreCliente.Text);
+					strcampoMarcador = "Rut";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), lbl_rut_cliente.Text);//strRazon_SocialEmpresa
+					strcampoMarcador = "Periodo";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0}T {1}",cbx_id_periodo.Text.Substring(0, 1), cbx_anno.Text) );//
+					strcampoMarcador = "FechaInforme";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0}/{1}/{2}", DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year));
+					strcampoMarcador = "Sucursal";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strDireccionEmpresaSucursal);
+					
 					//strcampoMarcador = "comuna";
 					//BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strcomunaEmpresa);
 					//strcampoMarcador = "anno";
@@ -870,6 +880,7 @@ namespace ControlDosimetro
 				string strRunEmpresa = lbl_rut_cliente.Text;
 				string strRazon_SocialEmpresa = lbl_nombreCliente.Text;
 				string strDireccionEmpresa = (int)cbx_Sucursal.SelectedValue == 0 ? lbl_nombreCliente.Text : dt.Tables[0].Rows[idatos]["Direccion"].ToString();
+				string strDireccionEmpresaSucursal = cbx_Sucursal.Text;
 				string strTelefonoEmpresa = dt.Tables[0].Rows[idatos]["Telefono"].ToString();
 				string strregionEmpresa = dt.Tables[0].Rows[idatos]["region"].ToString();
 				string strProvinciaEmpresa = dt.Tables[0].Rows[idatos]["Provincia"].ToString();
