@@ -633,6 +633,11 @@
 			// nudTLDEnviadoAlCliente
 			// 
 			this.nudTLDEnviadoAlCliente.Location = new System.Drawing.Point(180, 32);
+			this.nudTLDEnviadoAlCliente.Maximum = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            0});
 			this.nudTLDEnviadoAlCliente.Name = "nudTLDEnviadoAlCliente";
 			this.nudTLDEnviadoAlCliente.Size = new System.Drawing.Size(120, 20);
 			this.nudTLDEnviadoAlCliente.TabIndex = 0;

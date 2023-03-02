@@ -69,9 +69,13 @@ namespace ControlDosimetro
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
-			lbl_id_cliente.Text = intCodCliente.ToString();
-			lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
-			lbl_rut_cliente.Text = dt.Tables[0].Rows[0]["run"].ToString();
+			if(dt.Tables[0].Rows.Count>0)
+			{
+				lbl_id_cliente.Text = intCodCliente.ToString();
+				lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
+				lbl_rut_cliente.Text = dt.Tables[0].Rows[0]["run"].ToString();
+			}
+		
 		}
 
 		private void Listar_Personal()

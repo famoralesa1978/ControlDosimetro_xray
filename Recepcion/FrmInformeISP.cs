@@ -145,7 +145,7 @@ namespace ControlDosimetro
 			cbx_Sucursal.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_Sucursal.DataSource = dt.Tables[0];
 
-			btnResfrescar.Enabled = dtSeccion.DefaultView.ToTable().Rows.Count > 1 && dt.Tables[0].Rows.Count>0;
+			btnResfrescar.Enabled = dtSeccion.DefaultView.ToTable().Rows.Count > 1 && dt.Tables[0].Rows.Count > 0;
 			Cargar_Seccion();
 		}
 
@@ -167,7 +167,7 @@ namespace ControlDosimetro
 				cbx_id_seccion.ValueMember = dtSeccion.Columns[0].Caption.ToString();
 				cbx_id_seccion.DataSource = dtSeccion.DefaultView.ToTable();
 			}
-			
+
 			if (dtSeccion.DefaultView.ToTable().Rows.Count == 1)
 				Listar_Personal();
 		}
@@ -238,7 +238,7 @@ namespace ControlDosimetro
 					else
 						cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + ",0,0,'" + lbl_rut_cliente.Text + "'";
 				}
-				
+
 				cmd.CommandType = CommandType.Text;
 
 				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -356,11 +356,11 @@ namespace ControlDosimetro
 			Cursor = Cursors.WaitCursor;
 			for (int intFila = 1; intFila < cbx_id_seccion.Items.Count; intFila++)
 			{
-				
+
 				cbx_id_seccion.SelectedIndex = intFila;
 				btnResfrescar_Click(null, null);
 				GenerarPorSucursalTodos();
-				
+
 			}
 			classFuncionesGenerales.mensajes.MensajeProcesoOK("Proceso terminado");
 			Cursor = Cursors.Default;
@@ -485,20 +485,57 @@ namespace ControlDosimetro
 			//   string strArchivo = ConfigurationManager.AppSettings["Archivo"] + "Plantillaword.docx";
 
 			int i;
+			string CantPerdido = "";
+			string CantSinUso = "";
+			string cantNoDev = "";
+			string CantDevFP = "";
+
+			if (dt != null)
+			{
+				//5 2 MNR 1 0 1
+				//6 2 DND 2 0 1
+				//10  2 DE  3 0 1
+				//11  2 DD  4 0 1
+				//12  2 NR  5 0 1
+				//13  2 DSU 6 1 1
+				if (dt.Tables[1] != null)
+				{
+					DataTable dtDND = dt.Tables[1].Copy();
+					dtDND.DefaultView.RowFilter = String.Format("id_observacion={0}",6);
+					CantPerdido = dtDND.DefaultView.ToTable().Rows.Count > 0 ? dtDND.DefaultView.ToTable().Rows[0]["Cantidad"].ToString():"";
+
+					DataTable dtSinUso = dt.Tables[1].Copy();
+					dtSinUso.DefaultView.RowFilter = String.Format("id_observacion={0}", 13);
+					CantSinUso = dtSinUso.DefaultView.ToTable().Rows.Count > 0 ? dtSinUso.DefaultView.ToTable().Rows[0]["Cantidad"].ToString() : "";
+
+					DataTable dtND= dt.Tables[1].Copy();
+					dtND.DefaultView.RowFilter = String.Format("id_observacion={0}", 10);
+					cantNoDev = dtND.DefaultView.ToTable().Rows.Count > 0 ? dtND.DefaultView.ToTable().Rows[0]["Cantidad"].ToString() : "";
+
+					DataTable dtNR = dt.Tables[1].Copy();
+					dtNR.DefaultView.RowFilter = String.Format("id_observacion={0}", 12);
+					cantNoDev = dtNR.DefaultView.ToTable().Rows.Count > 0 ? dtNR.DefaultView.ToTable().Rows[0]["Cantidad"].ToString() : "";
+				}
+			}
+		
 			for (int idatos = 0; idatos <= dt.Tables[0].Rows.Count - 1; idatos++)
 			{
 				#region "Proceso"
 				i = 0;
 				string strRunEmpresa = lbl_rut_cliente.Text;
 				string strRazon_SocialEmpresa = lbl_nombreCliente.Text;
-				string strDireccionEmpresa = (int)cbx_Sucursal.SelectedValue == 0 ? lbl_nombreCliente.Text : dt.Tables[0].Rows[idatos]["Direccion"].ToString();
+				string strDireccionEmpresa = dt.Tables[0].Rows[idatos]["DireccionCliente"].ToString();
 				string strDireccionEmpresaSucursal = cbx_Sucursal.Text;
 				string strTelefonoEmpresa = dt.Tables[0].Rows[idatos]["Telefono"].ToString();
 				string strregionEmpresa = dt.Tables[0].Rows[idatos]["region"].ToString();
 				string strProvinciaEmpresa = dt.Tables[0].Rows[idatos]["Provincia"].ToString();
 				string strcomunaEmpresa = dt.Tables[0].Rows[idatos]["comuna"].ToString();
 				string strSeccion = (int)cbx_id_seccion.SelectedValue == 0 ? "" : cbx_id_seccion.Text;
-				string strFechaRecepcion= dt.Tables[0].Rows[idatos]["FechaRecepcion"].ToString(); 
+				string strFechaRecepcion = dt.Tables[0].Rows[idatos]["FechaRecepcion"].ToString();
+				string strOpr = dt.Tables[0].Rows[idatos]["Opr"].ToString();
+				string strRunOPR = "";
+				string strEmailOPR = dt.Tables[0].Rows[idatos]["EmailOPR"].ToString();
+				string strFechaDevolucion = dt.Tables[0].Rows[0]["FechaRecepcion"].ToString();
 				//string strN_Documento = dt.Tables[0].Rows[idatos]["N_Documento"].ToString();
 				//	string strId_sucursal = dt.Tables[0].Rows[idatos]["Id_sucursal"].ToString();
 				String strArchivoCopiar = "";
@@ -527,6 +564,11 @@ namespace ControlDosimetro
 				data2 = new string[] { "" };
 				data3 = new string[] { "" };
 				data4 = new string[] { "" };
+
+				Array.Resize(ref data1, grdDatos.RowCount);
+				Array.Resize(ref data2, grdDatos.RowCount);
+				Array.Resize(ref data3, grdDatos.RowCount);
+				Array.Resize(ref data4, grdDatos.RowCount);
 
 				//Array.Resize(ref data1, 1);
 				//Array.Resize(ref data2, 1);
@@ -665,27 +707,21 @@ namespace ControlDosimetro
 							cmd.CommandType = CommandType.Text;
 							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 
-						
 
-							if(i<= dt.Tables[0].Rows.Count-1)
-							{
-								if (i > 0)
-								{
-									Array.Resize(ref data1, i + 2);
-									Array.Resize(ref data2, i + 2);
-									Array.Resize(ref data3, i + 2);
-									Array.Resize(ref data4, i + 2);
-								}
-								
-								data1[i] = txtnpelicula.Value.ToString();
-								data2[i] = dtCliente.Tables[0].Rows[0]["Rut"].ToString();
 
-								data3[i] = dtCliente.Tables[0].Rows[0]["Nombres"].ToString() + " " + dtCliente.Tables[0].Rows[0]["Paterno"].ToString() + " " + dtCliente.Tables[0].Rows[0]["Maternos"].ToString();
-								if (chkcondosis.Value.ToString() == "0")
-									data4[i] = strEstado;
-								else
-									data4[i] = txtvalor.Value.ToString();
-							}
+							//if(i<=dt.Tables[0].Rows.Count-1)
+							//{
+
+
+							data1[i] = txtnpelicula.Value.ToString();
+							data2[i] = dtCliente.Tables[0].Rows[0]["Rut"].ToString();
+
+							data3[i] = dtCliente.Tables[0].Rows[0]["Nombres"].ToString() + " " + dtCliente.Tables[0].Rows[0]["Paterno"].ToString() + " " + dtCliente.Tables[0].Rows[0]["Maternos"].ToString();
+							if (chkcondosis.Value.ToString() == "0")
+								data4[i] = strEstado;
+							else
+								data4[i] = txtvalor.Value.ToString();
+							//}
 							// this.p
 
 							intfila = intfila + 1;
@@ -719,20 +755,34 @@ namespace ControlDosimetro
 					strcampoMarcador = "Rut";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), lbl_rut_cliente.Text);//strRazon_SocialEmpresa
 					strcampoMarcador = "Periodo";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0}T {1}",cbx_id_periodo.Text.Substring(0, 1), cbx_anno.Text) );//
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0}T {1}", cbx_id_periodo.Text.Substring(0, 1), cbx_anno.Text));//
 					strcampoMarcador = "FechaInforme";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0}/{1}/{2}", DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year));
 					strcampoMarcador = "Sucursal";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strDireccionEmpresaSucursal);
-					
-					//strcampoMarcador = "comuna";
-					//BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strcomunaEmpresa);
-					//strcampoMarcador = "anno";
-					//BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), cbx_anno.Text);
-					//strcampoMarcador = "semestre";
-					//BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strSemetre1);
+					strcampoMarcador = "Direccion";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strDireccionEmpresa);
+					strcampoMarcador = "NombreOPR";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strOpr);
+					strcampoMarcador = "RunOPR";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strRunOPR);
+					strcampoMarcador = "MailOpr";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strEmailOPR);
+					strcampoMarcador = "FechaDevolucion";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strFechaDevolucion);
+					strcampoMarcador = "FechaLectura";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strFechaDevolucion);
 
-
+					strcampoMarcador = "CantToes";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), grdDatos.Rows.Count.ToString());
+					strcampoMarcador = "CantPerdido";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), CantPerdido);
+					strcampoMarcador = "CantSinUso";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), CantSinUso);
+					strcampoMarcador = "cantNoDev";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), cantNoDev);
+					strcampoMarcador = "CantDevFP";
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), CantDevFP);
 
 
 				}
@@ -940,7 +990,7 @@ namespace ControlDosimetro
 					txtndocumento = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["NDocumento"];
 					txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["N_pelicula"];
 					txtnpeliculaoriginal = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["N_TLD_Original"];
-					
+
 					cbxEstado = (DataGridViewComboBoxCell)grdDatos.Rows[intfilagrid].Cells["Estado"];
 					txtid_sucursal = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["id_sucursal"];
 
@@ -1175,12 +1225,12 @@ namespace ControlDosimetro
 					System.IO.Directory.CreateDirectory(targetPath);
 				}
 			}
-			catch(Exception e)
+			catch (Exception e)
 			{
 				MessageBox.Show(e.Message);
 				return;
 			}
-		
+
 
 
 
@@ -1486,14 +1536,14 @@ namespace ControlDosimetro
 				#endregion
 			}
 
-			
 
-			lblRuta.Text= "Informacion grabada y archivo generado \n Ubicación Archivo:" + targetPath;
+
+			lblRuta.Text = "Informacion grabada y archivo generado \n Ubicación Archivo:" + targetPath;
 
 			btnGenerar.Enabled = true;
 			pnl_Progreso.Visible = false;
 
-		//	Listar_Personal();
+			//	Listar_Personal();
 		}
 
 		#endregion
@@ -1598,7 +1648,7 @@ namespace ControlDosimetro
 				Generar_Todos();
 				btnGenerar.Enabled = true;
 			}
-				
+
 		}
 
 		private void Btn_Guardar_Click(object sender, EventArgs e)
@@ -2487,12 +2537,12 @@ namespace ControlDosimetro
 					 new DocumentFormat.OpenXml.Wordprocessing.TopBorder
 					 {
 						 Val = new EnumValue<BorderValues>(BorderValues.None),
-						 Size =8
+						 Size = 8
 					 },
 					 new DocumentFormat.OpenXml.Wordprocessing.BottomBorder
 					 {
 						 Val = new EnumValue<BorderValues>(BorderValues.None),
-						 Size =8
+						 Size = 8
 					 },
 					 new DocumentFormat.OpenXml.Wordprocessing.LeftBorder
 					 {
@@ -2502,12 +2552,12 @@ namespace ControlDosimetro
 					 new DocumentFormat.OpenXml.Wordprocessing.RightBorder
 					 {
 						 Val = new EnumValue<BorderValues>(BorderValues.None),
-						 Size =8
+						 Size = 8
 					 },
 					 new InsideHorizontalBorder
 					 {
 						 Val = new EnumValue<BorderValues>(BorderValues.None),
-						 Size =8
+						 Size = 8
 					 },
 					 new InsideVerticalBorder
 					 {
@@ -2609,7 +2659,7 @@ namespace ControlDosimetro
 															new DocumentFormat.OpenXml.Wordprocessing.Bold(),
 															new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
 															new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
-															new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(PerInicio.Substring(0,6) + PerInicio.Substring(PerInicio.Length - 2, 2))))
+															new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(PerInicio.Substring(0, 6) + PerInicio.Substring(PerInicio.Length - 2, 2))))
 															));
 
 					tr.Append(tc4);
@@ -2656,7 +2706,7 @@ namespace ControlDosimetro
 
 					tr.Append(tc9);
 
-					
+
 					table.Append(tr);
 				}
 				//  doc.Body.Append(table);
