@@ -559,6 +559,7 @@ namespace ControlDosimetro
 
 		private void btn_Excel_Click(object sender, EventArgs e)
 		{
+			btn_Guardar_Click(null, null);
 			bool bolArchivoGenerado = true;
 
       //cbx_Sucursal
