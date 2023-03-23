@@ -551,12 +551,16 @@ namespace ControlDosimetro
 		{
 			frmAsignarDireccionPersonal frm = new frmAsignarDireccionPersonal(Convert.ToInt32(txt_ref_cliente.Text), txt_Rut.Text);
 			frm.ShowDialog(this);
+			btn_cargarCliente_Click(null, null);
+			Listar_Personal();
 		}
 
 		private void tsbAsignarSeccion_Click(object sender, EventArgs e)
 		{
 			frmAsignarSeccionPersonal frm = new frmAsignarSeccionPersonal(Convert.ToInt32(txt_ref_cliente.Text), txt_Rut.Text);
 			frm.ShowDialog(this);
+			btn_cargarCliente_Click(null, null);
+			Listar_Personal();
 		}
 		private void tsbGuardar_Click(object sender, EventArgs e)
 		{
@@ -641,6 +645,8 @@ namespace ControlDosimetro
 
 			frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), 0, txt_Rut.Text);
 			frm.ShowDialog(this);
+
+			btn_cargarCliente_Click(null,null);
 			Listar_Personal();
 
 			Cursor = Cursors.Default;
