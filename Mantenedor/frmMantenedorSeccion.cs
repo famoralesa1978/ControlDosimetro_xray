@@ -110,7 +110,7 @@ namespace ControlDosimetro
 			ClaseFunciones.Cargar_Permiso(Clases.clsUsuario.Id_perfil, Id_Menu, ref Lectura, ref Nuevo, ref Modificacion, ref Eliminar);
 			tsbAgregar.Visible = Nuevo;
 			btn_Guardar.Visible = tsbGuardar.Visible = Nuevo || Modificacion;
-			tsmEliminar.Visible = Eliminar;
+			btnEliminar.Visible=tsmEliminar.Visible = Eliminar;
 		}
 
 		private void Cargar_Estado()
@@ -167,7 +167,7 @@ namespace ControlDosimetro
 		private void CargarGrilla(int intId_Cliente)
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = String.Format("select id_Seccion,seccion,Id_Estado,id_cliente from tbl_seccion  where id_estado={0} and id_cliente={1} and run='{2}' order by seccion", cbx_id_estado_Buscar.SelectedValue, intId_Cliente, lbl_Run.Text);
+			cmd.CommandText = String.Format("pa_Seccion_sel {0},{1},'{2}'", cbx_id_estado_Buscar.SelectedValue, intId_Cliente, lbl_Run.Text);
 
 			cmd.CommandType = CommandType.Text;
 
@@ -184,7 +184,7 @@ namespace ControlDosimetro
 			DataRow currentRow = dt.Rows[intFila];
 			txt_id_seccion.Text = currentRow[ConfGrilla.id_Seccion.ToString()].ToString();
 			txt_seccion.Text = currentRow[ConfGrilla.seccion.ToString()].ToString();
-			cbx_id_estado.SelectedValue = currentRow[ConfGrilla.Id_estado.ToString()].ToString();
+			cbx_id_estado.SelectedValue = currentRow[ConfGrilla.Id_estado.ToString()].ToString();//Eliminar
 			tssEstado.Text = "Modificar";
 			btn_Guardar.Visible= tsbGuardar.Visible = Modificacion;
 			scPrincipal.Panel2Collapsed = false;
@@ -297,10 +297,10 @@ namespace ControlDosimetro
 
 			if (MessageBox.Show("¿Desea Eliminar la información?", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
 			{
-				DataTable dt = ((DataTable)((BindingSource)((BindingSource)dgvGrilla.DataSource).DataSource).DataSource);
-				DataRow currentRow = dt.Rows[dgvGrilla.CurrentRow.Index];
+				//DataTable dt = (DataTable)dgvGrilla.DataSource;
+				//DataRow currentRow = dt.Rows[dgvGrilla.CurrentRow.Index];
 				SqlCommand cmd = new SqlCommand();
-				cmd.CommandText = "pa_Seccion_del " + currentRow[ConfGrilla.id_Seccion.ToString()].ToString();
+				cmd.CommandText = "pa_Seccion_del " + txt_id_seccion.Text;
 
 				cmd.CommandType = CommandType.Text;
 
@@ -309,7 +309,11 @@ namespace ControlDosimetro
 
 				MessageBox.Show(dt1.Tables[0].Rows[0][1].ToString());
 				if (dt1.Tables[0].Rows[0][0].ToString() == "0")
+				{
+					btn_Limpiar_Click(null, null);
 					CargarGrilla(Id_Cliente);
+				}
+					
 			}
 
 			Cursor = Cursors.Default;
@@ -322,6 +326,10 @@ namespace ControlDosimetro
 			LlamadoAModificar(dgvGrilla.CurrentRow.Index);
 
 			Cursor = Cursors.Default;
+		}
+		private void btnEliminar_Click(object sender, EventArgs e)
+		{
+			tsmEliminar_Click(null, null);
 		}
 
 		#endregion
@@ -366,6 +374,11 @@ namespace ControlDosimetro
 		private void dgvGrilla_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
 		{
 			txtBox.Width = Colperfil1.Width;
+		}
+		private void dgvGrilla_CellClick(object sender, DataGridViewCellEventArgs e)
+		{
+			int intFila = e.RowIndex;
+			LlamadoAModificar(intFila);
 		}
 	}
 }

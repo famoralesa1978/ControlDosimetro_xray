@@ -70,6 +70,7 @@
 			this.lbl_seccion = new System.Windows.Forms.Label();
 			this.txt_id_seccion = new System.Windows.Forms.TextBox();
 			this.lbl_id_seccion = new System.Windows.Forms.Label();
+			this.btnEliminar = new System.Windows.Forms.Button();
 			this.stsEstado.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.scPrincipal)).BeginInit();
@@ -92,7 +93,7 @@
             this.tssEstado});
 			this.stsEstado.Location = new System.Drawing.Point(0, 348);
 			this.stsEstado.Name = "stsEstado";
-			this.stsEstado.Size = new System.Drawing.Size(629, 22);
+			this.stsEstado.Size = new System.Drawing.Size(628, 22);
 			this.stsEstado.TabIndex = 0;
 			this.stsEstado.Text = "statusStrip1";
 			// 
@@ -119,7 +120,7 @@
             this.tsdReporte});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(629, 39);
+			this.toolStrip1.Size = new System.Drawing.Size(628, 39);
 			this.toolStrip1.TabIndex = 1;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -179,8 +180,8 @@
 			this.scPrincipal.Panel2.Controls.Add(this.tbl_seccion);
 			this.scPrincipal.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.scPrincipal.Panel2MinSize = 200;
-			this.scPrincipal.Size = new System.Drawing.Size(629, 309);
-			this.scPrincipal.SplitterDistance = 254;
+			this.scPrincipal.Size = new System.Drawing.Size(628, 309);
+			this.scPrincipal.SplitterDistance = 253;
 			this.scPrincipal.TabIndex = 2;
 			// 
 			// pnlPrincipal
@@ -194,7 +195,7 @@
 			this.pnlPrincipal.Location = new System.Drawing.Point(0, 3);
 			this.pnlPrincipal.Margin = new System.Windows.Forms.Padding(6, 3, 5, 3);
 			this.pnlPrincipal.Name = "pnlPrincipal";
-			this.pnlPrincipal.Size = new System.Drawing.Size(249, 303);
+			this.pnlPrincipal.Size = new System.Drawing.Size(248, 303);
 			this.pnlPrincipal.TabIndex = 1;
 			// 
 			// gpxListado
@@ -205,7 +206,7 @@
 			this.gpxListado.Controls.Add(this.dgvGrilla);
 			this.gpxListado.Location = new System.Drawing.Point(3, 71);
 			this.gpxListado.Name = "gpxListado";
-			this.gpxListado.Size = new System.Drawing.Size(241, 227);
+			this.gpxListado.Size = new System.Drawing.Size(240, 227);
 			this.gpxListado.TabIndex = 4;
 			this.gpxListado.TabStop = false;
 			this.gpxListado.Text = "Listado";
@@ -232,8 +233,9 @@
 			this.dgvGrilla.Location = new System.Drawing.Point(3, 16);
 			this.dgvGrilla.Name = "dgvGrilla";
 			this.dgvGrilla.ReadOnly = true;
-			this.dgvGrilla.Size = new System.Drawing.Size(235, 208);
+			this.dgvGrilla.Size = new System.Drawing.Size(234, 208);
 			this.dgvGrilla.TabIndex = 0;
+			this.dgvGrilla.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_CellClick);
 			this.dgvGrilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_CellDoubleClick);
 			this.dgvGrilla.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvGrilla_ColumnWidthChanged);
 			this.dgvGrilla.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvGrilla_Paint);
@@ -297,7 +299,7 @@
 			this.gpxFiltrar.Controls.Add(this.label1);
 			this.gpxFiltrar.Location = new System.Drawing.Point(3, 3);
 			this.gpxFiltrar.Name = "gpxFiltrar";
-			this.gpxFiltrar.Size = new System.Drawing.Size(241, 62);
+			this.gpxFiltrar.Size = new System.Drawing.Size(240, 62);
 			this.gpxFiltrar.TabIndex = 0;
 			this.gpxFiltrar.TabStop = false;
 			this.gpxFiltrar.Text = "Filtrar";
@@ -335,6 +337,7 @@
 			// 
 			// tbl_seccion
 			// 
+			this.tbl_seccion.Controls.Add(this.btnEliminar);
 			this.tbl_seccion.Controls.Add(this.label4);
 			this.tbl_seccion.Controls.Add(this.label3);
 			this.tbl_seccion.Controls.Add(this.lbl_Run);
@@ -429,7 +432,7 @@
 			this.btn_Limpiar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.btn_Limpiar.Image = global::ControlDosimetro.Properties.Resources.Limpiar;
 			this.btn_Limpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_Limpiar.Location = new System.Drawing.Point(176, 259);
+			this.btn_Limpiar.Location = new System.Drawing.Point(248, 259);
 			this.btn_Limpiar.Name = "btn_Limpiar";
 			this.btn_Limpiar.Size = new System.Drawing.Size(85, 40);
 			this.btn_Limpiar.TabIndex = 10;
@@ -445,7 +448,7 @@
 			this.btn_Guardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.btn_Guardar.Image = global::ControlDosimetro.Properties.Resources.Save_32;
 			this.btn_Guardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_Guardar.Location = new System.Drawing.Point(47, 259);
+			this.btn_Guardar.Location = new System.Drawing.Point(11, 259);
 			this.btn_Guardar.Name = "btn_Guardar";
 			this.btn_Guardar.Size = new System.Drawing.Size(87, 40);
 			this.btn_Guardar.TabIndex = 9;
@@ -509,11 +512,27 @@
 			this.lbl_id_seccion.TabIndex = 8;
 			this.lbl_id_seccion.Text = "ID";
 			// 
+			// btnEliminar
+			// 
+			this.btnEliminar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.btnEliminar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.btnEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+			this.btnEliminar.Image = global::ControlDosimetro.Properties.Resources.delete_32;
+			this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnEliminar.Location = new System.Drawing.Point(135, 259);
+			this.btnEliminar.Name = "btnEliminar";
+			this.btnEliminar.Size = new System.Drawing.Size(87, 40);
+			this.btnEliminar.TabIndex = 21;
+			this.btnEliminar.Text = "Eliminar";
+			this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnEliminar.UseVisualStyleBackColor = true;
+			this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+			// 
 			// frmMantenedorSeccion
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(629, 370);
+			this.ClientSize = new System.Drawing.Size(628, 370);
 			this.Controls.Add(this.scPrincipal);
 			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this.stsEstado);
@@ -586,5 +605,6 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label lbl_Run;
+		private System.Windows.Forms.Button btnEliminar;
 	}
 }
