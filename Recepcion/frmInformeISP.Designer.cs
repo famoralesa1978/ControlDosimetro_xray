@@ -690,7 +690,6 @@
 			this.btnGenerarArchivoNuevo.TabIndex = 21;
 			this.btnGenerarArchivoNuevo.Text = "Generar Archivo ISP PRUEBA";
 			this.btnGenerarArchivoNuevo.UseVisualStyleBackColor = true;
-			this.btnGenerarArchivoNuevo.Visible = false;
 			this.btnGenerarArchivoNuevo.Click += new System.EventHandler(this.btnGenerarArchivoNuevo_Click);
 			// 
 			// FrmInformeISP

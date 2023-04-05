@@ -365,6 +365,20 @@ namespace ControlDosimetro
 			classFuncionesGenerales.mensajes.MensajeProcesoOK("Proceso terminado");
 			Cursor = Cursors.Default;
 		}
+		private void Generar_TodosV2()
+		{
+			Cursor = Cursors.WaitCursor;
+			for (int intFila = 1; intFila < cbx_id_seccion.Items.Count; intFila++)
+			{
+
+				cbx_id_seccion.SelectedIndex = intFila;
+				btnResfrescar_Click(null, null);
+				GenerarPorSucursalV2();
+
+			}
+			classFuncionesGenerales.mensajes.MensajeProcesoOK("Proceso terminado");
+			Cursor = Cursors.Default;
+		}
 		private void GenerarPorSucursalV2()
 		{
 			SqlCommand cmd = new SqlCommand();
@@ -415,7 +429,15 @@ namespace ControlDosimetro
 
 			if (!System.IO.Directory.Exists(targetPath))
 			{
-				System.IO.Directory.CreateDirectory(targetPath);
+				try
+				{
+					System.IO.Directory.CreateDirectory(targetPath);
+				}
+				catch(Exception e)
+				{
+					classFuncionesGenerales.mensajes.MensajeError(e.Message);
+					return;
+				}
 			}
 
 
@@ -479,7 +501,9 @@ namespace ControlDosimetro
 			if (rbtOiginal.Checked)
 				strArchivo = dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "Plantillaword.docx";
 			else
-				strArchivo = @"C:\\Doc_Xray\\baseCliente\\Plantilla\\INFORME DE DOSIMETRIA.docx";
+				strArchivo = @"C:\\Doc_Xray\\baseCliente\\Plantilla\\Informe de Dosimetría.docx";
+
+
 
 
 			//   string strArchivo = ConfigurationManager.AppSettings["Archivo"] + "Plantillaword.docx";
@@ -559,16 +583,22 @@ namespace ControlDosimetro
 				string[] data2;
 				string[] data3;
 				string[] data4;
+				string[] data5;
+				string[] data6;
 
 				data1 = new string[] { "" };//strRazon_SocialEmpresa
 				data2 = new string[] { "" };
 				data3 = new string[] { "" };
 				data4 = new string[] { "" };
+				data5 = new string[] { "" };
+				data6 = new string[] { "" };
 
 				Array.Resize(ref data1, grdDatos.RowCount);
 				Array.Resize(ref data2, grdDatos.RowCount);
 				Array.Resize(ref data3, grdDatos.RowCount);
 				Array.Resize(ref data4, grdDatos.RowCount);
+				Array.Resize(ref data5, grdDatos.RowCount);
+				Array.Resize(ref data6, grdDatos.RowCount);
 
 				//Array.Resize(ref data1, 1);
 				//Array.Resize(ref data2, 1);
@@ -618,7 +648,7 @@ namespace ControlDosimetro
 					strid_personal = grdDatos.Rows[intfilagrid].Cells["id_personal"].Value.ToString();
 					strid_dosimetro = grdDatos.Rows[intfilagrid].Cells["id_dosimetro"].Value.ToString();
 
-					cmdpersonal.CommandText = "SELECT Rut,SUBSTRING(UPPER (Nombres), 1, 1) + SubSTRING (LOWER (Nombres), 2,len(Nombres)) Nombres, " +
+					cmdpersonal.CommandText = "SELECT P.Id_Personal, Rut,SUBSTRING(UPPER (Nombres), 1, 1) + SubSTRING (LOWER (Nombres), 2,len(Nombres)) Nombres, " +
 										"SUBSTRING(UPPER (Paterno), 1, 1) + SUbSTRING (LOWER (Paterno), 2,len(Paterno)) Paterno," +
 										"SUBSTRING(UPPER (Maternos), 1, 1) + SUbSTRING (LOWER (Maternos), 2,len(Maternos))Maternos," +
 										"Id_Seccion,p.Id_estado, " +
@@ -628,6 +658,7 @@ namespace ControlDosimetro
 							 " WHERE Id_Personal= " + strid_personal.ToString() + " and id_cliente=" + lbl_id_cliente.Text +
 							 "";
 					dtCliente = Conectar.Listar(Clases.clsBD.BD, cmdpersonal);
+
 
 					//if (strId_sucursal == txtid_sucursal.Value.ToString())
 					//{
@@ -707,20 +738,29 @@ namespace ControlDosimetro
 							cmd.CommandType = CommandType.Text;
 							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 
+							//	id_personal,
+							string strUltimoAnno="";
+							string strUltimo5Anno = "";
+							if (dt.Tables[2] != null)
+							{
+								DataTable dtUltimoAnno = dt.Tables[2];
+								dtUltimoAnno.DefaultView.RowFilter = String.Format("id_personal={0}", strid_personal);
 
-
-							//if(i<=dt.Tables[0].Rows.Count-1)
-							//{
-
+								strUltimoAnno = dtUltimoAnno.DefaultView.ToTable().Rows[0]["UltimoAnno"].ToString();
+								strUltimo5Anno = dtUltimoAnno.DefaultView.ToTable().Rows[0]["Ultimo5Anno"].ToString();
+							}
 
 							data1[i] = txtnpelicula.Value.ToString();
 							data2[i] = dtCliente.Tables[0].Rows[0]["Rut"].ToString();
 
 							data3[i] = dtCliente.Tables[0].Rows[0]["Nombres"].ToString() + " " + dtCliente.Tables[0].Rows[0]["Paterno"].ToString() + " " + dtCliente.Tables[0].Rows[0]["Maternos"].ToString();
 							if (chkcondosis.Value.ToString() == "0")
-								data4[i] = strEstado;
+								data4[i] = strEstado == "MNR" ? "0": strEstado;
 							else
 								data4[i] = txtvalor.Value.ToString();
+
+							data5[i] = strUltimoAnno;
+							data6[i] = strUltimo5Anno;
 							//}
 							// this.p
 
@@ -787,7 +827,7 @@ namespace ControlDosimetro
 
 				}
 				if (data1.Count() > 0)
-					WDAddTableV2(strArchivoCopiar, data1, data2, data3, strfecha_inicio, strfecha_termino, strFechaRecepcion, data4);
+					WDAddTableV2(strArchivoCopiar, data1, data2, data3, strfecha_inicio, strfecha_termino, strFechaRecepcion, data4, data5, data6);
 
 				#endregion
 				#endregion
@@ -1561,7 +1601,7 @@ namespace ControlDosimetro
 			{
 				lblRuta.Visible = true;
 				lblRuta.Text = "";
-				Generar_Todos();
+				Generar_TodosV2();
 				btnGenerar.Enabled = true;
 			}
 		}
@@ -2517,7 +2557,7 @@ namespace ControlDosimetro
 			}
 		}
 
-		public static void WDAddTableV2(string fileName, string[] Id, string[] Rut, string[] Nombre, string PerInicio, string PerFin, string FechaRecepcion, string[] Medicion)
+		public static void WDAddTableV2(string fileName, string[] Id, string[] Rut, string[] Nombre, string PerInicio, string PerFin, string FechaRecepcion, string[] Medicion, string[] UltimoAnno, string[] Ultimo5anno)
 		{
 			using (var document = WordprocessingDocument.Open(fileName, true))
 			{
@@ -2686,22 +2726,22 @@ namespace ControlDosimetro
 					tc7.Append(new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(Medicion[i]))));
 					tr.Append(tc7);
 
+					//string[] UltimoAnno, string[] Ultimo5anno
+
 					tc8.Append(new TableCellProperties(
 														new TableCellWidth { Type = TableWidthUnitValues.Auto },
-														new DocumentFormat.OpenXml.Wordprocessing.Bold(),
 														new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
 														new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
-														new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text("")))
+														new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(UltimoAnno[i].ToString())))
 														));
 
 					tr.Append(tc8);
 
 					tc9.Append(new TableCellProperties(
 														new TableCellWidth { Type = TableWidthUnitValues.Auto },
-														new DocumentFormat.OpenXml.Wordprocessing.Bold(),
 														new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
 														new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
-														new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text("")))
+														new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(Ultimo5anno[i].ToString())))
 														));
 
 					tr.Append(tc9);
