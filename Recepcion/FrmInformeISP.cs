@@ -1037,7 +1037,7 @@ namespace ControlDosimetro
 				pgb_Barra.Maximum = grdDatos.RowCount;
 				pnl_Progreso.Refresh();
 				//N_TLD_Original
-				grdDatos.Sort(grdDatos.Columns[N_TLD_Original.Index], ListSortDirection.Ascending);
+				grdDatos.Sort(grdDatos.Columns[N_pelicula.Index], ListSortDirection.Ascending);
 				for (int intfilagrid = 0; intfilagrid <= grdDatos.RowCount - 1; intfilagrid++)
 				{
 					pgb_Barra.Value = i + 1;
@@ -1414,7 +1414,7 @@ namespace ControlDosimetro
 				pgb_Barra.Minimum = 0;
 				pgb_Barra.Maximum = grdDatos.RowCount;
 				pnl_Progreso.Refresh();
-				grdDatos.Sort(grdDatos.Columns[N_TLD_Original.Index], ListSortDirection.Ascending);
+				grdDatos.Sort(grdDatos.Columns[N_pelicula.Index], ListSortDirection.Ascending);
 				for (int intfilagrid = 0; intfilagrid <= grdDatos.RowCount - 1; intfilagrid++)
 				{
 					pgb_Barra.Value = i + 1;
