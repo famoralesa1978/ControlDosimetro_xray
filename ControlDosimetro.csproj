@@ -32,10 +32,10 @@
     <TargetCulture>es-CL</TargetCulture>
     <ProductName>X-Ray Dosimetro</ProductName>
     <SuiteName>Sistema Dosimetro</SuiteName>
-    <MinimumRequiredVersion>9.0.1.93</MinimumRequiredVersion>
+    <MinimumRequiredVersion>9.0.1.94</MinimumRequiredVersion>
     <WebPage>instalacion.html</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>94</ApplicationRevision>
+    <ApplicationRevision>95</ApplicationRevision>
     <ApplicationVersion>9.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
