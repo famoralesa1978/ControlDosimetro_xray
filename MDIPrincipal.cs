@@ -487,7 +487,7 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.ProcEnviado:
-					objFrm = new frmModuloEnviado(0)
+					objFrm = new frmModuloEnviado(0,false)
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
@@ -572,7 +572,7 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.EnviadoTLD:
-					objFrm = new frmModuloEnviado(0)
+					objFrm = new frmModuloEnviado(0,true)
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
@@ -958,7 +958,7 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.ProcEnviado:
-					objFrm = new frmModuloEnviado(0)
+					objFrm = new frmModuloEnviado(0,false)
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
@@ -1035,7 +1035,7 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.EnviadoTLD:
-					objFrm = new frmModuloEnviado(0)
+					objFrm = new frmModuloEnviado(0,true)
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen

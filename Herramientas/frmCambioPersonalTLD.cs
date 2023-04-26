@@ -183,7 +183,7 @@ namespace ControlDosimetro
 		{
 			SqlCommand cmd = new SqlCommand();
 			DataSet ds;
-			string strParametro = String.Format("{0},{1},{2}", txt_NDoc.Text, cbx_PersonalActual.SelectedValue, cbx_PersonalCambio.SelectedValue);
+			string strParametro = String.Format("{0},{1},{2}", txt_NDoc.Text, (cbx_PersonalActual.SelectedValue ==null?0: cbx_PersonalActual.SelectedValue), cbx_PersonalCambio.SelectedValue);
 			cmd.CommandText = "pa_ModificarPersonalTLD_upd " + strParametro;
 			cmd.CommandType = CommandType.Text;//pa_ModificarSeccionTLD_upd
 

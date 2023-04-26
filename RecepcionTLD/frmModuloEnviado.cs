@@ -26,7 +26,7 @@ namespace ControlDosimetro
 		int intintId_Estado_temp;
 		#endregion
 
-		public frmModuloEnviado(int intId_Estado)
+		public frmModuloEnviado(int intId_Estado,bool TLD)
 		{
 			InitializeComponent();
 
@@ -60,6 +60,9 @@ namespace ControlDosimetro
 			};
 			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 			Cargar_Anno();
+
+			rbtDosimetria.Visible = rbtDosimetria.Checked = !TLD;
+			rbtTLD.Visible= rbtTLD.Checked = TLD;
 			pnl_Progreso.Visible = false;
 			btn_Guardar.Enabled = false;
 		}
