@@ -701,48 +701,52 @@ namespace ControlDosimetro
 					grdDatos.Rows[intfilagrid].DefaultCellStyle.SelectionBackColor = System.Drawing.Color.White;
 					if ((strid_dosimetro != "0")) //&& (checkGenerar.Value.ToString() == "1")					 
 					{
-						document = SpreadsheetDocument.Open(strpathcopiar, true);
-						wbPart = document.WorkbookPart;
-						string wsName = String.Format("{0}{1}", cbx_id_periodo.Text.Substring(0, 1), "ºT");//4ºT//1ºT|
-						UpdateValue(wsName, "A" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Nombres"].ToString(), 0, true);
-						UpdateValue(wsName, "B" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Paterno"].ToString(), 0, true);
-						UpdateValue(wsName, "C" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Maternos"].ToString(), 0, true);
-						UpdateValue(wsName, "D" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Rut"].ToString(), 0, true);
-						UpdateValue(wsName, "E" + (intfila).ToString(), strfecha_inicio.Replace("/", "-"), 0, true);
-						UpdateValue(wsName, "F" + (intfila).ToString(), strfecha_termino.Replace("/", "-"), 0, true);
+						if(strEstado=="" || strEstado == "MNR")
+						{
+							document = SpreadsheetDocument.Open(strpathcopiar, true);
+							wbPart = document.WorkbookPart;
+							string wsName = String.Format("{0}{1}", cbx_id_periodo.Text.Substring(0, 1), "ºT");//4ºT//1ºT|
+							UpdateValue(wsName, "A" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Nombres"].ToString(), 0, true);
+							UpdateValue(wsName, "B" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Paterno"].ToString(), 0, true);
+							UpdateValue(wsName, "C" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Maternos"].ToString(), 0, true);
+							UpdateValue(wsName, "D" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Rut"].ToString(), 0, true);
+							UpdateValue(wsName, "E" + (intfila).ToString(), strfecha_inicio.Replace("/", "-"), 0, true);
+							UpdateValue(wsName, "F" + (intfila).ToString(), strfecha_termino.Replace("/", "-"), 0, true);
 
-						UpdateValue(wsName, "G" + (intfila).ToString(), txtvalor.Value.ToString(), 0, true);
-						UpdateValue(wsName, "H" + (intfila).ToString(), "TRIMESTRAL", 0, true);
-						UpdateValue(wsName, "I" + (intfila).ToString(), strEstado, 0, true);
-						UpdateValue(wsName, "J" + (intfila).ToString(), "CUERPO ENTERO", 0, true);
-						UpdateValue(wsName, "K" + (intfila).ToString(), "FILMICO", 0, true);
+							UpdateValue(wsName, "G" + (intfila).ToString(), txtvalor.Value.ToString(), 0, true);
+							UpdateValue(wsName, "H" + (intfila).ToString(), "TRIMESTRAL", 0, true);
+							UpdateValue(wsName, "I" + (intfila).ToString(), strEstado, 0, true);
+							UpdateValue(wsName, "J" + (intfila).ToString(), "CUERPO ENTERO", 0, true);
+							UpdateValue(wsName, "K" + (intfila).ToString(), "FILMICO", 0, true);
 
-						UpdateValue(wsName, "L" + (intfila).ToString(), "3", 0, false);
-						UpdateValue(wsName, "M" + (intfila).ToString(), "Rayos X otros", 0, true);
-						UpdateValue(wsName, "N" + (intfila).ToString(), "X-RAY", 0, true);
+							UpdateValue(wsName, "L" + (intfila).ToString(), "3", 0, false);
+							UpdateValue(wsName, "M" + (intfila).ToString(), "Rayos X otros", 0, true);
+							UpdateValue(wsName, "N" + (intfila).ToString(), "X-RAY", 0, true);
 
-						UpdateValue(wsName, "O" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["glosa"].ToString(), 0, true);
-						UpdateValue(wsName, "P" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["profesion"].ToString(), 0, true);
-						////							  UpdateValue(wsName, "S" + (intfila + 2).ToString(), dtCliente.Tables[0].Rows[0]["telefono"].ToString(), 0, true);
-						UpdateValue(wsName, "S" + (intfila).ToString(), strTelefonoEmpresa, 0, true);//telefono
-						UpdateValue(wsName, "X" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Fecha_inicio"].ToString().Replace("/", "-"), 0, true);
-						//°
+							UpdateValue(wsName, "O" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["glosa"].ToString(), 0, true);
+							UpdateValue(wsName, "P" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["profesion"].ToString(), 0, true);
+							////							  UpdateValue(wsName, "S" + (intfila + 2).ToString(), dtCliente.Tables[0].Rows[0]["telefono"].ToString(), 0, true);
+							UpdateValue(wsName, "S" + (intfila).ToString(), strTelefonoEmpresa, 0, true);//telefono
+							UpdateValue(wsName, "X" + (intfila).ToString(), dtCliente.Tables[0].Rows[0]["Fecha_inicio"].ToString().Replace("/", "-"), 0, true);
+							//°
 
-						UpdateValue(wsName, "Y" + (intfila).ToString(), strRunEmpresa, 0, true);
-						UpdateValue(wsName, "Z" + (intfila).ToString(), strRazon_SocialEmpresa, 0, true);
+							UpdateValue(wsName, "Y" + (intfila).ToString(), strRunEmpresa, 0, true);
+							UpdateValue(wsName, "Z" + (intfila).ToString(), strRazon_SocialEmpresa, 0, true);
 
-						UpdateValue(wsName, "AA" + (intfila).ToString(), strDireccionEmpresa.ToString(), 0, true);
-						UpdateValue(wsName, "AB" + (intfila).ToString(), strcomunaEmpresa, 0, true);
-						UpdateValue(wsName, "AC" + (intfila).ToString(), strProvinciaEmpresa, 0, true);
-						UpdateValue(wsName, "AD" + (intfila).ToString(), strregionEmpresa, 0, true);
-						UpdateValue(wsName, "AE" + (intfila).ToString(), strTelefonoEmpresa, 0, false);
-						document.Close();
-						cmd.CommandText = "update tbl_dosimetria " +
-															"set enviado=1" +
-														" where id_dosimetro=" + strid_dosimetro;
-						cmd.CommandType = CommandType.Text;
+							UpdateValue(wsName, "AA" + (intfila).ToString(), strDireccionEmpresa.ToString(), 0, true);
+							UpdateValue(wsName, "AB" + (intfila).ToString(), strcomunaEmpresa, 0, true);
+							UpdateValue(wsName, "AC" + (intfila).ToString(), strProvinciaEmpresa, 0, true);
+							UpdateValue(wsName, "AD" + (intfila).ToString(), strregionEmpresa, 0, true);
+							UpdateValue(wsName, "AE" + (intfila).ToString(), strTelefonoEmpresa, 0, false);
+							document.Close();
+							cmd.CommandText = "update tbl_dosimetria " +
+																"set enviado=1" +
+															" where id_dosimetro=" + strid_dosimetro;
+							cmd.CommandType = CommandType.Text;
 
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+						}
+						
 
 						string strParametro = String.Format("{0},{1},{2},'',{3}", txtnpeliculaoriginal.Value.ToString(), "5", Clases.clsUsuario.Usuario, cbx_id_seccion.SelectedValue);
 						cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + strParametro;
@@ -782,8 +786,8 @@ namespace ControlDosimetro
 						data7[FilaWord] = strEstado;
 						//}
 						// this.p
-
-						intfila = intfila + 1;
+						if (strEstado == "" || strEstado == "MNR")
+							intfila = intfila + 1;
 						FilaWord = FilaWord + 1;
 					}
 
