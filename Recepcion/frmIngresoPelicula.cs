@@ -118,6 +118,8 @@ namespace ControlDosimetro
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 			grdDatos.DataSource = dt.Tables[0];
+
+			btn_IngresoDosimetro.Enabled = btn_Imprimir.Enabled = grpListado.Enabled = grp_Ingreso.Enabled = dt.Tables[0].Rows.Count > 0;
 		}
 
 		private void Cargar_Anno()
@@ -154,7 +156,7 @@ namespace ControlDosimetro
 		private void Cargar_Sucursal()
 		{
 
-			FuncBD.Cargar_Sucursal(ref cbx_Sucursal, lbl_rut.Text, Convert.ToInt16( lbl_id_cliente.Text.ToString()), 1);
+			FuncBD.Cargar_Sucursal(ref cbx_Sucursal, lbl_rut.Text, Convert.ToInt16(lbl_id_cliente.Text.ToString()), 1);
 
 		}
 
@@ -397,10 +399,10 @@ namespace ControlDosimetro
 						ds1 = Conectar.Listar(Clases.clsBD.BD, cmd1);
 						if (ds1.Tables[0].Rows.Count > 0)
 						{
-							groupBox2.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es:" + ds1.Tables[0].Rows[0][0].ToString();
+							grpListado.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es:" + ds1.Tables[0].Rows[0][0].ToString();
 						}
 						else
-							groupBox2.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es: 0";
+							grpListado.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es: 0";
 					}
 
 					Listar_Grilla();
@@ -542,7 +544,7 @@ namespace ControlDosimetro
 				{
 					chkcondosis.ReadOnly = false;
 					intContar = intContar + 1;
-					groupBox2.Text = "Listado       Registro:" + intContar.ToString();
+					grpListado.Text = "Listado       Registro:" + intContar.ToString();
 
 					if (Convert.ToInt64(chkcondosis.Value) == 1)
 					{
@@ -564,7 +566,7 @@ namespace ControlDosimetro
 					chkcondosis.ReadOnly = true;
 					cbxEstado.ReadOnly = true;
 					intContar = intContar - 1;
-					groupBox2.Text = "Listado       Registro:" + intContar.ToString();
+					grpListado.Text = "Listado       Registro:" + intContar.ToString();
 				}
 			}
 
@@ -736,10 +738,10 @@ namespace ControlDosimetro
 				ds1 = Conectar.Listar(Clases.clsBD.BD, cmd1);
 				if (ds1.Tables[0].Rows.Count > 0)
 				{
-					groupBox2.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es:" + ds1.Tables[0].Rows[0][0].ToString();
+					grpListado.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es:" + ds1.Tables[0].Rows[0][0].ToString();
 				}
 				else
-					groupBox2.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es: 0";
+					grpListado.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es: 0";
 			}
 		}
 

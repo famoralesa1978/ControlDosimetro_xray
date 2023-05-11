@@ -72,10 +72,16 @@
 			this.cbx_anno = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.grpListado = new System.Windows.Forms.GroupBox();
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
+			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.id_estadodosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.N_Pelicula = new GridExtension.IntegerGridColumn();
+			this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.N_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColFecha_ingreso = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cmsPopup = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -96,16 +102,10 @@
 			this.btn_Imprimir = new System.Windows.Forms.Button();
 			this.btn_Cerrar = new System.Windows.Forms.Button();
 			this.btn_IngresoDosimetro = new System.Windows.Forms.Button();
-			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.id_estadodosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.N_Pelicula = new GridExtension.IntegerGridColumn();
-			this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.N_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColFecha_ingreso = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			this.grp_Ingreso.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pctAgregarSucursal)).BeginInit();
-			this.groupBox2.SuspendLayout();
+			this.grpListado.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
 			this.cmsPopup.SuspendLayout();
@@ -522,19 +522,19 @@
 			this.label3.TabIndex = 4;
 			this.label3.Text = "Año";
 			// 
-			// groupBox2
+			// grpListado
 			// 
-			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.grpListado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox2.Controls.Add(this.pnl_Progreso);
-			this.groupBox2.Controls.Add(this.grdDatos);
-			this.groupBox2.Location = new System.Drawing.Point(0, 414);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(465, 270);
-			this.groupBox2.TabIndex = 18;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Listado";
+			this.grpListado.Controls.Add(this.pnl_Progreso);
+			this.grpListado.Controls.Add(this.grdDatos);
+			this.grpListado.Location = new System.Drawing.Point(0, 414);
+			this.grpListado.Name = "grpListado";
+			this.grpListado.Size = new System.Drawing.Size(465, 270);
+			this.grpListado.TabIndex = 18;
+			this.grpListado.TabStop = false;
+			this.grpListado.Text = "Listado";
 			// 
 			// pnl_Progreso
 			// 
@@ -579,6 +579,57 @@
 			this.grdDatos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdDatos_CellFormatting);
 			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
+			// 
+			// id
+			// 
+			this.id.DataPropertyName = "id";
+			this.id.HeaderText = "id";
+			this.id.Name = "id";
+			this.id.Visible = false;
+			this.id.Width = 40;
+			// 
+			// id_estadodosimetro
+			// 
+			this.id_estadodosimetro.DataPropertyName = "id_estadodosimetro";
+			this.id_estadodosimetro.HeaderText = "id_estadodosimetro";
+			this.id_estadodosimetro.Name = "id_estadodosimetro";
+			this.id_estadodosimetro.Visible = false;
+			this.id_estadodosimetro.Width = 123;
+			// 
+			// N_Pelicula
+			// 
+			this.N_Pelicula.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+			this.N_Pelicula.DataPropertyName = "n_dosimetro";
+			this.N_Pelicula.HeaderText = "Nº Pelicula";
+			this.N_Pelicula.Name = "N_Pelicula";
+			this.N_Pelicula.ReadOnly = true;
+			this.N_Pelicula.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.N_Pelicula.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.N_Pelicula.Width = 84;
+			// 
+			// Descripcion
+			// 
+			this.Descripcion.DataPropertyName = "Descripcion";
+			this.Descripcion.HeaderText = "Descripcion";
+			this.Descripcion.Name = "Descripcion";
+			this.Descripcion.ReadOnly = true;
+			this.Descripcion.Width = 88;
+			// 
+			// N_documento
+			// 
+			this.N_documento.DataPropertyName = "N_documento";
+			this.N_documento.HeaderText = "N° Documento";
+			this.N_documento.Name = "N_documento";
+			this.N_documento.ReadOnly = true;
+			this.N_documento.Width = 102;
+			// 
+			// ColFecha_ingreso
+			// 
+			this.ColFecha_ingreso.DataPropertyName = "Fecha_ingreso";
+			this.ColFecha_ingreso.HeaderText = "Fecha ingreso";
+			this.ColFecha_ingreso.Name = "ColFecha_ingreso";
+			this.ColFecha_ingreso.ReadOnly = true;
+			this.ColFecha_ingreso.Width = 99;
 			// 
 			// cmsPopup
 			// 
@@ -767,57 +818,6 @@
 			this.btn_IngresoDosimetro.UseVisualStyleBackColor = true;
 			this.btn_IngresoDosimetro.Click += new System.EventHandler(this.btn_IngresoDosimetro_Click);
 			// 
-			// id
-			// 
-			this.id.DataPropertyName = "id";
-			this.id.HeaderText = "id";
-			this.id.Name = "id";
-			this.id.Visible = false;
-			this.id.Width = 40;
-			// 
-			// id_estadodosimetro
-			// 
-			this.id_estadodosimetro.DataPropertyName = "id_estadodosimetro";
-			this.id_estadodosimetro.HeaderText = "id_estadodosimetro";
-			this.id_estadodosimetro.Name = "id_estadodosimetro";
-			this.id_estadodosimetro.Visible = false;
-			this.id_estadodosimetro.Width = 123;
-			// 
-			// N_Pelicula
-			// 
-			this.N_Pelicula.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-			this.N_Pelicula.DataPropertyName = "n_dosimetro";
-			this.N_Pelicula.HeaderText = "Nº Pelicula";
-			this.N_Pelicula.Name = "N_Pelicula";
-			this.N_Pelicula.ReadOnly = true;
-			this.N_Pelicula.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.N_Pelicula.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.N_Pelicula.Width = 84;
-			// 
-			// Descripcion
-			// 
-			this.Descripcion.DataPropertyName = "Descripcion";
-			this.Descripcion.HeaderText = "Descripcion";
-			this.Descripcion.Name = "Descripcion";
-			this.Descripcion.ReadOnly = true;
-			this.Descripcion.Width = 88;
-			// 
-			// N_documento
-			// 
-			this.N_documento.DataPropertyName = "N_documento";
-			this.N_documento.HeaderText = "N° Documento";
-			this.N_documento.Name = "N_documento";
-			this.N_documento.ReadOnly = true;
-			this.N_documento.Width = 102;
-			// 
-			// ColFecha_ingreso
-			// 
-			this.ColFecha_ingreso.DataPropertyName = "Fecha_ingreso";
-			this.ColFecha_ingreso.HeaderText = "Fecha ingreso";
-			this.ColFecha_ingreso.Name = "ColFecha_ingreso";
-			this.ColFecha_ingreso.ReadOnly = true;
-			this.ColFecha_ingreso.Width = 99;
-			// 
 			// frmIngresoPeliculaDosi
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -827,7 +827,7 @@
 			this.Controls.Add(this.btn_Cerrar);
 			this.Controls.Add(this.btn_Imprimir);
 			this.Controls.Add(this.toolStrip1);
-			this.Controls.Add(this.groupBox2);
+			this.Controls.Add(this.grpListado);
 			this.Controls.Add(this.groupBox1);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -840,7 +840,7 @@
 			this.grp_Ingreso.ResumeLayout(false);
 			this.grp_Ingreso.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pctAgregarSucursal)).EndInit();
-			this.groupBox2.ResumeLayout(false);
+			this.grpListado.ResumeLayout(false);
 			this.pnl_Progreso.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).EndInit();
 			this.cmsPopup.ResumeLayout(false);
@@ -855,7 +855,7 @@
 
 		  private System.Windows.Forms.GroupBox groupBox1;
 		  private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grpListado;
 		  private System.Windows.Forms.DataGridView grdDatos;
 		  private System.Windows.Forms.ToolStrip toolStrip1;
           private System.Windows.Forms.Label label2;

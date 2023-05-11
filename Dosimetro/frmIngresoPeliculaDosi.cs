@@ -101,6 +101,7 @@ namespace ControlDosimetro
 				lbl_Direccion.Text = "";
 				lbl_rut.Text = "";
 				grp_Ingreso.Enabled = false;
+				btn_IngresoDosimetro.Enabled = btn_Imprimir.Enabled = grpListado.Enabled = false;
 				Cargar_Sucursal();
 				if (intCodCliente != 0)
 					MessageBox.Show("El cliente no existe");
@@ -141,6 +142,7 @@ namespace ControlDosimetro
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 			grdDatos.DataSource = dt.Tables[0];
+			btn_IngresoDosimetro.Enabled = btn_Imprimir.Enabled = grpListado.Enabled = grp_Ingreso.Enabled = dt.Tables[0].Rows.Count > 0;
 		}
 
 		private void Cargar_Anno()
@@ -430,10 +432,10 @@ namespace ControlDosimetro
 						ds1 = Conectar.Listar(Clases.clsBD.BD, cmd1);
 						if (ds1.Tables[0].Rows.Count > 0)
 						{
-							groupBox2.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es:" + ds1.Tables[0].Rows[0][0].ToString();
+							grpListado.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es:" + ds1.Tables[0].Rows[0][0].ToString();
 						}
 						else
-							groupBox2.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es: 0";
+							grpListado.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es: 0";
 					}
 
 					Listar_Grilla();
@@ -480,6 +482,7 @@ namespace ControlDosimetro
 			lbl_id_cliente.Enabled = true;
 			grp_Ingreso.Enabled = false;
 			btn_cargar.Enabled = true;
+			btn_IngresoDosimetro.Enabled = btn_Imprimir.Enabled = grpListado.Enabled = grp_Ingreso.Enabled = false;
 			cbx_anno.Focus();
 			intContar = 0;
 		}
@@ -584,10 +587,10 @@ namespace ControlDosimetro
 				ds1 = Conectar.Listar(Clases.clsBD.BD, cmd1);
 				if (ds1.Tables[0].Rows.Count > 0)
 				{
-					groupBox2.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es:" + ds1.Tables[0].Rows[0][0].ToString();
+					grpListado.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es:" + ds1.Tables[0].Rows[0][0].ToString();
 				}
 				else
-					groupBox2.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es: 0";
+					grpListado.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es: 0";
 			}
 		}
 
@@ -615,7 +618,7 @@ namespace ControlDosimetro
 				{
 					chkcondosis.ReadOnly = false;
 					intContar = intContar + 1;
-					groupBox2.Text = "Listado       Registro:" + intContar.ToString();
+					grpListado.Text = "Listado       Registro:" + intContar.ToString();
 
 					if (Convert.ToInt64(chkcondosis.Value) == 1)
 					{
@@ -637,7 +640,7 @@ namespace ControlDosimetro
 					chkcondosis.ReadOnly = true;
 					cbxEstado.ReadOnly = true;
 					intContar = intContar - 1;
-					groupBox2.Text = "Listado       Registro:" + intContar.ToString();
+					grpListado.Text = "Listado       Registro:" + intContar.ToString();
 				}
 			}
 
