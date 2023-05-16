@@ -636,9 +636,9 @@ namespace ControlDosimetro
 					txtid_sucursal = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["id_sucursal"];
 
 					if (TieneFilmica == false)
-						TieneFilmica = chkcondosis.Value.ToString() == "0" ? true : false;
+						TieneFilmica = chkTLD.Value.ToString() == "0" ? true : false;
 					if (TieneTLD == false)
-						TieneTLD = chkcondosis.Value.ToString() == "1" ? true : false;
+						TieneTLD = chkTLD.Value.ToString() == "1" ? true : false;
 
 					if (cbxEstado.Value.ToString() != "0")
 					{
@@ -675,29 +675,6 @@ namespace ControlDosimetro
 					//{
 					//}
 					#region "Genera  word y excel"
-					//if (checkGenerar.Value.ToString() == "1")
-					//{
-					//cmd.CommandText = "update tbl_dosimetria " +
-					//                      "set enviado=0" +
-					//                  " where id_dosimetro=" + strid_dosimetro;
-					//cmd.CommandType = CommandType.Text;
-
-					//Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
-
-					//cmd.CommandText = "pa_DosimetroIngreso_upd " + txtnpelicula.Value.ToString() + ",12,'Clases.clsUsuario.Usuario',''";
-					//cmd.CommandType = CommandType.StoredProcedure;
-					//Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
-					//}
-					//else
-					//	 if ((txtndocumento.Value.ToString() == "") && (checkGenerar.Value.ToString() == "0"))
-					//{
-					//	// MessageBox.Show("Ingrese el n° de  Documento");						  
-					//	grdDatos.Rows[intfilagrid].DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Red;
-					//	//Selected=true ;
-					//	i = grdDatos.RowCount;
-					//}
-					//else
-					//{
 					grdDatos.Rows[intfilagrid].DefaultCellStyle.SelectionBackColor = System.Drawing.Color.White;
 					if ((strid_dosimetro != "0")) //&& (checkGenerar.Value.ToString() == "1")					 
 					{
@@ -814,13 +791,13 @@ namespace ControlDosimetro
 					//	strSemetre1 = "cuarto";
 
 					strcampoMarcador = "Empresa";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), lbl_nombreCliente.Text);
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0} ({1})",lbl_nombreCliente.Text, lbl_id_cliente.Text));
 					strcampoMarcador = "Rut";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), lbl_rut_cliente.Text);//strRazon_SocialEmpresa
 					strcampoMarcador = "Periodo";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0}T {1}", cbx_id_periodo.Text.Substring(0, 1), cbx_anno.Text));//
 					strcampoMarcador = "FechaInforme";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0}/{1}/{2}", DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year));
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0}/{1}/{2}", DateTime.Now.Day, DateTime.Now.Month.ToString("D2"), DateTime.Now.Year));
 					strcampoMarcador = "Sucursal";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strDireccionEmpresaSucursal);
 					strcampoMarcador = "Direccion";
