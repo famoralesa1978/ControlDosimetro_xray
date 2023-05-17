@@ -739,6 +739,7 @@ namespace ControlDosimetro
 
 				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 				dtp_Fecha_dev.Text = dt.Tables[0].Rows[0]["fecha"].ToString();
+				btn_IngresoDosimetro.Enabled = btn_Imprimir.Enabled = grpListado.Enabled = true;
 				//btn_Cargar_cliente_Click(sender, e);
 				intContar = 0;
 			}else
