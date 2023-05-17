@@ -520,12 +520,13 @@
 			// 
 			// Paterno
 			// 
-			this.Paterno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Paterno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
 			this.Paterno.DataPropertyName = "Paterno";
 			this.Paterno.FillWeight = 300F;
 			this.Paterno.HeaderText = "Paterno";
 			this.Paterno.Name = "Paterno";
 			this.Paterno.ReadOnly = true;
+			this.Paterno.Width = 127;
 			// 
 			// Maternos
 			// 
