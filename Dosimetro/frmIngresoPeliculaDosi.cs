@@ -90,6 +90,7 @@ namespace ControlDosimetro
 				cbx_id_periodo.Enabled = false;
 				grp_Ingreso.Enabled = true;
 				Cargar_Sucursal();
+				btn_IngresoDosimetro.Enabled = btn_Imprimir.Enabled = grpListado.Enabled = true;
 				txt_Pelicula.Focus();
 			}
 			else
@@ -101,7 +102,7 @@ namespace ControlDosimetro
 				lbl_Direccion.Text = "";
 				lbl_rut.Text = "";
 				grp_Ingreso.Enabled = false;
-				btn_IngresoDosimetro.Enabled = btn_Imprimir.Enabled = grpListado.Enabled = false;
+				
 				Cargar_Sucursal();
 				if (intCodCliente != 0)
 					MessageBox.Show("El cliente no existe");
@@ -142,7 +143,7 @@ namespace ControlDosimetro
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 			grdDatos.DataSource = dt.Tables[0];
-			btn_IngresoDosimetro.Enabled = btn_Imprimir.Enabled = grpListado.Enabled = grp_Ingreso.Enabled = dt.Tables[0].Rows.Count > 0;
+		
 		}
 
 		private void Cargar_Anno()
@@ -722,7 +723,7 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 			clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(lbl_id_cliente.Text.ToString()), ref lbl_rut, ref lbl_nombreCliente,ref lbl_Direccion);
-			if (lbl_id_cliente.Text.ToString().Trim() != "")
+			if (lbl_id_cliente.Text.ToString().Trim() != "" &&  !string.IsNullOrWhiteSpace(lbl_rut.Text))
 			{
 				Cargar_Cliente(Convert.ToInt64(lbl_id_cliente.Text));
 				Listar_Grilla();
@@ -740,7 +741,8 @@ namespace ControlDosimetro
 				dtp_Fecha_dev.Text = dt.Tables[0].Rows[0]["fecha"].ToString();
 				//btn_Cargar_cliente_Click(sender, e);
 				intContar = 0;
-			}
+			}else
+				btn_IngresoDosimetro.Enabled = btn_Imprimir.Enabled = grpListado.Enabled = false;
 			Cursor = Cursors.Default;
 		}
 
