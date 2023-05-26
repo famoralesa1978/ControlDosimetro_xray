@@ -211,6 +211,7 @@
 			this.ClientSize = new System.Drawing.Size(493, 223);
 			this.ControlBox = false;
 			this.Controls.Add(this.tbl_observacioncliente);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "frmObservacionCliente";

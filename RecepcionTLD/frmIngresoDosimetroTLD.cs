@@ -116,7 +116,8 @@ namespace ControlDosimetro
 			int intSeccion = cbx_id_seccion.SelectedValue == null ? 0 : (int)cbx_id_seccion.SelectedValue;
 			int intPeriodo = cbx_id_periodo.SelectedValue == null ? 0 : (int)cbx_id_periodo.SelectedValue;
 
-			cmd.CommandText = String.Format("pa_ListarPersonalTLDPorSeccionDireccion_sel {0},{1},'{2}',{3},{4}", intPeriodo.ToString(), lbl_id_cliente.Text, lbl_rut_cliente.Text, intSeccion.ToString(), intSucursal.ToString());
+			cmd.CommandText = String.Format("pa_ListarPersonalTLDPorSeccionDireccion_sel {0},{1},'{2}',{3},{4},{5}", intPeriodo.ToString(), lbl_id_cliente.Text, 
+																							lbl_rut_cliente.Text, intSeccion.ToString(), intSucursal.ToString(),(chkIncluirDosimetro.Checked?44:99) );
 
 			cmd.CommandType = CommandType.Text;
 
@@ -1009,7 +1010,10 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "CheckBox"
-
+		private void chkIncluirDosimetro_CheckedChanged(object sender, EventArgs e)
+		{
+			Listar_Personal();
+		}
 		private void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
@@ -1468,6 +1472,7 @@ namespace ControlDosimetro
 			if (e.KeyCode == Keys.Return)
 				picFiltrarpersonal_Click(null, null);
 		}
+
 
 
 

@@ -72,6 +72,8 @@
 			this.tsbGenerar = new System.Windows.Forms.ToolStripDropDownButton();
 			this.tsbGenerarTodos = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsbGenerarSeleccionado = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsbAsignarSucursal = new System.Windows.Forms.ToolStripButton();
+			this.tsbAsignarSeccion = new System.Windows.Forms.ToolStripButton();
 			this.btn_Guardar = new System.Windows.Forms.Button();
 			this.btn_Cerrar = new System.Windows.Forms.Button();
 			this.btn_Corregir = new System.Windows.Forms.Button();
@@ -92,8 +94,7 @@
 			this.btnAgregarRef = new System.Windows.Forms.Button();
 			this.btnResfrescar = new System.Windows.Forms.Button();
 			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
-			this.tsbAsignarSucursal = new System.Windows.Forms.ToolStripButton();
-			this.tsbAsignarSeccion = new System.Windows.Forms.ToolStripButton();
+			this.chkIncluirDosimetro = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -262,6 +263,7 @@
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.chkIncluirDosimetro);
 			this.groupBox2.Controls.Add(this.chkSeleccionar);
 			this.groupBox2.Controls.Add(this.pnl_Progreso);
 			this.groupBox2.Controls.Add(this.grdDatos);
@@ -275,7 +277,7 @@
 			// chkSeleccionar
 			// 
 			this.chkSeleccionar.AutoSize = true;
-			this.chkSeleccionar.Location = new System.Drawing.Point(313, -1);
+			this.chkSeleccionar.Location = new System.Drawing.Point(729, 0);
 			this.chkSeleccionar.Name = "chkSeleccionar";
 			this.chkSeleccionar.Size = new System.Drawing.Size(111, 17);
 			this.chkSeleccionar.TabIndex = 10;
@@ -547,6 +549,26 @@
 			this.tsbGenerarSeleccionado.Size = new System.Drawing.Size(187, 22);
 			this.tsbGenerarSeleccionado.Text = "Generar seleccionado";
 			// 
+			// tsbAsignarSucursal
+			// 
+			this.tsbAsignarSucursal.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbAsignarSucursal.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignarSucursal.Image")));
+			this.tsbAsignarSucursal.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbAsignarSucursal.Name = "tsbAsignarSucursal";
+			this.tsbAsignarSucursal.Size = new System.Drawing.Size(98, 24);
+			this.tsbAsignarSucursal.Text = "Asignar Sucursal";
+			this.tsbAsignarSucursal.Click += new System.EventHandler(this.tsbAsignarSucursal_Click);
+			// 
+			// tsbAsignarSeccion
+			// 
+			this.tsbAsignarSeccion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbAsignarSeccion.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignarSeccion.Image")));
+			this.tsbAsignarSeccion.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbAsignarSeccion.Name = "tsbAsignarSeccion";
+			this.tsbAsignarSeccion.Size = new System.Drawing.Size(95, 24);
+			this.tsbAsignarSeccion.Text = "Asignar Sección";
+			this.tsbAsignarSeccion.Click += new System.EventHandler(this.tsbAsignarSeccion_Click);
+			// 
 			// btn_Guardar
 			// 
 			this.btn_Guardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -752,25 +774,16 @@
 			this.cbx_Sucursal.TabIndex = 20;
 			this.cbx_Sucursal.ValueMember = "Id_sucursal";
 			// 
-			// tsbAsignarSucursal
+			// chkIncluirDosimetro
 			// 
-			this.tsbAsignarSucursal.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tsbAsignarSucursal.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignarSucursal.Image")));
-			this.tsbAsignarSucursal.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbAsignarSucursal.Name = "tsbAsignarSucursal";
-			this.tsbAsignarSucursal.Size = new System.Drawing.Size(98, 24);
-			this.tsbAsignarSucursal.Text = "Asignar Sucursal";
-			this.tsbAsignarSucursal.Click += new System.EventHandler(this.tsbAsignarSucursal_Click);
-			// 
-			// tsbAsignarSeccion
-			// 
-			this.tsbAsignarSeccion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tsbAsignarSeccion.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignarSeccion.Image")));
-			this.tsbAsignarSeccion.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbAsignarSeccion.Name = "tsbAsignarSeccion";
-			this.tsbAsignarSeccion.Size = new System.Drawing.Size(95, 24);
-			this.tsbAsignarSeccion.Text = "Asignar Sección";
-			this.tsbAsignarSeccion.Click += new System.EventHandler(this.tsbAsignarSeccion_Click);
+			this.chkIncluirDosimetro.AutoSize = true;
+			this.chkIncluirDosimetro.Location = new System.Drawing.Point(867, 0);
+			this.chkIncluirDosimetro.Name = "chkIncluirDosimetro";
+			this.chkIncluirDosimetro.Size = new System.Drawing.Size(210, 17);
+			this.chkIncluirDosimetro.TabIndex = 21;
+			this.chkIncluirDosimetro.Text = "Incluir  que se controlan con Dosimetro";
+			this.chkIncluirDosimetro.UseVisualStyleBackColor = true;
+			this.chkIncluirDosimetro.CheckedChanged += new System.EventHandler(this.chkIncluirDosimetro_CheckedChanged);
 			// 
 			// frmIngresoDosimetroTLD
 			// 
@@ -885,5 +898,6 @@
 		private System.Windows.Forms.ToolStripMenuItem tsbGenerarSeleccionado;
 		private System.Windows.Forms.ToolStripButton tsbAsignarSucursal;
 		private System.Windows.Forms.ToolStripButton tsbAsignarSeccion;
+		private System.Windows.Forms.CheckBox chkIncluirDosimetro;
 	}
 }
