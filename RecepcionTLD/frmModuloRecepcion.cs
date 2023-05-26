@@ -25,6 +25,8 @@ namespace ControlDosimetro
 		int intContar = 0;
 		int intintId_Estado_temp;
 		DataTable dtPeriodo;
+		bool bolCodigo = false;
+
 		#endregion
 
 		public frmModuloRecepcion(int intId_Estado, bool bolTLD)
@@ -112,7 +114,7 @@ namespace ControlDosimetro
 				intN_Documento = Convert.ToInt64(txt_NDocumento.Text);
 
 			DataSet dt;
-			if(DesdeLimpiar==false)
+			if (DesdeLimpiar == false)
 				cmd.CommandText = String.Format("pa_DosimetroRecepcionTLD_sel  {0},{1},{2},{3}", txt_CodCliente.Text, (cbx_id_periodo.SelectedValue == null ? -1 : cbx_id_periodo.SelectedValue), "1", intN_Documento.ToString());
 			else
 				cmd.CommandText = String.Format("pa_DosimetroRecepcionTLD_sel  0,0,0,0");
@@ -355,110 +357,83 @@ namespace ControlDosimetro
 
 		private void grdDatos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
 		{
-			if ((grdDatos.Columns[e.ColumnIndex].Name == "marca"))
+			if (e.RowIndex > -1)
 			{
-				DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[e.RowIndex].Cells["marca"];
-				DataGridViewTextBoxCell txtFechaRecepcion = (DataGridViewTextBoxCell)grdDatos.Rows[e.RowIndex].Cells[6];
-				//DataGridViewComboBoxCell txtObservacion = (DataGridViewComboBoxCell)grdDatos.Rows[e.RowIndex].Cells[7];
-				DataGridViewComboBoxCell txtObservacion = (DataGridViewComboBoxCell)grdDatos.Rows[e.RowIndex].Cells["Observación"];
-				if ((Convert.ToInt64(checkCell.Value) == 1) || (Convert.ToInt64(checkCell.Value) == 2))
+				if ((grdDatos.Columns[e.ColumnIndex].Name == "marca"))
 				{
-					intContar = intContar + 1;
-					groupBox2.Text = "Listado       Registro:" + intContar.ToString();
+					DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[e.RowIndex].Cells["marca"];
+					DataGridViewTextBoxCell txtFechaRecepcion = (DataGridViewTextBoxCell)grdDatos.Rows[e.RowIndex].Cells[6];
+					//DataGridViewComboBoxCell txtObservacion = (DataGridViewComboBoxCell)grdDatos.Rows[e.RowIndex].Cells[7];
+					DataGridViewComboBoxCell txtObservacion = (DataGridViewComboBoxCell)grdDatos.Rows[e.RowIndex].Cells["Observación"];
+					if ((Convert.ToInt64(checkCell.Value) == 1) || (Convert.ToInt64(checkCell.Value) == 2))
+					{
+						intContar = intContar + 1;
+						groupBox2.Text = "Listado       Registro:" + intContar.ToString();
 
-					if (Convert.ToInt64(checkCell.Value) == 1)
-					{
-						txtObservacion.ReadOnly = false;
-						txtFechaRecepcion.Value = dtp_FechaRecepcion.Text;
-					}
-					else
-					{
-						if (Convert.ToInt64(checkCell.Value) == 2)
+						if (Convert.ToInt64(checkCell.Value) == 1)
 						{
-							txtObservacion.ReadOnly = false;
 							txtFechaRecepcion.Value = dtp_FechaRecepcion.Text;
 						}
 						else
 						{
-							txtObservacion.ReadOnly = true;
-							txtObservacion.Value = 0;
-							txtFechaRecepcion.Value = "";
+							if (Convert.ToInt64(checkCell.Value) == 2)
+							{
+								txtFechaRecepcion.Value = dtp_FechaRecepcion.Text;
+							}
+							else
+							{
+								txtObservacion.Value = 0;
+								txtFechaRecepcion.Value = "";
+							}
 						}
+					}
+					else
+					{
+						txtFechaRecepcion.Value = "";
+						txtObservacion.Value = 0;
+						intContar = intContar - 1;
+						groupBox2.Text = "Listado       Registro:" + intContar.ToString();
 					}
 				}
 				else
+			if ((grdDatos.Columns[e.ColumnIndex].Name == "Observación"))
 				{
-					txtObservacion.ReadOnly = true;
-					txtFechaRecepcion.Value = "";
-					txtObservacion.Value = 0;
-					intContar = intContar - 1;
-					groupBox2.Text = "Listado       Registro:" + intContar.ToString();
+					bolCodigo = true;
+					DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[e.RowIndex].Cells["marca"];
+					checkCell.Value = 2;
+					bolCodigo = false;
 				}
 			}
 
-		}
 
-		private void grdDatos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-		{
-			//if (e.ColumnIndex == 9) //Column ColB
-			//{
-			//    if (e.Value != null)
-			//    {
-			//        try
-			//        {
-			//            e.CellStyle.Format = "N2";
-			//        }
-			//        catch (Exception)
-			//        {
-
-			//            MessageBox.Show("Ingrese solo número");
-			//        }
-
-
-			//    }
-			//}
-
-			//              private void dataGridView1_CellValidating(object sender,
-			//    DataGridViewCellValidatingEventArgs e)
-			//{
-			//    dataGridView1.Rows[e.RowIndex].ErrorText = "";
-			//    int newInteger;
-
-			//    // Don't try to validate the 'new row' until finished 
-			//    // editing since there
-			//    // is not any point in validating its initial value.
-			//    if (dataGridView1.Rows[e.RowIndex].IsNewRow) { return; }
-			//    if (!int.TryParse(e.FormattedValue.ToString(),
-			//        out newInteger) || newInteger < 0)
-			//    {
-			//        e.Cancel = true;
-			//        dataGridView1.Rows[e.RowIndex].ErrorText = "the value must be a non-negative integer";
-			//    }
-			//}
 		}
 
 		#endregion
 
 		private void chk_marcar_CheckedChanged(object sender, EventArgs e)
 		{
-			pnl_Progreso.Refresh();
-			pgb_Barra.Minimum = 0;
-			DataGridViewCheckBoxCell checkMarca;
-			pgb_Barra.Maximum = grdDatos.RowCount;
-			for (int i = 0; i <= grdDatos.RowCount - 1; i++)
+			if (bolCodigo == false)
 			{
-				pgb_Barra.Value = i + 1;
-				pgb_Barra.Refresh();
-				checkMarca = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["marca"];
-				checkMarca.Value = chk_marcar.Checked;
-				DataGridViewTextBoxCell txtFechaRecepcion = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["FechaRecepción"];
-				if (chk_marcar.Checked == true)
-					txtFechaRecepcion.Value = dtp_FechaRecepcion.Text;
-				else
-					txtFechaRecepcion.Value = "";
+				pnl_Progreso.Refresh();
+				pgb_Barra.Minimum = 0;
+				DataGridViewCheckBoxCell checkMarca;
+				pgb_Barra.Maximum = grdDatos.RowCount;
+				for (int i = 0; i <= grdDatos.RowCount - 1; i++)
+				{
+					pgb_Barra.Value = i + 1;
+					pgb_Barra.Refresh();
+					checkMarca = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["marca"];
+					checkMarca.Value = chk_marcar.Checked;
+					DataGridViewTextBoxCell txtFechaRecepcion = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["FechaRecepción"];
+					if (chk_marcar.Checked == true)
+						txtFechaRecepcion.Value = dtp_FechaRecepcion.Text;
+					else
+						txtFechaRecepcion.Value = "";
+				}
+				btn_Guardar.Enabled = true;
+				pnl_Progreso.Visible = false;
 			}
-			btn_Guardar.Enabled = true;
-			pnl_Progreso.Visible = false;
+
 		}
 
 		private void btn_Cargar_cliente_Click(object sender, EventArgs e)

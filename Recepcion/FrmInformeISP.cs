@@ -760,7 +760,7 @@ namespace ControlDosimetro
 							strEstado = Convert.ToDouble(txtvalor.Value.ToString()) < 0.1 ? "MNR" : "";
 						data5[FilaWord] = strUltimoAnno;
 						data6[FilaWord] = strUltimo5Anno;
-						data7[FilaWord] = strEstado;
+						data7[FilaWord] = strEstado.Replace("DND", "NR");
 						//}
 						// this.p
 						if (strEstado == "" || strEstado == "MNR")

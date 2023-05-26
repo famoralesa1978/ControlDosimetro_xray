@@ -45,6 +45,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.chkIncluirDosimetro = new System.Windows.Forms.CheckBox();
 			this.chkSeleccionar = new System.Windows.Forms.CheckBox();
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
@@ -94,7 +95,6 @@
 			this.btnAgregarRef = new System.Windows.Forms.Button();
 			this.btnResfrescar = new System.Windows.Forms.Button();
 			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
-			this.chkIncluirDosimetro = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -274,10 +274,21 @@
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Listado";
 			// 
+			// chkIncluirDosimetro
+			// 
+			this.chkIncluirDosimetro.AutoSize = true;
+			this.chkIncluirDosimetro.Location = new System.Drawing.Point(867, -1);
+			this.chkIncluirDosimetro.Name = "chkIncluirDosimetro";
+			this.chkIncluirDosimetro.Size = new System.Drawing.Size(195, 17);
+			this.chkIncluirDosimetro.TabIndex = 21;
+			this.chkIncluirDosimetro.Text = "Incluir  que se controlan con Filmico";
+			this.chkIncluirDosimetro.UseVisualStyleBackColor = true;
+			this.chkIncluirDosimetro.CheckedChanged += new System.EventHandler(this.chkIncluirDosimetro_CheckedChanged);
+			// 
 			// chkSeleccionar
 			// 
 			this.chkSeleccionar.AutoSize = true;
-			this.chkSeleccionar.Location = new System.Drawing.Point(729, 0);
+			this.chkSeleccionar.Location = new System.Drawing.Point(729, -1);
 			this.chkSeleccionar.Name = "chkSeleccionar";
 			this.chkSeleccionar.Size = new System.Drawing.Size(111, 17);
 			this.chkSeleccionar.TabIndex = 10;
@@ -773,17 +784,6 @@
 			this.cbx_Sucursal.Size = new System.Drawing.Size(526, 21);
 			this.cbx_Sucursal.TabIndex = 20;
 			this.cbx_Sucursal.ValueMember = "Id_sucursal";
-			// 
-			// chkIncluirDosimetro
-			// 
-			this.chkIncluirDosimetro.AutoSize = true;
-			this.chkIncluirDosimetro.Location = new System.Drawing.Point(867, 0);
-			this.chkIncluirDosimetro.Name = "chkIncluirDosimetro";
-			this.chkIncluirDosimetro.Size = new System.Drawing.Size(210, 17);
-			this.chkIncluirDosimetro.TabIndex = 21;
-			this.chkIncluirDosimetro.Text = "Incluir  que se controlan con Dosimetro";
-			this.chkIncluirDosimetro.UseVisualStyleBackColor = true;
-			this.chkIncluirDosimetro.CheckedChanged += new System.EventHandler(this.chkIncluirDosimetro_CheckedChanged);
 			// 
 			// frmIngresoDosimetroTLD
 			// 
