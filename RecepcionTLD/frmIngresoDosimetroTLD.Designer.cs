@@ -277,6 +277,8 @@
 			// chkIncluirDosimetro
 			// 
 			this.chkIncluirDosimetro.AutoSize = true;
+			this.chkIncluirDosimetro.Checked = true;
+			this.chkIncluirDosimetro.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.chkIncluirDosimetro.Location = new System.Drawing.Point(867, -1);
 			this.chkIncluirDosimetro.Name = "chkIncluirDosimetro";
 			this.chkIncluirDosimetro.Size = new System.Drawing.Size(195, 17);
