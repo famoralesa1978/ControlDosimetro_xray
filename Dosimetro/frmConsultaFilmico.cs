@@ -87,7 +87,7 @@ namespace ControlDosimetro
 			int intSucursal = cbx_Sucursal.SelectedValue == null ? 0 : (int)cbx_Sucursal.SelectedValue;
 			int intSeccion = cbx_id_seccion.SelectedValue == null ? 0 : (int)cbx_id_seccion.SelectedValue;
 
-			cmd.CommandText = "pa_ConsultaIngresoFilmicoPorSeccion_sel " + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text + "," + intSeccion.ToString() + "," + intSucursal.ToString();
+			cmd.CommandText = "pa_ConsultaIngresoFilmicoPorSeccion_sel " + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text + "," + intSeccion.ToString() + "," + intSucursal.ToString()+",'"+ lbl_rut_cliente.Text+"'";
 
 			cmd.CommandType = CommandType.Text;
 
@@ -156,7 +156,7 @@ namespace ControlDosimetro
 		private void Cargar_Seccion()
 		{
 			DataSet dt;
-			dt = FuncBD.Cargar_Seccion(Convert.ToInt16( lbl_id_cliente.Text.ToString()));
+			dt = FuncBD.Cargar_SeccionPorRun(Convert.ToInt16( lbl_id_cliente.Text.ToString()), lbl_rut_cliente.Text);
 			cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
 			cbx_id_seccion.DataSource = dt.Tables[0];
