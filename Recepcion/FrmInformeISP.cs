@@ -1147,19 +1147,22 @@ namespace ControlDosimetro
 							document.Close();
 						}
 
-
-
-						cmd.CommandText = "update tbl_dosimetria " +
+						if (checkCell.Value.ToString() == "0")
+						{
+							cmd.CommandText = "update tbl_dosimetria " +
 															"set enviado=1" +
 														" where id_dosimetro=" + strid_dosimetro;
-						cmd.CommandType = CommandType.Text;
+							cmd.CommandType = CommandType.Text;
 
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 
-						string strParametro = String.Format("{0},{1},{2},''", txtnpeliculaoriginal.Value.ToString(), "5", Clases.clsUsuario.Usuario);
-						cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + strParametro;
-						cmd.CommandType = CommandType.Text;
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+							string strParametro = String.Format("{0},{1},{2},''", txtnpeliculaoriginal.Value.ToString(), "5", Clases.clsUsuario.Usuario);
+							cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + strParametro;
+							cmd.CommandType = CommandType.Text;
+							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+						}
+
+							
 					}
 
 
