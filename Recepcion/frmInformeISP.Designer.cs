@@ -526,7 +526,7 @@
 			// btn_Guardar
 			// 
 			this.btn_Guardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Guardar.Location = new System.Drawing.Point(926, 546);
+			this.btn_Guardar.Location = new System.Drawing.Point(815, 546);
 			this.btn_Guardar.Name = "btn_Guardar";
 			this.btn_Guardar.Size = new System.Drawing.Size(139, 23);
 			this.btn_Guardar.TabIndex = 7;
@@ -538,7 +538,7 @@
 			// btn_Cerrar
 			// 
 			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Cerrar.Location = new System.Drawing.Point(605, 546);
+			this.btn_Cerrar.Location = new System.Drawing.Point(960, 547);
 			this.btn_Cerrar.Name = "btn_Cerrar";
 			this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
 			this.btn_Cerrar.TabIndex = 8;
@@ -684,11 +684,11 @@
 			// btnGenerarArchivoNuevo
 			// 
 			this.btnGenerarArchivoNuevo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btnGenerarArchivoNuevo.Location = new System.Drawing.Point(708, 547);
+			this.btnGenerarArchivoNuevo.Location = new System.Drawing.Point(597, 547);
 			this.btnGenerarArchivoNuevo.Name = "btnGenerarArchivoNuevo";
 			this.btnGenerarArchivoNuevo.Size = new System.Drawing.Size(212, 23);
 			this.btnGenerarArchivoNuevo.TabIndex = 21;
-			this.btnGenerarArchivoNuevo.Text = "Generar Archivo ISP PRUEBA";
+			this.btnGenerarArchivoNuevo.Text = "Generar Archivo ISP Versión 2";
 			this.btnGenerarArchivoNuevo.UseVisualStyleBackColor = true;
 			this.btnGenerarArchivoNuevo.Click += new System.EventHandler(this.btnGenerarArchivoNuevo_Click);
 			// 

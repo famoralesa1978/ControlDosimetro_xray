@@ -405,7 +405,7 @@ namespace ControlDosimetro
 			string strpath;
 			string strpathcopiar;
 			string strEstado;
-			btnGenerar.Enabled = false;
+			btnGenerarArchivoNuevo.Enabled=btnGenerar.Enabled = false;
 
 			SqlCommand cmdArchivo = new SqlCommand();
 			DataSet dtArchivo;
@@ -639,7 +639,6 @@ namespace ControlDosimetro
 						TieneFilmica = chkTLD.Value.ToString() == "0" ? true : false;
 					if (TieneTLD == false)
 						TieneTLD = chkTLD.Value.ToString() == "1" ? true : false;
-
 					if (cbxEstado.Value.ToString() != "0")
 					{
 						DataSet dtcombo;
@@ -657,7 +656,7 @@ namespace ControlDosimetro
 						strEstado = "";
 					strn_cliente = grdDatos.Rows[intfilagrid].Cells["N_Cliente"].Value.ToString();
 					strid_personal = grdDatos.Rows[intfilagrid].Cells["id_personal"].Value.ToString();
-					strid_dosimetro = "1";//grdDatos.Rows[intfilagrid].Cells["id_dosimetro"].Value.ToString();
+					strid_dosimetro = grdDatos.Rows[intfilagrid].Cells["id_dosimetro"].Value.ToString();
 
 					cmdpersonal.CommandText = "SELECT P.Id_Personal, Rut,SUBSTRING(UPPER (Nombres), 1, 1) + SubSTRING (LOWER (Nombres), 2,len(Nombres)) Nombres, " +
 										"SUBSTRING(UPPER (Paterno), 1, 1) + SUbSTRING (LOWER (Paterno), 2,len(Paterno)) Paterno," +
@@ -716,19 +715,23 @@ namespace ControlDosimetro
 							UpdateValue(wsName, "AD" + (intfila).ToString(), strregionEmpresa, 0, true);
 							UpdateValue(wsName, "AE" + (intfila).ToString(), strTelefonoEmpresa, 0, false);
 							document.Close();
+						
+						}
+
+						if(checkCell.Value.ToString() == "0")
+						{
 							cmd.CommandText = "update tbl_dosimetria " +
-																"set enviado=1" +
-															" where id_dosimetro=" + strid_dosimetro;
+															"set enviado=1" +
+														" where id_dosimetro=" + strid_dosimetro;
 							cmd.CommandType = CommandType.Text;
 
 							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+							string strParametro = String.Format("{0},{1},{2},'',{3}", txtnpeliculaoriginal.Value.ToString(), "5", Clases.clsUsuario.Usuario, cbx_id_seccion.SelectedValue);
+							cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + strParametro;
+							cmd.CommandType = CommandType.Text;
+							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 						}
-
-
-						string strParametro = String.Format("{0},{1},{2},'',{3}", txtnpeliculaoriginal.Value.ToString(), "5", Clases.clsUsuario.Usuario, cbx_id_seccion.SelectedValue);
-						cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + strParametro;
-						cmd.CommandType = CommandType.Text;
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+						
 
 						//	id_personal,
 						string strUltimoAnno = "";
@@ -844,7 +847,7 @@ namespace ControlDosimetro
 
 			MessageBox.Show("Informacion grabada y archivo generado \n Ubicación Archivo:" + targetPath);
 
-			btnGenerar.Enabled = true;
+			btnGenerarArchivoNuevo.Enabled =btnGenerar.Enabled = true;
 			pnl_Progreso.Visible = false;
 
 			Listar_Personal();
@@ -875,7 +878,7 @@ namespace ControlDosimetro
 			string strpath;
 			string strpathcopiar;
 			string strEstado;
-			btnGenerar.Enabled = false;
+			btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = false;
 
 			SqlCommand cmdArchivo = new SqlCommand();
 			DataSet dtArchivo;
@@ -1220,7 +1223,7 @@ namespace ControlDosimetro
 
 			MessageBox.Show("Informacion grabada y archivo generado \n Ubicación Archivo:" + targetPath);
 
-			btnGenerar.Enabled = true;
+			btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
 			pnl_Progreso.Visible = false;
 
 			Listar_Personal();
@@ -1250,7 +1253,7 @@ namespace ControlDosimetro
 			string strpath;
 			string strpathcopiar;
 			string strEstado;
-			btnGenerar.Enabled = false;
+			btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = false;
 
 			SqlCommand cmdArchivo = new SqlCommand();
 			DataSet dtArchivo;
@@ -1592,7 +1595,7 @@ namespace ControlDosimetro
 
 			lblRuta.Text = "Informacion grabada y archivo generado \n Ubicación Archivo:" + targetPath;
 
-			btnGenerar.Enabled = true;
+			btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
 			pnl_Progreso.Visible = false;
 
 			//	Listar_Personal();
@@ -1614,7 +1617,7 @@ namespace ControlDosimetro
 				lblRuta.Visible = true;
 				lblRuta.Text = "";
 				Generar_TodosV2();
-				btnGenerar.Enabled = true;
+				btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
 			}
 		}
 		private void tsbAsignarSucursal_Click(object sender, EventArgs e)
@@ -1698,7 +1701,7 @@ namespace ControlDosimetro
 				lblRuta.Visible = true;
 				lblRuta.Text = "";
 				Generar_Todos();
-				btnGenerar.Enabled = true;
+				btnGenerarArchivoNuevo.Enabled=btnGenerar.Enabled = true;
 			}
 
 		}
@@ -1727,7 +1730,7 @@ namespace ControlDosimetro
 			string strpath;
 			string strpathcopiar;
 			string strEstado;
-			btnGenerar.Enabled = false;
+			btnGenerarArchivoNuevo.Enabled=btnGenerar.Enabled = false;
 
 			SqlCommand cmdArchivo = new SqlCommand();
 			DataSet dtArchivo;
@@ -2061,7 +2064,7 @@ namespace ControlDosimetro
 
 			MessageBox.Show("Informacion grabada y archivo generado \n Ubicación Archivo:" + targetPath);
 
-			btnGenerar.Enabled = true;
+			btnGenerarArchivoNuevo.Enabled=btnGenerar.Enabled = true;
 			pnl_Progreso.Visible = false;
 
 			Listar_Personal();
@@ -2088,6 +2091,7 @@ namespace ControlDosimetro
 			//  SqlCommand cmdperiodo = new SqlCommand();
 
 			// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
+			DataGridViewCheckBoxCell checkCorregir;
 			DataGridViewCheckBoxCell checkGenerar;
 			DataGridViewCheckBoxCell checkCell;
 			DataGridViewCheckBoxCell chkcondosis;
@@ -2109,7 +2113,8 @@ namespace ControlDosimetro
 			{
 				pgb_Barra.Value = i + 1;
 				pgb_Barra.Refresh();
-				checkGenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["Generar"];
+				checkCorregir = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["Generar"];
+				checkGenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["enviado"];
 				checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["enviado"];
 				chkcondosis = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["condosis"];
 				txtvalor = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["valor"];
@@ -2123,7 +2128,7 @@ namespace ControlDosimetro
 				strid_dosimetro = grdDatos.Rows[i].Cells["id_dosimetro"].Value.ToString();
 
 
-				if (checkGenerar.Value.ToString() == "1")
+				if (checkCorregir.Value.ToString() == "1" && checkGenerar.Value.ToString() == "1")
 				{
 					cmd.CommandText = "update tbl_dosimetria " +
 												"set enviado=0" +
