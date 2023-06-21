@@ -158,9 +158,9 @@ namespace ControlDosimetro
 			dt = ClaseFunciones.Cargar_SeccionMasivoPorRun(Convert.ToInt16(txt_ref_cliente.Text.ToString()), txt_Rut.Text);
 
 			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns[ColSeccion.Index] as DataGridViewComboBoxColumn;
-			comboboxColumn.DataSource = dt.Tables[1];
-			comboboxColumn.DisplayMember = dt.Tables[1].Columns[0].Caption.ToString();
-			comboboxColumn.ValueMember = dt.Tables[1].Columns[1].Caption.ToString();
+			//comboboxColumn.DataSource = dt.Tables[1];
+			//comboboxColumn.DisplayMember = dt.Tables[1].Columns[0].Caption.ToString();
+			//comboboxColumn.ValueMember = dt.Tables[1].Columns[1].Caption.ToString();
 
 			cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
@@ -509,7 +509,7 @@ namespace ControlDosimetro
 		{
 			if (e.RowIndex > -1)
 			{
-				if (e.ColumnIndex == ColServicio.Index || e.ColumnIndex == ColSeccion.Index || e.ColumnIndex == ColFechaNac.Index || e.ColumnIndex == ColFechaTermino.Index || e.ColumnIndex == ColEstado.Index)
+				if (e.ColumnIndex == ColServicio.Index || e.ColumnIndex == ColFechaNac.Index || e.ColumnIndex == ColFechaTermino.Index || e.ColumnIndex == ColEstado.Index)
 				{
 					DataTable dt = new DataTable();
 					BindingSource bs = new BindingSource();
@@ -552,7 +552,7 @@ namespace ControlDosimetro
 			frmAsignarDireccionPersonal frm = new frmAsignarDireccionPersonal(Convert.ToInt32(txt_ref_cliente.Text), txt_Rut.Text);
 			frm.ShowDialog(this);
 			btn_cargarCliente_Click(null, null);
-			Listar_Personal();
+			picFiltrarpersonal_Click(null,null);
 		}
 
 		private void tsbAsignarSeccion_Click(object sender, EventArgs e)
@@ -560,7 +560,7 @@ namespace ControlDosimetro
 			frmAsignarSeccionPersonal frm = new frmAsignarSeccionPersonal(Convert.ToInt32(txt_ref_cliente.Text), txt_Rut.Text);
 			frm.ShowDialog(this);
 			btn_cargarCliente_Click(null, null);
-			Listar_Personal();
+			picFiltrarpersonal_Click(null, null);
 		}
 		private void tsbGuardar_Click(object sender, EventArgs e)
 		{

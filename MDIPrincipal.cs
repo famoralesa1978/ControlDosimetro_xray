@@ -185,7 +185,7 @@ namespace ControlDosimetro
 			if (((ToolStripButton)sender).Text == "Cliente")
 				Cargamenu((int)MENU.MantCliente);
 			if (((ToolStripButton)sender).Text == "Personal")
-				Cargamenu((int)MENU.MantPersonal);
+				Cargamenu((int)MENU.MantMasivoPersonal);
 			if (((ToolStripButton)sender).Text == "Cambio contraseña")
 				Cargamenu((int)MENU.Cambiarcontraseña);
 			if (((ToolStripButton)sender).Text == "Restablecer")
@@ -907,6 +907,15 @@ namespace ControlDosimetro
 					break;
 				case (int)MENU.MantPersonal:
 					objFrm = new frmBusquedaPersonal(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.MantMasivoPersonal:
+					objFrm = new frmModificarPersonalMasivo()
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
