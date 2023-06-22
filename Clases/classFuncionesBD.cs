@@ -296,6 +296,18 @@ namespace classFuncionesBD
 
 			return dt;
 		}//
+		public DataSet Cargar_SeccionPorRunBuscar(int intId_Cliente, string run)
+		{
+			DataSet dt;
+
+			SqlCommand cmd = new SqlCommand();
+			cmd.CommandText = "pa_CargarSeccionPorRun_Buscar " + intId_Cliente.ToString() + ",'" + run + "'";
+
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+
+			return dt;
+		}//pa_CargarSeccionPorRun_Buscar
 		public DataSet Cargar_EstadoTLD(int intMostrarTodo=0)
 		{
 			DataSet dt;

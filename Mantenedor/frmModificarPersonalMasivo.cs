@@ -155,12 +155,7 @@ namespace ControlDosimetro
 		private void Cargar_Seccion()
 		{
 
-			dt = ClaseFunciones.Cargar_SeccionMasivoPorRun(Convert.ToInt16(txt_ref_cliente.Text.ToString()), txt_Rut.Text);
-
-			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns[ColSeccion.Index] as DataGridViewComboBoxColumn;
-			//comboboxColumn.DataSource = dt.Tables[1];
-			//comboboxColumn.DisplayMember = dt.Tables[1].Columns[0].Caption.ToString();
-			//comboboxColumn.ValueMember = dt.Tables[1].Columns[1].Caption.ToString();
+			dt = ClaseFunciones.Cargar_SeccionPorRunBuscar(Convert.ToInt16(txt_ref_cliente.Text.ToString()), txt_Rut.Text);
 
 			cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();

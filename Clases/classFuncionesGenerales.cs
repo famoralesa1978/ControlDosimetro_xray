@@ -283,7 +283,7 @@ namespace classFuncionesGenerales
 			DataSet dt = new DataSet();
 			clsConectorSqlServer Conectar = new clsConectorSqlServer();
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = String.Format( "pa_ListarPersonalFiltro_sel {0},'{1}','{2}','{3}',{4},{5},{6},{7}",intIdCliente.ToString(), NombrePersonal, Rut,FecNac, intEstado,Id_Seccion, (bolListarSinDireccion?1:0), id_Direccion);
+			cmd.CommandText = String.Format("pa_ListarPersonalFiltro_sel {0},'{1}','{2}','{3}',{4},{5},{6},{7}", intIdCliente.ToString(), NombrePersonal, Rut,FecNac, intEstado,Id_Seccion, (bolListarSinDireccion?1:0), id_Direccion);
 			cmd.CommandType = CommandType.Text;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
