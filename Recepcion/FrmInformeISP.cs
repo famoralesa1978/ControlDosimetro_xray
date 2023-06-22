@@ -510,6 +510,8 @@ namespace ControlDosimetro
 			//   string strArchivo = ConfigurationManager.AppSettings["Archivo"] + "Plantillaword.docx";
 
 			int i;
+			int intCantControlado = 0;
+			int intCantNR = 0;
 			string CantPerdido = "";
 			string CantSinUso = "";
 			string cantNoDev = "";
@@ -526,20 +528,24 @@ namespace ControlDosimetro
 				if (dt.Tables[1] != null)
 				{
 					DataTable dtDND = dt.Tables[1].Copy();
-					dtDND.DefaultView.RowFilter = String.Format("id_observacion={0}", 6);
+					dtDND.DefaultView.RowFilter = String.Format("id_observacion={0}", 6);//DND
 					CantPerdido = dtDND.DefaultView.ToTable().Rows.Count > 0 ? dtDND.DefaultView.ToTable().Rows[0]["Cantidad"].ToString() : "";
 
 					DataTable dtSinUso = dt.Tables[1].Copy();
-					dtSinUso.DefaultView.RowFilter = String.Format("id_observacion={0}", 13);
+					dtSinUso.DefaultView.RowFilter = String.Format("id_observacion={0}", 13);//DSU
 					CantSinUso = dtSinUso.DefaultView.ToTable().Rows.Count > 0 ? dtSinUso.DefaultView.ToTable().Rows[0]["Cantidad"].ToString() : "";
 
 					DataTable dtND = dt.Tables[1].Copy();
-					dtND.DefaultView.RowFilter = String.Format("id_observacion={0}", 10);
+					dtND.DefaultView.RowFilter = String.Format("id_observacion={0}", 10);//DE
 					cantNoDev = dtND.DefaultView.ToTable().Rows.Count > 0 ? dtND.DefaultView.ToTable().Rows[0]["Cantidad"].ToString() : "";
 
 					DataTable dtNR = dt.Tables[1].Copy();
-					dtNR.DefaultView.RowFilter = String.Format("id_observacion={0}", 12);
-					cantNoDev = dtNR.DefaultView.ToTable().Rows.Count > 0 ? dtNR.DefaultView.ToTable().Rows[0]["Cantidad"].ToString() : "";
+					dtNR.DefaultView.RowFilter = String.Format("id_observacion={0}", 12);//NR
+					intCantNR = dtNR.DefaultView.ToTable().Rows.Count > 0 ? (int)dtNR.DefaultView.ToTable().Rows[0]["Cantidad"] : 0;
+
+					DataTable dtDD = dt.Tables[1].Copy();
+					dtDD.DefaultView.RowFilter = String.Format("id_observacion={0}", 11);//Fuera de palzo
+					cantNoDev = dtND.DefaultView.ToTable().Rows.Count > 0 ? dtND.DefaultView.ToTable().Rows[0]["Cantidad"].ToString() : "";
 				}
 			}
 
@@ -717,7 +723,7 @@ namespace ControlDosimetro
 							UpdateValue(wsName, "AD" + (intfila).ToString(), strregionEmpresa, 0, true);
 							UpdateValue(wsName, "AE" + (intfila).ToString(), strTelefonoEmpresa, 0, false);
 							document.Close();
-						
+							intCantControlado += 1;
 						}
 
 						if(checkCell.Value.ToString() == "0")
@@ -769,6 +775,9 @@ namespace ControlDosimetro
 					data5[FilaWord] = strUltimoAnno;
 					data6[FilaWord] = strUltimo5Anno;
 					data7[FilaWord] = strEstado.Replace("DND", "NR");
+
+					if(strEstado=="DND")
+						intCantNR += 1;
 					//}
 					// this.p
 
@@ -819,13 +828,13 @@ namespace ControlDosimetro
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strFechaDevolucion);
 
 					strcampoMarcador = "CantToes";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), grdDatos.Rows.Count.ToString());
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), intCantControlado.ToString());
 					strcampoMarcador = "CantPerdido";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), CantPerdido);
 					strcampoMarcador = "CantSinUso";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), CantSinUso);
 					strcampoMarcador = "cantNoDev";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), cantNoDev);
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), intCantNR.ToString());
 					strcampoMarcador = "CantDevFP";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), CantDevFP);
 
