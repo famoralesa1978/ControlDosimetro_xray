@@ -675,6 +675,8 @@ namespace ControlDosimetro
 					//}
 					#region "Genera  word y excel"
 					grdDatos.Rows[intfilagrid].DefaultCellStyle.SelectionBackColor = System.Drawing.Color.White;
+					string strUltimoAnno = "";
+					string strUltimo5Anno = "";
 					if ((strid_dosimetro != "0")) //&& (checkGenerar.Value.ToString() == "1")					 
 					{
 						if (strEstado == "" || strEstado == "MNR")
@@ -734,8 +736,7 @@ namespace ControlDosimetro
 						
 
 						//	id_personal,
-						string strUltimoAnno = "";
-						string strUltimo5Anno = "";
+					
 						if (dt.Tables[2] != null)
 						{
 							DataTable dtUltimoAnno = dt.Tables[2];
@@ -749,28 +750,29 @@ namespace ControlDosimetro
 							}
 
 						}
-
-						data1[FilaWord] = txtnpelicula.Value.ToString();
-						data2[FilaWord] = dtCliente.Tables[0].Rows[0]["Rut"].ToString();
-
-						data3[FilaWord] = dtCliente.Tables[0].Rows[0]["Nombres"].ToString() + " " + dtCliente.Tables[0].Rows[0]["Paterno"].ToString() + " " + dtCliente.Tables[0].Rows[0]["Maternos"].ToString();
-						if (chkcondosis.Value.ToString() == "0")
-							data4[FilaWord] = !string.IsNullOrWhiteSpace(strEstado) && strEstado != "MNR" ? "" : strEstado == "MNR" ? "0" : "";
-						else
-							data4[FilaWord] = txtvalor.Value.ToString();
-
-						if (string.IsNullOrWhiteSpace(strEstado) && chkcondosis.Value.ToString() == "1")
-							strEstado = Convert.ToDouble(txtvalor.Value.ToString()) < 0.1 ? "MNR" : "";
-						data5[FilaWord] = strUltimoAnno;
-						data6[FilaWord] = strUltimo5Anno;
-						data7[FilaWord] = strEstado.Replace("DND", "NR");
-						//}
-						// this.p
 						if (strEstado == "" || strEstado == "MNR")
 							intfila = intfila + 1;
-						FilaWord = FilaWord + 1;
-					}
 
+						
+					}
+					data1[FilaWord] = txtnpelicula.Value.ToString();
+					data2[FilaWord] = dtCliente.Tables[0].Rows[0]["Rut"].ToString();
+
+					data3[FilaWord] = dtCliente.Tables[0].Rows[0]["Nombres"].ToString() + " " + dtCliente.Tables[0].Rows[0]["Paterno"].ToString() + " " + dtCliente.Tables[0].Rows[0]["Maternos"].ToString();
+					if (chkcondosis.Value.ToString() == "0")
+						data4[FilaWord] = !string.IsNullOrWhiteSpace(strEstado) && strEstado != "MNR" ? "" : strEstado == "MNR" ? "0" : "";
+					else
+						data4[FilaWord] = txtvalor.Value.ToString();
+
+					if (string.IsNullOrWhiteSpace(strEstado) && chkcondosis.Value.ToString() == "1")
+						strEstado = Convert.ToDouble(txtvalor.Value.ToString()) < 0.1 ? "MNR" : "";
+					data5[FilaWord] = strUltimoAnno;
+					data6[FilaWord] = strUltimo5Anno;
+					data7[FilaWord] = strEstado.Replace("DND", "NR");
+					//}
+					// this.p
+
+					FilaWord = FilaWord + 1;
 					//}
 
 
