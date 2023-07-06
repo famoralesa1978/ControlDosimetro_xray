@@ -171,7 +171,7 @@ namespace ControlDosimetro
 		{
 			SqlCommand cmd = new SqlCommand();
 			DataSet ds;
-			string strParametro = String.Format("{0},{1},{2}", txt_NDoc.Text, cbx_SucActual.SelectedValue, cbx_SucCambio.SelectedValue);
+			string strParametro = String.Format("{0},{1}", txt_NDoc.Text,  cbx_SucCambio.SelectedValue);
 			cmd.CommandText = "pa_ModificarSucursal_upd " + strParametro;
 			cmd.CommandType = CommandType.Text;
 
