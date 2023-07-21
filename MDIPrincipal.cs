@@ -189,7 +189,7 @@ namespace ControlDosimetro
 			if (((ToolStripButton)sender).Text == "Cambio contraseña")
 				Cargamenu((int)MENU.Cambiarcontraseña);
 			if (((ToolStripButton)sender).Text == "Restablecer")
-				LlamarFormularioContrasenaCliente(); ;
+				LlamarFormularioContrasenaCliente();
 		}
 
 		#endregion
@@ -918,6 +918,7 @@ namespace ControlDosimetro
 					objFrm = new frmModificarPersonalMasivo()
 					{
 						ShowInTaskbar = false,
+						Parametros = objParams,
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
