@@ -564,7 +564,7 @@ namespace ControlDosimetro
 				string strSeccion = (int)cbx_id_seccion.SelectedValue == 0 ? "" : cbx_id_seccion.Text;
 				string strFechaRecepcion = dt.Tables[0].Rows[idatos]["FechaRecepcion"].ToString();
 				string strOpr = dt.Tables[0].Rows[idatos]["Opr"].ToString();
-				string strRunOPR = "";
+				string strRunOPR = dt.Tables[0].Rows[idatos]["OPR_RUT"].ToString(); 
 				string strEmailOPR = dt.Tables[0].Rows[idatos]["EmailOPR"].ToString();
 				string strFechaDevolucion = dt.Tables[0].Rows[0]["FechaRecepcion"].ToString();
 				//string strN_Documento = dt.Tables[0].Rows[idatos]["N_Documento"].ToString();

@@ -254,6 +254,7 @@ namespace ControlDosimetro
 					((DateTimePicker)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 
 			}
+			clsEvento.AsignarRut(ref txt_OPR_RUT);
 			clsEvento.AsignarMailMultiple(ref txt_Email);
 			clsEvento.AsignarMailMultiple(ref txt_Emailfacturacion);
 			clsEvento.AsignarDireccion(ref txt_direccion);

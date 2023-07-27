@@ -80,11 +80,17 @@
 			this.lbl_id_cliente = new System.Windows.Forms.Label();
 			this.txt_run = new System.Windows.Forms.TextBox();
 			this.lbl_run = new System.Windows.Forms.Label();
+			this.lbl_OPR_RUT = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.txt_OPR_RUT = new System.Windows.Forms.TextBox();
 			this.tbl_cliente.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tbl_cliente
 			// 
+			this.tbl_cliente.Controls.Add(this.label3);
+			this.tbl_cliente.Controls.Add(this.txt_OPR_RUT);
+			this.tbl_cliente.Controls.Add(this.lbl_OPR_RUT);
 			this.tbl_cliente.Controls.Add(this.btn_Excel);
 			this.tbl_cliente.Controls.Add(this.lbl_Emailfacturacion);
 			this.tbl_cliente.Controls.Add(this.txt_Emailfacturacion);
@@ -139,7 +145,7 @@
 			this.tbl_cliente.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tbl_cliente.Location = new System.Drawing.Point(0, 0);
 			this.tbl_cliente.Name = "tbl_cliente";
-			this.tbl_cliente.Size = new System.Drawing.Size(491, 677);
+			this.tbl_cliente.Size = new System.Drawing.Size(491, 722);
 			this.tbl_cliente.TabIndex = 0;
 			this.tbl_cliente.TabStop = false;
 			this.tbl_cliente.Text = "Datos";
@@ -147,7 +153,7 @@
 			// btn_Excel
 			// 
 			this.btn_Excel.Image = global::ControlDosimetro.Properties.Resources.ImportarExcel;
-			this.btn_Excel.Location = new System.Drawing.Point(24, 604);
+			this.btn_Excel.Location = new System.Drawing.Point(24, 625);
 			this.btn_Excel.Name = "btn_Excel";
 			this.btn_Excel.Size = new System.Drawing.Size(41, 38);
 			this.btn_Excel.TabIndex = 60;
@@ -290,7 +296,7 @@
 			// 
 			this.cbx_id_periodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_id_periodo.FormattingEnabled = true;
-			this.cbx_id_periodo.Location = new System.Drawing.Point(166, 522);
+			this.cbx_id_periodo.Location = new System.Drawing.Point(166, 543);
 			this.cbx_id_periodo.Name = "cbx_id_periodo";
 			this.cbx_id_periodo.Size = new System.Drawing.Size(121, 21);
 			this.cbx_id_periodo.TabIndex = 20;
@@ -298,7 +304,7 @@
 			// 
 			// txt_Clave
 			// 
-			this.txt_Clave.Location = new System.Drawing.Point(52, 555);
+			this.txt_Clave.Location = new System.Drawing.Point(52, 576);
 			this.txt_Clave.MaxLength = 100;
 			this.txt_Clave.Name = "txt_Clave";
 			this.txt_Clave.Size = new System.Drawing.Size(111, 20);
@@ -309,7 +315,7 @@
 			// 
 			this.lbl_Clave.AutoSize = true;
 			this.lbl_Clave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_Clave.Location = new System.Drawing.Point(12, 555);
+			this.lbl_Clave.Location = new System.Drawing.Point(12, 576);
 			this.lbl_Clave.Name = "lbl_Clave";
 			this.lbl_Clave.Size = new System.Drawing.Size(34, 13);
 			this.lbl_Clave.TabIndex = 44;
@@ -317,7 +323,7 @@
 			// 
 			// txt_Clave1
 			// 
-			this.txt_Clave1.Location = new System.Drawing.Point(166, 555);
+			this.txt_Clave1.Location = new System.Drawing.Point(166, 576);
 			this.txt_Clave1.MaxLength = 100;
 			this.txt_Clave1.Name = "txt_Clave1";
 			this.txt_Clave1.Size = new System.Drawing.Size(313, 20);
@@ -326,7 +332,7 @@
 			// 
 			// txt_Servicio
 			// 
-			this.txt_Servicio.Location = new System.Drawing.Point(166, 469);
+			this.txt_Servicio.Location = new System.Drawing.Point(166, 490);
 			this.txt_Servicio.MaxLength = 100;
 			this.txt_Servicio.Name = "txt_Servicio";
 			this.txt_Servicio.Size = new System.Drawing.Size(313, 20);
@@ -336,7 +342,7 @@
 			// 
 			this.lbl_Servicio.AutoSize = true;
 			this.lbl_Servicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_Servicio.Location = new System.Drawing.Point(10, 472);
+			this.lbl_Servicio.Location = new System.Drawing.Point(10, 493);
 			this.lbl_Servicio.Name = "lbl_Servicio";
 			this.lbl_Servicio.Size = new System.Drawing.Size(45, 13);
 			this.lbl_Servicio.TabIndex = 42;
@@ -364,7 +370,7 @@
 			// lbl_Estado_mod
 			// 
 			this.lbl_Estado_mod.AutoSize = true;
-			this.lbl_Estado_mod.Location = new System.Drawing.Point(309, 503);
+			this.lbl_Estado_mod.Location = new System.Drawing.Point(309, 524);
 			this.lbl_Estado_mod.Name = "lbl_Estado_mod";
 			this.lbl_Estado_mod.Size = new System.Drawing.Size(41, 13);
 			this.lbl_Estado_mod.TabIndex = 38;
@@ -384,7 +390,7 @@
 			this.dtp_FechaInicio.CustomFormat = "dd/MM/yyyy";
 			this.dtp_FechaInicio.Enabled = false;
 			this.dtp_FechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dtp_FechaInicio.Location = new System.Drawing.Point(167, 522);
+			this.dtp_FechaInicio.Location = new System.Drawing.Point(167, 543);
 			this.dtp_FechaInicio.Name = "dtp_FechaInicio";
 			this.dtp_FechaInicio.Size = new System.Drawing.Size(98, 20);
 			this.dtp_FechaInicio.TabIndex = 19;
@@ -404,7 +410,7 @@
 			// 
 			this.lbl_FechaInicio.AutoSize = true;
 			this.lbl_FechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_FechaInicio.Location = new System.Drawing.Point(11, 526);
+			this.lbl_FechaInicio.Location = new System.Drawing.Point(11, 547);
 			this.lbl_FechaInicio.Name = "lbl_FechaInicio";
 			this.lbl_FechaInicio.Size = new System.Drawing.Size(101, 13);
 			this.lbl_FechaInicio.TabIndex = 31;
@@ -416,7 +422,7 @@
 			this.cbx_id_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_id_estado.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.cbx_id_estado.FormattingEnabled = true;
-			this.cbx_id_estado.Location = new System.Drawing.Point(166, 495);
+			this.cbx_id_estado.Location = new System.Drawing.Point(166, 516);
 			this.cbx_id_estado.Name = "cbx_id_estado";
 			this.cbx_id_estado.Size = new System.Drawing.Size(121, 21);
 			this.cbx_id_estado.TabIndex = 19;
@@ -425,7 +431,7 @@
 			// 
 			this.lbl_id_estado.AutoSize = true;
 			this.lbl_id_estado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_id_estado.Location = new System.Drawing.Point(11, 498);
+			this.lbl_id_estado.Location = new System.Drawing.Point(11, 519);
 			this.lbl_id_estado.Name = "lbl_id_estado";
 			this.lbl_id_estado.Size = new System.Drawing.Size(40, 13);
 			this.lbl_id_estado.TabIndex = 28;
@@ -490,7 +496,7 @@
 			// 
 			this.btn_cerrar.Image = global::ControlDosimetro.Properties.Resources.Close_24;
 			this.btn_cerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_cerrar.Location = new System.Drawing.Point(292, 604);
+			this.btn_cerrar.Location = new System.Drawing.Point(292, 625);
 			this.btn_cerrar.Name = "btn_cerrar";
 			this.btn_cerrar.Size = new System.Drawing.Size(97, 38);
 			this.btn_cerrar.TabIndex = 23;
@@ -502,7 +508,7 @@
 			// 
 			this.btn_Grabar.Image = global::ControlDosimetro.Properties.Resources.Save_24;
 			this.btn_Grabar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_Grabar.Location = new System.Drawing.Point(105, 604);
+			this.btn_Grabar.Location = new System.Drawing.Point(105, 625);
 			this.btn_Grabar.Name = "btn_Grabar";
 			this.btn_Grabar.Size = new System.Drawing.Size(104, 38);
 			this.btn_Grabar.TabIndex = 22;
@@ -641,11 +647,37 @@
 			this.lbl_run.TabIndex = 0;
 			this.lbl_run.Text = "Rut";
 			// 
+			// lbl_OPR_RUT
+			// 
+			this.lbl_OPR_RUT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbl_OPR_RUT.Location = new System.Drawing.Point(10, 470);
+			this.lbl_OPR_RUT.Name = "lbl_OPR_RUT";
+			this.lbl_OPR_RUT.Size = new System.Drawing.Size(102, 12);
+			this.lbl_OPR_RUT.TabIndex = 61;
+			this.lbl_OPR_RUT.Text = "OPR Rut";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(292, 470);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(108, 13);
+			this.label3.TabIndex = 63;
+			this.label3.Text = "Formato: 12345678-9";
+			// 
+			// txt_OPR_RUT
+			// 
+			this.txt_OPR_RUT.Location = new System.Drawing.Point(166, 467);
+			this.txt_OPR_RUT.MaxLength = 10;
+			this.txt_OPR_RUT.Name = "txt_OPR_RUT";
+			this.txt_OPR_RUT.Size = new System.Drawing.Size(120, 20);
+			this.txt_OPR_RUT.TabIndex = 62;
+			// 
 			// frmEmpresaMant
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(491, 677);
+			this.ClientSize = new System.Drawing.Size(491, 722);
 			this.Controls.Add(this.tbl_cliente);
 			this.Name = "frmEmpresaMant";
 			this.Text = "Cliente";
@@ -709,5 +741,8 @@
 		private System.Windows.Forms.Label lbl_Emailfacturacion;
 		private System.Windows.Forms.TextBox txt_Emailfacturacion;
 		private System.Windows.Forms.Button btn_Excel;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.TextBox txt_OPR_RUT;
+		private System.Windows.Forms.Label lbl_OPR_RUT;
 	}
 }
