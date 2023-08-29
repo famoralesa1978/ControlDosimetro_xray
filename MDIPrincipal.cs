@@ -51,6 +51,7 @@ namespace ControlDosimetro
 			ProcIngresarDosisCliente = 213,
 			ProcIngresarDosisDos = 214,
 			mnuProcConsultaFilmico=216,
+			mnuProcIngPeliv2=217,
 
 			Ingreso_TLD = 301,
 			EnviadoTLD = 302,
@@ -558,6 +559,15 @@ namespace ControlDosimetro
 						Graba_log(objFrm.Text);
 						objFrm.Show(this);
 						break;
+				case (int)MENU.mnuProcIngPeliv2:
+					objFrm = new frmIngresoDosimetro
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
 				#endregion
 
 				#region "ProcesoTLD 300"

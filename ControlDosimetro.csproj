@@ -231,6 +231,12 @@
     <Compile Include="Documento\frmDocumentoVerAprobar.Designer.cs">
       <DependentUpon>frmDocumentoVerAprobar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dosimetro\frmIngresoDosimetro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dosimetro\frmIngresoDosimetro.Designer.cs">
+      <DependentUpon>frmIngresoDosimetro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dosimetro\frmIngresoPeliculaDosi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -730,6 +736,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Documento\frmDocumentoVerAprobar.resx">
       <DependentUpon>frmDocumentoVerAprobar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dosimetro\frmIngresoDosimetro.resx">
+      <DependentUpon>frmIngresoDosimetro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dosimetro\frmIngresoPeliculaDosi.resx">
       <DependentUpon>frmIngresoPeliculaDosi.cs</DependentUpon>
