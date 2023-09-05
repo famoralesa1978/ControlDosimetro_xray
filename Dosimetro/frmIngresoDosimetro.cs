@@ -77,8 +77,6 @@ namespace ControlDosimetro
 			btnAgregarRef.Visible = btn_Guardar.Visible = false;
 
 			pnl_Progreso.Visible = false;
-			grpFiltro.Enabled = false;
-			lbl_ValorMax.Text = "";
 			Cargar_Reporte();
 			//	Cargar_Anno();
 		}
@@ -104,58 +102,6 @@ namespace ControlDosimetro
 			}
 
 		}
-
-		private void Listar_Personal()
-		{
-			SqlCommand cmd = new SqlCommand();
-			//SqlCommand cmd = new SqlCommand();
-
-			DataSet dt;
-
-			int intSucursal = cbx_Sucursal.SelectedValue == null ? 0 : (int)cbx_Sucursal.SelectedValue;
-			int intSeccion = cbx_id_seccion.SelectedValue == null ? 0 : (int)cbx_id_seccion.SelectedValue;
-			int intPeriodo = cbx_id_periodo.SelectedValue == null ? 0 : (int)cbx_id_periodo.SelectedValue;
-
-			cmd.CommandText = String.Format("pa_ListarPersonalTLDPorSeccionDireccion_sel {0},{1},'{2}',{3},{4},{5}", intPeriodo.ToString(), lbl_id_cliente.Text, 
-																							lbl_rut_cliente.Text, intSeccion.ToString(), intSucursal.ToString(),(chkIncluirDosimetro.Checked?44:99) );
-
-			cmd.CommandType = CommandType.Text;
-
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-			System.Data.DataColumn newColumn = new System.Data.DataColumn("Eliminar", typeof(System.Boolean));
-			newColumn.DefaultValue = false;
-			dt.Tables[0].Columns.Add(newColumn);
-
-
-			string filterExp = "";
-			string sortExp = "rut";
-			DataRow[] drarray;
-			drarray = dt.Tables[0].Select(filterExp, sortExp, DataViewRowState.CurrentRows);
-
-			string filterExp1 = "";
-			string sortExp1 = "N_pelicula";
-			DataRow[] drarray1;
-			drarray1 = dt.Tables[0].Select(filterExp1, sortExp1, DataViewRowState.CurrentRows);
-
-			groupBox2.Text = "Listado       Registro Generado:" + drarray.Count().ToString() + ", registro Faltante: " + drarray1.Count().ToString();
-
-
-			if (dt.Tables[0].Rows.Count == 0)
-			{
-				btnAgregarRef.Visible = btn_Guardar.Visible = false;
-				grdDatos.DataSource = dt.Tables[0];
-				grpFiltro.Enabled = false;
-
-			}
-			else
-			{
-				btnAgregarRef.Visible = btn_Guardar.Visible = true;
-				grpFiltro.Enabled = true;
-				grdDatos.DefaultCellStyle.BackColor = System.Drawing.Color.White;
-				grdDatos.DataSource = dt.Tables[0];
-			}
-		}
-
 		private void Cargar_Anno()
 		{
 			SqlCommand cmd = new SqlCommand();
@@ -239,8 +185,8 @@ namespace ControlDosimetro
 		{
 			//		this.txtRut.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
 			//	txtRut.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
-			this.txt_N_TLD.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			txt_N_TLD.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+			this.txtDesde.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+			txtDesde.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
 			lbl_id_cliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
 			lbl_id_cliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
 		}
@@ -275,12 +221,6 @@ namespace ControlDosimetro
 			frmAsignarSeccionPersonal frm = new frmAsignarSeccionPersonal(Convert.ToInt32(lbl_id_cliente.Text), lbl_rut_cliente.Text);
 			frm.ShowDialog(this);
 		}
-		private void picFiltrarpersonal_Click(object sender, EventArgs e)
-		{
-			Cursor = Cursors.WaitCursor;
-			classFuncionesGenerales.Filtro.FiltroPersonal(ref grdDatos, txt_NombrePersonal.Text, txt_RunPersonal.Text);
-			Cursor = Cursors.Default;
-		}
 
 		private void btn_Filtro_Click(object sender, EventArgs e)
 		{
@@ -290,7 +230,6 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 			Inicializar = false;
-			Listar_Personal();
 			//cbx_anno.Enabled = false;
 			//cbx_id_periodo.Enabled = false;
 			btn_cargar.Enabled = false;
@@ -302,8 +241,6 @@ namespace ControlDosimetro
 			cmdValorMax.CommandText = "select max(n_dosimetro) valor from [dbo].[ges_dosimetro_estado_TLD]";
 			cmdValorMax.CommandType = CommandType.Text;
 			dtValorMax = Conectar.Listar(Clases.clsBD.BD, cmdValorMax);
-
-			lbl_ValorMax.Text = dtValorMax.Tables[0].Rows[0]["valor"].ToString() == "0" ? "1" : dtValorMax.Tables[0].Rows[0]["valor"].ToString();
 			Cursor = Cursors.Default;
 		}
 
@@ -311,7 +248,6 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 			Inicializar = false;
-			Listar_Personal();
 			//cbx_anno.Enabled = false;
 			//cbx_id_periodo.Enabled = false;
 			btn_cargar.Enabled = false;
@@ -323,8 +259,6 @@ namespace ControlDosimetro
 			cmdValorMax.CommandText = "select max(n_dosimetro) valor from [dbo].[ges_dosimetro_estado_TLD]";
 			cmdValorMax.CommandType = CommandType.Text;
 			dtValorMax = Conectar.Listar(Clases.clsBD.BD, cmdValorMax);
-
-			lbl_ValorMax.Text = dtValorMax.Tables[0].Rows[0]["valor"].ToString() == "0" ? "1" : dtValorMax.Tables[0].Rows[0]["valor"].ToString();
 			Cursor = Cursors.Default;
 		}
 
@@ -437,7 +371,6 @@ namespace ControlDosimetro
 			string strMensaje = String.Format("Los TLD fueron generado con exito: {0} {1}", strCorrecto, String.IsNullOrEmpty(strError)?"": " y con errores : " + strError);
 			MessageBox.Show(strMensaje);
 			btn_Guardar.Enabled = true;
-			Listar_Personal();
 		}
 
 		private void btn_filtro_Click_1(object sender, EventArgs e)
@@ -470,11 +403,6 @@ namespace ControlDosimetro
 
 		private void btn_Corregir_Click(object sender, EventArgs e)
 		{
-			if (string.IsNullOrWhiteSpace(txt_N_TLD.Text))
-			{
-				//MessageBox.Show("Debe asignar un número de TLD");
-				txt_N_TLD.Text = String.Format("{0}", Convert.ToInt64(lbl_ValorMax.Text) + 1);
-			}
 
 
 			SqlCommand cmd2 = new SqlCommand();
@@ -504,13 +432,13 @@ namespace ControlDosimetro
 			Int64 intN_Dos = 0;
 			SqlCommand cmd = new SqlCommand();
 			//   cmd.CommandText = "SELECT isnull(max([n_dosimetro]),0)n_dosimetro   FROM[dbo].[ges_dosimetro_estado_TLD]";
-			cmd.CommandText = "SELECT [n_dosimetro]  FROM[dbo].[ges_dosimetro_estado_TLD] where n_dosimetro>=" + txt_N_TLD.Text;
+			cmd.CommandText = "SELECT [n_dosimetro]  FROM[dbo].[ges_dosimetro_estado_TLD] where n_dosimetro>=" + txtDesde.Text;
 			cmd.CommandType = CommandType.Text;
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 			DataTable dtNTld = dt.Tables[0];
 
-			intN_Dos = Int64.Parse(txt_N_TLD.Text);
+			intN_Dos = Int64.Parse(txtDesde.Text);
 
 			cmd.CommandText = "SELECT [N_Documento]   FROM[dbo].[ges_dosimetro_estado_TLD] where id_periodo= " + cbx_id_periodo.SelectedValue +
 												" and Id_cliente=" + lbl_id_cliente.Text + " union all " +
@@ -970,8 +898,6 @@ namespace ControlDosimetro
 			//@id_estadodosimetro int
 			cmd.CommandType = CommandType.Text;
 			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-
-			Listar_Personal();
 		}
 
 		#endregion
@@ -980,7 +906,7 @@ namespace ControlDosimetro
 
 		private void cbx_Sucursal_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			Listar_Personal();
+			//Listar_Personal();
 		}
 
 
@@ -1010,10 +936,6 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "CheckBox"
-		private void chkIncluirDosimetro_CheckedChanged(object sender, EventArgs e)
-		{
-			Listar_Personal();
-		}
 		private void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
@@ -1453,28 +1375,7 @@ namespace ControlDosimetro
 			MDIPrincipal.LlamadaReporte(Convert.ToUInt16(((System.Windows.Forms.ToolStripItem)sender).Tag.ToString()));
 
 		}
-
-		private void txtRut_Enter(object sender, EventArgs e)
-		{
-
-		}
-
 		#region Textbox
-
-		private void txt_RunPersonal_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Return)
-				picFiltrarpersonal_Click(null, null);
-		}
-
-		private void txt_NombrePersonal_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Return)
-				picFiltrarpersonal_Click(null, null);
-		}
-
-
-
 
 		#endregion
 

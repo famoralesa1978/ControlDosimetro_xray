@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngresoDosimetroTLD));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngresoDosimetro));
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.cbx_id_periodo = new System.Windows.Forms.ComboBox();
 			this.cbx_anno = new System.Windows.Forms.ComboBox();
@@ -45,7 +45,6 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.chkIncluirDosimetro = new System.Windows.Forms.CheckBox();
 			this.chkSeleccionar = new System.Windows.Forms.CheckBox();
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
@@ -80,29 +79,26 @@
 			this.btn_Corregir = new System.Windows.Forms.Button();
 			this.label4 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.lbl_ValorMax = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
-			this.txt_N_TLD = new System.Windows.Forms.TextBox();
+			this.txtDesde = new System.Windows.Forms.TextBox();
 			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
 			this.lbl_id_seccion = new System.Windows.Forms.Label();
-			this.grpFiltro = new System.Windows.Forms.GroupBox();
-			this.picFiltrarpersonal = new System.Windows.Forms.PictureBox();
-			this.txt_NombrePersonal = new System.Windows.Forms.TextBox();
-			this.label6 = new System.Windows.Forms.Label();
-			this.txt_RunPersonal = new System.Windows.Forms.TextBox();
-			this.label7 = new System.Windows.Forms.Label();
 			this.btn_Eliminar = new System.Windows.Forms.Button();
 			this.btnAgregarRef = new System.Windows.Forms.Button();
 			this.btnResfrescar = new System.Windows.Forms.Button();
 			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
+			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.txtNDocumento = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
+			this.txtHasta = new System.Windows.Forms.TextBox();
+			this.chkReferencia = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
 			this.toolStrip1.SuspendLayout();
 			this.groupBox3.SuspendLayout();
-			this.grpFiltro.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.picFiltrarpersonal)).BeginInit();
+			this.groupBox4.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -263,7 +259,6 @@
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox2.Controls.Add(this.chkIncluirDosimetro);
 			this.groupBox2.Controls.Add(this.chkSeleccionar);
 			this.groupBox2.Controls.Add(this.pnl_Progreso);
 			this.groupBox2.Controls.Add(this.grdDatos);
@@ -273,19 +268,6 @@
 			this.groupBox2.TabIndex = 6;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Listado";
-			// 
-			// chkIncluirDosimetro
-			// 
-			this.chkIncluirDosimetro.AutoSize = true;
-			this.chkIncluirDosimetro.Checked = true;
-			this.chkIncluirDosimetro.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.chkIncluirDosimetro.Location = new System.Drawing.Point(867, -1);
-			this.chkIncluirDosimetro.Name = "chkIncluirDosimetro";
-			this.chkIncluirDosimetro.Size = new System.Drawing.Size(195, 17);
-			this.chkIncluirDosimetro.TabIndex = 21;
-			this.chkIncluirDosimetro.Text = "Incluir  que se controlan con Filmico";
-			this.chkIncluirDosimetro.UseVisualStyleBackColor = true;
-			this.chkIncluirDosimetro.CheckedChanged += new System.EventHandler(this.chkIncluirDosimetro_CheckedChanged);
 			// 
 			// chkSeleccionar
 			// 
@@ -626,41 +608,24 @@
 			// 
 			// groupBox3
 			// 
-			this.groupBox3.Controls.Add(this.lbl_ValorMax);
+			this.groupBox3.Controls.Add(this.chkReferencia);
+			this.groupBox3.Controls.Add(this.txtHasta);
+			this.groupBox3.Controls.Add(this.label6);
 			this.groupBox3.Controls.Add(this.label5);
-			this.groupBox3.Controls.Add(this.txt_N_TLD);
-			this.groupBox3.Location = new System.Drawing.Point(8, 220);
+			this.groupBox3.Controls.Add(this.txtDesde);
+			this.groupBox3.Location = new System.Drawing.Point(185, 222);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(353, 64);
+			this.groupBox3.Size = new System.Drawing.Size(519, 64);
 			this.groupBox3.TabIndex = 13;
 			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "Asginar N° TLD ( el número que se inicia para poder asignarlo)";
+			this.groupBox3.Text = "Asginar N°  de fílmico";
 			// 
-			// lbl_ValorMax
+			// txtDesde
 			// 
-			this.lbl_ValorMax.AutoSize = true;
-			this.lbl_ValorMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_ValorMax.Location = new System.Drawing.Point(11, 44);
-			this.lbl_ValorMax.Name = "lbl_ValorMax";
-			this.lbl_ValorMax.Size = new System.Drawing.Size(41, 13);
-			this.lbl_ValorMax.TabIndex = 2;
-			this.lbl_ValorMax.Text = "label6";
-			// 
-			// label5
-			// 
-			this.label5.Location = new System.Drawing.Point(114, 15);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(233, 42);
-			this.label5.TabIndex = 1;
-			this.label5.Text = "Último valor ingresado (Si esta vacio se le asignara con el ultimo valro ingresad" +
-    "o): ";
-			// 
-			// txt_N_TLD
-			// 
-			this.txt_N_TLD.Location = new System.Drawing.Point(8, 15);
-			this.txt_N_TLD.Name = "txt_N_TLD";
-			this.txt_N_TLD.Size = new System.Drawing.Size(100, 20);
-			this.txt_N_TLD.TabIndex = 0;
+			this.txtDesde.Location = new System.Drawing.Point(82, 19);
+			this.txtDesde.Name = "txtDesde";
+			this.txtDesde.Size = new System.Drawing.Size(100, 20);
+			this.txtDesde.TabIndex = 0;
 			// 
 			// cbx_id_seccion
 			// 
@@ -681,68 +646,6 @@
 			this.lbl_id_seccion.Size = new System.Drawing.Size(46, 13);
 			this.lbl_id_seccion.TabIndex = 15;
 			this.lbl_id_seccion.Text = "Sección";
-			// 
-			// grpFiltro
-			// 
-			this.grpFiltro.Controls.Add(this.picFiltrarpersonal);
-			this.grpFiltro.Controls.Add(this.txt_NombrePersonal);
-			this.grpFiltro.Controls.Add(this.label6);
-			this.grpFiltro.Controls.Add(this.txt_RunPersonal);
-			this.grpFiltro.Controls.Add(this.label7);
-			this.grpFiltro.Location = new System.Drawing.Point(367, 220);
-			this.grpFiltro.Name = "grpFiltro";
-			this.grpFiltro.Size = new System.Drawing.Size(705, 64);
-			this.grpFiltro.TabIndex = 17;
-			this.grpFiltro.TabStop = false;
-			this.grpFiltro.Text = "Filtrar personal";
-			// 
-			// picFiltrarpersonal
-			// 
-			this.picFiltrarpersonal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.picFiltrarpersonal.Image = global::ControlDosimetro.Properties.Resources.Buscar;
-			this.picFiltrarpersonal.Location = new System.Drawing.Point(545, 13);
-			this.picFiltrarpersonal.Name = "picFiltrarpersonal";
-			this.picFiltrarpersonal.Size = new System.Drawing.Size(36, 36);
-			this.picFiltrarpersonal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-			this.picFiltrarpersonal.TabIndex = 7;
-			this.picFiltrarpersonal.TabStop = false;
-			this.picFiltrarpersonal.Click += new System.EventHandler(this.picFiltrarpersonal_Click);
-			// 
-			// txt_NombrePersonal
-			// 
-			this.txt_NombrePersonal.Location = new System.Drawing.Point(320, 22);
-			this.txt_NombrePersonal.MaxLength = 50;
-			this.txt_NombrePersonal.Name = "txt_NombrePersonal";
-			this.txt_NombrePersonal.Size = new System.Drawing.Size(219, 20);
-			this.txt_NombrePersonal.TabIndex = 6;
-			this.txt_NombrePersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_NombrePersonal_KeyDown);
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(198, 26);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(104, 13);
-			this.label6.TabIndex = 5;
-			this.label6.Text = "Nombre del personal";
-			// 
-			// txt_RunPersonal
-			// 
-			this.txt_RunPersonal.Location = new System.Drawing.Point(57, 23);
-			this.txt_RunPersonal.MaxLength = 10;
-			this.txt_RunPersonal.Name = "txt_RunPersonal";
-			this.txt_RunPersonal.Size = new System.Drawing.Size(100, 20);
-			this.txt_RunPersonal.TabIndex = 4;
-			this.txt_RunPersonal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_RunPersonal_KeyDown);
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(14, 26);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(24, 13);
-			this.label7.TabIndex = 3;
-			this.label7.Text = "Rut";
 			// 
 			// btn_Eliminar
 			// 
@@ -787,16 +690,68 @@
 			this.cbx_Sucursal.TabIndex = 20;
 			this.cbx_Sucursal.ValueMember = "Id_sucursal";
 			// 
-			// frmIngresoDosimetroTLD
+			// groupBox4
+			// 
+			this.groupBox4.Controls.Add(this.txtNDocumento);
+			this.groupBox4.Location = new System.Drawing.Point(14, 222);
+			this.groupBox4.Name = "groupBox4";
+			this.groupBox4.Size = new System.Drawing.Size(165, 64);
+			this.groupBox4.TabIndex = 21;
+			this.groupBox4.TabStop = false;
+			this.groupBox4.Text = "Número de documento";
+			// 
+			// txtNDocumento
+			// 
+			this.txtNDocumento.Location = new System.Drawing.Point(6, 19);
+			this.txtNDocumento.Name = "txtNDocumento";
+			this.txtNDocumento.Size = new System.Drawing.Size(100, 20);
+			this.txtNDocumento.TabIndex = 0;
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(16, 22);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(38, 13);
+			this.label5.TabIndex = 37;
+			this.label5.Text = "Desde";
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(211, 22);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(35, 13);
+			this.label6.TabIndex = 38;
+			this.label6.Text = "Hasta";
+			// 
+			// txtHasta
+			// 
+			this.txtHasta.Location = new System.Drawing.Point(266, 19);
+			this.txtHasta.Name = "txtHasta";
+			this.txtHasta.Size = new System.Drawing.Size(100, 20);
+			this.txtHasta.TabIndex = 39;
+			// 
+			// chkReferencia
+			// 
+			this.chkReferencia.AutoSize = true;
+			this.chkReferencia.Location = new System.Drawing.Point(382, 21);
+			this.chkReferencia.Name = "chkReferencia";
+			this.chkReferencia.Size = new System.Drawing.Size(78, 17);
+			this.chkReferencia.TabIndex = 40;
+			this.chkReferencia.Text = "Referencia";
+			this.chkReferencia.UseVisualStyleBackColor = true;
+			// 
+			// frmIngresoDosimetro
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1084, 686);
+			this.Controls.Add(this.groupBox4);
 			this.Controls.Add(this.cbx_Sucursal);
 			this.Controls.Add(this.btnResfrescar);
 			this.Controls.Add(this.btnAgregarRef);
 			this.Controls.Add(this.btn_Eliminar);
-			this.Controls.Add(this.grpFiltro);
 			this.Controls.Add(this.lbl_id_seccion);
 			this.Controls.Add(this.cbx_id_seccion);
 			this.Controls.Add(this.groupBox3);
@@ -810,7 +765,7 @@
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(776, 462);
-			this.Name = "frmIngresoDosimetroTLD";
+			this.Name = "frmIngresoDosimetro";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Ingreso TLD";
@@ -825,9 +780,8 @@
 			this.toolStrip1.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
-			this.grpFiltro.ResumeLayout(false);
-			this.grpFiltro.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.picFiltrarpersonal)).EndInit();
+			this.groupBox4.ResumeLayout(false);
+			this.groupBox4.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -858,17 +812,9 @@
         private System.Windows.Forms.ToolStripDropDownButton tsdReporte;
         private System.Windows.Forms.ToolStripButton btn_Cliente;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox txt_N_TLD;
-        private System.Windows.Forms.Label lbl_ValorMax;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtDesde;
 		private System.Windows.Forms.ComboBox cbx_id_seccion;
 		private System.Windows.Forms.Label lbl_id_seccion;
-		private System.Windows.Forms.GroupBox grpFiltro;
-		private System.Windows.Forms.PictureBox picFiltrarpersonal;
-		private System.Windows.Forms.TextBox txt_NombrePersonal;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.TextBox txt_RunPersonal;
-		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Button btn_Eliminar;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn ColEliminar;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Id_Personal;
@@ -900,6 +846,11 @@
 		private System.Windows.Forms.ToolStripMenuItem tsbGenerarSeleccionado;
 		private System.Windows.Forms.ToolStripButton tsbAsignarSucursal;
 		private System.Windows.Forms.ToolStripButton tsbAsignarSeccion;
-		private System.Windows.Forms.CheckBox chkIncluirDosimetro;
+		private System.Windows.Forms.TextBox txtHasta;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.GroupBox groupBox4;
+		private System.Windows.Forms.TextBox txtNDocumento;
+		private System.Windows.Forms.CheckBox chkReferencia;
 	}
 }
