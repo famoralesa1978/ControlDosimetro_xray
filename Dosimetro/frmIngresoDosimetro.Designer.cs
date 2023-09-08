@@ -40,7 +40,6 @@
 			this.lbl_id_cliente = new System.Windows.Forms.TextBox();
 			this.lbl_nombreCliente = new System.Windows.Forms.Label();
 			this.btn_filtro = new System.Windows.Forms.Button();
-			this.btn_cargar = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
@@ -79,26 +78,29 @@
 			this.btn_Corregir = new System.Windows.Forms.Button();
 			this.label4 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.chkReferencia = new System.Windows.Forms.CheckBox();
+			this.txtHasta = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
 			this.txtDesde = new System.Windows.Forms.TextBox();
-			this.cbx_id_seccion = new System.Windows.Forms.ComboBox();
-			this.lbl_id_seccion = new System.Windows.Forms.Label();
 			this.btn_Eliminar = new System.Windows.Forms.Button();
 			this.btnAgregarRef = new System.Windows.Forms.Button();
 			this.btnResfrescar = new System.Windows.Forms.Button();
 			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
-			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.txtNDocumento = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.label6 = new System.Windows.Forms.Label();
-			this.txtHasta = new System.Windows.Forms.TextBox();
-			this.chkReferencia = new System.Windows.Forms.CheckBox();
+			this.grpEncabezado = new System.Windows.Forms.GroupBox();
+			this.dtp_Fecha_dev = new System.Windows.Forms.DateTimePicker();
+			this.label13 = new System.Windows.Forms.Label();
+			this.txt_Servicio = new System.Windows.Forms.TextBox();
+			this.label10 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
 			this.toolStrip1.SuspendLayout();
 			this.groupBox3.SuspendLayout();
-			this.groupBox4.SuspendLayout();
+			this.grpEncabezado.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -113,13 +115,12 @@
 			this.groupBox1.Controls.Add(this.lbl_id_cliente);
 			this.groupBox1.Controls.Add(this.lbl_nombreCliente);
 			this.groupBox1.Controls.Add(this.btn_filtro);
-			this.groupBox1.Controls.Add(this.btn_cargar);
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Location = new System.Drawing.Point(5, 28);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(844, 145);
+			this.groupBox1.Size = new System.Drawing.Size(844, 96);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Dato Cliente";
@@ -129,7 +130,7 @@
 			this.cbx_id_periodo.DisplayMember = "Trimestre";
 			this.cbx_id_periodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_id_periodo.FormattingEnabled = true;
-			this.cbx_id_periodo.Location = new System.Drawing.Point(74, 114);
+			this.cbx_id_periodo.Location = new System.Drawing.Point(280, 64);
 			this.cbx_id_periodo.Name = "cbx_id_periodo";
 			this.cbx_id_periodo.Size = new System.Drawing.Size(121, 21);
 			this.cbx_id_periodo.TabIndex = 60;
@@ -140,7 +141,7 @@
 			this.cbx_anno.DisplayMember = "anno";
 			this.cbx_anno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_anno.FormattingEnabled = true;
-			this.cbx_anno.Location = new System.Drawing.Point(74, 89);
+			this.cbx_anno.Location = new System.Drawing.Point(78, 64);
 			this.cbx_anno.Name = "cbx_anno";
 			this.cbx_anno.Size = new System.Drawing.Size(121, 21);
 			this.cbx_anno.TabIndex = 59;
@@ -150,7 +151,7 @@
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(6, 43);
+			this.label8.Location = new System.Drawing.Point(225, 43);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(44, 13);
 			this.label8.TabIndex = 58;
@@ -159,7 +160,7 @@
 			// label11
 			// 
 			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(6, 61);
+			this.label11.Location = new System.Drawing.Point(10, 42);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(24, 13);
 			this.label11.TabIndex = 57;
@@ -168,7 +169,7 @@
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(83, 43);
+			this.label9.Location = new System.Drawing.Point(302, 43);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(0, 13);
 			this.label9.TabIndex = 56;
@@ -176,7 +177,7 @@
 			// lbl_rut_cliente
 			// 
 			this.lbl_rut_cliente.AutoSize = true;
-			this.lbl_rut_cliente.Location = new System.Drawing.Point(83, 61);
+			this.lbl_rut_cliente.Location = new System.Drawing.Point(83, 42);
 			this.lbl_rut_cliente.Name = "lbl_rut_cliente";
 			this.lbl_rut_cliente.Size = new System.Drawing.Size(0, 13);
 			this.lbl_rut_cliente.TabIndex = 55;
@@ -201,7 +202,7 @@
 			// lbl_nombreCliente
 			// 
 			this.lbl_nombreCliente.AutoSize = true;
-			this.lbl_nombreCliente.Location = new System.Drawing.Point(77, 43);
+			this.lbl_nombreCliente.Location = new System.Drawing.Point(296, 43);
 			this.lbl_nombreCliente.Name = "lbl_nombreCliente";
 			this.lbl_nombreCliente.Size = new System.Drawing.Size(0, 13);
 			this.lbl_nombreCliente.TabIndex = 51;
@@ -216,21 +217,10 @@
 			this.btn_filtro.UseVisualStyleBackColor = true;
 			this.btn_filtro.Click += new System.EventHandler(this.btn_filtro_Click_1);
 			// 
-			// btn_cargar
-			// 
-			this.btn_cargar.Location = new System.Drawing.Point(215, 114);
-			this.btn_cargar.Name = "btn_cargar";
-			this.btn_cargar.Size = new System.Drawing.Size(75, 22);
-			this.btn_cargar.TabIndex = 3;
-			this.btn_cargar.Text = "Cargar";
-			this.btn_cargar.UseVisualStyleBackColor = true;
-			this.btn_cargar.Visible = false;
-			this.btn_cargar.Click += new System.EventHandler(this.btn_cargar_Click);
-			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(11, 119);
+			this.label1.Location = new System.Drawing.Point(225, 67);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(42, 13);
 			this.label1.TabIndex = 36;
@@ -248,7 +238,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(11, 92);
+			this.label3.Location = new System.Drawing.Point(10, 67);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(26, 13);
 			this.label3.TabIndex = 4;
@@ -262,9 +252,9 @@
 			this.groupBox2.Controls.Add(this.chkSeleccionar);
 			this.groupBox2.Controls.Add(this.pnl_Progreso);
 			this.groupBox2.Controls.Add(this.grdDatos);
-			this.groupBox2.Location = new System.Drawing.Point(5, 291);
+			this.groupBox2.Location = new System.Drawing.Point(5, 272);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(1079, 357);
+			this.groupBox2.Size = new System.Drawing.Size(1079, 376);
 			this.groupBox2.TabIndex = 6;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Listado";
@@ -326,7 +316,7 @@
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-			this.grdDatos.Size = new System.Drawing.Size(1073, 338);
+			this.grdDatos.Size = new System.Drawing.Size(1073, 357);
 			this.grdDatos.TabIndex = 8;
 			this.grdDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellContentClick);
 			this.grdDatos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdDatos_CellFormatting);
@@ -600,7 +590,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(8, 173);
+			this.label4.Location = new System.Drawing.Point(10, 133);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(52, 13);
 			this.label4.TabIndex = 10;
@@ -613,12 +603,47 @@
 			this.groupBox3.Controls.Add(this.label6);
 			this.groupBox3.Controls.Add(this.label5);
 			this.groupBox3.Controls.Add(this.txtDesde);
-			this.groupBox3.Location = new System.Drawing.Point(185, 222);
+			this.groupBox3.Location = new System.Drawing.Point(483, 5);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(519, 64);
+			this.groupBox3.Size = new System.Drawing.Size(315, 89);
 			this.groupBox3.TabIndex = 13;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Asginar N°  de fílmico";
+			// 
+			// chkReferencia
+			// 
+			this.chkReferencia.AutoSize = true;
+			this.chkReferencia.Location = new System.Drawing.Point(207, 22);
+			this.chkReferencia.Name = "chkReferencia";
+			this.chkReferencia.Size = new System.Drawing.Size(78, 17);
+			this.chkReferencia.TabIndex = 40;
+			this.chkReferencia.Text = "Referencia";
+			this.chkReferencia.UseVisualStyleBackColor = true;
+			// 
+			// txtHasta
+			// 
+			this.txtHasta.Location = new System.Drawing.Point(82, 47);
+			this.txtHasta.Name = "txtHasta";
+			this.txtHasta.Size = new System.Drawing.Size(100, 20);
+			this.txtHasta.TabIndex = 39;
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(16, 51);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(35, 13);
+			this.label6.TabIndex = 38;
+			this.label6.Text = "Hasta";
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(16, 22);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(38, 13);
+			this.label5.TabIndex = 37;
+			this.label5.Text = "Desde";
 			// 
 			// txtDesde
 			// 
@@ -626,26 +651,6 @@
 			this.txtDesde.Name = "txtDesde";
 			this.txtDesde.Size = new System.Drawing.Size(100, 20);
 			this.txtDesde.TabIndex = 0;
-			// 
-			// cbx_id_seccion
-			// 
-			this.cbx_id_seccion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_id_seccion.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbx_id_seccion.FormattingEnabled = true;
-			this.cbx_id_seccion.Location = new System.Drawing.Point(62, 193);
-			this.cbx_id_seccion.Name = "cbx_id_seccion";
-			this.cbx_id_seccion.Size = new System.Drawing.Size(236, 21);
-			this.cbx_id_seccion.TabIndex = 14;
-			this.cbx_id_seccion.SelectedIndexChanged += new System.EventHandler(this.cbx_id_seccion_SelectedIndexChanged);
-			// 
-			// lbl_id_seccion
-			// 
-			this.lbl_id_seccion.AutoSize = true;
-			this.lbl_id_seccion.Location = new System.Drawing.Point(8, 196);
-			this.lbl_id_seccion.Name = "lbl_id_seccion";
-			this.lbl_id_seccion.Size = new System.Drawing.Size(46, 13);
-			this.lbl_id_seccion.TabIndex = 15;
-			this.lbl_id_seccion.Text = "Sección";
 			// 
 			// btn_Eliminar
 			// 
@@ -672,7 +677,7 @@
 			// btnResfrescar
 			// 
 			this.btnResfrescar.Image = global::ControlDosimetro.Properties.Resources.filter_16;
-			this.btnResfrescar.Location = new System.Drawing.Point(304, 193);
+			this.btnResfrescar.Location = new System.Drawing.Point(625, 130);
 			this.btnResfrescar.Name = "btnResfrescar";
 			this.btnResfrescar.Size = new System.Drawing.Size(26, 23);
 			this.btnResfrescar.TabIndex = 19;
@@ -684,77 +689,90 @@
 			this.cbx_Sucursal.DisplayMember = "Direccion";
 			this.cbx_Sucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_Sucursal.FormattingEnabled = true;
-			this.cbx_Sucursal.Location = new System.Drawing.Point(62, 170);
+			this.cbx_Sucursal.Location = new System.Drawing.Point(83, 130);
 			this.cbx_Sucursal.Name = "cbx_Sucursal";
 			this.cbx_Sucursal.Size = new System.Drawing.Size(526, 21);
 			this.cbx_Sucursal.TabIndex = 20;
 			this.cbx_Sucursal.ValueMember = "Id_sucursal";
 			// 
-			// groupBox4
-			// 
-			this.groupBox4.Controls.Add(this.txtNDocumento);
-			this.groupBox4.Location = new System.Drawing.Point(14, 222);
-			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(165, 64);
-			this.groupBox4.TabIndex = 21;
-			this.groupBox4.TabStop = false;
-			this.groupBox4.Text = "Número de documento";
-			// 
 			// txtNDocumento
 			// 
-			this.txtNDocumento.Location = new System.Drawing.Point(6, 19);
+			this.txtNDocumento.Location = new System.Drawing.Point(134, 23);
 			this.txtNDocumento.Name = "txtNDocumento";
 			this.txtNDocumento.Size = new System.Drawing.Size(100, 20);
 			this.txtNDocumento.TabIndex = 0;
 			// 
-			// label5
+			// grpEncabezado
 			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(16, 22);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(38, 13);
-			this.label5.TabIndex = 37;
-			this.label5.Text = "Desde";
+			this.grpEncabezado.Controls.Add(this.dtp_Fecha_dev);
+			this.grpEncabezado.Controls.Add(this.label13);
+			this.grpEncabezado.Controls.Add(this.txt_Servicio);
+			this.grpEncabezado.Controls.Add(this.label10);
+			this.grpEncabezado.Controls.Add(this.txtNDocumento);
+			this.grpEncabezado.Controls.Add(this.label7);
+			this.grpEncabezado.Controls.Add(this.groupBox3);
+			this.grpEncabezado.Location = new System.Drawing.Point(8, 157);
+			this.grpEncabezado.Name = "grpEncabezado";
+			this.grpEncabezado.Size = new System.Drawing.Size(1073, 100);
+			this.grpEncabezado.TabIndex = 21;
+			this.grpEncabezado.TabStop = false;
+			this.grpEncabezado.Text = "Datos";
 			// 
-			// label6
+			// dtp_Fecha_dev
 			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(211, 22);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(35, 13);
-			this.label6.TabIndex = 38;
-			this.label6.Text = "Hasta";
+			this.dtp_Fecha_dev.CustomFormat = "dd-MMMMMMMMMMM-yyyy";
+			this.dtp_Fecha_dev.Enabled = false;
+			this.dtp_Fecha_dev.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+			this.dtp_Fecha_dev.Location = new System.Drawing.Point(134, 75);
+			this.dtp_Fecha_dev.Name = "dtp_Fecha_dev";
+			this.dtp_Fecha_dev.Size = new System.Drawing.Size(132, 20);
+			this.dtp_Fecha_dev.TabIndex = 27;
 			// 
-			// txtHasta
+			// label13
 			// 
-			this.txtHasta.Location = new System.Drawing.Point(266, 19);
-			this.txtHasta.Name = "txtHasta";
-			this.txtHasta.Size = new System.Drawing.Size(100, 20);
-			this.txtHasta.TabIndex = 39;
+			this.label13.AutoSize = true;
+			this.label13.Location = new System.Drawing.Point(7, 79);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(94, 13);
+			this.label13.TabIndex = 26;
+			this.label13.Text = "Fecha Devolución";
 			// 
-			// chkReferencia
+			// txt_Servicio
 			// 
-			this.chkReferencia.AutoSize = true;
-			this.chkReferencia.Location = new System.Drawing.Point(382, 21);
-			this.chkReferencia.Name = "chkReferencia";
-			this.chkReferencia.Size = new System.Drawing.Size(78, 17);
-			this.chkReferencia.TabIndex = 40;
-			this.chkReferencia.Text = "Referencia";
-			this.chkReferencia.UseVisualStyleBackColor = true;
+			this.txt_Servicio.Location = new System.Drawing.Point(134, 49);
+			this.txt_Servicio.MaxLength = 100;
+			this.txt_Servicio.Name = "txt_Servicio";
+			this.txt_Servicio.Size = new System.Drawing.Size(329, 20);
+			this.txt_Servicio.TabIndex = 19;
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Location = new System.Drawing.Point(7, 52);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(45, 13);
+			this.label10.TabIndex = 20;
+			this.label10.Text = "Servicio";
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(7, 26);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(100, 13);
+			this.label7.TabIndex = 11;
+			this.label7.Text = "Número documento";
 			// 
 			// frmIngresoDosimetro
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1084, 686);
-			this.Controls.Add(this.groupBox4);
+			this.Controls.Add(this.grpEncabezado);
 			this.Controls.Add(this.cbx_Sucursal);
 			this.Controls.Add(this.btnResfrescar);
 			this.Controls.Add(this.btnAgregarRef);
 			this.Controls.Add(this.btn_Eliminar);
-			this.Controls.Add(this.lbl_id_seccion);
-			this.Controls.Add(this.cbx_id_seccion);
-			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.btn_Corregir);
 			this.Controls.Add(this.btn_Cerrar);
@@ -768,7 +786,7 @@
 			this.Name = "frmIngresoDosimetro";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Ingreso TLD";
+			this.Text = "Ingreso filmico";
 			this.Load += new System.EventHandler(this.frmIngresoDosimetro_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
@@ -780,8 +798,8 @@
 			this.toolStrip1.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
-			this.groupBox4.ResumeLayout(false);
-			this.groupBox4.PerformLayout();
+			this.grpEncabezado.ResumeLayout(false);
+			this.grpEncabezado.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -796,7 +814,6 @@
 		  private System.Windows.Forms.ToolStrip toolStrip1;
           private System.Windows.Forms.Label label2;
 								private System.Windows.Forms.Label label1;
-								private System.Windows.Forms.Button btn_cargar;
 								private System.Windows.Forms.Button btn_Guardar;
 								private System.Windows.Forms.Button btn_Cerrar;
                                 private System.Windows.Forms.Button btn_filtro;
@@ -813,8 +830,6 @@
         private System.Windows.Forms.ToolStripButton btn_Cliente;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox txtDesde;
-		private System.Windows.Forms.ComboBox cbx_id_seccion;
-		private System.Windows.Forms.Label lbl_id_seccion;
 		private System.Windows.Forms.Button btn_Eliminar;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn ColEliminar;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Id_Personal;
@@ -849,8 +864,13 @@
 		private System.Windows.Forms.TextBox txtHasta;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.GroupBox groupBox4;
 		private System.Windows.Forms.TextBox txtNDocumento;
 		private System.Windows.Forms.CheckBox chkReferencia;
+		private System.Windows.Forms.GroupBox grpEncabezado;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.TextBox txt_Servicio;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.DateTimePicker dtp_Fecha_dev;
 	}
 }
