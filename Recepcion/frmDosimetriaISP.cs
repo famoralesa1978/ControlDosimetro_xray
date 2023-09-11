@@ -42,7 +42,7 @@ namespace ControlDosimetro
 		const string headerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.header+xml";
 		const string footerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml";
 		//        XmlNamespaceManager nsManager;
-
+		DataTable dtPeriodo;
 		#endregion
 
 		public frmDosimetriaISP(Int64 intId_Cliente)
@@ -66,8 +66,8 @@ namespace ControlDosimetro
 
 
 			AsignarEvento();
-			Cargar_Cliente(intId_Cliente);
-			Cargar_Anno();
+			lbl_id_cliente.Text = intId_Cliente.ToString();
+			Cargar_Encabezado();
 			btn_Guardar.Visible = false;
 			pnl_Progreso.Visible = false;
 			lbl_Original.Text = RutaArchivo().Replace("\\", "/");
@@ -76,6 +76,46 @@ namespace ControlDosimetro
 		}
 
 		#region "Llamada de carga"
+		private void Cargar_Encabezado()
+		{
+			Cursor = Cursors.WaitCursor;
+			frmAyudaCliente frm = new frmAyudaCliente(Convert.ToInt64(lbl_id_cliente.Text));
+
+			if (frm.ShowDialog() == DialogResult.OK)
+			{
+				lbl_nombreCliente.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 1) ? Clases.ClsCliente.Nombres : "";
+				lbl_rut_cliente.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 1) ? Clases.ClsCliente.Rut : "";
+
+				SqlCommand cmd = new SqlCommand
+				{
+					CommandText = String.Format("CargarClientePorRun '{0}',{1}", lbl_rut_cliente.Text, lbl_id_cliente.Text)
+				};
+				DataSet dt;
+				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+				if (dt != null)
+				{
+					dtPeriodo = new DataTable();
+					//if (dt.Tables[0].Rows.Count > 0)
+					//{
+					dtPeriodo = dt.Tables[3];
+					cbx_anno.DataSource = dt.Tables[1];
+
+					if ((Convert.ToInt64(lbl_id_cliente.Text) < 1))
+						cbx_id_periodo.DataSource = dtPeriodo;
+
+					DataTable dtSeccion = dt.Tables[2].Copy();
+					dtSeccion.DefaultView.RowFilter = "Id_estado=1";
+
+					cbx_Sucursal.DataSource = dtSeccion.DefaultView.Table;
+
+					//btn_Cargar_cliente.Enabled = false;
+					//}
+				}
+
+			}
+			Cursor = Cursors.Default;
+		}
 
 		String RutaArchivo()
 		{
@@ -158,23 +198,10 @@ namespace ControlDosimetro
 
 		private void Cargar_Periodo()
 		{
-			SqlCommand cmd = new SqlCommand();
+			DataTable dtPeriodoCopia = dtPeriodo.Copy();
+			dtPeriodoCopia.DefaultView.RowFilter = String.Format("anno={0}", cbx_anno.SelectedValue);
 
-			//	  SqlCommand cmd = new SqlCommand();
-
-			cmd.CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ 'º TRI' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text;
-			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-			cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
-			cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
-			cbx_id_periodo.DataSource = dt.Tables[0];
-
-			//cbx_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
-			//cbx_periodo.DataSource = dt.Tables[0];
-
-			//cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
-			//cbx_id_periodo.DataSource = dt.Tables[0];
+			cbx_id_periodo.DataSource = dtPeriodoCopia.DefaultView.ToTable();
 		}
 
 		private void Cargar_Sucursal()

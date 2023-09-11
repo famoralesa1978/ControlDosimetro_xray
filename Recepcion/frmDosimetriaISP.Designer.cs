@@ -132,12 +132,14 @@
 			// 
 			// cbx_id_periodo
 			// 
+			this.cbx_id_periodo.DisplayMember = "Trimestre";
 			this.cbx_id_periodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_id_periodo.FormattingEnabled = true;
 			this.cbx_id_periodo.Location = new System.Drawing.Point(87, 67);
 			this.cbx_id_periodo.Name = "cbx_id_periodo";
 			this.cbx_id_periodo.Size = new System.Drawing.Size(121, 21);
 			this.cbx_id_periodo.TabIndex = 43;
+			this.cbx_id_periodo.ValueMember = "Id_Periodo";
 			// 
 			// lbl_nombreCliente
 			// 
@@ -168,12 +170,14 @@
 			// 
 			// cbx_anno
 			// 
+			this.cbx_anno.DisplayMember = "anno";
 			this.cbx_anno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_anno.FormattingEnabled = true;
 			this.cbx_anno.Location = new System.Drawing.Point(87, 42);
 			this.cbx_anno.Name = "cbx_anno";
 			this.cbx_anno.Size = new System.Drawing.Size(121, 21);
 			this.cbx_anno.TabIndex = 1;
+			this.cbx_anno.ValueMember = "anno";
 			this.cbx_anno.SelectedIndexChanged += new System.EventHandler(this.cbx_anno_SelectedIndexChanged);
 			// 
 			// label2
@@ -466,12 +470,14 @@
 			// 
 			// cbx_Sucursal
 			// 
+			this.cbx_Sucursal.DisplayMember = "Direccion";
 			this.cbx_Sucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_Sucursal.FormattingEnabled = true;
 			this.cbx_Sucursal.Location = new System.Drawing.Point(59, 136);
 			this.cbx_Sucursal.Name = "cbx_Sucursal";
 			this.cbx_Sucursal.Size = new System.Drawing.Size(526, 21);
 			this.cbx_Sucursal.TabIndex = 11;
+			this.cbx_Sucursal.ValueMember = "Id_sucursal";
 			this.cbx_Sucursal.SelectedIndexChanged += new System.EventHandler(this.cbx_Sucursal_SelectedIndexChanged);
 			// 
 			// groupBox3
