@@ -35,7 +35,8 @@ namespace ControlDosimetro
 		const string headerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.header+xml";
 		const string footerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml";
 		classFuncionesBD.ClsFunciones FuncBD = new classFuncionesBD.ClsFunciones();
-
+		DataTable dtPeriodo;
+		DataTable dtSeccion;
 		public string Id_Menu { get; private set; }
 		private bool Inicializar = true;
 
@@ -72,7 +73,7 @@ namespace ControlDosimetro
 
 			pnl_Progreso.Visible = false;
 			grpFiltro.Enabled = false;
-			Cargar_Anno();
+			btn_filtro_Click_1(null,null);
 		}
 
 		#region "Llamada de carga"
@@ -137,29 +138,39 @@ namespace ControlDosimetro
 
 		private void Cargar_Periodo()
 		{
-			clsFunc.Cargar_Periodo(ref cbx_id_periodo, 3, (int)cbx_anno.SelectedValue);
+			DataTable dtPeriodoCopia = dtPeriodo.Copy();
+			dtPeriodoCopia.DefaultView.RowFilter = String.Format("anno={0}", cbx_anno.SelectedValue);
+
+			cbx_id_periodo.DataSource = dtPeriodoCopia.DefaultView.ToTable();
 		}
 
 		private void Cargar_Sucursal()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "BusClienteSucursal_Filmico " + "'" + lbl_rut_cliente.Text + "',"+ lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue;
+			SqlCommand cmdSeccion = new SqlCommand();
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			DataSet dtSec;
 
+			cmdSeccion.CommandText = "BusClienteSucursalInforme_TLD " + "'" + lbl_rut_cliente.Text + "'," + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue;
+			dtSec = Conectar.Listar(Clases.clsBD.BD, cmdSeccion);
+			dtSeccion = dtSec.Tables[1];
+
+			cmd.CommandText = "BusClienteSucursal_Filmico " + "'" + lbl_rut_cliente.Text + "',"+ lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue;
+			
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 			cbx_Sucursal.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
 			cbx_Sucursal.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_Sucursal.DataSource = dt.Tables[0];
 
+			
 		}
 
 		private void Cargar_Seccion()
 		{
-			DataSet dt;
-			dt = FuncBD.Cargar_SeccionPorRun(Convert.ToInt16( lbl_id_cliente.Text.ToString()), lbl_rut_cliente.Text);
-			cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
-			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
-			cbx_id_seccion.DataSource = dt.Tables[0];
+				dtSeccion.DefaultView.RowFilter = String.Format("Id_sucursal={0} OR  Id_sucursal=0", cbx_Sucursal.SelectedValue == null ? 0 : (int?)cbx_Sucursal.SelectedValue);
+				cbx_id_seccion.DisplayMember = dtSeccion.Columns[1].Caption.ToString();
+				cbx_id_seccion.ValueMember = dtSeccion.Columns[0].Caption.ToString();
+				cbx_id_seccion.DataSource = dtSeccion.DefaultView.ToTable();
 		}
 
 		private void AsignarEvento()
@@ -186,7 +197,50 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "button"
+		private void btnCargarCliente_Click(object sender, EventArgs e)
+		{
+			if (string.IsNullOrWhiteSpace(lbl_id_cliente.Text))
+				return;
+			Cursor = Cursors.WaitCursor;
+			frmAyudaCliente frm = new frmAyudaCliente(Convert.ToInt64(lbl_id_cliente.Text));
 
+			if (frm.ShowDialog() == DialogResult.OK)
+			{
+				lbl_nombreCliente.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 1) ? Clases.ClsCliente.Nombres : "";
+				lbl_rut_cliente.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 1) ? Clases.ClsCliente.Rut : "";
+
+				SqlCommand cmd = new SqlCommand
+				{
+					CommandText = String.Format("CargarClientePorRun '{0}',{1}", lbl_rut_cliente.Text, lbl_id_cliente.Text)
+				};
+				DataSet dt;
+				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+				if (dt != null)
+				{
+					dtPeriodo = new DataTable();
+					//if (dt.Tables[0].Rows.Count > 0)
+					//{
+					dtPeriodo = dt.Tables[3];
+					cbx_anno.DataSource = dt.Tables[1];
+
+					if ((Convert.ToInt64(lbl_id_cliente.Text) < 1))
+						cbx_id_periodo.DataSource = dtPeriodo;
+
+					//dtSeccion = dt.Tables[2].Copy();
+					//dtSeccion.DefaultView.RowFilter = "Id_estado=1";
+
+					//cbx_Sucursal.DataSource = dtSeccion.DefaultView.Table;
+					pnlDatosPeriodo.Enabled = true;
+				}
+				else
+				{
+					pnlDatosPeriodo.Enabled = false;
+				}
+
+			}
+			Cursor = Cursors.Default;
+		}
 		private void picFiltrarpersonal_Click(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
@@ -202,25 +256,21 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 			Inicializar = false;
-
-			clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(lbl_id_cliente.Text.ToString()), ref lbl_rut_cliente, ref lbl_nombreCliente);
 			
 			Cargar_Sucursal();
 			Cargar_Seccion();
 
 			Listar_Personal();
-			cbx_anno.Enabled = false;
-			cbx_id_periodo.Enabled = false;
-			btn_cargar.Enabled = false;
+			//cbx_anno.Enabled = false;
+			//cbx_id_periodo.Enabled = false;
+			//btn_cargar.Enabled = false;
 			//grdDatos.Focus();
 			Cursor = Cursors.Default;
 		}
 
 		private void btn_filtro_Click_1(object sender, EventArgs e)
 		{
-
-			cbx_anno.Enabled = true;
-			cbx_id_periodo.Enabled = true;
+			
 			groupBox2.Text = "Listado";
 			lbl_id_cliente.Text = "-1";
 			lbl_rut_cliente.Text = "";
@@ -230,12 +280,17 @@ namespace ControlDosimetro
 			
 			lbl_id_cliente.Text = "-1";
 			lbl_id_cliente.Focus();
-			
-			btn_cargar_Click(null, null);
+
+			btnCargarCliente_Click(null, null);
+			pnlDatosPeriodo.Enabled = false;
 			cbx_anno.Enabled = true;
 			cbx_id_periodo.Enabled = true;
 			lbl_id_cliente.Text = "";
 			btn_cargar.Enabled = true;
+			cbx_Sucursal.DataSource = null;
+			cbx_id_seccion.DataSource = null;
+			grdDatos.DataSource = null;
+			grdDatos.Refresh();
 			Inicializar = true;
 		}
 
@@ -250,7 +305,14 @@ namespace ControlDosimetro
 
 		private void cbx_Sucursal_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			Listar_Personal();
+			
+			if(cbx_Sucursal.DataSource != null)
+			{
+				Cursor = Cursors.WaitCursor;
+				Cargar_Seccion();
+				Listar_Personal();
+				Cursor = Cursors.Default;
+			}
 		}
 
 
@@ -262,20 +324,14 @@ namespace ControlDosimetro
 
 		private void cbx_id_seccion_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			Cursor = Cursors.WaitCursor;
-			if (!Inicializar)
-				Listar_Personal();
-			Cursor = Cursors.Default;
+			if (cbx_id_seccion.DataSource != null)
+			{
+				Cursor = Cursors.WaitCursor;
+				if (!Inicializar)
+					Listar_Personal();
+				Cursor = Cursors.Default;
+			}
 		}
-
-		private void cbx_Sucursal_SelectionChangeCommitted(object sender, EventArgs e)
-		{
-			if (!bolInicio)
-				Listar_Personal();
-
-			bolInicio = false;
-		}
-
 
 		#endregion
 
@@ -718,7 +774,13 @@ namespace ControlDosimetro
 				picFiltrarpersonal_Click(null, null);
 		}
 
+
+
 		#endregion
 
+		private void cbx_id_periodo_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
