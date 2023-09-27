@@ -596,10 +596,10 @@ namespace ControlDosimetro
 						else
 							strParametro = dr["Id_CodServicio"].ToString() + ",";
 
-						if (dr["Id_Seccion"] == DBNull.Value)
-							strParametro = strParametro + "Null" + ",";
-						else
-							strParametro = strParametro + dr["Id_Seccion"].ToString() + ",";
+						//if (dr["Id_Seccion"] == DBNull.Value)
+						//	strParametro = strParametro + "Null" + ",";
+						//else
+						//	strParametro = strParametro + dr["Id_Seccion"].ToString() + ",";
 
 						if (dr["Fecha_Nac"] == DBNull.Value)
 							strParametro = strParametro + "'01/01/1900'";

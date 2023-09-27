@@ -153,13 +153,13 @@ namespace classFuncionesGenerales
 						row = sheet.CreateRow(i + 1);
 						for (int j = 0; j < columnCount; j++)
 						{
-							cell = row.CreateCell(j);//excel第二行开始写入数据  
+							cell = row.CreateCell(j);
 							cell.SetCellValue(dt.Rows[i][j].ToString());
 						}
 					}
 					using (fs = File.Create(fileName))
 					{
-						workbook.Write(fs);//向打开的这个xls文件中写入数据  
+						workbook.Write(fs);
 						workbook.Close();
 						result = true;
 					}
