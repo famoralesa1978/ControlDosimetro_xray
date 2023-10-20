@@ -56,6 +56,9 @@ namespace ControlDosimetro
 			btn_cargar.Enabled = true;
 			dtp_Fecha_inicio.Text = DateTime.Now.Date.ToString();
 			lbl_id_cliente.Focus();
+			lbl_nombreCliente.Text = "";
+			lbl_rut.Text = "";
+			lbl_Direccion.Text = "";
 		}
 
 		private void frmIngresoPeliculaFilmico_Load(object sender, EventArgs e)
@@ -372,6 +375,10 @@ namespace ControlDosimetro
 		{
 			if (string.IsNullOrWhiteSpace(lbl_id_cliente.Text)) return;
 
+			lbl_nombreCliente.Text = "";
+			lbl_rut.Text = "";
+			lbl_Direccion.Text = "";
+
 			frmAyudaCliente frm = new frmAyudaCliente(Convert.ToInt64(lbl_id_cliente.Text));
 
 			if (frm.ShowDialog() == DialogResult.OK)
@@ -425,15 +432,16 @@ namespace ControlDosimetro
 		{
 			desdeCodigo = true;
 			lbl_id_cliente.Clear();
+			cbx_anno.Enabled = false;
+			cbx_id_periodo.Enabled = false;
+			cbx_Sucursal.Enabled = false;
 			cbx_anno.DataSource = null;
-			cbx_id_periodo = null;
+			cbx_id_periodo.DataSource = null;
 			lbl_nombreCliente.Text = "";
 			lbl_rut.Text = "";
 			lbl_Direccion.Text = "";
 			cbx_Sucursal.DataSource = null;
-			cbx_anno.Enabled = false;
-			cbx_id_periodo.Enabled = false;
-			cbx_Sucursal.Enabled = false;
+		
 			btnFiltrar.Enabled = false;
 			desdeCodigo = false;
 

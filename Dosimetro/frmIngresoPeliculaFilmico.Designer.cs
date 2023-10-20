@@ -139,7 +139,7 @@
 			// btnFiltrar
 			// 
 			this.btnFiltrar.Image = global::ControlDosimetro.Properties.Resources.filter_16;
-			this.btnFiltrar.Location = new System.Drawing.Point(441, 175);
+			this.btnFiltrar.Location = new System.Drawing.Point(437, 175);
 			this.btnFiltrar.Name = "btnFiltrar";
 			this.btnFiltrar.Size = new System.Drawing.Size(24, 23);
 			this.btnFiltrar.TabIndex = 51;
