@@ -52,6 +52,7 @@ namespace ControlDosimetro
 			ProcIngresarDosisDos = 214,
 			mnuProcConsultaFilmico=216,
 			mnuProcIngPeliv2=217,
+			IngresoPelNuevo=218,
 
 			Ingreso_TLD = 301,
 			EnviadoTLD = 302,
@@ -461,6 +462,16 @@ namespace ControlDosimetro
 
 				case (int)MENU.IngresoPel:
 					objFrm = new frmIngresoPeliculaDosi(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen,
+						Parametros = objParams
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.IngresoPelNuevo:
+					objFrm = new frmIngresoPeliculaFilmico(0)
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen,
@@ -952,6 +963,15 @@ namespace ControlDosimetro
 
 				case (int)MENU.IngresoPel:
 					objFrm = new frmIngresoPeliculaDosi(0)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
+				case (int)MENU.IngresoPelNuevo:
+					objFrm = new frmIngresoPeliculaFilmico(0)
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen

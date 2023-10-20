@@ -95,6 +95,7 @@
 			this.btnAgregarRef = new System.Windows.Forms.Button();
 			this.btnResfrescar = new System.Windows.Forms.Button();
 			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
+			this.button1 = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -787,11 +788,23 @@
 			this.cbx_Sucursal.TabIndex = 20;
 			this.cbx_Sucursal.ValueMember = "Id_sucursal";
 			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(22, 651);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(75, 23);
+			this.button1.TabIndex = 21;
+			this.button1.Text = "button1";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Visible = false;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
 			// frmIngresoDosimetroTLD
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1084, 686);
+			this.Controls.Add(this.button1);
 			this.Controls.Add(this.cbx_Sucursal);
 			this.Controls.Add(this.btnResfrescar);
 			this.Controls.Add(this.btnAgregarRef);
@@ -901,5 +914,6 @@
 		private System.Windows.Forms.ToolStripButton tsbAsignarSucursal;
 		private System.Windows.Forms.ToolStripButton tsbAsignarSeccion;
 		private System.Windows.Forms.CheckBox chkIncluirDosimetro;
+		private System.Windows.Forms.Button button1;
 	}
 }

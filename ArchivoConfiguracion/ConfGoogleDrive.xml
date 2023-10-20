@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Configuracion>
+  <Datos>
+    <ClienteID>733543957088-js2c73lhr40o04ohdge92ospdijmb5cd.apps.googleusercontent.com</ClienteID>
+    <ClienteSecret>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</ClienteSecret>
+    <AccesoToken>ya29.a0AfB_byCPDREQwlMG3VYPukpcmjiODtm5uJ-Feqh23TGmyEpwYHU019NYuOe2_JiARDzpBBLm3mUT9StPiYMBlkaVEmxZUBJyO9XuhEmg_hKOlI7NF1WaymsRPDUparnKnjChqUdv7SmEaFewb8oTke74xQWpeeqe1lHIaCgYKAXESARISFQGOcNnCJ1uc6e-Z4SorymTS0Bx-dg0171</AccesoToken>
+    <RefreshToken>1//04NQVaGaTgo15CgYIARAAGAQSNwF-L9Irwp7-CDW9HGDEByTMjNJHMBUbSSwL1B1rqMkfgoky4YQPDEr6KkNOoN-xnF76IJ-vSZo</RefreshToken>
+    <ApplicationName>APP_SUBIDA</ApplicationName>
+    <Username>pipecato@gmail.com</Username>
+  </Datos>
+</Configuracion>

@@ -1,7 +1,7 @@
 ﻿namespace ControlDosimetro
 {
-    partial class frmIngresoPelicula
-    {
+    partial class frmIngresoPeliculaFilmico
+	{
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -29,13 +29,17 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngresoPeliculaFilmico));
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.btnFiltrar = new System.Windows.Forms.Button();
+			this.label16 = new System.Windows.Forms.Label();
 			this.lbl_rut = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
-			this.btn_Cargar_cliente = new System.Windows.Forms.Button();
 			this.lbl_id_cliente = new System.Windows.Forms.TextBox();
+			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
+			this.label12 = new System.Windows.Forms.Label();
 			this.lbl_Direccion = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.btn_filtro = new System.Windows.Forms.Button();
@@ -43,13 +47,10 @@
 			this.cbx_id_periodo = new System.Windows.Forms.ComboBox();
 			this.lbl_nombreCliente = new System.Windows.Forms.Label();
 			this.grp_Ingreso = new System.Windows.Forms.GroupBox();
-			this.pctAgregarSucursal = new System.Windows.Forms.PictureBox();
 			this.txt_pelrefhasta = new System.Windows.Forms.TextBox();
 			this.label15 = new System.Windows.Forms.Label();
 			this.txt_pelrefdesde = new System.Windows.Forms.TextBox();
 			this.label14 = new System.Windows.Forms.Label();
-			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
-			this.label12 = new System.Windows.Forms.Label();
 			this.dtp_Fecha_dev = new System.Windows.Forms.DateTimePicker();
 			this.label13 = new System.Windows.Forms.Label();
 			this.txt_Servicio = new System.Windows.Forms.TextBox();
@@ -79,11 +80,12 @@
 			this.N_Pelicula = new GridExtension.IntegerGridColumn();
 			this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.N_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColFechaIngreso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColFecha_ingreso = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cmsPopup = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.tsb_Imprimir = new System.Windows.Forms.ToolStripButton();
+			this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
 			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -98,10 +100,8 @@
 			this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btn_Imprimir = new System.Windows.Forms.Button();
 			this.btn_Cerrar = new System.Windows.Forms.Button();
-			this.btn_IngresoDosimetro = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.grp_Ingreso.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pctAgregarSucursal)).BeginInit();
 			this.grpListado.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -111,10 +111,13 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.btnFiltrar);
+			this.groupBox1.Controls.Add(this.label16);
 			this.groupBox1.Controls.Add(this.lbl_rut);
 			this.groupBox1.Controls.Add(this.label11);
-			this.groupBox1.Controls.Add(this.btn_Cargar_cliente);
 			this.groupBox1.Controls.Add(this.lbl_id_cliente);
+			this.groupBox1.Controls.Add(this.cbx_Sucursal);
+			this.groupBox1.Controls.Add(this.label12);
 			this.groupBox1.Controls.Add(this.lbl_Direccion);
 			this.groupBox1.Controls.Add(this.label6);
 			this.groupBox1.Controls.Add(this.btn_filtro);
@@ -128,15 +131,34 @@
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Location = new System.Drawing.Point(5, 28);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(465, 358);
+			this.groupBox1.Size = new System.Drawing.Size(465, 380);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Dato Cliente";
 			// 
+			// btnFiltrar
+			// 
+			this.btnFiltrar.Image = global::ControlDosimetro.Properties.Resources.filter_16;
+			this.btnFiltrar.Location = new System.Drawing.Point(441, 175);
+			this.btnFiltrar.Name = "btnFiltrar";
+			this.btnFiltrar.Size = new System.Drawing.Size(24, 23);
+			this.btnFiltrar.TabIndex = 51;
+			this.btnFiltrar.UseVisualStyleBackColor = true;
+			this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+			// 
+			// label16
+			// 
+			this.label16.AutoSize = true;
+			this.label16.Location = new System.Drawing.Point(12, 98);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(44, 13);
+			this.label16.TabIndex = 50;
+			this.label16.Text = "Nombre";
+			// 
 			// lbl_rut
 			// 
 			this.lbl_rut.AutoSize = true;
-			this.lbl_rut.Location = new System.Drawing.Point(84, 48);
+			this.lbl_rut.Location = new System.Drawing.Point(84, 121);
 			this.lbl_rut.Name = "lbl_rut";
 			this.lbl_rut.Size = new System.Drawing.Size(35, 13);
 			this.lbl_rut.TabIndex = 49;
@@ -145,53 +167,61 @@
 			// label11
 			// 
 			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(12, 48);
+			this.label11.Location = new System.Drawing.Point(12, 121);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(24, 13);
 			this.label11.TabIndex = 48;
 			this.label11.Text = "Rut";
 			// 
-			// btn_Cargar_cliente
-			// 
-			this.btn_Cargar_cliente.Location = new System.Drawing.Point(333, 16);
-			this.btn_Cargar_cliente.Name = "btn_Cargar_cliente";
-			this.btn_Cargar_cliente.Size = new System.Drawing.Size(119, 23);
-			this.btn_Cargar_cliente.TabIndex = 47;
-			this.btn_Cargar_cliente.Text = "Cargar Cliente";
-			this.btn_Cargar_cliente.UseVisualStyleBackColor = true;
-			this.btn_Cargar_cliente.Visible = false;
-			this.btn_Cargar_cliente.Click += new System.EventHandler(this.btn_Cargar_cliente_Click);
-			// 
 			// lbl_id_cliente
 			// 
-			this.lbl_id_cliente.Location = new System.Drawing.Point(87, 19);
+			this.lbl_id_cliente.Location = new System.Drawing.Point(87, 16);
 			this.lbl_id_cliente.Name = "lbl_id_cliente";
 			this.lbl_id_cliente.Size = new System.Drawing.Size(53, 20);
-			this.lbl_id_cliente.TabIndex = 1;
+			this.lbl_id_cliente.TabIndex = 3;
+			// 
+			// cbx_Sucursal
+			// 
+			this.cbx_Sucursal.DisplayMember = "Direccion";
+			this.cbx_Sucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_Sucursal.FormattingEnabled = true;
+			this.cbx_Sucursal.Location = new System.Drawing.Point(87, 177);
+			this.cbx_Sucursal.Name = "cbx_Sucursal";
+			this.cbx_Sucursal.Size = new System.Drawing.Size(349, 21);
+			this.cbx_Sucursal.TabIndex = 14;
+			this.cbx_Sucursal.ValueMember = "Id_Sucursal";
+			this.cbx_Sucursal.SelectedIndexChanged += new System.EventHandler(this.cbx_Sucursal_SelectedIndexChanged);
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Location = new System.Drawing.Point(12, 180);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(48, 13);
+			this.label12.TabIndex = 27;
+			this.label12.Text = "Sucursal";
 			// 
 			// lbl_Direccion
 			// 
 			this.lbl_Direccion.AutoSize = true;
-			this.lbl_Direccion.Location = new System.Drawing.Point(84, 74);
+			this.lbl_Direccion.Location = new System.Drawing.Point(84, 147);
 			this.lbl_Direccion.Name = "lbl_Direccion";
 			this.lbl_Direccion.Size = new System.Drawing.Size(35, 13);
 			this.lbl_Direccion.TabIndex = 46;
 			this.lbl_Direccion.Text = "label1";
-			this.lbl_Direccion.Click += new System.EventHandler(this.lbl_Direccion_Click);
 			// 
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(13, 74);
+			this.label6.Location = new System.Drawing.Point(12, 147);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(52, 13);
 			this.label6.TabIndex = 45;
 			this.label6.Text = "Dirección";
-			this.label6.Click += new System.EventHandler(this.label6_Click);
 			// 
 			// btn_filtro
 			// 
-			this.btn_filtro.Location = new System.Drawing.Point(297, 125);
+			this.btn_filtro.Location = new System.Drawing.Point(242, 14);
 			this.btn_filtro.Name = "btn_filtro";
 			this.btn_filtro.Size = new System.Drawing.Size(95, 23);
 			this.btn_filtro.TabIndex = 44;
@@ -201,7 +231,7 @@
 			// 
 			// btn_cargar
 			// 
-			this.btn_cargar.Location = new System.Drawing.Point(216, 125);
+			this.btn_cargar.Location = new System.Drawing.Point(154, 16);
 			this.btn_cargar.Name = "btn_cargar";
 			this.btn_cargar.Size = new System.Drawing.Size(75, 23);
 			this.btn_cargar.TabIndex = 4;
@@ -211,18 +241,20 @@
 			// 
 			// cbx_id_periodo
 			// 
+			this.cbx_id_periodo.DisplayMember = "Trimestre";
 			this.cbx_id_periodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_id_periodo.FormattingEnabled = true;
-			this.cbx_id_periodo.Location = new System.Drawing.Point(87, 125);
+			this.cbx_id_periodo.Location = new System.Drawing.Point(87, 65);
 			this.cbx_id_periodo.Name = "cbx_id_periodo";
 			this.cbx_id_periodo.Size = new System.Drawing.Size(121, 21);
-			this.cbx_id_periodo.TabIndex = 3;
-			this.cbx_id_periodo.SelectedIndexChanged += new System.EventHandler(this.cbx_id_periodo_SelectedIndexChanged);
+			this.cbx_id_periodo.TabIndex = 2;
+			this.cbx_id_periodo.ValueMember = "Id_Periodo";
+			this.cbx_id_periodo.SelectedValueChanged += new System.EventHandler(this.cbx_id_periodo_SelectedValueChanged);
 			// 
 			// lbl_nombreCliente
 			// 
 			this.lbl_nombreCliente.AutoSize = true;
-			this.lbl_nombreCliente.Location = new System.Drawing.Point(146, 20);
+			this.lbl_nombreCliente.Location = new System.Drawing.Point(84, 98);
 			this.lbl_nombreCliente.Name = "lbl_nombreCliente";
 			this.lbl_nombreCliente.Size = new System.Drawing.Size(35, 13);
 			this.lbl_nombreCliente.TabIndex = 42;
@@ -230,13 +262,10 @@
 			// 
 			// grp_Ingreso
 			// 
-			this.grp_Ingreso.Controls.Add(this.pctAgregarSucursal);
 			this.grp_Ingreso.Controls.Add(this.txt_pelrefhasta);
 			this.grp_Ingreso.Controls.Add(this.label15);
 			this.grp_Ingreso.Controls.Add(this.txt_pelrefdesde);
 			this.grp_Ingreso.Controls.Add(this.label14);
-			this.grp_Ingreso.Controls.Add(this.cbx_Sucursal);
-			this.grp_Ingreso.Controls.Add(this.label12);
 			this.grp_Ingreso.Controls.Add(this.dtp_Fecha_dev);
 			this.grp_Ingreso.Controls.Add(this.label13);
 			this.grp_Ingreso.Controls.Add(this.txt_Servicio);
@@ -253,24 +282,12 @@
 			this.grp_Ingreso.Controls.Add(this.txt_Pelicula);
 			this.grp_Ingreso.Controls.Add(this.label5);
 			this.grp_Ingreso.Controls.Add(this.label4);
-			this.grp_Ingreso.Location = new System.Drawing.Point(7, 156);
+			this.grp_Ingreso.Location = new System.Drawing.Point(6, 204);
 			this.grp_Ingreso.Name = "grp_Ingreso";
-			this.grp_Ingreso.Size = new System.Drawing.Size(452, 196);
+			this.grp_Ingreso.Size = new System.Drawing.Size(452, 172);
 			this.grp_Ingreso.TabIndex = 5;
 			this.grp_Ingreso.TabStop = false;
 			this.grp_Ingreso.Text = "Ingreso Pelicula";
-			// 
-			// pctAgregarSucursal
-			// 
-			this.pctAgregarSucursal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.pctAgregarSucursal.Image = global::ControlDosimetro.Properties.Resources.Agregar;
-			this.pctAgregarSucursal.Location = new System.Drawing.Point(422, 135);
-			this.pctAgregarSucursal.Name = "pctAgregarSucursal";
-			this.pctAgregarSucursal.Size = new System.Drawing.Size(24, 22);
-			this.pctAgregarSucursal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pctAgregarSucursal.TabIndex = 33;
-			this.pctAgregarSucursal.TabStop = false;
-			this.pctAgregarSucursal.Click += new System.EventHandler(this.pctAgregarSucursal_Click);
 			// 
 			// txt_pelrefhasta
 			// 
@@ -305,25 +322,6 @@
 			this.label14.Size = new System.Drawing.Size(114, 13);
 			this.label14.TabIndex = 29;
 			this.label14.Text = "N° Pelicula Referencia";
-			// 
-			// cbx_Sucursal
-			// 
-			this.cbx_Sucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_Sucursal.FormattingEnabled = true;
-			this.cbx_Sucursal.Location = new System.Drawing.Point(68, 135);
-			this.cbx_Sucursal.Name = "cbx_Sucursal";
-			this.cbx_Sucursal.Size = new System.Drawing.Size(349, 21);
-			this.cbx_Sucursal.TabIndex = 14;
-			this.cbx_Sucursal.SelectedIndexChanged += new System.EventHandler(this.cbx_Sucursal_SelectedIndexChanged);
-			// 
-			// label12
-			// 
-			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(3, 138);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(48, 13);
-			this.label12.TabIndex = 27;
-			this.label12.Text = "Sucursal";
 			// 
 			// dtp_Fecha_dev
 			// 
@@ -363,7 +361,7 @@
 			// 
 			// txt_Observacion
 			// 
-			this.txt_Observacion.Location = new System.Drawing.Point(68, 158);
+			this.txt_Observacion.Location = new System.Drawing.Point(68, 139);
 			this.txt_Observacion.MaxLength = 200;
 			this.txt_Observacion.Name = "txt_Observacion";
 			this.txt_Observacion.Size = new System.Drawing.Size(233, 20);
@@ -372,7 +370,7 @@
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(3, 161);
+			this.label9.Location = new System.Drawing.Point(3, 142);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(67, 13);
 			this.label9.TabIndex = 16;
@@ -394,10 +392,9 @@
 			this.txt_NDocumento.Location = new System.Drawing.Point(105, 63);
 			this.txt_NDocumento.MaxLength = 10;
 			this.txt_NDocumento.Name = "txt_NDocumento";
+			this.txt_NDocumento.ReadOnly = true;
 			this.txt_NDocumento.Size = new System.Drawing.Size(100, 20);
 			this.txt_NDocumento.TabIndex = 10;
-			this.txt_NDocumento.AcceptsTabChanged += new System.EventHandler(this.txt_NDocumento_AcceptsTabChanged);
-			this.txt_NDocumento.Leave += new System.EventHandler(this.txt_NDocumento_Leave);
 			// 
 			// label8
 			// 
@@ -441,7 +438,7 @@
 			this.btn_Agregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.btn_Agregar.Image = global::ControlDosimetro.Properties.Resources.Save_32;
 			this.btn_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_Agregar.Location = new System.Drawing.Point(311, 156);
+			this.btn_Agregar.Location = new System.Drawing.Point(327, 119);
 			this.btn_Agregar.Name = "btn_Agregar";
 			this.btn_Agregar.Size = new System.Drawing.Size(87, 40);
 			this.btn_Agregar.TabIndex = 17;
@@ -479,27 +476,28 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(12, 130);
+			this.label1.Location = new System.Drawing.Point(12, 70);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(42, 13);
 			this.label1.TabIndex = 36;
 			this.label1.Text = "periodo";
-			this.label1.Click += new System.EventHandler(this.label1_Click);
 			// 
 			// cbx_anno
 			// 
+			this.cbx_anno.DisplayMember = "anno";
 			this.cbx_anno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbx_anno.FormattingEnabled = true;
-			this.cbx_anno.Location = new System.Drawing.Point(87, 100);
+			this.cbx_anno.Location = new System.Drawing.Point(87, 40);
 			this.cbx_anno.Name = "cbx_anno";
 			this.cbx_anno.Size = new System.Drawing.Size(121, 21);
-			this.cbx_anno.TabIndex = 2;
+			this.cbx_anno.TabIndex = 1;
+			this.cbx_anno.ValueMember = "anno";
 			this.cbx_anno.SelectedIndexChanged += new System.EventHandler(this.cbx_anno_SelectedIndexChanged);
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(12, 20);
+			this.label2.Location = new System.Drawing.Point(12, 19);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(57, 13);
 			this.label2.TabIndex = 34;
@@ -508,12 +506,11 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(12, 103);
+			this.label3.Location = new System.Drawing.Point(12, 43);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(26, 13);
 			this.label3.TabIndex = 4;
 			this.label3.Text = "Año";
-			this.label3.Click += new System.EventHandler(this.label3_Click);
 			// 
 			// grpListado
 			// 
@@ -522,9 +519,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.grpListado.Controls.Add(this.pnl_Progreso);
 			this.grpListado.Controls.Add(this.grdDatos);
-			this.grpListado.Location = new System.Drawing.Point(0, 392);
+			this.grpListado.Location = new System.Drawing.Point(0, 414);
 			this.grpListado.Name = "grpListado";
-			this.grpListado.Size = new System.Drawing.Size(465, 272);
+			this.grpListado.Size = new System.Drawing.Size(465, 270);
 			this.grpListado.TabIndex = 18;
 			this.grpListado.TabStop = false;
 			this.grpListado.Text = "Listado";
@@ -560,14 +557,14 @@
             this.N_Pelicula,
             this.Descripcion,
             this.N_documento,
-            this.ColFechaIngreso});
+            this.ColFecha_ingreso});
 			this.grdDatos.ContextMenuStrip = this.cmsPopup;
 			this.grdDatos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.grdDatos.Location = new System.Drawing.Point(3, 16);
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.grdDatos.Size = new System.Drawing.Size(459, 253);
+			this.grdDatos.Size = new System.Drawing.Size(459, 251);
 			this.grdDatos.TabIndex = 8;
 			this.grdDatos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdDatos_CellFormatting);
 			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
@@ -616,13 +613,13 @@
 			this.N_documento.ReadOnly = true;
 			this.N_documento.Width = 102;
 			// 
-			// ColFechaIngreso
+			// ColFecha_ingreso
 			// 
-			this.ColFechaIngreso.DataPropertyName = "Fecha_ingreso";
-			this.ColFechaIngreso.HeaderText = "Fecha ingreso";
-			this.ColFechaIngreso.Name = "ColFechaIngreso";
-			this.ColFechaIngreso.ReadOnly = true;
-			this.ColFechaIngreso.Width = 99;
+			this.ColFecha_ingreso.DataPropertyName = "Fecha_ingreso";
+			this.ColFecha_ingreso.HeaderText = "Fecha ingreso";
+			this.ColFecha_ingreso.Name = "ColFecha_ingreso";
+			this.ColFecha_ingreso.ReadOnly = true;
+			this.ColFecha_ingreso.Width = 99;
 			// 
 			// cmsPopup
 			// 
@@ -643,7 +640,8 @@
 			// toolStrip1
 			// 
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsb_Imprimir});
+            this.tsb_Imprimir,
+            this.tsdReporte});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(470, 25);
@@ -659,6 +657,15 @@
 			this.tsb_Imprimir.Size = new System.Drawing.Size(23, 22);
 			this.tsb_Imprimir.Text = "Imprimir";
 			this.tsb_Imprimir.Click += new System.EventHandler(this.tsb_Imprimir_Click);
+			// 
+			// tsdReporte
+			// 
+			this.tsdReporte.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsdReporte.Image = ((System.Drawing.Image)(resources.GetObject("tsdReporte.Image")));
+			this.tsdReporte.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsdReporte.Name = "tsdReporte";
+			this.tsdReporte.Size = new System.Drawing.Size(61, 22);
+			this.tsdReporte.Text = "Reporte";
 			// 
 			// dataGridViewTextBoxColumn1
 			// 
@@ -770,18 +777,19 @@
 			// 
 			// btn_Imprimir
 			// 
-			this.btn_Imprimir.Location = new System.Drawing.Point(27, 670);
+			this.btn_Imprimir.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.btn_Imprimir.Location = new System.Drawing.Point(101, 690);
 			this.btn_Imprimir.Name = "btn_Imprimir";
 			this.btn_Imprimir.Size = new System.Drawing.Size(97, 23);
 			this.btn_Imprimir.TabIndex = 7;
-			this.btn_Imprimir.Text = "Imprimir sobre";
+			this.btn_Imprimir.Text = "Imprimir";
 			this.btn_Imprimir.UseVisualStyleBackColor = true;
 			this.btn_Imprimir.Click += new System.EventHandler(this.btn_Imprimir_Click);
 			// 
 			// btn_Cerrar
 			// 
 			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Cerrar.Location = new System.Drawing.Point(371, 670);
+			this.btn_Cerrar.Location = new System.Drawing.Point(371, 690);
 			this.btn_Cerrar.Name = "btn_Cerrar";
 			this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
 			this.btn_Cerrar.TabIndex = 9;
@@ -789,22 +797,11 @@
 			this.btn_Cerrar.UseVisualStyleBackColor = true;
 			this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click);
 			// 
-			// btn_IngresoDosimetro
-			// 
-			this.btn_IngresoDosimetro.Location = new System.Drawing.Point(154, 670);
-			this.btn_IngresoDosimetro.Name = "btn_IngresoDosimetro";
-			this.btn_IngresoDosimetro.Size = new System.Drawing.Size(167, 23);
-			this.btn_IngresoDosimetro.TabIndex = 10;
-			this.btn_IngresoDosimetro.Text = "Impresión Documento";
-			this.btn_IngresoDosimetro.UseVisualStyleBackColor = true;
-			this.btn_IngresoDosimetro.Click += new System.EventHandler(this.btn_IngresoDosimetro_Click);
-			// 
-			// frmIngresoPelicula
+			// frmIngresoPeliculaFilmico
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(470, 702);
-			this.Controls.Add(this.btn_IngresoDosimetro);
+			this.ClientSize = new System.Drawing.Size(470, 722);
 			this.Controls.Add(this.btn_Cerrar);
 			this.Controls.Add(this.btn_Imprimir);
 			this.Controls.Add(this.toolStrip1);
@@ -812,15 +809,14 @@
 			this.Controls.Add(this.groupBox1);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "frmIngresoPelicula";
+			this.Name = "frmIngresoPeliculaFilmico";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Ingreso Pelicula";
-			this.Load += new System.EventHandler(this.frmIngresoPelicula_Load);
+			this.Text = "Ingreso Pelicula filmica";
+			this.Load += new System.EventHandler(this.frmIngresoPeliculaFilmico_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.grp_Ingreso.ResumeLayout(false);
 			this.grp_Ingreso.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pctAgregarSucursal)).EndInit();
 			this.grpListado.ResumeLayout(false);
 			this.pnl_Progreso.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).EndInit();
@@ -877,11 +873,9 @@
                                 private System.Windows.Forms.TextBox txt_NDocumento;
                                 private System.Windows.Forms.Label label8;
                                 private System.Windows.Forms.CheckBox chk_Ref;
-                                private System.Windows.Forms.Button btn_IngresoDosimetro;
                                 private System.Windows.Forms.TextBox txt_Observacion;
                                 private System.Windows.Forms.Label label9;
                                 private System.Windows.Forms.TextBox lbl_id_cliente;
-                                private System.Windows.Forms.Button btn_Cargar_cliente;
                                 private System.Windows.Forms.Label label11;
                                 private System.Windows.Forms.Label lbl_rut;
                                 private System.Windows.Forms.TextBox txt_Servicio;
@@ -894,13 +888,15 @@
                                 private System.Windows.Forms.Label label15;
                                 private System.Windows.Forms.TextBox txt_pelrefdesde;
                                 private System.Windows.Forms.Label label14;
-                                private System.Windows.Forms.PictureBox pctAgregarSucursal;
                                 private System.Windows.Forms.ToolStripButton tsb_Imprimir;
+		private System.Windows.Forms.Label label16;
+		private System.Windows.Forms.ToolStripDropDownButton tsdReporte;
 		private System.Windows.Forms.DataGridViewTextBoxColumn id;
 		private System.Windows.Forms.DataGridViewTextBoxColumn id_estadodosimetro;
 		private GridExtension.IntegerGridColumn N_Pelicula;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
 		private System.Windows.Forms.DataGridViewTextBoxColumn N_documento;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ColFechaIngreso;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColFecha_ingreso;
+		private System.Windows.Forms.Button btnFiltrar;
 	}
 }

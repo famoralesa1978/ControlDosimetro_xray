@@ -32,10 +32,10 @@
     <TargetCulture>es-CL</TargetCulture>
     <ProductName>X-Ray Dosimetro</ProductName>
     <SuiteName>Sistema Dosimetro</SuiteName>
-    <MinimumRequiredVersion>9.0.2.8</MinimumRequiredVersion>
+    <MinimumRequiredVersion>9.0.2.10</MinimumRequiredVersion>
     <WebPage>instalacion.html</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationRevision>11</ApplicationRevision>
     <ApplicationVersion>9.0.2.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -141,8 +141,8 @@
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.ReportViewer.WinForms.10.0.40219.1\lib\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NPOI, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>packages\NPOI.2.5.6\lib\net45\NPOI.dll</HintPath>
@@ -170,6 +170,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
@@ -236,6 +237,12 @@
     </Compile>
     <Compile Include="Dosimetro\frmIngresoDosimetro.Designer.cs">
       <DependentUpon>frmIngresoDosimetro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dosimetro\frmIngresoPeliculaFilmico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dosimetro\frmIngresoPeliculaFilmico.Designer.cs">
+      <DependentUpon>frmIngresoPeliculaFilmico.cs</DependentUpon>
     </Compile>
     <Compile Include="Dosimetro\frmIngresoPeliculaDosi.cs">
       <SubType>Form</SubType>
@@ -740,6 +747,9 @@
     <EmbeddedResource Include="Dosimetro\frmIngresoDosimetro.resx">
       <DependentUpon>frmIngresoDosimetro.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dosimetro\frmIngresoPeliculaFilmico.resx">
+      <DependentUpon>frmIngresoPeliculaFilmico.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dosimetro\frmIngresoPeliculaDosi.resx">
       <DependentUpon>frmIngresoPeliculaDosi.cs</DependentUpon>
     </EmbeddedResource>
@@ -1081,6 +1091,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ArchivoConfiguracion\ConfGoogleDrive.xml" />
     <Content Include="dosimetro.ico" />
     <Content Include="Imagen\Agregar.png" />
     <Content Include="Imagen\Buscar.png" />
@@ -1161,24 +1172,34 @@
     <Folder Include="TLD\" />
   </ItemGroup>
   <ItemGroup>
-    <PublishFile Include="bin\Debug\dllLibreriaMysql.pdb">
+    <PublishFile Include="ArchivoConfiguracion\ConfGoogleDrive.xml">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="bin\Debug\dllLibreriaMysql.pdb">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="dllLibreriaMysql.pdb">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>

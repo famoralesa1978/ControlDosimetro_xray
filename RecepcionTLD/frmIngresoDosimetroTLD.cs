@@ -13,6 +13,15 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+//using Google.Apis.Drive.v3;
+//using Google.Apis.Auth.OAuth2.Responses;
+//using static Google.Apis.Drive.v3.DriveService;
+//using Google.Apis.Auth.OAuth2;
+//using Google.Apis.Auth.OAuth2.Flows;
+using System.Xml;
+using System.Xml.Linq;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace ControlDosimetro
 {
@@ -876,12 +885,8 @@ namespace ControlDosimetro
 
 		private void btn_Cargar_cliente_Click(object sender, EventArgs e)
 		{
-			
-			if(String.IsNullOrWhiteSpace(lbl_id_cliente.Text))
-			{
-				classFuncionesGenerales.mensajes.MensajeError("Ingrese le número de cliente");
-				return;
-			}
+
+			if (String.IsNullOrWhiteSpace(lbl_id_cliente.Text)) return;
 			Cursor = Cursors.WaitCursor;
 			Inicializar = false;
 
@@ -1476,8 +1481,73 @@ namespace ControlDosimetro
 
 
 
+
 		#endregion
 
+		private void button1_Click(object sender, EventArgs e)
+		{
+			//string ClienteID = "";
+			//string ClienteSecret = "";
+			//string AccesoToken = "";
+			//string RefreshToken = "";
+			//string ApplicationName = "";
+			//string Username = "";
+			//string archivo = Path.Combine(Application.StartupPath, @"C:\BaseTLD\ArchivoConfiguracion\ConfGoogleDrive.xml");
 
+			//XDocument nodoRaiz = XDocument.Load(@archivo, LoadOptions.None);
+			//IEnumerable<XElement> nodo = nodoRaiz.Descendants("Datos");
+
+			//foreach (XElement ele in nodo)
+			//{
+			//	ClienteID = ele.Element("ClienteID").Value;
+			//	ClienteSecret = ele.Element("ClienteSecret").Value;
+			//	AccesoToken = ele.Element("AccesoToken").Value;
+			//	RefreshToken = ele.Element("RefreshToken").Value;
+			//	ApplicationName = ele.Element("ApplicationName").Value;
+			//	Username = ele.Element("Username").Value;
+			//}
+			
+			//var service= Getservice(ClienteID, ClienteSecret, AccesoToken, RefreshToken, ApplicationName, Username);
+			//var driverFolder = new Google.Apis.Drive.v3.Data.File();
+			//driverFolder.Name = "XXXX";
+			//driverFolder.MimeType = "application/vnd.google-apps.folder";
+			//driverFolder.Parents = new string[] { "//" };
+			//var command = service.Files.Create(driverFolder);
+			//var file = command.Execute();
+		}
+
+		//private static DriveService Getservice(string strClienteID,string strClienteSecret,string strAccesoToken, string strRefreshToken,string strApplicationName,string strUsername)
+		//{
+		//	var tokenResponse = new TokenResponse
+		//	{
+		//		AccessToken = strAccesoToken,
+		//		RefreshToken = strRefreshToken,
+		//	};
+
+		//	var applicationName = strApplicationName;
+		//	var username = strUsername;
+
+		//	var apiCodeFlow = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer()
+		//	{
+		//		ClientSecrets = new ClientSecrets
+		//		{
+		//			ClientId = strClienteID,
+		//			ClientSecret = strClienteSecret
+		//		},
+		//		Scopes = new[] { Scope.Drive },
+		//		DataStore = new Google.Apis.Util.Store.FileDataStore(applicationName)
+
+		//	});
+
+		//	var credential = new UserCredential(apiCodeFlow, username, tokenResponse);
+
+		//	var service = new DriveService(new Google.Apis.Services.BaseClientService.Initializer
+		//	{
+		//		HttpClientInitializer=credential,
+		//		ApplicationName=applicationName
+		//	});
+
+		//	return service;
+		//}
 	}
 }
