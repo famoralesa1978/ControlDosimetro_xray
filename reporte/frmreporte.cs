@@ -129,6 +129,17 @@ namespace ControlDosimetro
 
 					this.reportViewer1.LocalReport.DataSources.Add(datasource);
 					break;
+				case 11:
+					reportViewer1.LocalReport.ReportEmbeddedResource = "ControlDosimetro.reporte.rptDctoFilmico.rdlc";
+					ReportDataSource rdsDerDctoFilmico = new ReportDataSource("DataSet2", ds2.Tables[1]);
+					ReportDataSource rdsDerDctoFilmicoRef = new ReportDataSource("DataSet3", ds2.Tables[2]);
+					this.reportViewer1.LocalReport.DataSources.Clear();
+
+					this.reportViewer1.LocalReport.DataSources.Add(datasource);
+					this.reportViewer1.LocalReport.DataSources.Add(rdsDerDctoFilmico);
+					this.reportViewer1.LocalReport.DataSources.Add(rdsDerDctoFilmicoRef);
+					break;
+				//rptDctoFilmico
 				default:
 					Console.WriteLine("Default case");
 					break;

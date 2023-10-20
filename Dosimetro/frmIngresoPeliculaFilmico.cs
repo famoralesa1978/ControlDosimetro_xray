@@ -504,8 +504,8 @@ namespace ControlDosimetro
 
 			DataSet dt;
 			dt = RptInforme();
-
-			frmreporte frm = new frmreporte(dt, dt, 2);
+			//rptDctoFilmico
+			frmreporte frm = new frmreporte(dt, dt, 11);
 			frm.Show(this);
 			//Llamado_reporte(dt);
 

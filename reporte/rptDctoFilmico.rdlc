@@ -9,7 +9,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="Dosimetría Personal Fílmica " + cstr(First(Fields!Trimestre.Value, "Encabezado"))</Value>
+                <Value>="Dosimetría Personal Fílmica " &amp; First(Fields!Trimestre.Value, "DataSet1")</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontSize>14pt</FontSize>
@@ -44,7 +44,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="Estos dosímetros deben ser usados entre el " &amp; First(Fields!periodo.Value, "Encabezado")</Value>
+                <Value>="Estos dosímetros deben ser usados entre el " &amp; First(Fields!periodo.Value, "DataSet1")</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -555,23 +555,14 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>Detalle</DataSetName>
-        <Filters>
-          <Filter>
-            <FilterExpression>=Fields!Referecia.Value</FilterExpression>
-            <Operator>Equal</Operator>
-            <FilterValues>
-              <FilterValue DataType="Boolean">false</FilterValue>
-            </FilterValues>
-          </Filter>
-        </Filters>
+        <DataSetName>DataSet2</DataSetName>
         <SortExpressions>
           <SortExpression>
             <Value>=Fields!NPelicula.Value</Value>
           </SortExpression>
         </SortExpressions>
         <Top>5.78337cm</Top>
-        <Left>0.38735cm</Left>
+        <Left>0.38734cm</Left>
         <Height>1.2cm</Height>
         <Width>19.68438cm</Width>
         <ZIndex>3</ZIndex>
@@ -814,22 +805,13 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>Detalle</DataSetName>
-        <Filters>
-          <Filter>
-            <FilterExpression>=Fields!Referecia.Value</FilterExpression>
-            <Operator>Equal</Operator>
-            <FilterValues>
-              <FilterValue DataType="Boolean">true</FilterValue>
-            </FilterValues>
-          </Filter>
-        </Filters>
+        <DataSetName>DataSet3</DataSetName>
         <SortExpressions>
           <SortExpression>
             <Value>=Fields!NPelicula.Value</Value>
           </SortExpression>
         </SortExpressions>
-        <Top>7.27873cm</Top>
+        <Top>7.40573cm</Top>
         <Left>0.38735cm</Left>
         <Height>0.6cm</Height>
         <Width>19.68438cm</Width>
@@ -1018,7 +1000,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!FechaDcto.Value, "Encabezado")</Value>
+                <Value>=First(Fields!FechaDcto.Value, "DataSet1")</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontWeight>Normal</FontWeight>
@@ -1536,7 +1518,7 @@
             <TablixMember />
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>Encabezado</DataSetName>
+        <DataSetName>DataSet1</DataSetName>
         <Top>1.42875cm</Top>
         <Left>0.38735cm</Left>
         <Height>2.4cm</Height>
@@ -1548,6 +1530,39 @@
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="Textbox7">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Referencia</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox1</rd:DefaultName>
+        <Top>6.985cm</Top>
+        <Left>0.35158cm</Left>
+        <Height>0.54708cm</Height>
+        <Width>2.28833cm</Width>
+        <ZIndex>9</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>5.52622in</Height>
     <Style />
@@ -1612,7 +1627,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!Folio.Value, "Encabezado")</Value>
+                  <Value>=First(Fields!Folio.Value, "DataSet1")</Value>
                   <Style>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -1658,7 +1673,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>="Página" &amp; cstr(Globals!PageNumber)  &amp; " de " &amp; cstr(Globals!TotalPages)</Value>
+                  <Value>="Página " &amp; cstr(Globals!PageNumber)  &amp; " de " &amp; cstr(Globals!TotalPages)</Value>
                   <Style>
                     <FontFamily>Calibri</FontFamily>
                   </Style>
@@ -1700,52 +1715,28 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="DB_A2B812_ControlDataSet">
+    <DataSource Name="ReporteDS">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>83fa135a-96e9-4b57-924a-4221fb4a97a1</rd:DataSourceID>
+      <rd:DataSourceID>946ad93c-cf9d-4af0-ab0c-618c10467103</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="Detalle">
+    <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>DB_A2B812_ControlDataSet</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="NPelicula">
-          <DataField>NPelicula</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="Referecia">
-          <DataField>Referecia</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>DB_A2B812_ControlDataSet</rd:DataSetName>
-        <rd:SchemaPath>E:\Publicacion\Proyecto\Xray\Escritorio\ControlDosimetro_xray\DB_A2B812_ControlDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>DctoFilmicoDet</rd:TableName>
-        <rd:TableAdapterFillMethod />
-        <rd:TableAdapterGetDataMethod />
-        <rd:TableAdapterName />
-      </rd:DataSetInfo>
-    </DataSet>
-    <DataSet Name="Encabezado">
-      <Query>
-        <DataSourceName>DB_A2B812_ControlDataSet</DataSourceName>
+        <DataSourceName>ReporteDS</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
         <Field Name="Trimestre">
           <DataField>Trimestre</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Nombre">
           <DataField>Nombre</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="N_Cliente">
           <DataField>N_Cliente</DataField>
@@ -1753,11 +1744,11 @@
         </Field>
         <Field Name="Direccion">
           <DataField>Direccion</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Comuna">
           <DataField>Comuna</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Rut">
           <DataField>Rut</DataField>
@@ -1781,9 +1772,57 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>DB_A2B812_ControlDataSet</rd:DataSetName>
-        <rd:SchemaPath>E:\Publicacion\Proyecto\Xray\Escritorio\ControlDosimetro_xray\DB_A2B812_ControlDataSet.xsd</rd:SchemaPath>
+        <rd:DataSetName>ReporteDS</rd:DataSetName>
+        <rd:SchemaPath>E:\Publicacion\Proyecto\Xray\Escritorio\ControlDosimetro_xray\ReporteDS.xsd</rd:SchemaPath>
         <rd:TableName>DctoFilmicoEnc</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DataSet2">
+      <Query>
+        <DataSourceName>ReporteDS</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="NPelicula">
+          <DataField>NPelicula</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Referecia">
+          <DataField>Referecia</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>ReporteDS</rd:DataSetName>
+        <rd:SchemaPath>E:\Publicacion\Proyecto\Xray\Escritorio\ControlDosimetro_xray\ReporteDS.xsd</rd:SchemaPath>
+        <rd:TableName>DctoFilmicoDet</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DataSet3">
+      <Query>
+        <DataSourceName>ReporteDS</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="NPelicula">
+          <DataField>NPelicula</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Referecia">
+          <DataField>Referecia</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>ReporteDS</rd:DataSetName>
+        <rd:SchemaPath>E:\Publicacion\Proyecto\Xray\Escritorio\ControlDosimetro_xray\ReporteDS.xsd</rd:SchemaPath>
+        <rd:TableName>DctoFilmicoDet</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
         <rd:TableAdapterName />
