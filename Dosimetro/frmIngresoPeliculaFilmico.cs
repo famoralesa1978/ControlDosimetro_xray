@@ -223,12 +223,6 @@ namespace ControlDosimetro
 					if (chk_Ref.Checked == true)
 						intsuma = 0;
 				}
-
-				if (((intsuma + intcant) >= 13) && (intInicio != 0))
-				{
-					MessageBox.Show("No se puede agregar mas de 13 pelicula");
-				}
-				else
 				{
 					string strError = "";
 					if (intInicio != 0)

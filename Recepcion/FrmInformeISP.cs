@@ -379,6 +379,398 @@ namespace ControlDosimetro
 			classFuncionesGenerales.mensajes.MensajeProcesoOK("Proceso terminado");
 			Cursor = Cursors.Default;
 		}
+		private void GenerarPorSucursalNoDevueltoTodos()
+		{
+			Cursor = Cursors.WaitCursor;
+			for (int intFila = 1; intFila < cbx_id_seccion.Items.Count; intFila++)
+			{
+
+				cbx_id_seccion.SelectedIndex = intFila;
+				btnResfrescar_Click(null, null);
+				GenerarPorSucursalNoDevuelto();
+
+			}
+			classFuncionesGenerales.mensajes.MensajeProcesoOK("Proceso terminado");
+			Cursor = Cursors.Default;
+		}//GenerarPorSucursalNoDevueltoTodos
+		private void GenerarPorSucursalNoDevuelto()
+		{
+			SqlCommand cmd = new SqlCommand();
+			//	  SqlCommand cmd = new SqlCommand();
+			SqlCommand cmdpersonal = new SqlCommand();
+			//  SqlCommand cmdpersonal = new SqlCommand();
+			SqlCommand cmdperiodo = new SqlCommand();
+			//  SqlCommand cmdperiodo = new SqlCommand();
+
+			// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
+			DataGridViewCheckBoxCell checkGenerar;
+			DataGridViewCheckBoxCell checkCell;
+			DataGridViewCheckBoxCell chkcondosis;
+			DataGridViewCheckBoxCell chkTLD;
+			DataGridViewTextBoxCell txtvalor;
+			DataGridViewTextBoxCell txtndocumento;
+			DataGridViewTextBoxCell txtnpelicula;
+			DataGridViewTextBoxCell txtnpeliculaoriginal;
+			DataGridViewComboBoxCell cbxEstado;
+			DataGridViewTextBoxCell txtid_sucursal;
+			string strn_cliente;
+			string strid_personal;
+			string strid_dosimetro;
+			string strEstado;
+
+			btnGenararPelNoDevuelto.Enabled= btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = false;
+
+			SqlCommand cmdArchivo = new SqlCommand();
+			DataSet dtArchivo;
+			cmdArchivo.CommandText = "" +
+				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=6 order by orden ";
+			cmdArchivo.CommandType = CommandType.Text;
+			dtArchivo = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
+
+			DataSet dtformato;
+			cmdArchivo.CommandText = "" +
+				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=5 order by orden ";
+			cmdArchivo.CommandType = CommandType.Text;
+			dtformato = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
+			//string targetPath = @ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text;
+			string targetPath = "";
+
+			if (rbtOiginal.Checked)
+				targetPath = @dtArchivo.Tables[0].Rows[0]["Glosa"].ToString() + "Cliente " + lbl_id_cliente.Text;
+			else
+				targetPath = @"C:\\Doc_Xray\\" + "Cliente " + lbl_id_cliente.Text;
+
+
+			if (!System.IO.Directory.Exists(targetPath))
+			{
+				try
+				{
+					System.IO.Directory.CreateDirectory(targetPath);
+				}
+				catch (Exception e)
+				{
+					classFuncionesGenerales.mensajes.MensajeError(e.Message);
+					return;
+				}
+			}
+
+
+
+			//  targetPath = dtArchivo.Tables[0].Rows[0]["Glosa"].ToString();
+
+
+			// targetPath = ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text + "\\" + cbx_anno.Text;
+			targetPath = targetPath + "\\" + cbx_anno.Text;
+			if (!System.IO.Directory.Exists(targetPath))
+			{
+				System.IO.Directory.CreateDirectory(targetPath);
+			}
+
+			// targetPath = ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text + "\\" + cbx_anno.Text + "\\" + cbx_id_periodo.Text + "\\";
+			targetPath = targetPath + "\\" + cbx_id_periodo.Text + "\\";
+
+			if (!System.IO.Directory.Exists(targetPath))
+			{
+				System.IO.Directory.CreateDirectory(targetPath);
+			}
+
+			targetPath = targetPath + "\\pendiente\\";
+
+			if (!System.IO.Directory.Exists(targetPath))
+			{
+				System.IO.Directory.CreateDirectory(targetPath);
+			}
+			//Environment.CurrentDirectory = (targetPath);
+
+			//**************carga periodo
+			DataSet dtPeriodo;
+			// SqlCommand cmdPeriodo = new SqlCommand();
+			SqlCommand cmdPeriodo = new SqlCommand
+			{
+				CommandText = "SELECT fecha_inicio,fecha_termino " +
+										" FROM conf_periodo " +
+										//"where mes =3 and anno=" + cbx_anno.Text;  
+										"WHERE  Id_Periodo= " + cbx_id_periodo.SelectedValue,
+				CommandType = CommandType.Text
+			};
+			dtPeriodo = Conectar.Listar(Clases.clsBD.BD, cmdPeriodo);
+			string strfecha_inicio = dtPeriodo.Tables[0].Rows[0]["fecha_inicio"].ToString();
+			string strfecha_termino = dtPeriodo.Tables[0].Rows[0]["fecha_termino"].ToString();
+			//**************carga cliente
+			//SqlCommand cmdCliente = new SqlCommand();
+			SqlCommand cmdCliente = new SqlCommand
+			{
+				CommandText = "pa_DosimetroISPGenerar_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue + ",'" + lbl_rut_cliente.Text + "'",
+
+				CommandType = CommandType.Text
+			};
+
+			//clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(lbl_id_cliente.Text.ToString()), ref lbl_rut_cliente, ref lbl_nombreCliente);
+
+			DataSet dt;
+			DataSet dtCliente;
+			dt = Conectar.Listar(Clases.clsBD.BD, cmdCliente);
+
+			string strArchivo = "";
+			if (rbtOiginal.Checked)
+				strArchivo = dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "Informe de Dosimetría_NoDevuelto.docx";
+			else
+				strArchivo = @"C:\\Doc_Xray\\baseCliente\\Plantilla\\Informe de Dosimetría_NoDevuelto.docx";//Informe de Dosimetría
+
+
+
+
+			//   string strArchivo = ConfigurationManager.AppSettings["Archivo"] + "Plantillaword.docx";
+
+			int i;
+			int intCantControlado = 0;
+			int intCantNR = 0;
+
+			for (int idatos = 0; idatos <= dt.Tables[0].Rows.Count - 1; idatos++)
+			{
+				#region "Proceso"
+				int FilaWord = 0;
+				string strRunEmpresa = lbl_rut_cliente.Text;
+				string strRazon_SocialEmpresa = lbl_nombreCliente.Text;
+				string strDireccionEmpresa = dt.Tables[0].Rows[idatos]["DireccionCliente"].ToString();
+				string strDireccionEmpresaSucursal = cbx_Sucursal.Text;
+				string strTelefonoEmpresa = dt.Tables[0].Rows[idatos]["Telefono"].ToString();
+				string strregionEmpresa = dt.Tables[0].Rows[idatos]["region"].ToString();
+				string strProvinciaEmpresa = dt.Tables[0].Rows[idatos]["Provincia"].ToString();
+				string strcomunaEmpresa = dt.Tables[0].Rows[idatos]["comuna"].ToString();
+				string strSeccion = (int)cbx_id_seccion.SelectedValue == 0 ? "" : cbx_id_seccion.Text;
+				string strFechaRecepcion = dt.Tables[0].Rows[idatos]["FechaRecepcion"].ToString();
+				string strOpr = dt.Tables[0].Rows[idatos]["Opr"].ToString();
+				string strRunOPR = dt.Tables[0].Rows[idatos]["OPR_RUT"].ToString();
+				string strEmailOPR = dt.Tables[0].Rows[idatos]["EmailOPR"].ToString();
+				string strFechaDevolucion = dt.Tables[0].Rows[0]["FechaRecepcion"].ToString();
+				//string strN_Documento = dt.Tables[0].Rows[idatos]["N_Documento"].ToString();
+				//	string strId_sucursal = dt.Tables[0].Rows[idatos]["Id_sucursal"].ToString();
+				String strArchivoCopiar = "";
+				strArchivoCopiar = targetPath + "ClientePendiente" + lbl_id_cliente.Text + "_" + strDireccionEmpresaSucursal + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text + "_" + strSeccion + ".docx";
+
+				//strRunEmpresa + "_" + cbx_id_periodo.Text + ".docx";
+				//*************************************
+
+
+				File.Copy(strArchivo, strArchivoCopiar, true);
+
+
+				int intfila = 2;
+				bool TieneFilmica = false;
+				bool TieneTLD = false;
+				string strTecnica = "";
+				string[] data1;
+				string[] data2;
+				string[] data3;
+				string[] data4;
+				string[] data5;
+				string[] data6;
+				string[] data7;
+				data1 = new string[] { "" };//strRazon_SocialEmpresa
+				data2 = new string[] { "" };
+				data3 = new string[] { "" };
+				data4 = new string[] { "" };
+				data5 = new string[] { "" };
+				data6 = new string[] { "" };
+				data7 = new string[] { "" };
+
+
+				pnl_Progreso.Visible = true;
+				pgb_Barra.Minimum = 0;
+				pgb_Barra.Maximum = grdDatos.RowCount;
+				pnl_Progreso.Refresh();
+				grdDatos.Sort(grdDatos.Columns[N_pelicula.Index], ListSortDirection.Ascending);
+				grdDatos.Refresh();
+				for (int intfilagrid = 0; intfilagrid <= grdDatos.RowCount - 1; intfilagrid++)
+				{
+					pgb_Barra.Value = intfilagrid + 1;
+					pgb_Barra.Refresh();
+					checkGenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[intfilagrid].Cells["Generar"];
+					checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[intfilagrid].Cells["enviado"];
+					chkcondosis = (DataGridViewCheckBoxCell)grdDatos.Rows[intfilagrid].Cells["condosis"];
+					chkTLD = (DataGridViewCheckBoxCell)grdDatos.Rows[intfilagrid].Cells["TLD"];
+					txtvalor = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["valor"];
+					txtndocumento = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["NDocumento"];
+					txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["N_pelicula"];
+					txtnpeliculaoriginal = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["N_TLD_Original"];
+
+					cbxEstado = (DataGridViewComboBoxCell)grdDatos.Rows[intfilagrid].Cells["Estado"];
+					txtid_sucursal = (DataGridViewTextBoxCell)grdDatos.Rows[intfilagrid].Cells["id_sucursal"];
+
+					if (TieneFilmica == false)
+						TieneFilmica = chkTLD.Value.ToString() == "0" ? true : false;
+					if (TieneTLD == false)
+						TieneTLD = chkTLD.Value.ToString() == "1" ? true : false;
+					if (cbxEstado.Value.ToString() != "0")
+					{
+						DataSet dtcombo;
+						SqlCommand cmdcombo = new SqlCommand
+						{
+							CommandText = " " +
+							"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 and Id_DetParametro= " + cbxEstado.Value.ToString() +
+							"order by orden ",
+							CommandType = CommandType.Text
+						};
+						dtcombo = Conectar.Listar(Clases.clsBD.BD, cmdcombo);
+						strEstado = dtcombo.Tables[0].Rows[0]["glosa"].ToString();
+					}
+					else
+						strEstado = "";
+					if (strEstado.Replace("DND", "NR") == "NR")
+					{
+						Array.Resize(ref data1, FilaWord + 1);
+						Array.Resize(ref data2, FilaWord + 1);
+						Array.Resize(ref data3, FilaWord + 1);
+						Array.Resize(ref data4, FilaWord + 1);
+						Array.Resize(ref data5, FilaWord + 1);
+						Array.Resize(ref data6, FilaWord + 1);
+						Array.Resize(ref data7, FilaWord + 1);
+						strn_cliente = grdDatos.Rows[intfilagrid].Cells["N_Cliente"].Value.ToString();
+						strid_personal = grdDatos.Rows[intfilagrid].Cells["id_personal"].Value.ToString();
+						strid_dosimetro = grdDatos.Rows[intfilagrid].Cells["id_dosimetro"].Value.ToString();
+
+						cmdpersonal.CommandText = "SELECT P.Id_Personal, Rut,SUBSTRING(UPPER (Nombres), 1, 1) + SubSTRING (LOWER (Nombres), 2,len(Nombres)) Nombres, " +
+											"SUBSTRING(UPPER (Paterno), 1, 1) + SUbSTRING (LOWER (Paterno), 2,len(Paterno)) Paterno," +
+											"SUBSTRING(UPPER (Maternos), 1, 1) + SUbSTRING (LOWER (Maternos), 2,len(Maternos))Maternos," +
+											"Id_Seccion,p.Id_estado, " +
+								 " cd.glosa,profesion,Fecha_inicio,fecha_termino,Usuario,Fecha_agregado,getdate()as Fecha_Modificacion " +
+								 " FROM tbl_personal P inner join conf_detparametro cd on p.Id_sexo=cd.Id_DetParametro" +
+								 " inner join glo_profesion pro on pro.id_profesion=p.Id_profesion " +
+								 " WHERE Id_Personal= " + strid_personal.ToString() + " and id_cliente=" + lbl_id_cliente.Text +
+								 "";
+						dtCliente = Conectar.Listar(Clases.clsBD.BD, cmdpersonal);
+
+
+						//if (strId_sucursal == txtid_sucursal.Value.ToString())
+						//{
+						//}
+						#region "Genera  word y excel"
+						grdDatos.Rows[intfilagrid].DefaultCellStyle.SelectionBackColor = System.Drawing.Color.White;
+						string strUltimoAnno = "";
+						string strUltimo5Anno = "";
+						if ((strid_dosimetro != "0")) //&& (checkGenerar.Value.ToString() == "1")					 
+						{
+							if (strEstado == "" || strEstado == "MNR")
+							{
+
+								intCantControlado += 1;
+							}
+							//	id_personal,
+
+							if (dt.Tables[2] != null)
+							{
+								DataTable dtUltimoAnno = dt.Tables[2];
+								dtUltimoAnno.DefaultView.RowFilter = String.Format("id_personal={0}", strid_personal);
+								strUltimoAnno = "";
+								strUltimo5Anno = "";
+								if (dtUltimoAnno.DefaultView.ToTable().Rows.Count > 0)
+								{
+									strUltimoAnno = dtUltimoAnno.DefaultView.ToTable().Rows[0]["UltimoAnno"].ToString();
+									strUltimo5Anno = dtUltimoAnno.DefaultView.ToTable().Rows[0]["Ultimo5Anno"].ToString();
+								}
+
+							}
+							if (strEstado == "" || strEstado == "MNR")
+								intfila = intfila + 1;
+
+
+						}
+
+						data1[FilaWord] = txtnpelicula.Value.ToString();
+						data2[FilaWord] = dtCliente.Tables[0].Rows[0]["Rut"].ToString();
+
+						data3[FilaWord] = dtCliente.Tables[0].Rows[0]["Nombres"].ToString() + " " + dtCliente.Tables[0].Rows[0]["Paterno"].ToString() + " " + dtCliente.Tables[0].Rows[0]["Maternos"].ToString();
+						if (chkcondosis.Value.ToString() == "0")
+							data4[FilaWord] = !string.IsNullOrWhiteSpace(strEstado) && strEstado != "MNR" ? "" : strEstado == "MNR" ? "0" : "";
+						else
+							data4[FilaWord] = txtvalor.Value.ToString();
+
+						if (string.IsNullOrWhiteSpace(strEstado) && chkcondosis.Value.ToString() == "1")
+							strEstado = Convert.ToDouble(txtvalor.Value.ToString()) < 0.1 ? "MNR" : "";
+						data5[FilaWord] = strUltimoAnno;
+						data6[FilaWord] = strUltimo5Anno;
+						data7[FilaWord] = strEstado.Replace("DND", "NR");
+
+						if (strEstado == "DND")
+							intCantNR += 1;
+						//}
+						// this.p
+
+						FilaWord = FilaWord + 1;
+						//}
+					}
+					#endregion
+
+				}
+				if (FilaWord > 0)
+				{
+					#region Update Document Bookmarks Openxml
+					strcampoMarcador = "empresa";
+
+					using (WordprocessingDocument doc = WordprocessingDocument.Open(strArchivoCopiar, true))
+					{
+						//string strSemetre1 = "";
+						//if (cbx_id_periodo.Text.Substring(0, 1) == "1")
+						//	strSemetre1 = "primer";
+						//if (cbx_id_periodo.Text.Substring(0, 1) == "2")
+						//	strSemetre1 = "segundo";
+						//if (cbx_id_periodo.Text.Substring(0, 1) == "3")
+						//	strSemetre1 = "tercer";
+						//if (cbx_id_periodo.Text.Substring(0, 1) == "4")
+						//	strSemetre1 = "cuarto";
+
+						strcampoMarcador = "Empresa";
+						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0} ({1})", lbl_nombreCliente.Text, lbl_id_cliente.Text));
+						strcampoMarcador = "Rut";
+						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), lbl_rut_cliente.Text);//strRazon_SocialEmpresa
+						strcampoMarcador = "Periodo";
+						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0}T {1}", cbx_id_periodo.Text.Substring(0, 1), cbx_anno.Text));//
+						strcampoMarcador = "FechaInforme";
+						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0}/{1}/{2}", DateTime.Now.Day, DateTime.Now.Month.ToString("D2"), DateTime.Now.Year));
+						strcampoMarcador = "Sucursal";
+						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strDireccionEmpresaSucursal);
+						strcampoMarcador = "Direccion";
+						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strDireccionEmpresa);
+						strcampoMarcador = "NombreOPR";
+						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strOpr);
+						strcampoMarcador = "RunOPR";
+						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strRunOPR);
+						strcampoMarcador = "MailOpr";
+						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strEmailOPR);
+						strcampoMarcador = "FechaDevolucion";
+						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strFechaDevolucion);
+						strcampoMarcador = "FechaLectura";
+						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strFechaDevolucion);
+
+
+						if (TieneFilmica)//TLD/FILMICA
+							strTecnica = String.IsNullOrEmpty(strTecnica) ? "FILMICA" : strTecnica + "/FILMICA";
+						if (TieneTLD)
+							strTecnica = String.IsNullOrEmpty(strTecnica) ? "TLD" : strTecnica + "/TLD";
+						strcampoMarcador = "TLDFILMICA";
+						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strTecnica);
+
+					}
+					if (data1.Count() > 0)
+						WDAddTableV2(strArchivoCopiar, data1, data2, data3, strfecha_inicio, strfecha_termino, strFechaRecepcion, data4, data5, data6, data7);
+
+					#endregion
+				}
+
+				#endregion
+			}
+
+
+
+			MessageBox.Show("Informacion grabada y archivo generado \n Ubicación Archivo:" + targetPath);
+
+			btnGenararPelNoDevuelto.Enabled=btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
+			pnl_Progreso.Visible = false;
+
+			Listar_Personal();
+		}
+
 		private void GenerarPorSucursalV2()
 		{
 			SqlCommand cmd = new SqlCommand();
@@ -405,7 +797,7 @@ namespace ControlDosimetro
 			string strpath;
 			string strpathcopiar;
 			string strEstado;
-			btnGenerarArchivoNuevo.Enabled=btnGenerar.Enabled = false;
+			btnGenararPelNoDevuelto.Enabled=btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = false;
 
 			SqlCommand cmdArchivo = new SqlCommand();
 			DataSet dtArchivo;
@@ -564,7 +956,7 @@ namespace ControlDosimetro
 				string strSeccion = (int)cbx_id_seccion.SelectedValue == 0 ? "" : cbx_id_seccion.Text;
 				string strFechaRecepcion = dt.Tables[0].Rows[idatos]["FechaRecepcion"].ToString();
 				string strOpr = dt.Tables[0].Rows[idatos]["Opr"].ToString();
-				string strRunOPR = dt.Tables[0].Rows[idatos]["OPR_RUT"].ToString(); 
+				string strRunOPR = dt.Tables[0].Rows[idatos]["OPR_RUT"].ToString();
 				string strEmailOPR = dt.Tables[0].Rows[idatos]["EmailOPR"].ToString();
 				string strFechaDevolucion = dt.Tables[0].Rows[0]["FechaRecepcion"].ToString();
 				//string strN_Documento = dt.Tables[0].Rows[idatos]["N_Documento"].ToString();
@@ -726,7 +1118,7 @@ namespace ControlDosimetro
 							intCantControlado += 1;
 						}
 
-						if(checkCell.Value.ToString() == "0")
+						if (checkCell.Value.ToString() == "0")
 						{
 							cmd.CommandText = "update tbl_dosimetria " +
 															"set enviado=1" +
@@ -739,10 +1131,10 @@ namespace ControlDosimetro
 							cmd.CommandType = CommandType.Text;
 							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 						}
-						
+
 
 						//	id_personal,
-					
+
 						if (dt.Tables[2] != null)
 						{
 							DataTable dtUltimoAnno = dt.Tables[2];
@@ -759,7 +1151,7 @@ namespace ControlDosimetro
 						if (strEstado == "" || strEstado == "MNR")
 							intfila = intfila + 1;
 
-						
+
 					}
 					data1[FilaWord] = txtnpelicula.Value.ToString();
 					data2[FilaWord] = dtCliente.Tables[0].Rows[0]["Rut"].ToString();
@@ -776,7 +1168,7 @@ namespace ControlDosimetro
 					data6[FilaWord] = strUltimo5Anno;
 					data7[FilaWord] = strEstado.Replace("DND", "NR");
 
-					if(strEstado=="DND")
+					if (strEstado == "DND")
 						intCantNR += 1;
 					//}
 					// this.p
@@ -805,7 +1197,7 @@ namespace ControlDosimetro
 					//	strSemetre1 = "cuarto";
 
 					strcampoMarcador = "Empresa";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0} ({1})",lbl_nombreCliente.Text, lbl_id_cliente.Text));
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0} ({1})", lbl_nombreCliente.Text, lbl_id_cliente.Text));
 					strcampoMarcador = "Rut";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), lbl_rut_cliente.Text);//strRazon_SocialEmpresa
 					strcampoMarcador = "Periodo";
@@ -858,7 +1250,7 @@ namespace ControlDosimetro
 
 			MessageBox.Show("Informacion grabada y archivo generado \n Ubicación Archivo:" + targetPath);
 
-			btnGenerarArchivoNuevo.Enabled =btnGenerar.Enabled = true;
+			btnGenararPelNoDevuelto.Enabled=btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
 			pnl_Progreso.Visible = false;
 
 			Listar_Personal();
@@ -889,7 +1281,7 @@ namespace ControlDosimetro
 			string strpath;
 			string strpathcopiar;
 			string strEstado;
-			btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = false;
+			btnGenararPelNoDevuelto.Enabled=btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = false;
 
 			SqlCommand cmdArchivo = new SqlCommand();
 			DataSet dtArchivo;
@@ -1026,8 +1418,8 @@ namespace ControlDosimetro
 				data3 = new string[] { "" };
 				data4 = new string[] { "" };
 
-				Array.Resize(ref data1, grdDatos.RowCount+2);
-				Array.Resize(ref data2, grdDatos.RowCount+2);
+				Array.Resize(ref data1, grdDatos.RowCount + 2);
+				Array.Resize(ref data2, grdDatos.RowCount + 2);
 				Array.Resize(ref data3, grdDatos.RowCount + 2);
 				Array.Resize(ref data4, grdDatos.RowCount + 2);
 
@@ -1173,7 +1565,7 @@ namespace ControlDosimetro
 							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 						}
 
-							
+
 					}
 
 
@@ -1237,7 +1629,7 @@ namespace ControlDosimetro
 
 			MessageBox.Show("Informacion grabada y archivo generado \n Ubicación Archivo:" + targetPath);
 
-			btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
+			btnGenararPelNoDevuelto.Enabled=btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
 			pnl_Progreso.Visible = false;
 
 			Listar_Personal();
@@ -1267,7 +1659,7 @@ namespace ControlDosimetro
 			string strpath;
 			string strpathcopiar;
 			string strEstado;
-			btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = false;
+			btnGenararPelNoDevuelto.Enabled=btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = false;
 
 			SqlCommand cmdArchivo = new SqlCommand();
 			DataSet dtArchivo;
@@ -1411,7 +1803,7 @@ namespace ControlDosimetro
 				data3 = new string[] { "" };
 				data4 = new string[] { "" };
 
-				Array.Resize(ref data1, grdDatos.RowCount+2);
+				Array.Resize(ref data1, grdDatos.RowCount + 2);
 				Array.Resize(ref data2, grdDatos.RowCount + 2);
 				Array.Resize(ref data3, grdDatos.RowCount + 2);
 				Array.Resize(ref data4, grdDatos.RowCount + 2);
@@ -1609,7 +2001,7 @@ namespace ControlDosimetro
 
 			lblRuta.Text = "Informacion grabada y archivo generado \n Ubicación Archivo:" + targetPath;
 
-			btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
+			btnGenararPelNoDevuelto.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
 			pnl_Progreso.Visible = false;
 
 			//	Listar_Personal();
@@ -1631,7 +2023,7 @@ namespace ControlDosimetro
 				lblRuta.Visible = true;
 				lblRuta.Text = "";
 				Generar_TodosV2();
-				btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
+				btnGenararPelNoDevuelto.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
 			}
 		}
 		private void tsbAsignarSucursal_Click(object sender, EventArgs e)
@@ -1642,6 +2034,22 @@ namespace ControlDosimetro
 				frm.ShowDialog(this);
 			}
 
+		}
+		private void btnGenararPelNoDevuelto_Click(object sender, EventArgs e)
+		{
+			if ((int)cbx_id_seccion.SelectedValue != 0)
+			{
+				lblRuta.Visible = false;
+				GenerarPorSucursalNoDevuelto();
+			}
+
+			else
+			{
+				lblRuta.Visible = true;
+				lblRuta.Text = "";
+				GenerarPorSucursalNoDevueltoTodos();
+				btnGenararPelNoDevuelto.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
+			}
 		}
 
 		private void tsbAsignarSeccion_Click(object sender, EventArgs e)
@@ -1715,7 +2123,7 @@ namespace ControlDosimetro
 				lblRuta.Visible = true;
 				lblRuta.Text = "";
 				Generar_Todos();
-				btnGenerarArchivoNuevo.Enabled=btnGenerar.Enabled = true;
+				btnGenararPelNoDevuelto.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
 			}
 
 		}
@@ -1744,7 +2152,7 @@ namespace ControlDosimetro
 			string strpath;
 			string strpathcopiar;
 			string strEstado;
-			btnGenerarArchivoNuevo.Enabled=btnGenerar.Enabled = false;
+			btnGenararPelNoDevuelto.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = false;
 
 			SqlCommand cmdArchivo = new SqlCommand();
 			DataSet dtArchivo;
@@ -2078,7 +2486,7 @@ namespace ControlDosimetro
 
 			MessageBox.Show("Informacion grabada y archivo generado \n Ubicación Archivo:" + targetPath);
 
-			btnGenerarArchivoNuevo.Enabled=btnGenerar.Enabled = true;
+			btnGenararPelNoDevuelto.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
 			pnl_Progreso.Visible = false;
 
 			Listar_Personal();

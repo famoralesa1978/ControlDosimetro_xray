@@ -87,6 +87,7 @@
 			this.btnGenerar = new System.Windows.Forms.Button();
 			this.btnResfrescar = new System.Windows.Forms.Button();
 			this.btnGenerarArchivoNuevo = new System.Windows.Forms.Button();
+			this.btnGenararPelNoDevuelto = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -692,11 +693,23 @@
 			this.btnGenerarArchivoNuevo.UseVisualStyleBackColor = true;
 			this.btnGenerarArchivoNuevo.Click += new System.EventHandler(this.btnGenerarArchivoNuevo_Click);
 			// 
+			// btnGenararPelNoDevuelto
+			// 
+			this.btnGenararPelNoDevuelto.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.btnGenararPelNoDevuelto.Location = new System.Drawing.Point(1075, 547);
+			this.btnGenararPelNoDevuelto.Name = "btnGenararPelNoDevuelto";
+			this.btnGenararPelNoDevuelto.Size = new System.Drawing.Size(205, 23);
+			this.btnGenararPelNoDevuelto.TabIndex = 22;
+			this.btnGenararPelNoDevuelto.Text = "Generar Archivo ISP no devuelto";
+			this.btnGenararPelNoDevuelto.UseVisualStyleBackColor = true;
+			this.btnGenararPelNoDevuelto.Click += new System.EventHandler(this.btnGenararPelNoDevuelto_Click);
+			// 
 			// FrmInformeISP
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1350, 578);
+			this.Controls.Add(this.btnGenararPelNoDevuelto);
 			this.Controls.Add(this.btnGenerarArchivoNuevo);
 			this.Controls.Add(this.btnResfrescar);
 			this.Controls.Add(this.btnGenerar);
@@ -792,5 +805,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn N_TLD_Original;
 		private System.Windows.Forms.DataGridViewTextBoxColumn colSeccion;
 		private System.Windows.Forms.Button btnGenerarArchivoNuevo;
+		private System.Windows.Forms.Button btnGenararPelNoDevuelto;
 	}
 }
