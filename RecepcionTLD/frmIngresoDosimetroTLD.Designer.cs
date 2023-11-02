@@ -96,6 +96,12 @@
 			this.btnResfrescar = new System.Windows.Forms.Button();
 			this.cbx_Sucursal = new System.Windows.Forms.ComboBox();
 			this.button1 = new System.Windows.Forms.Button();
+			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.lbl_Alternativa = new System.Windows.Forms.Label();
+			this.label10 = new System.Windows.Forms.Label();
+			this.lbl_Original = new System.Windows.Forms.Label();
+			this.rbtAlternativa = new System.Windows.Forms.RadioButton();
+			this.rbtOiginal = new System.Windows.Forms.RadioButton();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -104,6 +110,7 @@
 			this.groupBox3.SuspendLayout();
 			this.grpFiltro.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picFiltrarpersonal)).BeginInit();
+			this.groupBox4.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -124,7 +131,7 @@
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Location = new System.Drawing.Point(5, 28);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(844, 145);
+			this.groupBox1.Size = new System.Drawing.Size(400, 142);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Dato Cliente";
@@ -799,11 +806,74 @@
 			this.button1.Visible = false;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
+			// groupBox4
+			// 
+			this.groupBox4.Controls.Add(this.lbl_Alternativa);
+			this.groupBox4.Controls.Add(this.label10);
+			this.groupBox4.Controls.Add(this.lbl_Original);
+			this.groupBox4.Controls.Add(this.rbtAlternativa);
+			this.groupBox4.Controls.Add(this.rbtOiginal);
+			this.groupBox4.Location = new System.Drawing.Point(424, 34);
+			this.groupBox4.Name = "groupBox4";
+			this.groupBox4.Size = new System.Drawing.Size(387, 129);
+			this.groupBox4.TabIndex = 22;
+			this.groupBox4.TabStop = false;
+			this.groupBox4.Text = "Ruta archivo";
+			// 
+			// lbl_Alternativa
+			// 
+			this.lbl_Alternativa.AutoSize = true;
+			this.lbl_Alternativa.Location = new System.Drawing.Point(6, 100);
+			this.lbl_Alternativa.Name = "lbl_Alternativa";
+			this.lbl_Alternativa.Size = new System.Drawing.Size(22, 13);
+			this.lbl_Alternativa.TabIndex = 6;
+			this.lbl_Alternativa.Text = "dfff";
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Location = new System.Drawing.Point(193, 44);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(0, 13);
+			this.label10.TabIndex = 5;
+			// 
+			// lbl_Original
+			// 
+			this.lbl_Original.AutoSize = true;
+			this.lbl_Original.Location = new System.Drawing.Point(6, 50);
+			this.lbl_Original.Name = "lbl_Original";
+			this.lbl_Original.Size = new System.Drawing.Size(22, 13);
+			this.lbl_Original.TabIndex = 4;
+			this.lbl_Original.Text = "dfff";
+			// 
+			// rbtAlternativa
+			// 
+			this.rbtAlternativa.AutoSize = true;
+			this.rbtAlternativa.Location = new System.Drawing.Point(7, 69);
+			this.rbtAlternativa.Name = "rbtAlternativa";
+			this.rbtAlternativa.Size = new System.Drawing.Size(75, 17);
+			this.rbtAlternativa.TabIndex = 3;
+			this.rbtAlternativa.TabStop = true;
+			this.rbtAlternativa.Text = "Alternativa";
+			this.rbtAlternativa.UseVisualStyleBackColor = true;
+			// 
+			// rbtOiginal
+			// 
+			this.rbtOiginal.AutoSize = true;
+			this.rbtOiginal.Location = new System.Drawing.Point(7, 19);
+			this.rbtOiginal.Name = "rbtOiginal";
+			this.rbtOiginal.Size = new System.Drawing.Size(60, 17);
+			this.rbtOiginal.TabIndex = 2;
+			this.rbtOiginal.TabStop = true;
+			this.rbtOiginal.Text = "Original";
+			this.rbtOiginal.UseVisualStyleBackColor = true;
+			// 
 			// frmIngresoDosimetroTLD
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1084, 686);
+			this.Controls.Add(this.groupBox4);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.cbx_Sucursal);
 			this.Controls.Add(this.btnResfrescar);
@@ -841,6 +911,8 @@
 			this.grpFiltro.ResumeLayout(false);
 			this.grpFiltro.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picFiltrarpersonal)).EndInit();
+			this.groupBox4.ResumeLayout(false);
+			this.groupBox4.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -915,5 +987,11 @@
 		private System.Windows.Forms.ToolStripButton tsbAsignarSeccion;
 		private System.Windows.Forms.CheckBox chkIncluirDosimetro;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.GroupBox groupBox4;
+		private System.Windows.Forms.Label lbl_Alternativa;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.Label lbl_Original;
+		private System.Windows.Forms.RadioButton rbtAlternativa;
+		private System.Windows.Forms.RadioButton rbtOiginal;
 	}
 }

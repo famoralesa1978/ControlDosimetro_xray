@@ -89,7 +89,9 @@ namespace ControlDosimetro
 			grpFiltro.Enabled = false;
 			lbl_ValorMax.Text = "";
 			Cargar_Reporte();
-			//	Cargar_Anno();
+			lbl_Original.Text = "\\\\servidor\\\\e\\\\BaseTLD\\\\";
+			lbl_Alternativa.Text = "C:/BaseTLD/";
+			rbtOiginal.Checked = true;
 		}
 
 		#region "Llamada de carga"
@@ -494,7 +496,8 @@ namespace ControlDosimetro
 			if (Grabar(ref strError, ref strCorrecto))
 			{
 				string strDirCliente = "";
-				if(GenerarExcel(ref strDirCliente))
+				string strRuta = rbtOiginal.Checked ? lbl_Original.Text : lbl_Alternativa.Text;
+				if (GenerarExcel(strRuta,ref strDirCliente))
 					Process.Start("explorer.exe", strDirCliente);
 
 				Listar_Personal();
@@ -747,7 +750,7 @@ namespace ControlDosimetro
 
 		#region "Excel"
 
-		private bool GenerarExcel(ref string strDirCliente)
+		private bool GenerarExcel(string strRuta,ref string strDirCliente)
 		{
 			bool bolResultado = true;
 			bool bolArchivoGenerado = true;
@@ -762,15 +765,15 @@ namespace ControlDosimetro
 
 			Cursor = Cursors.WaitCursor;//FORMULARIO DESPACHO_Laboratorio
 																	//FormularioLaboratorio
-			string targetPathFormatoCodigoBarra = "C:\\BaseTLD\\formato\\" + "FormatoTLD.xlsx";
-			string targetPathFormatoInfome = "C:\\BaseTLD\\formato\\" + "FORMULARIO DESPACHO.xlsx";
-			string targetPathFormatoFomratoLaboratorio = "C:\\BaseTLD\\formato\\" + "FORMULARIO DESPACHO_Laboratorio.xlsx";
+			string targetPathFormatoCodigoBarra = string.Format("{0}formato\\FormatoTLD.xlsx", strRuta);
+			string targetPathFormatoInfome = string.Format("{0}formato\\FORMULARIO DESPACHO.xlsx", strRuta);
+			string targetPathFormatoFomratoLaboratorio = string.Format("{0}formato\\FORMULARIO DESPACHO_Laboratorio.xlsx", strRuta);
 			grdDatos.Sort(grdDatos.Columns["N_pelicula"], ListSortDirection.Ascending);
 
-			string targetPathConf = "C:\\BaseTLD\\Cliente";
-			string targetPathCodigoBarra = "C:\\BaseTLD\\Cliente";
-			string targetPathFormatoFormulario = "C:\\BaseTLD\\Cliente";
-			string targetPathLaboratorio = "C:\\BaseTLD\\Cliente";
+			string targetPathConf = string.Format("{0}Cliente", strRuta);
+			string targetPathCodigoBarra = string.Format("{0}Cliente", strRuta);
+			string targetPathFormatoFormulario = string.Format("{0}Cliente", strRuta);
+			string targetPathLaboratorio = string.Format("{0}Cliente", strRuta);
 
 			if (!System.IO.File.Exists(targetPathFormatoCodigoBarra))
 			{
@@ -788,12 +791,12 @@ namespace ControlDosimetro
 				System.IO.Directory.CreateDirectory(targetPathConf);
 			}
 
-			targetPathConf = "C:\\BaseTLD\\Cliente\\Cliente" + lbl_id_cliente.Text;
+			targetPathConf = string.Format("{0}Cliente\\Cliente" + lbl_id_cliente.Text, strRuta); 
 			if (!System.IO.Directory.Exists(targetPathConf))
 			{
 				System.IO.Directory.CreateDirectory(targetPathConf);
 			}
-			targetPathConf = "C:\\BaseTLD\\Cliente\\Cliente" + lbl_id_cliente.Text;
+			targetPathConf = string.Format("{0}Cliente\\Cliente" + lbl_id_cliente.Text, strRuta);
 			if (!System.IO.Directory.Exists(targetPathConf))
 			{
 				System.IO.Directory.CreateDirectory(targetPathConf);
@@ -801,19 +804,19 @@ namespace ControlDosimetro
 
 			strDirCliente = @targetPathConf;
 
-			targetPathCodigoBarra = "C:\\BaseTLD\\Cliente\\Cliente" + lbl_id_cliente.Text + "\\CodigoBarra";
+			targetPathCodigoBarra = string.Format("{0}Cliente\\Cliente" + lbl_id_cliente.Text + "\\CodigoBarra", strRuta);
 			if (!System.IO.Directory.Exists(targetPathCodigoBarra))
 			{
 				System.IO.Directory.CreateDirectory(targetPathCodigoBarra);
 			}
 
-			targetPathFormatoFormulario = "C:\\BaseTLD\\Cliente\\Cliente" + lbl_id_cliente.Text + "\\Formulario";
+			targetPathFormatoFormulario = string.Format("{0}Cliente\\Cliente" + lbl_id_cliente.Text + "\\Formulario", strRuta);
 			if (!System.IO.Directory.Exists(targetPathFormatoFormulario))
 			{
 				System.IO.Directory.CreateDirectory(targetPathFormatoFormulario);
 			}
 
-			targetPathLaboratorio = "C:\\BaseTLD\\Cliente\\Cliente" + lbl_id_cliente.Text + "\\Laboratorio";
+			targetPathLaboratorio = string.Format("{0}Cliente\\Cliente" + lbl_id_cliente.Text + "\\Laboratorio", strRuta);
 			if (!System.IO.Directory.Exists(targetPathLaboratorio))
 			{
 				System.IO.Directory.CreateDirectory(targetPathLaboratorio);
