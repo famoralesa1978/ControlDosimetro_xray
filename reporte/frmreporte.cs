@@ -59,7 +59,7 @@ namespace ControlDosimetro
 			{
 				case 1:
 					//reportViewer1.LocalReport.ReportEmbeddedResource = "ControlDosimetro.reporte.rptDosimetriaEnc.rdlc"; 
-					reportViewer1.LocalReport.ReportPath = "ControlDosimetro.reporte.rptDosimetriaEnc.rdlc";
+					reportViewer1.LocalReport.ReportEmbeddedResource = "ControlDosimetro.reporte.rptDosimetriaEnc.rdlc";
 					ReportDataSource datasource1 = new ReportDataSource("DataSet2", ds2.Tables[0]);
 
 					this.reportViewer1.LocalReport.DataSources.Clear();
