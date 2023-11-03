@@ -992,6 +992,7 @@
       <DependentUpon>frmRptcliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="reporte\rptDctoFilmico.rdlc" />
+    <EmbeddedResource Include="reporte\rptDosimetriaPersonal.rdlc" />
     <EmbeddedResource Include="reporte\rptPersonalActivo.rdlc" />
     <EmbeddedResource Include="reporte\rptDosimetriaEnc.rdlc" />
     <EmbeddedResource Include="reporte\rptDosimetriaAnualPorSucursal.rdlc" />
