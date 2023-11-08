@@ -89,7 +89,7 @@ namespace ControlDosimetro
 			grpFiltro.Enabled = false;
 			lbl_ValorMax.Text = "";
 			Cargar_Reporte();
-			lbl_Original.Text = "\\\\servidor\\\\e\\\\BaseTLD\\\\";
+			lbl_Original.Text = "\\\\Servidor\\e\\Documentos de XRAY\\BaseTLD\\";
 			lbl_Alternativa.Text = "C:/BaseTLD/";
 			rbtOiginal.Checked = true;
 		}
@@ -777,12 +777,12 @@ namespace ControlDosimetro
 
 			if (!System.IO.File.Exists(targetPathFormatoCodigoBarra))
 			{
-				classFuncionesGenerales.mensajes.MensajeError("Falta el archivo formato: FormatoTLD.xlsx, ubicada en la ruta: C:\\BaseTLD\\formato ");
+				classFuncionesGenerales.mensajes.MensajeError(string.Format("Falta el archivo formato: FormatoTLD.xlsx, ubicada en la ruta: {0}", targetPathFormatoCodigoBarra));
 				return false;
 			}
 			if (!System.IO.File.Exists(targetPathFormatoFomratoLaboratorio))
 			{
-				classFuncionesGenerales.mensajes.MensajeError("Falta el archivo formato: FORMULARIO DESPACHO_Laboratorio.xlsx, ubicada en la ruta: C:\\BaseTLD\\formato ");
+				classFuncionesGenerales.mensajes.MensajeError(string.Format("Falta el archivo formato: FORMULARIO DESPACHO_Laboratorio.xlsx, ubicada en la ruta: {0}", targetPathFormatoFomratoLaboratorio));
 				return false;
 			}
 

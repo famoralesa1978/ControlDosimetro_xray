@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngresoDosimetroTLD));
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.picPeriodo = new System.Windows.Forms.PictureBox();
 			this.cbx_id_periodo = new System.Windows.Forms.ComboBox();
 			this.cbx_anno = new System.Windows.Forms.ComboBox();
 			this.label8 = new System.Windows.Forms.Label();
@@ -102,7 +104,9 @@
 			this.lbl_Original = new System.Windows.Forms.Label();
 			this.rbtAlternativa = new System.Windows.Forms.RadioButton();
 			this.rbtOiginal = new System.Windows.Forms.RadioButton();
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.groupBox1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.picPeriodo)).BeginInit();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -115,6 +119,7 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.picPeriodo);
 			this.groupBox1.Controls.Add(this.cbx_id_periodo);
 			this.groupBox1.Controls.Add(this.cbx_anno);
 			this.groupBox1.Controls.Add(this.label8);
@@ -131,10 +136,22 @@
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Location = new System.Drawing.Point(5, 28);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(400, 142);
+			this.groupBox1.Size = new System.Drawing.Size(439, 142);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Dato Cliente";
+			// 
+			// picPeriodo
+			// 
+			this.picPeriodo.Image = global::ControlDosimetro.Properties.Resources.ayudaPeriodo;
+			this.picPeriodo.Location = new System.Drawing.Point(364, 17);
+			this.picPeriodo.Name = "picPeriodo";
+			this.picPeriodo.Size = new System.Drawing.Size(36, 39);
+			this.picPeriodo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.picPeriodo.TabIndex = 61;
+			this.picPeriodo.TabStop = false;
+			this.toolTip1.SetToolTip(this.picPeriodo, "Ver periodo cliente");
+			this.picPeriodo.Visible = false;
 			// 
 			// cbx_id_periodo
 			// 
@@ -220,7 +237,7 @@
 			// 
 			// btn_filtro
 			// 
-			this.btn_filtro.Location = new System.Drawing.Point(280, 16);
+			this.btn_filtro.Location = new System.Drawing.Point(262, 15);
 			this.btn_filtro.Name = "btn_filtro";
 			this.btn_filtro.Size = new System.Drawing.Size(95, 23);
 			this.btn_filtro.TabIndex = 44;
@@ -285,8 +302,6 @@
 			// chkIncluirDosimetro
 			// 
 			this.chkIncluirDosimetro.AutoSize = true;
-			this.chkIncluirDosimetro.Checked = true;
-			this.chkIncluirDosimetro.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.chkIncluirDosimetro.Location = new System.Drawing.Point(867, -1);
 			this.chkIncluirDosimetro.Name = "chkIncluirDosimetro";
 			this.chkIncluirDosimetro.Size = new System.Drawing.Size(195, 17);
@@ -813,7 +828,7 @@
 			this.groupBox4.Controls.Add(this.lbl_Original);
 			this.groupBox4.Controls.Add(this.rbtAlternativa);
 			this.groupBox4.Controls.Add(this.rbtOiginal);
-			this.groupBox4.Location = new System.Drawing.Point(424, 34);
+			this.groupBox4.Location = new System.Drawing.Point(688, 34);
 			this.groupBox4.Name = "groupBox4";
 			this.groupBox4.Size = new System.Drawing.Size(387, 129);
 			this.groupBox4.TabIndex = 22;
@@ -900,6 +915,7 @@
 			this.Load += new System.EventHandler(this.frmIngresoDosimetroTLD_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.picPeriodo)).EndInit();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.pnl_Progreso.ResumeLayout(false);
@@ -993,5 +1009,7 @@
 		private System.Windows.Forms.Label lbl_Original;
 		private System.Windows.Forms.RadioButton rbtAlternativa;
 		private System.Windows.Forms.RadioButton rbtOiginal;
+		private System.Windows.Forms.PictureBox picPeriodo;
+		private System.Windows.Forms.ToolTip toolTip1;
 	}
 }
