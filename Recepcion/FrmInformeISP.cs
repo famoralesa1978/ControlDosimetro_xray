@@ -948,7 +948,7 @@ namespace ControlDosimetro
 				string strRunEmpresa = lbl_rut_cliente.Text;
 				string strRazon_SocialEmpresa = lbl_nombreCliente.Text;
 				string strDireccionEmpresa = dt.Tables[0].Rows[idatos]["DireccionCliente"].ToString();
-				string strDireccionEmpresaSucursal = cbx_Sucursal.Text== strDireccionEmpresa? cbx_id_seccion.Text:string.Format("{0}({1})", strDireccionEmpresa, cbx_id_seccion.Text);
+				string strDireccionEmpresaSucursal = strDireccionEmpresa;
 				string strTelefonoEmpresa = dt.Tables[0].Rows[idatos]["Telefono"].ToString();
 				string strregionEmpresa = dt.Tables[0].Rows[idatos]["region"].ToString();
 				string strProvinciaEmpresa = dt.Tables[0].Rows[idatos]["Provincia"].ToString();
@@ -962,11 +962,19 @@ namespace ControlDosimetro
 				//string strN_Documento = dt.Tables[0].Rows[idatos]["N_Documento"].ToString();
 				//	string strId_sucursal = dt.Tables[0].Rows[idatos]["Id_sucursal"].ToString();
 				String strArchivoCopiar = "";
-				strArchivoCopiar = targetPath + "Cliente" + lbl_id_cliente.Text + "_" + strDireccionEmpresaSucursal + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text + "_" + strSeccion + ".docx";
+				//strArchivoCopiar = targetPath + "Cliente" + lbl_id_cliente.Text + "_" + strDireccionEmpresaSucursal + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text + "_" + strSeccion + ".docx";
 
 
-				strpathcopiar = targetPath + "cliente " + lbl_id_cliente.Text + "_" + strDireccionEmpresaSucursal + "_" + cbx_id_seccion.Text + ".xlsx";
+				//strpathcopiar = targetPath + "cliente " + lbl_id_cliente.Text + "_" + strDireccionEmpresaSucursal + "_" + cbx_id_seccion.Text + ".xlsx";
 
+				strArchivoCopiar = targetPath + "Cliente" +
+									string.Format("{0}_{1}_{2}_{3}T_{4}.docx", lbl_id_cliente.Text, strSeccion, strDireccionEmpresa, cbx_id_periodo.Text.ToString().Substring(0, 1), cbx_anno.Text);
+
+
+				strpathcopiar = targetPath + "cliente " +
+									string.Format("{0}_{1}_{2}.xlsx", lbl_id_cliente.Text, cbx_id_seccion.Text, strDireccionEmpresa);
+
+				strDireccionEmpresaSucursal = cbx_Sucursal.Text == strDireccionEmpresa ? cbx_id_seccion.Text : string.Format("{0}({1})", strDireccionEmpresa, cbx_id_seccion.Text);
 				// process.Start("c:\Ejemplo de Carpeta con Espacios");
 				File.Copy(strpath, strpathcopiar, true);
 				//strRunEmpresa + "_" + cbx_id_periodo.Text + ".docx";
