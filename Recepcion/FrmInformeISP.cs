@@ -968,11 +968,11 @@ namespace ControlDosimetro
 				//strpathcopiar = targetPath + "cliente " + lbl_id_cliente.Text + "_" + strDireccionEmpresaSucursal + "_" + cbx_id_seccion.Text + ".xlsx";
 
 				strArchivoCopiar = targetPath + "Cliente" +
-									string.Format("{0}_{1}_{2}_{3}T_{4}.docx", lbl_id_cliente.Text, strSeccion, strDireccionEmpresa, cbx_id_periodo.Text.ToString().Substring(0, 1), cbx_anno.Text);
+									string.Format("{0}_{1}_{2}_{3}T_{4}.docx", lbl_id_cliente.Text, strSeccion, cbx_Sucursal.Text, cbx_id_periodo.Text.ToString().Substring(0, 1), cbx_anno.Text);
 
 
 				strpathcopiar = targetPath + "cliente " +
-									string.Format("{0}_{1}_{2}.xlsx", lbl_id_cliente.Text, cbx_id_seccion.Text, strDireccionEmpresa);
+									string.Format("{0}_{1}_{2}.xlsx", lbl_id_cliente.Text, cbx_id_seccion.Text, cbx_Sucursal.Text);
 
 				strDireccionEmpresaSucursal = cbx_Sucursal.Text == strDireccionEmpresa ? cbx_id_seccion.Text : string.Format("{0}({1})", strDireccionEmpresa, cbx_id_seccion.Text);
 				// process.Start("c:\Ejemplo de Carpeta con Espacios");
@@ -1401,11 +1401,11 @@ namespace ControlDosimetro
 				//	string strId_sucursal = dt.Tables[0].Rows[idatos]["Id_sucursal"].ToString();
 				String strArchivoCopiar = "";
 				strArchivoCopiar = targetPath + "Cliente" + 
-									string.Format("{0}_{1}_{2}_{3}T_{4}.docx", lbl_id_cliente.Text, strSeccion, strDireccionEmpresa,cbx_id_periodo.Text.ToString().Substring(0, 1), cbx_anno.Text);
+									string.Format("{0}_{1}_{2}_{3}T_{4}.docx", lbl_id_cliente.Text, strSeccion, cbx_Sucursal.Text, cbx_id_periodo.Text.ToString().Substring(0, 1), cbx_anno.Text);
 
 
 				strpathcopiar = targetPath + "cliente " + 
-									string.Format("{0}_{1}_{2}.xlsx", lbl_id_cliente.Text, cbx_id_seccion.Text, strDireccionEmpresa);
+									string.Format("{0}_{1}_{2}.xlsx", lbl_id_cliente.Text, cbx_id_seccion.Text, cbx_Sucursal.Text);
 
 				// process.Start("c:\Ejemplo de Carpeta con Espacios");
 				File.Copy(strpath, strpathcopiar, true);
@@ -1787,10 +1787,10 @@ namespace ControlDosimetro
 				//string strN_Documento = dt.Tables[0].Rows[idatos]["N_Documento"].ToString();
 				//	string strId_sucursal = dt.Tables[0].Rows[idatos]["Id_sucursal"].ToString();
 				String strArchivoCopiar = "";
-				strArchivoCopiar = targetPath + "Cliente" + lbl_id_cliente.Text + "_" + strDireccionEmpresa + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text + "_" + strSeccion + ".docx";
+				strArchivoCopiar = targetPath + "Cliente" + lbl_id_cliente.Text + "_" + cbx_Sucursal.Text + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text + "_" + strSeccion + ".docx";
 
 
-				strpathcopiar = targetPath + "cliente " + lbl_id_cliente.Text + "_" + strDireccionEmpresa + "_" + cbx_id_seccion.Text + ".xlsx";
+				strpathcopiar = targetPath + "cliente " + lbl_id_cliente.Text + "_" + cbx_Sucursal.Text + "_" + cbx_id_seccion.Text + ".xlsx";
 
 				// process.Start("c:\Ejemplo de Carpeta con Espacios");
 				File.Copy(strpath, strpathcopiar, true);
