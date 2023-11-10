@@ -2514,6 +2514,13 @@ namespace ControlDosimetro
 
 		private void Btn_Corregir_Click(object sender, EventArgs e)
 		{
+			if(((DataTable)grdDatos.DataSource).Copy().AsEnumerable().Where(s => (int)s["generar"] == 1).Count() == 0)
+			{
+				classFuncionesGenerales.mensajes.MensajeAdvertencia("No se he seleccionado ningun registro para corregir los datos");
+				return;
+			}
+			//generar
+
 			SqlCommand cmd = new SqlCommand();
 			SqlCommand cmd2 = new SqlCommand();
 			//	  SqlCommand cmd = new SqlCommand();
@@ -2573,7 +2580,7 @@ namespace ControlDosimetro
 						cmd2.CommandText = "pa_DevolverEstado_upd " + txtnpelicula.Value.ToString() + "," + cbxEstado.Value + ",'" + Clases.clsUsuario.Usuario +
 																	"',''," + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;
 					else
-						cmd2.CommandText = "pa_DevolverEstadoTLD_upd " + txtnpelicula.Value.ToString() + "," + cbxEstado.Value + ",'" + Clases.clsUsuario.Usuario +
+						cmd2.CommandText = "pa_DevolverEstadoTLDIngresarDosis_upd " + txtnpelicula.Value.ToString() + "," + cbxEstado.Value + ",'" + Clases.clsUsuario.Usuario +
 																	"',''," + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;
 					cmd2.CommandType = CommandType.Text;
 					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd2);

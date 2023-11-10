@@ -62,7 +62,7 @@ namespace ControlDosimetro
 
 			String strcadena = String.IsNullOrEmpty(lbl_id_cliente.Text) ? "" : String.Format("{0}", lbl_id_cliente.Text);
 
-			cmd.CommandText = String.Format("pa_IngresoDosis_sel {0}", strcadena);//
+			cmd.CommandText = String.Format("pa_DevolverEstadoTLDIngresarDosis_upd {0}", strcadena);//
 			cmd.CommandType = CommandType.Text;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
