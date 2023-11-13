@@ -46,6 +46,7 @@ namespace ControlDosimetro
 
 		#endregion
 
+		#region "inicio"
 		public frmIngresoPeliculaFilmico(Int64 intId_Cliente)
 		{
 			InitializeComponent();
@@ -66,6 +67,7 @@ namespace ControlDosimetro
 			Cargar_Reporte();
 		}
 
+		#endregion
 
 		#region "Llamada de carga"
 		private void Listar_Grilla()
@@ -129,6 +131,26 @@ namespace ControlDosimetro
 			clsEvt.AsignarNumero(ref txt_NDocumento);
 			clsEvt.AsignarKeyPressDTP(ref dtp_Fecha_inicio);
 		}
+		public DataSet RptInforme()
+		{
+			DataSet ds = new DataSet();
+			SqlCommand cmd = new SqlCommand();
+			// SqlCommand cmd = new SqlCommand();
+			//MessageBox.Show("Conectado al servidor");
+
+			cmd.CommandText = "rptDctoFilmico";
+			cmd.Parameters.Add("@id_cliente", SqlDbType.Int);
+			cmd.Parameters["@id_cliente"].Value = lbl_id_cliente.Text;
+			cmd.Parameters.Add("@Rut", SqlDbType.VarChar, 20);
+			cmd.Parameters["@Rut"].Value = lbl_rut.Text;
+			cmd.Parameters.Add("@NDocumento", SqlDbType.BigInt);
+			cmd.Parameters["@NDocumento"].Value = txt_NDocumento.Text;
+			cmd.CommandType = CommandType.StoredProcedure;
+
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+			return ds;
+		}
 
 		#endregion
 
@@ -144,8 +166,6 @@ namespace ControlDosimetro
 			frmDosimetriaISP frm = new frmDosimetriaISP(Convert.ToInt64(lbl_id_cliente.Text));
 			frm.ShowDialog(this);
 		}
-
-
 		private void btn_Agregar_Click(object sender, EventArgs e)
 		{
 			SqlCommand cmd = new SqlCommand();
@@ -360,12 +380,10 @@ namespace ControlDosimetro
 
 			}
 		}
-
 		private void btn_Filtro_Click(object sender, EventArgs e)
 		{
 
 		}
-
 		private void btn_cargar_Click(object sender, EventArgs e)
 		{
 			if (string.IsNullOrWhiteSpace(lbl_id_cliente.Text)) return;
@@ -420,9 +438,6 @@ namespace ControlDosimetro
 				Cursor = Cursors.Default;
 			}
 		}
-
-
-
 		private void btn_filtro_Click_1(object sender, EventArgs e)
 		{
 			desdeCodigo = true;
@@ -456,10 +471,24 @@ namespace ControlDosimetro
 
 			btn_cargar.Enabled = true;
 		}
-
 		private void btn_Cerrar_Click(object sender, EventArgs e)
 		{
 			this.Close();
+		}
+		private void btnFiltrar_Click(object sender, EventArgs e)
+		{
+			Listar_Grilla();
+		}
+		private void btnRefrescarNDcto_Click(object sender, EventArgs e)
+		{
+			SqlCommand cmd = new SqlCommand();
+
+			DataSet dt;
+
+			cmd.CommandText = "pa_ObtieneUltimoValornDocumento_sel";
+
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			txt_NDocumento.Text = ((int)dt.Tables[0].Rows[0]["N_Documento"] + 1).ToString();
 		}
 
 		private void tsmEliminar_Click(object sender, EventArgs e)
@@ -515,34 +544,30 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "combobox"
+		private void cbx_id_periodo_SelectedValueChanged(object sender, EventArgs e)
+		{
+			if (!desdeCodigo)
+			{
+				SqlCommand cmd = new SqlCommand();
 
+				DataSet dt;
+
+
+				cmd.CommandText = "SELECT replace([fecha_termino],'/',' - ')fecha" +
+												" FROM conf_periodo " +
+												" WHERE  id_periodo=" + cbx_id_periodo.SelectedValue + " ";
+				cmd.CommandType = CommandType.Text;
+
+				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+				dtp_Fecha_dev.Text = dt.Tables[0].Rows[0]["fecha"].ToString();
+
+			}
+
+		}
 		private void cbx_anno_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (!desdeCodigo)
 				Cargar_Periodo();
-		}
-
-		private void cbx_Sucursal_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			//if (!desdeCodigo)
-			//{
-			//	SqlCommand cmd1 = new SqlCommand();
-			//	DataSet ds1;
-			//	if (lbl_id_cliente.Text.Trim() != "")
-			//	{
-			//		cmd1.CommandText = "select cast(count(n_dosimetro) as varchar(3))cant from ges_dosimetro_estado es where id_ref=0 and es.Id_cliente = " + lbl_id_cliente.Text + " and es.id_periodo=" + cbx_id_periodo.SelectedValue.ToString() + " and Id_sucursal=" + cbx_Sucursal.SelectedValue.ToString() + " group by Id_sucursal";
-			//		cmd1.CommandType = CommandType.Text;
-
-			//		ds1 = Conectar.Listar(Clases.clsBD.BD, cmd1);
-			//		if (ds1.Tables[0].Rows.Count > 0)
-			//		{
-			//			grpListado.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es:" + ds1.Tables[0].Rows[0][0].ToString();
-			//		}
-			//		else
-			//			grpListado.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es: 0";
-			//	}
-			//}
-
 		}
 
 		#endregion
@@ -676,63 +701,5 @@ namespace ControlDosimetro
 
 		#endregion
 
-		public DataSet RptInforme()
-		{
-			DataSet ds = new DataSet();
-			SqlCommand cmd = new SqlCommand();
-			// SqlCommand cmd = new SqlCommand();
-			//MessageBox.Show("Conectado al servidor");
-
-			cmd.CommandText = "rptDctoFilmico";
-			cmd.Parameters.Add("@id_cliente", SqlDbType.Int);
-			cmd.Parameters["@id_cliente"].Value = lbl_id_cliente.Text;
-			cmd.Parameters.Add("@Rut", SqlDbType.VarChar, 20);
-			cmd.Parameters["@Rut"].Value = lbl_rut.Text;
-			cmd.Parameters.Add("@NDocumento", SqlDbType.BigInt);
-			cmd.Parameters["@NDocumento"].Value = txt_NDocumento.Text;
-			cmd.CommandType = CommandType.StoredProcedure;
-
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-			return ds;
-		}
-
-		private void cbx_id_periodo_SelectedValueChanged(object sender, EventArgs e)
-		{
-			if (!desdeCodigo)
-			{
-				SqlCommand cmd = new SqlCommand();
-
-				DataSet dt;
-
-
-				cmd.CommandText = "SELECT replace([fecha_termino],'/',' - ')fecha" +
-												" FROM conf_periodo " +
-												" WHERE  id_periodo=" + cbx_id_periodo.SelectedValue + " ";
-				cmd.CommandType = CommandType.Text;
-
-				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-				dtp_Fecha_dev.Text = dt.Tables[0].Rows[0]["fecha"].ToString();
-
-			}
-
-		}
-
-		private void btnFiltrar_Click(object sender, EventArgs e)
-		{
-			Listar_Grilla();
-		}
-
-		private void btnRefrescarNDcto_Click(object sender, EventArgs e)
-		{
-			SqlCommand cmd = new SqlCommand();
-
-			DataSet dt;
-
-			cmd.CommandText = "pa_ObtieneUltimoValornDocumento_sel";
-
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-			txt_NDocumento.Text = ((int)dt.Tables[0].Rows[0]["N_Documento"] + 1).ToString();
-		}
 	}
 }

@@ -191,7 +191,6 @@
 			this.cbx_Sucursal.Size = new System.Drawing.Size(349, 21);
 			this.cbx_Sucursal.TabIndex = 14;
 			this.cbx_Sucursal.ValueMember = "Id_Sucursal";
-			this.cbx_Sucursal.SelectedIndexChanged += new System.EventHandler(this.cbx_Sucursal_SelectedIndexChanged);
 			// 
 			// label12
 			// 
