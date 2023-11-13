@@ -522,7 +522,6 @@ namespace ControlDosimetro
 
 			//   string strArchivo = ConfigurationManager.AppSettings["Archivo"] + "Plantillaword.docx";
 
-			int i;
 			int intCantControlado = 0;
 			int intCantNR = 0;
 
@@ -672,7 +671,7 @@ namespace ControlDosimetro
 
 							}
 							if (strEstado == "" || strEstado == "MNR")
-								intfila = intfila + 1;
+								intfila++;
 
 
 						}
@@ -697,7 +696,7 @@ namespace ControlDosimetro
 						//}
 						// this.p
 
-						FilaWord = FilaWord + 1;
+						FilaWord++;
 						//}
 					}
 					#endregion
@@ -896,12 +895,6 @@ namespace ControlDosimetro
 			else
 				strArchivo = @"C:\\Doc_Xray\\baseCliente\\Plantilla\\Informe de Dosimetría.docx";//Informe de Dosimetría
 
-
-
-
-			//   string strArchivo = ConfigurationManager.AppSettings["Archivo"] + "Plantillaword.docx";
-
-			int i;
 			int intCantControlado = 0;
 			int intCantNR = 0;
 			string CantPerdido = "";
@@ -1157,7 +1150,7 @@ namespace ControlDosimetro
 
 						}
 						if (strEstado == "" || strEstado == "MNR")
-							intfila = intfila + 1;
+							intfila++;
 
 
 					}
@@ -1181,7 +1174,7 @@ namespace ControlDosimetro
 					//}
 					// this.p
 
-					FilaWord = FilaWord + 1;
+					FilaWord++;
 					//}
 
 
@@ -1589,8 +1582,8 @@ namespace ControlDosimetro
 					// this.p
 
 					if (strEstado == "" || strEstado == "MNR")
-						intfila = intfila + 1;
-					intFilaword = intFilaword + 1;
+						intfila++;
+					intFilaword++;
 				}
 
 				//}
@@ -1961,8 +1954,8 @@ namespace ControlDosimetro
 					// this.p
 
 					if (strEstado == "" || strEstado == "MNR")
-						intfila = intfila + 1;
-					intFilaWord = intFilaWord + 1;
+						intfila++;
+					intFilaWord++;
 
 
 					//}
@@ -2020,7 +2013,7 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "button"
-		private void btnGenerarArchivoNuevo_Click(object sender, EventArgs e)
+		private void BtnGenerarArchivoNuevo_Click(object sender, EventArgs e)
 		{
 			if ((int)cbx_id_seccion.SelectedValue != 0)
 			{
@@ -2446,8 +2439,8 @@ namespace ControlDosimetro
 								data4[i + 2] = dtCliente.Tables[0].Rows[0]["Rut"].ToString();
 								// this.p
 
-								intfila = intfila + 1;
-								i = i + 1;
+								intfila++;
+								i++;
 							}
 
 						}

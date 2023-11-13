@@ -608,8 +608,6 @@ namespace ControlDosimetro
 		private void tsmEliminarPersonal_Click(object sender, EventArgs e)
 		{
 			SqlCommand cmd = new SqlCommand();
-			DataSet ds;
-
 
 			//for (int intfila = 0; intfila <= grdDatos.RowCount - 1; intfila++)
 			//{
@@ -620,21 +618,10 @@ namespace ControlDosimetro
 			strn_cliente = grdDatos.Rows[Convert.ToInt16(grdDatos.CurrentRow.Index)].Cells["N_Cliente"].Value.ToString();
 			strid_personal = grdDatos.Rows[Convert.ToInt16(grdDatos.CurrentRow.Index)].Cells["id_personal"].Value.ToString();
 			cmd.CommandText = "pa_Personal_del " + strn_cliente + "," + strid_personal;// + ",'" + Clases.clsUsuario.Usuario + "'";
-
-			//        cmd.CommandText = "pa_Dosimetro_del " + grdDatos.Rows[intfila].Cells[0].Value.ToString() + ",'" + Clases.clsUsuario.Usuario + "'";
 			cmd.CommandType = CommandType.Text;
 
 
 			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-			//    }
-			//}
-
-
-			////if (ds.Tables[0].Rows.Count > 0)
-			////{
-			////    MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
-			////}
-
 			Listar_Personal();
 		}
 

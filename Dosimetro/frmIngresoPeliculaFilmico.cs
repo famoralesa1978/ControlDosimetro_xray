@@ -22,9 +22,9 @@ namespace ControlDosimetro
 
 		#region "Definicion variable"
 		Clases.ClassEvento clsEvt = new Clases.ClassEvento();
-		clsConectorSqlServer Conectar = new clsConectorSqlServer();
-		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-		clsEventoControl ClaseEvento = new clsEventoControl();
+		readonly clsConectorSqlServer Conectar = new clsConectorSqlServer();
+		readonly clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
+		readonly clsEventoControl ClaseEvento = new clsEventoControl();
 		classFuncionesBD.ClsFunciones FuncBD = new classFuncionesBD.ClsFunciones();
 		ClsFunciones clsFunc = new ClsFunciones();
 		int intContar = 0;
@@ -161,12 +161,12 @@ namespace ControlDosimetro
 
 		#region "button"
 
-		private void btnIngresarDosisISP_Click(object sender, EventArgs e)
+		private void BtnIngresarDosisISP_Click(object sender, EventArgs e)
 		{
 			frmDosimetriaISP frm = new frmDosimetriaISP(Convert.ToInt64(lbl_id_cliente.Text));
 			frm.ShowDialog(this);
 		}
-		private void btn_Agregar_Click(object sender, EventArgs e)
+		private void Btn_Agregar_Click(object sender, EventArgs e)
 		{
 			SqlCommand cmd = new SqlCommand();
 			DataSet ds;
@@ -208,9 +208,6 @@ namespace ControlDosimetro
 				intInicio = 0;
 			}
 
-
-			int intcant;
-			intcant = 0;
 			if (cbx_Sucursal.Text == "")
 			{
 				MessageBox.Show("Le falta asignar una sucursal");

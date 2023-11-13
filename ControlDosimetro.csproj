@@ -238,6 +238,12 @@
     <Compile Include="Dosimetro\frmimprimeDocFilmico.designer.cs">
       <DependentUpon>frmimprimeDocFilmico.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dosimetro\FrmInformeDetalleISPFilmico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dosimetro\FrmInformeDetalleISPFilmico.Designer.cs">
+      <DependentUpon>FrmInformeDetalleISPFilmico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dosimetro\frmIngresoDosimetro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -752,6 +758,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dosimetro\frmimprimeDocFilmico.resx">
       <DependentUpon>frmimprimeDocFilmico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dosimetro\FrmInformeDetalleISPFilmico.resx">
+      <DependentUpon>FrmInformeDetalleISPFilmico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dosimetro\frmIngresoDosimetro.resx">
       <DependentUpon>frmIngresoDosimetro.cs</DependentUpon>

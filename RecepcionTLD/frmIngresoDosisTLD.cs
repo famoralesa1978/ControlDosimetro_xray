@@ -19,9 +19,9 @@ namespace ControlDosimetro
 	{
 
 		#region "Definicion variable"
-		clsConectorSqlServer Conectar = new clsConectorSqlServer();
-		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-		clsEventoControl ClaseEvento = new clsEventoControl();
+		readonly clsConectorSqlServer Conectar = new clsConectorSqlServer();
+		readonly clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
+		readonly clsEventoControl ClaseEvento = new clsEventoControl();
 		Clases.ClassEvento clsEvento = new Clases.ClassEvento();
 		bool bolValidarGrilla = false;
 		int intContar = 0;
@@ -313,7 +313,7 @@ namespace ControlDosimetro
 					if (Convert.ToInt64(checkCell.Value) == 1)
 					{
 						chkcondosis.ReadOnly = false;
-						intContar = intContar + 1;
+						intContar++;
 						groupBox2.Text = "Listado       Registro:" + intContar.ToString();
 											 					 
 						if (Convert.ToInt64(chkcondosis.Value) == 1)
@@ -360,7 +360,7 @@ namespace ControlDosimetro
 						chkcondosis.ReadOnly = true;
 						chkcondosis.ReadOnly = true;
 						cbxEstado.ReadOnly = true;
-						intContar = intContar - 1;
+						intContar--;
 
 						groupBox2.Text = "Listado       Registro:" + intContar.ToString();
 					}
