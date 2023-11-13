@@ -29,13 +29,16 @@ namespace ControlDosimetro
 
 		#endregion
 
+		#region "Inicio"
 		public frmimprimeDocFilmico()
 		{
 			InitializeComponent();
 			clsEvento.AsignarNumero(ref lbl_NDocumento);
 
 		}
+		#endregion
 
+		#region Button
 		private void button1_Click(object sender, EventArgs e)
 		{
 			if (string.IsNullOrWhiteSpace(lbl_NDocumento.Text))
@@ -54,6 +57,10 @@ namespace ControlDosimetro
 		{
 			this.Close();
 		}
+
+		#endregion
+
+		#region "Llamada de carga"
 		public DataSet RptInforme()
 		{
 			DataSet ds = new DataSet();
@@ -74,5 +81,8 @@ namespace ControlDosimetro
 
 			return ds;
 		}
+
+		#endregion
+
 	}
 }
