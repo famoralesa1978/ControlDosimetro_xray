@@ -86,7 +86,8 @@ namespace ControlDosimetro
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 			grdDatos.DataSource = dt.Tables[0];
 			txt_NDocumento.Text = dt.Tables[1].Rows[0]["N_Documento"].ToString();
-			btn_Imprimir.Enabled = dt.Tables[0].Rows.Count > 0;
+			btnRefrescarNDcto.Visible = btn_Imprimir.Enabled = dt.Tables[0].Rows.Count > 0;
+
 		}
 
 		private void Cargar_Anno()
@@ -411,7 +412,7 @@ namespace ControlDosimetro
 						cbx_anno.Enabled = true;
 						cbx_id_periodo.Enabled = true;
 						cbx_Sucursal.Enabled = true;
-						btnFiltrar.Enabled = dtSucursal.DefaultView.Table.Rows.Count>0;
+						btnFiltrar.Enabled = dtSucursal.DefaultView.Table.Rows.Count > 0;
 						//}
 					}
 
@@ -435,7 +436,7 @@ namespace ControlDosimetro
 			lbl_rut.Text = "";
 			lbl_Direccion.Text = "";
 			cbx_Sucursal.DataSource = null;
-		
+
 			btnFiltrar.Enabled = false;
 			desdeCodigo = false;
 
@@ -497,7 +498,7 @@ namespace ControlDosimetro
 		}
 		private void tsb_Imprimir_Click(object sender, EventArgs e)
 		{
-			frmimprimedocpel frm = new frmimprimedocpel();
+			frmimprimeDocFilmico frm = new frmimprimeDocFilmico();
 			frm.Show(this);
 		}
 
@@ -506,12 +507,8 @@ namespace ControlDosimetro
 
 			DataSet dt;
 			dt = RptInforme();
-			//rptDctoFilmico
 			frmreporte frm = new frmreporte(dt, dt, 11);
 			frm.Show(this);
-			//Llamado_reporte(dt);
-
-
 		}
 
 
@@ -545,7 +542,7 @@ namespace ControlDosimetro
 			//			grpListado.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es: 0";
 			//	}
 			//}
-				
+
 		}
 
 		#endregion
@@ -689,7 +686,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "rptDctoFilmico";
 			cmd.Parameters.Add("@id_cliente", SqlDbType.Int);
 			cmd.Parameters["@id_cliente"].Value = lbl_id_cliente.Text;
-			cmd.Parameters.Add("@Rut", SqlDbType.VarChar,20);
+			cmd.Parameters.Add("@Rut", SqlDbType.VarChar, 20);
 			cmd.Parameters["@Rut"].Value = lbl_rut.Text;
 			cmd.Parameters.Add("@NDocumento", SqlDbType.BigInt);
 			cmd.Parameters["@NDocumento"].Value = txt_NDocumento.Text;
@@ -718,12 +715,24 @@ namespace ControlDosimetro
 				dtp_Fecha_dev.Text = dt.Tables[0].Rows[0]["fecha"].ToString();
 
 			}
-				
+
 		}
 
 		private void btnFiltrar_Click(object sender, EventArgs e)
 		{
 			Listar_Grilla();
+		}
+
+		private void btnRefrescarNDcto_Click(object sender, EventArgs e)
+		{
+			SqlCommand cmd = new SqlCommand();
+
+			DataSet dt;
+
+			cmd.CommandText = "pa_ObtieneUltimoValornDocumento_sel";
+
+			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			txt_NDocumento.Text = ((int)dt.Tables[0].Rows[0]["N_Documento"] + 1).ToString();
 		}
 	}
 }

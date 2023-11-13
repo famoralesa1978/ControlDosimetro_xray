@@ -232,6 +232,12 @@
     <Compile Include="Documento\frmDocumentoVerAprobar.Designer.cs">
       <DependentUpon>frmDocumentoVerAprobar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dosimetro\frmimprimeDocFilmico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dosimetro\frmimprimeDocFilmico.designer.cs">
+      <DependentUpon>frmimprimeDocFilmico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dosimetro\frmIngresoDosimetro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -744,6 +750,9 @@
     <EmbeddedResource Include="Documento\frmDocumentoVerAprobar.resx">
       <DependentUpon>frmDocumentoVerAprobar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dosimetro\frmimprimeDocFilmico.resx">
+      <DependentUpon>frmimprimeDocFilmico.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dosimetro\frmIngresoDosimetro.resx">
       <DependentUpon>frmIngresoDosimetro.cs</DependentUpon>
     </EmbeddedResource>
@@ -1123,6 +1132,7 @@
     <Content Include="Libreria\DocumentFormat.OpenXml.dll" />
     <Content Include="Libreria\GridExtension.dll" />
     <Content Include="Libreria\LibAdmSistema.dll" />
+    <None Include="Resources\Refrescar.png" />
     <None Include="Resources\ayudaPeriodo.png" />
     <None Include="Resources\CopiarDatos.png" />
     <None Include="Resources\ImportarExcel.png" />

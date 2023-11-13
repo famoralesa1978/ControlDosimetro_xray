@@ -30,8 +30,8 @@
         {
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngresoPeliculaFilmico));
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.btnFiltrar = new System.Windows.Forms.Button();
 			this.label16 = new System.Windows.Forms.Label();
@@ -47,6 +47,7 @@
 			this.cbx_id_periodo = new System.Windows.Forms.ComboBox();
 			this.lbl_nombreCliente = new System.Windows.Forms.Label();
 			this.grp_Ingreso = new System.Windows.Forms.GroupBox();
+			this.btnRefrescarNDcto = new System.Windows.Forms.Button();
 			this.txt_pelrefhasta = new System.Windows.Forms.TextBox();
 			this.label15 = new System.Windows.Forms.Label();
 			this.txt_pelrefdesde = new System.Windows.Forms.TextBox();
@@ -262,6 +263,7 @@
 			// 
 			// grp_Ingreso
 			// 
+			this.grp_Ingreso.Controls.Add(this.btnRefrescarNDcto);
 			this.grp_Ingreso.Controls.Add(this.txt_pelrefhasta);
 			this.grp_Ingreso.Controls.Add(this.label15);
 			this.grp_Ingreso.Controls.Add(this.txt_pelrefdesde);
@@ -288,6 +290,17 @@
 			this.grp_Ingreso.TabIndex = 5;
 			this.grp_Ingreso.TabStop = false;
 			this.grp_Ingreso.Text = "Ingreso Pelicula";
+			// 
+			// btnRefrescarNDcto
+			// 
+			this.btnRefrescarNDcto.AutoSize = true;
+			this.btnRefrescarNDcto.Image = global::ControlDosimetro.Properties.Resources.Refrescar;
+			this.btnRefrescarNDcto.Location = new System.Drawing.Point(209, 59);
+			this.btnRefrescarNDcto.Name = "btnRefrescarNDcto";
+			this.btnRefrescarNDcto.Size = new System.Drawing.Size(28, 29);
+			this.btnRefrescarNDcto.TabIndex = 52;
+			this.btnRefrescarNDcto.UseVisualStyleBackColor = true;
+			this.btnRefrescarNDcto.Click += new System.EventHandler(this.btnRefrescarNDcto_Click);
 			// 
 			// txt_pelrefhasta
 			// 
@@ -344,10 +357,10 @@
 			// 
 			// txt_Servicio
 			// 
-			this.txt_Servicio.Location = new System.Drawing.Point(105, 89);
+			this.txt_Servicio.Location = new System.Drawing.Point(90, 89);
 			this.txt_Servicio.MaxLength = 100;
 			this.txt_Servicio.Name = "txt_Servicio";
-			this.txt_Servicio.Size = new System.Drawing.Size(329, 20);
+			this.txt_Servicio.Size = new System.Drawing.Size(344, 20);
 			this.txt_Servicio.TabIndex = 12;
 			// 
 			// label10
@@ -389,11 +402,11 @@
 			// 
 			// txt_NDocumento
 			// 
-			this.txt_NDocumento.Location = new System.Drawing.Point(105, 63);
+			this.txt_NDocumento.Location = new System.Drawing.Point(90, 63);
 			this.txt_NDocumento.MaxLength = 10;
 			this.txt_NDocumento.Name = "txt_NDocumento";
 			this.txt_NDocumento.ReadOnly = true;
-			this.txt_NDocumento.Size = new System.Drawing.Size(100, 20);
+			this.txt_NDocumento.Size = new System.Drawing.Size(115, 20);
 			this.txt_NDocumento.TabIndex = 10;
 			// 
 			// label8
@@ -427,7 +440,7 @@
 			this.dtp_Fecha_inicio.CustomFormat = "dd/MM/yyyy";
 			this.dtp_Fecha_inicio.Enabled = false;
 			this.dtp_Fecha_inicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dtp_Fecha_inicio.Location = new System.Drawing.Point(311, 63);
+			this.dtp_Fecha_inicio.Location = new System.Drawing.Point(337, 63);
 			this.dtp_Fecha_inicio.Name = "dtp_Fecha_inicio";
 			this.dtp_Fecha_inicio.Size = new System.Drawing.Size(98, 20);
 			this.dtp_Fecha_inicio.TabIndex = 11;
@@ -458,7 +471,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(213, 65);
+			this.label5.Location = new System.Drawing.Point(239, 65);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(92, 13);
 			this.label5.TabIndex = 1;
@@ -748,9 +761,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle1.Format = "N2";
-			dataGridViewCellStyle1.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle3.Format = "N2";
+			dataGridViewCellStyle3.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle3;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -768,9 +781,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle2.Format = "N2";
-			dataGridViewCellStyle2.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle4.Format = "N2";
+			dataGridViewCellStyle4.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle4;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -898,5 +911,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn N_documento;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColFecha_ingreso;
 		private System.Windows.Forms.Button btnFiltrar;
+		private System.Windows.Forms.Button btnRefrescarNDcto;
 	}
 }
