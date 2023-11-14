@@ -562,6 +562,12 @@
     <Compile Include="Recepcion\FrmInformeDetalleISP.Designer.cs">
       <DependentUpon>FrmInformeDetalleISP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dosimetro\FrmInformeISPFilmico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dosimetro\FrmInformeISPFilmico.Designer.cs">
+      <DependentUpon>FrmInformeISPFilmico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Recepcion\FrmInformeISP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -911,6 +917,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Recepcion\FrmInformeDetalleISP.resx">
       <DependentUpon>FrmInformeDetalleISP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dosimetro\FrmInformeISPFilmico.resx">
+      <DependentUpon>FrmInformeISPFilmico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Recepcion\FrmInformeISP.resx">
       <DependentUpon>FrmInformeISP.cs</DependentUpon>

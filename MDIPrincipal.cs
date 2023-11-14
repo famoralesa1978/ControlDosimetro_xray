@@ -37,7 +37,7 @@ namespace ControlDosimetro
 			MantPermiso = 109,
 			MantMasivoPersonal = 110,
 			MantVersionesSistema = 111,
-			mnuMantSeccion=112,
+			mnuMantSeccion = 112,
 
 			IngresoPel = 201,
 			CorreccionDcto = 202,
@@ -50,9 +50,10 @@ namespace ControlDosimetro
 			ProcOrTrabPorFechaRecepcion = 210,
 			ProcIngresarDosisCliente = 213,
 			ProcIngresarDosisDos = 214,
-			mnuProcConsultaFilmico=216,
-			mnuProcIngPeliv2=217,
-			IngresoPelNuevo=218,
+			mnuProcConsultaFilmico = 216,
+			mnuProcIngPeliv2 = 217,
+			IngresoPelNuevo = 218,
+			InformeISPFilmico = 219,
 
 			Ingreso_TLD = 301,
 			EnviadoTLD = 302,
@@ -70,8 +71,8 @@ namespace ControlDosimetro
 			repEstadoDosimetro = 502,
 			repCliente = 503,
 			repConsultaTLD = 505,
-			mnuInformeISPTri=506,
-			mnuInformeISPAnual=507,
+			mnuInformeISPTri = 506,
+			mnuInformeISPAnual = 507,
 
 			LinkVigDosimetrica = 601,
 
@@ -470,6 +471,16 @@ namespace ControlDosimetro
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
 					break;
+
+				case (int)MENU.InformeISPFilmico:
+					objFrm = new FrmInformeISPFilmico(-1)
+					{
+						ShowInTaskbar = false,
+						StartPosition = FormStartPosition.CenterScreen
+					};
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
 				case (int)MENU.IngresoPelNuevo:
 					objFrm = new frmIngresoPeliculaFilmico(0)
 					{
@@ -499,7 +510,7 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.ProcEnviado:
-					objFrm = new frmModuloEnviado(0,false)
+					objFrm = new frmModuloEnviado(0, false)
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
@@ -508,7 +519,7 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.ProcRecepcion:
-					objFrm = new frmModuloRecepcion(0,false)
+					objFrm = new frmModuloRecepcion(0, false)
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
@@ -567,9 +578,9 @@ namespace ControlDosimetro
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
 					};
-						Graba_log(objFrm.Text);
-						objFrm.Show(this);
-						break;
+					Graba_log(objFrm.Text);
+					objFrm.Show(this);
+					break;
 				case (int)MENU.mnuProcIngPeliv2:
 					objFrm = new frmIngresoDosimetro
 					{
@@ -593,7 +604,7 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.EnviadoTLD:
-					objFrm = new frmModuloEnviado(0,true)
+					objFrm = new frmModuloEnviado(0, true)
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
@@ -602,7 +613,7 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.RecepcionTLD:
-					objFrm = new frmModuloRecepcion(0,true)
+					objFrm = new frmModuloRecepcion(0, true)
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
@@ -817,7 +828,7 @@ namespace ControlDosimetro
 					Graba_log(objFrm.Text);
 					objFrm.ShowDialog(this);
 					break;
-					
+
 				#endregion
 
 				#region "Acerca De 900"
@@ -998,7 +1009,7 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.ProcEnviado:
-					objFrm = new frmModuloEnviado(0,false)
+					objFrm = new frmModuloEnviado(0, false)
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
@@ -1007,7 +1018,7 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.ProcRecepcion:
-					objFrm = new frmModuloRecepcion(0,false)
+					objFrm = new frmModuloRecepcion(0, false)
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
@@ -1075,7 +1086,7 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.EnviadoTLD:
-					objFrm = new frmModuloEnviado(0,true)
+					objFrm = new frmModuloEnviado(0, true)
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
@@ -1084,7 +1095,7 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.RecepcionTLD:
-					objFrm = new frmModuloRecepcion(0,true)
+					objFrm = new frmModuloRecepcion(0, true)
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
