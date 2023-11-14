@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.lblRut = new System.Windows.Forms.Label();
 			this.cbx_PersonalCambio = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
@@ -96,14 +96,14 @@
 			this.lblNombrePersonal = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
 			this.tabNDocumento = new System.Windows.Forms.TabPage();
+			this.txtNDocumento = new System.Windows.Forms.TextBox();
+			this.label19 = new System.Windows.Forms.Label();
+			this.btnGuardarDireccionNDcto = new System.Windows.Forms.Button();
 			this.cbxDireccionDctoCambiar = new System.Windows.Forms.ComboBox();
 			this.label15 = new System.Windows.Forms.Label();
 			this.label17 = new System.Windows.Forms.Label();
 			this.cbxDireccionDctoActual = new System.Windows.Forms.ComboBox();
 			this.label18 = new System.Windows.Forms.Label();
-			this.btnGuardarDireccionNDcto = new System.Windows.Forms.Button();
-			this.txtNDocumento = new System.Windows.Forms.TextBox();
-			this.label19 = new System.Windows.Forms.Label();
 			this.cmsPopup.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.grpDatos.SuspendLayout();
@@ -359,9 +359,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle3.Format = "N2";
-			dataGridViewCellStyle3.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle1.Format = "N2";
+			dataGridViewCellStyle1.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -379,9 +379,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle4.Format = "N2";
-			dataGridViewCellStyle4.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle2.Format = "N2";
+			dataGridViewCellStyle2.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -758,6 +758,33 @@
 			this.tabNDocumento.Text = "por n° documento";
 			this.tabNDocumento.UseVisualStyleBackColor = true;
 			// 
+			// txtNDocumento
+			// 
+			this.txtNDocumento.Location = new System.Drawing.Point(122, 105);
+			this.txtNDocumento.MaxLength = 10;
+			this.txtNDocumento.Name = "txtNDocumento";
+			this.txtNDocumento.Size = new System.Drawing.Size(74, 20);
+			this.txtNDocumento.TabIndex = 55;
+			// 
+			// label19
+			// 
+			this.label19.AutoSize = true;
+			this.label19.Location = new System.Drawing.Point(28, 108);
+			this.label19.Name = "label19";
+			this.label19.Size = new System.Drawing.Size(75, 13);
+			this.label19.TabIndex = 56;
+			this.label19.Text = "N° documento";
+			// 
+			// btnGuardarDireccionNDcto
+			// 
+			this.btnGuardarDireccionNDcto.Location = new System.Drawing.Point(62, 147);
+			this.btnGuardarDireccionNDcto.Name = "btnGuardarDireccionNDcto";
+			this.btnGuardarDireccionNDcto.Size = new System.Drawing.Size(114, 23);
+			this.btnGuardarDireccionNDcto.TabIndex = 54;
+			this.btnGuardarDireccionNDcto.Text = "Modificar dirección";
+			this.btnGuardarDireccionNDcto.UseVisualStyleBackColor = true;
+			this.btnGuardarDireccionNDcto.Click += new System.EventHandler(this.btnGuardarDireccionNDcto_Click);
+			// 
 			// cbxDireccionDctoCambiar
 			// 
 			this.cbxDireccionDctoCambiar.DisplayMember = "Descripcion";
@@ -811,33 +838,6 @@
 			this.label18.Size = new System.Drawing.Size(120, 13);
 			this.label18.TabIndex = 52;
 			this.label18.Text = "Dirección a modicar";
-			// 
-			// btnGuardarDireccionNDcto
-			// 
-			this.btnGuardarDireccionNDcto.Location = new System.Drawing.Point(62, 147);
-			this.btnGuardarDireccionNDcto.Name = "btnGuardarDireccionNDcto";
-			this.btnGuardarDireccionNDcto.Size = new System.Drawing.Size(114, 23);
-			this.btnGuardarDireccionNDcto.TabIndex = 54;
-			this.btnGuardarDireccionNDcto.Text = "Modificar dirección";
-			this.btnGuardarDireccionNDcto.UseVisualStyleBackColor = true;
-			this.btnGuardarDireccionNDcto.Click += new System.EventHandler(this.btnGuardarDireccionNDcto_Click);
-			// 
-			// txtNDocumento
-			// 
-			this.txtNDocumento.Location = new System.Drawing.Point(122, 105);
-			this.txtNDocumento.MaxLength = 10;
-			this.txtNDocumento.Name = "txtNDocumento";
-			this.txtNDocumento.Size = new System.Drawing.Size(74, 20);
-			this.txtNDocumento.TabIndex = 55;
-			// 
-			// label19
-			// 
-			this.label19.AutoSize = true;
-			this.label19.Location = new System.Drawing.Point(28, 108);
-			this.label19.Name = "label19";
-			this.label19.Size = new System.Drawing.Size(75, 13);
-			this.label19.TabIndex = 56;
-			this.label19.Text = "N° documento";
 			// 
 			// frmCambioPersonalTLD
 			// 

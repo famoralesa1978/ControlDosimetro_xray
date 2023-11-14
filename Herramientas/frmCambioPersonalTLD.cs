@@ -17,25 +17,26 @@ using System.Net.Mime;
 using System.Net;
 using System.Net.Mail;
 using classFuncionesBD;
+using OpenXmlPowerTools;
 
 namespace ControlDosimetro
 {
-    public partial class frmCambioPersonalTLD : Form
-    {
+	public partial class frmCambioPersonalTLD : Form
+	{
 
-        #region "Definicion variable"
-				clsConectorSqlServer Conectar = new clsConectorSqlServer();
-				clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-            clsEventoControl ClaseEvento = new clsEventoControl();
-        clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
-        ClsFunciones clsFunc = new ClsFunciones();
-        #endregion
+		#region "Definicion variable"
+		clsConectorSqlServer Conectar = new clsConectorSqlServer();
+		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
+		clsEventoControl ClaseEvento = new clsEventoControl();
+		clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
+		ClsFunciones clsFunc = new ClsFunciones();
+		#endregion
 
 		public frmCambioPersonalTLD()
 		{
 			InitializeComponent();
 			AsignarEvento();
-			Btn_filtro_Click(null,null);
+			Btn_filtro_Click(null, null);
 		}
 
 		#region "Llamada de carga"      
@@ -54,14 +55,14 @@ namespace ControlDosimetro
 				lblRut.Text = dt.Tables[0].Rows[0]["run"].ToString();
 				lblNombrePersonal.Text = dt.Tables[1].Rows[0]["NombreCompleto"].ToString();
 				lblEstadoActual.Text = dt.Tables[1].Rows[0]["Estado"].ToString();
-				
+
 				Cargar_Personal(dt.Tables[0].Rows[0]["Id_cliente"].ToString(), lblRut.Text);
 				Cargar_Seccion();
 				Cargar_Direccion();
 				Cargar_Estado();
 				cbx_PersonalActual.SelectedValue = dt.Tables[1].Rows[0]["Id_Personal"];
 				cbx_id_seccion.SelectedValue = dt.Tables[1].Rows[0]["Id_SeccionTLD"];
-				cbxDireccionActual.SelectedValue= dt.Tables[1].Rows[0]["Id_sucursal"]; 
+				cbxDireccionActual.SelectedValue = dt.Tables[1].Rows[0]["Id_sucursal"];
 				btn_Cargar.Enabled = false;
 				txt_NDoc.Enabled = false;
 				btn_Guardar.Enabled = true;
@@ -93,7 +94,7 @@ namespace ControlDosimetro
 
 		}
 
-		private void Cargar_Personal(string Id_Cliente,string rut)
+		private void Cargar_Personal(string Id_Cliente, string rut)
 		{
 			SqlCommand cmd = new SqlCommand();
 
@@ -144,7 +145,7 @@ namespace ControlDosimetro
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 			DataSet dtCopia = dt.Copy();
-			
+
 			cbxDireccionActual.DataSource = dt.Tables[0];
 			cbxDireccionMod.DataSource = dtCopia.Tables[1];
 			cbxDireccionDctoActual.DataSource = dt.Tables[0].Copy();
@@ -156,7 +157,7 @@ namespace ControlDosimetro
 			txt_NDoc.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
 			txtNDocumento.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
 			txtNDocumento.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-			
+
 		}
 		#endregion
 
@@ -165,7 +166,7 @@ namespace ControlDosimetro
 		{
 			SqlCommand cmd = new SqlCommand();
 			DataSet ds;
-			string strParametro = String.Format("{0},{1}", txt_NDoc.Text,nudTLDEnviadoAlCliente.Value);
+			string strParametro = String.Format("{0},{1}", txt_NDoc.Text, nudTLDEnviadoAlCliente.Value);
 			cmd.CommandText = "pa_AsociarTLDEnviadoAlCliente_upd " + strParametro;
 			cmd.CommandType = CommandType.Text;//pa_ModificarSeccionTLD_upd
 
@@ -181,14 +182,14 @@ namespace ControlDosimetro
 		}
 		private void btn_Cargar_Click(object sender, EventArgs e)
 		{
-			Cargar_TLD(Convert.ToInt64(  txt_NDoc.Text));
+			Cargar_TLD(Convert.ToInt64(txt_NDoc.Text));
 		}
 
 		private void Btn_Guardar_Click(object sender, EventArgs e)
 		{
 			SqlCommand cmd = new SqlCommand();
 			DataSet ds;
-			string strParametro = String.Format("{0},{1},{2}", txt_NDoc.Text, (cbx_PersonalActual.SelectedValue ==null?0: cbx_PersonalActual.SelectedValue), cbx_PersonalCambio.SelectedValue);
+			string strParametro = String.Format("{0},{1},{2}", txt_NDoc.Text, (cbx_PersonalActual.SelectedValue == null ? 0 : cbx_PersonalActual.SelectedValue), cbx_PersonalCambio.SelectedValue);
 			cmd.CommandText = "pa_ModificarPersonalTLD_upd " + strParametro;
 			cmd.CommandType = CommandType.Text;//pa_ModificarSeccionTLD_upd
 
@@ -206,7 +207,7 @@ namespace ControlDosimetro
 		{
 			SqlCommand cmd = new SqlCommand();
 			DataSet ds;
-			string strParametro = String.Format("{0},{1}", txt_NDoc.Text,cbxEstado.SelectedValue);
+			string strParametro = String.Format("{0},{1}", txt_NDoc.Text, cbxEstado.SelectedValue);
 			cmd.CommandText = "pa_ModificarEstadoTLD_upd " + strParametro;
 			cmd.CommandType = CommandType.Text;//pa_ModificarSeccionTLD_upd
 
@@ -222,9 +223,9 @@ namespace ControlDosimetro
 		}
 
 		private void Btn_Cerrar_Click(object sender, EventArgs e)
-		 {
-			 this.Close();
-		 }
+		{
+			this.Close();
+		}
 
 		private void Btn_filtro_Click(object sender, EventArgs e)
 		{
@@ -267,7 +268,7 @@ namespace ControlDosimetro
 			cmd.Parameters.Add("@N_TLD", SqlDbType.Int);
 			cmd.Parameters["@N_TLD"].Value = txt_NDoc.Text;
 			cmd.Parameters.Add("@IdDireccionActual", SqlDbType.Int);
-			cmd.Parameters["@IdDireccionActual"].Value = string.IsNullOrWhiteSpace(cbxDireccionActual.Text)?null: cbxDireccionActual.SelectedValue;
+			cmd.Parameters["@IdDireccionActual"].Value = string.IsNullOrWhiteSpace(cbxDireccionActual.Text) ? null : cbxDireccionActual.SelectedValue;
 			cmd.Parameters.Add("@IdDireccionCambio", SqlDbType.Int);
 			cmd.Parameters["@IdDireccionCambio"].Value = cbxDireccionMod.SelectedValue;
 			cmd.CommandType = CommandType.StoredProcedure;
@@ -287,7 +288,12 @@ namespace ControlDosimetro
 		{
 			if (string.IsNullOrWhiteSpace(txtNDocumento.Text))
 			{
-				classFuncionesGenerales.mensajes.MensajeError("Ingrese número de documento");
+				classFuncionesGenerales.mensajes.MensajeError("Ingrese número de documento.");
+				return;
+			}
+			if (string.IsNullOrWhiteSpace(cbxDireccionMod.Text))
+			{
+				classFuncionesGenerales.mensajes.MensajeError("Debe seleccionar la dirección a modificar.");
 				return;
 			}
 
@@ -300,13 +306,16 @@ namespace ControlDosimetro
 			cmd.Parameters["@IdDireccionActual"].Value = string.IsNullOrWhiteSpace(cbxDireccionActual.Text) ? null : cbxDireccionActual.SelectedValue;
 			cmd.Parameters.Add("@IdDireccionCambio", SqlDbType.Int);
 			cmd.Parameters["@IdDireccionCambio"].Value = cbxDireccionMod.SelectedValue;
+			cmd.Parameters.Add("@NTdl", SqlDbType.Int);
+			cmd.Parameters["@NTdl"].Value = txt_NDoc.Text;
+			
 			cmd.CommandType = CommandType.StoredProcedure;
 
 
 			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
 			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
 			{
-				MessageBox.Show("Error en actualizar la información");
+				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
 			}
 
 			else
