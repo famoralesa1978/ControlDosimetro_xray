@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.lblRut = new System.Windows.Forms.Label();
 			this.cbx_PersonalCambio = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
@@ -95,6 +95,15 @@
 			this.cbxEstado = new System.Windows.Forms.ComboBox();
 			this.lblNombrePersonal = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
+			this.tabNDocumento = new System.Windows.Forms.TabPage();
+			this.cbxDireccionDctoCambiar = new System.Windows.Forms.ComboBox();
+			this.label15 = new System.Windows.Forms.Label();
+			this.label17 = new System.Windows.Forms.Label();
+			this.cbxDireccionDctoActual = new System.Windows.Forms.ComboBox();
+			this.label18 = new System.Windows.Forms.Label();
+			this.btnGuardarDireccionNDcto = new System.Windows.Forms.Button();
+			this.txtNDocumento = new System.Windows.Forms.TextBox();
+			this.label19 = new System.Windows.Forms.Label();
 			this.cmsPopup.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.grpDatos.SuspendLayout();
@@ -106,6 +115,7 @@
 			this.tabAsociarTLDEnviadoAlCliente.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudTLDEnviadoAlCliente)).BeginInit();
 			this.tabCambioEstado.SuspendLayout();
+			this.tabNDocumento.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// lblRut
@@ -264,7 +274,7 @@
 			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(520, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(630, 25);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -349,9 +359,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle1.Format = "N2";
-			dataGridViewCellStyle1.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle3.Format = "N2";
+			dataGridViewCellStyle3.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle3;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -369,9 +379,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle2.Format = "N2";
-			dataGridViewCellStyle2.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle4.Format = "N2";
+			dataGridViewCellStyle4.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle4;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -410,6 +420,7 @@
 			this.tabPrincipal.Controls.Add(this.tabDireccion);
 			this.tabPrincipal.Controls.Add(this.tabAsociarTLDEnviadoAlCliente);
 			this.tabPrincipal.Controls.Add(this.tabCambioEstado);
+			this.tabPrincipal.Controls.Add(this.tabNDocumento);
 			this.tabPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabPrincipal.Location = new System.Drawing.Point(3, 16);
 			this.tabPrincipal.Name = "tabPrincipal";
@@ -730,12 +741,110 @@
 			this.label13.TabIndex = 40;
 			this.label13.Text = "Personal";
 			// 
+			// tabNDocumento
+			// 
+			this.tabNDocumento.Controls.Add(this.txtNDocumento);
+			this.tabNDocumento.Controls.Add(this.label19);
+			this.tabNDocumento.Controls.Add(this.btnGuardarDireccionNDcto);
+			this.tabNDocumento.Controls.Add(this.cbxDireccionDctoCambiar);
+			this.tabNDocumento.Controls.Add(this.label15);
+			this.tabNDocumento.Controls.Add(this.label17);
+			this.tabNDocumento.Controls.Add(this.cbxDireccionDctoActual);
+			this.tabNDocumento.Controls.Add(this.label18);
+			this.tabNDocumento.Location = new System.Drawing.Point(4, 22);
+			this.tabNDocumento.Name = "tabNDocumento";
+			this.tabNDocumento.Size = new System.Drawing.Size(500, 193);
+			this.tabNDocumento.TabIndex = 5;
+			this.tabNDocumento.Text = "por n° documento";
+			this.tabNDocumento.UseVisualStyleBackColor = true;
+			// 
+			// cbxDireccionDctoCambiar
+			// 
+			this.cbxDireccionDctoCambiar.DisplayMember = "Descripcion";
+			this.cbxDireccionDctoCambiar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbxDireccionDctoCambiar.FormattingEnabled = true;
+			this.cbxDireccionDctoCambiar.Location = new System.Drawing.Point(122, 76);
+			this.cbxDireccionDctoCambiar.Name = "cbxDireccionDctoCambiar";
+			this.cbxDireccionDctoCambiar.Size = new System.Drawing.Size(317, 21);
+			this.cbxDireccionDctoCambiar.TabIndex = 50;
+			this.cbxDireccionDctoCambiar.ValueMember = "Id_sucursal";
+			// 
+			// label15
+			// 
+			this.label15.AutoSize = true;
+			this.label15.Location = new System.Drawing.Point(22, 20);
+			this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(84, 13);
+			this.label15.TabIndex = 51;
+			this.label15.Text = "Dirección actual";
+			// 
+			// label17
+			// 
+			this.label17.AutoSize = true;
+			this.label17.Location = new System.Drawing.Point(22, 79);
+			this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(52, 13);
+			this.label17.TabIndex = 53;
+			this.label17.Text = "Dirección";
+			// 
+			// cbxDireccionDctoActual
+			// 
+			this.cbxDireccionDctoActual.DisplayMember = "Descripcion";
+			this.cbxDireccionDctoActual.Enabled = false;
+			this.cbxDireccionDctoActual.FormattingEnabled = true;
+			this.cbxDireccionDctoActual.Location = new System.Drawing.Point(122, 17);
+			this.cbxDireccionDctoActual.Margin = new System.Windows.Forms.Padding(2);
+			this.cbxDireccionDctoActual.Name = "cbxDireccionDctoActual";
+			this.cbxDireccionDctoActual.Size = new System.Drawing.Size(317, 21);
+			this.cbxDireccionDctoActual.TabIndex = 49;
+			this.cbxDireccionDctoActual.ValueMember = "Id_sucursal";
+			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label18.Location = new System.Drawing.Point(22, 47);
+			this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(120, 13);
+			this.label18.TabIndex = 52;
+			this.label18.Text = "Dirección a modicar";
+			// 
+			// btnGuardarDireccionNDcto
+			// 
+			this.btnGuardarDireccionNDcto.Location = new System.Drawing.Point(62, 147);
+			this.btnGuardarDireccionNDcto.Name = "btnGuardarDireccionNDcto";
+			this.btnGuardarDireccionNDcto.Size = new System.Drawing.Size(114, 23);
+			this.btnGuardarDireccionNDcto.TabIndex = 54;
+			this.btnGuardarDireccionNDcto.Text = "Modificar dirección";
+			this.btnGuardarDireccionNDcto.UseVisualStyleBackColor = true;
+			this.btnGuardarDireccionNDcto.Click += new System.EventHandler(this.btnGuardarDireccionNDcto_Click);
+			// 
+			// txtNDocumento
+			// 
+			this.txtNDocumento.Location = new System.Drawing.Point(122, 105);
+			this.txtNDocumento.MaxLength = 10;
+			this.txtNDocumento.Name = "txtNDocumento";
+			this.txtNDocumento.Size = new System.Drawing.Size(74, 20);
+			this.txtNDocumento.TabIndex = 55;
+			// 
+			// label19
+			// 
+			this.label19.AutoSize = true;
+			this.label19.Location = new System.Drawing.Point(28, 108);
+			this.label19.Name = "label19";
+			this.label19.Size = new System.Drawing.Size(75, 13);
+			this.label19.TabIndex = 56;
+			this.label19.Text = "N° documento";
+			// 
 			// frmCambioPersonalTLD
 			// 
 			this.AcceptButton = this.btn_Cargar;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(520, 343);
+			this.ClientSize = new System.Drawing.Size(630, 343);
 			this.Controls.Add(this.btn_filtro);
 			this.Controls.Add(this.grpDatos);
 			this.Controls.Add(this.lblRut);
@@ -769,6 +878,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.nudTLDEnviadoAlCliente)).EndInit();
 			this.tabCambioEstado.ResumeLayout(false);
 			this.tabCambioEstado.PerformLayout();
+			this.tabNDocumento.ResumeLayout(false);
+			this.tabNDocumento.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -839,5 +950,14 @@
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.Label lblEstadoActual;
 		private System.Windows.Forms.Label label16;
+		private System.Windows.Forms.TabPage tabNDocumento;
+		private System.Windows.Forms.Button btnGuardarDireccionNDcto;
+		private System.Windows.Forms.ComboBox cbxDireccionDctoCambiar;
+		private System.Windows.Forms.Label label15;
+		private System.Windows.Forms.Label label17;
+		private System.Windows.Forms.ComboBox cbxDireccionDctoActual;
+		private System.Windows.Forms.Label label18;
+		private System.Windows.Forms.TextBox txtNDocumento;
+		private System.Windows.Forms.Label label19;
 	}
 }

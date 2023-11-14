@@ -147,11 +147,16 @@ namespace ControlDosimetro
 			
 			cbxDireccionActual.DataSource = dt.Tables[0];
 			cbxDireccionMod.DataSource = dtCopia.Tables[1];
+			cbxDireccionDctoActual.DataSource = dt.Tables[0].Copy();
+			cbxDireccionDctoCambiar.DataSource = dt.Tables[0].Copy();
 		}
 		private void AsignarEvento()
 		{
 			txt_NDoc.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
 			txt_NDoc.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+			txtNDocumento.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+			txtNDocumento.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+			
 		}
 		#endregion
 
@@ -231,6 +236,7 @@ namespace ControlDosimetro
 			txt_NDoc.Enabled = true;
 			lbl_NCliente.Text = "";
 			lbl_NombreCliente.Text = "";
+			txtNDocumento.Clear();
 			grpDatos.Enabled = false;
 			btn_Guardar.Enabled = false;
 			btn_ModificarSeccion.Enabled = false;
@@ -257,9 +263,44 @@ namespace ControlDosimetro
 		{
 			SqlCommand cmd = new SqlCommand();
 			DataSet ds;
-			string strParametro = String.Format("{0},{1},{2}", txt_NDoc.Text, cbxDireccionActual.SelectedValue, cbxDireccionMod.SelectedValue);
-			cmd.CommandText = "pa_ModificarDireccionTLD_upd " + strParametro;
-			cmd.CommandType = CommandType.Text;//
+			cmd.CommandText = "pa_ModificarDireccionTLD_upd ";
+			cmd.Parameters.Add("@N_TLD", SqlDbType.Int);
+			cmd.Parameters["@N_TLD"].Value = txt_NDoc.Text;
+			cmd.Parameters.Add("@IdDireccionActual", SqlDbType.Int);
+			cmd.Parameters["@IdDireccionActual"].Value = string.IsNullOrWhiteSpace(cbxDireccionActual.Text)?null: cbxDireccionActual.SelectedValue;
+			cmd.Parameters.Add("@IdDireccionCambio", SqlDbType.Int);
+			cmd.Parameters["@IdDireccionCambio"].Value = cbxDireccionMod.SelectedValue;
+			cmd.CommandType = CommandType.StoredProcedure;
+
+
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
+			{
+				MessageBox.Show("Error en actualizar la información");
+			}
+
+			else
+				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
+		}
+
+		private void btnGuardarDireccionNDcto_Click(object sender, EventArgs e)
+		{
+			if (string.IsNullOrWhiteSpace(txtNDocumento.Text))
+			{
+				classFuncionesGenerales.mensajes.MensajeError("Ingrese número de documento");
+				return;
+			}
+
+			SqlCommand cmd = new SqlCommand();
+			DataSet ds;
+			cmd.CommandText = "pa_ModificarDireccionPorNumeroDctoTLD_upd ";
+			cmd.Parameters.Add("@N_Dcto", SqlDbType.Int);
+			cmd.Parameters["@N_Dcto"].Value = txtNDocumento.Text;
+			cmd.Parameters.Add("@IdDireccionActual", SqlDbType.Int);
+			cmd.Parameters["@IdDireccionActual"].Value = string.IsNullOrWhiteSpace(cbxDireccionActual.Text) ? null : cbxDireccionActual.SelectedValue;
+			cmd.Parameters.Add("@IdDireccionCambio", SqlDbType.Int);
+			cmd.Parameters["@IdDireccionCambio"].Value = cbxDireccionMod.SelectedValue;
+			cmd.CommandType = CommandType.StoredProcedure;
 
 
 			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -283,7 +324,6 @@ namespace ControlDosimetro
 		#region "grilla"
 
 		#endregion
-
 
 	}
 }
