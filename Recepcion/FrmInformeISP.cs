@@ -967,7 +967,7 @@ namespace ControlDosimetro
 				strpathcopiar = targetPath + "cliente " +
 									string.Format("{0}_{1}_{2}.xlsx", lbl_id_cliente.Text, cbx_id_seccion.Text, cbx_Sucursal.Text);
 
-				strDireccionEmpresaSucursal = cbx_Sucursal.Text == strDireccionEmpresa ? cbx_id_seccion.Text : string.Format("{0}({1})", strDireccionEmpresa, cbx_id_seccion.Text);
+				strDireccionEmpresaSucursal = cbx_Sucursal.Text == strDireccionEmpresa ? cbx_id_seccion.Text : string.Format("{0} ({1})", cbx_Sucursal.Text, cbx_id_seccion.Text);
 				// process.Start("c:\Ejemplo de Carpeta con Espacios");
 				File.Copy(strpath, strpathcopiar, true);
 				//strRunEmpresa + "_" + cbx_id_periodo.Text + ".docx";
