@@ -63,6 +63,7 @@ namespace ControlDosimetro
 				cbx_PersonalActual.SelectedValue = dt.Tables[1].Rows[0]["Id_Personal"];
 				cbx_id_seccion.SelectedValue = dt.Tables[1].Rows[0]["Id_SeccionTLD"];
 				cbxDireccionActual.SelectedValue = dt.Tables[1].Rows[0]["Id_sucursal"];
+				cbxDireccionDctoActual.SelectedValue = dt.Tables[1].Rows[0]["Id_sucursal"];
 				btn_Cargar.Enabled = false;
 				txt_NDoc.Enabled = false;
 				btn_Guardar.Enabled = true;
@@ -299,7 +300,7 @@ namespace ControlDosimetro
 
 			SqlCommand cmd = new SqlCommand();
 			DataSet ds;
-			cmd.CommandText = "pa_ModificarDireccionPorNumeroDctoTLD_upd ";
+			cmd.CommandText = "pa_ModificarDireccionPorNumeroDctoTLD_upd";
 			cmd.Parameters.Add("@N_Dcto", SqlDbType.Int);
 			cmd.Parameters["@N_Dcto"].Value = txtNDocumento.Text;
 			cmd.Parameters.Add("@IdDireccionActual", SqlDbType.Int);

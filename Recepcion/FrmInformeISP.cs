@@ -2614,10 +2614,6 @@ namespace ControlDosimetro
 			Cursor = Cursors.WaitCursor;
 			Inicializar = false;
 			Listar_Personal();
-			//cbx_anno.Enabled = false;
-			//cbx_id_periodo.Enabled = false;
-			//btn_cargar.Enabled = false;
-			//btn_Corregir.Enabled = true;
 			grdDatos.Focus();
 			Cursor = Cursors.Default;
 		}
