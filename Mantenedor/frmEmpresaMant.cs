@@ -212,37 +212,8 @@ namespace ControlDosimetro
 
 		private void AsignarEvento()
 		{
-			SqlCommand cmd = new SqlCommand();
-
-			//	SqlCommand cmd = new SqlCommand();
-			DataSet dt;
-			string strname;
-			foreach (System.Windows.Forms.Control c in tbl_cliente.Controls)
-			{
-				//foreach (Control childc in c.Controls)
-				//{
-				if (c is TextBox)
-				{
-
-					strname = ((TextBox)c).Name;
-
-					cmd.CommandText = "SELECT  requerido, validacion " +
-										" FROM glo_configuracioncampo WHERE campo= '" + strname.Replace("txt_", "") + "'";
-
-					dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-					if (dt.Tables[0].Rows.Count == 0)
-						((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-					else
-					{
-						if (dt.Tables[0].Rows[0]["validacion"].ToString() == "numerico")
-						{
-							((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-							((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-						}
-					}
-				}
-
-			}
+			clsEvento.AsignarNumero(ref txt_id_cliente);
+			clsEvento.AsignarNumero(ref txt_N_Cliente_Ref);
 			clsEvento.AvanzarComboBox_KeyPress(ref cbx_id_region);
 			clsEvento.AvanzarComboBox_KeyPress(ref cbx_id_provincia);
 			clsEvento.AvanzarComboBox_KeyPress(ref cbx_id_comuna);
@@ -256,7 +227,7 @@ namespace ControlDosimetro
 			clsEvento.AsignarMailMultiple(ref txt_Email);
 			clsEvento.AsignarMailMultiple(ref txt_Emailfacturacion);
 			clsEvento.AsignarDireccion(ref txt_direccion);
-			
+
 			//txt_Email.Validated += new EventHandler(ClaseEvento.validaEmail_Validated);
 		}
 
@@ -672,7 +643,7 @@ namespace ControlDosimetro
 			string Sheet_name = "";
 			classFuncionesGenerales.ExcelNpoin ExcelNpoin = new classFuncionesGenerales.ExcelNpoin();
 
-			ISheet sheet = ExcelNpoin.LeerExcel(archivo, extension,0,ref Sheet_name);
+			ISheet sheet = ExcelNpoin.LeerExcel(archivo, extension, 0, ref Sheet_name);
 			txt_run.Text = sheet.GetRow(10).GetCell(1).StringCellValue;
 			txt_Razon_Social.Text = sheet.GetRow(8).GetCell(2).StringCellValue;
 			txt_Nombre_fantasia.Text = sheet.GetRow(9).GetCell(2).StringCellValue;
@@ -695,6 +666,6 @@ namespace ControlDosimetro
 				}
 			}
 		}
-	
+
 	}
 }
