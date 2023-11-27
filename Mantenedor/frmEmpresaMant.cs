@@ -241,18 +241,22 @@ namespace ControlDosimetro
 						}
 					}
 				}
-				if (c is ComboBox)
-					((ComboBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-				if (c is DateTimePicker)
-					((DateTimePicker)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 
 			}
+			clsEvento.AvanzarComboBox_KeyPress(ref cbx_id_region);
+			clsEvento.AvanzarComboBox_KeyPress(ref cbx_id_provincia);
+			clsEvento.AvanzarComboBox_KeyPress(ref cbx_id_comuna);
+			clsEvento.AvanzarComboBox_KeyPress(ref cbx_Id_TipoEntidad);
+			clsEvento.AvanzarComboBox_KeyPress(ref cbx_id_Ministerio);
+			clsEvento.AvanzarComboBox_KeyPress(ref cbx_Id_Sector);
+			clsEvento.AvanzarComboBox_KeyPress(ref cbx_id_estado);
+			clsEvento.AvanzarComboBox_KeyPress(ref cbx_id_periodo);
 			clsEvento.AsignarRut(ref txt_run);
 			clsEvento.AsignarRut(ref txt_OPR_RUT);
 			clsEvento.AsignarMailMultiple(ref txt_Email);
 			clsEvento.AsignarMailMultiple(ref txt_Emailfacturacion);
 			clsEvento.AsignarDireccion(ref txt_direccion);
-
+			
 			//txt_Email.Validated += new EventHandler(ClaseEvento.validaEmail_Validated);
 		}
 

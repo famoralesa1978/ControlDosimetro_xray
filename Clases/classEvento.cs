@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using dllLibreriaEvento;
+using OpenXmlPowerTools;
 
 namespace Clases
 {
@@ -70,6 +71,16 @@ namespace Clases
 		public void AsignarKeyPressDTP(ref DateTimePicker textbox)
 		{
 			textbox.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+		}
+
+		public void AvanzarComboBox_KeyPress(ref ComboBox control)
+		{
+			control.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+		}
+
+		public void AvanzarDateTimePicker_KeyPress(ref DateTimePicker control)
+		{
+			control.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 		}
 
 	}
