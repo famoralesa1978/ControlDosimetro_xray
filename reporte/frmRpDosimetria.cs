@@ -13,6 +13,8 @@ using System.Data.SqlClient;
 using Microsoft.Reporting.WinForms;
 using System.IO;
 using SpreadsheetLight;
+using Clases;
+using Microsoft.ReportingServices.ReportProcessing.OnDemandReportObjectModel;
 
 namespace ControlDosimetro
 {
@@ -21,7 +23,8 @@ namespace ControlDosimetro
 		#region "Definicion variable"
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-		clsEventoControl ClaseEvento = new clsEventoControl();
+		ClassEvento ClaseEvento = new ClassEvento();
+		Clases.ClassEvento clsEvento = new Clases.ClassEvento();
 
 		#endregion
 
@@ -31,16 +34,11 @@ namespace ControlDosimetro
 		{
 			InitializeComponent();
 			cbx_Region.SelectedText = "1";
-			txt_Rut.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
-			txt_Rut.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
-			txt_Rut.Validated += new EventHandler(ClaseEvento.validarut_Validated);
-			txt_NumeroCliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			txt_NumeroCliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-			txtNClienteAnual.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			txtNClienteAnual.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
 
-			txt_NDosimetro.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			txt_NDosimetro.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+			clsEvento.AsignarRut(ref txt_Rut);
+			clsEvento.AsignarNumero(ref txt_NumeroCliente);
+			clsEvento.AsignarNumero(ref txtNClienteAnual);
+			clsEvento.AsignarNumero(ref txt_NDosimetro);
 			if (tabControl1.SelectedIndex == 0)
 			{
 				label4.Visible = false;

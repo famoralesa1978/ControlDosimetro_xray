@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
 			this.tbl_cliente = new System.Windows.Forms.GroupBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.txt_OPR_RUT = new System.Windows.Forms.TextBox();
+			this.lbl_OPR_RUT = new System.Windows.Forms.Label();
 			this.btn_Excel = new System.Windows.Forms.Button();
 			this.lbl_Emailfacturacion = new System.Windows.Forms.Label();
 			this.txt_Emailfacturacion = new System.Windows.Forms.TextBox();
@@ -80,9 +83,6 @@
 			this.lbl_id_cliente = new System.Windows.Forms.Label();
 			this.txt_run = new System.Windows.Forms.TextBox();
 			this.lbl_run = new System.Windows.Forms.Label();
-			this.lbl_OPR_RUT = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.txt_OPR_RUT = new System.Windows.Forms.TextBox();
 			this.tbl_cliente.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -149,6 +149,32 @@
 			this.tbl_cliente.TabIndex = 0;
 			this.tbl_cliente.TabStop = false;
 			this.tbl_cliente.Text = "Datos";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(292, 470);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(108, 13);
+			this.label3.TabIndex = 63;
+			this.label3.Text = "Formato: 12345678-9";
+			// 
+			// txt_OPR_RUT
+			// 
+			this.txt_OPR_RUT.Location = new System.Drawing.Point(166, 467);
+			this.txt_OPR_RUT.MaxLength = 10;
+			this.txt_OPR_RUT.Name = "txt_OPR_RUT";
+			this.txt_OPR_RUT.Size = new System.Drawing.Size(120, 20);
+			this.txt_OPR_RUT.TabIndex = 62;
+			// 
+			// lbl_OPR_RUT
+			// 
+			this.lbl_OPR_RUT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbl_OPR_RUT.Location = new System.Drawing.Point(10, 470);
+			this.lbl_OPR_RUT.Name = "lbl_OPR_RUT";
+			this.lbl_OPR_RUT.Size = new System.Drawing.Size(102, 12);
+			this.lbl_OPR_RUT.TabIndex = 61;
+			this.lbl_OPR_RUT.Text = "OPR Rut";
 			// 
 			// btn_Excel
 			// 
@@ -646,32 +672,6 @@
 			this.lbl_run.Size = new System.Drawing.Size(24, 13);
 			this.lbl_run.TabIndex = 0;
 			this.lbl_run.Text = "Rut";
-			// 
-			// lbl_OPR_RUT
-			// 
-			this.lbl_OPR_RUT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_OPR_RUT.Location = new System.Drawing.Point(10, 470);
-			this.lbl_OPR_RUT.Name = "lbl_OPR_RUT";
-			this.lbl_OPR_RUT.Size = new System.Drawing.Size(102, 12);
-			this.lbl_OPR_RUT.TabIndex = 61;
-			this.lbl_OPR_RUT.Text = "OPR Rut";
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(292, 470);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(108, 13);
-			this.label3.TabIndex = 63;
-			this.label3.Text = "Formato: 12345678-9";
-			// 
-			// txt_OPR_RUT
-			// 
-			this.txt_OPR_RUT.Location = new System.Drawing.Point(166, 467);
-			this.txt_OPR_RUT.MaxLength = 10;
-			this.txt_OPR_RUT.Name = "txt_OPR_RUT";
-			this.txt_OPR_RUT.Size = new System.Drawing.Size(120, 20);
-			this.txt_OPR_RUT.TabIndex = 62;
 			// 
 			// frmEmpresaMant
 			// 

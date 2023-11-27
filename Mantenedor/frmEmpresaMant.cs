@@ -234,13 +234,6 @@ namespace ControlDosimetro
 						((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 					else
 					{
-						if (dt.Tables[0].Rows[0]["validacion"].ToString() == "rut")
-						{
-							((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
-							((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
-							((TextBox)c).Validated += new EventHandler(ClaseEvento.validarut_Validated);
-							((TextBox)c).Leave += new EventHandler(ClaseEvento.run_Leave);
-						}
 						if (dt.Tables[0].Rows[0]["validacion"].ToString() == "numerico")
 						{
 							((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
@@ -254,6 +247,7 @@ namespace ControlDosimetro
 					((DateTimePicker)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 
 			}
+			clsEvento.AsignarRut(ref txt_run);
 			clsEvento.AsignarRut(ref txt_OPR_RUT);
 			clsEvento.AsignarMailMultiple(ref txt_Email);
 			clsEvento.AsignarMailMultiple(ref txt_Emailfacturacion);
@@ -697,5 +691,6 @@ namespace ControlDosimetro
 				}
 			}
 		}
+	
 	}
 }
