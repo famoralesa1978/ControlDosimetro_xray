@@ -86,10 +86,7 @@ namespace ControlDosimetro
 		{
 			SqlCommand cmd = new SqlCommand();
 
-			cmd.CommandText = "rtpCuadraturaDireccion";
-//			@Id_cliente int= null,
-//@Id_Comuna  int= null
-			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
+			cmd.CommandText = string.Format("rtpCuadraturaDireccion {0},{1}", txtNCliente.Text, cbxComuna.SelectedValue);
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 

@@ -559,6 +559,7 @@ namespace ControlDosimetro
 		private void tsb_Imprimir_Click(object sender, EventArgs e)
 		{
 			frmimprimeDocFilmico frm = new frmimprimeDocFilmico();
+			frm.strNumero = txt_NDocumento.Text;
 			frm.Show(this);
 		}
 

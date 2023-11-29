@@ -24,6 +24,7 @@ namespace ControlDosimetro
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		Clases.ClassEvento clsEvento = new Clases.ClassEvento();
+		public string strNumero;
 		//   int intContar = 0;
 		//  int tmpintId_Cliente;
 
@@ -84,5 +85,9 @@ namespace ControlDosimetro
 
 		#endregion
 
+		private void frmimprimeDocFilmico_Load(object sender, EventArgs e)
+		{
+			lbl_NDocumento.Text = strNumero;
+		}
 	}
 }

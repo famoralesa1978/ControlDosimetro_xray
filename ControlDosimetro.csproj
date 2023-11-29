@@ -634,6 +634,9 @@
     <Compile Include="Recepcion\frmIngresoPelicula.Designer.cs">
       <DependentUpon>frmIngresoPelicula.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReporteDS.cs">
+      <DependentUpon>ReporteDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ReporteDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

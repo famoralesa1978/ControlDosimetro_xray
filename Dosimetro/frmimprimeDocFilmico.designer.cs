@@ -83,6 +83,7 @@
 			this.Location = new System.Drawing.Point(0, 80);
 			this.Name = "frmimprimeDocFilmico";
 			this.Text = "Imprimir Documentos Filmicos";
+			this.Load += new System.EventHandler(this.frmimprimeDocFilmico_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
