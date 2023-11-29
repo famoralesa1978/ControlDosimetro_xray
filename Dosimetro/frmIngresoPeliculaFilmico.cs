@@ -70,7 +70,7 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "Llamada de carga"
-		private void Listar_Grilla()
+		private void Listar_Grilla(int intCliente,int intPeriodo,int intSucursal)
 		{
 			SqlCommand cmd = new SqlCommand();
 
@@ -78,11 +78,11 @@ namespace ControlDosimetro
 
 			cmd.CommandText = "pa_ConsultaIngFilmicoPorSucursal_sel ";
 			cmd.Parameters.Add("@id_cliente", SqlDbType.Int);
-			cmd.Parameters["@id_cliente"].Value = lbl_id_cliente.Text;
+			cmd.Parameters["@id_cliente"].Value = intCliente;
 			cmd.Parameters.Add("@id_periodo", SqlDbType.Int);
-			cmd.Parameters["@id_periodo"].Value = cbx_id_periodo.SelectedValue;
+			cmd.Parameters["@id_periodo"].Value = intPeriodo;
 			cmd.Parameters.Add("@Id_sucursal", SqlDbType.Int);
-			cmd.Parameters["@Id_sucursal"].Value = cbx_Sucursal.SelectedValue;
+			cmd.Parameters["@Id_sucursal"].Value = intSucursal;
 			cmd.CommandType = CommandType.StoredProcedure;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -104,7 +104,9 @@ namespace ControlDosimetro
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
 			cbx_anno.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
+			cbx_anno.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_anno.DataSource = dt.Tables[0];
+
 
 		}
 
@@ -114,6 +116,8 @@ namespace ControlDosimetro
 			dtPeriodoCopia.DefaultView.RowFilter = String.Format("anno={0}", cbx_anno.SelectedValue);
 
 			cbx_id_periodo.DataSource = dtPeriodoCopia.DefaultView.ToTable();
+			cbx_id_periodo.DisplayMember = "Trimestre";
+			cbx_id_periodo.ValueMember = "Id_Periodo";
 		}
 
 		private void Cargar_Sucursal()
@@ -177,7 +181,7 @@ namespace ControlDosimetro
 
 			DataSet dt;
 
-			cmdvalidar.CommandText = "pa_ObtieneUltimoValornDocumento_sel " + txt_NDocumento.Text;
+			cmdvalidar.CommandText = "pa_ObtieneUltimoValornDocumento_sel " + txt_NDocumento.Text+","+ lbl_id_cliente.Text+","+ cbx_id_periodo.SelectedValue.ToString();
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmdvalidar);
 
@@ -386,7 +390,7 @@ namespace ControlDosimetro
 							grpListado.Text = "Listado        Cantidad de dosimetro ingresado  por Sucursal es: 0";
 					}
 
-					Listar_Grilla();
+					Listar_Grilla(Convert.ToUInt16(lbl_id_cliente.Text), (int)cbx_id_periodo.SelectedValue, (int)cbx_Sucursal.SelectedValue);
 					txt_pelrefdesde.Text = "";
 					txt_pelrefhasta.Text = "";
 					txt_Pelicula.Text = "";
@@ -460,13 +464,14 @@ namespace ControlDosimetro
 			lbl_id_cliente.Clear();
 			cbx_anno.Enabled = false;
 			cbx_id_periodo.Enabled = false;
+			cbx_anno.SelectedIndex = -1;
+			cbx_id_periodo.SelectedIndex = -1;
 			cbx_Sucursal.Enabled = false;
-			cbx_anno.DataSource = null;
-			cbx_id_periodo.DataSource = null;
+			cbx_Sucursal.SelectedIndex = -1;
 			lbl_nombreCliente.Text = "";
 			lbl_rut.Text = "";
 			lbl_Direccion.Text = "";
-			cbx_Sucursal.DataSource = null;
+
 
 			btnFiltrar.Enabled = false;
 			desdeCodigo = false;
@@ -479,10 +484,9 @@ namespace ControlDosimetro
 			txt_NDocumento.Clear();
 			txt_Servicio.Clear();
 			txt_Observacion.Clear();
-
+			Listar_Grilla(0, 0, 0);
 			grp_Ingreso.Enabled = false;
 			grpListado.Enabled = false;
-			grdDatos.Rows.Clear();
 			btn_Imprimir.Enabled = false;
 
 			btn_cargar.Enabled = true;
@@ -493,7 +497,7 @@ namespace ControlDosimetro
 		}
 		private void btnFiltrar_Click(object sender, EventArgs e)
 		{
-			Listar_Grilla();
+			Listar_Grilla(Convert.ToUInt16(lbl_id_cliente.Text), (int)cbx_id_periodo.SelectedValue,(int)cbx_Sucursal.SelectedValue);
 		}
 		private void btnRefrescarNDcto_Click(object sender, EventArgs e)
 		{
@@ -507,7 +511,7 @@ namespace ControlDosimetro
 
 			DataSet dt;
 
-			cmd.CommandText = "pa_ObtieneUltimoValornDocumento_sel " + txt_NDocumento.Text;
+			cmd.CommandText = "pa_ObtieneUltimoValornDocumento_sel " + txt_NDocumento.Text + "," + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue.ToString();
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
@@ -550,7 +554,7 @@ namespace ControlDosimetro
 					}
 				}
 			}
-			Listar_Grilla();
+			Listar_Grilla(Convert.ToUInt16(lbl_id_cliente.Text), (int)cbx_id_periodo.SelectedValue, (int)cbx_Sucursal.SelectedValue);
 		}
 		private void tsb_Imprimir_Click(object sender, EventArgs e)
 		{
@@ -596,7 +600,10 @@ namespace ControlDosimetro
 			if (!desdeCodigo)
 				Cargar_Periodo();
 		}
-
+		private void cbx_Sucursal_SelectedValueChanged(object sender, EventArgs e)
+		{
+			btnFiltrar_Click(null, null);
+		}
 		#endregion
 
 		#region "grilla"
@@ -728,5 +735,6 @@ namespace ControlDosimetro
 
 		#endregion
 
+		
 	}
 }
