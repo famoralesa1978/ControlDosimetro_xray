@@ -168,6 +168,25 @@ namespace ControlDosimetro
 		}
 		private void Btn_Agregar_Click(object sender, EventArgs e)
 		{
+			if (string.IsNullOrWhiteSpace(txt_NDocumento.Text))
+			{
+				MessageBox.Show("Ingrese número de documento");
+				return;
+			}
+			SqlCommand cmdvalidar = new SqlCommand();
+
+			DataSet dt;
+
+			cmdvalidar.CommandText = "pa_ObtieneUltimoValornDocumento_sel " + txt_NDocumento.Text;
+
+			dt = Conectar.Listar(Clases.clsBD.BD, cmdvalidar);
+
+			if (dt.Tables[0].Rows.Count > 0)
+			{
+				MessageBox.Show("El número de documento ya existe");
+				return;
+			}
+
 			SqlCommand cmd = new SqlCommand();
 			DataSet ds;
 
@@ -478,14 +497,25 @@ namespace ControlDosimetro
 		}
 		private void btnRefrescarNDcto_Click(object sender, EventArgs e)
 		{
+			if(string.IsNullOrWhiteSpace(txt_NDocumento.Text))
+			{
+				MessageBox.Show("Ingrese número de documento");
+				return;
+			}
+
 			SqlCommand cmd = new SqlCommand();
 
 			DataSet dt;
 
-			cmd.CommandText = "pa_ObtieneUltimoValornDocumento_sel";
+			cmd.CommandText = "pa_ObtieneUltimoValornDocumento_sel " + txt_NDocumento.Text;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-			txt_NDocumento.Text = ((int)dt.Tables[0].Rows[0]["N_Documento"] + 1).ToString();
+
+			if (dt.Tables[0].Rows.Count > 0)
+			{
+				MessageBox.Show("El número de documento ya existe");
+				return;
+			}
 		}
 
 		private void tsmEliminar_Click(object sender, EventArgs e)
