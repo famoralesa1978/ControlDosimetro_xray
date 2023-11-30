@@ -1464,6 +1464,8 @@ namespace ControlDosimetro {
             
             private global::System.Data.DataColumn columnEmail;
             
+            private global::System.Data.DataColumn columnTelefono;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public rtpCuadraturaDireccionDataTable() {
@@ -1579,6 +1581,14 @@ namespace ControlDosimetro {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn TelefonoColumn {
+                get {
+                    return this.columnTelefono;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1614,7 +1624,7 @@ namespace ControlDosimetro {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public rtpCuadraturaDireccionRow AddrtpCuadraturaDireccionRow(string NumeroCliente, string Razon_Social, string Rut, string Direccion, string region, string comuna, string DireccionSuc, string regionSuc, string ComunaSuc, string Email) {
+            public rtpCuadraturaDireccionRow AddrtpCuadraturaDireccionRow(string NumeroCliente, string Razon_Social, string Rut, string Direccion, string region, string comuna, string DireccionSuc, string regionSuc, string ComunaSuc, string Email, string Telefono) {
                 rtpCuadraturaDireccionRow rowrtpCuadraturaDireccionRow = ((rtpCuadraturaDireccionRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         NumeroCliente,
@@ -1626,7 +1636,8 @@ namespace ControlDosimetro {
                         DireccionSuc,
                         regionSuc,
                         ComunaSuc,
-                        Email};
+                        Email,
+                        Telefono};
                 rowrtpCuadraturaDireccionRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowrtpCuadraturaDireccionRow);
                 return rowrtpCuadraturaDireccionRow;
@@ -1659,6 +1670,7 @@ namespace ControlDosimetro {
                 this.columnregionSuc = base.Columns["regionSuc"];
                 this.columnComunaSuc = base.Columns["ComunaSuc"];
                 this.columnEmail = base.Columns["Email"];
+                this.columnTelefono = base.Columns["Telefono"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1684,6 +1696,8 @@ namespace ControlDosimetro {
                 base.Columns.Add(this.columnComunaSuc);
                 this.columnEmail = new global::System.Data.DataColumn("Email", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEmail);
+                this.columnTelefono = new global::System.Data.DataColumn("Telefono", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTelefono);
                 this.columnNumeroCliente.Caption = "id_cliente";
                 this.columnRazon_Social.Caption = "razon_social";
                 this.columnRut.Caption = "run";
@@ -2753,6 +2767,23 @@ namespace ControlDosimetro {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Telefono {
+                get {
+                    try {
+                        return ((string)(this[this.tablertpCuadraturaDireccion.TelefonoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Telefono\' de la tabla \'rtpCuadraturaDireccion\' es DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tablertpCuadraturaDireccion.TelefonoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsNumeroClienteNull() {
                 return this.IsNull(this.tablertpCuadraturaDireccion.NumeroClienteColumn);
             }
@@ -2869,6 +2900,18 @@ namespace ControlDosimetro {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetEmailNull() {
                 this[this.tablertpCuadraturaDireccion.EmailColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsTelefonoNull() {
+                return this.IsNull(this.tablertpCuadraturaDireccion.TelefonoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetTelefonoNull() {
+                this[this.tablertpCuadraturaDireccion.TelefonoColumn] = global::System.Convert.DBNull;
             }
         }
         

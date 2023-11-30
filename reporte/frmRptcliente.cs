@@ -86,7 +86,13 @@ namespace ControlDosimetro
 		{
 			SqlCommand cmd = new SqlCommand();
 
-			cmd.CommandText = string.Format("rtpCuadraturaDireccion {0},{1}", txtNCliente.Text, cbxComuna.SelectedValue);
+			cmd.CommandText = "rtpCuadraturaDireccion";
+			cmd.CommandType = CommandType.StoredProcedure;
+			cmd.Parameters.Clear();
+			cmd.Parameters.Add("@Id_cliente", SqlDbType.Int);
+			cmd.Parameters["@Id_cliente"].Value = string.IsNullOrWhiteSpace(txtNCliente.Text)?null: txtNCliente.Text;
+			cmd.Parameters.Add("@Id_Comuna", SqlDbType.Int);
+			cmd.Parameters["@Id_Comuna"].Value = string.IsNullOrWhiteSpace(cbxComuna.SelectedValue.ToString())?null: cbxComuna.SelectedValue;
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
@@ -127,8 +133,8 @@ namespace ControlDosimetro
 
 			DataSet dt;
 
-			dt = Cargar_PorCliente();
-			Llamado_reporte(dt, "rptPorClientePersonal.rdlc");
+			dt = Cargar_PorDireccion();
+			Llamado_reporte(dt, "rptPorClienteDireccion.rdlc");
 
 			Cursor = Cursors.Default;
 		}
