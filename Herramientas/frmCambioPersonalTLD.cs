@@ -64,6 +64,18 @@ namespace ControlDosimetro
 				cbx_id_seccion.SelectedValue = dt.Tables[1].Rows[0]["Id_SeccionTLD"];
 				cbxDireccionActual.SelectedValue = dt.Tables[1].Rows[0]["Id_sucursal"];
 				cbxDireccionDctoActual.SelectedValue = dt.Tables[1].Rows[0]["Id_sucursal"];
+				lblRecupMensajeTLD.Text = "El TLD no se ha ido eliminado.";
+				btnRecuperarTLD.Enabled = dt.Tables[2].Rows.Count > 0;
+				if (dt.Tables[2].Rows.Count > 0)
+				{
+					lblRecupMensajeTLD.Text = "";
+					txtNTLDRecuperar.Text = dt.Tables[1].Rows[0]["n_dosimetro"].ToString();
+					txtPersonal.Text = dt.Tables[1].Rows[0]["Personal"].ToString();
+					txtCliente.Text = dt.Tables[1].Rows[0]["Cliente"].ToString();
+
+				}
+
+
 				btn_Cargar.Enabled = false;
 				txt_NDoc.Enabled = false;
 				btn_Guardar.Enabled = true;
@@ -248,7 +260,7 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			DataSet ds;
 			string strParametro = String.Format("{0},{1}", txt_NDoc.Text, cbx_id_seccionMod.SelectedValue);
-			cmd.CommandText = "pa_ModificarSeccionTLD_upd " + strParametro;
+			cmd.CommandText = "pa_ModificarSeccionTLD_upd" + strParametro;
 			cmd.CommandType = CommandType.Text;//
 
 
@@ -265,7 +277,7 @@ namespace ControlDosimetro
 		{
 			SqlCommand cmd = new SqlCommand();
 			DataSet ds;
-			cmd.CommandText = "pa_ModificarDireccionTLD_upd ";
+			cmd.CommandText = "pa_ModificarDireccionTLD_upd";
 			cmd.Parameters.Add("@N_TLD", SqlDbType.Int);
 			cmd.Parameters["@N_TLD"].Value = txt_NDoc.Text;
 			cmd.Parameters.Add("@IdDireccionActual", SqlDbType.Int);
@@ -322,7 +334,25 @@ namespace ControlDosimetro
 			else
 				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
 		}
+		private void btnRecuperarTLD_Click(object sender, EventArgs e)
+		{
+			SqlCommand cmd = new SqlCommand();
+			DataSet ds;
+			cmd.CommandText = "pa_AgregarEliminarTLD_upd";
+			cmd.Parameters.Add("@N_TLD", SqlDbType.Int);
+			cmd.Parameters["@N_TLD"].Value = txtNTLDRecuperar.Text;
+			cmd.CommandType = CommandType.StoredProcedure;
 
+
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
+			{
+				MessageBox.Show("Error en actualizar la información");
+			}
+
+			else
+				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
+		}
 
 		#endregion
 
@@ -334,6 +364,7 @@ namespace ControlDosimetro
 		#region "grilla"
 
 		#endregion
+
 
 	}
 }
