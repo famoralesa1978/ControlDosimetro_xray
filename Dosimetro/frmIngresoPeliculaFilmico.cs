@@ -497,7 +497,8 @@ namespace ControlDosimetro
 		}
 		private void btnFiltrar_Click(object sender, EventArgs e)
 		{
-			Listar_Grilla(Convert.ToUInt16(lbl_id_cliente.Text), (int)cbx_id_periodo.SelectedValue,(int)cbx_Sucursal.SelectedValue);
+			if(!desdeCodigo)
+				Listar_Grilla(Convert.ToUInt16(lbl_id_cliente.Text), (int)cbx_id_periodo.SelectedValue,(int)cbx_Sucursal.SelectedValue);
 		}
 		private void btnRefrescarNDcto_Click(object sender, EventArgs e)
 		{
