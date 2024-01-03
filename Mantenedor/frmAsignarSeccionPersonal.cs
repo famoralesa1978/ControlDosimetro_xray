@@ -30,6 +30,7 @@ namespace ControlDosimetro
 		public frmAsignarSeccionPersonal(Int64 intCodCliente, string srtRun)
 		{
 			InitializeComponent();
+			lblCantidad.Text = "";
 			run = srtRun;
 			Cargar_Cliente(intCodCliente);
 			Cargar_seccion();
@@ -53,6 +54,7 @@ namespace ControlDosimetro
 
 		private void Cargar_Personal()
 		{
+			int intMarcado = 0;
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = String.Format("pa_ListarPersonalPorSeccion {0},'{1}',{2}", lbl_id_cliente.Text,run,cbxSeccion.SelectedValue);
 			DataSet dt;
@@ -66,9 +68,10 @@ namespace ControlDosimetro
 			{
 				var dr = ((DataRowView)chkLista.Items[intFilaLista]).Row;
 				bool bolMarca = (bool)dr.ItemArray[3];
-
+				intMarcado += bolMarca ? 1 : 0;
 				chkLista.SetItemChecked(intFilaLista, bolMarca);
 			}
+			lblCantidad.Text = string.Format("Cantidad Marcado: {0}", intMarcado);
 		}
 
 		private void Cargar_seccion()
@@ -108,6 +111,18 @@ namespace ControlDosimetro
 			}
 			return String.IsNullOrWhiteSpace(strbSucursal.ToString())?"": strbSucursal.ToString();
 
+		}
+		private int ContarMarcado()
+		{
+			StringBuilder strbSucursal = new StringBuilder();
+
+			int intCantidad=0;
+
+			foreach (object itemChecked in chkLista.CheckedItems)
+			{
+				intCantidad += 1;
+			}
+			return intCantidad;
 		}
 
 		#endregion
@@ -177,12 +192,17 @@ namespace ControlDosimetro
 		{
 			Cargar_Personal();
 		}
+		private void chkLista_SelectedValueChanged(object sender, EventArgs e)
+		{
+			lblCantidad.Text = string.Format("Cantidad Marcado: {0}", ContarMarcado());
+		}
 
 		#endregion
 
 		#region "Textbox"
 
 		#endregion
+
 
 	}
 }

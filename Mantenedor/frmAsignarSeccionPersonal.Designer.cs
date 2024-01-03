@@ -30,6 +30,8 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			this.tbl_personal = new System.Windows.Forms.GroupBox();
+			this.lblCantidad = new System.Windows.Forms.Label();
+			this.btn_Agregar = new System.Windows.Forms.Button();
 			this.btnInvertir = new System.Windows.Forms.Button();
 			this.btnDesmarcar = new System.Windows.Forms.Button();
 			this.btnMarcarTodos = new System.Windows.Forms.Button();
@@ -44,12 +46,12 @@
 			this.btn_Grabar = new System.Windows.Forms.Button();
 			this.lbl_id_cliente1 = new System.Windows.Forms.Label();
 			this.topSeccion = new System.Windows.Forms.ToolTip(this.components);
-			this.btn_Agregar = new System.Windows.Forms.Button();
 			this.tbl_personal.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tbl_personal
 			// 
+			this.tbl_personal.Controls.Add(this.lblCantidad);
 			this.tbl_personal.Controls.Add(this.btn_Agregar);
 			this.tbl_personal.Controls.Add(this.btnInvertir);
 			this.tbl_personal.Controls.Add(this.btnDesmarcar);
@@ -64,12 +66,34 @@
 			this.tbl_personal.Controls.Add(this.btn_cerrar);
 			this.tbl_personal.Controls.Add(this.btn_Grabar);
 			this.tbl_personal.Controls.Add(this.lbl_id_cliente1);
+			this.tbl_personal.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tbl_personal.Location = new System.Drawing.Point(0, 0);
 			this.tbl_personal.Name = "tbl_personal";
-			this.tbl_personal.Size = new System.Drawing.Size(492, 484);
+			this.tbl_personal.Size = new System.Drawing.Size(498, 599);
 			this.tbl_personal.TabIndex = 0;
 			this.tbl_personal.TabStop = false;
 			this.tbl_personal.Text = "Datos";
+			// 
+			// lblCantidad
+			// 
+			this.lblCantidad.AutoSize = true;
+			this.lblCantidad.Location = new System.Drawing.Point(10, 119);
+			this.lblCantidad.Name = "lblCantidad";
+			this.lblCantidad.Size = new System.Drawing.Size(35, 13);
+			this.lblCantidad.TabIndex = 55;
+			this.lblCantidad.Text = "label3";
+			// 
+			// btn_Agregar
+			// 
+			this.btn_Agregar.Image = global::ControlDosimetro.Properties.Resources.Seccion_24;
+			this.btn_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btn_Agregar.Location = new System.Drawing.Point(451, 12);
+			this.btn_Agregar.Name = "btn_Agregar";
+			this.btn_Agregar.Size = new System.Drawing.Size(35, 31);
+			this.btn_Agregar.TabIndex = 54;
+			this.topSeccion.SetToolTip(this.btn_Agregar, "Agregar sección");
+			this.btn_Agregar.UseVisualStyleBackColor = true;
+			this.btn_Agregar.Click += new System.EventHandler(this.btn_Agregar_Click);
 			// 
 			// btnInvertir
 			// 
@@ -133,13 +157,17 @@
 			// 
 			// chkLista
 			// 
+			this.chkLista.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.chkLista.CheckOnClick = true;
 			this.chkLista.FormattingEnabled = true;
-			this.chkLista.Location = new System.Drawing.Point(6, 108);
+			this.chkLista.Location = new System.Drawing.Point(6, 138);
 			this.chkLista.Name = "chkLista";
-			this.chkLista.Size = new System.Drawing.Size(480, 304);
+			this.chkLista.Size = new System.Drawing.Size(480, 379);
 			this.chkLista.TabIndex = 0;
 			this.chkLista.ThreeDCheckBoxes = true;
+			this.chkLista.SelectedValueChanged += new System.EventHandler(this.chkLista_SelectedValueChanged);
 			// 
 			// lbl_Id_Personal
 			// 
@@ -171,9 +199,11 @@
 			// 
 			// btn_cerrar
 			// 
+			this.btn_cerrar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_cerrar.Image = global::ControlDosimetro.Properties.Resources.exit;
 			this.btn_cerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_cerrar.Location = new System.Drawing.Point(190, 417);
+			this.btn_cerrar.Location = new System.Drawing.Point(191, 523);
 			this.btn_cerrar.Name = "btn_cerrar";
 			this.btn_cerrar.Size = new System.Drawing.Size(95, 45);
 			this.btn_cerrar.TabIndex = 14;
@@ -185,9 +215,11 @@
 			// 
 			// btn_Grabar
 			// 
+			this.btn_Grabar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_Grabar.Image = global::ControlDosimetro.Properties.Resources.Save_32;
 			this.btn_Grabar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_Grabar.Location = new System.Drawing.Point(79, 417);
+			this.btn_Grabar.Location = new System.Drawing.Point(80, 523);
 			this.btn_Grabar.Name = "btn_Grabar";
 			this.btn_Grabar.Size = new System.Drawing.Size(95, 45);
 			this.btn_Grabar.TabIndex = 13;
@@ -206,23 +238,11 @@
 			this.lbl_id_cliente1.TabIndex = 5;
 			this.lbl_id_cliente1.Text = "N° Cliente";
 			// 
-			// btn_Agregar
-			// 
-			this.btn_Agregar.Image = global::ControlDosimetro.Properties.Resources.Seccion_24;
-			this.btn_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_Agregar.Location = new System.Drawing.Point(451, 12);
-			this.btn_Agregar.Name = "btn_Agregar";
-			this.btn_Agregar.Size = new System.Drawing.Size(35, 31);
-			this.btn_Agregar.TabIndex = 54;
-			this.topSeccion.SetToolTip(this.btn_Agregar, "Agregar sección");
-			this.btn_Agregar.UseVisualStyleBackColor = true;
-			this.btn_Agregar.Click += new System.EventHandler(this.btn_Agregar_Click);
-			// 
 			// frmAsignarSeccionPersonal
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(498, 490);
+			this.ClientSize = new System.Drawing.Size(498, 599);
 			this.Controls.Add(this.tbl_personal);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
@@ -254,5 +274,6 @@
 		private System.Windows.Forms.Button btnDesmarcar;
 		private System.Windows.Forms.Button btnMarcarTodos;
 		private System.Windows.Forms.Button btn_Agregar;
+		private System.Windows.Forms.Label lblCantidad;
 	}
 }

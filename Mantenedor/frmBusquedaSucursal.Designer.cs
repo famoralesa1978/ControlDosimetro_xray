@@ -190,6 +190,7 @@
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.grdDatos.Size = new System.Drawing.Size(837, 354);
 			this.grdDatos.TabIndex = 5;
+			this.grdDatos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdDatos_DataBindingComplete);
 			this.grdDatos.DoubleClick += new System.EventHandler(this.grdDatos_DoubleClick);
 			// 
 			// id_sucursal

@@ -31,6 +31,7 @@ namespace ControlDosimetro
 			AsignarEvento();
 			Listar_Cliente(intId_Cliente);
 			tmpintId_Cliente = intId_Cliente;
+			grdDatos.AutoGenerateColumns = false;
 
 		}
 
@@ -89,7 +90,7 @@ namespace ControlDosimetro
 			//MessageBox.Show("Conectado al servidor");
 
 			if (txt_ref_cliente.Text == "")
-				cmd.CommandText = "SELECT s.id_sucursal,s.direccion,r.region,p.provincia,co.comuna,s.telefono,est.Descripcion as Estado " +
+				cmd.CommandText = "SELECT s.id_sucursal,s.direccion,r.region,p.provincia,co.comuna,s.telefono,est.Descripcion as Estado,s.Id_Estado " +
 													"FROM  [dbo].[tbl_cliente] c inner join tbl_sucursal s on s.id_cliente=c.id_cliente " +
 													"inner join glo_region r on r.Id_region=s.id_region " +
 													"inner join glo_provincia p on p.id_provincia=s.id_provincia " +
@@ -98,7 +99,7 @@ namespace ControlDosimetro
 													" WHERE c.run ='" + txt_Rut.Text + "'" +
 				" order by direccion";
 			else
-				cmd.CommandText = "SELECT s.id_sucursal,s.direccion,r.region,p.provincia,co.comuna,s.telefono,est.Descripcion as Estado " +
+				cmd.CommandText = "SELECT s.id_sucursal,s.direccion,r.region,p.provincia,co.comuna,s.telefono,est.Descripcion as Estado,s.Id_Estado " +
 													"FROM  [dbo].[tbl_cliente] c inner join tbl_sucursal s on s.id_cliente=c.id_cliente and s.run=c.run " +
 													"inner join glo_region r on r.Id_region=s.id_region " +
 													"inner join glo_provincia p on p.id_provincia=s.id_provincia " +
@@ -206,21 +207,26 @@ namespace ControlDosimetro
 			frm.ShowDialog(this);
 			Listar_grilla();
 		}
+		private void grdDatos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+		{
+			if (e.ListChangedType == ListChangedType.Reset)
+			{
+				foreach (DataGridViewRow item in grdDatos.Rows)
+				{
+
+					DataRow dtrFila = ((DataRowView)item.DataBoundItem).Row;
+					if (Convert.ToInt32(dtrFila["Id_estado"].ToString()) != 1)
+					{
+						item.DefaultCellStyle.BackColor = Color.Red;
+					}
+				}
+
+			}
+		}
+
+
 
 		#endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	}
 }

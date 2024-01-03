@@ -53,6 +53,7 @@ namespace ControlDosimetro
 
 		private void Cargar_Personal()
 		{
+			int intMarcado = 0;
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = String.Format("pa_ListarPersonalPorSucursal {0},'{1}',{2}", lbl_id_cliente.Text,run,cbxDireccion.SelectedValue);
 			DataSet dt;
@@ -66,9 +67,10 @@ namespace ControlDosimetro
 			{
 				var dr = ((DataRowView)chkLista.Items[intFilaLista]).Row;
 				bool bolMarca = (bool)dr.ItemArray[3];
-
+				intMarcado += bolMarca ? 1 : 0;
 				chkLista.SetItemChecked(intFilaLista, bolMarca);
 			}
+			lblCantidad.Text = string.Format("Cantidad Marcado: {0}", intMarcado);
 		}
 
 		private void Cargar_Sucursal()
@@ -78,7 +80,7 @@ namespace ControlDosimetro
 					"from [dbo].[tbl_sucursal] s " +
 					"inner join glo_region r on r.Id_region=s.Id_Region " +
 					"inner join glo_comuna co on co.id_comuna=s.Id_Comuna " +
-					"where run='" + run + "'  and id_cliente= " + lbl_id_cliente.Text + "";
+					"where run='" + run + "'  and id_cliente= " + lbl_id_cliente.Text + " and Id_estado=1";
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
@@ -113,7 +115,18 @@ namespace ControlDosimetro
 			return String.IsNullOrWhiteSpace(strbSucursal.ToString())?"": strbSucursal.ToString();
 
 		}
+		private int ContarMarcado()
+		{
+			StringBuilder strbSucursal = new StringBuilder();
 
+			int intCantidad = 0;
+
+			foreach (object itemChecked in chkLista.CheckedItems)
+			{
+				intCantidad += 1;
+			}
+			return intCantidad;
+		}
 		#endregion
 
 		#region "button"
@@ -168,10 +181,15 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "combobox"
+		private void chkLista_SelectedValueChanged(object sender, EventArgs e)
+		{
+			lblCantidad.Text = string.Format("Cantidad Marcado: {0}", ContarMarcado());
+		}
 		private void cbxDireccion_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			Cargar_Personal();
 		}
+
 		#endregion
 
 		#region "Textbox"
