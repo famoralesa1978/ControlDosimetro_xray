@@ -156,27 +156,19 @@ namespace ControlDosimetro
 
 			dtSeccion = dt.Tables[1];
 			Cargar_Seccion();
-		}	
+		}
 
 		private void Cargar_Seccion()
 		{
 			DataSet dt;
-      if (!DesdeLimpiar)
-			// dt = ClaseFunciones.Cargar_SeccionPorRun(Convert.ToInt16(lbl_id_cliente.Text.ToString()), lbl_rut_cliente.Text);
-			{
-				dtSeccion.DefaultView.RowFilter = String.Format("Id_sucursal={0}", cbx_Sucursal.SelectedValue == null?0:(int?)cbx_Sucursal.SelectedValue) ;
-				cbx_id_seccion.DisplayMember = dtSeccion.Columns[1].Caption.ToString();
-				cbx_id_seccion.ValueMember = dtSeccion.Columns[0].Caption.ToString();
-				cbx_id_seccion.DataSource = dtSeccion.DefaultView.ToTable();
-			}
-			else
-			{
-				dt = ClaseFunciones.Cargar_SeccionPorRun(Convert.ToInt16(0), "0");
-				cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
-				cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
-				cbx_id_seccion.DataSource = dt.Tables[0];
-			}
-      
+
+			int intIdPeriodo = string.IsNullOrWhiteSpace(cbx_id_periodo.SelectedValue.ToString()) ? 0 : (int)cbx_id_periodo.SelectedValue;
+			int intCliente = string.IsNullOrWhiteSpace(lbl_id_cliente.Text) ? 0 : Convert.ToInt32(lbl_id_cliente.Text.ToString());
+			int intSucursal = string.IsNullOrWhiteSpace(cbx_Sucursal.SelectedValue.ToString()) ? 0 : (int)cbx_Sucursal.SelectedValue;
+			dt = ClaseFunciones.Cargar_SeccionRunPeriodoClienteDireccion(intIdPeriodo, intCliente, lbl_rut_cliente.Text, intSucursal);
+			cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
+			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
+			cbx_id_seccion.DataSource = dt.Tables[0];
 		}
 
 		private void AsignarEvento()
