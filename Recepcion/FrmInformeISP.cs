@@ -167,15 +167,19 @@ namespace ControlDosimetro
 			//	cbx_id_seccion.ValueMember = dtSeccion.Columns[0].Caption.ToString();
 			//	cbx_id_seccion.DataSource = dtSeccion.DefaultView.ToTable();
 			//}
-			int intIdPeriodo = string.IsNullOrWhiteSpace(cbx_id_periodo.SelectedValue.ToString()) ? 0 : (int)cbx_id_periodo.SelectedValue;
+			int intIdPeriodo = 0;
+			if (cbx_id_periodo.SelectedValue != null)
+				intIdPeriodo = string.IsNullOrWhiteSpace(cbx_id_periodo.SelectedValue.ToString()) ? 0 : (int)cbx_id_periodo.SelectedValue;
 			int intCliente = string.IsNullOrWhiteSpace(lbl_id_cliente.Text) ? 0 : Convert.ToInt32(lbl_id_cliente.Text.ToString());
-			int intSucursal = string.IsNullOrWhiteSpace(cbx_Sucursal.SelectedValue.ToString()) ? 0 : (int)cbx_Sucursal.SelectedValue;
+			int intSucursal = 0;
+			if (cbx_Sucursal.SelectedValue != null)
+				intSucursal = string.IsNullOrWhiteSpace(cbx_Sucursal.SelectedValue.ToString()) ? 0 : (int)cbx_Sucursal.SelectedValue;
 			dt = ClaseFunciones.Cargar_SeccionRunPeriodoClienteDireccion(intIdPeriodo, intCliente, lbl_rut_cliente.Text, intSucursal);
 			cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
 			cbx_id_seccion.DataSource = dt.Tables[0];
-			if (dtSeccion.DefaultView.ToTable().Rows.Count == 1)
-				Listar_Personal();
+			//if (dtSeccion.DefaultView.ToTable().Rows.Count == 1)
+			Listar_Personal();
 		}
 		void LimpiarFormulario(int bolLimpiar)
 		{
@@ -242,7 +246,7 @@ namespace ControlDosimetro
 						cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel2 0,0,0,0,'1111'";
 					}
 					else
-						cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel2 " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + ",0,0,'" + lbl_rut_cliente.Text + "'";
+						cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel2 " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + ",-2,-2,'" + lbl_rut_cliente.Text + "'";
 				}
 
 				cmd.CommandType = CommandType.Text;
@@ -282,6 +286,7 @@ namespace ControlDosimetro
 			}
 
 			//		}
+			btn_Corregir.Enabled = btnGenerar.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenararPelNoDevuelto.Enabled = cbx_Sucursal.SelectedValue != null || cbx_id_seccion.SelectedValue != null;
 
 		}
 
@@ -424,7 +429,7 @@ namespace ControlDosimetro
 			string strid_dosimetro;
 			string strEstado;
 
-			btnGenararPelNoDevuelto.Enabled= btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = false;
+			btnGenararPelNoDevuelto.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = false;
 
 			SqlCommand cmdArchivo = new SqlCommand();
 			DataSet dtArchivo;
@@ -770,7 +775,7 @@ namespace ControlDosimetro
 
 			MessageBox.Show("Informacion grabada y archivo generado \n Ubicación Archivo:" + targetPath);
 
-			btnGenararPelNoDevuelto.Enabled=btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
+			btnGenararPelNoDevuelto.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
 			pnl_Progreso.Visible = false;
 
 			Listar_Personal();
@@ -802,7 +807,7 @@ namespace ControlDosimetro
 			string strpath;
 			string strpathcopiar;
 			string strEstado;
-			btnGenararPelNoDevuelto.Enabled=btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = false;
+			btnGenararPelNoDevuelto.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = false;
 
 			SqlCommand cmdArchivo = new SqlCommand();
 			DataSet dtArchivo;
@@ -1257,7 +1262,7 @@ namespace ControlDosimetro
 
 			MessageBox.Show("Informacion grabada y archivo generado \n Ubicación Archivo:" + targetPath);
 
-			btnGenararPelNoDevuelto.Enabled=btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
+			btnGenararPelNoDevuelto.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
 			pnl_Progreso.Visible = false;
 
 			Listar_Personal();
@@ -1288,7 +1293,7 @@ namespace ControlDosimetro
 			string strpath;
 			string strpathcopiar;
 			string strEstado;
-			btnGenararPelNoDevuelto.Enabled=btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = false;
+			btnGenararPelNoDevuelto.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = false;
 
 			SqlCommand cmdArchivo = new SqlCommand();
 			DataSet dtArchivo;
@@ -1399,11 +1404,11 @@ namespace ControlDosimetro
 				//string strN_Documento = dt.Tables[0].Rows[idatos]["N_Documento"].ToString();
 				//	string strId_sucursal = dt.Tables[0].Rows[idatos]["Id_sucursal"].ToString();
 				String strArchivoCopiar = "";
-				strArchivoCopiar = targetPath + "Cliente" + 
+				strArchivoCopiar = targetPath + "Cliente" +
 									string.Format("{0}_{1}_{2}_{3}T_{4}.docx", lbl_id_cliente.Text, strSeccion, cbx_Sucursal.Text, cbx_id_periodo.Text.ToString().Substring(0, 1), cbx_anno.Text);
 
 
-				strpathcopiar = targetPath + "cliente " + 
+				strpathcopiar = targetPath + "cliente " +
 									string.Format("{0}_{1}_{2}.xlsx", lbl_id_cliente.Text, cbx_id_seccion.Text, cbx_Sucursal.Text);
 
 				// process.Start("c:\Ejemplo de Carpeta con Espacios");
@@ -1638,7 +1643,7 @@ namespace ControlDosimetro
 
 			MessageBox.Show("Informacion grabada y archivo generado \n Ubicación Archivo:" + targetPath);
 
-			btnGenararPelNoDevuelto.Enabled=btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
+			btnGenararPelNoDevuelto.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
 			pnl_Progreso.Visible = false;
 
 			Listar_Personal();
@@ -1668,7 +1673,7 @@ namespace ControlDosimetro
 			string strpath;
 			string strpathcopiar;
 			string strEstado;
-			btnGenararPelNoDevuelto.Enabled=btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = false;
+			btnGenararPelNoDevuelto.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = false;
 
 			SqlCommand cmdArchivo = new SqlCommand();
 			DataSet dtArchivo;
@@ -2513,7 +2518,7 @@ namespace ControlDosimetro
 
 		private void Btn_Corregir_Click(object sender, EventArgs e)
 		{
-			if(((DataTable)grdDatos.DataSource).Copy().AsEnumerable().Where(s => (int)s["generar"] == 1).Count() == 0)
+			if (((DataTable)grdDatos.DataSource).Copy().AsEnumerable().Where(s => (int)s["generar"] == 1).Count() == 0)
 			{
 				classFuncionesGenerales.mensajes.MensajeAdvertencia("No se he seleccionado ningun registro para corregir los datos");
 				return;

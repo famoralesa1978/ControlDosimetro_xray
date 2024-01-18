@@ -359,7 +359,7 @@ namespace ControlDosimetro
 			DataSet ds;
 			cmd.CommandText = "pa_EliminarTLD_upd";
 			cmd.Parameters.Add("@N_TLD", SqlDbType.Int);
-			cmd.Parameters["@N_TLD"].Value = txtNTLDRecuperar.Text;
+			cmd.Parameters["@N_TLD"].Value = txt_NDoc.Text;
 			cmd.CommandType = CommandType.StoredProcedure;
 
 
