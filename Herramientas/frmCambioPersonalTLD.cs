@@ -66,14 +66,7 @@ namespace ControlDosimetro
 				cbxDireccionDctoActual.SelectedValue = dt.Tables[1].Rows[0]["Id_sucursal"];
 				lblRecupMensajeTLD.Text = "El TLD no se ha ido eliminado.";
 				btnRecuperarTLD.Enabled = dt.Tables[2].Rows.Count > 0;
-				if (dt.Tables[2].Rows.Count > 0)
-				{
-					lblRecupMensajeTLD.Text = "";
-					txtNTLDRecuperar.Text = dt.Tables[1].Rows[0]["n_dosimetro"].ToString();
-					txtPersonal.Text = dt.Tables[1].Rows[0]["Personal"].ToString();
-					txtCliente.Text = dt.Tables[1].Rows[0]["Cliente"].ToString();
-
-				}
+				
 
 
 				btn_Cargar.Enabled = false;
@@ -82,7 +75,6 @@ namespace ControlDosimetro
 				btn_ModificarSeccion.Enabled = true;
 				grpDatos.Enabled = true;
 			}
-			else
 			if (dt.Tables[0].Rows.Count > 1)
 			{
 				lbl_NCliente.Text = "";
@@ -90,7 +82,7 @@ namespace ControlDosimetro
 				lblRut.Text = "";
 				btn_Guardar.Enabled = false;
 				grpDatos.Enabled = false;
-				MessageBox.Show("No existe el número TLD");
+			//	MessageBox.Show("No existe el número TLD");
 
 			}
 			else
@@ -101,10 +93,17 @@ namespace ControlDosimetro
 				lblRut.Text = "";
 				grpDatos.Enabled = false;
 				btn_Guardar.Enabled = false;
-				MessageBox.Show("TLD no existe");
+				//MessageBox.Show("TLD no existe");
 
 			}
-
+			if (dt.Tables[2].Rows.Count > 0)
+			{
+				lblRecupMensajeTLD.Text = "";
+				txtNTLDRecuperar.Text = dt.Tables[2].Rows[0]["n_dosimetro"].ToString();
+				txtPersonal.Text = dt.Tables[2].Rows[0]["Personal"].ToString();
+				txtCliente.Text = dt.Tables[2].Rows[0]["Cliente"].ToString();
+				grpDatos.Enabled = true;
+			}
 		}
 
 		private void Cargar_Personal(string Id_Cliente, string rut)
