@@ -286,7 +286,7 @@ namespace ControlDosimetro
 			}
 
 			//		}
-			btn_Corregir.Enabled = btnGenerar.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenararPelNoDevuelto.Enabled = cbx_Sucursal.SelectedValue != null || cbx_id_seccion.SelectedValue != null;
+			btn_Corregir.Enabled = btnGenerar.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenararPelNoDevuelto.Enabled = grdDatos.Rows.Count > 0;
 
 		}
 
@@ -316,52 +316,11 @@ namespace ControlDosimetro
 			cbx_id_periodo.DataSource = dtPeriodoCopia.DefaultView.ToTable();
 		}
 
-		//private void Cargar_Sucursal()
-		//{
-		//	SqlCommand cmdSucursal = new SqlCommand
-		//	{
-		//		CommandText = "select 0 as Id_sucursal, 'Todos' as Direccion union all " +
-		//							"SELECT distinct s.Id_sucursal, " +
-		//							"case when s.Direccion is null or s.Direccion ='' then c.Direccion else s.Direccion end + ',' + comuna as Direccion" + //N_Documento,
-		//							  " FROM [dbo].[ges_DosimetriaPersonal] dos inner join tbl_cliente c on c.Id_cliente=dos.Id_cliente " +
-		//							  " inner join tbl_sucursal s on s.Id_sucursal=dos.Id_Sucursal " +
-		//							  " inner  join glo_region R on s.id_region=r.id_region inner join glo_provincia p on p.id_provincia=s.Id_Provincia  " +
-		//							  " inner join glo_comuna co on co.Id_Comuna=s.Id_Comuna " +
-		//							  "WHERE c.Id_cliente= " + lbl_id_cliente.Text + " and dos.id_periodo=" + cbx_id_periodo.SelectedValue + " union all " +
-		//								"SELECT distinct s.Id_sucursal, " +
-		//							"case when s.Direccion is null or s.Direccion ='' then c.Direccion else s.Direccion end + ',' + comuna as Direccion" + //N_Documento,
-		//								" FROM  ges_dosimetro_estado_TLD tld inner join tbl_dosimetria dos on dos.id_cliente = tld.id_cliente and TLD = 1 inner join tbl_cliente c on c.Id_cliente=dos.Id_cliente " +
-		//								" inner join tbl_sucursal s on s.Id_sucursal=tld.Id_Sucursal " +
-		//								" inner  join glo_region R on s.id_region=r.id_region inner join glo_provincia p on p.id_provincia=s.Id_Provincia  " +
-		//								" inner join glo_comuna co on co.Id_Comuna=s.Id_Comuna " +
-		//								"WHERE c.Id_cliente= " + lbl_id_cliente.Text + " and dos.id_periodo=" + cbx_id_periodo.SelectedValue,
-		//		CommandType = CommandType.Text
-
-		//	};
-		//	DataSet dt;
-		//	dt = Conectar.Listar(Clases.clsBD.BD, cmdSucursal);
-
-		//	cbx_Sucursal.DisplayMember = "Direccion";
-		//	cbx_Sucursal.ValueMember = "Id_sucursal";
-		//	cbx_Sucursal.DataSource = dt.Tables[0].DefaultView;
-
-		//}
-
 		private void AsignarEvento()
 		{
 			lbl_id_cliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
 			lbl_id_cliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
 		}
-
-		//private void Cargar_Seccion()
-		//{
-		//	DataSet dt;
-		//	dt = ClaseFunciones.Cargar_SeccionPorRunTodos(Convert.ToInt16(lbl_id_cliente.Text.ToString()), lbl_rut_cliente.Text);
-		//	cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
-		//	cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
-		//	cbx_id_seccion.DataSource = dt.Tables[0];
-		//}
-
 		private void Generar_Todos()
 		{
 			Cursor = Cursors.WaitCursor;
@@ -3267,19 +3226,6 @@ namespace ControlDosimetro
 				doc.Save();
 			}
 		}
-
-		private void GrdDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}
-
-		private void GrdDatos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-		{
-
-			//this.grdDatos.Columns["Dosis"].ValueType = typeof(Decimal);
-			//this.grdDatos.Columns["Dosis"].DefaultCellStyle.Format = "N2";
-		}
-
 		private void cbx_id_periodo_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
