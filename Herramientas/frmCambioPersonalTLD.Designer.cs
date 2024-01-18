@@ -106,14 +106,18 @@
 			this.label18 = new System.Windows.Forms.Label();
 			this.tabRecuperar = new System.Windows.Forms.TabPage();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.lblRecupMensajeTLD = new System.Windows.Forms.Label();
-			this.label20 = new System.Windows.Forms.Label();
-			this.txtNTLDRecuperar = new System.Windows.Forms.TextBox();
-			this.label21 = new System.Windows.Forms.Label();
-			this.txtPersonal = new System.Windows.Forms.TextBox();
+			this.btnRecuperarTLD = new System.Windows.Forms.Button();
 			this.txtCliente = new System.Windows.Forms.TextBox();
 			this.label22 = new System.Windows.Forms.Label();
-			this.btnRecuperarTLD = new System.Windows.Forms.Button();
+			this.txtPersonal = new System.Windows.Forms.TextBox();
+			this.label21 = new System.Windows.Forms.Label();
+			this.txtNTLDRecuperar = new System.Windows.Forms.TextBox();
+			this.label20 = new System.Windows.Forms.Label();
+			this.lblRecupMensajeTLD = new System.Windows.Forms.Label();
+			this.tabEliminar = new System.Windows.Forms.TabPage();
+			this.btnEliminar = new System.Windows.Forms.Button();
+			this.lblPersonalEliminar = new System.Windows.Forms.Label();
+			this.label24 = new System.Windows.Forms.Label();
 			this.cmsPopup.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.grpDatos.SuspendLayout();
@@ -128,6 +132,7 @@
 			this.tabNDocumento.SuspendLayout();
 			this.tabRecuperar.SuspendLayout();
 			this.panel2.SuspendLayout();
+			this.tabEliminar.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// lblRut
@@ -286,7 +291,7 @@
 			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(630, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(748, 25);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -420,7 +425,7 @@
 			this.grpDatos.Controls.Add(this.tabPrincipal);
 			this.grpDatos.Location = new System.Drawing.Point(0, 96);
 			this.grpDatos.Name = "grpDatos";
-			this.grpDatos.Size = new System.Drawing.Size(630, 238);
+			this.grpDatos.Size = new System.Drawing.Size(736, 238);
 			this.grpDatos.TabIndex = 3;
 			this.grpDatos.TabStop = false;
 			this.grpDatos.Text = "Datos a modificar";
@@ -434,11 +439,12 @@
 			this.tabPrincipal.Controls.Add(this.tabCambioEstado);
 			this.tabPrincipal.Controls.Add(this.tabNDocumento);
 			this.tabPrincipal.Controls.Add(this.tabRecuperar);
+			this.tabPrincipal.Controls.Add(this.tabEliminar);
 			this.tabPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabPrincipal.Location = new System.Drawing.Point(3, 16);
 			this.tabPrincipal.Name = "tabPrincipal";
 			this.tabPrincipal.SelectedIndex = 0;
-			this.tabPrincipal.Size = new System.Drawing.Size(624, 219);
+			this.tabPrincipal.Size = new System.Drawing.Size(730, 219);
 			this.tabPrincipal.TabIndex = 0;
 			// 
 			// tabPersonal
@@ -448,7 +454,7 @@
 			this.tabPersonal.Location = new System.Drawing.Point(4, 22);
 			this.tabPersonal.Name = "tabPersonal";
 			this.tabPersonal.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPersonal.Size = new System.Drawing.Size(616, 193);
+			this.tabPersonal.Size = new System.Drawing.Size(722, 193);
 			this.tabPersonal.TabIndex = 0;
 			this.tabPersonal.Text = "Personal";
 			// 
@@ -464,7 +470,7 @@
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel1.Location = new System.Drawing.Point(3, 3);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(610, 187);
+			this.panel1.Size = new System.Drawing.Size(716, 187);
 			this.panel1.TabIndex = 0;
 			// 
 			// tabSeccion
@@ -478,7 +484,7 @@
 			this.tabSeccion.Location = new System.Drawing.Point(4, 22);
 			this.tabSeccion.Name = "tabSeccion";
 			this.tabSeccion.Padding = new System.Windows.Forms.Padding(3);
-			this.tabSeccion.Size = new System.Drawing.Size(616, 193);
+			this.tabSeccion.Size = new System.Drawing.Size(722, 193);
 			this.tabSeccion.TabIndex = 1;
 			this.tabSeccion.Text = "Sección";
 			this.tabSeccion.UseVisualStyleBackColor = true;
@@ -553,7 +559,7 @@
 			this.tabDireccion.Controls.Add(this.label11);
 			this.tabDireccion.Location = new System.Drawing.Point(4, 22);
 			this.tabDireccion.Name = "tabDireccion";
-			this.tabDireccion.Size = new System.Drawing.Size(616, 193);
+			this.tabDireccion.Size = new System.Drawing.Size(722, 193);
 			this.tabDireccion.TabIndex = 2;
 			this.tabDireccion.Text = "Dirección";
 			this.tabDireccion.UseVisualStyleBackColor = true;
@@ -630,7 +636,7 @@
 			this.tabAsociarTLDEnviadoAlCliente.Location = new System.Drawing.Point(4, 22);
 			this.tabAsociarTLDEnviadoAlCliente.Name = "tabAsociarTLDEnviadoAlCliente";
 			this.tabAsociarTLDEnviadoAlCliente.Padding = new System.Windows.Forms.Padding(3);
-			this.tabAsociarTLDEnviadoAlCliente.Size = new System.Drawing.Size(616, 193);
+			this.tabAsociarTLDEnviadoAlCliente.Size = new System.Drawing.Size(722, 193);
 			this.tabAsociarTLDEnviadoAlCliente.TabIndex = 3;
 			this.tabAsociarTLDEnviadoAlCliente.Text = "Asociar TLD  enviado al cliente";
 			this.tabAsociarTLDEnviadoAlCliente.UseVisualStyleBackColor = true;
@@ -678,7 +684,7 @@
 			this.tabCambioEstado.Location = new System.Drawing.Point(4, 22);
 			this.tabCambioEstado.Name = "tabCambioEstado";
 			this.tabCambioEstado.Padding = new System.Windows.Forms.Padding(3);
-			this.tabCambioEstado.Size = new System.Drawing.Size(616, 193);
+			this.tabCambioEstado.Size = new System.Drawing.Size(722, 193);
 			this.tabCambioEstado.TabIndex = 4;
 			this.tabCambioEstado.Text = "Cambio Estado";
 			this.tabCambioEstado.UseVisualStyleBackColor = true;
@@ -766,7 +772,7 @@
 			this.tabNDocumento.Controls.Add(this.label18);
 			this.tabNDocumento.Location = new System.Drawing.Point(4, 22);
 			this.tabNDocumento.Name = "tabNDocumento";
-			this.tabNDocumento.Size = new System.Drawing.Size(616, 193);
+			this.tabNDocumento.Size = new System.Drawing.Size(722, 193);
 			this.tabNDocumento.TabIndex = 5;
 			this.tabNDocumento.Text = "por n° documento";
 			this.tabNDocumento.UseVisualStyleBackColor = true;
@@ -857,7 +863,7 @@
 			this.tabRecuperar.Controls.Add(this.panel2);
 			this.tabRecuperar.Location = new System.Drawing.Point(4, 22);
 			this.tabRecuperar.Name = "tabRecuperar";
-			this.tabRecuperar.Size = new System.Drawing.Size(616, 193);
+			this.tabRecuperar.Size = new System.Drawing.Size(722, 193);
 			this.tabRecuperar.TabIndex = 6;
 			this.tabRecuperar.Text = "Recuperar TLD";
 			this.tabRecuperar.UseVisualStyleBackColor = true;
@@ -875,51 +881,18 @@
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(616, 193);
+			this.panel2.Size = new System.Drawing.Size(722, 193);
 			this.panel2.TabIndex = 0;
 			// 
-			// lblRecupMensajeTLD
+			// btnRecuperarTLD
 			// 
-			this.lblRecupMensajeTLD.AutoSize = true;
-			this.lblRecupMensajeTLD.Location = new System.Drawing.Point(37, 23);
-			this.lblRecupMensajeTLD.Name = "lblRecupMensajeTLD";
-			this.lblRecupMensajeTLD.Size = new System.Drawing.Size(41, 13);
-			this.lblRecupMensajeTLD.TabIndex = 0;
-			this.lblRecupMensajeTLD.Text = "label20";
-			// 
-			// label20
-			// 
-			this.label20.AutoSize = true;
-			this.label20.Location = new System.Drawing.Point(37, 51);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(59, 13);
-			this.label20.TabIndex = 1;
-			this.label20.Text = "Datos TLD";
-			// 
-			// txtNTLDRecuperar
-			// 
-			this.txtNTLDRecuperar.Location = new System.Drawing.Point(115, 48);
-			this.txtNTLDRecuperar.Name = "txtNTLDRecuperar";
-			this.txtNTLDRecuperar.ReadOnly = true;
-			this.txtNTLDRecuperar.Size = new System.Drawing.Size(132, 20);
-			this.txtNTLDRecuperar.TabIndex = 2;
-			// 
-			// label21
-			// 
-			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(37, 77);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(48, 13);
-			this.label21.TabIndex = 3;
-			this.label21.Text = "Personal";
-			// 
-			// txtPersonal
-			// 
-			this.txtPersonal.Location = new System.Drawing.Point(115, 74);
-			this.txtPersonal.Name = "txtPersonal";
-			this.txtPersonal.ReadOnly = true;
-			this.txtPersonal.Size = new System.Drawing.Size(484, 20);
-			this.txtPersonal.TabIndex = 4;
+			this.btnRecuperarTLD.Location = new System.Drawing.Point(138, 146);
+			this.btnRecuperarTLD.Name = "btnRecuperarTLD";
+			this.btnRecuperarTLD.Size = new System.Drawing.Size(212, 23);
+			this.btnRecuperarTLD.TabIndex = 7;
+			this.btnRecuperarTLD.Text = "Recuperar TLD";
+			this.btnRecuperarTLD.UseVisualStyleBackColor = true;
+			this.btnRecuperarTLD.Click += new System.EventHandler(this.btnRecuperarTLD_Click);
 			// 
 			// txtCliente
 			// 
@@ -938,22 +911,97 @@
 			this.label22.TabIndex = 5;
 			this.label22.Text = "Cliente";
 			// 
-			// btnRecuperarTLD
+			// txtPersonal
 			// 
-			this.btnRecuperarTLD.Location = new System.Drawing.Point(138, 146);
-			this.btnRecuperarTLD.Name = "btnRecuperarTLD";
-			this.btnRecuperarTLD.Size = new System.Drawing.Size(212, 23);
-			this.btnRecuperarTLD.TabIndex = 7;
-			this.btnRecuperarTLD.Text = "Recuperar TLD";
-			this.btnRecuperarTLD.UseVisualStyleBackColor = true;
-			this.btnRecuperarTLD.Click += new System.EventHandler(this.btnRecuperarTLD_Click);
+			this.txtPersonal.Location = new System.Drawing.Point(115, 74);
+			this.txtPersonal.Name = "txtPersonal";
+			this.txtPersonal.ReadOnly = true;
+			this.txtPersonal.Size = new System.Drawing.Size(484, 20);
+			this.txtPersonal.TabIndex = 4;
+			// 
+			// label21
+			// 
+			this.label21.AutoSize = true;
+			this.label21.Location = new System.Drawing.Point(37, 77);
+			this.label21.Name = "label21";
+			this.label21.Size = new System.Drawing.Size(48, 13);
+			this.label21.TabIndex = 3;
+			this.label21.Text = "Personal";
+			// 
+			// txtNTLDRecuperar
+			// 
+			this.txtNTLDRecuperar.Location = new System.Drawing.Point(115, 48);
+			this.txtNTLDRecuperar.Name = "txtNTLDRecuperar";
+			this.txtNTLDRecuperar.ReadOnly = true;
+			this.txtNTLDRecuperar.Size = new System.Drawing.Size(132, 20);
+			this.txtNTLDRecuperar.TabIndex = 2;
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.Location = new System.Drawing.Point(37, 51);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(59, 13);
+			this.label20.TabIndex = 1;
+			this.label20.Text = "Datos TLD";
+			// 
+			// lblRecupMensajeTLD
+			// 
+			this.lblRecupMensajeTLD.AutoSize = true;
+			this.lblRecupMensajeTLD.Location = new System.Drawing.Point(37, 23);
+			this.lblRecupMensajeTLD.Name = "lblRecupMensajeTLD";
+			this.lblRecupMensajeTLD.Size = new System.Drawing.Size(41, 13);
+			this.lblRecupMensajeTLD.TabIndex = 0;
+			this.lblRecupMensajeTLD.Text = "label20";
+			// 
+			// tabEliminar
+			// 
+			this.tabEliminar.Controls.Add(this.btnEliminar);
+			this.tabEliminar.Controls.Add(this.lblPersonalEliminar);
+			this.tabEliminar.Controls.Add(this.label24);
+			this.tabEliminar.Location = new System.Drawing.Point(4, 22);
+			this.tabEliminar.Name = "tabEliminar";
+			this.tabEliminar.Size = new System.Drawing.Size(722, 193);
+			this.tabEliminar.TabIndex = 7;
+			this.tabEliminar.Text = "Eliminar TLD";
+			this.tabEliminar.UseVisualStyleBackColor = true;
+			// 
+			// btnEliminar
+			// 
+			this.btnEliminar.Location = new System.Drawing.Point(42, 61);
+			this.btnEliminar.Name = "btnEliminar";
+			this.btnEliminar.Size = new System.Drawing.Size(114, 23);
+			this.btnEliminar.TabIndex = 52;
+			this.btnEliminar.Text = "Eliminar";
+			this.btnEliminar.UseVisualStyleBackColor = true;
+			this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+			// 
+			// lblPersonalEliminar
+			// 
+			this.lblPersonalEliminar.AutoSize = true;
+			this.lblPersonalEliminar.Location = new System.Drawing.Point(120, 22);
+			this.lblPersonalEliminar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.lblPersonalEliminar.Name = "lblPersonalEliminar";
+			this.lblPersonalEliminar.Size = new System.Drawing.Size(54, 13);
+			this.lblPersonalEliminar.TabIndex = 51;
+			this.lblPersonalEliminar.Text = "Personal :";
+			// 
+			// label24
+			// 
+			this.label24.AutoSize = true;
+			this.label24.Location = new System.Drawing.Point(39, 22);
+			this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label24.Name = "label24";
+			this.label24.Size = new System.Drawing.Size(48, 13);
+			this.label24.TabIndex = 50;
+			this.label24.Text = "Personal";
 			// 
 			// frmCambioPersonalTLD
 			// 
 			this.AcceptButton = this.btn_Cargar;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(630, 343);
+			this.ClientSize = new System.Drawing.Size(748, 343);
 			this.Controls.Add(this.btn_filtro);
 			this.Controls.Add(this.grpDatos);
 			this.Controls.Add(this.lblRut);
@@ -992,6 +1040,8 @@
 			this.tabRecuperar.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
+			this.tabEliminar.ResumeLayout(false);
+			this.tabEliminar.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1081,5 +1131,9 @@
 		private System.Windows.Forms.TextBox txtCliente;
 		private System.Windows.Forms.Label label22;
 		private System.Windows.Forms.Button btnRecuperarTLD;
+		private System.Windows.Forms.TabPage tabEliminar;
+		private System.Windows.Forms.Button btnEliminar;
+		private System.Windows.Forms.Label lblPersonalEliminar;
+		private System.Windows.Forms.Label label24;
 	}
 }

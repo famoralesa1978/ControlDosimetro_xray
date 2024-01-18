@@ -53,7 +53,7 @@ namespace ControlDosimetro
 				lbl_NCliente.Text = dt.Tables[0].Rows[0]["Id_cliente"].ToString();
 				lbl_NombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
 				lblRut.Text = dt.Tables[0].Rows[0]["run"].ToString();
-				lblNombrePersonal.Text = dt.Tables[1].Rows[0]["NombreCompleto"].ToString();
+				lblPersonalEliminar.Text=lblNombrePersonal.Text = dt.Tables[1].Rows[0]["NombreCompleto"].ToString();
 				lblEstadoActual.Text = dt.Tables[1].Rows[0]["Estado"].ToString();
 
 				Cargar_Personal(dt.Tables[0].Rows[0]["Id_cliente"].ToString(), lblRut.Text);
@@ -338,6 +338,26 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			DataSet ds;
 			cmd.CommandText = "pa_AgregarEliminarTLD_upd";
+			cmd.Parameters.Add("@N_TLD", SqlDbType.Int);
+			cmd.Parameters["@N_TLD"].Value = txtNTLDRecuperar.Text;
+			cmd.CommandType = CommandType.StoredProcedure;
+
+
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
+			{
+				MessageBox.Show("Error en actualizar la información");
+			}
+
+			else
+				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
+		}
+
+		private void btnEliminar_Click(object sender, EventArgs e)
+		{
+			SqlCommand cmd = new SqlCommand();
+			DataSet ds;
+			cmd.CommandText = "pa_EliminarTLD_upd";
 			cmd.Parameters.Add("@N_TLD", SqlDbType.Int);
 			cmd.Parameters["@N_TLD"].Value = txtNTLDRecuperar.Text;
 			cmd.CommandType = CommandType.StoredProcedure;
