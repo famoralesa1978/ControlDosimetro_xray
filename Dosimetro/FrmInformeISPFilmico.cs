@@ -752,7 +752,7 @@ namespace ControlDosimetro
 
 					}
 					if (data1.Count() > 0)
-						WDAddTableV2(strArchivoCopiar, data1, data2, data3, strfecha_inicio, strfecha_termino, strFechaRecepcion, data4, data5, data6, data7);
+						WDAddTableV2(strArchivoCopiar, data1, data2, data3, strfecha_inicio, strfecha_termino, strFechaRecepcion, data4, data5, data6, data7, strFechaDevolucion);
 
 					#endregion
 				}
@@ -1241,7 +1241,7 @@ namespace ControlDosimetro
 
 				}
 				if (data1.Count() > 0)
-					WDAddTableV2(strArchivoCopiar, data1, data2, data3, strfecha_inicio, strfecha_termino, strFechaRecepcion, data4, data5, data6, data7);
+					WDAddTableV2(strArchivoCopiar, data1, data2, data3, strfecha_inicio, strfecha_termino, strFechaRecepcion, data4, data5, data6, data7, strFechaDevolucion);
 
 				#endregion
 				#endregion
@@ -3007,7 +3007,7 @@ namespace ControlDosimetro
 			}
 		}
 
-		public static void WDAddTableV2(string fileName, string[] Id, string[] Rut, string[] Nombre, string PerInicio, string PerFin, string FechaRecepcion, string[] Medicion, string[] UltimoAnno, string[] Ultimo5anno, string[] Estado)
+		public static void WDAddTableV2(string fileName, string[] Id, string[] Rut, string[] Nombre, string PerInicio, string PerFin, string FechaRecepcion, string[] Medicion, string[] UltimoAnno, string[] Ultimo5anno, string[] Estado, string strFechaDevolucion)
 		{
 			using (var document = WordprocessingDocument.Open(fileName, true))
 			{
@@ -3198,7 +3198,7 @@ namespace ControlDosimetro
 																new DocumentFormat.OpenXml.Wordprocessing.Run(
 																	new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
 																	new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
-																	new DocumentFormat.OpenXml.Wordprocessing.Text(PerFin.Substring(0, 6) + FechaRecepcion.Substring(FechaRecepcion.Length - 2, 2))))
+																	new DocumentFormat.OpenXml.Wordprocessing.Text(FechaRecepcion.Substring(0, 6) + FechaRecepcion.Substring(FechaRecepcion.Length - 2, 2))))
 															));
 
 					tr.Append(tc6);
