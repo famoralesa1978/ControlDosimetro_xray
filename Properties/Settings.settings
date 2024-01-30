@@ -11,9 +11,12 @@
     <Setting Name="Archivo" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\\formato\\</Value>
     </Setting>
+    <Setting Name="Pk_Sistema" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
     <Setting Name="sistiamc_controlConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
   &lt;ConnectionString&gt;Data Source=198.38.93.11;Initial Catalog=sistiamc_control;Persist Security Info=false;User ID=sistiamc_cont;Password=usrcontrol1&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
@@ -21,7 +24,7 @@
     </Setting>
     <Setting Name="sistiamc_controlConnectionString1" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
   &lt;ConnectionString&gt;Data Source=198.38.93.11;Initial Catalog=sistiamc_control;Persist Security Info=false;User ID=sistiamc_xray;Password=usrcontrol1&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
@@ -29,7 +32,7 @@
     </Setting>
     <Setting Name="sistiamc_controlConnectionString2" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
   &lt;ConnectionString&gt;Data Source=fmorales;Initial Catalog=sistiamc_control;User ID=sa;Password=sa1234567&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
@@ -37,14 +40,35 @@
     </Setting>
     <Setting Name="sistiamc_controlConnectionString3" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
   &lt;ConnectionString&gt;Data Source=fmorales;Initial Catalog=sistiamc_control;Integrated Security=True&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=fmorales;Initial Catalog=sistiamc_control;Integrated Security=True</Value>
     </Setting>
-    <Setting Name="Pk_Sistema" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">1</Value>
+    <Setting Name="ConfiguracionBD" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">qbz4h7qjqno6UDISeyxTagzP8WL2RI9VHfd/l56YcLkZ1UdzuJNuXq3s7y9ZY3eq6QrxfamnP0GH0FDdEHA6bAWJdHonailm8a5b3eyUw5vuWLyX+mBmFPxKLHFVjRtYm0sjwb1KdqM=</Value>
+    </Setting>
+    <Setting Name="Ambiente" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Produccion</Value>
+    </Setting>
+    <Setting Name="RutaArchivo" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\\Doc_Xray\\</Value>
+    </Setting>
+    <Setting Name="Color" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">LightSteelBlue</Value>
+    </Setting>
+    <Setting Name="RutaArchivoLog" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Log\\</Value>
+    </Setting>
+    <Setting Name="NombreArchivoLog" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SistemaControlDosimetroLog.Ini</Value>
+    </Setting>
+    <Setting Name="MensajeAdminstrador" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Error en el Sistema, Contacte con el administrador y envie el correo de log para poder solucionarlo.</Value>
+    </Setting>
+    <Setting Name="ColorCeldaBloqueda" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">Info</Value>
     </Setting>
   </Settings>
 </SettingsFile>

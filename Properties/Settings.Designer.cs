@@ -12,7 +12,7 @@ namespace ControlDosimetro.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.8.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -61,6 +61,15 @@ namespace ControlDosimetro.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public string Pk_Sistema {
+            get {
+                return ((string)(this["Pk_Sistema"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=198.38.93.11;Initial Catalog=sistiamc_control;Persist Security Info=f" +
             "alse;User ID=sistiamc_cont;Password=usrcontrol1")]
@@ -104,10 +113,75 @@ namespace ControlDosimetro.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public string Pk_Sistema {
+        [global::System.Configuration.DefaultSettingValueAttribute("qbz4h7qjqno6UDISeyxTagzP8WL2RI9VHfd/l56YcLkZ1UdzuJNuXq3s7y9ZY3eq6QrxfamnP0GH0FDdE" +
+            "HA6bAWJdHonailm8a5b3eyUw5vuWLyX+mBmFPxKLHFVjRtYm0sjwb1KdqM=")]
+        public string ConfiguracionBD {
             get {
-                return ((string)(this["Pk_Sistema"]));
+                return ((string)(this["ConfiguracionBD"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Produccion")]
+        public string Ambiente {
+            get {
+                return ((string)(this["Ambiente"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\Doc_Xray\\\\")]
+        public string RutaArchivo {
+            get {
+                return ((string)(this["RutaArchivo"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("LightSteelBlue")]
+        public global::System.Drawing.Color Color {
+            get {
+                return ((global::System.Drawing.Color)(this["Color"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Log\\\\")]
+        public string RutaArchivoLog {
+            get {
+                return ((string)(this["RutaArchivoLog"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SistemaControlDosimetroLog.Ini")]
+        public string NombreArchivoLog {
+            get {
+                return ((string)(this["NombreArchivoLog"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Error en el Sistema, Contacte con el administrador y envie el correo de log para " +
+            "poder solucionarlo.")]
+        public string MensajeAdminstrador {
+            get {
+                return ((string)(this["MensajeAdminstrador"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Info")]
+        public global::System.Drawing.Color ColorCeldaBloqueda {
+            get {
+                return ((global::System.Drawing.Color)(this["ColorCeldaBloqueda"]));
             }
         }
     }
