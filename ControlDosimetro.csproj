@@ -199,6 +199,7 @@
     <Compile Include="Busqueda\frmAyudaPersonal.Designer.cs">
       <DependentUpon>frmAyudaPersonal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Clases\ClaseGeneral.cs" />
     <Compile Include="Clases\ClassDirectorios.cs" />
     <Compile Include="Clases\ClassErrores.cs" />
     <Compile Include="Clases\classEvento.cs" />
@@ -208,6 +209,8 @@
     <Compile Include="Clases\ClassFormReporte.cs" />
     <Compile Include="Clases\classPersonal.cs" />
     <Compile Include="Clases\classUsuario.cs" />
+    <Compile Include="Clases\clsConector.cs" />
+    <Compile Include="Clases\clsEmail.cs" />
     <Compile Include="DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -262,6 +265,7 @@
     <Compile Include="Dosimetro\frmIngresoPeliculaDosi.Designer.cs">
       <DependentUpon>frmIngresoPeliculaDosi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensor.cs" />
     <Compile Include="Facturacion\frmFacturar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -579,12 +583,6 @@
     </Compile>
     <Compile Include="Dosimetro\frmIngresoDosimetriaDos.Designer.cs">
       <DependentUpon>frmIngresoDosimetriaDos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Recepcion\frmIngresoDosimetriaV2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Recepcion\frmIngresoDosimetriaV2.Designer.cs">
-      <DependentUpon>frmIngresoDosimetriaV2.cs</DependentUpon>
     </Compile>
     <Compile Include="Recepcion\frmOrdenTrabajoFechaRecepcion.cs">
       <SubType>Form</SubType>
@@ -929,9 +927,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dosimetro\frmIngresoDosimetriaDos.resx">
       <DependentUpon>frmIngresoDosimetriaDos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Recepcion\frmIngresoDosimetriaV2.resx">
-      <DependentUpon>frmIngresoDosimetriaV2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Recepcion\frmOrdenTrabajoFechaRecepcion.resx">
       <DependentUpon>frmOrdenTrabajoFechaRecepcion.cs</DependentUpon>

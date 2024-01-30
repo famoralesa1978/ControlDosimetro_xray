@@ -24,6 +24,7 @@ namespace ControlDosimetro
 		clsEventoControl ClaseEvento = new clsEventoControl();
 		Color coColor;
 		dllLibreriaMysql.clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
+
 		#endregion
 
 		public frmLogin()
@@ -31,7 +32,7 @@ namespace ControlDosimetro
 			InitializeComponent();
 			coColor = frmLogin.DefaultBackColor;
 			this.labelVersion.Text = String.Format("Versión {0}", AssemblyVersion);
-			labelBD.Text = "Desarrollo";
+			labelBD.Text = ClaseGeneral.Ambiente;
 			labelBD_Click(null,null);
 
 		}
@@ -185,7 +186,15 @@ namespace ControlDosimetro
 			//Clases.clsBD.BD = labelBD.Text == "Producción" ? "Prod1" : "Desarrollo";
 			Clases.clsBD.BD = labelBD.Text == "Producción" ? Clases.clsBD.strConexionProd : Clases.clsBD.strConexionDes;
 		}
+		private void tsbEnviarLog_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+			ClaseGeneral.MensajeAdministradorCorreo.XCORREOEnviarCorreoAdministrador();
+			Cursor = Cursors.Default;
+		}
 
 		#endregion
+
+
 	}
 }

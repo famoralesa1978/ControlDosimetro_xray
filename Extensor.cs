@@ -12,7 +12,7 @@ using System.Runtime.CompilerServices;
 
 namespace ControlDosimetro
 {
-	public static class ControlDosimetro
+	public static class Extensores
 	{
 		#region Declaracion
 
