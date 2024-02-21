@@ -1118,6 +1118,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Refrescar %282%29.png" />
     <None Include="Resources\Guardar.png" />
     <None Include="Resources\Delete.png" />
     <None Include="Resources\Agregar.png" />

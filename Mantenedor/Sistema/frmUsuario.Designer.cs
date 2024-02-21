@@ -108,11 +108,11 @@
 			// tsbRefrescar
 			// 
 			this.tsbRefrescar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.tsbRefrescar.Image = global::ControlDosimetro.Properties.Resources.regresar;
+			this.tsbRefrescar.Image = global::ControlDosimetro.Properties.Resources.Refrescar__2_;
 			this.tsbRefrescar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.tsbRefrescar.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsbRefrescar.Name = "tsbRefrescar";
-			this.tsbRefrescar.Size = new System.Drawing.Size(36, 36);
+			this.tsbRefrescar.Size = new System.Drawing.Size(28, 36);
 			this.tsbRefrescar.Text = "Refrescar los datos";
 			this.tsbRefrescar.Click += new System.EventHandler(this.tsbRefrescar_Click);
 			// 
