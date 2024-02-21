@@ -160,7 +160,7 @@ namespace ControlDosimetro
 						else
 						{
 							if (ds.Tables[0].Rows[0]["Contraseña"].ToString() == Clave)
-								if (ds.Tables[0].Rows[0]["Id_estado"].ToString() == "1")
+								if ((bool)ds.Tables[0].Rows[0]["Estado"])
 								{
 									Clases.clsUsuario.Usuario = ds.Tables[0].Rows[0]["Usuario"].ToString();
 									Clases.clsUsuario.Nombre = ds.Tables[0].Rows[0]["Nombres"].ToString() + " " + ds.Tables[0].Rows[0]["Paterno"].ToString() + " " + ds.Tables[0].Rows[0]["Maternos"].ToString();

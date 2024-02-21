@@ -368,11 +368,11 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.MantUsuario:
-					objFrm = new frmMantenedorUsuario()
+					objFrm = new frmUsuario()
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen,
-						Parametros = objParams
+						intMenu = (int)objParams[0]
 					};
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
@@ -899,7 +899,7 @@ namespace ControlDosimetro
 				#region "Mantenedor"
 
 				case (int)MENU.MantUsuario:
-					objFrm = new frmMantenedorUsuario()
+					objFrm = new frmUsuario()
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
