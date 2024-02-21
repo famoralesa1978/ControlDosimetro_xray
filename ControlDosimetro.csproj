@@ -458,12 +458,6 @@
     <Compile Include="Mantenedor\frmMantenedorTipoDocumento.Designer.cs">
       <DependentUpon>frmMantenedorTipoDocumento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mantenedor\frmMantenedorPerfil.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mantenedor\frmMantenedorPerfil.Designer.cs">
-      <DependentUpon>frmMantenedorPerfil.cs</DependentUpon>
-    </Compile>
     <Compile Include="Mantenedor\frmSucursalMant.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -511,6 +505,12 @@
     </Compile>
     <Compile Include="Mantenedor\Sistema\frmMantenedorReporte.Designer.cs">
       <DependentUpon>frmMantenedorReporte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\Sistema\frmPerfil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\Sistema\frmPerfil.Designer.cs">
+      <DependentUpon>frmPerfil.cs</DependentUpon>
     </Compile>
     <Compile Include="Mantenedor\Sistema\frmUsuario.cs">
       <SubType>Form</SubType>
@@ -868,9 +868,6 @@
     <EmbeddedResource Include="Mantenedor\frmMantenedorTipoDocumento.resx">
       <DependentUpon>frmMantenedorTipoDocumento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mantenedor\frmMantenedorPerfil.resx">
-      <DependentUpon>frmMantenedorPerfil.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmAsignarDireccionPersonal.resx">
       <DependentUpon>frmAsignarDireccionPersonal.cs</DependentUpon>
     </EmbeddedResource>
@@ -891,6 +888,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\Sistema\frmMantVersionesSistema.resx">
       <DependentUpon>frmMantVersionesSistema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\Sistema\frmPerfil.resx">
+      <DependentUpon>frmPerfil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\Sistema\frmUsuario.resx">
       <DependentUpon>frmUsuario.cs</DependentUpon>

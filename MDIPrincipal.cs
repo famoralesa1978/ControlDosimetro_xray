@@ -358,11 +358,11 @@ namespace ControlDosimetro
 					objFrm.ShowDialog(this);
 					break;
 				case (int)MENU.MantPerfil:
-					objFrm = new frmMantenedorPerfil()
+					objFrm = new frmPerfil()
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen,
-						Parametros = objParams
+						intMenu = (int)objParams[0]
 					};
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
