@@ -76,6 +76,8 @@
 			this.tsbPrincipalCliente = new System.Windows.Forms.ToolStripButton();
 			this.tsbPrincipalPersonal = new System.Windows.Forms.ToolStripButton();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
+			this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
+			this.tsbPerfil = new System.Windows.Forms.ToolStripStatusLabel();
 			this.menuStrip.SuspendLayout();
 			this.statusStrip.SuspendLayout();
 			this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -191,7 +193,9 @@
             this.toolStripStatusLabel3,
             this.tstNombre,
             this.toolStripStatusLabel4,
-            this.stsHora});
+            this.stsHora,
+            this.toolStripStatusLabel5,
+            this.tsbPerfil});
 			this.statusStrip.Location = new System.Drawing.Point(0, 431);
 			this.statusStrip.Name = "statusStrip";
 			this.statusStrip.Size = new System.Drawing.Size(1059, 22);
@@ -400,6 +404,20 @@
 			this.timer1.Interval = 1000;
 			this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
 			// 
+			// toolStripStatusLabel5
+			// 
+			this.toolStripStatusLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+			this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
+			this.toolStripStatusLabel5.Size = new System.Drawing.Size(43, 17);
+			this.toolStripStatusLabel5.Text = "Perfil :";
+			// 
+			// tsbPerfil
+			// 
+			this.tsbPerfil.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+			this.tsbPerfil.Name = "tsbPerfil";
+			this.tsbPerfil.Size = new System.Drawing.Size(85, 17);
+			this.tsbPerfil.Text = "Nombre Perfil";
+			// 
 			// MDIPrincipal
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -469,6 +487,8 @@
           private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.ToolStripButton tsbPrincipalCambioContraseña;
         private System.Windows.Forms.ToolStripButton tsbPrincipalCambioContraseñaCliente;
+		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
+		private System.Windows.Forms.ToolStripStatusLabel tsbPerfil;
 	}
 }
 

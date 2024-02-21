@@ -946,6 +946,7 @@ namespace ControlDosimetro
 				string strregionEmpresa = dt.Tables[0].Rows[idatos]["region"].ToString();
 				string strProvinciaEmpresa = dt.Tables[0].Rows[idatos]["Provincia"].ToString();
 				string strcomunaEmpresa = dt.Tables[0].Rows[idatos]["comuna"].ToString();
+				string strComunaCliente = dt.Tables[0].Rows[idatos]["ComunaCliente"].ToString();
 				string strSeccion = (int)cbx_id_seccion.SelectedValue == 0 ? "" : cbx_id_seccion.Text;
 				string strFechaRecepcion = dt.Tables[0].Rows[idatos]["FechaRecepcion"].ToString();
 				string strOpr = dt.Tables[0].Rows[idatos]["Opr"].ToString();
@@ -1208,7 +1209,7 @@ namespace ControlDosimetro
 					strcampoMarcador = "Sucursal";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strDireccionEmpresaSucursal);
 					strcampoMarcador = "Direccion";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strDireccionEmpresa);
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strDireccionEmpresa+", "+ strComunaCliente);
 					strcampoMarcador = "NombreOPR";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strOpr);
 					strcampoMarcador = "RunOPR";

@@ -123,7 +123,7 @@ namespace ControlDosimetro
 
 			tstUsuario.Text = Clases.clsUsuario.Usuario;
 			tstNombre.Text = Clases.clsUsuario.Nombre;
-
+			tsbPerfil.Text = Clases.clsUsuario.Perfil;
 			SqlCommand cmd = new SqlCommand
 			{
 				CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "','Ingreso'",

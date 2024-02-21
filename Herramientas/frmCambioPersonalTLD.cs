@@ -259,8 +259,12 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			DataSet ds;
 			string strParametro = String.Format("{0},{1}", txt_NDoc.Text, cbx_id_seccionMod.SelectedValue);
-			cmd.CommandText = "pa_ModificarSeccionTLD_upd" + strParametro;
-			cmd.CommandType = CommandType.Text;//
+			cmd.CommandText = "pa_ModificarSeccionTLD_upd";
+			cmd.Parameters.Add("@N_TLD", SqlDbType.Int);
+			cmd.Parameters["@N_TLD"].Value = txt_NDoc.Text;
+			cmd.Parameters.Add("@Id_SeccionCambio", SqlDbType.Int);
+			cmd.Parameters["@Id_SeccionCambio"].Value = cbx_id_seccionMod.SelectedValue;
+			cmd.CommandType = CommandType.StoredProcedure;//
 
 
 			ds = Conectar.Listar(Clases.clsBD.BD, cmd);

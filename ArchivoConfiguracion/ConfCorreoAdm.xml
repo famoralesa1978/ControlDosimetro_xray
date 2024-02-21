@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CorreoAdministrador>
+  <Conf>
+    <Tipo>
+      gmail</Tipo>
+    <Desde>Pipecatro2@gmail.com</Desde>
+    <Credencial>Pipecato2@gmail.com</Credencial>
+    <Clave>ixrc iodg vvrr apgs</Clave>
+    <Host>smtp.gmail.com</Host>
+    <Port>587</Port>
+  </Conf>
+</CorreoAdministrador>

@@ -22,7 +22,7 @@ namespace ControlDosimetro.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ControlDosimetro.Properties {
         ///   Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ControlDosimetro.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace ControlDosimetro.Properties {
         ///   búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Agregar {
+        internal static System.Drawing.Bitmap Agregar {
             get {
                 object obj = ResourceManager.GetObject("Agregar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap ayudaPeriodo {
+        internal static System.Drawing.Bitmap ayudaPeriodo {
             get {
                 object obj = ResourceManager.GetObject("ayudaPeriodo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +83,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Buscar {
+        internal static System.Drawing.Bitmap Buscar {
             get {
                 object obj = ResourceManager.GetObject("Buscar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +93,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap CambioContrasena {
+        internal static System.Drawing.Bitmap CambioContrasena {
             get {
                 object obj = ResourceManager.GetObject("CambioContrasena", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +103,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap CambioContrasenaCliente {
+        internal static System.Drawing.Bitmap CambioContrasenaCliente {
             get {
                 object obj = ResourceManager.GetObject("CambioContrasenaCliente", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +113,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
         /// </summary>
-        public static System.Drawing.Icon Check {
+        internal static System.Drawing.Icon Check {
             get {
                 object obj = ResourceManager.GetObject("Check", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
@@ -123,7 +123,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Check1 {
+        internal static System.Drawing.Bitmap Check1 {
             get {
                 object obj = ResourceManager.GetObject("Check1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -133,7 +133,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Check11 {
+        internal static System.Drawing.Bitmap Check11 {
             get {
                 object obj = ResourceManager.GetObject("Check11", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,7 +143,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap client {
+        internal static System.Drawing.Bitmap client {
             get {
                 object obj = ResourceManager.GetObject("client", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -153,7 +153,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap cliente {
+        internal static System.Drawing.Bitmap cliente {
             get {
                 object obj = ResourceManager.GetObject("cliente", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -163,7 +163,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap close {
+        internal static System.Drawing.Bitmap close {
             get {
                 object obj = ResourceManager.GetObject("close", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -173,7 +173,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Close_24 {
+        internal static System.Drawing.Bitmap Close_24 {
             get {
                 object obj = ResourceManager.GetObject("Close_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -183,7 +183,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap CopiarDatos {
+        internal static System.Drawing.Bitmap CopiarDatos {
             get {
                 object obj = ResourceManager.GetObject("CopiarDatos", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -193,7 +193,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
         /// </summary>
-        public static System.Drawing.Icon Delete {
+        internal static System.Drawing.Icon Delete {
             get {
                 object obj = ResourceManager.GetObject("Delete", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
@@ -203,7 +203,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap delete_32 {
+        internal static System.Drawing.Bitmap delete_32 {
             get {
                 object obj = ResourceManager.GetObject("delete_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -213,7 +213,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Detalle {
+        internal static System.Drawing.Bitmap Detalle {
             get {
                 object obj = ResourceManager.GetObject("Detalle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -223,7 +223,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap documents_32 {
+        internal static System.Drawing.Bitmap documents_32 {
             get {
                 object obj = ResourceManager.GetObject("documents_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -233,7 +233,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap EmailConf {
+        internal static System.Drawing.Bitmap EmailConf {
             get {
                 object obj = ResourceManager.GetObject("EmailConf", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -243,7 +243,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap excel {
+        internal static System.Drawing.Bitmap excel {
             get {
                 object obj = ResourceManager.GetObject("excel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -253,7 +253,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap exit {
+        internal static System.Drawing.Bitmap exit {
             get {
                 object obj = ResourceManager.GetObject("exit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -263,7 +263,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Filmica {
+        internal static System.Drawing.Bitmap Filmica {
             get {
                 object obj = ResourceManager.GetObject("Filmica", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -273,7 +273,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap filter_16 {
+        internal static System.Drawing.Bitmap filter_16 {
             get {
                 object obj = ResourceManager.GetObject("filter_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -283,7 +283,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Filter_24 {
+        internal static System.Drawing.Bitmap Filter_24 {
             get {
                 object obj = ResourceManager.GetObject("Filter_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -293,7 +293,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Filter_32 {
+        internal static System.Drawing.Bitmap Filter_32 {
             get {
                 object obj = ResourceManager.GetObject("Filter_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -303,7 +303,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap iconoNregrita {
+        internal static System.Drawing.Bitmap iconoNregrita {
             get {
                 object obj = ResourceManager.GetObject("iconoNregrita", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -313,7 +313,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap ImportarExcel {
+        internal static System.Drawing.Bitmap ImportarExcel {
             get {
                 object obj = ResourceManager.GetObject("ImportarExcel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -323,7 +323,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap IniciarProceso {
+        internal static System.Drawing.Bitmap IniciarProceso {
             get {
                 object obj = ResourceManager.GetObject("IniciarProceso", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -333,7 +333,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap letra {
+        internal static System.Drawing.Bitmap letra {
             get {
                 object obj = ResourceManager.GetObject("letra", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -343,7 +343,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap letracolor {
+        internal static System.Drawing.Bitmap letracolor {
             get {
                 object obj = ResourceManager.GetObject("letracolor", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -353,7 +353,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Limpiar {
+        internal static System.Drawing.Bitmap Limpiar {
             get {
                 object obj = ResourceManager.GetObject("Limpiar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -363,7 +363,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap lookImage_24 {
+        internal static System.Drawing.Bitmap lookImage_24 {
             get {
                 object obj = ResourceManager.GetObject("lookImage_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -373,7 +373,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap lookImage_32 {
+        internal static System.Drawing.Bitmap lookImage_32 {
             get {
                 object obj = ResourceManager.GetObject("lookImage_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -383,7 +383,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap minimizar {
+        internal static System.Drawing.Bitmap minimizar {
             get {
                 object obj = ResourceManager.GetObject("minimizar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -393,7 +393,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Modify_24 {
+        internal static System.Drawing.Bitmap Modify_24 {
             get {
                 object obj = ResourceManager.GetObject("Modify_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -403,7 +403,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Modify_32 {
+        internal static System.Drawing.Bitmap Modify_32 {
             get {
                 object obj = ResourceManager.GetObject("Modify_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -413,7 +413,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a Confirmación.
         /// </summary>
-        public static string msgCaptionConfirmacion {
+        internal static string msgCaptionConfirmacion {
             get {
                 return ResourceManager.GetString("msgCaptionConfirmacion", resourceCulture);
             }
@@ -422,7 +422,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a Error.
         /// </summary>
-        public static string msgCaptionError {
+        internal static string msgCaptionError {
             get {
                 return ResourceManager.GetString("msgCaptionError", resourceCulture);
             }
@@ -431,7 +431,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a Mensaje.
         /// </summary>
-        public static string msgCaptionProcesoOK {
+        internal static string msgCaptionProcesoOK {
             get {
                 return ResourceManager.GetString("msgCaptionProcesoOK", resourceCulture);
             }
@@ -440,7 +440,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a El cliente no corresponde para este periodo.
         /// </summary>
-        public static string msgClientePeriodoError {
+        internal static string msgClientePeriodoError {
             get {
                 return ResourceManager.GetString("msgClientePeriodoError", resourceCulture);
             }
@@ -449,7 +449,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a Falta ingresar el número de  cliente.
         /// </summary>
-        public static string msgErrorFaltaCliente {
+        internal static string msgErrorFaltaCliente {
             get {
                 return ResourceManager.GetString("msgErrorFaltaCliente", resourceCulture);
             }
@@ -458,7 +458,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a Desea grabar la información?.
         /// </summary>
-        public static string msgGrabar {
+        internal static string msgGrabar {
             get {
                 return ResourceManager.GetString("msgGrabar", resourceCulture);
             }
@@ -467,7 +467,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a No existe información a cargar.
         /// </summary>
-        public static string msgNoExisteError {
+        internal static string msgNoExisteError {
             get {
                 return ResourceManager.GetString("msgNoExisteError", resourceCulture);
             }
@@ -476,7 +476,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
         /// </summary>
-        public static System.Drawing.Icon nuevo32 {
+        internal static System.Drawing.Icon nuevo32 {
             get {
                 object obj = ResourceManager.GetObject("nuevo32", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
@@ -486,7 +486,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Personal {
+        internal static System.Drawing.Bitmap Personal {
             get {
                 object obj = ResourceManager.GetObject("Personal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -496,7 +496,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Personal1 {
+        internal static System.Drawing.Bitmap Personal1 {
             get {
                 object obj = ResourceManager.GetObject("Personal1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -506,7 +506,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap print_32 {
+        internal static System.Drawing.Bitmap print_32 {
             get {
                 object obj = ResourceManager.GetObject("print_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -516,7 +516,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap REFERENCIA {
+        internal static System.Drawing.Bitmap REFERENCIA {
             get {
                 object obj = ResourceManager.GetObject("REFERENCIA", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -526,7 +526,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Refrescar {
+        internal static System.Drawing.Bitmap Refrescar {
             get {
                 object obj = ResourceManager.GetObject("Refrescar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -536,7 +536,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap regresar {
+        internal static System.Drawing.Bitmap regresar {
             get {
                 object obj = ResourceManager.GetObject("regresar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -546,7 +546,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Save_16 {
+        internal static System.Drawing.Bitmap Save_16 {
             get {
                 object obj = ResourceManager.GetObject("Save_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -556,7 +556,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Save_24 {
+        internal static System.Drawing.Bitmap Save_24 {
             get {
                 object obj = ResourceManager.GetObject("Save_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -566,7 +566,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Save_32 {
+        internal static System.Drawing.Bitmap Save_32 {
             get {
                 object obj = ResourceManager.GetObject("Save_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -576,7 +576,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap save_32_ {
+        internal static System.Drawing.Bitmap save_32_ {
             get {
                 object obj = ResourceManager.GetObject("save_32_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -586,7 +586,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Seccion {
+        internal static System.Drawing.Bitmap Seccion {
             get {
                 object obj = ResourceManager.GetObject("Seccion", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -596,7 +596,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Seccion_16 {
+        internal static System.Drawing.Bitmap Seccion_16 {
             get {
                 object obj = ResourceManager.GetObject("Seccion_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -606,7 +606,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Seccion_24 {
+        internal static System.Drawing.Bitmap Seccion_24 {
             get {
                 object obj = ResourceManager.GetObject("Seccion_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -616,7 +616,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Seccion_32 {
+        internal static System.Drawing.Bitmap Seccion_32 {
             get {
                 object obj = ResourceManager.GetObject("Seccion_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -626,7 +626,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a frmBusquedaSucursal frm = new frmBusquedaSucursal(0);.
         /// </summary>
-        public static string String {
+        internal static string String {
             get {
                 return ResourceManager.GetString("String", resourceCulture);
             }
@@ -635,7 +635,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a frm.ShowDialog(this);.
         /// </summary>
-        public static string String1 {
+        internal static string String1 {
             get {
                 return ResourceManager.GetString("String1", resourceCulture);
             }
@@ -644,7 +644,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Verify_16 {
+        internal static System.Drawing.Bitmap Verify_16 {
             get {
                 object obj = ResourceManager.GetObject("Verify_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -654,7 +654,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Verify_24 {
+        internal static System.Drawing.Bitmap Verify_24 {
             get {
                 object obj = ResourceManager.GetObject("Verify_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -664,7 +664,7 @@ namespace ControlDosimetro.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Verify_32 {
+        internal static System.Drawing.Bitmap Verify_32 {
             get {
                 object obj = ResourceManager.GetObject("Verify_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));

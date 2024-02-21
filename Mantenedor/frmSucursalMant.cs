@@ -102,7 +102,7 @@ namespace ControlDosimetro
 				else
 					txt_runsuc.Text = txt_run.Text;
 
-				txt_runsuc.Enabled = false;
+				//txt_runsuc.Enabled = false;
 				txt_Email.Text = dt.Tables[0].Rows[0]["email"].ToString().Trim() != "" ? dt.Tables[0].Rows[0]["email"].ToString() : "";
 				btnCopiar.Visible = true;
 			}

@@ -12,6 +12,7 @@ using dllLibreriaMysql;
 using System.Data.SqlClient;
 using System.Data.Sql;
 using System.Data;
+using NPOI.OpenXmlFormats.Shared;
 
 
 namespace ControlDosimetro
@@ -19,7 +20,7 @@ namespace ControlDosimetro
 	public partial class frmLogin : Form
 	{
 		#region "Definicion variable"
-		clsConectorSqlServer Conectar = new clsConectorSqlServer();
+		clsConectorSqlServerV2 Conectar = new clsConectorSqlServerV2();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
 		Color coColor;
@@ -33,7 +34,7 @@ namespace ControlDosimetro
 			coColor = frmLogin.DefaultBackColor;
 			this.labelVersion.Text = String.Format("Versión {0}", AssemblyVersion);
 			labelBD.Text = ClaseGeneral.Ambiente;
-			labelBD_Click(null,null);
+			labelBD_Click(null, null);
 
 		}
 
@@ -136,40 +137,59 @@ namespace ControlDosimetro
 				{
 					Cursor = Cursors.WaitCursor;
 					string Clave = clsUtiles1.GenerateHashMD5(txt_Contrasena.Text.Trim());
+
 					//pa_login_sel 
 					SqlCommand cmd = new SqlCommand();
 					DataSet ds; // = new DataSet();
-					cmd.CommandText = "pa_login_sel '" + txt_Usuario.Text.Trim() + "','" + Clave + "'";
-					cmd.CommandType = CommandType.Text;
+					cmd.CommandText = "pa_login_sel";
+					cmd.Parameters.Clear();
+					cmd.Parameters.Add("@Usuario", SqlDbType.VarChar, 30);
+					cmd.Parameters["@Usuario"].Value = txt_Usuario.Text.Trim();
+					cmd.Parameters.Add("@Contraseña", SqlDbType.VarChar, 100);
+					cmd.Parameters["@Contraseña"].Value = Clave;
+					cmd.CommandType = CommandType.StoredProcedure;
+
+					string strSp = cmd.XSQLObtieneDatosParametro();
 
 					ds = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-					if (ds.Tables[0].Rows.Count == 0)
-						MessageBox.Show("El usuario no existe");
-					else
-					{
-						if (ds.Tables[0].Rows[0]["Contraseña"].ToString() == Clave)
-							if (ds.Tables[0].Rows[0]["Id_estado"].ToString() == "1")
-							{
-								Clases.clsUsuario.Usuario = ds.Tables[0].Rows[0]["Usuario"].ToString();
-								Clases.clsUsuario.Nombre = ds.Tables[0].Rows[0]["Nombres"].ToString() + " " + ds.Tables[0].Rows[0]["Paterno"].ToString() + " " + ds.Tables[0].Rows[0]["Maternos"].ToString();
-								Clases.clsUsuario.Id_Usuario = Convert.ToInt16(ds.Tables[0].Rows[0]["Id_Usuario"].ToString());
-								Clases.clsUsuario.Id_perfil = Convert.ToInt16(ds.Tables[0].Rows[0]["Id_perfil"].ToString());
-								Clases.clsUsuario.Contraseña = ds.Tables[0].Rows[0]["contraseña"].ToString();
-
-								this.Close();
-							}
-							else
-								MessageBox.Show("El usuario se encuentra desactivado");
-						else
-							MessageBox.Show("La contraseña es incorrecta");
-					}
 					Cursor = Cursors.Default;
+					if (ds != null)
+					{
+						if (ds.Tables[0].Rows.Count == 0)
+							"El usuario no existe".XMensajeError();
+						else
+						{
+							if (ds.Tables[0].Rows[0]["Contraseña"].ToString() == Clave)
+								if (ds.Tables[0].Rows[0]["Id_estado"].ToString() == "1")
+								{
+									Clases.clsUsuario.Usuario = ds.Tables[0].Rows[0]["Usuario"].ToString();
+									Clases.clsUsuario.Nombre = ds.Tables[0].Rows[0]["Nombres"].ToString() + " " + ds.Tables[0].Rows[0]["Paterno"].ToString() + " " + ds.Tables[0].Rows[0]["Maternos"].ToString();
+									Clases.clsUsuario.Id_Usuario = Convert.ToInt16(ds.Tables[0].Rows[0]["Id_Usuario"].ToString());
+									Clases.clsUsuario.Id_perfil = Convert.ToInt16(ds.Tables[0].Rows[0]["Id_perfil"].ToString());
+									Clases.clsUsuario.Contraseña = ds.Tables[0].Rows[0]["contraseña"].ToString();
+									Clases.clsUsuario.Perfil = ds.Tables[0].Rows[0]["Perfil"].ToString();
+									ClaseGeneral.GuardarLOG(this.Name, strSp, "btn_ingresar_Click");
+									this.Close();
+								}
+								else
+								{
+									"El usuario se encuentra inactivo. Consulte al administrador del sistema.".XMensajeError();
+								}
+							else
+							{
+								string msg = string.Format("{0};{1};{2};{3};{4};{5};{6}", ClaseGeneral.IP, ClaseGeneral.NombreEquipo, DateTime.Now, strSp, this.Name, ((System.Windows.Forms.Control)sender).Name, "Contraseña incorrecta. Verifique información.");
+								msg.XARCHEscribirArchivoLog(ClaseGeneral.RutaNombreArchivoLog);
+								"La contraseña es incorrecta".XMensajeError();
+							}
+
+						}
+					}
 				}
 			}
 			catch (Exception ex)
 			{
-                new Libreria.ClsErrores(ex, 0, (new System.Diagnostics.StackTrace(ex, true)).GetFrame(0).GetFileLineNumber(), this.Name, AssemblyVersion, Clases.clsUsuario.Usuario, Clases.clsBD.strSistema);
+				string msg = string.Format("{0};{1};{2};{3};{4};{5};{6}", ClaseGeneral.IP, ClaseGeneral.NombreEquipo, DateTime.Now, "pa_login_sel", this.Name, ((System.Windows.Forms.Control)sender).Name, ex.Message);
+				msg.XARCHEscribirArchivoLog(ClaseGeneral.RutaNombreArchivoLog);
 			}
 			finally
 			{

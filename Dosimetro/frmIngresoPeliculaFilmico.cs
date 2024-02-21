@@ -76,7 +76,7 @@ namespace ControlDosimetro
 
 			DataSet dt;
 
-			cmd.CommandText = "pa_ConsultaIngFilmicoPorSucursal_sel ";
+			cmd.CommandText = "pa_ConsultaIngFilmicoPorSucursal_sel";
 			cmd.Parameters.Add("@id_cliente", SqlDbType.Int);
 			cmd.Parameters["@id_cliente"].Value = intCliente;
 			cmd.Parameters.Add("@id_periodo", SqlDbType.Int);
