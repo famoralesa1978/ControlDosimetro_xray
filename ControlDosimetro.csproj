@@ -428,6 +428,18 @@
     <Compile Include="Mantenedor\frmAsignarDireccionPersonal.Designer.cs">
       <DependentUpon>frmAsignarDireccionPersonal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mantenedor\frmSeccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmSeccion.Designer.cs">
+      <DependentUpon>frmSeccion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor\frmDireccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmDireccion.Designer.cs">
+      <DependentUpon>frmDireccion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mantenedor\Sistema\frmMantVersionesSistema.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -871,11 +883,17 @@
     <EmbeddedResource Include="Mantenedor\frmAsignarDireccionPersonal.resx">
       <DependentUpon>frmAsignarDireccionPersonal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmSeccion.resx">
+      <DependentUpon>frmSeccion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmSucursalMant.resx">
       <DependentUpon>frmSucursalMant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmBusquedaSucursal.resx">
       <DependentUpon>frmBusquedaSucursal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmDireccion.resx">
+      <DependentUpon>frmDireccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\Sistema\frmMantenedorNuevoReporte.resx">
       <DependentUpon>frmMantenedorNuevoReporte.cs</DependentUpon>

@@ -101,6 +101,7 @@
 			this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btn_Imprimir = new System.Windows.Forms.Button();
 			this.btn_Cerrar = new System.Windows.Forms.Button();
+			this.tsbEliminarDcto = new System.Windows.Forms.ToolStripButton();
 			this.groupBox1.SuspendLayout();
 			this.grp_Ingreso.SuspendLayout();
 			this.grpListado.SuspendLayout();
@@ -652,11 +653,12 @@
 			// toolStrip1
 			// 
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbEliminarDcto,
             this.tsb_Imprimir,
             this.tsdReporte});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(470, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(470, 39);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -664,9 +666,10 @@
 			// 
 			this.tsb_Imprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.tsb_Imprimir.Image = global::ControlDosimetro.Properties.Resources.print_32;
+			this.tsb_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.tsb_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsb_Imprimir.Name = "tsb_Imprimir";
-			this.tsb_Imprimir.Size = new System.Drawing.Size(23, 22);
+			this.tsb_Imprimir.Size = new System.Drawing.Size(36, 36);
 			this.tsb_Imprimir.Text = "Imprimir";
 			this.tsb_Imprimir.Click += new System.EventHandler(this.tsb_Imprimir_Click);
 			// 
@@ -676,7 +679,7 @@
 			this.tsdReporte.Image = ((System.Drawing.Image)(resources.GetObject("tsdReporte.Image")));
 			this.tsdReporte.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.tsdReporte.Name = "tsdReporte";
-			this.tsdReporte.Size = new System.Drawing.Size(61, 22);
+			this.tsdReporte.Size = new System.Drawing.Size(61, 36);
 			this.tsdReporte.Text = "Reporte";
 			// 
 			// dataGridViewTextBoxColumn1
@@ -809,6 +812,17 @@
 			this.btn_Cerrar.UseVisualStyleBackColor = true;
 			this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click);
 			// 
+			// tsbEliminarDcto
+			// 
+			this.tsbEliminarDcto.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbEliminarDcto.Image = global::ControlDosimetro.Properties.Resources.Delete1;
+			this.tsbEliminarDcto.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.tsbEliminarDcto.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbEliminarDcto.Name = "tsbEliminarDcto";
+			this.tsbEliminarDcto.Size = new System.Drawing.Size(36, 36);
+			this.tsbEliminarDcto.Text = "Eliminar documento";
+			this.tsbEliminarDcto.Click += new System.EventHandler(this.tsbEliminarDcto_Click);
+			// 
 			// frmIngresoPeliculaFilmico
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -911,5 +925,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColFecha_ingreso;
 		private System.Windows.Forms.Button btnFiltrar;
 		private System.Windows.Forms.Button btnRefrescarNDcto;
+		private System.Windows.Forms.ToolStripButton tsbEliminarDcto;
 	}
 }

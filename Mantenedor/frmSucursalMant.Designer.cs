@@ -93,7 +93,7 @@
 			this.tbl_sucursal.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tbl_sucursal.Location = new System.Drawing.Point(0, 0);
 			this.tbl_sucursal.Name = "tbl_sucursal";
-			this.tbl_sucursal.Size = new System.Drawing.Size(491, 355);
+			this.tbl_sucursal.Size = new System.Drawing.Size(491, 477);
 			this.tbl_sucursal.TabIndex = 0;
 			this.tbl_sucursal.TabStop = false;
 			this.tbl_sucursal.Text = "Datos";
@@ -229,7 +229,7 @@
 			// 
 			// btn_cerrar
 			// 
-			this.btn_cerrar.Location = new System.Drawing.Point(272, 318);
+			this.btn_cerrar.Location = new System.Drawing.Point(272, 415);
 			this.btn_cerrar.Name = "btn_cerrar";
 			this.btn_cerrar.Size = new System.Drawing.Size(75, 23);
 			this.btn_cerrar.TabIndex = 13;
@@ -239,7 +239,7 @@
 			// 
 			// btn_Grabar
 			// 
-			this.btn_Grabar.Location = new System.Drawing.Point(85, 318);
+			this.btn_Grabar.Location = new System.Drawing.Point(85, 415);
 			this.btn_Grabar.Name = "btn_Grabar";
 			this.btn_Grabar.Size = new System.Drawing.Size(75, 23);
 			this.btn_Grabar.TabIndex = 12;
@@ -374,7 +374,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(491, 355);
+			this.ClientSize = new System.Drawing.Size(491, 477);
 			this.Controls.Add(this.tbl_sucursal);
 			this.Name = "frmSucursalMant";
 			this.Text = "Dirección";

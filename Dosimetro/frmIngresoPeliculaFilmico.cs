@@ -14,6 +14,7 @@ using System.Data.SqlClient;
 using System.Data.Sql;
 using Microsoft.Reporting.WinForms;
 using classFuncionesBD;
+using NPOI.Util;
 
 namespace ControlDosimetro
 {
@@ -24,6 +25,7 @@ namespace ControlDosimetro
 		Clases.ClassEvento clsEvt = new Clases.ClassEvento();
 		readonly clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		readonly clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
+		clsConectorSqlServerV2 Conectar2 = new clsConectorSqlServerV2();
 		readonly clsEventoControl ClaseEvento = new clsEventoControl();
 		classFuncionesBD.ClsFunciones FuncBD = new classFuncionesBD.ClsFunciones();
 		ClsFunciones clsFunc = new ClsFunciones();
@@ -164,7 +166,34 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "button"
+		private void tsbEliminarDcto_Click(object sender, EventArgs e)
+		{
+			if (string.IsNullOrEmpty(txt_NDocumento.Text))
+			{
+				"Debe tener un número de documento".XMensajeError();
+				return;
+			}
+			string strMensaje = string.Format("Desea eliminar el número de documento {0}.¿Confirmar?", txt_NDocumento.Text);
+			if (strMensaje.XMensajeConfirmacionOKCancel())
+			{
+				string strMensajeError = "";
+				SqlCommand cmd = new SqlCommand();
+				cmd.CommandText = "pa_FilmicoDocumentoDel";
+				cmd.Parameters.Add("@id_cliente", SqlDbType.Int);
+				cmd.Parameters["@id_cliente"].Value = lbl_id_cliente.Text;
+				cmd.Parameters.Add("@n_documento", SqlDbType.Int);
+				cmd.Parameters["@n_documento"].Value = txt_NDocumento.Text;
 
+				cmd.CommandType = CommandType.StoredProcedure;
+				Conectar2.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd, ref strMensajeError);
+				if (!string.IsNullOrWhiteSpace(strMensajeError))
+				{
+					Cursor = Cursors.Default;
+					ClaseGeneral.GuardarLOG(this.Name, "pa_FilmicoDocumentoDel", "Delete");
+				}
+				
+			}
+		}
 		private void BtnIngresarDosisISP_Click(object sender, EventArgs e)
 		{
 			frmDosimetriaISP frm = new frmDosimetriaISP(Convert.ToInt64(lbl_id_cliente.Text));
@@ -735,8 +764,9 @@ namespace ControlDosimetro
 
 		}
 
+
 		#endregion
 
-		
+
 	}
 }
