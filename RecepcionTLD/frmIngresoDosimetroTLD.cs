@@ -997,7 +997,7 @@ namespace ControlDosimetro
 						//INform para imprimir el codigo barra
 
 
-						
+
 						UpdateValue(wsNameCodigoBarra, "A" + (intFila).ToString(), int.Parse(txtnpelicula.Value.ToString()).ToString(fmt), 0, true);
 						UpdateValue(wsNameCodigoBarra, "B" + (intFila).ToString(), Paterno.Value.ToString().ToUpper(), 0, true);
 						UpdateValue(wsNameCodigoBarra, "C" + (intFila).ToString(), Maternos.Value.ToString().ToUpper(), 0, true);
@@ -1006,7 +1006,7 @@ namespace ControlDosimetro
 						UpdateValue(wsNameCodigoBarra, "F" + (intFila).ToString(), strTri, 0, true);
 						UpdateValue(wsNameCodigoBarra, "G" + (intFila).ToString(), strfecha_inicio, 0, true);
 
-						
+
 
 						UpdateValueInforme(wsName, "B" + (intHojaExcel).ToString(), int.Parse(txtnpelicula.Value.ToString()).ToString(fmt), 0, true);
 						UpdateValueInforme(wsName, "C" + (intHojaExcel).ToString(), Paterno.Value.ToString().ToUpper(), 0, true);
@@ -1060,7 +1060,8 @@ namespace ControlDosimetro
 				Cursor = Cursors.Default;
 				return false;
 			}
-			finally {
+			finally
+			{
 				documentLab.Close();
 				documentInforme.Close();
 				document.Close();
@@ -1073,155 +1074,6 @@ namespace ControlDosimetro
 			}
 			Cursor = Cursors.Default;
 			return bolResultado;
-		}
-
-		public static void WDAddTable(string fileName, string[] data1, string[] data2, string[] data3, string[] data4)
-		{
-			using (var document = WordprocessingDocument.Open(fileName, true))
-			{
-
-				var doc = document.MainDocumentPart.Document;
-
-				//DocumentFormat.OpenXml.Wordprocessing.Table table = doc.Body.Elements<DocumentFormat.OpenXml.Wordprocessing.Table>().Where<>.
-				DocumentFormat.OpenXml.Wordprocessing.Table table = doc.Body.Elements<DocumentFormat.OpenXml.Wordprocessing.Table>().ElementAtOrDefault(2);
-
-				//    new DocumentFormat.OpenXml.Wordprocessing.Table().First() ;
-
-				//Table table =
-				//  doc.MainDocumentPart.Document.Body.Elements<Table>().First();
-
-				TableProperties props = new TableProperties(
-					new TableBorders(
-						new DocumentFormat.OpenXml.Wordprocessing.TopBorder
-						{
-							Val = new EnumValue<BorderValues>(BorderValues.None),
-							Size = 9
-						},
-						new DocumentFormat.OpenXml.Wordprocessing.BottomBorder
-						{
-							Val = new EnumValue<BorderValues>(BorderValues.None),
-							Size = 9
-						},
-						new DocumentFormat.OpenXml.Wordprocessing.LeftBorder
-						{
-							Val = new EnumValue<BorderValues>(BorderValues.None),
-							Size = 9
-						},
-						new DocumentFormat.OpenXml.Wordprocessing.RightBorder
-						{
-							Val = new EnumValue<BorderValues>(BorderValues.None),
-							Size = 9
-						},
-						new InsideHorizontalBorder
-						{
-							Val = new EnumValue<BorderValues>(BorderValues.None),
-							Size = 9
-						},
-						new InsideVerticalBorder
-						{
-							Val = new EnumValue<BorderValues>(BorderValues.None),
-							Size = 9
-						}));
-				table.AppendChild<TableProperties>(props);
-
-				for (var i = 0; i <= data1.GetUpperBound(0); i++)
-				{
-					var tr = new TableRow(new TableWidth { Type = TableWidthUnitValues.Auto });
-					var tc2 = new TableCell();
-					var tc3 = new TableCell();
-					var tc4 = new TableCell();
-					//for (var j = 0; j <= data.GetUpperBound(1); j++)
-					//{
-					var tc = new TableCell();
-					// Assume you want columns that are automatically sized.
-					if (i == 0)
-					{
-
-
-
-						tc.Append(new TableCellProperties(
-																				new TableCellWidth { Type = TableWidthUnitValues.Auto },
-																				new DocumentFormat.OpenXml.Wordprocessing.Bold(),
-																				new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
-																				new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" },
-																				new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data1[i])),
-																						new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" })
-																				));
-
-						tr.Append(tc);
-
-
-
-						tc2.Append(new TableCellProperties(
-					new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "350" },
-																				new DocumentFormat.OpenXml.Wordprocessing.Bold(),
-																				new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" }
-																				));
-
-						tc3.Append(new TableCellProperties(
-					new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "600" },
-					new DocumentFormat.OpenXml.Wordprocessing.Bold(),
-																				new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" }
-																				));
-					}
-					else
-					{
-						tc.Append(new TableCellProperties(
-																				new TableCellWidth { Type = TableWidthUnitValues.Auto },
-																				new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
-																				new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" },
-																				new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data1[i])),
-																						new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" })
-																				));
-
-						tr.Append(tc);
-
-
-
-						tc2.Append(new TableCellProperties(
-					new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "350" },
-																				new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" }
-																				));
-
-						tc3.Append(new TableCellProperties(
-					new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "600" },
-																				new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" }
-																				));
-					}
-					//tc.Append(new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data1[i]))),
-					//    new TableCellProperties(
-					//                              new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "500" },
-					//                               new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" }
-					//                               )
-					//    );
-					//tr.Append(tc);
-
-
-					tc2.Append(new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data2[i]))));
-					// Assume you want columns that are automatically sized.
-					tr.Append(tc2);
-
-
-					tc3.Append(new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data3[i]))));
-					// Assume you want columns that are automatically sized.
-
-					tr.Append(tc3);
-
-					tc4.Append(new TableCellProperties(
-																				new TableCellWidth { Type = TableWidthUnitValues.Auto },
-																				new DocumentFormat.OpenXml.Wordprocessing.Bold(),
-																				new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
-																				new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" },
-																				new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(data4[i])))
-																				));
-
-					tr.Append(tc4);
-					// }
-					table.Append(tr);
-				}
-				//  doc.Body.Append(table);
-				doc.Save();
-			}
 		}
 		public bool UpdateValueLab(string sheetName, string addressName, string value, UInt32Value styleIndex, bool isString)
 		{
