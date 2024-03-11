@@ -104,7 +104,7 @@ namespace ControlDosimetro
 				if (row.RowState == DataRowState.Added)
 				{
 					SqlCommand cmd = new SqlCommand();
-					cmd.CommandText = "Sist_UsuarioIns";
+					cmd.CommandText = "DireccionIns";
 					cmd.Parameters.Add("@Id_Usuario", SqlDbType.Int);
 					cmd.Parameters["@Id_Usuario"].Value = row["Id_Usuario"]; //ParameterDirection.Output;
 					cmd.Parameters.Add("@Rut", SqlDbType.VarChar, 10);
@@ -135,7 +135,7 @@ namespace ControlDosimetro
 					{
 						bolError = true;
 						Cursor = Cursors.Default;
-						ClaseGeneral.GuardarLOG(this.Name, "Sist_UsuarioIns", "Grabar");
+						ClaseGeneral.GuardarLOG(this.Name, "DireccionIns", "Grabar");
 						return;
 					}
 				}
@@ -143,7 +143,7 @@ namespace ControlDosimetro
 				if (row.RowState == DataRowState.Modified)
 				{
 					SqlCommand cmd = new SqlCommand();
-					cmd.CommandText = "Sist_UsuarioUpd";
+					cmd.CommandText = "DireccionUpd";
 					cmd.Parameters.Add("@Id_Usuario", SqlDbType.Int);
 					cmd.Parameters["@Id_Usuario"].Value = row["Id_Usuario"];
 					cmd.Parameters.Add("@Rut", SqlDbType.VarChar, 10);
@@ -174,7 +174,7 @@ namespace ControlDosimetro
 					{
 						bolError = true;
 						Cursor = Cursors.Default;
-						ClaseGeneral.GuardarLOG(this.Name, "Sist_UsuarioUpd", "Grabar");
+						ClaseGeneral.GuardarLOG(this.Name, "DireccionUpd", "Grabar");
 						return;
 					}
 				}
@@ -199,7 +199,7 @@ namespace ControlDosimetro
 					for (int intLista = 0; intLista < lista.Count; intLista++)
 					{
 						SqlCommand cmd = new SqlCommand();
-						cmd.CommandText = "Sist_UsuarioDel";
+						cmd.CommandText = "DireccionDel";
 						cmd.Parameters.Add("@Id_Usuario", SqlDbType.Int);
 						cmd.Parameters["@Id_Usuario"].Value = lista[intLista];
 
@@ -209,7 +209,7 @@ namespace ControlDosimetro
 						if (!string.IsNullOrWhiteSpace(strMensajeError))
 						{
 							Cursor = Cursors.Default;
-							ClaseGeneral.GuardarLOG(this.Name, "Sist_UsuarioDel", "Grabar");
+							ClaseGeneral.GuardarLOG(this.Name, "DireccionDel", "Grabar");
 						}
 					}
 					CargarDatosInicial();
@@ -289,7 +289,7 @@ namespace ControlDosimetro
 		private void CargarGrilla()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "Sist_UsuarioGrid";
+			cmd.CommandText = "DireccionGrid";
 
 			cmd.CommandType = CommandType.StoredProcedure;
 
@@ -329,6 +329,7 @@ namespace ControlDosimetro
 					DataRow dtrFila = ((DataRowView)item.DataBoundItem).Row;
 					item.ReadOnly = !Modificar || (!Modificar);
 					item.DefaultCellStyle.BackColor = Modificar ? SystemColors.Window : ClaseGeneral.ColorCeldaBloqueado;
+
 
 					item.Cells[colSeleccionar.Index].ReadOnly = !Eliminar;
 					item.Cells[colSeleccionar.Index].Style.BackColor = (bool)Eliminar ? SystemColors.Window : ClaseGeneral.ColorCeldaBloqueado;
