@@ -18,7 +18,6 @@ namespace ControlDosimetro
 
 		static clsEventoControl ClaseEvento = new clsEventoControl();
 		static dllLibreriaMysql.clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
-
 		#endregion
 
 		#region Eventos Controles
@@ -37,11 +36,56 @@ namespace ControlDosimetro
 			}
 
 		}
+	
+		public static void EventoAsignarAvanzar(this Control control)
+		{
+			if (control is System.Windows.Forms.TextBox)
+			
+				(control as System.Windows.Forms.TextBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+		}
+		public static int DevuelveEntero(this Control control)
+		{
+			if (control is System.Windows.Forms.TextBox)
+			{
+				int intValor;
+				if (int.TryParse(control.Text, out intValor))
+					return intValor;
+				else
+					return 0;
+			}
+			return 0;
+		}
+		public static int? DevuelveEnteroNulo(this Control control)
+		{
+			if (control is System.Windows.Forms.TextBox)
+			{
+				int intValor;
+				if (string.IsNullOrWhiteSpace((control as System.Windows.Forms.TextBox).Text))
+					return null;
+				else
+				if (int.TryParse(control.Text, out intValor))
+					return intValor;
+				else
+					return 0;
+			}
+			return null;
+		}
 
-		#endregion
+			public static string DevuelveCadenaNulo(this Control control)
+			{
+				if (control is System.Windows.Forms.TextBox)
+				{
+					if (string.IsNullOrWhiteSpace(control.Text))
+						return null;
+					else
+						return control.Text;
+				}
+				return null;
+			}
+			#endregion
 
-		#region Funciones
-		public static string XGenerateHashMD5(this string cadena)
+			#region Funciones
+			public static string XGenerateHashMD5(this string cadena)
 		{
 			return clsUtiles1.GenerateHashMD5(cadena);
 		}

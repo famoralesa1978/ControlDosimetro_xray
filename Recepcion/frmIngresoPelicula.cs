@@ -715,7 +715,8 @@ namespace ControlDosimetro
 
 		private void pctAgregarSucursal_Click(object sender, EventArgs e)
 		{
-			frmBusquedaSucursal frm = new frmBusquedaSucursal(Convert.ToInt32(lbl_id_cliente.Text));
+			frmDireccion frm = new frmDireccion();
+			frm.intMenu = (int)MDIPrincipal.MENU.MantSucursal;
 			frm.ShowDialog(this);
 			Cargar_Sucursal();
 		}
