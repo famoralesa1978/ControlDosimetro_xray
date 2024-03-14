@@ -56,6 +56,8 @@
 			this.ColServicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colEstado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.grpFiltro = new System.Windows.Forms.GroupBox();
+			this.btnLimpiar = new System.Windows.Forms.Button();
+			this.btnFiltrar = new System.Windows.Forms.Button();
 			this.btn_cargarCliente = new System.Windows.Forms.Button();
 			this.txt_cliente = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
@@ -63,7 +65,6 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.txt_Rut = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.btnFiltrar = new System.Windows.Forms.Button();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dtgPrincipal)).BeginInit();
 			this.grpFiltro.SuspendLayout();
@@ -318,6 +319,7 @@
 			// 
 			// grpFiltro
 			// 
+			this.grpFiltro.Controls.Add(this.btnLimpiar);
 			this.grpFiltro.Controls.Add(this.btnFiltrar);
 			this.grpFiltro.Controls.Add(this.btn_cargarCliente);
 			this.grpFiltro.Controls.Add(this.txt_cliente);
@@ -334,9 +336,29 @@
 			this.grpFiltro.TabStop = false;
 			this.grpFiltro.Text = "Dato cliente";
 			// 
+			// btnLimpiar
+			// 
+			this.btnLimpiar.Location = new System.Drawing.Point(139, 97);
+			this.btnLimpiar.Name = "btnLimpiar";
+			this.btnLimpiar.Size = new System.Drawing.Size(101, 23);
+			this.btnLimpiar.TabIndex = 43;
+			this.btnLimpiar.Text = "Limpiar filtro";
+			this.btnLimpiar.UseVisualStyleBackColor = true;
+			this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+			// 
+			// btnFiltrar
+			// 
+			this.btnFiltrar.Location = new System.Drawing.Point(14, 97);
+			this.btnFiltrar.Name = "btnFiltrar";
+			this.btnFiltrar.Size = new System.Drawing.Size(101, 23);
+			this.btnFiltrar.TabIndex = 42;
+			this.btnFiltrar.Text = "Filtrar";
+			this.btnFiltrar.UseVisualStyleBackColor = true;
+			this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+			// 
 			// btn_cargarCliente
 			// 
-			this.btn_cargarCliente.Location = new System.Drawing.Point(199, 44);
+			this.btn_cargarCliente.Location = new System.Drawing.Point(199, 19);
 			this.btn_cargarCliente.Name = "btn_cargarCliente";
 			this.btn_cargarCliente.Size = new System.Drawing.Size(101, 23);
 			this.btn_cargarCliente.TabIndex = 38;
@@ -351,6 +373,7 @@
 			this.txt_cliente.Name = "txt_cliente";
 			this.txt_cliente.Size = new System.Drawing.Size(100, 20);
 			this.txt_cliente.TabIndex = 36;
+			this.txt_cliente.Validating += new System.ComponentModel.CancelEventHandler(this.txt_cliente_Validating);
 			// 
 			// label2
 			// 
@@ -387,6 +410,7 @@
 			this.txt_Rut.Name = "txt_Rut";
 			this.txt_Rut.Size = new System.Drawing.Size(100, 20);
 			this.txt_Rut.TabIndex = 37;
+			this.txt_Rut.Validating += new System.ComponentModel.CancelEventHandler(this.txt_Rut_Validating);
 			// 
 			// label1
 			// 
@@ -396,16 +420,6 @@
 			this.label1.Size = new System.Drawing.Size(24, 13);
 			this.label1.TabIndex = 35;
 			this.label1.Text = "Rut";
-			// 
-			// btnFiltrar
-			// 
-			this.btnFiltrar.Location = new System.Drawing.Point(14, 97);
-			this.btnFiltrar.Name = "btnFiltrar";
-			this.btnFiltrar.Size = new System.Drawing.Size(101, 23);
-			this.btnFiltrar.TabIndex = 42;
-			this.btnFiltrar.Text = "Filtrar";
-			this.btnFiltrar.UseVisualStyleBackColor = true;
-			this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
 			// 
 			// frmDireccion
 			// 
@@ -467,5 +481,6 @@
 		private System.Windows.Forms.TextBox txt_Rut;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button btnFiltrar;
+		private System.Windows.Forms.Button btnLimpiar;
 	}
 }

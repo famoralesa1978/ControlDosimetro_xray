@@ -47,7 +47,11 @@ namespace ControlDosimetro
 		private void CargarDatosInicial()
 		{
 			if (txt_cliente.DevuelveEnteroNulo() == null && txt_Rut.DevuelveCadenaNulo() == null)
-				btnFiltrar.Enabled = false;
+			{
+				tsbAgregar.Enabled = false;
+				tsbModificar.Enabled = false;
+			}
+
 			CargarGrilla();
 		}
 
@@ -60,6 +64,8 @@ namespace ControlDosimetro
 			if (txt_cliente.DevuelveEnteroNulo() == null && txt_Rut.DevuelveCadenaNulo() == null)
 			{
 				btnFiltrar.Enabled = false;
+				tsbAgregar.Enabled = false;
+
 				if (!bolInicializar)
 					"Debe tener Datos en el n° cliente y rut".XMensajeError();
 				return;
@@ -110,7 +116,6 @@ namespace ControlDosimetro
 			Cursor = Cursors.WaitCursor;
 			Conectar.PermisoFormulario(intMenu, ref Lectura, ref Agregar, ref Modificar, ref Eliminar);
 			Cursor = Cursors.Default;
-			tsbModificar.Visible = false;
 			tsbGuardar.Enabled = false;//Lectura == false && (Agregar || Modificar);
 
 			dtgPrincipal.DefaultCellStyle.BackColor = ClaseGeneral.ColorCeldaBloqueado;
@@ -142,12 +147,35 @@ namespace ControlDosimetro
 			if (dt != null)
 				dtgPrincipal.DataSource = dt.Tables[0];
 
-			tsbEliminar.Enabled = Lectura == false && Eliminar && dtgPrincipal.Rows.Count>0;
+			tsbEliminar.Enabled = Lectura == false && Eliminar && dtgPrincipal.Rows.Count > 0;
+			tsbModificar.Enabled = Lectura == false && Modificar && dtgPrincipal.Rows.Count > 0;
 			Cursor = Cursors.Default;
 		}
 
 
 
+		#endregion
+
+		#region textbox
+		private void txt_cliente_Validating(object sender, CancelEventArgs e)
+		{
+			if (txt_cliente.DevuelveEnteroNulo() != null)
+			{
+				btn_cargarCliente.Enabled = txt_cliente.DevuelveEnteroNulo() != null;
+				txt_Rut.Enabled = !(txt_cliente.DevuelveEnteroNulo() != null);
+				btn_cargarCliente_Click(null, null);
+			}
+			txt_Rut.Enabled = txt_cliente.Enabled = txt_Rut.DevuelveEnteroNulo() == null && txt_Rut.DevuelveEnteroNulo() == null;
+		}
+		private void txt_Rut_Validating(object sender, CancelEventArgs e)
+		{
+			if (txt_Rut.DevuelveEnteroNulo() != null)
+			{
+				txt_cliente.Enabled = btn_cargarCliente.Enabled = !(txt_Rut.DevuelveEnteroNulo() != null);
+				txt_cliente.Enabled = !(txt_Rut.DevuelveEnteroNulo() != null);
+			}
+			txt_Rut.Enabled=txt_cliente.Enabled = txt_Rut.DevuelveEnteroNulo() == null && txt_Rut.DevuelveEnteroNulo() == null;
+		}
 		#endregion
 
 		#region Boton
@@ -181,11 +209,10 @@ namespace ControlDosimetro
 			else if (txt_Rut.DevuelveCadenaNulo() == null)
 			{
 				SqlCommand cmd = new SqlCommand();
-				cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
-						"from tbl_cliente " +
-						"where run  ='" + txt_Rut.Text + "' " + " and id_estado=1 " +
-						"order by id_cliente";
-				cmd.CommandType = CommandType.Text;
+				cmd.CommandText = "BusClientePorRut";
+				cmd.Parameters.Add("@run", SqlDbType.VarChar, 11);
+				cmd.Parameters["@run"].Value = txt_Rut.DevuelveCadenaNulo();
+				cmd.CommandType = CommandType.StoredProcedure;
 
 				DataSet dt;
 				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
@@ -209,6 +236,27 @@ namespace ControlDosimetro
 
 			Cursor = Cursors.Default;
 		}
+
+		private void btnLimpiar_Click(object sender, EventArgs e)
+		{
+			if (dtgPrincipal.Vista().Table.Rows.Count > 0)
+				dtgPrincipal.Vista().Table.Clear();
+			tsbAgregar.Enabled = false;
+			tsbModificar.Enabled = false;
+			tsbEliminar.Enabled = false;
+			btnFiltrar.Enabled = true;
+			btn_cargarCliente.Enabled = false;
+			txt_cliente.ReadOnly = false;
+			txt_Rut.ReadOnly = false;
+			bolInicializar = true;
+			txt_cliente.Clear();
+			txt_Rut.Clear();
+			txt_RazonSocial.Clear();
+			txt_Rut.Enabled = txt_cliente.Enabled = txt_Rut.DevuelveEnteroNulo() == null && txt_Rut.DevuelveEnteroNulo() == null;
+		}
+
+
+
 		private void btnFiltrar_Click(object sender, EventArgs e)
 		{
 			if (txt_cliente.DevuelveEnteroNulo() == null && txt_Rut.DevuelveCadenaNulo() == null)
@@ -247,9 +295,9 @@ namespace ControlDosimetro
 				{
 					DataRow dtrFila = ((DataRowView)item.DataBoundItem).Row;
 
-					for(int intColumna=0; intColumna< dtgPrincipal.Rows.Count; intColumna++)
+					for (int intColumna = 0; intColumna < dtgPrincipal.Rows.Count; intColumna++)
 					{
-						if(intColumna== colSeleccionar.Index)
+						if (intColumna == colSeleccionar.Index)
 						{
 							item.Cells[colSeleccionar.Index].ReadOnly = !Eliminar;
 							item.Cells[colSeleccionar.Index].Style.BackColor = (bool)Eliminar ? SystemColors.Window : ClaseGeneral.ColorCeldaBloqueado;
@@ -257,7 +305,7 @@ namespace ControlDosimetro
 						else
 						{
 							item.Cells[intColumna].ReadOnly = true;
-							item.DefaultCellStyle.BackColor = (bool)dtrFila["Estado"] ? ClaseGeneral.ColorCeldaBloqueado: System.Drawing.Color.Red;
+							item.DefaultCellStyle.BackColor = (bool)dtrFila["Estado"] ? ClaseGeneral.ColorCeldaBloqueado : System.Drawing.Color.Red;
 						}
 					}
 				}
