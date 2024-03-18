@@ -18,6 +18,7 @@ using System.Net;
 using System.Net.Mail;
 using classFuncionesBD;
 using OpenXmlPowerTools;
+using XRAY.Clases;
 
 namespace ControlDosimetro
 {
@@ -55,6 +56,7 @@ namespace ControlDosimetro
 				lblRut.Text = dt.Tables[0].Rows[0]["run"].ToString();
 				lblPersonalEliminar.Text=lblNombrePersonal.Text = dt.Tables[1].Rows[0]["NombreCompleto"].ToString();
 				lblEstadoActual.Text = dt.Tables[1].Rows[0]["Estado"].ToString();
+				lblPeriodoActual.Text = dt.Tables[1].Rows[0]["GlosaTrimestre"].ToString();
 
 				Cargar_Personal(dt.Tables[0].Rows[0]["Id_cliente"].ToString(), lblRut.Text);
 				Cargar_Seccion();
@@ -103,6 +105,11 @@ namespace ControlDosimetro
 				txtPersonal.Text = dt.Tables[2].Rows[0]["Personal"].ToString();
 				txtCliente.Text = dt.Tables[2].Rows[0]["Cliente"].ToString();
 				grpDatos.Enabled = true;
+			}
+			if (dt.Tables[3].Rows.Count > 0)
+			{
+				ddlPeriodoCambiarPeriodo.DataSource=dt.Tables[3];
+
 			}
 		}
 
@@ -165,11 +172,9 @@ namespace ControlDosimetro
 		}
 		private void AsignarEvento()
 		{
-			txt_NDoc.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			txt_NDoc.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-			txtNDocumento.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			txtNDocumento.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-
+			txt_NDoc.EventoAsignarNumero(9999999);
+			txtNDocumento.EventoAsignarNumero(9999999);
+			txtNDocumentoCambiarPeriodo.EventoAsignarNumero(9999999);
 		}
 		#endregion
 
@@ -375,6 +380,14 @@ namespace ControlDosimetro
 
 			else
 				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
+		}
+		private void btnCambioPeriodo_Click(object sender, EventArgs e)
+		{
+			if(string.IsNullOrWhiteSpace(txtNDocumentoCambiarPeriodo && txtNDocumentoCambiarPeriodo.) 
+			//pa_CambiarPeriodoTLD_upd
+//			@N_Documento int,
+//@TLD  varchar(300),
+//@IdPeriodoCambiar int
 		}
 
 		#endregion

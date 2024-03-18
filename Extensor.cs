@@ -29,12 +29,18 @@ namespace ControlDosimetro
 		/// <param name="Maximo">se le asigna el largo </param>
 		public static void EventoAsignarNumero(this Control control, int Maximo)
 		{
-			if (control is System.Windows.Forms.TextBox)
+			foreach (Control item in control.Controls)
 			{
-				(control as System.Windows.Forms.TextBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-				(control as System.Windows.Forms.TextBox).KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-				(control as System.Windows.Forms.TextBox).MaxLength = Maximo;
+
+				if (control is System.Windows.Forms.TextBox)
+				{
+					(control as System.Windows.Forms.TextBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+					(control as System.Windows.Forms.TextBox).KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+					(control as System.Windows.Forms.TextBox).MaxLength = Maximo;
+				}
 			}
+
+		
 
 		}
 
