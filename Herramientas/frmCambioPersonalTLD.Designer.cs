@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.lblRut = new System.Windows.Forms.Label();
 			this.cbx_PersonalCambio = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
@@ -119,6 +119,7 @@
 			this.lblPersonalEliminar = new System.Windows.Forms.Label();
 			this.label24 = new System.Windows.Forms.Label();
 			this.tabCambioPeriodo = new System.Windows.Forms.TabPage();
+			this.pnlCambiarPeriodo = new System.Windows.Forms.Panel();
 			this.ddlPeriodoCambiarPeriodo = new System.Windows.Forms.ComboBox();
 			this.label27 = new System.Windows.Forms.Label();
 			this.txtNDocumentoCambiarPeriodo = new System.Windows.Forms.TextBox();
@@ -129,7 +130,6 @@
 			this.btnCambioPeriodo = new System.Windows.Forms.Button();
 			this.label28 = new System.Windows.Forms.Label();
 			this.lblPeriodoActual = new System.Windows.Forms.Label();
-			this.pnlCambiarPeriodo = new System.Windows.Forms.Panel();
 			this.cmsPopup.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.grpDatos.SuspendLayout();
@@ -390,9 +390,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle9.Format = "N2";
-			dataGridViewCellStyle9.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle9;
+			dataGridViewCellStyle1.Format = "N2";
+			dataGridViewCellStyle1.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -410,9 +410,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle10.Format = "N2";
-			dataGridViewCellStyle10.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle10;
+			dataGridViewCellStyle2.Format = "N2";
+			dataGridViewCellStyle2.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -1021,6 +1021,21 @@
 			this.tabCambioPeriodo.Text = "Cambiar Periodo";
 			this.tabCambioPeriodo.UseVisualStyleBackColor = true;
 			// 
+			// pnlCambiarPeriodo
+			// 
+			this.pnlCambiarPeriodo.Controls.Add(this.ddlPeriodoCambiarPeriodo);
+			this.pnlCambiarPeriodo.Controls.Add(this.label27);
+			this.pnlCambiarPeriodo.Controls.Add(this.txtNDocumentoCambiarPeriodo);
+			this.pnlCambiarPeriodo.Controls.Add(this.lblNDocumentoCambiarPeriodo);
+			this.pnlCambiarPeriodo.Controls.Add(this.label25);
+			this.pnlCambiarPeriodo.Controls.Add(this.txtListaTLD);
+			this.pnlCambiarPeriodo.Controls.Add(this.lblListaTLD);
+			this.pnlCambiarPeriodo.Controls.Add(this.btnCambioPeriodo);
+			this.pnlCambiarPeriodo.Location = new System.Drawing.Point(26, 9);
+			this.pnlCambiarPeriodo.Name = "pnlCambiarPeriodo";
+			this.pnlCambiarPeriodo.Size = new System.Drawing.Size(875, 242);
+			this.pnlCambiarPeriodo.TabIndex = 54;
+			// 
 			// ddlPeriodoCambiarPeriodo
 			// 
 			this.ddlPeriodoCambiarPeriodo.DisplayMember = "GlosaTrimestre";
@@ -1116,21 +1131,6 @@
 			this.lblPeriodoActual.Name = "lblPeriodoActual";
 			this.lblPeriodoActual.Size = new System.Drawing.Size(0, 13);
 			this.lblPeriodoActual.TabIndex = 46;
-			// 
-			// pnlCambiarPeriodo
-			// 
-			this.pnlCambiarPeriodo.Controls.Add(this.ddlPeriodoCambiarPeriodo);
-			this.pnlCambiarPeriodo.Controls.Add(this.label27);
-			this.pnlCambiarPeriodo.Controls.Add(this.txtNDocumentoCambiarPeriodo);
-			this.pnlCambiarPeriodo.Controls.Add(this.lblNDocumentoCambiarPeriodo);
-			this.pnlCambiarPeriodo.Controls.Add(this.label25);
-			this.pnlCambiarPeriodo.Controls.Add(this.txtListaTLD);
-			this.pnlCambiarPeriodo.Controls.Add(this.lblListaTLD);
-			this.pnlCambiarPeriodo.Controls.Add(this.btnCambioPeriodo);
-			this.pnlCambiarPeriodo.Location = new System.Drawing.Point(26, 9);
-			this.pnlCambiarPeriodo.Name = "pnlCambiarPeriodo";
-			this.pnlCambiarPeriodo.Size = new System.Drawing.Size(875, 242);
-			this.pnlCambiarPeriodo.TabIndex = 54;
 			// 
 			// frmCambioPersonalTLD
 			// 

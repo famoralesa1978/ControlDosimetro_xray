@@ -94,7 +94,7 @@ namespace ControlDosimetro
 				lbl_NombreCliente.Text = "";
 				lblRut.Text = "";
 				grpDatos.Enabled = false;
-				btn_Guardar.Enabled = false;
+				btnCambioPeriodo.Enabled=btn_Guardar.Enabled = false;
 				//MessageBox.Show("TLD no existe");
 
 			}
@@ -109,8 +109,8 @@ namespace ControlDosimetro
 			if (dt.Tables[3].Rows.Count > 0)
 			{
 				ddlPeriodoCambiarPeriodo.DataSource=dt.Tables[3];
-
 			}
+			
 		}
 
 		private void Cargar_Personal(string Id_Cliente, string rut)

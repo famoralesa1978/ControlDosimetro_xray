@@ -48,21 +48,6 @@ namespace ControlDosimetro
 		#endregion
 
 		#region Barra
-
-		private void tsbRefrescar_Click(object sender, EventArgs e)
-		{
-			if (dtgPrincipal.XHayCambio())
-			{
-				if ("Hay datos modificado,¿Desea aactualizar los datos?".XMensajeConfirmacionSiNo())
-				{
-					tsbGuardar_Click(null, null);
-				}
-				else
-					CargarDatosInicial();
-			}
-			else
-				CargarDatosInicial();
-		}
 		private void tsbAgregar_Click(object sender, EventArgs e)
 		{
 			DataTable dt = (DataTable)dtgPrincipal.DataSource;
@@ -85,6 +70,24 @@ namespace ControlDosimetro
 
 			dtgPrincipal.DataSource = dt;
 
+		}
+		private void tsbModificar_Click(object sender, EventArgs e)
+		{
+
+		}
+		private void tsbRefrescar_Click(object sender, EventArgs e)
+		{
+			if (dtgPrincipal.XHayCambio())
+			{
+				if ("Hay datos modificado,¿Desea aactualizar los datos?".XMensajeConfirmacionSiNo())
+				{
+					tsbGuardar_Click(null, null);
+				}
+				else
+					CargarDatosInicial();
+			}
+			else
+				CargarDatosInicial();
 		}
 		private void tsbGuardar_Click(object sender, EventArgs e)
 		{

@@ -91,6 +91,7 @@
 			this.tsbModificar.Text = "Modificar registro";
 			this.tsbModificar.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
 			this.tsbModificar.ToolTipText = "Modificar registro";
+			this.tsbModificar.Click += new System.EventHandler(this.tsbModificar_Click);
 			// 
 			// tsbEliminar
 			// 
