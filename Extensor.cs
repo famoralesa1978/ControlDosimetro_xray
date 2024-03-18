@@ -29,19 +29,58 @@ namespace ControlDosimetro
 		/// <param name="Maximo">se le asigna el largo </param>
 		public static void EventoAsignarNumero(this Control control, int Maximo)
 		{
-			foreach (Control item in control.Controls)
+			if (control is System.Windows.Forms.TextBox)
 			{
-
-				if (control is System.Windows.Forms.TextBox)
-				{
-					(control as System.Windows.Forms.TextBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-					(control as System.Windows.Forms.TextBox).KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-					(control as System.Windows.Forms.TextBox).MaxLength = Maximo;
-				}
+				(control as System.Windows.Forms.TextBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
+				(control as System.Windows.Forms.TextBox).KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+				(control as System.Windows.Forms.TextBox).MaxLength = Maximo;
 			}
+		}
 
-		
+		public static void EventoAsignarAvanzar(this Control control)
+		{
+			if (control is System.Windows.Forms.TextBox)
 
+				(control as System.Windows.Forms.TextBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+		}
+		public static int DevuelveEntero(this Control control)
+		{
+			if (control is System.Windows.Forms.TextBox)
+			{
+				int intValor;
+				if (int.TryParse(control.Text, out intValor))
+					return intValor;
+				else
+					return 0;
+			}
+			return 0;
+		}
+		public static int? DevuelveEnteroNulo(this Control control)
+		{
+			if (control is System.Windows.Forms.TextBox)
+			{
+				int intValor;
+				if (string.IsNullOrWhiteSpace((control as System.Windows.Forms.TextBox).Text))
+					return null;
+				else
+				if (int.TryParse(control.Text, out intValor))
+					return intValor;
+				else
+					return 0;
+			}
+			return null;
+		}
+
+		public static string DevuelveCadenaNulo(this Control control)
+		{
+			if (control is System.Windows.Forms.TextBox)
+			{
+				if (string.IsNullOrWhiteSpace(control.Text))
+					return null;
+				else
+					return control.Text;
+			}
+			return null;
 		}
 
 		#endregion
@@ -202,7 +241,7 @@ namespace ControlDosimetro
 			string strParametro = string.Format("{0} ", cmd.CommandText);
 			for (int intParam = 0; intParam < cmd.Parameters.Count; intParam++)
 			{
-				if (cmd.Parameters[intParam].SqlDbType == SqlDbType.VarChar || cmd.Parameters[intParam].SqlDbType == SqlDbType.DateTime )
+				if (cmd.Parameters[intParam].SqlDbType == SqlDbType.VarChar || cmd.Parameters[intParam].SqlDbType == SqlDbType.DateTime)
 					strParametro += string.Format("{0}'{1}'", intParam > 0 ? "," : "", cmd.Parameters[intParam].Value);
 				else
 					strParametro += string.Format("{0}'{1}'", intParam > 0 ? "," : "", cmd.Parameters[intParam].Value);
