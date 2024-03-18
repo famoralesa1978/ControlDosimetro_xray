@@ -383,11 +383,32 @@ namespace ControlDosimetro
 		}
 		private void btnCambioPeriodo_Click(object sender, EventArgs e)
 		{
-			if(string.IsNullOrWhiteSpace(txtNDocumentoCambiarPeriodo && txtNDocumentoCambiarPeriodo.) 
-			//pa_CambiarPeriodoTLD_upd
-//			@N_Documento int,
-//@TLD  varchar(300),
-//@IdPeriodoCambiar int
+			StringBuilder stbError= new StringBuilder();
+			if (pnlCambiarPeriodo.XValidarPanel(ref stbError))
+			{
+				stbError.ToString().XMensajeError();
+				return;
+			}
+			SqlCommand cmd = new SqlCommand();
+			DataSet ds;
+			cmd.CommandText = "pa_CambiarPeriodoTLD_upd";
+			cmd.Parameters.Add("@N_Documento", SqlDbType.Int);
+			cmd.Parameters["@N_Documento"].Value = txtNDocumentoCambiarPeriodo;
+			cmd.Parameters.Add("@TLD", SqlDbType.VarChar,300);
+			cmd.Parameters["@TLD"].Value = txtListaTLD;
+			cmd.Parameters.Add("@IdPeriodoCambiar", SqlDbType.Int);
+			cmd.Parameters["@IdPeriodoCambiar"].Value =ddlPeriodoCambiarPeriodo.SelectedValue;
+			cmd.CommandType = CommandType.StoredProcedure;
+
+
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
+			{
+				MessageBox.Show("Error en actualizar la información");
+			}
+
+			else
+				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
 		}
 
 		#endregion

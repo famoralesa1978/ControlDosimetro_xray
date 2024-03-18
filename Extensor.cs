@@ -141,6 +141,38 @@ namespace ControlDosimetro
 			else
 				return false;
 		}
+		public static bool XValidarPanel(this Panel frm, ref StringBuilder stbError)
+		{
+			foreach (var label in frm.Controls.OfType<System.Windows.Forms.Label>())
+			{
+				if (label.Font.Underline)
+				{
+					if (label.Tag.ToString() == "TextBox")
+					{
+						string strNombreControl = label.Name.Substring(3, label.Name.Length - 3);
+						Control control = frm.Controls.Find(string.Format("txt{0}", strNombreControl), true).FirstOrDefault() as TextBox;
+						if (control.Text.ToString().Trim().Length == 0)
+						{
+							stbError.AppendLine(string.Format("- {0}", label.Text));
+						}
+					}
+					if (label.Tag.ToString() == "ddl")
+					{
+						string strNombreControl = label.Name.Substring(3, label.Name.Length - 3);
+						Control control = frm.Controls.Find(string.Format("ddl{0}", strNombreControl), true).FirstOrDefault() as ComboBox;
+						if (((ComboBox)control).DataSource==null  || ((ComboBox)control).SelectedValue==null)
+						{
+							stbError.AppendLine(string.Format("- {0}", label.Text));
+						}
+					}
+				}
+			}
+
+			if (stbError.Length > 0)
+				return true;
+			else
+				return false;
+		}
 		public static bool XValidarEmail(this string cadena)
 		{
 			bool bolValidar = false;
