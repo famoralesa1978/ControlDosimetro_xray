@@ -440,6 +440,12 @@
     <Compile Include="Mantenedor\frmDireccion.Designer.cs">
       <DependentUpon>frmDireccion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mantenedor\frmDireccionAct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenedor\frmDireccionAct.Designer.cs">
+      <DependentUpon>frmDireccionAct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mantenedor\Sistema\frmMantVersionesSistema.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -885,6 +891,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmSeccion.resx">
       <DependentUpon>frmSeccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenedor\frmDireccionAct.resx">
+      <DependentUpon>frmDireccionAct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmSucursalMant.resx">
       <DependentUpon>frmSucursalMant.cs</DependentUpon>

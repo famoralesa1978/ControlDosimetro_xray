@@ -18,6 +18,7 @@ using System.Net;
 using System.Net.Mail;
 using classFuncionesBD;
 using OpenXmlPowerTools;
+using XRAY.Clases;
 
 namespace ControlDosimetro
 {
@@ -55,6 +56,7 @@ namespace ControlDosimetro
 				lblRut.Text = dt.Tables[0].Rows[0]["run"].ToString();
 				lblPersonalEliminar.Text=lblNombrePersonal.Text = dt.Tables[1].Rows[0]["NombreCompleto"].ToString();
 				lblEstadoActual.Text = dt.Tables[1].Rows[0]["Estado"].ToString();
+				lblPeriodoActual.Text = dt.Tables[1].Rows[0]["GlosaTrimestre"].ToString();
 
 				Cargar_Personal(dt.Tables[0].Rows[0]["Id_cliente"].ToString(), lblRut.Text);
 				Cargar_Seccion();
@@ -92,7 +94,7 @@ namespace ControlDosimetro
 				lbl_NombreCliente.Text = "";
 				lblRut.Text = "";
 				grpDatos.Enabled = false;
-				btn_Guardar.Enabled = false;
+				btnCambioPeriodo.Enabled=btn_Guardar.Enabled = false;
 				//MessageBox.Show("TLD no existe");
 
 			}
@@ -104,6 +106,11 @@ namespace ControlDosimetro
 				txtCliente.Text = dt.Tables[2].Rows[0]["Cliente"].ToString();
 				grpDatos.Enabled = true;
 			}
+			if (dt.Tables[3].Rows.Count > 0)
+			{
+				ddlPeriodoCambiarPeriodo.DataSource=dt.Tables[3];
+			}
+			
 		}
 
 		private void Cargar_Personal(string Id_Cliente, string rut)
@@ -165,11 +172,9 @@ namespace ControlDosimetro
 		}
 		private void AsignarEvento()
 		{
-			txt_NDoc.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			txt_NDoc.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-			txtNDocumento.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			txtNDocumento.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-
+			txt_NDoc.EventoAsignarNumero(9999999);
+			txtNDocumento.EventoAsignarNumero(9999999);
+			txtNDocumentoCambiarPeriodo.EventoAsignarNumero(9999999);
 		}
 		#endregion
 
@@ -364,6 +369,35 @@ namespace ControlDosimetro
 			cmd.CommandText = "pa_EliminarTLD_upd";
 			cmd.Parameters.Add("@N_TLD", SqlDbType.Int);
 			cmd.Parameters["@N_TLD"].Value = txt_NDoc.Text;
+			cmd.CommandType = CommandType.StoredProcedure;
+
+
+			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
+			{
+				MessageBox.Show("Error en actualizar la información");
+			}
+
+			else
+				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
+		}
+		private void btnCambioPeriodo_Click(object sender, EventArgs e)
+		{
+			StringBuilder stbError= new StringBuilder();
+			if (pnlCambiarPeriodo.XValidarPanel(ref stbError))
+			{
+				stbError.ToString().XMensajeError();
+				return;
+			}
+			SqlCommand cmd = new SqlCommand();
+			DataSet ds;
+			cmd.CommandText = "pa_CambiarPeriodoTLD_upd";
+			cmd.Parameters.Add("@N_Documento", SqlDbType.Int);
+			cmd.Parameters["@N_Documento"].Value = txtNDocumentoCambiarPeriodo;
+			cmd.Parameters.Add("@TLD", SqlDbType.VarChar,300);
+			cmd.Parameters["@TLD"].Value = txtListaTLD;
+			cmd.Parameters.Add("@IdPeriodoCambiar", SqlDbType.Int);
+			cmd.Parameters["@IdPeriodoCambiar"].Value =ddlPeriodoCambiarPeriodo.SelectedValue;
 			cmd.CommandType = CommandType.StoredProcedure;
 
 

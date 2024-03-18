@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.lblRut = new System.Windows.Forms.Label();
 			this.cbx_PersonalCambio = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
@@ -118,6 +118,18 @@
 			this.btnEliminar = new System.Windows.Forms.Button();
 			this.lblPersonalEliminar = new System.Windows.Forms.Label();
 			this.label24 = new System.Windows.Forms.Label();
+			this.tabCambioPeriodo = new System.Windows.Forms.TabPage();
+			this.pnlCambiarPeriodo = new System.Windows.Forms.Panel();
+			this.ddlPeriodoCambiarPeriodo = new System.Windows.Forms.ComboBox();
+			this.label27 = new System.Windows.Forms.Label();
+			this.txtNDocumentoCambiarPeriodo = new System.Windows.Forms.TextBox();
+			this.lblNDocumentoCambiarPeriodo = new System.Windows.Forms.Label();
+			this.label25 = new System.Windows.Forms.Label();
+			this.txtListaTLD = new System.Windows.Forms.TextBox();
+			this.lblListaTLD = new System.Windows.Forms.Label();
+			this.btnCambioPeriodo = new System.Windows.Forms.Button();
+			this.label28 = new System.Windows.Forms.Label();
+			this.lblPeriodoActual = new System.Windows.Forms.Label();
 			this.cmsPopup.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.grpDatos.SuspendLayout();
@@ -133,6 +145,8 @@
 			this.tabRecuperar.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabEliminar.SuspendLayout();
+			this.tabCambioPeriodo.SuspendLayout();
+			this.pnlCambiarPeriodo.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// lblRut
@@ -291,7 +305,7 @@
 			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(748, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(928, 25);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -376,9 +390,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle3.Format = "N2";
-			dataGridViewCellStyle3.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle1.Format = "N2";
+			dataGridViewCellStyle1.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -396,9 +410,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle4.Format = "N2";
-			dataGridViewCellStyle4.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle2.Format = "N2";
+			dataGridViewCellStyle2.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -423,9 +437,9 @@
 			// grpDatos
 			// 
 			this.grpDatos.Controls.Add(this.tabPrincipal);
-			this.grpDatos.Location = new System.Drawing.Point(0, 96);
+			this.grpDatos.Location = new System.Drawing.Point(0, 126);
 			this.grpDatos.Name = "grpDatos";
-			this.grpDatos.Size = new System.Drawing.Size(736, 238);
+			this.grpDatos.Size = new System.Drawing.Size(916, 362);
 			this.grpDatos.TabIndex = 3;
 			this.grpDatos.TabStop = false;
 			this.grpDatos.Text = "Datos a modificar";
@@ -440,11 +454,12 @@
 			this.tabPrincipal.Controls.Add(this.tabNDocumento);
 			this.tabPrincipal.Controls.Add(this.tabRecuperar);
 			this.tabPrincipal.Controls.Add(this.tabEliminar);
+			this.tabPrincipal.Controls.Add(this.tabCambioPeriodo);
 			this.tabPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabPrincipal.Location = new System.Drawing.Point(3, 16);
 			this.tabPrincipal.Name = "tabPrincipal";
 			this.tabPrincipal.SelectedIndex = 0;
-			this.tabPrincipal.Size = new System.Drawing.Size(730, 219);
+			this.tabPrincipal.Size = new System.Drawing.Size(910, 343);
 			this.tabPrincipal.TabIndex = 0;
 			// 
 			// tabPersonal
@@ -454,7 +469,7 @@
 			this.tabPersonal.Location = new System.Drawing.Point(4, 22);
 			this.tabPersonal.Name = "tabPersonal";
 			this.tabPersonal.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPersonal.Size = new System.Drawing.Size(722, 193);
+			this.tabPersonal.Size = new System.Drawing.Size(902, 317);
 			this.tabPersonal.TabIndex = 0;
 			this.tabPersonal.Text = "Personal";
 			// 
@@ -470,7 +485,7 @@
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel1.Location = new System.Drawing.Point(3, 3);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(716, 187);
+			this.panel1.Size = new System.Drawing.Size(896, 311);
 			this.panel1.TabIndex = 0;
 			// 
 			// tabSeccion
@@ -484,7 +499,7 @@
 			this.tabSeccion.Location = new System.Drawing.Point(4, 22);
 			this.tabSeccion.Name = "tabSeccion";
 			this.tabSeccion.Padding = new System.Windows.Forms.Padding(3);
-			this.tabSeccion.Size = new System.Drawing.Size(722, 193);
+			this.tabSeccion.Size = new System.Drawing.Size(902, 317);
 			this.tabSeccion.TabIndex = 1;
 			this.tabSeccion.Text = "Sección";
 			this.tabSeccion.UseVisualStyleBackColor = true;
@@ -559,7 +574,7 @@
 			this.tabDireccion.Controls.Add(this.label11);
 			this.tabDireccion.Location = new System.Drawing.Point(4, 22);
 			this.tabDireccion.Name = "tabDireccion";
-			this.tabDireccion.Size = new System.Drawing.Size(722, 193);
+			this.tabDireccion.Size = new System.Drawing.Size(902, 317);
 			this.tabDireccion.TabIndex = 2;
 			this.tabDireccion.Text = "Dirección";
 			this.tabDireccion.UseVisualStyleBackColor = true;
@@ -636,7 +651,7 @@
 			this.tabAsociarTLDEnviadoAlCliente.Location = new System.Drawing.Point(4, 22);
 			this.tabAsociarTLDEnviadoAlCliente.Name = "tabAsociarTLDEnviadoAlCliente";
 			this.tabAsociarTLDEnviadoAlCliente.Padding = new System.Windows.Forms.Padding(3);
-			this.tabAsociarTLDEnviadoAlCliente.Size = new System.Drawing.Size(722, 193);
+			this.tabAsociarTLDEnviadoAlCliente.Size = new System.Drawing.Size(902, 317);
 			this.tabAsociarTLDEnviadoAlCliente.TabIndex = 3;
 			this.tabAsociarTLDEnviadoAlCliente.Text = "Asociar TLD  enviado al cliente";
 			this.tabAsociarTLDEnviadoAlCliente.UseVisualStyleBackColor = true;
@@ -684,7 +699,7 @@
 			this.tabCambioEstado.Location = new System.Drawing.Point(4, 22);
 			this.tabCambioEstado.Name = "tabCambioEstado";
 			this.tabCambioEstado.Padding = new System.Windows.Forms.Padding(3);
-			this.tabCambioEstado.Size = new System.Drawing.Size(722, 193);
+			this.tabCambioEstado.Size = new System.Drawing.Size(902, 317);
 			this.tabCambioEstado.TabIndex = 4;
 			this.tabCambioEstado.Text = "Cambio Estado";
 			this.tabCambioEstado.UseVisualStyleBackColor = true;
@@ -772,7 +787,7 @@
 			this.tabNDocumento.Controls.Add(this.label18);
 			this.tabNDocumento.Location = new System.Drawing.Point(4, 22);
 			this.tabNDocumento.Name = "tabNDocumento";
-			this.tabNDocumento.Size = new System.Drawing.Size(722, 193);
+			this.tabNDocumento.Size = new System.Drawing.Size(902, 317);
 			this.tabNDocumento.TabIndex = 5;
 			this.tabNDocumento.Text = "por n° documento";
 			this.tabNDocumento.UseVisualStyleBackColor = true;
@@ -863,7 +878,7 @@
 			this.tabRecuperar.Controls.Add(this.panel2);
 			this.tabRecuperar.Location = new System.Drawing.Point(4, 22);
 			this.tabRecuperar.Name = "tabRecuperar";
-			this.tabRecuperar.Size = new System.Drawing.Size(722, 193);
+			this.tabRecuperar.Size = new System.Drawing.Size(902, 317);
 			this.tabRecuperar.TabIndex = 6;
 			this.tabRecuperar.Text = "Recuperar TLD";
 			this.tabRecuperar.UseVisualStyleBackColor = true;
@@ -881,7 +896,7 @@
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(722, 193);
+			this.panel2.Size = new System.Drawing.Size(902, 317);
 			this.panel2.TabIndex = 0;
 			// 
 			// btnRecuperarTLD
@@ -961,7 +976,7 @@
 			this.tabEliminar.Controls.Add(this.label24);
 			this.tabEliminar.Location = new System.Drawing.Point(4, 22);
 			this.tabEliminar.Name = "tabEliminar";
-			this.tabEliminar.Size = new System.Drawing.Size(722, 193);
+			this.tabEliminar.Size = new System.Drawing.Size(902, 317);
 			this.tabEliminar.TabIndex = 7;
 			this.tabEliminar.Text = "Eliminar TLD";
 			this.tabEliminar.UseVisualStyleBackColor = true;
@@ -996,12 +1011,135 @@
 			this.label24.TabIndex = 50;
 			this.label24.Text = "Personal";
 			// 
+			// tabCambioPeriodo
+			// 
+			this.tabCambioPeriodo.Controls.Add(this.pnlCambiarPeriodo);
+			this.tabCambioPeriodo.Location = new System.Drawing.Point(4, 22);
+			this.tabCambioPeriodo.Name = "tabCambioPeriodo";
+			this.tabCambioPeriodo.Size = new System.Drawing.Size(902, 317);
+			this.tabCambioPeriodo.TabIndex = 8;
+			this.tabCambioPeriodo.Text = "Cambiar Periodo";
+			this.tabCambioPeriodo.UseVisualStyleBackColor = true;
+			// 
+			// pnlCambiarPeriodo
+			// 
+			this.pnlCambiarPeriodo.Controls.Add(this.ddlPeriodoCambiarPeriodo);
+			this.pnlCambiarPeriodo.Controls.Add(this.label27);
+			this.pnlCambiarPeriodo.Controls.Add(this.txtNDocumentoCambiarPeriodo);
+			this.pnlCambiarPeriodo.Controls.Add(this.lblNDocumentoCambiarPeriodo);
+			this.pnlCambiarPeriodo.Controls.Add(this.label25);
+			this.pnlCambiarPeriodo.Controls.Add(this.txtListaTLD);
+			this.pnlCambiarPeriodo.Controls.Add(this.lblListaTLD);
+			this.pnlCambiarPeriodo.Controls.Add(this.btnCambioPeriodo);
+			this.pnlCambiarPeriodo.Location = new System.Drawing.Point(26, 9);
+			this.pnlCambiarPeriodo.Name = "pnlCambiarPeriodo";
+			this.pnlCambiarPeriodo.Size = new System.Drawing.Size(875, 242);
+			this.pnlCambiarPeriodo.TabIndex = 54;
+			// 
+			// ddlPeriodoCambiarPeriodo
+			// 
+			this.ddlPeriodoCambiarPeriodo.DisplayMember = "GlosaTrimestre";
+			this.ddlPeriodoCambiarPeriodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.ddlPeriodoCambiarPeriodo.FormattingEnabled = true;
+			this.ddlPeriodoCambiarPeriodo.Location = new System.Drawing.Point(124, 75);
+			this.ddlPeriodoCambiarPeriodo.Name = "ddlPeriodoCambiarPeriodo";
+			this.ddlPeriodoCambiarPeriodo.Size = new System.Drawing.Size(200, 21);
+			this.ddlPeriodoCambiarPeriodo.TabIndex = 53;
+			this.ddlPeriodoCambiarPeriodo.ValueMember = "Id_Periodo";
+			// 
+			// label27
+			// 
+			this.label27.AutoSize = true;
+			this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label27.Location = new System.Drawing.Point(37, 78);
+			this.label27.Name = "label27";
+			this.label27.Size = new System.Drawing.Size(83, 13);
+			this.label27.TabIndex = 52;
+			this.label27.Tag = "ddl";
+			this.label27.Text = "Cambiar periodo";
+			// 
+			// txtNDocumentoCambiarPeriodo
+			// 
+			this.txtNDocumentoCambiarPeriodo.Location = new System.Drawing.Point(124, 45);
+			this.txtNDocumentoCambiarPeriodo.Name = "txtNDocumentoCambiarPeriodo";
+			this.txtNDocumentoCambiarPeriodo.Size = new System.Drawing.Size(128, 20);
+			this.txtNDocumentoCambiarPeriodo.TabIndex = 51;
+			// 
+			// lblNDocumentoCambiarPeriodo
+			// 
+			this.lblNDocumentoCambiarPeriodo.AutoSize = true;
+			this.lblNDocumentoCambiarPeriodo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblNDocumentoCambiarPeriodo.Location = new System.Drawing.Point(37, 52);
+			this.lblNDocumentoCambiarPeriodo.Name = "lblNDocumentoCambiarPeriodo";
+			this.lblNDocumentoCambiarPeriodo.Size = new System.Drawing.Size(77, 13);
+			this.lblNDocumentoCambiarPeriodo.TabIndex = 50;
+			this.lblNDocumentoCambiarPeriodo.Tag = "TextBox";
+			this.lblNDocumentoCambiarPeriodo.Text = "N° Documento";
+			// 
+			// label25
+			// 
+			this.label25.AutoSize = true;
+			this.label25.Location = new System.Drawing.Point(721, 16);
+			this.label25.Name = "label25";
+			this.label25.Size = new System.Drawing.Size(140, 13);
+			this.label25.TabIndex = 49;
+			this.label25.Text = "Ejemplo: 34565, 5678, 3344";
+			// 
+			// txtListaTLD
+			// 
+			this.txtListaTLD.Location = new System.Drawing.Point(124, 16);
+			this.txtListaTLD.Name = "txtListaTLD";
+			this.txtListaTLD.Size = new System.Drawing.Size(577, 20);
+			this.txtListaTLD.TabIndex = 48;
+			// 
+			// lblListaTLD
+			// 
+			this.lblListaTLD.AutoSize = true;
+			this.lblListaTLD.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblListaTLD.Location = new System.Drawing.Point(36, 19);
+			this.lblListaTLD.Name = "lblListaTLD";
+			this.lblListaTLD.Size = new System.Drawing.Size(68, 13);
+			this.lblListaTLD.TabIndex = 47;
+			this.lblListaTLD.Tag = "TextBox";
+			this.lblListaTLD.Text = "Lista de TLD";
+			// 
+			// btnCambioPeriodo
+			// 
+			this.btnCambioPeriodo.Location = new System.Drawing.Point(36, 128);
+			this.btnCambioPeriodo.Name = "btnCambioPeriodo";
+			this.btnCambioPeriodo.Size = new System.Drawing.Size(114, 23);
+			this.btnCambioPeriodo.TabIndex = 46;
+			this.btnCambioPeriodo.Text = "Modificar periodo";
+			this.btnCambioPeriodo.UseVisualStyleBackColor = true;
+			this.btnCambioPeriodo.Click += new System.EventHandler(this.btnCambioPeriodo_Click);
+			// 
+			// label28
+			// 
+			this.label28.AutoSize = true;
+			this.label28.Location = new System.Drawing.Point(11, 96);
+			this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label28.Name = "label28";
+			this.label28.Size = new System.Drawing.Size(76, 13);
+			this.label28.TabIndex = 45;
+			this.label28.Text = "Periodo Actual";
+			// 
+			// lblPeriodoActual
+			// 
+			this.lblPeriodoActual.AutoSize = true;
+			this.lblPeriodoActual.Location = new System.Drawing.Point(109, 96);
+			this.lblPeriodoActual.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.lblPeriodoActual.Name = "lblPeriodoActual";
+			this.lblPeriodoActual.Size = new System.Drawing.Size(0, 13);
+			this.lblPeriodoActual.TabIndex = 46;
+			// 
 			// frmCambioPersonalTLD
 			// 
 			this.AcceptButton = this.btn_Cargar;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(748, 343);
+			this.ClientSize = new System.Drawing.Size(928, 500);
+			this.Controls.Add(this.lblPeriodoActual);
+			this.Controls.Add(this.label28);
 			this.Controls.Add(this.btn_filtro);
 			this.Controls.Add(this.grpDatos);
 			this.Controls.Add(this.lblRut);
@@ -1042,6 +1180,9 @@
 			this.panel2.PerformLayout();
 			this.tabEliminar.ResumeLayout(false);
 			this.tabEliminar.PerformLayout();
+			this.tabCambioPeriodo.ResumeLayout(false);
+			this.pnlCambiarPeriodo.ResumeLayout(false);
+			this.pnlCambiarPeriodo.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1135,5 +1276,17 @@
 		private System.Windows.Forms.Button btnEliminar;
 		private System.Windows.Forms.Label lblPersonalEliminar;
 		private System.Windows.Forms.Label label24;
+		private System.Windows.Forms.TabPage tabCambioPeriodo;
+		private System.Windows.Forms.Button btnCambioPeriodo;
+		private System.Windows.Forms.TextBox txtListaTLD;
+		private System.Windows.Forms.Label lblListaTLD;
+		private System.Windows.Forms.TextBox txtNDocumentoCambiarPeriodo;
+		private System.Windows.Forms.Label lblNDocumentoCambiarPeriodo;
+		private System.Windows.Forms.Label label25;
+		private System.Windows.Forms.ComboBox ddlPeriodoCambiarPeriodo;
+		private System.Windows.Forms.Label label27;
+		private System.Windows.Forms.Label label28;
+		private System.Windows.Forms.Label lblPeriodoActual;
+		private System.Windows.Forms.Panel pnlCambiarPeriodo;
 	}
 }

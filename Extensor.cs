@@ -34,7 +34,52 @@ namespace ControlDosimetro
 				(control as System.Windows.Forms.TextBox).KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
 				(control as System.Windows.Forms.TextBox).MaxLength = Maximo;
 			}
+		}
 
+		public static void EventoAsignarAvanzar(this Control control)
+		{
+			if (control is System.Windows.Forms.TextBox)
+
+				(control as System.Windows.Forms.TextBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+		}
+		public static int DevuelveEntero(this Control control)
+		{
+			if (control is System.Windows.Forms.TextBox)
+			{
+				int intValor;
+				if (int.TryParse(control.Text, out intValor))
+					return intValor;
+				else
+					return 0;
+			}
+			return 0;
+		}
+		public static int? DevuelveEnteroNulo(this Control control)
+		{
+			if (control is System.Windows.Forms.TextBox)
+			{
+				int intValor;
+				if (string.IsNullOrWhiteSpace((control as System.Windows.Forms.TextBox).Text))
+					return null;
+				else
+				if (int.TryParse(control.Text, out intValor))
+					return intValor;
+				else
+					return 0;
+			}
+			return null;
+		}
+
+		public static string DevuelveCadenaNulo(this Control control)
+		{
+			if (control is System.Windows.Forms.TextBox)
+			{
+				if (string.IsNullOrWhiteSpace(control.Text))
+					return null;
+				else
+					return control.Text;
+			}
+			return null;
 		}
 	
 		public static void EventoAsignarAvanzar(this Control control)
@@ -128,6 +173,38 @@ namespace ControlDosimetro
 						string strNombreControl = label.Name.Substring(3, label.Name.Length - 3);
 						Control control = frm.Controls.Find(string.Format("txt{0}", strNombreControl), true).FirstOrDefault() as TextBox;
 						if (control.Text.ToString().Trim().Length == 0)
+						{
+							stbError.AppendLine(string.Format("- {0}", label.Text));
+						}
+					}
+				}
+			}
+
+			if (stbError.Length > 0)
+				return true;
+			else
+				return false;
+		}
+		public static bool XValidarPanel(this Panel frm, ref StringBuilder stbError)
+		{
+			foreach (var label in frm.Controls.OfType<System.Windows.Forms.Label>())
+			{
+				if (label.Font.Underline)
+				{
+					if (label.Tag.ToString() == "TextBox")
+					{
+						string strNombreControl = label.Name.Substring(3, label.Name.Length - 3);
+						Control control = frm.Controls.Find(string.Format("txt{0}", strNombreControl), true).FirstOrDefault() as TextBox;
+						if (control.Text.ToString().Trim().Length == 0)
+						{
+							stbError.AppendLine(string.Format("- {0}", label.Text));
+						}
+					}
+					if (label.Tag.ToString() == "ddl")
+					{
+						string strNombreControl = label.Name.Substring(3, label.Name.Length - 3);
+						Control control = frm.Controls.Find(string.Format("ddl{0}", strNombreControl), true).FirstOrDefault() as ComboBox;
+						if (((ComboBox)control).DataSource==null  || ((ComboBox)control).SelectedValue==null)
 						{
 							stbError.AppendLine(string.Format("- {0}", label.Text));
 						}
@@ -240,7 +317,7 @@ namespace ControlDosimetro
 			string strParametro = string.Format("{0} ", cmd.CommandText);
 			for (int intParam = 0; intParam < cmd.Parameters.Count; intParam++)
 			{
-				if (cmd.Parameters[intParam].SqlDbType == SqlDbType.VarChar || cmd.Parameters[intParam].SqlDbType == SqlDbType.DateTime )
+				if (cmd.Parameters[intParam].SqlDbType == SqlDbType.VarChar || cmd.Parameters[intParam].SqlDbType == SqlDbType.DateTime)
 					strParametro += string.Format("{0}'{1}'", intParam > 0 ? "," : "", cmd.Parameters[intParam].Value);
 				else
 					strParametro += string.Format("{0}'{1}'", intParam > 0 ? "," : "", cmd.Parameters[intParam].Value);
