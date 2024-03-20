@@ -29,85 +29,83 @@
         private void InitializeComponent()
         {
 			this.tbl_sucursal = new System.Windows.Forms.GroupBox();
+			this.chkEstado = new System.Windows.Forms.CheckBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.txtOPRRUT = new System.Windows.Forms.TextBox();
+			this.lblOPRRUT = new System.Windows.Forms.Label();
+			this.txtOpr = new System.Windows.Forms.TextBox();
+			this.lblOpr = new System.Windows.Forms.Label();
+			this.txtDirector = new System.Windows.Forms.TextBox();
+			this.lblDirector = new System.Windows.Forms.Label();
+			this.txtServicio = new System.Windows.Forms.TextBox();
+			this.lblServicio = new System.Windows.Forms.Label();
 			this.btnCopiar = new System.Windows.Forms.Button();
-			this.lbl_Email = new System.Windows.Forms.Label();
-			this.txt_Email = new System.Windows.Forms.TextBox();
+			this.lblEmail = new System.Windows.Forms.Label();
+			this.txtEmail = new System.Windows.Forms.TextBox();
 			this.chk_CasaMatriz = new System.Windows.Forms.CheckBox();
-			this.txt_runsuc = new System.Windows.Forms.TextBox();
-			this.lbl_runsuc = new System.Windows.Forms.Label();
-			this.lbl_id_Sucursal = new System.Windows.Forms.Label();
-			this.cbx_id_estado = new System.Windows.Forms.ComboBox();
+			this.txtRunSuc = new System.Windows.Forms.TextBox();
+			this.lblRunSuc = new System.Windows.Forms.Label();
 			this.lbl_id_estado = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.cbx_id_comuna = new System.Windows.Forms.ComboBox();
-			this.cbx_id_provincia = new System.Windows.Forms.ComboBox();
-			this.cbx_id_region = new System.Windows.Forms.ComboBox();
+			this.ddlIdComuna = new System.Windows.Forms.ComboBox();
+			this.ddlIdProvincia = new System.Windows.Forms.ComboBox();
+			this.ddlIdRegion = new System.Windows.Forms.ComboBox();
 			this.btn_cerrar = new System.Windows.Forms.Button();
 			this.btn_Grabar = new System.Windows.Forms.Button();
-			this.txt_telefono = new System.Windows.Forms.TextBox();
-			this.lbl_telefono = new System.Windows.Forms.Label();
-			this.lbl_id_comuna = new System.Windows.Forms.Label();
-			this.lbl_id_provincia = new System.Windows.Forms.Label();
-			this.lbl_id_region = new System.Windows.Forms.Label();
-			this.txt_direccion = new System.Windows.Forms.TextBox();
-			this.lbl_direccion = new System.Windows.Forms.Label();
-			this.txt_Razon_Social = new System.Windows.Forms.TextBox();
-			this.lbl_Razon_Social = new System.Windows.Forms.Label();
-			this.txt_id_cliente = new System.Windows.Forms.TextBox();
-			this.lbl_id_cliente = new System.Windows.Forms.Label();
-			this.txt_run = new System.Windows.Forms.TextBox();
-			this.lbl_run = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.txt_OPR_RUT = new System.Windows.Forms.TextBox();
-			this.lbl_OPR_RUT = new System.Windows.Forms.Label();
-			this.txt_Opr = new System.Windows.Forms.TextBox();
-			this.lbl_Opr = new System.Windows.Forms.Label();
-			this.txt_Director = new System.Windows.Forms.TextBox();
-			this.lbl_Director = new System.Windows.Forms.Label();
-			this.txt_Servicio = new System.Windows.Forms.TextBox();
-			this.lbl_Servicio = new System.Windows.Forms.Label();
+			this.txtTelefono = new System.Windows.Forms.TextBox();
+			this.lblTelefono = new System.Windows.Forms.Label();
+			this.lblIdComuna = new System.Windows.Forms.Label();
+			this.lblIdProvincia = new System.Windows.Forms.Label();
+			this.lblIdRegion = new System.Windows.Forms.Label();
+			this.txtDireccion = new System.Windows.Forms.TextBox();
+			this.lblDireccion = new System.Windows.Forms.Label();
+			this.txtRazonSocial = new System.Windows.Forms.TextBox();
+			this.lblRazonSocial = new System.Windows.Forms.Label();
+			this.txtIdCliente = new System.Windows.Forms.TextBox();
+			this.lblIdCliente = new System.Windows.Forms.Label();
+			this.txtRun = new System.Windows.Forms.TextBox();
+			this.lblRun = new System.Windows.Forms.Label();
 			this.tbl_sucursal.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tbl_sucursal
 			// 
+			this.tbl_sucursal.Controls.Add(this.chkEstado);
 			this.tbl_sucursal.Controls.Add(this.label3);
-			this.tbl_sucursal.Controls.Add(this.txt_OPR_RUT);
-			this.tbl_sucursal.Controls.Add(this.lbl_OPR_RUT);
-			this.tbl_sucursal.Controls.Add(this.txt_Opr);
-			this.tbl_sucursal.Controls.Add(this.lbl_Opr);
-			this.tbl_sucursal.Controls.Add(this.txt_Director);
-			this.tbl_sucursal.Controls.Add(this.lbl_Director);
-			this.tbl_sucursal.Controls.Add(this.txt_Servicio);
-			this.tbl_sucursal.Controls.Add(this.lbl_Servicio);
+			this.tbl_sucursal.Controls.Add(this.txtOPRRUT);
+			this.tbl_sucursal.Controls.Add(this.lblOPRRUT);
+			this.tbl_sucursal.Controls.Add(this.txtOpr);
+			this.tbl_sucursal.Controls.Add(this.lblOpr);
+			this.tbl_sucursal.Controls.Add(this.txtDirector);
+			this.tbl_sucursal.Controls.Add(this.lblDirector);
+			this.tbl_sucursal.Controls.Add(this.txtServicio);
+			this.tbl_sucursal.Controls.Add(this.lblServicio);
 			this.tbl_sucursal.Controls.Add(this.btnCopiar);
-			this.tbl_sucursal.Controls.Add(this.lbl_Email);
-			this.tbl_sucursal.Controls.Add(this.txt_Email);
+			this.tbl_sucursal.Controls.Add(this.lblEmail);
+			this.tbl_sucursal.Controls.Add(this.txtEmail);
 			this.tbl_sucursal.Controls.Add(this.chk_CasaMatriz);
-			this.tbl_sucursal.Controls.Add(this.txt_runsuc);
-			this.tbl_sucursal.Controls.Add(this.lbl_runsuc);
-			this.tbl_sucursal.Controls.Add(this.lbl_id_Sucursal);
-			this.tbl_sucursal.Controls.Add(this.cbx_id_estado);
+			this.tbl_sucursal.Controls.Add(this.txtRunSuc);
+			this.tbl_sucursal.Controls.Add(this.lblRunSuc);
 			this.tbl_sucursal.Controls.Add(this.lbl_id_estado);
 			this.tbl_sucursal.Controls.Add(this.label2);
-			this.tbl_sucursal.Controls.Add(this.cbx_id_comuna);
-			this.tbl_sucursal.Controls.Add(this.cbx_id_provincia);
-			this.tbl_sucursal.Controls.Add(this.cbx_id_region);
+			this.tbl_sucursal.Controls.Add(this.ddlIdComuna);
+			this.tbl_sucursal.Controls.Add(this.ddlIdProvincia);
+			this.tbl_sucursal.Controls.Add(this.ddlIdRegion);
 			this.tbl_sucursal.Controls.Add(this.btn_cerrar);
 			this.tbl_sucursal.Controls.Add(this.btn_Grabar);
-			this.tbl_sucursal.Controls.Add(this.txt_telefono);
-			this.tbl_sucursal.Controls.Add(this.lbl_telefono);
-			this.tbl_sucursal.Controls.Add(this.lbl_id_comuna);
-			this.tbl_sucursal.Controls.Add(this.lbl_id_provincia);
-			this.tbl_sucursal.Controls.Add(this.lbl_id_region);
-			this.tbl_sucursal.Controls.Add(this.txt_direccion);
-			this.tbl_sucursal.Controls.Add(this.lbl_direccion);
-			this.tbl_sucursal.Controls.Add(this.txt_Razon_Social);
-			this.tbl_sucursal.Controls.Add(this.lbl_Razon_Social);
-			this.tbl_sucursal.Controls.Add(this.txt_id_cliente);
-			this.tbl_sucursal.Controls.Add(this.lbl_id_cliente);
-			this.tbl_sucursal.Controls.Add(this.txt_run);
-			this.tbl_sucursal.Controls.Add(this.lbl_run);
+			this.tbl_sucursal.Controls.Add(this.txtTelefono);
+			this.tbl_sucursal.Controls.Add(this.lblTelefono);
+			this.tbl_sucursal.Controls.Add(this.lblIdComuna);
+			this.tbl_sucursal.Controls.Add(this.lblIdProvincia);
+			this.tbl_sucursal.Controls.Add(this.lblIdRegion);
+			this.tbl_sucursal.Controls.Add(this.txtDireccion);
+			this.tbl_sucursal.Controls.Add(this.lblDireccion);
+			this.tbl_sucursal.Controls.Add(this.txtRazonSocial);
+			this.tbl_sucursal.Controls.Add(this.lblRazonSocial);
+			this.tbl_sucursal.Controls.Add(this.txtIdCliente);
+			this.tbl_sucursal.Controls.Add(this.lblIdCliente);
+			this.tbl_sucursal.Controls.Add(this.txtRun);
+			this.tbl_sucursal.Controls.Add(this.lblRun);
 			this.tbl_sucursal.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tbl_sucursal.Location = new System.Drawing.Point(0, 0);
 			this.tbl_sucursal.Name = "tbl_sucursal";
@@ -115,6 +113,95 @@
 			this.tbl_sucursal.TabIndex = 0;
 			this.tbl_sucursal.TabStop = false;
 			this.tbl_sucursal.Text = "Datos";
+			// 
+			// chkEstado
+			// 
+			this.chkEstado.AutoSize = true;
+			this.chkEstado.Location = new System.Drawing.Point(167, 380);
+			this.chkEstado.Name = "chkEstado";
+			this.chkEstado.Size = new System.Drawing.Size(15, 14);
+			this.chkEstado.TabIndex = 73;
+			this.chkEstado.UseVisualStyleBackColor = true;
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(291, 333);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(108, 13);
+			this.label3.TabIndex = 72;
+			this.label3.Text = "Formato: 12345678-9";
+			// 
+			// txtOPRRUT
+			// 
+			this.txtOPRRUT.Location = new System.Drawing.Point(165, 330);
+			this.txtOPRRUT.MaxLength = 10;
+			this.txtOPRRUT.Name = "txtOPRRUT";
+			this.txtOPRRUT.Size = new System.Drawing.Size(120, 20);
+			this.txtOPRRUT.TabIndex = 71;
+			// 
+			// lblOPRRUT
+			// 
+			this.lblOPRRUT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblOPRRUT.Location = new System.Drawing.Point(9, 333);
+			this.lblOPRRUT.Name = "lblOPRRUT";
+			this.lblOPRRUT.Size = new System.Drawing.Size(102, 23);
+			this.lblOPRRUT.TabIndex = 70;
+			this.lblOPRRUT.Text = "OPR Rut";
+			// 
+			// txtOpr
+			// 
+			this.txtOpr.Location = new System.Drawing.Point(165, 307);
+			this.txtOpr.MaxLength = 50;
+			this.txtOpr.Name = "txtOpr";
+			this.txtOpr.Size = new System.Drawing.Size(313, 20);
+			this.txtOpr.TabIndex = 65;
+			// 
+			// lblOpr
+			// 
+			this.lblOpr.AutoSize = true;
+			this.lblOpr.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblOpr.Location = new System.Drawing.Point(9, 310);
+			this.lblOpr.Name = "lblOpr";
+			this.lblOpr.Size = new System.Drawing.Size(30, 13);
+			this.lblOpr.TabIndex = 69;
+			this.lblOpr.Text = "OPR";
+			// 
+			// txtDirector
+			// 
+			this.txtDirector.Location = new System.Drawing.Point(165, 281);
+			this.txtDirector.MaxLength = 50;
+			this.txtDirector.Name = "txtDirector";
+			this.txtDirector.Size = new System.Drawing.Size(313, 20);
+			this.txtDirector.TabIndex = 64;
+			// 
+			// lblDirector
+			// 
+			this.lblDirector.AutoSize = true;
+			this.lblDirector.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblDirector.Location = new System.Drawing.Point(9, 284);
+			this.lblDirector.Name = "lblDirector";
+			this.lblDirector.Size = new System.Drawing.Size(44, 13);
+			this.lblDirector.TabIndex = 68;
+			this.lblDirector.Text = "Director";
+			// 
+			// txtServicio
+			// 
+			this.txtServicio.Location = new System.Drawing.Point(165, 353);
+			this.txtServicio.MaxLength = 100;
+			this.txtServicio.Name = "txtServicio";
+			this.txtServicio.Size = new System.Drawing.Size(313, 20);
+			this.txtServicio.TabIndex = 66;
+			// 
+			// lblServicio
+			// 
+			this.lblServicio.AutoSize = true;
+			this.lblServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblServicio.Location = new System.Drawing.Point(9, 356);
+			this.lblServicio.Name = "lblServicio";
+			this.lblServicio.Size = new System.Drawing.Size(45, 13);
+			this.lblServicio.TabIndex = 67;
+			this.lblServicio.Text = "Servicio";
 			// 
 			// btnCopiar
 			// 
@@ -126,22 +213,22 @@
 			this.btnCopiar.UseVisualStyleBackColor = true;
 			this.btnCopiar.Click += new System.EventHandler(this.btnCopiar_Click);
 			// 
-			// lbl_Email
+			// lblEmail
 			// 
-			this.lbl_Email.AutoSize = true;
-			this.lbl_Email.Location = new System.Drawing.Point(9, 258);
-			this.lbl_Email.Name = "lbl_Email";
-			this.lbl_Email.Size = new System.Drawing.Size(32, 13);
-			this.lbl_Email.TabIndex = 42;
-			this.lbl_Email.Text = "Email";
+			this.lblEmail.AutoSize = true;
+			this.lblEmail.Location = new System.Drawing.Point(9, 258);
+			this.lblEmail.Name = "lblEmail";
+			this.lblEmail.Size = new System.Drawing.Size(32, 13);
+			this.lblEmail.TabIndex = 42;
+			this.lblEmail.Text = "Email";
 			// 
-			// txt_Email
+			// txtEmail
 			// 
-			this.txt_Email.Location = new System.Drawing.Point(165, 255);
-			this.txt_Email.MaxLength = 100;
-			this.txt_Email.Name = "txt_Email";
-			this.txt_Email.Size = new System.Drawing.Size(303, 20);
-			this.txt_Email.TabIndex = 10;
+			this.txtEmail.Location = new System.Drawing.Point(165, 255);
+			this.txtEmail.MaxLength = 100;
+			this.txtEmail.Name = "txtEmail";
+			this.txtEmail.Size = new System.Drawing.Size(303, 20);
+			this.txtEmail.TabIndex = 10;
 			// 
 			// chk_CasaMatriz
 			// 
@@ -154,49 +241,29 @@
 			this.chk_CasaMatriz.UseVisualStyleBackColor = true;
 			this.chk_CasaMatriz.CheckedChanged += new System.EventHandler(this.chk_CasaMatriz_CheckedChanged);
 			// 
-			// txt_runsuc
+			// txtRunSuc
 			// 
-			this.txt_runsuc.Location = new System.Drawing.Point(167, 69);
-			this.txt_runsuc.MaxLength = 10;
-			this.txt_runsuc.Name = "txt_runsuc";
-			this.txt_runsuc.Size = new System.Drawing.Size(120, 20);
-			this.txt_runsuc.TabIndex = 31;
+			this.txtRunSuc.Location = new System.Drawing.Point(167, 69);
+			this.txtRunSuc.MaxLength = 10;
+			this.txtRunSuc.Name = "txtRunSuc";
+			this.txtRunSuc.Size = new System.Drawing.Size(120, 20);
+			this.txtRunSuc.TabIndex = 31;
 			// 
-			// lbl_runsuc
+			// lblRunSuc
 			// 
-			this.lbl_runsuc.AutoSize = true;
-			this.lbl_runsuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_runsuc.Location = new System.Drawing.Point(11, 72);
-			this.lbl_runsuc.Name = "lbl_runsuc";
-			this.lbl_runsuc.Size = new System.Drawing.Size(68, 13);
-			this.lbl_runsuc.TabIndex = 30;
-			this.lbl_runsuc.Text = "Rut Sucursal";
-			// 
-			// lbl_id_Sucursal
-			// 
-			this.lbl_id_Sucursal.AutoSize = true;
-			this.lbl_id_Sucursal.Location = new System.Drawing.Point(366, 232);
-			this.lbl_id_Sucursal.Name = "lbl_id_Sucursal";
-			this.lbl_id_Sucursal.Size = new System.Drawing.Size(35, 13);
-			this.lbl_id_Sucursal.TabIndex = 29;
-			this.lbl_id_Sucursal.Text = "label1";
-			this.lbl_id_Sucursal.Visible = false;
-			// 
-			// cbx_id_estado
-			// 
-			this.cbx_id_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_id_estado.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbx_id_estado.FormattingEnabled = true;
-			this.cbx_id_estado.Location = new System.Drawing.Point(167, 388);
-			this.cbx_id_estado.Name = "cbx_id_estado";
-			this.cbx_id_estado.Size = new System.Drawing.Size(121, 21);
-			this.cbx_id_estado.TabIndex = 11;
+			this.lblRunSuc.AutoSize = true;
+			this.lblRunSuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblRunSuc.Location = new System.Drawing.Point(11, 72);
+			this.lblRunSuc.Name = "lblRunSuc";
+			this.lblRunSuc.Size = new System.Drawing.Size(68, 13);
+			this.lblRunSuc.TabIndex = 30;
+			this.lblRunSuc.Text = "Rut Sucursal";
 			// 
 			// lbl_id_estado
 			// 
 			this.lbl_id_estado.AutoSize = true;
-			this.lbl_id_estado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_id_estado.Location = new System.Drawing.Point(12, 391);
+			this.lbl_id_estado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbl_id_estado.Location = new System.Drawing.Point(11, 381);
 			this.lbl_id_estado.Name = "lbl_id_estado";
 			this.lbl_id_estado.Size = new System.Drawing.Size(40, 13);
 			this.lbl_id_estado.TabIndex = 28;
@@ -211,39 +278,39 @@
 			this.label2.TabIndex = 27;
 			this.label2.Text = "Formato: 12345678-9";
 			// 
-			// cbx_id_comuna
+			// ddlIdComuna
 			// 
-			this.cbx_id_comuna.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_id_comuna.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbx_id_comuna.FormattingEnabled = true;
-			this.cbx_id_comuna.Location = new System.Drawing.Point(166, 203);
-			this.cbx_id_comuna.Name = "cbx_id_comuna";
-			this.cbx_id_comuna.Size = new System.Drawing.Size(303, 21);
-			this.cbx_id_comuna.TabIndex = 23;
-			this.cbx_id_comuna.TabStop = false;
+			this.ddlIdComuna.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.ddlIdComuna.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.ddlIdComuna.FormattingEnabled = true;
+			this.ddlIdComuna.Location = new System.Drawing.Point(166, 203);
+			this.ddlIdComuna.Name = "ddlIdComuna";
+			this.ddlIdComuna.Size = new System.Drawing.Size(303, 21);
+			this.ddlIdComuna.TabIndex = 23;
+			this.ddlIdComuna.TabStop = false;
 			// 
-			// cbx_id_provincia
+			// ddlIdProvincia
 			// 
-			this.cbx_id_provincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_id_provincia.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbx_id_provincia.FormattingEnabled = true;
-			this.cbx_id_provincia.Location = new System.Drawing.Point(166, 176);
-			this.cbx_id_provincia.Name = "cbx_id_provincia";
-			this.cbx_id_provincia.Size = new System.Drawing.Size(303, 21);
-			this.cbx_id_provincia.TabIndex = 20;
-			this.cbx_id_provincia.TabStop = false;
-			this.cbx_id_provincia.SelectedIndexChanged += new System.EventHandler(this.cbx_id_provincia_SelectedIndexChanged);
+			this.ddlIdProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.ddlIdProvincia.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.ddlIdProvincia.FormattingEnabled = true;
+			this.ddlIdProvincia.Location = new System.Drawing.Point(166, 176);
+			this.ddlIdProvincia.Name = "ddlIdProvincia";
+			this.ddlIdProvincia.Size = new System.Drawing.Size(303, 21);
+			this.ddlIdProvincia.TabIndex = 20;
+			this.ddlIdProvincia.TabStop = false;
+			this.ddlIdProvincia.SelectedIndexChanged += new System.EventHandler(this.cbx_id_provincia_SelectedIndexChanged);
 			// 
-			// cbx_id_region
+			// ddlIdRegion
 			// 
-			this.cbx_id_region.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_id_region.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbx_id_region.FormattingEnabled = true;
-			this.cbx_id_region.Location = new System.Drawing.Point(166, 148);
-			this.cbx_id_region.Name = "cbx_id_region";
-			this.cbx_id_region.Size = new System.Drawing.Size(303, 21);
-			this.cbx_id_region.TabIndex = 6;
-			this.cbx_id_region.SelectedIndexChanged += new System.EventHandler(this.cbx_id_region_SelectedIndexChanged);
+			this.ddlIdRegion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.ddlIdRegion.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.ddlIdRegion.FormattingEnabled = true;
+			this.ddlIdRegion.Location = new System.Drawing.Point(166, 148);
+			this.ddlIdRegion.Name = "ddlIdRegion";
+			this.ddlIdRegion.Size = new System.Drawing.Size(303, 21);
+			this.ddlIdRegion.TabIndex = 6;
+			this.ddlIdRegion.SelectedIndexChanged += new System.EventHandler(this.cbx_id_region_SelectedIndexChanged);
 			// 
 			// btn_cerrar
 			// 
@@ -265,208 +332,128 @@
 			this.btn_Grabar.UseVisualStyleBackColor = true;
 			this.btn_Grabar.Click += new System.EventHandler(this.btn_Grabar_Click);
 			// 
-			// txt_telefono
+			// txtTelefono
 			// 
-			this.txt_telefono.Location = new System.Drawing.Point(166, 229);
-			this.txt_telefono.MaxLength = 15;
-			this.txt_telefono.Name = "txt_telefono";
-			this.txt_telefono.Size = new System.Drawing.Size(141, 20);
-			this.txt_telefono.TabIndex = 9;
+			this.txtTelefono.Location = new System.Drawing.Point(166, 229);
+			this.txtTelefono.MaxLength = 15;
+			this.txtTelefono.Name = "txtTelefono";
+			this.txtTelefono.Size = new System.Drawing.Size(141, 20);
+			this.txtTelefono.TabIndex = 9;
 			// 
-			// lbl_telefono
+			// lblTelefono
 			// 
-			this.lbl_telefono.AutoSize = true;
-			this.lbl_telefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_telefono.Location = new System.Drawing.Point(10, 232);
-			this.lbl_telefono.Name = "lbl_telefono";
-			this.lbl_telefono.Size = new System.Drawing.Size(49, 13);
-			this.lbl_telefono.TabIndex = 14;
-			this.lbl_telefono.Text = "Telefono";
+			this.lblTelefono.AutoSize = true;
+			this.lblTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblTelefono.Location = new System.Drawing.Point(10, 232);
+			this.lblTelefono.Name = "lblTelefono";
+			this.lblTelefono.Size = new System.Drawing.Size(49, 13);
+			this.lblTelefono.TabIndex = 14;
+			this.lblTelefono.Text = "Telefono";
 			// 
-			// lbl_id_comuna
+			// lblIdComuna
 			// 
-			this.lbl_id_comuna.AutoSize = true;
-			this.lbl_id_comuna.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_id_comuna.Location = new System.Drawing.Point(10, 206);
-			this.lbl_id_comuna.Name = "lbl_id_comuna";
-			this.lbl_id_comuna.Size = new System.Drawing.Size(46, 13);
-			this.lbl_id_comuna.TabIndex = 13;
-			this.lbl_id_comuna.Text = "Comuna";
+			this.lblIdComuna.AutoSize = true;
+			this.lblIdComuna.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblIdComuna.Location = new System.Drawing.Point(10, 206);
+			this.lblIdComuna.Name = "lblIdComuna";
+			this.lblIdComuna.Size = new System.Drawing.Size(46, 13);
+			this.lblIdComuna.TabIndex = 13;
+			this.lblIdComuna.Text = "Comuna";
 			// 
-			// lbl_id_provincia
+			// lblIdProvincia
 			// 
-			this.lbl_id_provincia.AutoSize = true;
-			this.lbl_id_provincia.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_id_provincia.Location = new System.Drawing.Point(10, 178);
-			this.lbl_id_provincia.Name = "lbl_id_provincia";
-			this.lbl_id_provincia.Size = new System.Drawing.Size(51, 13);
-			this.lbl_id_provincia.TabIndex = 12;
-			this.lbl_id_provincia.Text = "Provincia";
+			this.lblIdProvincia.AutoSize = true;
+			this.lblIdProvincia.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblIdProvincia.Location = new System.Drawing.Point(10, 178);
+			this.lblIdProvincia.Name = "lblIdProvincia";
+			this.lblIdProvincia.Size = new System.Drawing.Size(51, 13);
+			this.lblIdProvincia.TabIndex = 12;
+			this.lblIdProvincia.Text = "Provincia";
 			// 
-			// lbl_id_region
+			// lblIdRegion
 			// 
-			this.lbl_id_region.AutoSize = true;
-			this.lbl_id_region.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_id_region.Location = new System.Drawing.Point(10, 151);
-			this.lbl_id_region.Name = "lbl_id_region";
-			this.lbl_id_region.Size = new System.Drawing.Size(41, 13);
-			this.lbl_id_region.TabIndex = 11;
-			this.lbl_id_region.Text = "Región";
+			this.lblIdRegion.AutoSize = true;
+			this.lblIdRegion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblIdRegion.Location = new System.Drawing.Point(10, 151);
+			this.lblIdRegion.Name = "lblIdRegion";
+			this.lblIdRegion.Size = new System.Drawing.Size(41, 13);
+			this.lblIdRegion.TabIndex = 11;
+			this.lblIdRegion.Text = "Región";
 			// 
-			// txt_direccion
+			// txtDireccion
 			// 
-			this.txt_direccion.Location = new System.Drawing.Point(166, 121);
-			this.txt_direccion.MaxLength = 100;
-			this.txt_direccion.Name = "txt_direccion";
-			this.txt_direccion.Size = new System.Drawing.Size(313, 20);
-			this.txt_direccion.TabIndex = 5;
-			this.txt_direccion.Leave += new System.EventHandler(this.txt_direccion_Leave);
+			this.txtDireccion.Location = new System.Drawing.Point(166, 121);
+			this.txtDireccion.MaxLength = 100;
+			this.txtDireccion.Name = "txtDireccion";
+			this.txtDireccion.Size = new System.Drawing.Size(313, 20);
+			this.txtDireccion.TabIndex = 5;
+			this.txtDireccion.Leave += new System.EventHandler(this.txt_direccion_Leave);
 			// 
-			// lbl_direccion
+			// lblDireccion
 			// 
-			this.lbl_direccion.AutoSize = true;
-			this.lbl_direccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_direccion.Location = new System.Drawing.Point(10, 124);
-			this.lbl_direccion.Name = "lbl_direccion";
-			this.lbl_direccion.Size = new System.Drawing.Size(52, 13);
-			this.lbl_direccion.TabIndex = 9;
-			this.lbl_direccion.Text = "Dirección";
+			this.lblDireccion.AutoSize = true;
+			this.lblDireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblDireccion.Location = new System.Drawing.Point(10, 124);
+			this.lblDireccion.Name = "lblDireccion";
+			this.lblDireccion.Size = new System.Drawing.Size(52, 13);
+			this.lblDireccion.TabIndex = 9;
+			this.lblDireccion.Text = "Dirección";
 			// 
-			// txt_Razon_Social
+			// txtRazonSocial
 			// 
-			this.txt_Razon_Social.Location = new System.Drawing.Point(166, 95);
-			this.txt_Razon_Social.MaxLength = 60;
-			this.txt_Razon_Social.Name = "txt_Razon_Social";
-			this.txt_Razon_Social.Size = new System.Drawing.Size(313, 20);
-			this.txt_Razon_Social.TabIndex = 4;
+			this.txtRazonSocial.Location = new System.Drawing.Point(166, 95);
+			this.txtRazonSocial.MaxLength = 60;
+			this.txtRazonSocial.Name = "txtRazonSocial";
+			this.txtRazonSocial.Size = new System.Drawing.Size(313, 20);
+			this.txtRazonSocial.TabIndex = 4;
 			// 
-			// lbl_Razon_Social
+			// lblRazonSocial
 			// 
-			this.lbl_Razon_Social.AutoSize = true;
-			this.lbl_Razon_Social.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_Razon_Social.Location = new System.Drawing.Point(10, 98);
-			this.lbl_Razon_Social.Name = "lbl_Razon_Social";
-			this.lbl_Razon_Social.Size = new System.Drawing.Size(70, 13);
-			this.lbl_Razon_Social.TabIndex = 7;
-			this.lbl_Razon_Social.Text = "Razon Social";
+			this.lblRazonSocial.AutoSize = true;
+			this.lblRazonSocial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblRazonSocial.Location = new System.Drawing.Point(10, 98);
+			this.lblRazonSocial.Name = "lblRazonSocial";
+			this.lblRazonSocial.Size = new System.Drawing.Size(70, 13);
+			this.lblRazonSocial.TabIndex = 7;
+			this.lblRazonSocial.Text = "Razon Social";
 			// 
-			// txt_id_cliente
+			// txtIdCliente
 			// 
-			this.txt_id_cliente.Enabled = false;
-			this.txt_id_cliente.Location = new System.Drawing.Point(167, 19);
-			this.txt_id_cliente.MaxLength = 4;
-			this.txt_id_cliente.Name = "txt_id_cliente";
-			this.txt_id_cliente.Size = new System.Drawing.Size(75, 20);
-			this.txt_id_cliente.TabIndex = 1;
+			this.txtIdCliente.Enabled = false;
+			this.txtIdCliente.Location = new System.Drawing.Point(167, 19);
+			this.txtIdCliente.MaxLength = 4;
+			this.txtIdCliente.Name = "txtIdCliente";
+			this.txtIdCliente.Size = new System.Drawing.Size(75, 20);
+			this.txtIdCliente.TabIndex = 1;
 			// 
-			// lbl_id_cliente
+			// lblIdCliente
 			// 
-			this.lbl_id_cliente.AutoSize = true;
-			this.lbl_id_cliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_id_cliente.Location = new System.Drawing.Point(11, 22);
-			this.lbl_id_cliente.Name = "lbl_id_cliente";
-			this.lbl_id_cliente.Size = new System.Drawing.Size(54, 13);
-			this.lbl_id_cliente.TabIndex = 5;
-			this.lbl_id_cliente.Text = "N° Cliente";
+			this.lblIdCliente.AutoSize = true;
+			this.lblIdCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblIdCliente.Location = new System.Drawing.Point(11, 22);
+			this.lblIdCliente.Name = "lblIdCliente";
+			this.lblIdCliente.Size = new System.Drawing.Size(54, 13);
+			this.lblIdCliente.TabIndex = 5;
+			this.lblIdCliente.Text = "N° Cliente";
 			// 
-			// txt_run
+			// txtRun
 			// 
-			this.txt_run.Enabled = false;
-			this.txt_run.Location = new System.Drawing.Point(167, 43);
-			this.txt_run.MaxLength = 10;
-			this.txt_run.Name = "txt_run";
-			this.txt_run.Size = new System.Drawing.Size(120, 20);
-			this.txt_run.TabIndex = 3;
+			this.txtRun.Enabled = false;
+			this.txtRun.Location = new System.Drawing.Point(167, 43);
+			this.txtRun.MaxLength = 10;
+			this.txtRun.Name = "txtRun";
+			this.txtRun.Size = new System.Drawing.Size(120, 20);
+			this.txtRun.TabIndex = 3;
 			// 
-			// lbl_run
+			// lblRun
 			// 
-			this.lbl_run.AutoSize = true;
-			this.lbl_run.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_run.Location = new System.Drawing.Point(11, 46);
-			this.lbl_run.Name = "lbl_run";
-			this.lbl_run.Size = new System.Drawing.Size(58, 13);
-			this.lbl_run.TabIndex = 0;
-			this.lbl_run.Text = "Rut cliente";
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(291, 333);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(108, 13);
-			this.label3.TabIndex = 72;
-			this.label3.Text = "Formato: 12345678-9";
-			// 
-			// txt_OPR_RUT
-			// 
-			this.txt_OPR_RUT.Location = new System.Drawing.Point(165, 330);
-			this.txt_OPR_RUT.MaxLength = 10;
-			this.txt_OPR_RUT.Name = "txt_OPR_RUT";
-			this.txt_OPR_RUT.Size = new System.Drawing.Size(120, 20);
-			this.txt_OPR_RUT.TabIndex = 71;
-			// 
-			// lbl_OPR_RUT
-			// 
-			this.lbl_OPR_RUT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_OPR_RUT.Location = new System.Drawing.Point(9, 333);
-			this.lbl_OPR_RUT.Name = "lbl_OPR_RUT";
-			this.lbl_OPR_RUT.Size = new System.Drawing.Size(102, 12);
-			this.lbl_OPR_RUT.TabIndex = 70;
-			this.lbl_OPR_RUT.Text = "OPR Rut";
-			// 
-			// txt_Opr
-			// 
-			this.txt_Opr.Location = new System.Drawing.Point(165, 307);
-			this.txt_Opr.MaxLength = 50;
-			this.txt_Opr.Name = "txt_Opr";
-			this.txt_Opr.Size = new System.Drawing.Size(313, 20);
-			this.txt_Opr.TabIndex = 65;
-			// 
-			// lbl_Opr
-			// 
-			this.lbl_Opr.AutoSize = true;
-			this.lbl_Opr.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_Opr.Location = new System.Drawing.Point(9, 310);
-			this.lbl_Opr.Name = "lbl_Opr";
-			this.lbl_Opr.Size = new System.Drawing.Size(30, 13);
-			this.lbl_Opr.TabIndex = 69;
-			this.lbl_Opr.Text = "OPR";
-			// 
-			// txt_Director
-			// 
-			this.txt_Director.Location = new System.Drawing.Point(165, 281);
-			this.txt_Director.MaxLength = 50;
-			this.txt_Director.Name = "txt_Director";
-			this.txt_Director.Size = new System.Drawing.Size(313, 20);
-			this.txt_Director.TabIndex = 64;
-			// 
-			// lbl_Director
-			// 
-			this.lbl_Director.AutoSize = true;
-			this.lbl_Director.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_Director.Location = new System.Drawing.Point(9, 284);
-			this.lbl_Director.Name = "lbl_Director";
-			this.lbl_Director.Size = new System.Drawing.Size(44, 13);
-			this.lbl_Director.TabIndex = 68;
-			this.lbl_Director.Text = "Director";
-			// 
-			// txt_Servicio
-			// 
-			this.txt_Servicio.Location = new System.Drawing.Point(165, 353);
-			this.txt_Servicio.MaxLength = 100;
-			this.txt_Servicio.Name = "txt_Servicio";
-			this.txt_Servicio.Size = new System.Drawing.Size(313, 20);
-			this.txt_Servicio.TabIndex = 66;
-			// 
-			// lbl_Servicio
-			// 
-			this.lbl_Servicio.AutoSize = true;
-			this.lbl_Servicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_Servicio.Location = new System.Drawing.Point(9, 356);
-			this.lbl_Servicio.Name = "lbl_Servicio";
-			this.lbl_Servicio.Size = new System.Drawing.Size(45, 13);
-			this.lbl_Servicio.TabIndex = 67;
-			this.lbl_Servicio.Text = "Servicio";
+			this.lblRun.AutoSize = true;
+			this.lblRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblRun.Location = new System.Drawing.Point(11, 46);
+			this.lblRun.Name = "lblRun";
+			this.lblRun.Size = new System.Drawing.Size(58, 13);
+			this.lblRun.TabIndex = 0;
+			this.lblRun.Text = "Rut cliente";
 			// 
 			// frmDireccionAct
 			// 
@@ -476,6 +463,7 @@
 			this.Controls.Add(this.tbl_sucursal);
 			this.Name = "frmDireccionAct";
 			this.Text = "Dirección";
+			this.Load += new System.EventHandler(this.frmDireccionAct_Load);
 			this.tbl_sucursal.ResumeLayout(false);
 			this.tbl_sucursal.PerformLayout();
 			this.ResumeLayout(false);
@@ -485,42 +473,41 @@
         #endregion
 
         private System.Windows.Forms.GroupBox tbl_sucursal;
-        private System.Windows.Forms.TextBox txt_run;
-        private System.Windows.Forms.Label lbl_run;
-        private System.Windows.Forms.Label lbl_id_cliente;
-        private System.Windows.Forms.TextBox txt_id_cliente;
-        private System.Windows.Forms.TextBox txt_Razon_Social;
-        private System.Windows.Forms.Label lbl_Razon_Social;
-        private System.Windows.Forms.TextBox txt_direccion;
-        private System.Windows.Forms.Label lbl_direccion;
-        private System.Windows.Forms.TextBox txt_telefono;
-        private System.Windows.Forms.Label lbl_telefono;
-        private System.Windows.Forms.Label lbl_id_comuna;
-        private System.Windows.Forms.Label lbl_id_provincia;
-        private System.Windows.Forms.Label lbl_id_region;
+        private System.Windows.Forms.TextBox txtRun;
+        private System.Windows.Forms.Label lblRun;
+        private System.Windows.Forms.Label lblIdCliente;
+        private System.Windows.Forms.TextBox txtIdCliente;
+        private System.Windows.Forms.TextBox txtRazonSocial;
+        private System.Windows.Forms.Label lblRazonSocial;
+        private System.Windows.Forms.TextBox txtDireccion;
+        private System.Windows.Forms.Label lblDireccion;
+        private System.Windows.Forms.TextBox txtTelefono;
+        private System.Windows.Forms.Label lblTelefono;
+        private System.Windows.Forms.Label lblIdComuna;
+        private System.Windows.Forms.Label lblIdProvincia;
+        private System.Windows.Forms.Label lblIdRegion;
         private System.Windows.Forms.Button btn_cerrar;
         private System.Windows.Forms.Button btn_Grabar;
-        private System.Windows.Forms.ComboBox cbx_id_comuna;
-        private System.Windows.Forms.ComboBox cbx_id_provincia;
-        private System.Windows.Forms.ComboBox cbx_id_region;
+        private System.Windows.Forms.ComboBox ddlIdComuna;
+        private System.Windows.Forms.ComboBox ddlIdProvincia;
+        private System.Windows.Forms.ComboBox ddlIdRegion;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cbx_id_estado;
         private System.Windows.Forms.Label lbl_id_estado;
-        private System.Windows.Forms.Label lbl_id_Sucursal;
-        private System.Windows.Forms.TextBox txt_runsuc;
-        private System.Windows.Forms.Label lbl_runsuc;
+        private System.Windows.Forms.TextBox txtRunSuc;
+        private System.Windows.Forms.Label lblRunSuc;
         private System.Windows.Forms.CheckBox chk_CasaMatriz;
-        private System.Windows.Forms.Label lbl_Email;
-        private System.Windows.Forms.TextBox txt_Email;
+        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.TextBox txtEmail;
 		private System.Windows.Forms.Button btnCopiar;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox txt_OPR_RUT;
-		private System.Windows.Forms.Label lbl_OPR_RUT;
-		private System.Windows.Forms.TextBox txt_Opr;
-		private System.Windows.Forms.Label lbl_Opr;
-		private System.Windows.Forms.TextBox txt_Director;
-		private System.Windows.Forms.Label lbl_Director;
-		private System.Windows.Forms.TextBox txt_Servicio;
-		private System.Windows.Forms.Label lbl_Servicio;
+		private System.Windows.Forms.TextBox txtOPRRUT;
+		private System.Windows.Forms.Label lblOPRRUT;
+		private System.Windows.Forms.TextBox txtOpr;
+		private System.Windows.Forms.Label lblOpr;
+		private System.Windows.Forms.TextBox txtDirector;
+		private System.Windows.Forms.Label lblDirector;
+		private System.Windows.Forms.TextBox txtServicio;
+		private System.Windows.Forms.Label lblServicio;
+		private System.Windows.Forms.CheckBox chkEstado;
 	}
 }

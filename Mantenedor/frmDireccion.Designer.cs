@@ -38,18 +38,34 @@
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dtgPrincipal = new System.Windows.Forms.DataGridView();
+			this.grpFiltro = new System.Windows.Forms.GroupBox();
+			this.btn_Filtro = new System.Windows.Forms.Button();
+			this.btn_cargarCliente = new System.Windows.Forms.Button();
+			this.txtNCliente = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.txtRazonSocial = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.txtRut = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.btnCargar = new System.Windows.Forms.Button();
 			this.colSeleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.colRut = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ColNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColPaterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.colMaternos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.colId_perfil = new System.Windows.Forms.DataGridViewComboBoxColumn();
+			this.ColDirección = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colRegion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColProvincia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColComuna = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColEstado_casa_matriz = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.colEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.colUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.colContraseña = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColDirector = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColOpr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColOPR_RUT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColServicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colEstado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dtgPrincipal)).BeginInit();
+			this.grpFiltro.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// toolStrip1
@@ -131,6 +147,7 @@
 			this.tsbGuardar.Size = new System.Drawing.Size(36, 36);
 			this.tsbGuardar.Text = "toolStripButton1";
 			this.tsbGuardar.ToolTipText = "Guarda la infomación";
+			this.tsbGuardar.Visible = false;
 			this.tsbGuardar.Click += new System.EventHandler(this.tsbGuardar_Click);
 			// 
 			// statusStrip1
@@ -154,22 +171,127 @@
             this.colSeleccionar,
             this.colRut,
             this.ColNombre,
-            this.ColPaterno,
-            this.colMaternos,
-            this.colId_perfil,
+            this.ColDirección,
+            this.colRegion,
+            this.ColProvincia,
+            this.ColComuna,
+            this.ColTelefono,
+            this.ColEstado_casa_matriz,
             this.colEmail,
-            this.colUsuario,
-            this.colContraseña,
+            this.ColDirector,
+            this.ColOpr,
+            this.ColOPR_RUT,
+            this.ColServicio,
             this.colEstado});
 			this.dtgPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.dtgPrincipal.Location = new System.Drawing.Point(0, 39);
+			this.dtgPrincipal.Location = new System.Drawing.Point(0, 174);
 			this.dtgPrincipal.Name = "dtgPrincipal";
-			this.dtgPrincipal.Size = new System.Drawing.Size(1406, 389);
+			this.dtgPrincipal.Size = new System.Drawing.Size(1406, 254);
 			this.dtgPrincipal.TabIndex = 5;
-			this.dtgPrincipal.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPrincipal_CellValueChanged);
 			this.dtgPrincipal.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dtgPrincipal_DataBindingComplete);
-			this.dtgPrincipal.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPrincipal_RowValidated);
-			this.dtgPrincipal.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgPrincipal_RowValidating);
+			// 
+			// grpFiltro
+			// 
+			this.grpFiltro.Controls.Add(this.btnCargar);
+			this.grpFiltro.Controls.Add(this.btn_Filtro);
+			this.grpFiltro.Controls.Add(this.btn_cargarCliente);
+			this.grpFiltro.Controls.Add(this.txtNCliente);
+			this.grpFiltro.Controls.Add(this.label2);
+			this.grpFiltro.Controls.Add(this.txtRazonSocial);
+			this.grpFiltro.Controls.Add(this.label3);
+			this.grpFiltro.Controls.Add(this.txtRut);
+			this.grpFiltro.Controls.Add(this.label1);
+			this.grpFiltro.Dock = System.Windows.Forms.DockStyle.Top;
+			this.grpFiltro.Location = new System.Drawing.Point(0, 39);
+			this.grpFiltro.Name = "grpFiltro";
+			this.grpFiltro.Size = new System.Drawing.Size(1406, 135);
+			this.grpFiltro.TabIndex = 6;
+			this.grpFiltro.TabStop = false;
+			this.grpFiltro.Text = "Filtro";
+			// 
+			// btn_Filtro
+			// 
+			this.btn_Filtro.Location = new System.Drawing.Point(334, 17);
+			this.btn_Filtro.Name = "btn_Filtro";
+			this.btn_Filtro.Size = new System.Drawing.Size(75, 23);
+			this.btn_Filtro.TabIndex = 44;
+			this.btn_Filtro.Text = "Limpiar Filtro";
+			this.btn_Filtro.UseVisualStyleBackColor = true;
+			this.btn_Filtro.Click += new System.EventHandler(this.btn_Filtro_Click);
+			// 
+			// btn_cargarCliente
+			// 
+			this.btn_cargarCliente.Location = new System.Drawing.Point(217, 17);
+			this.btn_cargarCliente.Name = "btn_cargarCliente";
+			this.btn_cargarCliente.Size = new System.Drawing.Size(101, 23);
+			this.btn_cargarCliente.TabIndex = 39;
+			this.btn_cargarCliente.Text = "Cargar Cliente";
+			this.btn_cargarCliente.UseVisualStyleBackColor = true;
+			this.btn_cargarCliente.Click += new System.EventHandler(this.btn_cargarCliente_Click);
+			// 
+			// txtNCliente
+			// 
+			this.txtNCliente.Location = new System.Drawing.Point(102, 19);
+			this.txtNCliente.MaxLength = 4;
+			this.txtNCliente.Name = "txtNCliente";
+			this.txtNCliente.Size = new System.Drawing.Size(100, 20);
+			this.txtNCliente.TabIndex = 37;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(20, 22);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(57, 13);
+			this.label2.TabIndex = 43;
+			this.label2.Text = "N°  Cliente";
+			// 
+			// txtRazonSocial
+			// 
+			this.txtRazonSocial.Location = new System.Drawing.Point(102, 71);
+			this.txtRazonSocial.MaxLength = 60;
+			this.txtRazonSocial.Name = "txtRazonSocial";
+			this.txtRazonSocial.ReadOnly = true;
+			this.txtRazonSocial.Size = new System.Drawing.Size(342, 20);
+			this.txtRazonSocial.TabIndex = 40;
+			this.txtRazonSocial.TabStop = false;
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(19, 74);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(70, 13);
+			this.label3.TabIndex = 42;
+			this.label3.Text = "Razon Social";
+			// 
+			// txtRut
+			// 
+			this.txtRut.Location = new System.Drawing.Point(102, 46);
+			this.txtRut.MaxLength = 10;
+			this.txtRut.Name = "txtRut";
+			this.txtRut.ReadOnly = true;
+			this.txtRut.Size = new System.Drawing.Size(100, 20);
+			this.txtRut.TabIndex = 38;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(20, 49);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(24, 13);
+			this.label1.TabIndex = 36;
+			this.label1.Text = "Rut";
+			// 
+			// btnCargar
+			// 
+			this.btnCargar.Location = new System.Drawing.Point(22, 106);
+			this.btnCargar.Name = "btnCargar";
+			this.btnCargar.Size = new System.Drawing.Size(75, 23);
+			this.btnCargar.TabIndex = 45;
+			this.btnCargar.Text = "Cargar";
+			this.btnCargar.UseVisualStyleBackColor = true;
+			this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
 			// 
 			// colSeleccionar
 			// 
@@ -183,49 +305,64 @@
 			// 
 			// colRut
 			// 
-			this.colRut.DataPropertyName = "Rut";
+			this.colRut.DataPropertyName = "runsuc";
 			this.colRut.HeaderText = "Rut";
 			this.colRut.MaxInputLength = 10;
 			this.colRut.Name = "colRut";
 			// 
 			// ColNombre
 			// 
-			this.ColNombre.DataPropertyName = "Nombres";
-			this.ColNombre.HeaderText = "Nombres";
-			this.ColNombre.MaxInputLength = 100;
+			this.ColNombre.DataPropertyName = "Razon_Social";
+			this.ColNombre.HeaderText = "Razón social";
+			this.ColNombre.MaxInputLength = 200;
 			this.ColNombre.Name = "ColNombre";
-			this.ColNombre.Width = 150;
+			this.ColNombre.Width = 200;
 			// 
-			// ColPaterno
+			// ColDirección
 			// 
-			this.ColPaterno.DataPropertyName = "Paterno";
-			this.ColPaterno.HeaderText = "Ap. Paterno";
-			this.ColPaterno.MaxInputLength = 100;
-			this.ColPaterno.Name = "ColPaterno";
-			this.ColPaterno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.ColPaterno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			this.ColPaterno.ToolTipText = "Apellido paterno";
-			this.ColPaterno.Width = 180;
+			this.ColDirección.DataPropertyName = "Direccion";
+			this.ColDirección.HeaderText = "Dirección";
+			this.ColDirección.MaxInputLength = 100;
+			this.ColDirección.Name = "ColDirección";
+			this.ColDirección.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.ColDirección.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.ColDirección.Width = 200;
 			// 
-			// colMaternos
+			// colRegion
 			// 
-			this.colMaternos.DataPropertyName = "Maternos";
-			this.colMaternos.HeaderText = "Ap. Maternos";
-			this.colMaternos.MaxInputLength = 100;
-			this.colMaternos.Name = "colMaternos";
-			this.colMaternos.ToolTipText = "Apellido paterno";
-			this.colMaternos.Width = 150;
+			this.colRegion.DataPropertyName = "region";
+			this.colRegion.HeaderText = "Región";
+			this.colRegion.MaxInputLength = 100;
+			this.colRegion.Name = "colRegion";
+			this.colRegion.Width = 180;
 			// 
-			// colId_perfil
+			// ColProvincia
 			// 
-			this.colId_perfil.DataPropertyName = "Id_Perfil";
-			this.colId_perfil.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-			this.colId_perfil.DisplayStyleForCurrentCellOnly = true;
-			this.colId_perfil.HeaderText = "Perfil";
-			this.colId_perfil.Name = "colId_perfil";
-			this.colId_perfil.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.colId_perfil.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.colId_perfil.Width = 160;
+			this.ColProvincia.DataPropertyName = "provincia";
+			this.ColProvincia.HeaderText = "Provincia";
+			this.ColProvincia.Name = "ColProvincia";
+			this.ColProvincia.Width = 150;
+			// 
+			// ColComuna
+			// 
+			this.ColComuna.DataPropertyName = "comuna";
+			this.ColComuna.HeaderText = "Comuna";
+			this.ColComuna.Name = "ColComuna";
+			this.ColComuna.Width = 180;
+			// 
+			// ColTelefono
+			// 
+			this.ColTelefono.DataPropertyName = "Telefono";
+			this.ColTelefono.HeaderText = "Telefono";
+			this.ColTelefono.Name = "ColTelefono";
+			// 
+			// ColEstado_casa_matriz
+			// 
+			this.ColEstado_casa_matriz.DataPropertyName = "estado_casa_matriz";
+			this.ColEstado_casa_matriz.HeaderText = "Casa matriz";
+			this.ColEstado_casa_matriz.Name = "ColEstado_casa_matriz";
+			this.ColEstado_casa_matriz.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.ColEstado_casa_matriz.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
 			// 
 			// colEmail
 			// 
@@ -235,20 +372,31 @@
 			this.colEmail.Name = "colEmail";
 			this.colEmail.Width = 200;
 			// 
-			// colUsuario
+			// ColDirector
 			// 
-			this.colUsuario.DataPropertyName = "Usuario";
-			this.colUsuario.HeaderText = "Usuario";
-			this.colUsuario.MaxInputLength = 30;
-			this.colUsuario.Name = "colUsuario";
+			this.ColDirector.DataPropertyName = "Director";
+			this.ColDirector.HeaderText = "Director";
+			this.ColDirector.Name = "ColDirector";
+			this.ColDirector.Width = 180;
 			// 
-			// colContraseña
+			// ColOpr
 			// 
-			this.colContraseña.DataPropertyName = "Contraseña";
-			this.colContraseña.HeaderText = "Contraseña";
-			this.colContraseña.MaxInputLength = 10;
-			this.colContraseña.Name = "colContraseña";
-			this.colContraseña.Width = 150;
+			this.ColOpr.DataPropertyName = "Opr";
+			this.ColOpr.HeaderText = "Opr";
+			this.ColOpr.Name = "ColOpr";
+			this.ColOpr.Width = 150;
+			// 
+			// ColOPR_RUT
+			// 
+			this.ColOPR_RUT.DataPropertyName = "OPR_RUT";
+			this.ColOPR_RUT.HeaderText = "Opr Rut";
+			this.ColOPR_RUT.Name = "ColOPR_RUT";
+			// 
+			// ColServicio
+			// 
+			this.ColServicio.DataPropertyName = "Servicio";
+			this.ColServicio.HeaderText = "Servicio";
+			this.ColServicio.Name = "ColServicio";
 			// 
 			// colEstado
 			// 
@@ -263,6 +411,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1406, 450);
 			this.Controls.Add(this.dtgPrincipal);
+			this.Controls.Add(this.grpFiltro);
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.toolStrip1);
 			this.Name = "frmDireccion";
@@ -271,6 +420,8 @@
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dtgPrincipal)).EndInit();
+			this.grpFiltro.ResumeLayout(false);
+			this.grpFiltro.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -288,15 +439,30 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
 		private System.Windows.Forms.ToolStripButton tsbRefrescar;
 		private System.Windows.Forms.DataGridView dtgPrincipal;
+		private System.Windows.Forms.GroupBox grpFiltro;
+		private System.Windows.Forms.Button btn_Filtro;
+		private System.Windows.Forms.Button btn_cargarCliente;
+		private System.Windows.Forms.TextBox txtNCliente;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.TextBox txtRazonSocial;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.TextBox txtRut;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Button btnCargar;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn colSeleccionar;
 		private System.Windows.Forms.DataGridViewTextBoxColumn colRut;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColNombre;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ColPaterno;
-		private System.Windows.Forms.DataGridViewTextBoxColumn colMaternos;
-		private System.Windows.Forms.DataGridViewComboBoxColumn colId_perfil;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColDirección;
+		private System.Windows.Forms.DataGridViewTextBoxColumn colRegion;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColProvincia;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColComuna;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColTelefono;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn ColEstado_casa_matriz;
 		private System.Windows.Forms.DataGridViewTextBoxColumn colEmail;
-		private System.Windows.Forms.DataGridViewTextBoxColumn colUsuario;
-		private System.Windows.Forms.DataGridViewTextBoxColumn colContraseña;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColDirector;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColOpr;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColOPR_RUT;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColServicio;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn colEstado;
 	}
 }

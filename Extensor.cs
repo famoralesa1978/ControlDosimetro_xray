@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Deployment.Application;
 using System.Runtime.CompilerServices;
+using OpenXmlPowerTools;
 
 namespace ControlDosimetro
 {
@@ -36,13 +37,40 @@ namespace ControlDosimetro
 				(control as System.Windows.Forms.TextBox).MaxLength = Maximo;
 			}
 		}
-
+		public static void EventoAsignarRut(this Control control)
+		{
+			if (control is System.Windows.Forms.TextBox)
+			{
+				(control as System.Windows.Forms.TextBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
+				(control as System.Windows.Forms.TextBox).KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
+				(control as System.Windows.Forms.TextBox).Validated += new EventHandler(ClaseEvento.validarut_Validated);
+				(control as System.Windows.Forms.TextBox).Leave += new EventHandler(ClaseEvento.run_Leave);
+			}
+		}
 		public static void EventoAsignarAvanzar(this Control control)
 		{
 			if (control is System.Windows.Forms.TextBox)
-
 				(control as System.Windows.Forms.TextBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+			if (control is System.Windows.Forms.ComboBox)
+				(control as System.Windows.Forms.ComboBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+			if (control is System.Windows.Forms.DateTimePicker)
+				(control as System.Windows.Forms.DateTimePicker).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+			if (control is System.Windows.Forms.CheckBox)
+				(control as System.Windows.Forms.CheckBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 		}
+		public static void EventoAsignarDireccion(this Control control)
+		{
+			if (control is System.Windows.Forms.TextBox)
+				(control as System.Windows.Forms.TextBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Direccion_KeyPress);
+		}
+		public static void EventoAsignarValidarEmail(this Control control)
+		{
+			if (control is System.Windows.Forms.TextBox)
+				(control as System.Windows.Forms.TextBox).Validated += new EventHandler(ClaseEvento.validaEmail_Validated);
+		}
+		/// <summary>
+		/// Devuelve un 0  si esta incorrecto el valor
+		/// </summary>
 		public static int DevuelveEntero(this Control control)
 		{
 			if (control is System.Windows.Forms.TextBox)
@@ -55,6 +83,9 @@ namespace ControlDosimetro
 			}
 			return 0;
 		}
+		/// <summary>
+		/// Devuelve un 0  si esta incorrecto el valor u NULL si esta vacio
+		/// </summary>
 		public static int? DevuelveEnteroNulo(this Control control)
 		{
 			if (control is System.Windows.Forms.TextBox)
@@ -70,7 +101,11 @@ namespace ControlDosimetro
 			}
 			return null;
 		}
-
+		/// <summary>
+		///  valor u NULL si esta vacio
+		/// </summary>
+		/// <param name="control">El nombre del control</param>
+		/// <param name="Maximo">se le asigna el largo </param>
 		public static string DevuelveCadenaNulo(this Control control)
 		{
 			if (control is System.Windows.Forms.TextBox)
@@ -108,6 +143,11 @@ namespace ControlDosimetro
 		{
 			DataView dv = ((DataTable)dg.DataSource).DefaultView;
 			return dv;
+		}
+		public static void LimpiarDataGridView(this DataGridView dg)
+		{
+			if (dg.DataSource != null)
+				dg.Rows.Clear();
 		}
 		public static bool XHayError(this DataGridView dg)
 		{
@@ -160,7 +200,7 @@ namespace ControlDosimetro
 					{
 						string strNombreControl = label.Name.Substring(3, label.Name.Length - 3);
 						Control control = frm.Controls.Find(string.Format("ddl{0}", strNombreControl), true).FirstOrDefault() as ComboBox;
-						if (((ComboBox)control).DataSource==null  || ((ComboBox)control).SelectedValue==null)
+						if (((ComboBox)control).DataSource == null || ((ComboBox)control).SelectedValue == null)
 						{
 							stbError.AppendLine(string.Format("- {0}", label.Text));
 						}

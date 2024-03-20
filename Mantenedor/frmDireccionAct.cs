@@ -5,6 +5,7 @@ using dllConectorMysql;
 using dllLibreriaEvento;
 using dllLibreriaMysql;
 using System.Data.SqlClient;
+using Clases;
 
 namespace ControlDosimetro
 {
@@ -16,25 +17,21 @@ namespace ControlDosimetro
 		clsEventoControl ClaseEvento = new clsEventoControl();
 		Clases.ClassEvento clsEvento = new Clases.ClassEvento();
 		public int Id;
-
+		public string RutEmpresa;
+		public string IdCliente;
 		int casa_matriz_ins;
 		#endregion
 
 
-		public frmDireccionAct(Int64 intCodigo, Int64 codcliente)
+		private void frmDireccionAct_Load(object sender, EventArgs e)
 		{
-			InitializeComponent();
-			AsignarEvento();
-			Cargar_Region();
-			Cargar_Estado();
 			Cargar_Cliente(codcliente);
-			lbl_id_Sucursal.Text = intCodigo.ToString();
 			if (intCodigo == 0)
 			{
 				btn_Grabar.Text = "Grabar";
 				this.Text = "Agregar Sucursal";
-				txt_id_cliente.Enabled = false;
-				cbx_id_estado.Enabled = false;
+				txtIdCliente.Enabled = false;
+				chkEstado.Checked = true;
 				btnCopiar.Visible = false;
 				casa_matriz_ins = 0;
 				//cargar_valor_maximo();
@@ -44,8 +41,8 @@ namespace ControlDosimetro
 			{
 				btn_Grabar.Text = "Modificar";
 				this.Text = "Modificar Sucursal";
-				txt_id_cliente.Text = codcliente.ToString();
-				txt_id_cliente.Enabled = false;
+				txtIdCliente.Text = codcliente.ToString();
+				txtIdCliente.Enabled = false;
 				// SqlCommand cmd = new SqlCommand();
 				SqlCommand cmd = new SqlCommand();
 
@@ -54,19 +51,19 @@ namespace ControlDosimetro
 				DataSet dt;
 				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
-				txt_run.Text = dt.Tables[0].Rows[0]["run"].ToString();
+				txtRun.Text = dt.Tables[0].Rows[0]["run"].ToString();
 				//  txt_Razon_Social.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
-				txt_direccion.Text = dt.Tables[0].Rows[0]["Direccion"].ToString();
-				txt_telefono.Text = dt.Tables[0].Rows[0]["Telefono"].ToString();
-				cbx_id_region.SelectedValue = dt.Tables[0].Rows[0]["Id_Region"].ToString();
+				txtDireccion.Text = dt.Tables[0].Rows[0]["Direccion"].ToString();
+				txtTelefono.Text = dt.Tables[0].Rows[0]["Telefono"].ToString();
+				ddlIdRegion.SelectedValue = dt.Tables[0].Rows[0]["Id_Region"].ToString();
 				// cbx_region.SelectedIndex = cbx_id_region.SelectedIndex;
 				Cargar_Provincia();
-				cbx_id_provincia.SelectedValue = dt.Tables[0].Rows[0]["Id_Provincia"].ToString();
+				ddlIdProvincia.SelectedValue = dt.Tables[0].Rows[0]["Id_Provincia"].ToString();
 				Cargar_Comuna();
 				// cbx_provincia.SelectedIndex = cbx_id_provincia.SelectedIndex;
-				cbx_id_comuna.SelectedValue = dt.Tables[0].Rows[0]["Id_Comuna"].ToString();
+				ddlIdComuna.SelectedValue = dt.Tables[0].Rows[0]["Id_Comuna"].ToString();
 				//   cbx_comuna.SelectedIndex = cbx_id_comuna.SelectedIndex;
-				cbx_id_estado.SelectedValue = dt.Tables[0].Rows[0]["Id_estado"].ToString();
+				chkEstado.Checked = (bool)dt.Tables[0].Rows[0]["Estado"];
 				casa_matriz_ins = Convert.ToInt16(dt.Tables[0].Rows[0]["estado_casa_matriz"].ToString());
 				if (dt.Tables[0].Rows[0]["estado_casa_matriz"].ToString() == "1")
 					chk_CasaMatriz.Checked = true;
@@ -74,20 +71,27 @@ namespace ControlDosimetro
 					chk_CasaMatriz.Checked = false;
 				if (dt.Tables[0].Rows[0]["razon_social"].ToString().Trim() != "")
 				{
-					txt_Razon_Social.Text = dt.Tables[0].Rows[0]["razon_social"].ToString();
+					txtRazonSocial.Text = dt.Tables[0].Rows[0]["razon_social"].ToString();
 				}
 
 				if (dt.Tables[0].Rows[0]["runsuc"].ToString().Trim() != "")
 				{
-					txt_runsuc.Text = dt.Tables[0].Rows[0]["runsuc"].ToString();
+					txtRunSuc.Text = dt.Tables[0].Rows[0]["runsuc"].ToString();
 				}
 				else
-					txt_runsuc.Text = txt_run.Text;
+					txtRunSuc.Text = txtRun.Text;
 
 				//txt_runsuc.Enabled = false;
-				txt_Email.Text = dt.Tables[0].Rows[0]["email"].ToString().Trim() != "" ? dt.Tables[0].Rows[0]["email"].ToString() : "";
+				txtEmail.Text = dt.Tables[0].Rows[0]["email"].ToString().Trim() != "" ? dt.Tables[0].Rows[0]["email"].ToString() : "";
 				btnCopiar.Visible = true;
 			}
+
+		}
+		public frmDireccionAct(Int64 intCodigo, Int64 codcliente)
+		{
+			InitializeComponent();
+			AsignarEvento();
+			Cargar_Region();
 		}
 
 		#region "Llamada de carga"  
@@ -103,77 +107,44 @@ namespace ControlDosimetro
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
 			//lbl_id_cliente.Text = intCodCliente.ToString();
-			txt_run.Text = dt.Tables[0].Rows[0]["run"].ToString();
-			txt_id_cliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
-			txt_Razon_Social.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
+			txtRun.Text = dt.Tables[0].Rows[0]["run"].ToString();
+			txtIdCliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
+			txtRazonSocial.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
 		}
-
-		private void Cargar_Estado()
-		{
-			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_id_estado, ref cbx_id_estado);
-		}
-
 		private void Cargar_Region()
 		{
-			ClaseComun.Listar_Region(Clases.clsBD.BD, ref cbx_id_region, ref cbx_id_region);
+			ClaseComun.Listar_Region(Clases.clsBD.BD, ref ddlIdRegion, ref ddlIdRegion);
 		}
 
 		private void Cargar_Provincia()
 		{
-			ClaseComun.Listar_Provincia(Clases.clsBD.BD, ref cbx_id_provincia, ref cbx_id_provincia, Convert.ToInt16(cbx_id_region.SelectedValue));
+			ClaseComun.Listar_Provincia(Clases.clsBD.BD, ref ddlIdProvincia, ref ddlIdProvincia, Convert.ToInt16(ddlIdRegion.SelectedValue));
 		}
 
 		private void Cargar_Comuna()
 		{
-			ClaseComun.Listar_Comuna(Clases.clsBD.BD, ref cbx_id_comuna, ref cbx_id_comuna, Convert.ToInt16(cbx_id_region.SelectedValue), Convert.ToInt16(cbx_id_provincia.SelectedValue));
+			ClaseComun.Listar_Comuna(Clases.clsBD.BD, ref ddlIdComuna, ref ddlIdComuna, Convert.ToInt16(ddlIdRegion.SelectedValue), Convert.ToInt16(ddlIdProvincia.SelectedValue));
 		}
 
 		private void AsignarEvento()
 		{
-			SqlCommand cmd = new SqlCommand();
-
-			//	SqlCommand cmd = new SqlCommand();
-			DataSet dt;
-			string strname;
-			foreach (System.Windows.Forms.Control c in tbl_sucursal.Controls)
-			{
-				//foreach (Control childc in c.Controls)
-				//{
-				if (c is TextBox)
-				{
-
-					strname = ((TextBox)c).Name;
-
-					cmd.CommandText = "SELECT  requerido, validacion " +
-								" FROM glo_configuracioncampo WHERE campo= '" + strname.Replace("txt_", "") + "'";
-
-					dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-					if (dt.Tables[0].Rows.Count == 0)
-						((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-					else
-					{
-						if (dt.Tables[0].Rows[0]["validacion"].ToString() == "rut")
-						{
-							((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
-							((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
-							((TextBox)c).Validated += new EventHandler(ClaseEvento.validarut_Validated);
-							((TextBox)c).Leave += new EventHandler(ClaseEvento.run_Leave);
-						}
-						if (dt.Tables[0].Rows[0]["validacion"].ToString() == "numerico")
-						{
-							((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-							((TextBox)c).KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-						}
-					}
-				}
-				if (c is ComboBox)
-					((ComboBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-				if (c is DateTimePicker)
-					((DateTimePicker)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-
-			}
-			txt_Email.Validated += new EventHandler(ClaseEvento.validaEmail_Validated);
-			clsEvento.AsignarDireccion(ref txt_direccion);
+			txtIdCliente.EventoAsignarAvanzar();
+			txtRun.EventoAsignarAvanzar();
+			txtRunSuc.EventoAsignarRut();
+			txtRazonSocial.EventoAsignarAvanzar();
+			txtDireccion.EventoAsignarAvanzar();
+			txtTelefono.EventoAsignarAvanzar();
+			txtEmail.EventoAsignarAvanzar();
+			txtDirector.EventoAsignarAvanzar();
+			txtOpr.EventoAsignarAvanzar();
+			txtOPRRUT.EventoAsignarRut();
+			txtServicio.EventoAsignarAvanzar();
+			chkEstado.EventoAsignarAvanzar();
+			ddlIdRegion.EventoAsignarAvanzar();
+			ddlIdProvincia.EventoAsignarAvanzar();
+			ddlIdComuna.EventoAsignarAvanzar();
+			txtEmail.EventoAsignarValidarEmail();
+			txtDireccion.EventoAsignarDireccion();
 		}
 
 		private bool valida_cliente(int intCodigo)
@@ -201,9 +172,9 @@ namespace ControlDosimetro
 		{
 			btn_Grabar.Text = "Grabar";
 			this.Text = "Agregar Sucursal";
-			lbl_id_Sucursal.Text = "0";
-			txt_id_cliente.Enabled = false;
-			cbx_id_estado.Enabled = false;
+			Id = 0;
+			txtIdCliente.Enabled = false;
+			chkEstado.Checked = true;
 			btnCopiar.Visible = false;
 			casa_matriz_ins = 0;
 		}
@@ -288,7 +259,7 @@ namespace ControlDosimetro
 
 		private void txt_direccion_Leave(object sender, EventArgs e)
 		{
-			txt_direccion.Text = txt_direccion.Text.ToString().Replace("/", "").ToString();
+			txtDireccion.Text = txtDireccion.Text.ToString().Replace("/", "").ToString();
 		}
 
 		private void chk_CasaMatriz_CheckedChanged(object sender, EventArgs e)
@@ -304,11 +275,11 @@ namespace ControlDosimetro
 		{
 
 
-			string dir = txt_direccion.ToString();
+			string dir = txtDireccion.ToString();
 			long id_sucu = Convert.ToInt32(lbl_id_Sucursal.Text);
 			SqlCommand cmd = new SqlCommand();
 
-			cmd.CommandText = "pa_CambiaDireccionClientesuc_upd '" + txt_run.Text + "','" + txt_direccion.Text + "'," + txt_id_cliente.Text + "," + id_sucu + "," + casa_matriz_ins;
+			cmd.CommandText = "pa_CambiaDireccionClientesuc_upd '" + txtRun.Text + "','" + txtDireccion.Text + "'," + txtIdCliente.Text + "," + id_sucu + "," + casa_matriz_ins;
 
 			cmd.CommandType = CommandType.Text;
 			DataSet ds;
@@ -316,7 +287,6 @@ namespace ControlDosimetro
 			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
 
 		}
-
 
 	}
 }
