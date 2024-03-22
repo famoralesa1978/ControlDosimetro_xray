@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.tbl_sucursal = new System.Windows.Forms.GroupBox();
+			this.pnlSucursal = new System.Windows.Forms.GroupBox();
+			this.btnEliminar = new System.Windows.Forms.Button();
 			this.chkEstado = new System.Windows.Forms.CheckBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.txtOPRRUT = new System.Windows.Forms.TextBox();
@@ -50,8 +51,8 @@
 			this.ddlIdComuna = new System.Windows.Forms.ComboBox();
 			this.ddlIdProvincia = new System.Windows.Forms.ComboBox();
 			this.ddlIdRegion = new System.Windows.Forms.ComboBox();
-			this.btn_cerrar = new System.Windows.Forms.Button();
-			this.btn_Grabar = new System.Windows.Forms.Button();
+			this.btnCerrar = new System.Windows.Forms.Button();
+			this.btnGrabar = new System.Windows.Forms.Button();
 			this.txtTelefono = new System.Windows.Forms.TextBox();
 			this.lblTelefono = new System.Windows.Forms.Label();
 			this.lblIdComuna = new System.Windows.Forms.Label();
@@ -65,54 +66,67 @@
 			this.lblIdCliente = new System.Windows.Forms.Label();
 			this.txtRun = new System.Windows.Forms.TextBox();
 			this.lblRun = new System.Windows.Forms.Label();
-			this.tbl_sucursal.SuspendLayout();
+			this.pnlSucursal.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// tbl_sucursal
+			// pnlSucursal
 			// 
-			this.tbl_sucursal.Controls.Add(this.chkEstado);
-			this.tbl_sucursal.Controls.Add(this.label3);
-			this.tbl_sucursal.Controls.Add(this.txtOPRRUT);
-			this.tbl_sucursal.Controls.Add(this.lblOPRRUT);
-			this.tbl_sucursal.Controls.Add(this.txtOpr);
-			this.tbl_sucursal.Controls.Add(this.lblOpr);
-			this.tbl_sucursal.Controls.Add(this.txtDirector);
-			this.tbl_sucursal.Controls.Add(this.lblDirector);
-			this.tbl_sucursal.Controls.Add(this.txtServicio);
-			this.tbl_sucursal.Controls.Add(this.lblServicio);
-			this.tbl_sucursal.Controls.Add(this.btnCopiar);
-			this.tbl_sucursal.Controls.Add(this.lblEmail);
-			this.tbl_sucursal.Controls.Add(this.txtEmail);
-			this.tbl_sucursal.Controls.Add(this.chk_CasaMatriz);
-			this.tbl_sucursal.Controls.Add(this.txtRunSuc);
-			this.tbl_sucursal.Controls.Add(this.lblRunSuc);
-			this.tbl_sucursal.Controls.Add(this.lbl_id_estado);
-			this.tbl_sucursal.Controls.Add(this.label2);
-			this.tbl_sucursal.Controls.Add(this.ddlIdComuna);
-			this.tbl_sucursal.Controls.Add(this.ddlIdProvincia);
-			this.tbl_sucursal.Controls.Add(this.ddlIdRegion);
-			this.tbl_sucursal.Controls.Add(this.btn_cerrar);
-			this.tbl_sucursal.Controls.Add(this.btn_Grabar);
-			this.tbl_sucursal.Controls.Add(this.txtTelefono);
-			this.tbl_sucursal.Controls.Add(this.lblTelefono);
-			this.tbl_sucursal.Controls.Add(this.lblIdComuna);
-			this.tbl_sucursal.Controls.Add(this.lblIdProvincia);
-			this.tbl_sucursal.Controls.Add(this.lblIdRegion);
-			this.tbl_sucursal.Controls.Add(this.txtDireccion);
-			this.tbl_sucursal.Controls.Add(this.lblDireccion);
-			this.tbl_sucursal.Controls.Add(this.txtRazonSocial);
-			this.tbl_sucursal.Controls.Add(this.lblRazonSocial);
-			this.tbl_sucursal.Controls.Add(this.txtIdCliente);
-			this.tbl_sucursal.Controls.Add(this.lblIdCliente);
-			this.tbl_sucursal.Controls.Add(this.txtRun);
-			this.tbl_sucursal.Controls.Add(this.lblRun);
-			this.tbl_sucursal.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tbl_sucursal.Location = new System.Drawing.Point(0, 0);
-			this.tbl_sucursal.Name = "tbl_sucursal";
-			this.tbl_sucursal.Size = new System.Drawing.Size(491, 477);
-			this.tbl_sucursal.TabIndex = 0;
-			this.tbl_sucursal.TabStop = false;
-			this.tbl_sucursal.Text = "Datos";
+			this.pnlSucursal.Controls.Add(this.btnEliminar);
+			this.pnlSucursal.Controls.Add(this.chkEstado);
+			this.pnlSucursal.Controls.Add(this.label3);
+			this.pnlSucursal.Controls.Add(this.txtOPRRUT);
+			this.pnlSucursal.Controls.Add(this.lblOPRRUT);
+			this.pnlSucursal.Controls.Add(this.txtOpr);
+			this.pnlSucursal.Controls.Add(this.lblOpr);
+			this.pnlSucursal.Controls.Add(this.txtDirector);
+			this.pnlSucursal.Controls.Add(this.lblDirector);
+			this.pnlSucursal.Controls.Add(this.txtServicio);
+			this.pnlSucursal.Controls.Add(this.lblServicio);
+			this.pnlSucursal.Controls.Add(this.btnCopiar);
+			this.pnlSucursal.Controls.Add(this.lblEmail);
+			this.pnlSucursal.Controls.Add(this.txtEmail);
+			this.pnlSucursal.Controls.Add(this.chk_CasaMatriz);
+			this.pnlSucursal.Controls.Add(this.txtRunSuc);
+			this.pnlSucursal.Controls.Add(this.lblRunSuc);
+			this.pnlSucursal.Controls.Add(this.lbl_id_estado);
+			this.pnlSucursal.Controls.Add(this.label2);
+			this.pnlSucursal.Controls.Add(this.ddlIdComuna);
+			this.pnlSucursal.Controls.Add(this.ddlIdProvincia);
+			this.pnlSucursal.Controls.Add(this.ddlIdRegion);
+			this.pnlSucursal.Controls.Add(this.btnCerrar);
+			this.pnlSucursal.Controls.Add(this.btnGrabar);
+			this.pnlSucursal.Controls.Add(this.txtTelefono);
+			this.pnlSucursal.Controls.Add(this.lblTelefono);
+			this.pnlSucursal.Controls.Add(this.lblIdComuna);
+			this.pnlSucursal.Controls.Add(this.lblIdProvincia);
+			this.pnlSucursal.Controls.Add(this.lblIdRegion);
+			this.pnlSucursal.Controls.Add(this.txtDireccion);
+			this.pnlSucursal.Controls.Add(this.lblDireccion);
+			this.pnlSucursal.Controls.Add(this.txtRazonSocial);
+			this.pnlSucursal.Controls.Add(this.lblRazonSocial);
+			this.pnlSucursal.Controls.Add(this.txtIdCliente);
+			this.pnlSucursal.Controls.Add(this.lblIdCliente);
+			this.pnlSucursal.Controls.Add(this.txtRun);
+			this.pnlSucursal.Controls.Add(this.lblRun);
+			this.pnlSucursal.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnlSucursal.Location = new System.Drawing.Point(0, 0);
+			this.pnlSucursal.Name = "pnlSucursal";
+			this.pnlSucursal.Size = new System.Drawing.Size(491, 477);
+			this.pnlSucursal.TabIndex = 0;
+			this.pnlSucursal.TabStop = false;
+			this.pnlSucursal.Text = "Datos";
+			// 
+			// btnEliminar
+			// 
+			this.btnEliminar.Image = global::ControlDosimetro.Properties.Resources.Delete1;
+			this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnEliminar.Location = new System.Drawing.Point(184, 415);
+			this.btnEliminar.Name = "btnEliminar";
+			this.btnEliminar.Size = new System.Drawing.Size(123, 50);
+			this.btnEliminar.TabIndex = 18;
+			this.btnEliminar.Text = "Eliminar";
+			this.btnEliminar.UseVisualStyleBackColor = true;
+			this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
 			// 
 			// chkEstado
 			// 
@@ -120,7 +134,7 @@
 			this.chkEstado.Location = new System.Drawing.Point(167, 380);
 			this.chkEstado.Name = "chkEstado";
 			this.chkEstado.Size = new System.Drawing.Size(15, 14);
-			this.chkEstado.TabIndex = 73;
+			this.chkEstado.TabIndex = 16;
 			this.chkEstado.UseVisualStyleBackColor = true;
 			// 
 			// label3
@@ -138,7 +152,7 @@
 			this.txtOPRRUT.MaxLength = 10;
 			this.txtOPRRUT.Name = "txtOPRRUT";
 			this.txtOPRRUT.Size = new System.Drawing.Size(120, 20);
-			this.txtOPRRUT.TabIndex = 71;
+			this.txtOPRRUT.TabIndex = 14;
 			// 
 			// lblOPRRUT
 			// 
@@ -147,6 +161,7 @@
 			this.lblOPRRUT.Name = "lblOPRRUT";
 			this.lblOPRRUT.Size = new System.Drawing.Size(102, 23);
 			this.lblOPRRUT.TabIndex = 70;
+			this.lblOPRRUT.Tag = "TextBox";
 			this.lblOPRRUT.Text = "OPR Rut";
 			// 
 			// txtOpr
@@ -155,7 +170,7 @@
 			this.txtOpr.MaxLength = 50;
 			this.txtOpr.Name = "txtOpr";
 			this.txtOpr.Size = new System.Drawing.Size(313, 20);
-			this.txtOpr.TabIndex = 65;
+			this.txtOpr.TabIndex = 13;
 			// 
 			// lblOpr
 			// 
@@ -165,6 +180,7 @@
 			this.lblOpr.Name = "lblOpr";
 			this.lblOpr.Size = new System.Drawing.Size(30, 13);
 			this.lblOpr.TabIndex = 69;
+			this.lblOpr.Tag = "TextBox";
 			this.lblOpr.Text = "OPR";
 			// 
 			// txtDirector
@@ -173,7 +189,7 @@
 			this.txtDirector.MaxLength = 50;
 			this.txtDirector.Name = "txtDirector";
 			this.txtDirector.Size = new System.Drawing.Size(313, 20);
-			this.txtDirector.TabIndex = 64;
+			this.txtDirector.TabIndex = 12;
 			// 
 			// lblDirector
 			// 
@@ -183,6 +199,7 @@
 			this.lblDirector.Name = "lblDirector";
 			this.lblDirector.Size = new System.Drawing.Size(44, 13);
 			this.lblDirector.TabIndex = 68;
+			this.lblDirector.Tag = "TextBox";
 			this.lblDirector.Text = "Director";
 			// 
 			// txtServicio
@@ -191,7 +208,7 @@
 			this.txtServicio.MaxLength = 100;
 			this.txtServicio.Name = "txtServicio";
 			this.txtServicio.Size = new System.Drawing.Size(313, 20);
-			this.txtServicio.TabIndex = 66;
+			this.txtServicio.TabIndex = 15;
 			// 
 			// lblServicio
 			// 
@@ -201,6 +218,7 @@
 			this.lblServicio.Name = "lblServicio";
 			this.lblServicio.Size = new System.Drawing.Size(45, 13);
 			this.lblServicio.TabIndex = 67;
+			this.lblServicio.Tag = "TextBox";
 			this.lblServicio.Text = "Servicio";
 			// 
 			// btnCopiar
@@ -209,7 +227,7 @@
 			this.btnCopiar.Location = new System.Drawing.Point(432, 382);
 			this.btnCopiar.Name = "btnCopiar";
 			this.btnCopiar.Size = new System.Drawing.Size(47, 56);
-			this.btnCopiar.TabIndex = 43;
+			this.btnCopiar.TabIndex = 20;
 			this.btnCopiar.UseVisualStyleBackColor = true;
 			this.btnCopiar.Click += new System.EventHandler(this.btnCopiar_Click);
 			// 
@@ -220,6 +238,7 @@
 			this.lblEmail.Name = "lblEmail";
 			this.lblEmail.Size = new System.Drawing.Size(32, 13);
 			this.lblEmail.TabIndex = 42;
+			this.lblEmail.Tag = "TextBox";
 			this.lblEmail.Text = "Email";
 			// 
 			// txtEmail
@@ -228,7 +247,7 @@
 			this.txtEmail.MaxLength = 100;
 			this.txtEmail.Name = "txtEmail";
 			this.txtEmail.Size = new System.Drawing.Size(303, 20);
-			this.txtEmail.TabIndex = 10;
+			this.txtEmail.TabIndex = 11;
 			// 
 			// chk_CasaMatriz
 			// 
@@ -236,10 +255,9 @@
 			this.chk_CasaMatriz.Location = new System.Drawing.Point(389, 21);
 			this.chk_CasaMatriz.Name = "chk_CasaMatriz";
 			this.chk_CasaMatriz.Size = new System.Drawing.Size(81, 17);
-			this.chk_CasaMatriz.TabIndex = 32;
+			this.chk_CasaMatriz.TabIndex = 2;
 			this.chk_CasaMatriz.Text = "Casa Matriz";
 			this.chk_CasaMatriz.UseVisualStyleBackColor = true;
-			this.chk_CasaMatriz.CheckedChanged += new System.EventHandler(this.chk_CasaMatriz_CheckedChanged);
 			// 
 			// txtRunSuc
 			// 
@@ -247,7 +265,7 @@
 			this.txtRunSuc.MaxLength = 10;
 			this.txtRunSuc.Name = "txtRunSuc";
 			this.txtRunSuc.Size = new System.Drawing.Size(120, 20);
-			this.txtRunSuc.TabIndex = 31;
+			this.txtRunSuc.TabIndex = 4;
 			// 
 			// lblRunSuc
 			// 
@@ -257,6 +275,7 @@
 			this.lblRunSuc.Name = "lblRunSuc";
 			this.lblRunSuc.Size = new System.Drawing.Size(68, 13);
 			this.lblRunSuc.TabIndex = 30;
+			this.lblRunSuc.Tag = "TextBox";
 			this.lblRunSuc.Text = "Rut Sucursal";
 			// 
 			// lbl_id_estado
@@ -286,7 +305,7 @@
 			this.ddlIdComuna.Location = new System.Drawing.Point(166, 203);
 			this.ddlIdComuna.Name = "ddlIdComuna";
 			this.ddlIdComuna.Size = new System.Drawing.Size(303, 21);
-			this.ddlIdComuna.TabIndex = 23;
+			this.ddlIdComuna.TabIndex = 9;
 			this.ddlIdComuna.TabStop = false;
 			// 
 			// ddlIdProvincia
@@ -297,7 +316,7 @@
 			this.ddlIdProvincia.Location = new System.Drawing.Point(166, 176);
 			this.ddlIdProvincia.Name = "ddlIdProvincia";
 			this.ddlIdProvincia.Size = new System.Drawing.Size(303, 21);
-			this.ddlIdProvincia.TabIndex = 20;
+			this.ddlIdProvincia.TabIndex = 8;
 			this.ddlIdProvincia.TabStop = false;
 			this.ddlIdProvincia.SelectedIndexChanged += new System.EventHandler(this.cbx_id_provincia_SelectedIndexChanged);
 			// 
@@ -309,28 +328,32 @@
 			this.ddlIdRegion.Location = new System.Drawing.Point(166, 148);
 			this.ddlIdRegion.Name = "ddlIdRegion";
 			this.ddlIdRegion.Size = new System.Drawing.Size(303, 21);
-			this.ddlIdRegion.TabIndex = 6;
+			this.ddlIdRegion.TabIndex = 7;
 			this.ddlIdRegion.SelectedIndexChanged += new System.EventHandler(this.cbx_id_region_SelectedIndexChanged);
 			// 
-			// btn_cerrar
+			// btnCerrar
 			// 
-			this.btn_cerrar.Location = new System.Drawing.Point(272, 415);
-			this.btn_cerrar.Name = "btn_cerrar";
-			this.btn_cerrar.Size = new System.Drawing.Size(75, 23);
-			this.btn_cerrar.TabIndex = 13;
-			this.btn_cerrar.Text = "Cerrar";
-			this.btn_cerrar.UseVisualStyleBackColor = true;
-			this.btn_cerrar.Click += new System.EventHandler(this.btn_cerrar_Click);
+			this.btnCerrar.Image = global::ControlDosimetro.Properties.Resources.Close_24;
+			this.btnCerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnCerrar.Location = new System.Drawing.Point(316, 415);
+			this.btnCerrar.Name = "btnCerrar";
+			this.btnCerrar.Size = new System.Drawing.Size(110, 50);
+			this.btnCerrar.TabIndex = 19;
+			this.btnCerrar.Text = "Cerrar";
+			this.btnCerrar.UseVisualStyleBackColor = true;
+			this.btnCerrar.Click += new System.EventHandler(this.btn_cerrar_Click);
 			// 
-			// btn_Grabar
+			// btnGrabar
 			// 
-			this.btn_Grabar.Location = new System.Drawing.Point(85, 415);
-			this.btn_Grabar.Name = "btn_Grabar";
-			this.btn_Grabar.Size = new System.Drawing.Size(75, 23);
-			this.btn_Grabar.TabIndex = 12;
-			this.btn_Grabar.Text = "Guardar";
-			this.btn_Grabar.UseVisualStyleBackColor = true;
-			this.btn_Grabar.Click += new System.EventHandler(this.btn_Grabar_Click);
+			this.btnGrabar.Image = global::ControlDosimetro.Properties.Resources.Guardar;
+			this.btnGrabar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnGrabar.Location = new System.Drawing.Point(40, 415);
+			this.btnGrabar.Name = "btnGrabar";
+			this.btnGrabar.Size = new System.Drawing.Size(123, 50);
+			this.btnGrabar.TabIndex = 17;
+			this.btnGrabar.Text = "Guardar";
+			this.btnGrabar.UseVisualStyleBackColor = true;
+			this.btnGrabar.Click += new System.EventHandler(this.btn_Grabar_Click);
 			// 
 			// txtTelefono
 			// 
@@ -338,7 +361,7 @@
 			this.txtTelefono.MaxLength = 15;
 			this.txtTelefono.Name = "txtTelefono";
 			this.txtTelefono.Size = new System.Drawing.Size(141, 20);
-			this.txtTelefono.TabIndex = 9;
+			this.txtTelefono.TabIndex = 10;
 			// 
 			// lblTelefono
 			// 
@@ -348,6 +371,7 @@
 			this.lblTelefono.Name = "lblTelefono";
 			this.lblTelefono.Size = new System.Drawing.Size(49, 13);
 			this.lblTelefono.TabIndex = 14;
+			this.lblTelefono.Tag = "TextBox";
 			this.lblTelefono.Text = "Telefono";
 			// 
 			// lblIdComuna
@@ -358,6 +382,7 @@
 			this.lblIdComuna.Name = "lblIdComuna";
 			this.lblIdComuna.Size = new System.Drawing.Size(46, 13);
 			this.lblIdComuna.TabIndex = 13;
+			this.lblIdComuna.Tag = "ddl";
 			this.lblIdComuna.Text = "Comuna";
 			// 
 			// lblIdProvincia
@@ -368,6 +393,7 @@
 			this.lblIdProvincia.Name = "lblIdProvincia";
 			this.lblIdProvincia.Size = new System.Drawing.Size(51, 13);
 			this.lblIdProvincia.TabIndex = 12;
+			this.lblIdProvincia.Tag = "ddl";
 			this.lblIdProvincia.Text = "Provincia";
 			// 
 			// lblIdRegion
@@ -378,6 +404,7 @@
 			this.lblIdRegion.Name = "lblIdRegion";
 			this.lblIdRegion.Size = new System.Drawing.Size(41, 13);
 			this.lblIdRegion.TabIndex = 11;
+			this.lblIdRegion.Tag = "ddl";
 			this.lblIdRegion.Text = "Región";
 			// 
 			// txtDireccion
@@ -386,8 +413,7 @@
 			this.txtDireccion.MaxLength = 100;
 			this.txtDireccion.Name = "txtDireccion";
 			this.txtDireccion.Size = new System.Drawing.Size(313, 20);
-			this.txtDireccion.TabIndex = 5;
-			this.txtDireccion.Leave += new System.EventHandler(this.txt_direccion_Leave);
+			this.txtDireccion.TabIndex = 6;
 			// 
 			// lblDireccion
 			// 
@@ -397,6 +423,7 @@
 			this.lblDireccion.Name = "lblDireccion";
 			this.lblDireccion.Size = new System.Drawing.Size(52, 13);
 			this.lblDireccion.TabIndex = 9;
+			this.lblDireccion.Tag = "TextBox";
 			this.lblDireccion.Text = "Dirección";
 			// 
 			// txtRazonSocial
@@ -405,7 +432,7 @@
 			this.txtRazonSocial.MaxLength = 60;
 			this.txtRazonSocial.Name = "txtRazonSocial";
 			this.txtRazonSocial.Size = new System.Drawing.Size(313, 20);
-			this.txtRazonSocial.TabIndex = 4;
+			this.txtRazonSocial.TabIndex = 5;
 			// 
 			// lblRazonSocial
 			// 
@@ -415,6 +442,7 @@
 			this.lblRazonSocial.Name = "lblRazonSocial";
 			this.lblRazonSocial.Size = new System.Drawing.Size(70, 13);
 			this.lblRazonSocial.TabIndex = 7;
+			this.lblRazonSocial.Tag = "TextBox";
 			this.lblRazonSocial.Text = "Razon Social";
 			// 
 			// txtIdCliente
@@ -433,7 +461,8 @@
 			this.lblIdCliente.Location = new System.Drawing.Point(11, 22);
 			this.lblIdCliente.Name = "lblIdCliente";
 			this.lblIdCliente.Size = new System.Drawing.Size(54, 13);
-			this.lblIdCliente.TabIndex = 5;
+			this.lblIdCliente.TabIndex = 0;
+			this.lblIdCliente.Tag = "TextBox";
 			this.lblIdCliente.Text = "N° Cliente";
 			// 
 			// txtRun
@@ -453,6 +482,7 @@
 			this.lblRun.Name = "lblRun";
 			this.lblRun.Size = new System.Drawing.Size(58, 13);
 			this.lblRun.TabIndex = 0;
+			this.lblRun.Tag = "TextBox";
 			this.lblRun.Text = "Rut cliente";
 			// 
 			// frmDireccionAct
@@ -460,19 +490,22 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(491, 477);
-			this.Controls.Add(this.tbl_sucursal);
+			this.ControlBox = false;
+			this.Controls.Add(this.pnlSucursal);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Name = "frmDireccionAct";
+			this.ShowInTaskbar = false;
 			this.Text = "Dirección";
 			this.Load += new System.EventHandler(this.frmDireccionAct_Load);
-			this.tbl_sucursal.ResumeLayout(false);
-			this.tbl_sucursal.PerformLayout();
+			this.pnlSucursal.ResumeLayout(false);
+			this.pnlSucursal.PerformLayout();
 			this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox tbl_sucursal;
+        private System.Windows.Forms.GroupBox pnlSucursal;
         private System.Windows.Forms.TextBox txtRun;
         private System.Windows.Forms.Label lblRun;
         private System.Windows.Forms.Label lblIdCliente;
@@ -486,8 +519,8 @@
         private System.Windows.Forms.Label lblIdComuna;
         private System.Windows.Forms.Label lblIdProvincia;
         private System.Windows.Forms.Label lblIdRegion;
-        private System.Windows.Forms.Button btn_cerrar;
-        private System.Windows.Forms.Button btn_Grabar;
+        private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Button btnGrabar;
         private System.Windows.Forms.ComboBox ddlIdComuna;
         private System.Windows.Forms.ComboBox ddlIdProvincia;
         private System.Windows.Forms.ComboBox ddlIdRegion;
@@ -509,5 +542,6 @@
 		private System.Windows.Forms.TextBox txtServicio;
 		private System.Windows.Forms.Label lblServicio;
 		private System.Windows.Forms.CheckBox chkEstado;
+		private System.Windows.Forms.Button btnEliminar;
 	}
 }

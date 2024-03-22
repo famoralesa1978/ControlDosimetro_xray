@@ -2,7 +2,6 @@
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using dllLibreriaEvento;
 using System.IO;
 using System.Net;
 using System.Data.SqlClient;
@@ -10,6 +9,7 @@ using System.Text;
 using System.Deployment.Application;
 using System.Runtime.CompilerServices;
 using OpenXmlPowerTools;
+using Clases;
 
 namespace ControlDosimetro
 {
@@ -17,7 +17,7 @@ namespace ControlDosimetro
 	{
 		#region Declaracion
 
-		static clsEventoControl ClaseEvento = new clsEventoControl();
+		static ClassEvento ClaseEvento = new ClassEvento();
 		static dllLibreriaMysql.clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
 
 		#endregion
@@ -32,41 +32,45 @@ namespace ControlDosimetro
 		{
 			if (control is System.Windows.Forms.TextBox)
 			{
-				(control as System.Windows.Forms.TextBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-				(control as System.Windows.Forms.TextBox).KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
-				(control as System.Windows.Forms.TextBox).MaxLength = Maximo;
+				var txt = control as System.Windows.Forms.TextBox;
+				ClaseEvento.AsignarNumero(ref txt);
 			}
 		}
 		public static void EventoAsignarRut(this Control control)
 		{
 			if (control is System.Windows.Forms.TextBox)
 			{
-				(control as System.Windows.Forms.TextBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
-				(control as System.Windows.Forms.TextBox).KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
-				(control as System.Windows.Forms.TextBox).Validated += new EventHandler(ClaseEvento.validarut_Validated);
-				(control as System.Windows.Forms.TextBox).Leave += new EventHandler(ClaseEvento.run_Leave);
+				var txt = control as System.Windows.Forms.TextBox;
+				ClaseEvento.AsignarRut(ref txt);
 			}
 		}
 		public static void EventoAsignarAvanzar(this Control control)
 		{
-			if (control is System.Windows.Forms.TextBox)
-				(control as System.Windows.Forms.TextBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-			if (control is System.Windows.Forms.ComboBox)
-				(control as System.Windows.Forms.ComboBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-			if (control is System.Windows.Forms.DateTimePicker)
-				(control as System.Windows.Forms.DateTimePicker).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-			if (control is System.Windows.Forms.CheckBox)
-				(control as System.Windows.Forms.CheckBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+			//if (control is System.Windows.Forms.TextBox)
+			//	(control as System.Windows.Forms.TextBox).KeyPress += new KeyPressEventHandler(ClaseEvento.);
+			//if (control is System.Windows.Forms.ComboBox)
+			//	(control as System.Windows.Forms.ComboBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+			//if (control is System.Windows.Forms.DateTimePicker)
+			//	(control as System.Windows.Forms.DateTimePicker).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+			//if (control is System.Windows.Forms.CheckBox)
+			//	(control as System.Windows.Forms.CheckBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 		}
 		public static void EventoAsignarDireccion(this Control control)
 		{
 			if (control is System.Windows.Forms.TextBox)
-				(control as System.Windows.Forms.TextBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Direccion_KeyPress);
+			{
+				var txt = control as System.Windows.Forms.TextBox;
+				ClaseEvento.AsignarDireccion(ref txt);
+			}
 		}
 		public static void EventoAsignarValidarEmail(this Control control)
 		{
 			if (control is System.Windows.Forms.TextBox)
-				(control as System.Windows.Forms.TextBox).Validated += new EventHandler(ClaseEvento.validaEmail_Validated);
+			{
+				var txt = control as System.Windows.Forms.TextBox;
+				if (txt.DevuelveCadenaNulo() != null)
+					ClaseEvento.AsignarMailMultiple(ref txt);
+			}
 		}
 		/// <summary>
 		/// Devuelve un 0  si esta incorrecto el valor
@@ -144,10 +148,30 @@ namespace ControlDosimetro
 			DataView dv = ((DataTable)dg.DataSource).DefaultView;
 			return dv;
 		}
+		public static int? ObtenerID(this DataGridView dg)
+		{
+			if (dg.CurrentRow != null)
+			{
+				return (int)((DataRowView)dg.CurrentRow.DataBoundItem)[0];
+			}
+			return null;
+		}
+		public static DataRow FilaActual(this DataGridView dg)
+		{
+			if (dg.CurrentRow != null)
+			{
+				return ((DataRowView)dg.CurrentRow.DataBoundItem).Row;
+			}
+			return null;
+		}
 		public static void LimpiarDataGridView(this DataGridView dg)
 		{
 			if (dg.DataSource != null)
-				dg.Rows.Clear();
+			{
+				var dv = dg.Vista();
+				dv.Table.Clear();
+			}
+
 		}
 		public static bool XHayError(this DataGridView dg)
 		{
@@ -181,7 +205,11 @@ namespace ControlDosimetro
 			else
 				return false;
 		}
-		public static bool XValidarPanel(this Panel frm, ref StringBuilder stbError)
+		/// <summary>
+		/// Devuelve un true si hay errores y hay que definir  un StringBuilder stbError
+		/// </summary>
+		/// <param name="stbError">El nombre del control</param>
+		public static bool XValidarPanel(this Control frm, ref StringBuilder stbError)
 		{
 			foreach (var label in frm.Controls.OfType<System.Windows.Forms.Label>())
 			{

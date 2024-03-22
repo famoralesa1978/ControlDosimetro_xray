@@ -188,6 +188,7 @@
 			this.dtgPrincipal.Name = "dtgPrincipal";
 			this.dtgPrincipal.Size = new System.Drawing.Size(1406, 254);
 			this.dtgPrincipal.TabIndex = 5;
+			this.dtgPrincipal.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPrincipal_CellDoubleClick);
 			this.dtgPrincipal.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dtgPrincipal_DataBindingComplete);
 			// 
 			// grpFiltro
@@ -415,6 +416,7 @@
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.toolStrip1);
 			this.Name = "frmDireccion";
+			this.ShowInTaskbar = false;
 			this.Text = "Dirección";
 			this.Load += new System.EventHandler(this.frmDireccion_Load);
 			this.toolStrip1.ResumeLayout(false);

@@ -29,7 +29,7 @@ namespace Clases
 
 		public void AsignarRut(ref TextBox textbox)
 		{
-			textbox.MaxLength = 10;
+			textbox.MaxLength = 11;
 
 			textbox.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
 			textbox.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
@@ -39,7 +39,7 @@ namespace Clases
 
 		public void AsignarRutSinGuion(ref TextBox textbox)
 		{
-			textbox.MaxLength = 10;
+			textbox.MaxLength = 11;
 
 			textbox.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
 			textbox.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
@@ -262,8 +262,7 @@ namespace Clases
 				string[] stringSeparators = new string[] { ";" };
 				string[] result = strEmail.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries);
 				String expresion;
-				expresion = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
- @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
+				expresion = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
 				foreach (string s in result)
 				{
 

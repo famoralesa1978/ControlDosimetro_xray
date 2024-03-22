@@ -399,9 +399,10 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.MantSucursal:
-					objFrm = new frmBusquedaSucursal(0)
+					objFrm = new frmDireccion()
 					{
 						ShowInTaskbar = false,
+						intMenu = (int)MENU.MantSucursal,
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
@@ -929,9 +930,10 @@ namespace ControlDosimetro
 					objFrm.Show(this);
 					break;
 				case (int)MENU.MantSucursal:
-					objFrm = new frmBusquedaSucursal(0)
+					objFrm = new frmDireccion()
 					{
 						ShowInTaskbar = false,
+						intMenu= (int)MENU.MantSucursal,
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);

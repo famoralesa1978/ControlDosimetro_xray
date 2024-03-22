@@ -2037,7 +2037,7 @@ namespace ControlDosimetro
 
 		private void Btn_Sucursal_Click(object sender, EventArgs e)
 		{
-			frmBusquedaSucursal frm = new frmBusquedaSucursal(0);
+			frmDireccion frm = new frmDireccion();
 			frm.ShowDialog(this);
 		}
 

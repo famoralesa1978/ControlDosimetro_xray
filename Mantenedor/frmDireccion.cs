@@ -22,6 +22,7 @@ namespace ControlDosimetro
 		public int intMenu;
 
 		private bool Lectura, Agregar, Modificar, Eliminar;
+
 		private bool bolInicializar = true;
 
 		#endregion
@@ -36,6 +37,7 @@ namespace ControlDosimetro
 		private void frmDireccion_Load(object sender, EventArgs e)
 		{
 			AsignarPermiso();
+			AsignarEvento();
 			Iniciarparametro();
 			bolInicializar = false;
 		}
@@ -49,25 +51,27 @@ namespace ControlDosimetro
 		#region Barra
 		private void tsbAgregar_Click(object sender, EventArgs e)
 		{
-
+			frmDireccionAct frm = new frmDireccionAct();
+			frm.Id = 0;
+			frm.RutEmpresa = txtRut.Text;
+			frm.RazonSocial = txtRazonSocial.Text;
+			frm.IdCliente = txtNCliente.DevuelveEntero();
+			frm.intMenu = intMenu;
+			frm.ShowDialog(this);
 		}
 		private void tsbModificar_Click(object sender, EventArgs e)
 		{
-
+			frmDireccionAct frm = new frmDireccionAct();
+			frm.Id = (int)dtgPrincipal.ObtenerID();
+			frm.RutEmpresa = txtRut.Text;
+			frm.IdCliente = txtNCliente.DevuelveEntero();
+			frm.intMenu = intMenu;
+			frm.ShowDialog(this);
 		}
 		private void tsbRefrescar_Click(object sender, EventArgs e)
 		{
-			if (dtgPrincipal.XHayCambio())
-			{
-				if ("Hay datos modificado,¿Desea aactualizar los datos?".XMensajeConfirmacionSiNo())
-				{
-					tsbGuardar_Click(null, null);
-				}
-				else
-					CargarDatosInicial();
-			}
-			else
-				CargarDatosInicial();
+			if (txtNCliente.DevuelveCadenaNulo() == null) return;
+			CargarDatosInicial();
 		}
 		private void tsbGuardar_Click(object sender, EventArgs e)
 		{
@@ -204,6 +208,10 @@ namespace ControlDosimetro
 		#endregion
 
 		#region Accion
+		private void AsignarEvento()
+		{
+			txtNCliente.EventoAsignarNumero(999);
+		}
 		private void Iniciarparametro()
 		{
 			btnCargar.Enabled = false;
@@ -221,9 +229,6 @@ namespace ControlDosimetro
 
 			dtgPrincipal.ReadOnly = Lectura ? true : !(Eliminar);
 			dtgPrincipal.DefaultCellStyle.BackColor = ClaseGeneral.ColorCeldaBloqueado;
-			//tsbAgregar.Enabled = Lectura == false && Agregar;
-			//tsbModificar.Enabled = Lectura == false && Modificar;
-			//tsbEliminar.Enabled = Lectura == false && Eliminar;
 			Cursor = Cursors.Default;
 		}
 		private void CargarGrilla()
@@ -232,7 +237,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "DireccionGrid";
 			cmd.Parameters.Add("@id_cliente", SqlDbType.Int);
 			cmd.Parameters["@id_cliente"].Value = txtNCliente.Text;
-			cmd.Parameters.Add("@run", SqlDbType.Int);
+			cmd.Parameters.Add("@run", SqlDbType.VarChar);
 			cmd.Parameters["@run"].Value = txtRut.Text;
 			cmd.CommandType = CommandType.StoredProcedure;
 
@@ -242,10 +247,10 @@ namespace ControlDosimetro
 			if (dt != null)
 			{
 				dtgPrincipal.DataSource = dt.Tables[0];
-				tsbEliminar.Enabled = Lectura == false && Eliminar && dt.Tables[0].Rows.Count>0;
+				tsbEliminar.Enabled = Lectura == false && Eliminar && dt.Tables[0].Rows.Count > 0;
 				tsbModificar.Enabled = Lectura == false && Modificar && dt.Tables[0].Rows.Count > 0;
 			}
-				
+
 
 		}
 		#endregion
@@ -255,6 +260,13 @@ namespace ControlDosimetro
 		{
 			CargarGrilla();
 		}
+
+		private void dtgPrincipal_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			if (e.RowIndex < 0) return;
+			tsbModificar_Click(null, null);
+		}
+
 		private void btn_cargarCliente_Click(object sender, EventArgs e)
 		{
 			if (txtNCliente.DevuelveCadenaNulo() == null) return;
@@ -271,6 +283,7 @@ namespace ControlDosimetro
 				btnCargar.Enabled = true;
 				btn_cargarCliente.Enabled = false;
 				tsbAgregar.Enabled = Lectura == false && Agregar;
+				btnCargar_Click(null,null);
 			}
 			Cursor = Cursors.Default;
 		}
@@ -282,6 +295,7 @@ namespace ControlDosimetro
 			txtNCliente.Enabled = true;
 			btnCargar.Enabled = false;
 			btn_cargarCliente.Enabled = true;
+			tsbAgregar.Enabled = tsbEliminar.Enabled = tsbModificar.Enabled = false;
 			dtgPrincipal.LimpiarDataGridView();
 		}
 		#endregion
