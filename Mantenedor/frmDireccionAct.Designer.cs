@@ -156,7 +156,7 @@
 			// 
 			// lblOPRRUT
 			// 
-			this.lblOPRRUT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblOPRRUT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblOPRRUT.Location = new System.Drawing.Point(9, 333);
 			this.lblOPRRUT.Name = "lblOPRRUT";
 			this.lblOPRRUT.Size = new System.Drawing.Size(102, 23);
@@ -175,7 +175,7 @@
 			// lblOpr
 			// 
 			this.lblOpr.AutoSize = true;
-			this.lblOpr.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblOpr.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblOpr.Location = new System.Drawing.Point(9, 310);
 			this.lblOpr.Name = "lblOpr";
 			this.lblOpr.Size = new System.Drawing.Size(30, 13);
@@ -194,7 +194,7 @@
 			// lblDirector
 			// 
 			this.lblDirector.AutoSize = true;
-			this.lblDirector.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblDirector.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblDirector.Location = new System.Drawing.Point(9, 284);
 			this.lblDirector.Name = "lblDirector";
 			this.lblDirector.Size = new System.Drawing.Size(44, 13);
@@ -213,7 +213,7 @@
 			// lblServicio
 			// 
 			this.lblServicio.AutoSize = true;
-			this.lblServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblServicio.Location = new System.Drawing.Point(9, 356);
 			this.lblServicio.Name = "lblServicio";
 			this.lblServicio.Size = new System.Drawing.Size(45, 13);

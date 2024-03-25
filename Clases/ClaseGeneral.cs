@@ -21,6 +21,7 @@ namespace ControlDosimetro
 		public static string Ambiente = Settings.Default.Ambiente.ToString();
 		public static System.Drawing.Color ColorAmbiente = Settings.Default.Color;
 		public static System.Drawing.Color ColorCeldaBloqueado = Settings.Default.ColorCeldaBloqueda;
+		public static System.Drawing.Color ColorCeldaEliminado = Settings.Default.ColorCeldaEliminado;
 		public static string IP = "".XCapturarIP();
 		public static string NombreEquipo = "".XCapturarNombreEquipo();
 		public static string MensajeAdministrador = Settings.Default.MensajeAdminstrador.ToString();

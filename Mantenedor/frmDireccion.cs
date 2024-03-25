@@ -314,7 +314,7 @@ namespace ControlDosimetro
 
 
 					item.Cells[colSeleccionar.Index].ReadOnly = !Eliminar;
-					item.Cells[colSeleccionar.Index].Style.BackColor = (bool)Eliminar ? SystemColors.Window : ClaseGeneral.ColorCeldaBloqueado;
+					item.DefaultCellStyle.BackColor = !(bool)dtrFila["Estado"] ? ClaseGeneral.ColorCeldaEliminado : ClaseGeneral.ColorCeldaBloqueado;
 				}
 			}
 		}
