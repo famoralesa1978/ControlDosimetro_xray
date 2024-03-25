@@ -85,6 +85,14 @@ namespace ControlDosimetro
 				else
 					return 0;
 			}
+			if (control is System.Windows.Forms.Label)
+			{
+				int intValor;
+				if (int.TryParse(control.Text, out intValor))
+					return intValor;
+				else
+					return 0;
+			}
 			return 0;
 		}
 		/// <summary>

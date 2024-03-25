@@ -80,7 +80,7 @@ namespace ControlDosimetro
 					"from [dbo].[tbl_sucursal] s " +
 					"inner join glo_region r on r.Id_region=s.Id_Region " +
 					"inner join glo_comuna co on co.id_comuna=s.Id_Comuna " +
-					"where run='" + run + "'  and id_cliente= " + lbl_id_cliente.Text + " and Id_estado=1";
+					"where run='" + (string.IsNullOrWhiteSpace(run)?"":run) + "'  and id_cliente= " + lbl_id_cliente.DevuelveEntero()+ " and s.Estado=1";
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 

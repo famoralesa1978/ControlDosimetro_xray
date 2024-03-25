@@ -476,18 +476,6 @@
     <Compile Include="Mantenedor\frmMantenedorTipoDocumento.Designer.cs">
       <DependentUpon>frmMantenedorTipoDocumento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mantenedor\frmSucursalMant.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mantenedor\frmSucursalMant.Designer.cs">
-      <DependentUpon>frmSucursalMant.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mantenedor\frmBusquedaSucursal.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mantenedor\frmBusquedaSucursal.Designer.cs">
-      <DependentUpon>frmBusquedaSucursal.cs</DependentUpon>
-    </Compile>
     <Compile Include="Mantenedor\frmImprimirSobreMasivo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -894,12 +882,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmDireccionAct.resx">
       <DependentUpon>frmDireccionAct.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mantenedor\frmSucursalMant.resx">
-      <DependentUpon>frmSucursalMant.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mantenedor\frmBusquedaSucursal.resx">
-      <DependentUpon>frmBusquedaSucursal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmDireccion.resx">
       <DependentUpon>frmDireccion.cs</DependentUpon>

@@ -237,7 +237,7 @@ namespace ControlDosimetro
 					"from [dbo].[tbl_sucursal] s " +
 					"inner join glo_region r on r.Id_region=s.Id_Region " +
 					"inner join glo_comuna co on co.id_comuna=s.Id_Comuna " +
-					"where run='" + lbl_rut.Text + "' and s.id_estado=1"
+					"where run='" + lbl_rut.Text + "' and s.Estado=1"
 			};
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
