@@ -2038,6 +2038,7 @@ namespace ControlDosimetro
 		private void Btn_Sucursal_Click(object sender, EventArgs e)
 		{
 			frmDireccion frm = new frmDireccion();
+			frm.intMenu = (int)MDIPrincipal.MENU.MantSucursal;
 			frm.ShowDialog(this);
 		}
 

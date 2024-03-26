@@ -540,6 +540,7 @@ namespace ControlDosimetro
 		private void PctAgregarSucursal_Click(object sender, EventArgs e)
 		{
 			frmDireccion frm = new frmDireccion();
+			frm.intMenu = (int)MDIPrincipal.MENU.MantSucursal;
 			frm.ShowDialog(this);
 			Cargar_Sucursal();
 		}
