@@ -58,6 +58,7 @@ namespace ControlDosimetro
 			frm.IdCliente = txtNCliente.DevuelveEntero();
 			frm.intMenu = intMenu;
 			frm.ShowDialog(this);
+			CargarGrilla();
 		}
 		private void tsbModificar_Click(object sender, EventArgs e)
 		{
@@ -67,6 +68,7 @@ namespace ControlDosimetro
 			frm.IdCliente = txtNCliente.DevuelveEntero();
 			frm.intMenu = intMenu;
 			frm.ShowDialog(this);
+			CargarGrilla();
 		}
 		private void tsbRefrescar_Click(object sender, EventArgs e)
 		{

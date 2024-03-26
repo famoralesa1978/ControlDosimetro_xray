@@ -309,8 +309,7 @@ namespace ControlDosimetro
 		private void btnCopiar_Click(object sender, EventArgs e)
 		{
 			this.Text = "Agregar Sucursal";
-			Id = 0;
-			LimpiarFormulario();
+			Id = 0;	
 			btnCopiar.Visible = false;
 			casa_matriz_ins = 0;
 		}
