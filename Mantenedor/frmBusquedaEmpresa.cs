@@ -228,7 +228,7 @@ namespace ControlDosimetro
 
 			Cursor = Cursors.WaitCursor;
 
-			frmBusquedaPersonal frm = new frmBusquedaPersonal(Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
+			frmModificarPersonalMasivo frm = new frmModificarPersonalMasivo();
 			frm.ShowDialog(this);
 
 			Cursor = Cursors.Default;

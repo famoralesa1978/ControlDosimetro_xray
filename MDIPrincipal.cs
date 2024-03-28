@@ -33,7 +33,6 @@ namespace ControlDosimetro
 			MantTipoDocumento = 104,
 			MantCliente = 106,
 			MantSucursal = 107,
-			MantPersonal = 108,
 			MantPermiso = 109,
 			MantMasivoPersonal = 110,
 			MantVersionesSistema = 111,
@@ -403,15 +402,6 @@ namespace ControlDosimetro
 					{
 						ShowInTaskbar = false,
 						intMenu = (int)MENU.MantSucursal,
-						StartPosition = FormStartPosition.CenterScreen
-					};
-					Graba_log(objFrm.Text);
-					objFrm.Show(this);
-					break;
-				case (int)MENU.MantPersonal:
-					objFrm = new frmBusquedaPersonal(0)
-					{
-						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
@@ -934,15 +924,6 @@ namespace ControlDosimetro
 					{
 						ShowInTaskbar = false,
 						intMenu= (int)MENU.MantSucursal,
-						StartPosition = FormStartPosition.CenterScreen
-					};
-					Graba_log(objFrm.Text);
-					objFrm.Show(this);
-					break;
-				case (int)MENU.MantPersonal:
-					objFrm = new frmBusquedaPersonal(0)
-					{
-						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);

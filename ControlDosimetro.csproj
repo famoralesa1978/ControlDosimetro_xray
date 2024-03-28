@@ -700,12 +700,6 @@
     <Compile Include="Mantenedor\frmPersonalMant.Designer.cs">
       <DependentUpon>frmPersonalMant.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mantenedor\frmBusquedaPersonal.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mantenedor\frmBusquedaPersonal.Designer.cs">
-      <DependentUpon>frmBusquedaPersonal.cs</DependentUpon>
-    </Compile>
     <Compile Include="Mantenedor\frmObservacionCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -966,9 +960,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmPersonalMant.resx">
       <DependentUpon>frmPersonalMant.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mantenedor\frmBusquedaPersonal.resx">
-      <DependentUpon>frmBusquedaPersonal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmObservacionCliente.resx">
       <DependentUpon>frmObservacionCliente.cs</DependentUpon>
