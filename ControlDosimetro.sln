@@ -1,18 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.645
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlDosimetro", "ControlDosimetro.csproj", "{09D49D89-6658-47AD-8F51-65D22E77F042}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Desarrollo|Any CPU = Desarrollo|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{09D49D89-6658-47AD-8F51-65D22E77F042}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{09D49D89-6658-47AD-8F51-65D22E77F042}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09D49D89-6658-47AD-8F51-65D22E77F042}.Desarrollo|Any CPU.ActiveCfg = Debug|Any CPU
+		{09D49D89-6658-47AD-8F51-65D22E77F042}.Desarrollo|Any CPU.Build.0 = Debug|Any CPU
 		{09D49D89-6658-47AD-8F51-65D22E77F042}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09D49D89-6658-47AD-8F51-65D22E77F042}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

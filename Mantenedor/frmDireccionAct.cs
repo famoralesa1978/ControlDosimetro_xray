@@ -99,6 +99,7 @@ namespace ControlDosimetro
 
 			btnGrabar.Enabled = ((Lectura == false && Modificar) || (Lectura == false && Agregar));
 			btnEliminar.Enabled = Lectura == false && Eliminar;
+
 			Cursor = Cursors.Default;
 		}
 		private void CargarDatos()

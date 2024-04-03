@@ -229,6 +229,7 @@ namespace ControlDosimetro
 			Cursor = Cursors.WaitCursor;
 
 			frmModificarPersonalMasivo frm = new frmModificarPersonalMasivo();
+			frm.intMenu = (int)MDIPrincipal.MENU.MantMasivoPersonal;
 			frm.ShowDialog(this);
 
 			Cursor = Cursors.Default;

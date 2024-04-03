@@ -13,6 +13,7 @@ using dllLibreriaMysql;
 using System.Data.SqlClient;
 using System.Data.Sql;
 using System.Diagnostics;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ControlDosimetro
 {
@@ -20,35 +21,21 @@ namespace ControlDosimetro
 	{
 
 		#region "Definicion variable"
-		clsConectorSqlServer Conectar = new clsConectorSqlServer();
+		clsConectorSqlServerV2 Conectar = new clsConectorSqlServerV2();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		Clases.ClassEvento clsEvento = new Clases.ClassEvento();
 		classFuncionesBD.ClsFunciones ClaseFunciones = new classFuncionesBD.ClsFunciones();
 		bool bolDesdeCodigo;
 		bool bolInicializacion;
-		bool Lectura;
-		bool Nuevo;
-		bool Modificacion;
-		bool Eliminar;
+		private bool Lectura, Agregar, Modificar, Eliminar;
 		DateTimePicker dateTimePicker1;
 		DateTimePicker dtpFechaInicio;
 		DateTimePicker dtpFechaTermino;
 		DataSet dt;
 		DataSet dtPersonal;
-		public int Id_Menu { get; private set; }
+		public int intMenu;
 
 		public bool bolGrabar;
-
-		public object[] Parametros
-		{
-			set
-			{
-				if (value != null)
-				{
-					Id_Menu = (int)value[0];
-				}
-			}
-		}
 
 		#endregion
 
@@ -72,9 +59,16 @@ namespace ControlDosimetro
 
 		private void AsignarPermiso()
 		{
-			ClaseFunciones.Cargar_Permiso(Clases.clsUsuario.Id_perfil, Id_Menu, ref Lectura, ref Nuevo, ref Modificacion, ref Eliminar);
-			tsbGuardar.Visible = Modificacion;
-			tsbPersonal.Visible = Nuevo;
+			Cursor = Cursors.WaitCursor;
+			Conectar.PermisoFormulario(intMenu, ref Lectura, ref Agregar, ref Modificar, ref Eliminar);
+			Cursor = Cursors.Default;
+
+			tsbGuardar.Enabled = (Lectura == false && Modificar);
+			tsbNuevo.Enabled = false;
+			grdDatos.ReadOnly = Lectura || !Modificar ;
+			grdDatos.DefaultCellStyle.BackColor = ClaseGeneral.ColorCeldaBloqueado;
+			//btnEliminar.Enabled = Lectura == false && Eliminar;
+			Cursor = Cursors.Default;
 		}
 
 		private void Listar_Cliente(Int64 intCliente)
@@ -90,7 +84,7 @@ namespace ControlDosimetro
 						"where  (id_cliente=" + intCliente.ToString() + ") or run ='" + txt_Rut.Text + "' " +
 						" and id_estado= 1" +
 						"order by id_cliente";
-				txt_ref_cliente.Text = intCliente.ToString();
+				txt_N_cliente.Text = intCliente.ToString();
 			}
 			if (intCliente == 0)
 				cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
@@ -104,28 +98,29 @@ namespace ControlDosimetro
 
 			if (dt.Tables[0].Rows.Count == 0)
 			{
-				txt_ref_cliente.Text = "";
+				txt_N_cliente.Text = "";
 				txt_Rut.Text = "";
 				txt_RazonSocial.Text = "";
 				grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = false;
-				tsbPersonal.Visible= tsbGuardar.Visible = false;
+				tsbNuevo.Enabled = false;
+				tsbGuardar.Enabled = false;
 				btnDescargarExcel.Enabled = false;
 				bolDesdeCodigo = false;
 				chk_AsignarTLD.Checked = false;
 				btn_cargarCliente.Enabled = true;
-				
+				tsbAsignarSucursal.Enabled = tsbAsignarSeccion.Enabled = false;
 			}
 			else
 			{
-				txt_ref_cliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
+				txt_N_cliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
 				txt_Rut.Text = dt.Tables[0].Rows[0]["run"].ToString();
 				txt_RazonSocial.Text = dt.Tables[0].Rows[0]["razon_social"].ToString();
-				txt_ref_cliente.ReadOnly = true;
+				txt_N_cliente.ReadOnly = true;
 				txt_Rut.ReadOnly = true;
 				grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = true;
-				tsbGuardar.Visible = Modificacion;
+				tsbGuardar.Enabled = Modificar && !Lectura;
 
-				tsbPersonal.Visible = Nuevo;
+				tsbNuevo.Enabled = Agregar && !Lectura;
 				txt_RazonSocial.ReadOnly = true;
 				btn_cargarCliente.Enabled = false;
 				bolDesdeCodigo = true;
@@ -135,18 +130,20 @@ namespace ControlDosimetro
 				Cargar_Direccion();
 				Listar_Personal();
 				picFiltrarpersonal_Click(null, null);
+				tsbAsignarSucursal.Enabled = tsbAsignarSeccion.Enabled = true;
 			}
 		}
 
 		private void Listar_Personal()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = String.Format("pa_ListarPersonal_sel {0},'{1}'", (String.IsNullOrWhiteSpace(txt_ref_cliente.Text) ? "0" : txt_ref_cliente.Text), txt_Rut.Text);
-			cmd.CommandType = CommandType.Text;
-
+			cmd.CommandText = String.Format("pa_ListarPersonal_sel");				
+			cmd.CommandType = CommandType.StoredProcedure;
+			cmd.Parameters.Add("@IdCliente",SqlDbType.Int);
+			cmd.Parameters["@IdCliente"].Value=txt_N_cliente.Text;
+			cmd.Parameters.Add("@Rut", SqlDbType.VarChar,11);
+			cmd.Parameters["@Rut"].Value = txt_Rut.Text;
 			dtPersonal = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-			//dtPersonal.Tables[0].DefaultView.RowFilter = "Id_Estado=" + (chkActivo.Checked == true ? 1 : 0);
 			grdDatos.DataSource = dtPersonal.Tables[0].DefaultView;
 			btnDescargarExcel.Enabled = true;
 
@@ -155,7 +152,7 @@ namespace ControlDosimetro
 		private void Cargar_Seccion()
 		{
 
-			dt = ClaseFunciones.Cargar_SeccionPorRunBuscar(Convert.ToInt16(txt_ref_cliente.Text.ToString()), txt_Rut.Text);
+			dt = ClaseFunciones.Cargar_SeccionPorRunBuscar(Convert.ToInt16(txt_N_cliente.Text.ToString()), txt_Rut.Text);
 
 			cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
@@ -165,7 +162,7 @@ namespace ControlDosimetro
 		private void Cargar_Direccion()
 		{
 
-			ClaseFunciones.Cargar_Sucursal(ref cbx_Direccin, txt_Rut.Text.ToString(), Convert.ToInt16(txt_ref_cliente.Text.ToString()), 0);
+			ClaseFunciones.Cargar_Sucursal(ref cbx_Direccin, txt_Rut.Text.ToString(), Convert.ToInt16(txt_N_cliente.Text.ToString()), 0);
 
 		}
 
@@ -199,7 +196,7 @@ namespace ControlDosimetro
 		{
 			clsEvento.AsignarRutSinGuion(ref txt_Rut);
 			clsEvento.AsignarRutSinGuion(ref txt_RunPersonal);
-			clsEvento.AsignarNumero(ref txt_ref_cliente);
+			clsEvento.AsignarNumero(ref txt_N_cliente);
 			clsEvento.AsignarKeyPress(ref txt_RazonSocial);
 		}
 
@@ -226,12 +223,6 @@ namespace ControlDosimetro
 				picFiltrarpersonal_Click(null, null);
 		}
 
-		private void txt_ref_cliente_KeyDown_1(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Return)
-				btn_cargarCliente_Click(null, null);
-		}
-
 		#endregion
 
 		#region "button"       
@@ -240,7 +231,7 @@ namespace ControlDosimetro
 			//SqlCommand cmd = new SqlCommand();
 			SqlCommand cmd = new SqlCommand();
 			
-			cmd.CommandText = "pa_ListarPersonal_selExcel " + txt_ref_cliente.Text + ",'" + txt_Rut.Text + "' ";
+			cmd.CommandText = "pa_ListarPersonal_selExcel " + txt_N_cliente.Text + ",'" + txt_Rut.Text + "' ";
 			cmd.CommandType = CommandType.Text;
 
 			DataSet dt;
@@ -257,20 +248,37 @@ namespace ControlDosimetro
 
 		private void btn_cargarCliente_Click(object sender, EventArgs e)
 		{
+			if (txt_N_cliente.DevuelveCadenaNulo() == null) return;
+
 			Cursor = Cursors.WaitCursor;
-			bolDesdeCodigo = true;
-			if (txt_ref_cliente.Text == "")
-				Listar_Cliente(0);
-			else
-				Listar_Cliente(Convert.ToInt64(txt_ref_cliente.Text.ToString()));
 
-			if (txt_RazonSocial.Text == "")
+			frmAyudaCliente frm = new frmAyudaCliente(txt_N_cliente.DevuelveEntero());
+
+			if (frm.ShowDialog() == DialogResult.OK)
 			{
-
-				tsbPersonal.Visible= tsbGuardar.Visible = false;
+				txt_RazonSocial.Text = txt_N_cliente.DevuelveCadenaNulo() != null ? Clases.ClsCliente.Nombres : "";
+				txt_Rut.Text = txt_N_cliente.DevuelveCadenaNulo() != null ? Clases.ClsCliente.Rut : "";
+				txt_N_cliente.Enabled = false;
+				btn_cargarCliente.Enabled = false;
+				tsbNuevo.Enabled = Lectura == false && Agregar;
+				Cargar_Seccion();
+				Cargar_Estado();
+				Cargar_CodServicio();
+				Cargar_Direccion();
+				Listar_Personal();
+				picFiltrarpersonal_Click(null, null);
+				grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = true;
 			}
-				
+			else
+			{
+				grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = false;
+				txt_RazonSocial.Clear();
+				txt_Rut.Clear();
+				txt_N_cliente.Enabled = true;
+				btn_cargarCliente.Enabled = true;
+				grdDatos.LimpiarDataGridView();
 
+			}
 			Cursor = Cursors.Default;
 
 		}
@@ -280,19 +288,22 @@ namespace ControlDosimetro
 			Cursor = Cursors.WaitCursor;
 
 			grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = false;
-			txt_ref_cliente.ReadOnly = false;
-			txt_ref_cliente.Text = "";
-			txt_Rut.Text = "";
-			txt_RazonSocial.Text = "";
+			txt_N_cliente.Enabled = true;
+			txt_N_cliente.Clear();
+			txt_Rut.Clear();
+			txt_RazonSocial.Clear();
 			bolDesdeCodigo = true;
 			chk_AsignarTLD.Checked = false;
-
-			Listar_Cliente(0);
-			//Listar_Personal();
-			picFiltrarpersonal_Click(null, null);
+			tsbNuevo.Enabled = false;
+			tsbGuardar.Enabled = false;
+			tsbAsignarSeccion.Enabled = false;
+			tsbAsignarSucursal.Enabled = false;
+			grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = false;
+			grdDatos.LimpiarDataGridView();
+			//picFiltrarpersonal_Click(null, null);
 			btnDescargarExcel.Enabled = false;
 			btn_cargarCliente.Enabled = true;
-			txt_ref_cliente.Focus();
+			txt_N_cliente.Focus();
 
 			Cursor = Cursors.Default;
 		}
@@ -303,11 +314,11 @@ namespace ControlDosimetro
 			DataSet ds;
 			int intEstado = rbtAmbos.Checked?-1: rbtActivo.Checked?1 : 0;
 			int intIdDireccion = chkDireccion.Checked ? (int)cbx_Direccin.SelectedValue : 0;
-			int intCliente = String.IsNullOrEmpty(txt_ref_cliente.Text) ? 0 : Convert.ToInt16(txt_ref_cliente.Text);
+			int intCliente = String.IsNullOrEmpty(txt_N_cliente.Text) ? 0 : Convert.ToInt16(txt_N_cliente.Text);
 			if (chk_FecNac.Checked)
-				ds=classFuncionesGenerales.Filtro.FiltroPersonal(intCliente, txt_NombrePersonal.Text, txt_RunPersonal.Text, "01/01/1900", intEstado,(int)cbx_id_seccion.SelectedValue,chkVerificarSinDireccion.Checked, intIdDireccion);
+				ds=classFuncionesGenerales.Filtro.FiltroPersonal(intCliente, txt_NombrePersonal.Text, txt_RunPersonal.Text, "01/01/1900", intEstado,(int)cbx_id_seccion.SelectedValue,chkVerificarSinDireccion.Checked, intIdDireccion, txt_Rut.Text);
 			else
-				ds = classFuncionesGenerales.Filtro.FiltroPersonal(intCliente, txt_NombrePersonal.Text, txt_RunPersonal.Text, "", intEstado, (int)cbx_id_seccion.SelectedValue, chkVerificarSinDireccion.Checked, intIdDireccion);
+				ds = classFuncionesGenerales.Filtro.FiltroPersonal(intCliente, txt_NombrePersonal.Text, txt_RunPersonal.Text, "", intEstado, (int)cbx_id_seccion.SelectedValue, chkVerificarSinDireccion.Checked, intIdDireccion, txt_Rut.Text);
 
 			grdDatos.DataSource = ds.Tables[0];
 
@@ -342,7 +353,7 @@ namespace ControlDosimetro
 		{
 			if (e.ColumnIndex == colMod.Index)
 			{
-				frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), Convert.ToInt64(grdDatos.Rows[e.RowIndex].Cells[Id_Personal.Index].Value.ToString()), txt_Rut.Text);
+				frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_N_cliente.Text), Convert.ToInt64(grdDatos.Rows[e.RowIndex].Cells[Id_Personal.Index].Value.ToString()), txt_Rut.Text);
 				frm.ShowDialog(this);
 				picFiltrarpersonal_Click(null,null);
 			}
@@ -379,9 +390,11 @@ namespace ControlDosimetro
 				dateTimePicker1.Location = new Point(rectangle1.X, rectangle1.Y);
 
 				// Generamos el evento de cierre del control fecha
+				dateTimePicker1.Enabled = !grdDatos.ReadOnly;
 				dateTimePicker1.CloseUp += new EventHandler(dateTimePicker1_CloseUp);
-
-			}else
+				
+			}
+			else
 			if ((e.ColumnIndex == ColFechaTermino.Index && ColFechaTermino.ReadOnly == false))
 			{
 				dtpFechaTermino = new DateTimePicker();
@@ -412,9 +425,10 @@ namespace ControlDosimetro
 
 				// Establecemos la ubicación del control
 				dtpFechaTermino.Location = new Point(rectangle1.X, rectangle1.Y);
-
+				dtpFechaTermino.Enabled = !grdDatos.ReadOnly;
 				// Generamos el evento de cierre del control fecha
 				dtpFechaTermino.CloseUp += new EventHandler(dtpFechaTermino_CloseUp);
+				
 
 			}
 			else
@@ -448,7 +462,7 @@ namespace ControlDosimetro
 
 				// Establecemos la ubicación del control
 				dtpFechaInicio.Location = new Point(rectangle1.X, rectangle1.Y);
-
+				dtpFechaInicio.Enabled = !grdDatos.ReadOnly;
 				// Generamos el evento de cierre del control fecha
 				dtpFechaInicio.CloseUp += new EventHandler(dtpFechaInicio_CloseUp);
 
@@ -544,7 +558,7 @@ namespace ControlDosimetro
 		#region Barra
 		private void tsbAsignarSucursal_Click(object sender, EventArgs e)
 		{
-			frmAsignarDireccionPersonal frm = new frmAsignarDireccionPersonal(Convert.ToInt32(txt_ref_cliente.Text), txt_Rut.Text);
+			frmAsignarDireccionPersonal frm = new frmAsignarDireccionPersonal(Convert.ToInt32(txt_N_cliente.Text), txt_Rut.Text);
 			frm.ShowDialog(this);
 			btn_cargarCliente_Click(null, null);
 			picFiltrarpersonal_Click(null,null);
@@ -552,7 +566,7 @@ namespace ControlDosimetro
 
 		private void tsbAsignarSeccion_Click(object sender, EventArgs e)
 		{
-			frmAsignarSeccionPersonal frm = new frmAsignarSeccionPersonal(Convert.ToInt32(txt_ref_cliente.Text), txt_Rut.Text);
+			frmAsignarSeccionPersonal frm = new frmAsignarSeccionPersonal(Convert.ToInt32(txt_N_cliente.Text), txt_Rut.Text);
 			frm.ShowDialog(this);
 			btn_cargarCliente_Click(null, null);
 			picFiltrarpersonal_Click(null, null);
@@ -623,7 +637,8 @@ namespace ControlDosimetro
 
 						cmd.CommandText = "pa_PersonalMasivo_Upd " + dr["Id_Personal"] + "," + strParametro;
 						cmd.CommandType = CommandType.Text;
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+						string strMensajeError = "";
+						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd,ref strMensajeError);
 					}
 
 				}
@@ -638,7 +653,7 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 
-			frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_ref_cliente.Text), 0, txt_Rut.Text);
+			frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_N_cliente.Text), 0, txt_Rut.Text);
 			frm.ShowDialog(this);
 
 			btn_cargarCliente_Click(null,null);

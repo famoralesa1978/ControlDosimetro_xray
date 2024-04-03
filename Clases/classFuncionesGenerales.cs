@@ -278,13 +278,34 @@ namespace classFuncionesGenerales
 			dt.DefaultView.RowFilter = strFiltro;
 		}
 
-		public static DataSet FiltroPersonal(int intIdCliente,string NombrePersonal, string Rut, string FecNac, int intEstado, int Id_Seccion, bool bolListarSinDireccion,int id_Direccion=0)
+		public static DataSet FiltroPersonal(int intIdCliente,string NombrePersonal, string Rut, string FecNac, int intEstado, int Id_Seccion, bool bolListarSinDireccion,int id_Direccion=0,string RutCliente="")
 		{
 			DataSet dt = new DataSet();
 			clsConectorSqlServer Conectar = new clsConectorSqlServer();
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = String.Format("pa_ListarPersonalFiltro_sel {0},'{1}','{2}','{3}',{4},{5},{6},{7}", intIdCliente.ToString(), NombrePersonal, Rut,FecNac, intEstado,Id_Seccion, (bolListarSinDireccion?1:0), id_Direccion);
-			cmd.CommandType = CommandType.Text;
+			cmd.CommandText = String.Format("pa_ListarPersonalFiltro_sel");
+			cmd.Parameters.Add("@IdCliente", SqlDbType.Int);
+			cmd.Parameters["@IdCliente"].Value = intIdCliente;
+			cmd.Parameters.Add("@NombrePersonal", SqlDbType.VarChar,300);
+			cmd.Parameters["@NombrePersonal"].Value = NombrePersonal;
+			cmd.Parameters.Add("@Rut", SqlDbType.VarChar, 20);
+			cmd.Parameters["@Rut"].Value = Rut;
+			cmd.Parameters.Add("@FecNac", SqlDbType.VarChar, 10);
+			cmd.Parameters["@FecNac"].Value = string.IsNullOrWhiteSpace(FecNac) ? null:FecNac;
+			cmd.Parameters.Add("@Estado", SqlDbType.Int);
+			cmd.Parameters["@Estado"].Value = intEstado;
+			cmd.Parameters.Add("@Id_Seccion", SqlDbType.Int);
+			cmd.Parameters["@Id_Seccion"].Value = Id_Seccion;
+			cmd.Parameters.Add("@VerificarSinDir", SqlDbType.Int);
+			cmd.Parameters["@VerificarSinDir"].Value = (bolListarSinDireccion ? 1 : 0);
+			cmd.Parameters.Add("@IdDireccion", SqlDbType.Int);
+			cmd.Parameters["@IdDireccion"].Value = id_Direccion;
+			cmd.Parameters.Add("@rut_cliente", SqlDbType.VarChar, 20);
+			cmd.Parameters["@rut_cliente"].Value = string.IsNullOrWhiteSpace(RutCliente) ? null : RutCliente;
+			//FecNac, intEstado,Id_Seccion, (bolListarSinDireccion?1:0), id_Direccion);
+
+
+			cmd.CommandType = CommandType.StoredProcedure;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 

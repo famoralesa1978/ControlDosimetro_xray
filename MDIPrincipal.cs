@@ -421,7 +421,7 @@ namespace ControlDosimetro
 					{
 						ShowInTaskbar = false,
 						StartPosition = FormStartPosition.CenterScreen,
-						Parametros = objParams
+						intMenu = (int)MENU.MantMasivoPersonal
 					};
 					Graba_log(objFrm.Text);
 					objFrm.Show(this);
@@ -923,7 +923,7 @@ namespace ControlDosimetro
 					objFrm = new frmDireccion()
 					{
 						ShowInTaskbar = false,
-						intMenu= (int)MENU.MantSucursal,
+						intMenu = (int)MENU.MantSucursal,
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
@@ -933,7 +933,7 @@ namespace ControlDosimetro
 					objFrm = new frmModificarPersonalMasivo()
 					{
 						ShowInTaskbar = false,
-						Parametros = objParams,
+						intMenu = (int)MENU.MantMasivoPersonal,
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
