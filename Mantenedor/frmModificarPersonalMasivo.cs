@@ -66,74 +66,10 @@ namespace ControlDosimetro
 			tsbGuardar.Enabled = (Lectura == false && Modificar);
 			tsbNuevo.Enabled = false;
 			grdDatos.ReadOnly = Lectura || !Modificar;
-			grdDatos.DefaultCellStyle.BackColor = ClaseGeneral.ColorCeldaBloqueado;
+			grdDatos.DefaultCellStyle.BackColor = !Lectura && (Modificar) ? SystemColors.Window : ClaseGeneral.ColorCeldaBloqueado;
 			//btnEliminar.Enabled = Lectura == false && Eliminar;
 			Cursor = Cursors.Default;
 		}
-
-		private void Listar_Cliente(Int64 intCliente)
-		{
-			//SqlCommand cmd = new SqlCommand();
-			SqlCommand cmd = new SqlCommand();
-			//MessageBox.Show("Conectado al servidor");
-
-			if (intCliente != 0)
-			{
-				cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
-						"from tbl_cliente " +
-						"where  (id_cliente=" + intCliente.ToString() + ") or run ='" + txt_Rut.Text + "' " +
-						" and id_estado= 1" +
-						"order by id_cliente";
-				txt_N_cliente.Text = intCliente.ToString();
-			}
-			if (intCliente == 0)
-				cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
-						"from tbl_cliente " +
-						"where run  ='" + txt_Rut.Text + "' " + " and id_estado=1" +
-						"order by id_cliente";
-			cmd.CommandType = CommandType.Text;
-
-			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-			if (dt.Tables[0].Rows.Count == 0)
-			{
-				txt_N_cliente.Text = "";
-				txt_Rut.Text = "";
-				txt_RazonSocial.Text = "";
-				grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = false;
-				tsbNuevo.Enabled = false;
-				tsbGuardar.Enabled = false;
-				btnDescargarExcel.Enabled = false;
-				bolDesdeCodigo = false;
-				chk_AsignarTLD.Checked = false;
-				btn_cargarCliente.Enabled = true;
-				tsbAsignarSucursal.Enabled = tsbAsignarSeccion.Enabled = false;
-			}
-			else
-			{
-				txt_N_cliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
-				txt_Rut.Text = dt.Tables[0].Rows[0]["run"].ToString();
-				txt_RazonSocial.Text = dt.Tables[0].Rows[0]["razon_social"].ToString();
-				txt_N_cliente.ReadOnly = true;
-				txt_Rut.ReadOnly = true;
-				grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = true;
-				tsbGuardar.Enabled = Modificar && !Lectura;
-
-				tsbNuevo.Enabled = Agregar && !Lectura;
-				txt_RazonSocial.ReadOnly = true;
-				btn_cargarCliente.Enabled = false;
-				bolDesdeCodigo = true;
-				Cargar_Seccion();
-				Cargar_Estado();
-				Cargar_CodServicio();
-				Cargar_Direccion();
-				Listar_Personal();
-				picFiltrarpersonal_Click(null, null);
-				tsbAsignarSucursal.Enabled = tsbAsignarSeccion.Enabled = true;
-			}
-		}
-
 		private void Listar_Personal()
 		{
 			SqlCommand cmd = new SqlCommand();
@@ -141,13 +77,14 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.StoredProcedure;
 			cmd.Parameters.Add("@IdCliente", SqlDbType.Int);
 			cmd.Parameters["@IdCliente"].Value = txt_N_cliente.Text;
-			cmd.Parameters.Add("@Rut", SqlDbType.VarChar,11);
+			cmd.Parameters.Add("@Rut", SqlDbType.VarChar, 11);
 			cmd.Parameters["@Rut"].Value = txt_Rut.Text;
 			dtPersonal = Conectar.Listar(Clases.clsBD.BD, cmd);
 			if (dtPersonal != null)
 				grdDatos.DataSource = dtPersonal.Tables[0].DefaultView;
 			btnDescargarExcel.Enabled = true;
 
+			chk_AsignarTLD.Checked = grpCambiarEstado.Enabled = dtPersonal != null && dtPersonal.Tables[0].Rows.Count > 0;
 		}
 
 		private void Cargar_Seccion()
@@ -173,19 +110,6 @@ namespace ControlDosimetro
 			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref cb, 16);
 
 			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns[ColServicio.Index] as DataGridViewComboBoxColumn;
-
-			comboboxColumn.DataSource = cb.DataSource;
-			comboboxColumn.DisplayMember = cb.DisplayMember;
-			comboboxColumn.ValueMember = cb.ValueMember;
-
-		}
-
-		private void Cargar_Estado()
-		{
-			ComboBox cb = new ComboBox();
-			ClaseFunciones.Cargar_Estado(ref cb);
-
-			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns[ColEstado.Index] as DataGridViewComboBoxColumn;
 
 			comboboxColumn.DataSource = cb.DataSource;
 			comboboxColumn.DisplayMember = cb.DisplayMember;
@@ -263,12 +187,11 @@ namespace ControlDosimetro
 				btn_cargarCliente.Enabled = false;
 				tsbNuevo.Enabled = Lectura == false && Agregar;
 				Cargar_Seccion();
-				Cargar_Estado();
 				Cargar_CodServicio();
 				Cargar_Direccion();
-				Listar_Personal();
 				picFiltrarpersonal_Click(null, null);
 				grp_Grilla.Enabled = grpPersonal.Enabled = chk_AsignarTLD.Enabled = true;
+				grpCambiarEstado.Enabled = true;
 			}
 			else
 			{
@@ -277,6 +200,7 @@ namespace ControlDosimetro
 				txt_Rut.Clear();
 				txt_N_cliente.Enabled = true;
 				btn_cargarCliente.Enabled = true;
+				grpCambiarEstado.Enabled = false;
 				grdDatos.LimpiarDataGridView();
 
 			}
@@ -326,23 +250,42 @@ namespace ControlDosimetro
 			grp_Grilla.Text = "Listado personal   - Cantidad :" + ds.Tables[0].Rows.Count.ToString();
 			Cursor = Cursors.Default;
 		}
-
+		private void btnCambiar_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+			grdDatos.FinalizaEdicion();
+			grdDatos.Vista().Table.AsEnumerable().Where(s => (int)s[ColSeleccion.DataPropertyName.ToString()] == 1).ToList().
+						ForEach(s => { s["Id_estado"] = (chkCambiarEstado.Checked ? 1 : 0); s["fecha_termino"] = (chkCambiarEstado.Checked ? "01/01/1900" : dtpCambioFecha.Value.ToString("dd/MM/yyyy")); }) ;
+			Cursor = Cursors.Default;
+		}
 		#endregion
 
 		#region ""checkBox"
-
 		private void chk_AsignarTLD_CheckedChanged(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
-			if (bolDesdeCodigo)
-			{
-				foreach (DataGridViewRow dr in grdDatos.Rows)
-				{
-					if (Convert.ToInt16(dr.Cells[ColServicio.Index].Value) == 44)
-						dr.Cells[ColServicio.Index].Value = 99;
-				}
+			//if (bolDesdeCodigo)
+			//{
+			//	foreach (DataGridViewRow dr in grdDatos.Rows)
+			//	{
+			//		if (Convert.ToInt16(dr.Cells[ColServicio.Index].Value) == 44)
+			//			dr.Cells[ColServicio.Index].Value = 99;
+			//	}
 
-			}
+			//}
+
+			Cursor = Cursors.WaitCursor;
+			grdDatos.FinalizaEdicion();
+			grdDatos.Vista().Table.AsEnumerable().ToList().
+						ForEach(s => { s["Id_CodServicio"] =99; });
+			Cursor = Cursors.Default;
+
+			Cursor = Cursors.Default;
+		}
+		private void chkMarcar_CheckedChanged(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+			grdDatos.Vista().Table.AsEnumerable().ToList().ForEach(s => s["Seleccionar"]=chkMarcar.Checked);
 
 			Cursor = Cursors.Default;
 		}
@@ -530,7 +473,6 @@ namespace ControlDosimetro
 					dt.Rows[e.RowIndex].AcceptChanges();
 					dt.Rows[e.RowIndex].SetModified();
 				}
-
 			}
 		}
 
@@ -562,21 +504,22 @@ namespace ControlDosimetro
 		{
 			frmAsignarDireccionPersonal frm = new frmAsignarDireccionPersonal(Convert.ToInt32(txt_N_cliente.Text), txt_Rut.Text);
 			frm.ShowDialog(this);
-			btn_cargarCliente_Click(null, null);
 			picFiltrarpersonal_Click(null, null);
 		}
+
+
 
 		private void tsbAsignarSeccion_Click(object sender, EventArgs e)
 		{
 			frmAsignarSeccionPersonal frm = new frmAsignarSeccionPersonal(Convert.ToInt32(txt_N_cliente.Text), txt_Rut.Text);
 			frm.ShowDialog(this);
-			btn_cargarCliente_Click(null, null);
 			picFiltrarpersonal_Click(null, null);
 		}
 		private void tsbGuardar_Click(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
 			DataTable dt = new DataTable();
+			grdDatos.FinalizaEdicion();
 			BindingSource bs = new BindingSource();
 			bs.DataSource = grdDatos.DataSource;
 			dt = ((DataTable)(bs.DataSource));
@@ -590,55 +533,21 @@ namespace ControlDosimetro
 					//	if (dr["Id_CodServicio"] != dr["Id_CodServicio",DataRowVersion.Original])
 					if (dr.RowState == DataRowState.Modified)
 					{
-						String strParametro = "";
+						cmd.Parameters.Add("@Id_CodServicio", SqlDbType.Int);
+						cmd.Parameters["@Id_CodServicio"].Value = dr["Id_CodServicio"] == DBNull.Value ? null : dr["Id_CodServicio"];
+						cmd.Parameters.Add("@Fecha_Nac", SqlDbType.VarChar, 10);
+						cmd.Parameters["@Fecha_Nac"].Value = dr["Fecha_Nac"] == DBNull.Value ? "01/01/1900" : dr["Fecha_Nac"];
+						cmd.Parameters.Add("@Id_Estado", SqlDbType.Int);
+						cmd.Parameters["@Id_Estado"].Value = dr["Id_Estado"] == DBNull.Value ? null : dr["Id_estado"];
+						cmd.Parameters.Add("@fecha_termino", SqlDbType.VarChar, 10);
+						cmd.Parameters["@fecha_termino"].Value = dr["fecha_termino"] == DBNull.Value || (int)dr["Id_Estado"] == 1 ? "01/01/1900" : dr["fecha_termino"];
+						cmd.Parameters.Add("@Fecha_inicio", SqlDbType.VarChar, 10);
+						cmd.Parameters["@Fecha_inicio"].Value = dr["Fecha_inicio"] == DBNull.Value ? "01/01/1900" : dr["Fecha_inicio"];
 
-						if (dr["Nombres"] == DBNull.Value)
-							strParametro = "Null" + ",";
-						else
-							strParametro = dr["Nombres"].ToString() + ",";
-
-						if (dr["Paterno"] == DBNull.Value)
-							strParametro = "Null" + ",";
-						else
-							strParametro = dr["Paterno"].ToString() + ",";
-
-						if (dr["Maternos"] == DBNull.Value)
-							strParametro = "Null" + ",";
-						else
-							strParametro = dr["Maternos"].ToString() + ",";
-
-						if (dr["Id_CodServicio"] == DBNull.Value)
-							strParametro = "Null" + ",";
-						else
-							strParametro = dr["Id_CodServicio"].ToString() + ",";
-
-						//if (dr["Id_Seccion"] == DBNull.Value)
-						//	strParametro = strParametro + "Null" + ",";
-						//else
-						//	strParametro = strParametro + dr["Id_Seccion"].ToString() + ",";
-
-						if (dr["Fecha_Nac"] == DBNull.Value)
-							strParametro = strParametro + "'01/01/1900'";
-						else
-							strParametro = strParametro + "'" + dr["Fecha_Nac"].ToString() + "',";
-
-						if (dr["Id_estado"] == DBNull.Value)
-							strParametro = strParametro + "1,";
-						else
-							strParametro = strParametro + "" + dr["Id_estado"].ToString() + ",";
-
-						if (dr["fecha_termino"] == DBNull.Value)
-							strParametro = strParametro + "'01/01/1900'";
-						else
-							strParametro = strParametro + "'" + dr["fecha_termino"].ToString() + "',";
-
-						if (dr["Fecha_inicio"] == DBNull.Value)
-							strParametro = strParametro + "'01/01/1900'";
-						else
-							strParametro = strParametro + "'" + dr["Fecha_inicio"].ToString() + "'";
-
-						cmd.CommandText = "pa_PersonalMasivo_Upd " + dr["Id_Personal"] + "," + strParametro;
-						cmd.CommandType = CommandType.Text;
+						cmd.CommandText = "pa_PersonalMasivo_Upd";
+						cmd.Parameters.Add("@Id_Personal", SqlDbType.Int);
+						cmd.Parameters["@Id_Personal"].Value = dr["Id_Personal"];
+						cmd.CommandType = CommandType.StoredProcedure;
 						string strMensajeError = "";
 						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensajeError);
 					}

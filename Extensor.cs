@@ -10,6 +10,7 @@ using System.Deployment.Application;
 using System.Runtime.CompilerServices;
 using OpenXmlPowerTools;
 using Clases;
+using System.Collections.Generic;
 
 namespace ControlDosimetro
 {
@@ -194,6 +195,31 @@ namespace ControlDosimetro
 			}
 
 			return true;
+		}
+		public static List<DataRow> FilasSeleccionadas(this DataGridView dg)
+		{
+			List<DataRow> list = new List<DataRow>();
+			if (dg.Rows.Count <= 0)
+			{
+				return list;
+			}
+
+			if (dg.SelectedRows.Count == 0)
+			{
+				if (dg.CurrentRow != null)
+				{
+					list.Add(((DataRowView)dg.CurrentRow.DataBoundItem).Row);
+				}
+
+				return list;
+			}
+
+			foreach (DataGridViewRow selectedRow in dg.SelectedRows)
+			{
+				list.Add(((DataRowView)selectedRow.DataBoundItem).Row);
+			}
+
+			return list;
 		}
 		public static bool XHayError(this DataGridView dg)
 		{
