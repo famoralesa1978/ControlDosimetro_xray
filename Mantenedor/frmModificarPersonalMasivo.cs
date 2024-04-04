@@ -50,7 +50,7 @@ namespace ControlDosimetro
 		{
 			bolDesdeCodigo = false;
 			AsignarPermiso();
-			
+
 			grdDatos.AutoGenerateColumns = false;
 			btnDescargarExcel.Enabled = false;
 		}
@@ -65,7 +65,7 @@ namespace ControlDosimetro
 
 			tsbGuardar.Enabled = (Lectura == false && Modificar);
 			tsbNuevo.Enabled = false;
-			grdDatos.ReadOnly = Lectura || !Modificar ;
+			grdDatos.ReadOnly = Lectura || !Modificar;
 			grdDatos.DefaultCellStyle.BackColor = ClaseGeneral.ColorCeldaBloqueado;
 			//btnEliminar.Enabled = Lectura == false && Eliminar;
 			Cursor = Cursors.Default;
@@ -89,7 +89,7 @@ namespace ControlDosimetro
 			if (intCliente == 0)
 				cmd.CommandText = "select id_cliente,run,razon_social,Direccion,telefono " +
 						"from tbl_cliente " +
-						"where run  ='" + txt_Rut.Text + "' " + " and id_estado=1"+
+						"where run  ='" + txt_Rut.Text + "' " + " and id_estado=1" +
 						"order by id_cliente";
 			cmd.CommandType = CommandType.Text;
 
@@ -137,14 +137,15 @@ namespace ControlDosimetro
 		private void Listar_Personal()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = String.Format("pa_ListarPersonal_sel");				
+			cmd.CommandText = String.Format("pa_ListarPersonal_sel");
 			cmd.CommandType = CommandType.StoredProcedure;
-			cmd.Parameters.Add("@IdCliente",SqlDbType.Int);
-			cmd.Parameters["@IdCliente"].Value=txt_N_cliente.Text;
+			cmd.Parameters.Add("@IdCliente", SqlDbType.Int);
+			cmd.Parameters["@IdCliente"].Value = txt_N_cliente.Text;
 			cmd.Parameters.Add("@Rut", SqlDbType.VarChar,11);
 			cmd.Parameters["@Rut"].Value = txt_Rut.Text;
 			dtPersonal = Conectar.Listar(Clases.clsBD.BD, cmd);
-			grdDatos.DataSource = dtPersonal.Tables[0].DefaultView;
+			if (dtPersonal != null)
+				grdDatos.DataSource = dtPersonal.Tables[0].DefaultView;
 			btnDescargarExcel.Enabled = true;
 
 		}
@@ -201,7 +202,7 @@ namespace ControlDosimetro
 		}
 
 
-#endregion
+		#endregion
 
 		#region "Textbox"
 
@@ -230,14 +231,14 @@ namespace ControlDosimetro
 		{
 			//SqlCommand cmd = new SqlCommand();
 			SqlCommand cmd = new SqlCommand();
-			
+
 			cmd.CommandText = "pa_ListarPersonal_selExcel " + txt_N_cliente.Text + ",'" + txt_Rut.Text + "' ";
 			cmd.CommandType = CommandType.Text;
 
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
-			if (dt.Tables[0].Rows.Count> 0)
+			if (dt.Tables[0].Rows.Count > 0)
 			{
 				frmreporte frm = new frmreporte(dt, dt, 10);
 				frm.Show(this);
@@ -312,11 +313,11 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 			DataSet ds;
-			int intEstado = rbtAmbos.Checked?-1: rbtActivo.Checked?1 : 0;
+			int intEstado = rbtAmbos.Checked ? -1 : rbtActivo.Checked ? 1 : 0;
 			int intIdDireccion = chkDireccion.Checked ? (int)cbx_Direccin.SelectedValue : 0;
 			int intCliente = String.IsNullOrEmpty(txt_N_cliente.Text) ? 0 : Convert.ToInt16(txt_N_cliente.Text);
 			if (chk_FecNac.Checked)
-				ds=classFuncionesGenerales.Filtro.FiltroPersonal(intCliente, txt_NombrePersonal.Text, txt_RunPersonal.Text, "01/01/1900", intEstado,(int)cbx_id_seccion.SelectedValue,chkVerificarSinDireccion.Checked, intIdDireccion, txt_Rut.Text);
+				ds = classFuncionesGenerales.Filtro.FiltroPersonal(intCliente, txt_NombrePersonal.Text, txt_RunPersonal.Text, "01/01/1900", intEstado, (int)cbx_id_seccion.SelectedValue, chkVerificarSinDireccion.Checked, intIdDireccion, txt_Rut.Text);
 			else
 				ds = classFuncionesGenerales.Filtro.FiltroPersonal(intCliente, txt_NombrePersonal.Text, txt_RunPersonal.Text, "", intEstado, (int)cbx_id_seccion.SelectedValue, chkVerificarSinDireccion.Checked, intIdDireccion, txt_Rut.Text);
 
@@ -333,7 +334,8 @@ namespace ControlDosimetro
 		private void chk_AsignarTLD_CheckedChanged(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
-			if(bolDesdeCodigo){
+			if (bolDesdeCodigo)
+			{
 				foreach (DataGridViewRow dr in grdDatos.Rows)
 				{
 					if (Convert.ToInt16(dr.Cells[ColServicio.Index].Value) == 44)
@@ -341,7 +343,7 @@ namespace ControlDosimetro
 				}
 
 			}
-		
+
 			Cursor = Cursors.Default;
 		}
 
@@ -355,11 +357,11 @@ namespace ControlDosimetro
 			{
 				frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_N_cliente.Text), Convert.ToInt64(grdDatos.Rows[e.RowIndex].Cells[Id_Personal.Index].Value.ToString()), txt_Rut.Text);
 				frm.ShowDialog(this);
-				picFiltrarpersonal_Click(null,null);
+				picFiltrarpersonal_Click(null, null);
 			}
 			else
 
-			if (e.ColumnIndex == ColFechaNac.Index )
+			if (e.ColumnIndex == ColFechaNac.Index)
 			{
 				dateTimePicker1 = new DateTimePicker();
 				dateTimePicker1.CustomFormat = "dd/MM/yyyy";
@@ -392,7 +394,7 @@ namespace ControlDosimetro
 				// Generamos el evento de cierre del control fecha
 				dateTimePicker1.Enabled = !grdDatos.ReadOnly;
 				dateTimePicker1.CloseUp += new EventHandler(dateTimePicker1_CloseUp);
-				
+
 			}
 			else
 			if ((e.ColumnIndex == ColFechaTermino.Index && ColFechaTermino.ReadOnly == false))
@@ -400,7 +402,7 @@ namespace ControlDosimetro
 				dtpFechaTermino = new DateTimePicker();
 				dtpFechaTermino.Format = DateTimePickerFormat.Custom;
 				dtpFechaTermino.CustomFormat = "dd/MM/yyyy";
-				
+
 				//Agregamos el control de fecha dentro del DataGridView 
 				dtpFechaTermino.Text = grdDatos.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
 				grdDatos.Controls.Add(dtpFechaTermino);
@@ -428,7 +430,7 @@ namespace ControlDosimetro
 				dtpFechaTermino.Enabled = !grdDatos.ReadOnly;
 				// Generamos el evento de cierre del control fecha
 				dtpFechaTermino.CloseUp += new EventHandler(dtpFechaTermino_CloseUp);
-				
+
 
 			}
 			else
@@ -437,7 +439,7 @@ namespace ControlDosimetro
 				dtpFechaInicio = new DateTimePicker();
 				dtpFechaInicio.Format = DateTimePickerFormat.Custom;
 				dtpFechaInicio.CustomFormat = "dd/MM/yyyy";
-				
+
 				//Agregamos el control de fecha dentro del DataGridView 
 				dtpFechaInicio.Text = grdDatos.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
 				grdDatos.Controls.Add(dtpFechaInicio);
@@ -471,7 +473,7 @@ namespace ControlDosimetro
 		private void dtpFechaInicio_OnTextChange(object sender, EventArgs e)
 		{
 			//Asignamos a la celda el valor de la feha seleccionada
-			grdDatos.CurrentCell.Value = dtpFechaInicio.Text.ToString().Replace("-","/");
+			grdDatos.CurrentCell.Value = dtpFechaInicio.Text.ToString().Replace("-", "/");
 		}
 		private void dtpFechaTermino_OnTextChange(object sender, EventArgs e)
 		{
@@ -528,7 +530,7 @@ namespace ControlDosimetro
 					dt.Rows[e.RowIndex].AcceptChanges();
 					dt.Rows[e.RowIndex].SetModified();
 				}
-				
+
 			}
 		}
 
@@ -541,7 +543,7 @@ namespace ControlDosimetro
 
 					DataRow dtrFila = ((DataRowView)item.DataBoundItem).Row;
 					DataGridViewTextBoxCell TextBox = ((DataGridViewTextBoxCell)item.Cells[ColFechaTermino.Index]);
-					if (Convert.ToInt32(dtrFila["Id_estado"].ToString())!=1)
+					if (Convert.ToInt32(dtrFila["Id_estado"].ToString()) != 1)
 					{
 						item.DefaultCellStyle.BackColor = Color.Red;
 						TextBox.ReadOnly = false;
@@ -561,7 +563,7 @@ namespace ControlDosimetro
 			frmAsignarDireccionPersonal frm = new frmAsignarDireccionPersonal(Convert.ToInt32(txt_N_cliente.Text), txt_Rut.Text);
 			frm.ShowDialog(this);
 			btn_cargarCliente_Click(null, null);
-			picFiltrarpersonal_Click(null,null);
+			picFiltrarpersonal_Click(null, null);
 		}
 
 		private void tsbAsignarSeccion_Click(object sender, EventArgs e)
@@ -638,7 +640,7 @@ namespace ControlDosimetro
 						cmd.CommandText = "pa_PersonalMasivo_Upd " + dr["Id_Personal"] + "," + strParametro;
 						cmd.CommandType = CommandType.Text;
 						string strMensajeError = "";
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd,ref strMensajeError);
+						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensajeError);
 					}
 
 				}
@@ -656,7 +658,7 @@ namespace ControlDosimetro
 			frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_N_cliente.Text), 0, txt_Rut.Text);
 			frm.ShowDialog(this);
 
-			btn_cargarCliente_Click(null,null);
+			btn_cargarCliente_Click(null, null);
 			Listar_Personal();
 
 			Cursor = Cursors.Default;

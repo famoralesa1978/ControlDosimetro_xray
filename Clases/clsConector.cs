@@ -33,13 +33,13 @@ namespace ControlDosimetro
 			{
 
 				Conectar(strPublicacion);
-			DataSet dt = new DataSet();
-			cmd.Connection = conexion;
+				DataSet dt = new DataSet();
+				cmd.Connection = conexion;
 				strSp = cmd.XSQLObtieneDatosParametro();
 				SqlDataAdapter reader = new SqlDataAdapter(cmd);
-			reader.Fill(dt);
-			Cerrar();
-			return dt;
+				reader.Fill(dt);
+				Cerrar();
+				return dt;
 			}
 			catch (SqlException ex)
 			{
@@ -51,6 +51,12 @@ namespace ControlDosimetro
 				}
 
 			}
+			catch (Exception ex)
+			{
+				string msg = string.Format("{0};{1};{2};{3};{4};{5};{6}", ClaseGeneral.IP, ClaseGeneral.NombreEquipo, DateTime.Now, strSp, "SP", cmd.CommandText, ex.Message);
+				msg.XARCHEscribirArchivoLog(ClaseGeneral.RutaNombreArchivoLog);
+				ex.Message.XMensajeError();
+			}
 			finally
 			{
 
@@ -59,22 +65,22 @@ namespace ControlDosimetro
 			return null;
 		}
 
-    public string Agregar(String strPublicacion, SqlCommand cmd,string campo, ref string strMensajeError)
-    {
-      string strId = "";
+		public string Agregar(String strPublicacion, SqlCommand cmd, string campo, ref string strMensajeError)
+		{
+			string strId = "";
 			string strSp = "";
 			ClaseGeneral.CrearCarpetaSistema();
 			try
-      {
-        Conectar(strPublicacion);
+			{
+				Conectar(strPublicacion);
 
-        cmd.Connection = conexion;
+				cmd.Connection = conexion;
 				strSp = cmd.XSQLObtieneDatosParametro();
 				cmd.ExecuteNonQuery();
-        return cmd.Parameters["@"+campo].Value.ToString();
-      }
-      catch (SqlException ex)
-      {
+				return cmd.Parameters["@" + campo].Value.ToString();
+			}
+			catch (SqlException ex)
+			{
 				if (ex.Class != 16)
 				{
 					string msg = string.Format("{0};{1};{2};{3};{4};{5};{6}", ClaseGeneral.IP, ClaseGeneral.NombreEquipo, DateTime.Now, strSp, "SP", ex.Procedure, ex.Message);
@@ -83,44 +89,15 @@ namespace ControlDosimetro
 				}
 				strMensajeError = ex.Message;
 			}
-      finally
-      {
+			finally
+			{
 
-        Cerrar();
-      }
-      return strId;
-    }
-
-    public void Modificar(String strPublicacion, SqlCommand cmd, ref string strMensajeError)
-    {
-			ClaseGeneral.CrearCarpetaSistema();
-			string strSp = "";
-			try
-      {
-        Conectar(strPublicacion);
-
-        cmd.Connection = conexion;
-				strSp = cmd.XSQLObtieneDatosParametro();
-				cmd.ExecuteNonQuery();
-      }
-      catch (SqlException ex)
-      {
-				if (ex.Class != 16)
-				{
-					string msg = string.Format("{0};{1};{2};{3};{4};{5};{6}", ClaseGeneral.IP, ClaseGeneral.NombreEquipo, DateTime.Now, strSp, "SP", ex.Procedure, ex.Message);
-					msg.XARCHEscribirArchivoLog(ClaseGeneral.RutaNombreArchivoLog);
-					ex.Message.XMensajeError();
-				}
-				strMensajeError = ex.Message;
+				Cerrar();
 			}
-      finally
-      {
+			return strId;
+		}
 
-        Cerrar();
-      }
-    }
-
-    public void AgregarModificarEliminar(String strPublicacion, SqlCommand cmd, ref string strMensajeError)
+		public void Modificar(String strPublicacion, SqlCommand cmd, ref string strMensajeError)
 		{
 			ClaseGeneral.CrearCarpetaSistema();
 			string strSp = "";
@@ -134,13 +111,42 @@ namespace ControlDosimetro
 			}
 			catch (SqlException ex)
 			{
-				if(ex.Class != 16)
+				if (ex.Class != 16)
 				{
 					string msg = string.Format("{0};{1};{2};{3};{4};{5};{6}", ClaseGeneral.IP, ClaseGeneral.NombreEquipo, DateTime.Now, strSp, "SP", ex.Procedure, ex.Message);
 					msg.XARCHEscribirArchivoLog(ClaseGeneral.RutaNombreArchivoLog);
 					ex.Message.XMensajeError();
 				}
-				
+				strMensajeError = ex.Message;
+			}
+			finally
+			{
+
+				Cerrar();
+			}
+		}
+
+		public void AgregarModificarEliminar(String strPublicacion, SqlCommand cmd, ref string strMensajeError)
+		{
+			ClaseGeneral.CrearCarpetaSistema();
+			string strSp = "";
+			try
+			{
+				Conectar(strPublicacion);
+
+				cmd.Connection = conexion;
+				strSp = cmd.XSQLObtieneDatosParametro();
+				cmd.ExecuteNonQuery();
+			}
+			catch (SqlException ex)
+			{
+				if (ex.Class != 16)
+				{
+					string msg = string.Format("{0};{1};{2};{3};{4};{5};{6}", ClaseGeneral.IP, ClaseGeneral.NombreEquipo, DateTime.Now, strSp, "SP", ex.Procedure, ex.Message);
+					msg.XARCHEscribirArchivoLog(ClaseGeneral.RutaNombreArchivoLog);
+					ex.Message.XMensajeError();
+				}
+
 				strMensajeError = ex.Message;
 			}
 			finally
@@ -151,7 +157,7 @@ namespace ControlDosimetro
 
 		}
 
-		public void PermisoFormulario(int intMenu,ref bool Lectura, ref bool Agregar, ref  bool Modificar, ref bool Eliminar)
+		public void PermisoFormulario(int intMenu, ref bool Lectura, ref bool Agregar, ref bool Modificar, ref bool Eliminar)
 		{
 			SqlCommand cmd = new SqlCommand();
 			DataSet ds;
