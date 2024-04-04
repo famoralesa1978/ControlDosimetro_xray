@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace ControlDosimetro
@@ -78,6 +79,7 @@ namespace ControlDosimetro
 		}
 		private void tsbGuardar_Click(object sender, EventArgs e)
 		{
+			dtgPrincipal.FinalizaEdicion();
 			if (ValidarFormulario()) return;
 
 
@@ -166,6 +168,7 @@ namespace ControlDosimetro
 
 		private void tsbEliminar_Click(object sender, EventArgs e)
 		{
+			dtgPrincipal.FinalizaEdicion();
 			DataTable dt = ((DataTable)dtgPrincipal.DataSource);
 			List<string> lista = dt.AsEnumerable().Where(s => (bool)s["Eliminar"]).Select(s => s[0].ToString()).ToList();
 			if (lista.Count == 0)
@@ -175,6 +178,7 @@ namespace ControlDosimetro
 				if ("¿Esta seguro eliminar los registros?".XMensajeConfirmacionSiNo())
 				{
 					string strMensajeError = "";
+					StringBuilder sbMensaje = new StringBuilder();
 					for (int intLista = 0; intLista < lista.Count; intLista++)
 					{
 						SqlCommand cmd = new SqlCommand();
@@ -188,9 +192,12 @@ namespace ControlDosimetro
 						if (!string.IsNullOrWhiteSpace(strMensajeError))
 						{
 							Cursor = Cursors.Default;
+							sbMensaje.AppendLine(string.Format("{0}{1}", lista[intLista], strMensajeError));
 							ClaseGeneral.GuardarLOG(this.Name, "Sist_perfilDel", "Grabar");
 						}
 					}
+					if (!string.IsNullOrWhiteSpace(sbMensaje.ToString()))
+						sbMensaje.ToString().XMensajeError();
 					CargarDatosInicial();
 				}
 			}

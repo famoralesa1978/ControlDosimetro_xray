@@ -181,6 +181,20 @@ namespace ControlDosimetro
 			}
 
 		}
+		public static bool FinalizaEdicion(this DataGridView dg)
+		{
+			if (dg.IsCurrentCellDirty && !dg.EndEdit())
+			{
+				return false;
+			}
+
+			if (dg.IsCurrentRowDirty && dg.CurrentRow != null && dg.CurrentRow.DataBoundItem != null)
+			{
+				((DataRowView)dg.CurrentRow.DataBoundItem).EndEdit();
+			}
+
+			return true;
+		}
 		public static bool XHayError(this DataGridView dg)
 		{
 			DataTable dt = (DataTable)dg.DataSource;

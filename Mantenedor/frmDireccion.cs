@@ -173,6 +173,7 @@ namespace ControlDosimetro
 
 		private void tsbEliminar_Click(object sender, EventArgs e)
 		{
+			dtgPrincipal.FinalizaEdicion();
 			DataTable dt = ((DataTable)dtgPrincipal.DataSource);
 			List<string> lista = dt.AsEnumerable().Where(s => (bool)s["Seleccionar"]).Select(s => s[0].ToString()).ToList();
 			if (lista.Count == 0)
@@ -196,11 +197,11 @@ namespace ControlDosimetro
 						if (!string.IsNullOrWhiteSpace(strMensajeError))
 						{
 							Cursor = Cursors.Default;
-							sbMensaje.AppendLine(string.Format("-{0}{1}", lista[intLista], strMensajeError));
+							sbMensaje.AppendLine(string.Format("{0}{1}", lista[intLista], strMensajeError));
 							ClaseGeneral.GuardarLOG(this.Name, "DireccionDel", "Grabar");
 						}
 					}
-					if (string.IsNullOrWhiteSpace(sbMensaje.ToString()))
+					if (!string.IsNullOrWhiteSpace(sbMensaje.ToString()))
 						sbMensaje.ToString().XMensajeError();
 					CargarDatosInicial();
 				}
