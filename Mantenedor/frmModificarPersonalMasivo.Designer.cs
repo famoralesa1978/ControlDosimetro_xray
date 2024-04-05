@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmModificarPersonalMasivo));
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.btn_Filtro = new System.Windows.Forms.Button();
 			this.btn_cargarCliente = new System.Windows.Forms.Button();
@@ -44,7 +44,22 @@
 			this.txt_Rut = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.grp_Grilla = new System.Windows.Forms.GroupBox();
+			this.chkMarcar = new System.Windows.Forms.CheckBox();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
+			this.ColSeleccion = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.colMod = new System.Windows.Forms.DataGridViewImageColumn();
+			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Paterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Maternos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColServicio = new System.Windows.Forms.DataGridViewComboBoxColumn();
+			this.ColSeccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColFechaNac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colFecha_inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColEstado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.ColFechaTermino = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colRevision = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.tsbGuardar = new System.Windows.Forms.ToolStripButton();
 			this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
@@ -73,21 +88,7 @@
 			this.btnCambiar = new System.Windows.Forms.Button();
 			this.dtpCambioFecha = new System.Windows.Forms.DateTimePicker();
 			this.chkCambiarEstado = new System.Windows.Forms.CheckBox();
-			this.ColSeleccion = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.colMod = new System.Windows.Forms.DataGridViewImageColumn();
-			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Paterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Maternos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColServicio = new System.Windows.Forms.DataGridViewComboBoxColumn();
-			this.ColSeccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColFechaNac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.colFecha_inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColEstado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.ColFechaTermino = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.colRevision = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.chkMarcar = new System.Windows.Forms.CheckBox();
+			this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
 			this.groupBox1.SuspendLayout();
 			this.grp_Grilla.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -209,6 +210,16 @@
 			this.grp_Grilla.TabStop = false;
 			this.grp_Grilla.Text = "Listado";
 			// 
+			// chkMarcar
+			// 
+			this.chkMarcar.AutoSize = true;
+			this.chkMarcar.Location = new System.Drawing.Point(8, 22);
+			this.chkMarcar.Name = "chkMarcar";
+			this.chkMarcar.Size = new System.Drawing.Size(15, 14);
+			this.chkMarcar.TabIndex = 38;
+			this.chkMarcar.UseVisualStyleBackColor = true;
+			this.chkMarcar.CheckedChanged += new System.EventHandler(this.chkMarcar_CheckedChanged);
+			// 
 			// grdDatos
 			// 
 			this.grdDatos.AllowUserToAddRows = false;
@@ -244,12 +255,157 @@
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
 			this.grdDatos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdDatos_DataBindingComplete);
 			// 
+			// ColSeleccion
+			// 
+			this.ColSeleccion.DataPropertyName = "Seleccionar";
+			this.ColSeleccion.FalseValue = "0";
+			this.ColSeleccion.HeaderText = "Seleccionar";
+			this.ColSeleccion.Name = "ColSeleccion";
+			this.ColSeleccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.ColSeleccion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.ColSeleccion.TrueValue = "1";
+			this.ColSeleccion.Width = 80;
+			// 
+			// colMod
+			// 
+			this.colMod.HeaderText = "";
+			this.colMod.Image = global::ControlDosimetro.Properties.Resources.Modify_24;
+			this.colMod.Name = "colMod";
+			this.colMod.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.colMod.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.colMod.ToolTipText = "Modificar";
+			this.colMod.Width = 40;
+			// 
+			// Id_Personal
+			// 
+			this.Id_Personal.DataPropertyName = "Id_Personal";
+			this.Id_Personal.HeaderText = "Id_Personal";
+			this.Id_Personal.Name = "Id_Personal";
+			this.Id_Personal.Visible = false;
+			this.Id_Personal.Width = 88;
+			// 
+			// Rut
+			// 
+			this.Rut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Rut.DataPropertyName = "Rut";
+			dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.Rut.DefaultCellStyle = dataGridViewCellStyle6;
+			this.Rut.HeaderText = "Rut";
+			this.Rut.Name = "Rut";
+			this.Rut.ReadOnly = true;
+			this.Rut.Width = 49;
+			// 
+			// Nombres
+			// 
+			this.Nombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Nombres.DataPropertyName = "Nombres";
+			dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.Nombres.DefaultCellStyle = dataGridViewCellStyle7;
+			this.Nombres.HeaderText = "Nombres";
+			this.Nombres.MaxInputLength = 100;
+			this.Nombres.Name = "Nombres";
+			this.Nombres.ReadOnly = true;
+			this.Nombres.Width = 74;
+			// 
+			// Paterno
+			// 
+			this.Paterno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Paterno.DataPropertyName = "Paterno";
+			dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.Paterno.DefaultCellStyle = dataGridViewCellStyle8;
+			this.Paterno.FillWeight = 300F;
+			this.Paterno.HeaderText = "Paterno";
+			this.Paterno.MaxInputLength = 100;
+			this.Paterno.Name = "Paterno";
+			this.Paterno.ReadOnly = true;
+			this.Paterno.Width = 69;
+			// 
+			// Maternos
+			// 
+			this.Maternos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Maternos.DataPropertyName = "Maternos";
+			dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.Maternos.DefaultCellStyle = dataGridViewCellStyle9;
+			this.Maternos.HeaderText = "Maternos";
+			this.Maternos.MaxInputLength = 100;
+			this.Maternos.MinimumWidth = 150;
+			this.Maternos.Name = "Maternos";
+			this.Maternos.ReadOnly = true;
+			this.Maternos.Width = 150;
+			// 
+			// ColServicio
+			// 
+			this.ColServicio.DataPropertyName = "Id_CodServicio";
+			this.ColServicio.DisplayStyleForCurrentCellOnly = true;
+			this.ColServicio.HeaderText = "Servicio";
+			this.ColServicio.Name = "ColServicio";
+			this.ColServicio.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.ColServicio.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.ColServicio.Width = 110;
+			// 
+			// ColSeccion
+			// 
+			this.ColSeccion.DataPropertyName = "Seccion";
+			dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.ColSeccion.DefaultCellStyle = dataGridViewCellStyle10;
+			this.ColSeccion.HeaderText = "Sección";
+			this.ColSeccion.Name = "ColSeccion";
+			this.ColSeccion.ReadOnly = true;
+			this.ColSeccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			// 
+			// ColFechaNac
+			// 
+			this.ColFechaNac.DataPropertyName = "Fecha_Nac";
+			this.ColFechaNac.HeaderText = "Fec. nacimiento";
+			this.ColFechaNac.MaxInputLength = 10;
+			this.ColFechaNac.Name = "ColFechaNac";
+			this.ColFechaNac.ToolTipText = "Fecha nacimiento";
+			// 
+			// colFecha_inicio
+			// 
+			this.colFecha_inicio.DataPropertyName = "Fecha_inicio";
+			this.colFecha_inicio.HeaderText = "F. inicio control";
+			this.colFecha_inicio.MaxInputLength = 10;
+			this.colFecha_inicio.Name = "colFecha_inicio";
+			this.colFecha_inicio.ReadOnly = true;
+			this.colFecha_inicio.ToolTipText = "Fecha inicio control";
+			// 
+			// ColEstado
+			// 
+			this.ColEstado.DataPropertyName = "Id_estado";
+			this.ColEstado.FalseValue = "0";
+			this.ColEstado.HeaderText = "Estado";
+			this.ColEstado.Name = "ColEstado";
+			this.ColEstado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.ColEstado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.ColEstado.TrueValue = "1";
+			this.ColEstado.Width = 80;
+			// 
+			// ColFechaTermino
+			// 
+			this.ColFechaTermino.DataPropertyName = "fecha_termino";
+			this.ColFechaTermino.HeaderText = "F. Term Control";
+			this.ColFechaTermino.MaxInputLength = 10;
+			this.ColFechaTermino.Name = "ColFechaTermino";
+			this.ColFechaTermino.ToolTipText = "Fecha termino control";
+			// 
+			// colRevision
+			// 
+			this.colRevision.DataPropertyName = "Revision";
+			this.colRevision.FalseValue = "0";
+			this.colRevision.HeaderText = "Rev";
+			this.colRevision.Name = "colRevision";
+			this.colRevision.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.colRevision.TrueValue = "1";
+			this.colRevision.Width = 40;
+			// 
 			// toolStrip1
 			// 
 			this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbGuardar,
             this.tsbNuevo,
+            this.tsbEliminar,
+            this.tsbGuardar,
             this.tsbAsignarSucursal,
             this.tsbAsignarSeccion});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -539,159 +695,16 @@
 			this.chkCambiarEstado.Text = "Activo";
 			this.chkCambiarEstado.UseVisualStyleBackColor = true;
 			// 
-			// ColSeleccion
+			// tsbEliminar
 			// 
-			this.ColSeleccion.DataPropertyName = "Seleccionar";
-			this.ColSeleccion.FalseValue = "0";
-			this.ColSeleccion.HeaderText = "Seleccionar";
-			this.ColSeleccion.Name = "ColSeleccion";
-			this.ColSeleccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.ColSeleccion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.ColSeleccion.TrueValue = "1";
-			this.ColSeleccion.Width = 80;
-			// 
-			// colMod
-			// 
-			this.colMod.HeaderText = "";
-			this.colMod.Image = global::ControlDosimetro.Properties.Resources.Modify_24;
-			this.colMod.Name = "colMod";
-			this.colMod.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.colMod.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.colMod.ToolTipText = "Modificar";
-			this.colMod.Width = 40;
-			// 
-			// Id_Personal
-			// 
-			this.Id_Personal.DataPropertyName = "Id_Personal";
-			this.Id_Personal.HeaderText = "Id_Personal";
-			this.Id_Personal.Name = "Id_Personal";
-			this.Id_Personal.Visible = false;
-			this.Id_Personal.Width = 88;
-			// 
-			// Rut
-			// 
-			this.Rut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-			this.Rut.DataPropertyName = "Rut";
-			dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-			this.Rut.DefaultCellStyle = dataGridViewCellStyle16;
-			this.Rut.HeaderText = "Rut";
-			this.Rut.Name = "Rut";
-			this.Rut.ReadOnly = true;
-			this.Rut.Width = 49;
-			// 
-			// Nombres
-			// 
-			this.Nombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-			this.Nombres.DataPropertyName = "Nombres";
-			dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-			this.Nombres.DefaultCellStyle = dataGridViewCellStyle17;
-			this.Nombres.HeaderText = "Nombres";
-			this.Nombres.MaxInputLength = 100;
-			this.Nombres.Name = "Nombres";
-			this.Nombres.ReadOnly = true;
-			this.Nombres.Width = 74;
-			// 
-			// Paterno
-			// 
-			this.Paterno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-			this.Paterno.DataPropertyName = "Paterno";
-			dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-			this.Paterno.DefaultCellStyle = dataGridViewCellStyle18;
-			this.Paterno.FillWeight = 300F;
-			this.Paterno.HeaderText = "Paterno";
-			this.Paterno.MaxInputLength = 100;
-			this.Paterno.Name = "Paterno";
-			this.Paterno.ReadOnly = true;
-			this.Paterno.Width = 69;
-			// 
-			// Maternos
-			// 
-			this.Maternos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-			this.Maternos.DataPropertyName = "Maternos";
-			dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-			this.Maternos.DefaultCellStyle = dataGridViewCellStyle19;
-			this.Maternos.HeaderText = "Maternos";
-			this.Maternos.MaxInputLength = 100;
-			this.Maternos.MinimumWidth = 150;
-			this.Maternos.Name = "Maternos";
-			this.Maternos.ReadOnly = true;
-			this.Maternos.Width = 150;
-			// 
-			// ColServicio
-			// 
-			this.ColServicio.DataPropertyName = "Id_CodServicio";
-			this.ColServicio.DisplayStyleForCurrentCellOnly = true;
-			this.ColServicio.HeaderText = "Servicio";
-			this.ColServicio.Name = "ColServicio";
-			this.ColServicio.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.ColServicio.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.ColServicio.Width = 110;
-			// 
-			// ColSeccion
-			// 
-			this.ColSeccion.DataPropertyName = "Seccion";
-			dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-			this.ColSeccion.DefaultCellStyle = dataGridViewCellStyle20;
-			this.ColSeccion.HeaderText = "Sección";
-			this.ColSeccion.Name = "ColSeccion";
-			this.ColSeccion.ReadOnly = true;
-			this.ColSeccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			// 
-			// ColFechaNac
-			// 
-			this.ColFechaNac.DataPropertyName = "Fecha_Nac";
-			this.ColFechaNac.HeaderText = "Fec. nacimiento";
-			this.ColFechaNac.MaxInputLength = 10;
-			this.ColFechaNac.Name = "ColFechaNac";
-			this.ColFechaNac.ToolTipText = "Fecha nacimiento";
-			// 
-			// colFecha_inicio
-			// 
-			this.colFecha_inicio.DataPropertyName = "Fecha_inicio";
-			this.colFecha_inicio.HeaderText = "F. inicio control";
-			this.colFecha_inicio.MaxInputLength = 10;
-			this.colFecha_inicio.Name = "colFecha_inicio";
-			this.colFecha_inicio.ReadOnly = true;
-			this.colFecha_inicio.ToolTipText = "Fecha inicio control";
-			// 
-			// ColEstado
-			// 
-			this.ColEstado.DataPropertyName = "Id_estado";
-			this.ColEstado.FalseValue = "0";
-			this.ColEstado.HeaderText = "Estado";
-			this.ColEstado.Name = "ColEstado";
-			this.ColEstado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.ColEstado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.ColEstado.TrueValue = "1";
-			this.ColEstado.Width = 80;
-			// 
-			// ColFechaTermino
-			// 
-			this.ColFechaTermino.DataPropertyName = "fecha_termino";
-			this.ColFechaTermino.HeaderText = "F. Term Control";
-			this.ColFechaTermino.MaxInputLength = 10;
-			this.ColFechaTermino.Name = "ColFechaTermino";
-			this.ColFechaTermino.ToolTipText = "Fecha termino control";
-			// 
-			// colRevision
-			// 
-			this.colRevision.DataPropertyName = "Revision";
-			this.colRevision.FalseValue = "0";
-			this.colRevision.HeaderText = "Rev";
-			this.colRevision.Name = "colRevision";
-			this.colRevision.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.colRevision.TrueValue = "1";
-			this.colRevision.Width = 40;
-			// 
-			// chkMarcar
-			// 
-			this.chkMarcar.AutoSize = true;
-			this.chkMarcar.Location = new System.Drawing.Point(8, 22);
-			this.chkMarcar.Name = "chkMarcar";
-			this.chkMarcar.Size = new System.Drawing.Size(15, 14);
-			this.chkMarcar.TabIndex = 38;
-			this.chkMarcar.UseVisualStyleBackColor = true;
-			this.chkMarcar.CheckedChanged += new System.EventHandler(this.chkMarcar_CheckedChanged);
+			this.tsbEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbEliminar.Image = global::ControlDosimetro.Properties.Resources.Delete1;
+			this.tsbEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.tsbEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbEliminar.Name = "tsbEliminar";
+			this.tsbEliminar.Size = new System.Drawing.Size(36, 36);
+			this.tsbEliminar.Text = "Eliminar registro";
+			this.tsbEliminar.ToolTipText = "Eliminar registro";
 			// 
 			// frmModificarPersonalMasivo
 			// 
@@ -786,5 +799,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColFechaTermino;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn colRevision;
 		private System.Windows.Forms.CheckBox chkMarcar;
+		private System.Windows.Forms.ToolStripButton tsbEliminar;
 	}
 }

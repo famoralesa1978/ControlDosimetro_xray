@@ -65,6 +65,7 @@ namespace ControlDosimetro
 
 			tsbGuardar.Enabled = (Lectura == false && Modificar);
 			tsbNuevo.Enabled = false;
+			tsbEliminar.Enabled = false;
 			grdDatos.ReadOnly = Lectura || !Modificar;
 			grdDatos.DefaultCellStyle.BackColor = !Lectura && (Modificar) ? SystemColors.Window : ClaseGeneral.ColorCeldaBloqueado;
 			//btnEliminar.Enabled = Lectura == false && Eliminar;
@@ -248,6 +249,8 @@ namespace ControlDosimetro
 			grdDatos.DataSource = ds.Tables[0];
 
 			grp_Grilla.Text = "Listado personal   - Cantidad :" + ds.Tables[0].Rows.Count.ToString();
+			tsbEliminar.Enabled = !Lectura && Eliminar && ds.Tables[0].Rows.Count>0;
+			btnDescargarExcel.Enabled =  ds.Tables[0].Rows.Count > 0;
 			Cursor = Cursors.Default;
 		}
 		private void btnCambiar_Click(object sender, EventArgs e)
@@ -264,22 +267,9 @@ namespace ControlDosimetro
 		private void chk_AsignarTLD_CheckedChanged(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
-			//if (bolDesdeCodigo)
-			//{
-			//	foreach (DataGridViewRow dr in grdDatos.Rows)
-			//	{
-			//		if (Convert.ToInt16(dr.Cells[ColServicio.Index].Value) == 44)
-			//			dr.Cells[ColServicio.Index].Value = 99;
-			//	}
-
-			//}
-
-			Cursor = Cursors.WaitCursor;
 			grdDatos.FinalizaEdicion();
 			grdDatos.Vista().Table.AsEnumerable().ToList().
 						ForEach(s => { s["Id_CodServicio"] =99; });
-			Cursor = Cursors.Default;
-
 			Cursor = Cursors.Default;
 		}
 		private void chkMarcar_CheckedChanged(object sender, EventArgs e)
@@ -562,13 +552,10 @@ namespace ControlDosimetro
 
 		private void tsbPersonal_Click(object sender, EventArgs e)
 		{
-			Cursor = Cursors.WaitCursor;
-
 			frmPersonalMant frm = new frmPersonalMant(Convert.ToInt64(txt_N_cliente.Text), 0, txt_Rut.Text);
 			frm.ShowDialog(this);
-
-			btn_cargarCliente_Click(null, null);
-			Listar_Personal();
+			Cursor = Cursors.WaitCursor;
+			picFiltrarpersonal_Click(null, null);
 
 			Cursor = Cursors.Default;
 		}
