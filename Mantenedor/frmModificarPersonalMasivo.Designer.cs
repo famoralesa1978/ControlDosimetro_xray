@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmModificarPersonalMasivo));
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.btn_Filtro = new System.Windows.Forms.Button();
@@ -61,8 +61,9 @@
 			this.ColFechaTermino = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colRevision = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-			this.tsbGuardar = new System.Windows.Forms.ToolStripButton();
 			this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
+			this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
+			this.tsbGuardar = new System.Windows.Forms.ToolStripButton();
 			this.tsbAsignarSucursal = new System.Windows.Forms.ToolStripButton();
 			this.tsbAsignarSeccion = new System.Windows.Forms.ToolStripButton();
 			this.grpPersonal = new System.Windows.Forms.GroupBox();
@@ -88,7 +89,6 @@
 			this.btnCambiar = new System.Windows.Forms.Button();
 			this.dtpCambioFecha = new System.Windows.Forms.DateTimePicker();
 			this.chkCambiarEstado = new System.Windows.Forms.CheckBox();
-			this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
 			this.groupBox1.SuspendLayout();
 			this.grp_Grilla.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -288,8 +288,8 @@
 			// 
 			this.Rut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.Rut.DataPropertyName = "Rut";
-			dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-			this.Rut.DefaultCellStyle = dataGridViewCellStyle6;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.Rut.DefaultCellStyle = dataGridViewCellStyle1;
 			this.Rut.HeaderText = "Rut";
 			this.Rut.Name = "Rut";
 			this.Rut.ReadOnly = true;
@@ -299,8 +299,8 @@
 			// 
 			this.Nombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.Nombres.DataPropertyName = "Nombres";
-			dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-			this.Nombres.DefaultCellStyle = dataGridViewCellStyle7;
+			dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.Nombres.DefaultCellStyle = dataGridViewCellStyle2;
 			this.Nombres.HeaderText = "Nombres";
 			this.Nombres.MaxInputLength = 100;
 			this.Nombres.Name = "Nombres";
@@ -311,8 +311,8 @@
 			// 
 			this.Paterno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.Paterno.DataPropertyName = "Paterno";
-			dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-			this.Paterno.DefaultCellStyle = dataGridViewCellStyle8;
+			dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.Paterno.DefaultCellStyle = dataGridViewCellStyle3;
 			this.Paterno.FillWeight = 300F;
 			this.Paterno.HeaderText = "Paterno";
 			this.Paterno.MaxInputLength = 100;
@@ -324,8 +324,8 @@
 			// 
 			this.Maternos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.Maternos.DataPropertyName = "Maternos";
-			dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-			this.Maternos.DefaultCellStyle = dataGridViewCellStyle9;
+			dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.Maternos.DefaultCellStyle = dataGridViewCellStyle4;
 			this.Maternos.HeaderText = "Maternos";
 			this.Maternos.MaxInputLength = 100;
 			this.Maternos.MinimumWidth = 150;
@@ -346,8 +346,8 @@
 			// ColSeccion
 			// 
 			this.ColSeccion.DataPropertyName = "Seccion";
-			dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-			this.ColSeccion.DefaultCellStyle = dataGridViewCellStyle10;
+			dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.ColSeccion.DefaultCellStyle = dataGridViewCellStyle5;
 			this.ColSeccion.HeaderText = "Sección";
 			this.ColSeccion.Name = "ColSeccion";
 			this.ColSeccion.ReadOnly = true;
@@ -414,17 +414,6 @@
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
-			// tsbGuardar
-			// 
-			this.tsbGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.tsbGuardar.Image = global::ControlDosimetro.Properties.Resources.Save_32;
-			this.tsbGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-			this.tsbGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbGuardar.Name = "tsbGuardar";
-			this.tsbGuardar.Size = new System.Drawing.Size(36, 36);
-			this.tsbGuardar.ToolTipText = "Grabar";
-			this.tsbGuardar.Click += new System.EventHandler(this.tsbGuardar_Click);
-			// 
 			// tsbNuevo
 			// 
 			this.tsbNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -435,6 +424,29 @@
 			this.tsbNuevo.Size = new System.Drawing.Size(36, 36);
 			this.tsbNuevo.Text = "Agregar personal";
 			this.tsbNuevo.Click += new System.EventHandler(this.tsbPersonal_Click);
+			// 
+			// tsbEliminar
+			// 
+			this.tsbEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbEliminar.Image = global::ControlDosimetro.Properties.Resources.Delete1;
+			this.tsbEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.tsbEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbEliminar.Name = "tsbEliminar";
+			this.tsbEliminar.Size = new System.Drawing.Size(36, 36);
+			this.tsbEliminar.Text = "Eliminar registro";
+			this.tsbEliminar.ToolTipText = "Eliminar registro";
+			this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
+			// 
+			// tsbGuardar
+			// 
+			this.tsbGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbGuardar.Image = global::ControlDosimetro.Properties.Resources.Save_32;
+			this.tsbGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.tsbGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbGuardar.Name = "tsbGuardar";
+			this.tsbGuardar.Size = new System.Drawing.Size(36, 36);
+			this.tsbGuardar.ToolTipText = "Grabar";
+			this.tsbGuardar.Click += new System.EventHandler(this.tsbGuardar_Click);
 			// 
 			// tsbAsignarSucursal
 			// 
@@ -694,17 +706,6 @@
 			this.chkCambiarEstado.TabIndex = 0;
 			this.chkCambiarEstado.Text = "Activo";
 			this.chkCambiarEstado.UseVisualStyleBackColor = true;
-			// 
-			// tsbEliminar
-			// 
-			this.tsbEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.tsbEliminar.Image = global::ControlDosimetro.Properties.Resources.Delete1;
-			this.tsbEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-			this.tsbEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbEliminar.Name = "tsbEliminar";
-			this.tsbEliminar.Size = new System.Drawing.Size(36, 36);
-			this.tsbEliminar.Text = "Eliminar registro";
-			this.tsbEliminar.ToolTipText = "Eliminar registro";
 			// 
 			// frmModificarPersonalMasivo
 			// 

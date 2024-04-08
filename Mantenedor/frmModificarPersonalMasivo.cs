@@ -5,15 +5,9 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using dllConectorMysql;
-using dllLibreriaEvento;
 using dllLibreriaMysql;
 using System.Data.SqlClient;
-using System.Data.Sql;
-using System.Diagnostics;
-using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ControlDosimetro
 {
@@ -122,8 +116,10 @@ namespace ControlDosimetro
 		{
 			clsEvento.AsignarRutSinGuion(ref txt_Rut);
 			clsEvento.AsignarRutSinGuion(ref txt_RunPersonal);
-			clsEvento.AsignarNumero(ref txt_N_cliente);
-			clsEvento.AsignarKeyPress(ref txt_RazonSocial);
+			txt_Rut.EventoAsignarRut();
+			txt_RunPersonal.EventoAsignarRut();
+			txt_N_cliente.EventoAsignarNumero(9);
+			txt_RazonSocial.EventoAsignarAvanzar();
 		}
 
 
@@ -497,7 +493,42 @@ namespace ControlDosimetro
 			picFiltrarpersonal_Click(null, null);
 		}
 
+		private void tsbEliminar_Click(object sender, EventArgs e)
+		{
+			grdDatos.FinalizaEdicion();
+			DataTable dt = ((DataTable)grdDatos.DataSource);
+			List<string> lista = dt.AsEnumerable().Where(s => (int)s["Seleccionar"]==1).Select(s => s[0].ToString()).ToList();
+			if (lista.Count == 0)
+				"Debe Seleccionar registro para eliminar".XMensajeError();
+			else
+			{
+				if ("¿Esta seguro eliminar los registros?".XMensajeConfirmacionSiNo())
+				{
+					string strMensajeError = "";
+					StringBuilder sbMensaje = new StringBuilder();
+					for (int intLista = 0; intLista < lista.Count; intLista++)
+					{
+						SqlCommand cmd = new SqlCommand();
+						cmd.CommandText = "pa_PersonalMasivo_Del";
+						cmd.Parameters.Add("@Id_Personal", SqlDbType.Int);
+						cmd.Parameters["@Id_Personal"].Value = lista[intLista];
 
+
+						cmd.CommandType = CommandType.StoredProcedure;
+						Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd, ref strMensajeError);
+						if (!string.IsNullOrWhiteSpace(strMensajeError))
+						{
+							Cursor = Cursors.Default;
+							sbMensaje.AppendLine(string.Format("{0}{1}", lista[intLista], strMensajeError));
+							ClaseGeneral.GuardarLOG(this.Name, "pa_PersonalMasivo_Del", "Grabar");
+						}
+					}
+					if (!string.IsNullOrWhiteSpace(sbMensaje.ToString()))
+						sbMensaje.ToString().XMensajeError();
+					picFiltrarpersonal_Click(null, null);
+				}
+			}
+		}
 
 		private void tsbAsignarSeccion_Click(object sender, EventArgs e)
 		{
