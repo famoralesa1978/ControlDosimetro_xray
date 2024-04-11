@@ -364,18 +364,11 @@ namespace ControlDosimetro
 
 
 						SqlCommand cmd = new SqlCommand();
-						cmd.CommandText = "pa_Sucursal_ins '" + txt_run.Text + "','" + txt_direccion.Text + "'," + cbx_id_region.SelectedValue + "," +
-														cbx_id_provincia.SelectedValue + "," + cbx_id_comuna.SelectedValue + ",'" + txt_telefono.Text + "',1,1," + txt_id_cliente.Text + ",'" + txt_Email.Text + "','" + txt_Razon_Social.Text + "'";
+						cmd.CommandText = "pa_Cliente_ins " + lbl_id_cliente.Text;
 						cmd.CommandType = CommandType.Text;
 						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 
-						SqlCommand cmd1 = new SqlCommand();
-						cmd1.CommandText = "pa_ClienteHistorial_ins " + txt_id_cliente.Text;
-						cmd1.CommandType = CommandType.Text;
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd1);
-
 						SqlCommand cmdArchivo = new SqlCommand();
-						//SqlCommand cmdcombo = new SqlCommand();
 						DataSet dtArchivo;
 						cmdArchivo.CommandText = "" +
 							"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=6 order by orden ";
