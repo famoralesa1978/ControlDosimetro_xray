@@ -74,7 +74,7 @@ namespace ControlDosimetro
             if((txt_NDoc.Text=="")&&(txt_NDos.Text==""))
                 MessageBox.Show("Todos los campos son obligatorios");
             else
-             if (MessageBox.Show("Esta seguro de  estado?" , "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+             if (MessageBox.Show("Esta seguro eliminar el dosimetro?" , "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
              {
                 string strMensaje = "";
                 int intResul = clsFunc.CambiarliberarDosimetro(txt_NDoc.Text, txt_NDos.Text, ref strMensaje);

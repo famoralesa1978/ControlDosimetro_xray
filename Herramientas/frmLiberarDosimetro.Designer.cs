@@ -32,6 +32,7 @@
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.grpDatosCliente = new System.Windows.Forms.GroupBox();
+			this.label3 = new System.Windows.Forms.Label();
 			this.txt_NDos = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.btn_filtro = new System.Windows.Forms.Button();
@@ -58,7 +59,6 @@
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.btn_EliminarSeleccion = new System.Windows.Forms.ToolStripMenuItem();
-			this.label3 = new System.Windows.Forms.Label();
 			this.grpDatosCliente.SuspendLayout();
 			this.cmsPopup.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
@@ -79,6 +79,15 @@
 			this.grpDatosCliente.TabIndex = 1;
 			this.grpDatosCliente.TabStop = false;
 			this.grpDatosCliente.Text = "Dato ";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(13, 20);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(354, 13);
+			this.label3.TabIndex = 48;
+			this.label3.Text = "Se va eliminar el número de dosimetro  asociado al número de documento";
 			// 
 			// txt_NDos
 			// 
@@ -121,7 +130,7 @@
 			this.btn_Guardar.Name = "btn_Guardar";
 			this.btn_Guardar.Size = new System.Drawing.Size(114, 23);
 			this.btn_Guardar.TabIndex = 3;
-			this.btn_Guardar.Text = "Modificar estado";
+			this.btn_Guardar.Text = "Eliminar";
 			this.btn_Guardar.UseVisualStyleBackColor = true;
 			this.btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
 			// 
@@ -280,15 +289,6 @@
 			// 
 			this.btn_EliminarSeleccion.Name = "btn_EliminarSeleccion";
 			this.btn_EliminarSeleccion.Size = new System.Drawing.Size(67, 22);
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(13, 20);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(354, 13);
-			this.label3.TabIndex = 48;
-			this.label3.Text = "Se va eliminar el número de dosimetro  asociado al número de documento";
 			// 
 			// frmLiberarDosimetro
 			// 
