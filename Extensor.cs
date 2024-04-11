@@ -47,14 +47,13 @@ namespace ControlDosimetro
 		}
 		public static void EventoAsignarAvanzar(this Control control)
 		{
-			//if (control is System.Windows.Forms.TextBox)
-			//	(control as System.Windows.Forms.TextBox).KeyPress += new KeyPressEventHandler(ClaseEvento.);
 			//if (control is System.Windows.Forms.ComboBox)
-			//	(control as System.Windows.Forms.ComboBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-			//if (control is System.Windows.Forms.DateTimePicker)
-			//	(control as System.Windows.Forms.DateTimePicker).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
-			//if (control is System.Windows.Forms.CheckBox)
-			//	(control as System.Windows.Forms.CheckBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
+			//	ClaseEvento.AvanzarComboBox_KeyPress(control);
+				//(control as System.Windows.Forms.ComboBox).KeyPress += new KeyPressEventArgs(ref );
+			////if (control is System.Windows.Forms.DateTimePicker)
+			////	(control as System.Windows.Forms.DateTimePicker).KeyPress += new KeyPressEventHandler(ClaseEvento.AvanzarDateTimePicker_KeyPress);
+			////if (control is System.Windows.Forms.CheckBox)
+			////	(control as System.Windows.Forms.CheckBox).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 		}
 		public static void EventoAsignarDireccion(this Control control)
 		{

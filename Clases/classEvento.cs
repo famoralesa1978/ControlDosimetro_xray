@@ -73,7 +73,7 @@ namespace Clases
 			textbox.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 		}
 
-		public void AvanzarComboBox_KeyPress(ref ComboBox control)
+		internal void AvanzarComboBox_KeyPress(ref ComboBox control)
 		{
 			control.KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 		}
@@ -371,8 +371,6 @@ namespace Clases
 			}
 
 		}
-
-
 	}
 
 }

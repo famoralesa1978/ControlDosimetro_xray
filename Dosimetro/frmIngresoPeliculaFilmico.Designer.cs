@@ -85,6 +85,7 @@
 			this.cmsPopup = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.tsbEliminarDcto = new System.Windows.Forms.ToolStripButton();
 			this.tsb_Imprimir = new System.Windows.Forms.ToolStripButton();
 			this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
 			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -101,7 +102,6 @@
 			this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btn_Imprimir = new System.Windows.Forms.Button();
 			this.btn_Cerrar = new System.Windows.Forms.Button();
-			this.tsbEliminarDcto = new System.Windows.Forms.ToolStripButton();
 			this.groupBox1.SuspendLayout();
 			this.grp_Ingreso.SuspendLayout();
 			this.grpListado.SuspendLayout();
@@ -193,6 +193,7 @@
 			this.cbx_Sucursal.TabIndex = 14;
 			this.cbx_Sucursal.ValueMember = "Id_Sucursal";
 			this.cbx_Sucursal.SelectedValueChanged += new System.EventHandler(this.cbx_Sucursal_SelectedValueChanged);
+			this.cbx_Sucursal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Avanzar_KeyPress);
 			// 
 			// label12
 			// 
@@ -252,6 +253,7 @@
 			this.cbx_id_periodo.TabIndex = 2;
 			this.cbx_id_periodo.ValueMember = "Id_Periodo";
 			this.cbx_id_periodo.SelectedValueChanged += new System.EventHandler(this.cbx_id_periodo_SelectedValueChanged);
+			this.cbx_id_periodo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Avanzar_KeyPress);
 			// 
 			// lbl_nombreCliente
 			// 
@@ -346,6 +348,7 @@
 			this.dtp_Fecha_dev.Name = "dtp_Fecha_dev";
 			this.dtp_Fecha_dev.Size = new System.Drawing.Size(132, 20);
 			this.dtp_Fecha_dev.TabIndex = 13;
+			this.dtp_Fecha_dev.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Avanzar_KeyPress);
 			// 
 			// label13
 			// 
@@ -506,6 +509,7 @@
 			this.cbx_anno.TabIndex = 1;
 			this.cbx_anno.ValueMember = "anno";
 			this.cbx_anno.SelectedIndexChanged += new System.EventHandler(this.cbx_anno_SelectedIndexChanged);
+			this.cbx_anno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Avanzar_KeyPress);
 			// 
 			// label2
 			// 
@@ -662,6 +666,17 @@
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
+			// tsbEliminarDcto
+			// 
+			this.tsbEliminarDcto.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbEliminarDcto.Image = global::ControlDosimetro.Properties.Resources.Delete1;
+			this.tsbEliminarDcto.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.tsbEliminarDcto.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbEliminarDcto.Name = "tsbEliminarDcto";
+			this.tsbEliminarDcto.Size = new System.Drawing.Size(36, 36);
+			this.tsbEliminarDcto.Text = "Eliminar documento";
+			this.tsbEliminarDcto.Click += new System.EventHandler(this.tsbEliminarDcto_Click);
+			// 
 			// tsb_Imprimir
 			// 
 			this.tsb_Imprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -811,17 +826,6 @@
 			this.btn_Cerrar.Text = "Cerrar";
 			this.btn_Cerrar.UseVisualStyleBackColor = true;
 			this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click);
-			// 
-			// tsbEliminarDcto
-			// 
-			this.tsbEliminarDcto.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.tsbEliminarDcto.Image = global::ControlDosimetro.Properties.Resources.Delete1;
-			this.tsbEliminarDcto.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-			this.tsbEliminarDcto.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbEliminarDcto.Name = "tsbEliminarDcto";
-			this.tsbEliminarDcto.Size = new System.Drawing.Size(36, 36);
-			this.tsbEliminarDcto.Text = "Eliminar documento";
-			this.tsbEliminarDcto.Click += new System.EventHandler(this.tsbEliminarDcto_Click);
 			// 
 			// frmIngresoPeliculaFilmico
 			// 

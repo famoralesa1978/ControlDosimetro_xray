@@ -420,12 +420,6 @@
     <Compile Include="Mantenedor\frmMantenedorClienteRazonSocial.Designer.cs">
       <DependentUpon>frmMantenedorClienteRazonSocial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mantenedor\frmMantenedorCliente.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mantenedor\frmMantenedorCliente.Designer.cs">
-      <DependentUpon>frmMantenedorCliente.cs</DependentUpon>
-    </Compile>
     <Compile Include="Mantenedor\frmMantenedorSeccion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -859,9 +853,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmMantenedorClienteRazonSocial.resx">
       <DependentUpon>frmMantenedorClienteRazonSocial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mantenedor\frmMantenedorCliente.resx">
-      <DependentUpon>frmMantenedorCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenedor\frmMantenedorSeccion.resx">
       <DependentUpon>frmMantenedorSeccion.cs</DependentUpon>

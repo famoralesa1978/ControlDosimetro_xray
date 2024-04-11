@@ -364,7 +364,7 @@ namespace ControlDosimetro
 
 
 						SqlCommand cmd = new SqlCommand();
-						cmd.CommandText = "pa_Cliente_ins " + lbl_id_cliente.Text;
+						cmd.CommandText = "pa_Cliente_ins " + txt_id_cliente.Text;
 						cmd.CommandType = CommandType.Text;
 						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 

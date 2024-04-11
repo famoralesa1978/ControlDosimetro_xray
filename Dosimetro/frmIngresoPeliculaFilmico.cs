@@ -130,12 +130,11 @@ namespace ControlDosimetro
 
 		private void AsignarEvento()
 		{
-			clsEvt.AsignarNumero(ref txt_Pelicula);
-			clsEvt.AsignarNumero(ref txt_PeliculaHasta);
-			clsEvt.AsignarNumero(ref txt_pelrefhasta);
-			clsEvt.AsignarNumero(ref txt_pelrefdesde);
-			clsEvt.AsignarNumero(ref txt_NDocumento);
-			clsEvt.AsignarKeyPressDTP(ref dtp_Fecha_inicio);
+			txt_Pelicula.EventoAsignarNumero(9);
+			txt_PeliculaHasta.EventoAsignarNumero(9);
+			txt_pelrefhasta.EventoAsignarNumero(9);
+			txt_pelrefdesde.EventoAsignarNumero(9);
+			txt_NDocumento.EventoAsignarNumero(9);
 		}
 		public DataSet RptInforme()
 		{
@@ -765,8 +764,20 @@ namespace ControlDosimetro
 		}
 
 
+
+
 		#endregion
 
+		#region evento Generico controles
+		private void Avanzar_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar == (char)(Keys.Enter))
+			{
+				e.Handled = true;
+				SendKeys.Send("{TAB}");
+			}
+		}
+		#endregion
 
 	}
 }
