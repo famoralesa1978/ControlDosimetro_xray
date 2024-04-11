@@ -57,6 +57,7 @@
 			this.tsmModificar = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.tsbAgregarCliente = new System.Windows.Forms.ToolStripButton();
+			this.tsb_Eliminar = new System.Windows.Forms.ToolStripButton();
 			this.tsbEmail = new System.Windows.Forms.ToolStripButton();
 			this.tsbAgregarReferencia = new System.Windows.Forms.ToolStripButton();
 			this.tsbAgregarPersonal = new System.Windows.Forms.ToolStripButton();
@@ -64,7 +65,6 @@
 			this.tsbIngresoDosimetro = new System.Windows.Forms.ToolStripButton();
 			this.btnIngresarDosisISP = new System.Windows.Forms.ToolStripButton();
 			this.tsdReporte = new System.Windows.Forms.ToolStripDropDownButton();
-			this.tsb_Eliminar = new System.Windows.Forms.ToolStripButton();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -218,7 +218,7 @@
 			this.groupBox2.Controls.Add(this.grdDatos);
 			this.groupBox2.Location = new System.Drawing.Point(5, 176);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(963, 356);
+			this.groupBox2.Size = new System.Drawing.Size(1174, 356);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Listado";
@@ -244,7 +244,7 @@
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.grdDatos.Size = new System.Drawing.Size(957, 337);
+			this.grdDatos.Size = new System.Drawing.Size(1168, 337);
 			this.grdDatos.TabIndex = 7;
 			this.grdDatos.DoubleClick += new System.EventHandler(this.grdDatos_DoubleClick);
 			// 
@@ -345,7 +345,7 @@
             this.tsdReporte});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(980, 39);
+			this.toolStrip1.Size = new System.Drawing.Size(1191, 39);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -360,6 +360,18 @@
 			this.tsbAgregarCliente.Text = "toolStripButton1";
 			this.tsbAgregarCliente.ToolTipText = "Agregar Cliente";
 			this.tsbAgregarCliente.Click += new System.EventHandler(this.btn_Agregar_Click);
+			// 
+			// tsb_Eliminar
+			// 
+			this.tsb_Eliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsb_Eliminar.Image = global::ControlDosimetro.Properties.Resources.delete_32;
+			this.tsb_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.tsb_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsb_Eliminar.Name = "tsb_Eliminar";
+			this.tsb_Eliminar.Size = new System.Drawing.Size(36, 36);
+			this.tsb_Eliminar.Text = "Eliminar";
+			this.tsb_Eliminar.ToolTipText = "Elimina un personal";
+			this.tsb_Eliminar.Click += new System.EventHandler(this.tsb_Eliminar_Click);
 			// 
 			// tsbEmail
 			// 
@@ -437,24 +449,12 @@
 			this.tsdReporte.Size = new System.Drawing.Size(61, 36);
 			this.tsdReporte.Text = "Reporte";
 			// 
-			// tsb_Eliminar
-			// 
-			this.tsb_Eliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.tsb_Eliminar.Image = global::ControlDosimetro.Properties.Resources.delete_32;
-			this.tsb_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-			this.tsb_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsb_Eliminar.Name = "tsb_Eliminar";
-			this.tsb_Eliminar.Size = new System.Drawing.Size(36, 36);
-			this.tsb_Eliminar.Text = "Eliminar";
-			this.tsb_Eliminar.ToolTipText = "Elimina un personal";
-			this.tsb_Eliminar.Click += new System.EventHandler(this.tsb_Eliminar_Click);
-			// 
 			// frmBusquedaEmpresa
 			// 
 			this.AcceptButton = this.btn_cargarCliente;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(980, 532);
+			this.ClientSize = new System.Drawing.Size(1191, 532);
 			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);

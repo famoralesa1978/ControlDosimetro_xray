@@ -183,7 +183,8 @@ namespace ControlDosimetro
 		}
 
 		private void Modificar(){
-			frmEmpresaMant frm = new frmEmpresaMant(Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()));
+			
+			frmEmpresaMant frm = new frmEmpresaMant(Convert.ToInt64(grdDatos.SelectedCells[0].Value.ToString()), grdDatos.FilaActual().ItemArray[1].ToString());
 			frm.ShowDialog(this);
 			Listar_Cliente();
 		}
@@ -206,7 +207,7 @@ namespace ControlDosimetro
 		{
 			Cursor = Cursors.WaitCursor;
 
-			frmEmpresaMant frm = new frmEmpresaMant(0);
+			frmEmpresaMant frm = new frmEmpresaMant(0,"");
 			frm.ShowDialog(this);
 			Listar_Cliente();
 

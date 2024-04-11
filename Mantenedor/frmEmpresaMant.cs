@@ -39,9 +39,8 @@ namespace ControlDosimetro
 		dllLibreriaMysql.clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
 		#endregion
 
-
-
-		public frmEmpresaMant(Int64 intCodigo)
+		#region Inicio
+		public frmEmpresaMant(Int64 intCodigo,string Rut)
 		{
 			InitializeComponent();
 			AsignarEvento();
@@ -75,18 +74,25 @@ namespace ControlDosimetro
 				txt_id_cliente.Text = intCodigo.ToString();
 				txt_id_cliente.Tag = intCodigo.ToString();
 				txt_id_cliente.Enabled = false;
+				txt_run.Text = Rut;
 				txt_Clave1.Enabled = false;
 				// SqlCommand cmd = new SqlCommand();
 				SqlCommand cmd = new SqlCommand();
 
-				cmd.CommandText = "SELECT run,Razon_Social,N_Cliente_Ref,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio,Email,clave,servicio, " +
-								"Id_Sector, id_Ministerio, Director, Opr,Id_TipoEntidad,nombre_fantasia " +
-								" FROM tbl_cliente WHERE Id_cliente= " + intCodigo.ToString();
+				cmd.CommandText = "pa_Cliente_selId";
+				cmd.Parameters.Clear();
+				cmd.Parameters.Add("@Id_cliente", SqlDbType.Int);
+				cmd.Parameters["@Id_cliente"].Value=intCodigo;
+				cmd.Parameters.Add("@run", SqlDbType.VarChar,12);
+				cmd.Parameters["@run"].Value = Rut;
+
+				cmd.CommandType = CommandType.StoredProcedure;
 				DataSet dt;
 				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
 				txt_Director.Text = dt.Tables[0].Rows[0]["Director"].ToString();
 				txt_Opr.Text = dt.Tables[0].Rows[0]["Opr"].ToString();
+				txt_OPR_RUT.Text = dt.Tables[0].Rows[0]["OPR_RUT"].ToString(); 
 				try
 				{
 					cbx_Id_Sector.SelectedValue = dt.Tables[0].Rows[0]["Id_Sector"].ToString();
@@ -167,6 +173,10 @@ namespace ControlDosimetro
 
 			}
 		}
+
+
+		#endregion
+
 
 		#region "Llamada de carga"  
 
