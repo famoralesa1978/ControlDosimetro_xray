@@ -77,7 +77,7 @@ namespace ControlDosimetro
              if (MessageBox.Show("Esta seguro de  estado?" , "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
              {
                 string strMensaje = "";
-                int intResul = clsFunc.CambiarEstado(txt_NDoc.Text, txt_NDos.Text, ref strMensaje);
+                int intResul = clsFunc.CambiarliberarDosimetro(txt_NDoc.Text, txt_NDos.Text, ref strMensaje);
            
                 MessageBox.Show(strMensaje);   
             }
