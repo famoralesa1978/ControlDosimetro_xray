@@ -40,7 +40,7 @@ namespace ControlDosimetro
 		#endregion
 
 		#region Inicio
-		public frmEmpresaMant(Int64 intCodigo,string Rut)
+		public frmEmpresaMant(Int64 intCodigo, string Rut)
 		{
 			InitializeComponent();
 			AsignarEvento();
@@ -82,8 +82,8 @@ namespace ControlDosimetro
 				cmd.CommandText = "pa_Cliente_selId";
 				cmd.Parameters.Clear();
 				cmd.Parameters.Add("@Id_cliente", SqlDbType.Int);
-				cmd.Parameters["@Id_cliente"].Value=intCodigo;
-				cmd.Parameters.Add("@run", SqlDbType.VarChar,12);
+				cmd.Parameters["@Id_cliente"].Value = intCodigo;
+				cmd.Parameters.Add("@run", SqlDbType.VarChar, 12);
 				cmd.Parameters["@run"].Value = Rut;
 
 				cmd.CommandType = CommandType.StoredProcedure;
@@ -92,7 +92,7 @@ namespace ControlDosimetro
 
 				txt_Director.Text = dt.Tables[0].Rows[0]["Director"].ToString();
 				txt_Opr.Text = dt.Tables[0].Rows[0]["Opr"].ToString();
-				txt_OPR_RUT.Text = dt.Tables[0].Rows[0]["OPR_RUT"].ToString(); 
+				txt_OPR_RUT.Text = dt.Tables[0].Rows[0]["OPR_RUT"].ToString();
 				try
 				{
 					cbx_Id_Sector.SelectedValue = dt.Tables[0].Rows[0]["Id_Sector"].ToString();
@@ -378,19 +378,19 @@ namespace ControlDosimetro
 						cmd.CommandType = CommandType.Text;
 						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 
-						SqlCommand cmdArchivo = new SqlCommand();
-						DataSet dtArchivo;
-						cmdArchivo.CommandText = "" +
-							"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=6 order by orden ";
-						cmdArchivo.CommandType = CommandType.Text;
-						dtArchivo = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
+						//SqlCommand cmdArchivo = new SqlCommand();
+						//DataSet dtArchivo;
+						//cmdArchivo.CommandText = "" +
+						//	"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=6 order by orden ";
+						//cmdArchivo.CommandType = CommandType.Text;
+						//dtArchivo = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
 
-						DataSet dtformato;
-						cmdArchivo.CommandText = "" +
-							"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=5 order by orden ";
-						cmdArchivo.CommandType = CommandType.Text;
-						dtformato = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
-						string targetPath = dtArchivo.Tables[0].Rows[0]["Glosa"].ToString() + "Cliente " + lbl_id_cliente.Text;
+						//DataSet dtformato;
+						//cmdArchivo.CommandText = "" +
+						//	"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=5 order by orden ";
+						//cmdArchivo.CommandType = CommandType.Text;
+						//dtformato = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
+						//string targetPath = dtArchivo.Tables[0].Rows[0]["Glosa"].ToString() + "Cliente " + lbl_id_cliente.Text;
 
 						MessageBox.Show("Dato Guardado ");//y se va a generar documento de Certificado
 																							//if (!System.IO.Directory.Exists(targetPath))
@@ -462,32 +462,23 @@ namespace ControlDosimetro
 							MessageBox.Show("Dato Guardado");
 
 							SqlCommand cmd = new SqlCommand();
-							cmd.CommandText = "pa_Sucursal_ins '" + txt_run.Text + "','" + txt_direccion.Text + "'," + cbx_id_region.SelectedValue + "," +
-														cbx_id_provincia.SelectedValue + "," + cbx_id_comuna.SelectedValue + ",'" + txt_telefono.Text + "',1,1," + txt_id_cliente.Text + ",'" + txt_Email.Text + "','" + txt_Razon_Social.Text + "'";
+							cmd.CommandText = "pa_Cliente_ins " + txt_id_cliente.Text;
 							cmd.CommandType = CommandType.Text;
 							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 
-
-
-							SqlCommand cmd1 = new SqlCommand();
-							cmd1.CommandText = "pa_ClienteHistorial_ins " + txt_id_cliente.Text;
-							cmd1.CommandType = CommandType.Text;
-							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd1);
-
-
 							SqlCommand cmdArchivo = new SqlCommand();
 							//SqlCommand cmdcombo = new SqlCommand();
-							DataSet dtArchivo;
-							cmdArchivo.CommandText = "" +
-								"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=6 order by orden ";
-							cmdArchivo.CommandType = CommandType.Text;
-							dtArchivo = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
+							//DataSet dtArchivo;
+							//cmdArchivo.CommandText = "" +
+							//	"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=6 order by orden ";
+							//cmdArchivo.CommandType = CommandType.Text;
+							//dtArchivo = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
 
-							DataSet dtformato;
-							cmdArchivo.CommandText = "" +
-								"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=5 order by orden ";
-							cmdArchivo.CommandType = CommandType.Text;
-							dtformato = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
+							//DataSet dtformato;
+							//cmdArchivo.CommandText = "" +
+							//	"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=5 order by orden ";
+							//cmdArchivo.CommandType = CommandType.Text;
+							//dtformato = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
 
 							//string targetPath = dtArchivo.Tables[0].Rows[0]["Glosa"].ToString() + "Cliente " + lbl_id_cliente.Text;
 

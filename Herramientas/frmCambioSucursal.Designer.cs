@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.grpDatosCliente = new System.Windows.Forms.GroupBox();
 			this.cbx_SucCambio = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
@@ -40,7 +40,7 @@
 			this.btn_Cargar = new System.Windows.Forms.Button();
 			this.lbl_NombreCliente = new System.Windows.Forms.Label();
 			this.lbl_NCliente = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
+			this.lbl = new System.Windows.Forms.Label();
 			this.btn_filtro = new System.Windows.Forms.Button();
 			this.txt_NDoc = new System.Windows.Forms.TextBox();
 			this.btn_Guardar = new System.Windows.Forms.Button();
@@ -82,6 +82,23 @@
 			this.lbl_rut_cliente = new System.Windows.Forms.Label();
 			this.lblRazonSocialTLD = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
+			this.tabCambioSucPOrDos = new System.Windows.Forms.TabPage();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.txtNDosPorSuc = new System.Windows.Forms.TextBox();
+			this.label18 = new System.Windows.Forms.Label();
+			this.ddlSucursalModPorSuc = new System.Windows.Forms.ComboBox();
+			this.label8 = new System.Windows.Forms.Label();
+			this.label12 = new System.Windows.Forms.Label();
+			this.ddlSucursalActualPorSuc = new System.Windows.Forms.ComboBox();
+			this.label13 = new System.Windows.Forms.Label();
+			this.btn_CargarPorSuc = new System.Windows.Forms.Button();
+			this.lbl_nombrePorDos = new System.Windows.Forms.Label();
+			this.lbl_NClientePorDos = new System.Windows.Forms.Label();
+			this.label16 = new System.Windows.Forms.Label();
+			this.button3 = new System.Windows.Forms.Button();
+			this.txtNDocPorSuc = new System.Windows.Forms.TextBox();
+			this.btnModificarSucDos = new System.Windows.Forms.Button();
+			this.label17 = new System.Windows.Forms.Label();
 			this.grpDatosCliente.SuspendLayout();
 			this.cmsPopup.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
@@ -89,6 +106,8 @@
 			this.tabSucursal.SuspendLayout();
 			this.tabTLD.SuspendLayout();
 			this.groupBox1.SuspendLayout();
+			this.tabCambioSucPOrDos.SuspendLayout();
+			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// grpDatosCliente
@@ -101,7 +120,7 @@
 			this.grpDatosCliente.Controls.Add(this.btn_Cargar);
 			this.grpDatosCliente.Controls.Add(this.lbl_NombreCliente);
 			this.grpDatosCliente.Controls.Add(this.lbl_NCliente);
-			this.grpDatosCliente.Controls.Add(this.label1);
+			this.grpDatosCliente.Controls.Add(this.lbl);
 			this.grpDatosCliente.Controls.Add(this.btn_filtro);
 			this.grpDatosCliente.Controls.Add(this.txt_NDoc);
 			this.grpDatosCliente.Controls.Add(this.btn_Guardar);
@@ -194,15 +213,15 @@
 			this.lbl_NCliente.TabIndex = 36;
 			this.lbl_NCliente.Text = "Num";
 			// 
-			// label1
+			// lbl
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(12, 41);
-			this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(39, 13);
-			this.label1.TabIndex = 35;
-			this.label1.Text = "Cliente";
+			this.lbl.AutoSize = true;
+			this.lbl.Location = new System.Drawing.Point(12, 41);
+			this.lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.lbl.Name = "lbl";
+			this.lbl.Size = new System.Drawing.Size(39, 13);
+			this.lbl.TabIndex = 35;
+			this.lbl.Text = "Cliente";
 			// 
 			// btn_filtro
 			// 
@@ -344,9 +363,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle1.Format = "N2";
-			dataGridViewCellStyle1.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle3.Format = "N2";
+			dataGridViewCellStyle3.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle3;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -364,9 +383,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle2.Format = "N2";
-			dataGridViewCellStyle2.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle4.Format = "N2";
+			dataGridViewCellStyle4.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle4;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -392,6 +411,7 @@
 			// 
 			this.tabPrincipal.Controls.Add(this.tabSucursal);
 			this.tabPrincipal.Controls.Add(this.tabTLD);
+			this.tabPrincipal.Controls.Add(this.tabCambioSucPOrDos);
 			this.tabPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabPrincipal.Location = new System.Drawing.Point(0, 25);
 			this.tabPrincipal.Name = "tabPrincipal";
@@ -565,6 +585,184 @@
 			this.label9.TabIndex = 51;
 			this.label9.Text = "N°  Cliente";
 			// 
+			// tabCambioSucPOrDos
+			// 
+			this.tabCambioSucPOrDos.Controls.Add(this.groupBox2);
+			this.tabCambioSucPOrDos.Location = new System.Drawing.Point(4, 22);
+			this.tabCambioSucPOrDos.Name = "tabCambioSucPOrDos";
+			this.tabCambioSucPOrDos.Size = new System.Drawing.Size(616, 249);
+			this.tabCambioSucPOrDos.TabIndex = 2;
+			this.tabCambioSucPOrDos.Text = "Modificar dosimetro por Suc. ";
+			this.tabCambioSucPOrDos.UseVisualStyleBackColor = true;
+			// 
+			// groupBox2
+			// 
+			this.groupBox2.Controls.Add(this.txtNDosPorSuc);
+			this.groupBox2.Controls.Add(this.label18);
+			this.groupBox2.Controls.Add(this.ddlSucursalModPorSuc);
+			this.groupBox2.Controls.Add(this.label8);
+			this.groupBox2.Controls.Add(this.label12);
+			this.groupBox2.Controls.Add(this.ddlSucursalActualPorSuc);
+			this.groupBox2.Controls.Add(this.label13);
+			this.groupBox2.Controls.Add(this.btn_CargarPorSuc);
+			this.groupBox2.Controls.Add(this.lbl_nombrePorDos);
+			this.groupBox2.Controls.Add(this.lbl_NClientePorDos);
+			this.groupBox2.Controls.Add(this.label16);
+			this.groupBox2.Controls.Add(this.button3);
+			this.groupBox2.Controls.Add(this.txtNDocPorSuc);
+			this.groupBox2.Controls.Add(this.btnModificarSucDos);
+			this.groupBox2.Controls.Add(this.label17);
+			this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.groupBox2.Location = new System.Drawing.Point(0, 0);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(616, 249);
+			this.groupBox2.TabIndex = 2;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "Dato ";
+			// 
+			// txtNDosPorSuc
+			// 
+			this.txtNDosPorSuc.Location = new System.Drawing.Point(109, 42);
+			this.txtNDosPorSuc.MaxLength = 10;
+			this.txtNDosPorSuc.Name = "txtNDosPorSuc";
+			this.txtNDosPorSuc.Size = new System.Drawing.Size(74, 20);
+			this.txtNDosPorSuc.TabIndex = 45;
+			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.Location = new System.Drawing.Point(12, 46);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(72, 13);
+			this.label18.TabIndex = 44;
+			this.label18.Text = "N°  Dosimetro";
+			// 
+			// ddlSucursalModPorSuc
+			// 
+			this.ddlSucursalModPorSuc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.ddlSucursalModPorSuc.FormattingEnabled = true;
+			this.ddlSucursalModPorSuc.Location = new System.Drawing.Point(109, 158);
+			this.ddlSucursalModPorSuc.Name = "ddlSucursalModPorSuc";
+			this.ddlSucursalModPorSuc.Size = new System.Drawing.Size(317, 21);
+			this.ddlSucursalModPorSuc.TabIndex = 43;
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(16, 158);
+			this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(48, 13);
+			this.label8.TabIndex = 42;
+			this.label8.Text = "Sucursal";
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Location = new System.Drawing.Point(14, 132);
+			this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(97, 13);
+			this.label12.TabIndex = 41;
+			this.label12.Text = "Sucursal a modicar";
+			// 
+			// ddlSucursalActualPorSuc
+			// 
+			this.ddlSucursalActualPorSuc.Enabled = false;
+			this.ddlSucursalActualPorSuc.FormattingEnabled = true;
+			this.ddlSucursalActualPorSuc.Location = new System.Drawing.Point(109, 98);
+			this.ddlSucursalActualPorSuc.Margin = new System.Windows.Forms.Padding(2);
+			this.ddlSucursalActualPorSuc.Name = "ddlSucursalActualPorSuc";
+			this.ddlSucursalActualPorSuc.Size = new System.Drawing.Size(317, 21);
+			this.ddlSucursalActualPorSuc.TabIndex = 40;
+			// 
+			// label13
+			// 
+			this.label13.AutoSize = true;
+			this.label13.Location = new System.Drawing.Point(12, 104);
+			this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(80, 13);
+			this.label13.TabIndex = 39;
+			this.label13.Text = "Sucursal actual";
+			// 
+			// btn_CargarPorSuc
+			// 
+			this.btn_CargarPorSuc.Location = new System.Drawing.Point(190, 42);
+			this.btn_CargarPorSuc.Margin = new System.Windows.Forms.Padding(2);
+			this.btn_CargarPorSuc.Name = "btn_CargarPorSuc";
+			this.btn_CargarPorSuc.Size = new System.Drawing.Size(57, 20);
+			this.btn_CargarPorSuc.TabIndex = 38;
+			this.btn_CargarPorSuc.Text = "Cargar";
+			this.btn_CargarPorSuc.UseVisualStyleBackColor = true;
+			this.btn_CargarPorSuc.Click += new System.EventHandler(this.btn_CargarPorSuc_Click);
+			// 
+			// lbl_nombrePorDos
+			// 
+			this.lbl_nombrePorDos.AutoSize = true;
+			this.lbl_nombrePorDos.Location = new System.Drawing.Point(142, 76);
+			this.lbl_nombrePorDos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.lbl_nombrePorDos.Name = "lbl_nombrePorDos";
+			this.lbl_nombrePorDos.Size = new System.Drawing.Size(79, 13);
+			this.lbl_nombrePorDos.TabIndex = 37;
+			this.lbl_nombrePorDos.Text = "Nombre Cliente";
+			// 
+			// lbl_NClientePorDos
+			// 
+			this.lbl_NClientePorDos.AutoSize = true;
+			this.lbl_NClientePorDos.Location = new System.Drawing.Point(109, 76);
+			this.lbl_NClientePorDos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.lbl_NClientePorDos.Name = "lbl_NClientePorDos";
+			this.lbl_NClientePorDos.Size = new System.Drawing.Size(29, 13);
+			this.lbl_NClientePorDos.TabIndex = 36;
+			this.lbl_NClientePorDos.Text = "Num";
+			// 
+			// label16
+			// 
+			this.label16.AutoSize = true;
+			this.label16.Location = new System.Drawing.Point(12, 76);
+			this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(39, 13);
+			this.label16.TabIndex = 35;
+			this.label16.Text = "Cliente";
+			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(201, 203);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(95, 23);
+			this.button3.TabIndex = 4;
+			this.button3.Text = "Limpiar filtro";
+			this.button3.UseVisualStyleBackColor = true;
+			// 
+			// txtNDocPorSuc
+			// 
+			this.txtNDocPorSuc.Location = new System.Drawing.Point(109, 17);
+			this.txtNDocPorSuc.MaxLength = 10;
+			this.txtNDocPorSuc.Name = "txtNDocPorSuc";
+			this.txtNDocPorSuc.Size = new System.Drawing.Size(74, 20);
+			this.txtNDocPorSuc.TabIndex = 1;
+			// 
+			// btnModificarSucDos
+			// 
+			this.btnModificarSucDos.Location = new System.Drawing.Point(81, 203);
+			this.btnModificarSucDos.Name = "btnModificarSucDos";
+			this.btnModificarSucDos.Size = new System.Drawing.Size(114, 23);
+			this.btnModificarSucDos.TabIndex = 3;
+			this.btnModificarSucDos.Text = "Modificar sucursal";
+			this.btnModificarSucDos.UseVisualStyleBackColor = true;
+			this.btnModificarSucDos.Click += new System.EventHandler(this.btnModificarSucDos_Click);
+			// 
+			// label17
+			// 
+			this.label17.AutoSize = true;
+			this.label17.Location = new System.Drawing.Point(12, 20);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(78, 13);
+			this.label17.TabIndex = 34;
+			this.label17.Text = "N°  documento";
+			// 
 			// frmCambioSucursal
 			// 
 			this.AcceptButton = this.btn_Cargar;
@@ -588,6 +786,9 @@
 			this.tabTLD.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			this.tabCambioSucPOrDos.ResumeLayout(false);
+			this.groupBox2.ResumeLayout(false);
+			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -622,7 +823,7 @@
                                 private System.Windows.Forms.Button btn_filtro;
 		private System.Windows.Forms.Label lbl_NombreCliente;
 		private System.Windows.Forms.Label lbl_NCliente;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label lbl;
 		private System.Windows.Forms.Button btn_Cargar;
 		private System.Windows.Forms.ComboBox cbx_SucActual;
 		private System.Windows.Forms.Label label3;
@@ -646,5 +847,22 @@
 		private System.Windows.Forms.Label label11;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button btnModificarTLD;
+		private System.Windows.Forms.TabPage tabCambioSucPOrDos;
+		private System.Windows.Forms.GroupBox groupBox2;
+		private System.Windows.Forms.TextBox txtNDosPorSuc;
+		private System.Windows.Forms.Label label18;
+		private System.Windows.Forms.ComboBox ddlSucursalModPorSuc;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.ComboBox ddlSucursalActualPorSuc;
+		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.Button btn_CargarPorSuc;
+		private System.Windows.Forms.Label lbl_nombrePorDos;
+		private System.Windows.Forms.Label lbl_NClientePorDos;
+		private System.Windows.Forms.Label label16;
+		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.TextBox txtNDocPorSuc;
+		private System.Windows.Forms.Button btnModificarSucDos;
+		private System.Windows.Forms.Label label17;
 	}
 }
