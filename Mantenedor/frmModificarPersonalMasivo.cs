@@ -554,6 +554,7 @@ namespace ControlDosimetro
 					//	if (dr["Id_CodServicio"] != dr["Id_CodServicio",DataRowVersion.Original])
 					if (dr.RowState == DataRowState.Modified)
 					{
+						cmd.Parameters.Clear();
 						cmd.Parameters.Add("@Id_CodServicio", SqlDbType.Int);
 						cmd.Parameters["@Id_CodServicio"].Value = dr["Id_CodServicio"] == DBNull.Value ? null : dr["Id_CodServicio"];
 						cmd.Parameters.Add("@Fecha_Nac", SqlDbType.VarChar, 10);
