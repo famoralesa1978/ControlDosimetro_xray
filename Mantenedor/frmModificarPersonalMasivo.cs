@@ -565,10 +565,10 @@ namespace ControlDosimetro
 						cmd.Parameters["@fecha_termino"].Value = dr["fecha_termino"] == DBNull.Value || (int)dr["Id_Estado"] == 1 ? "01/01/1900" : dr["fecha_termino"];
 						cmd.Parameters.Add("@Fecha_inicio", SqlDbType.VarChar, 10);
 						cmd.Parameters["@Fecha_inicio"].Value = dr["Fecha_inicio"] == DBNull.Value ? "01/01/1900" : dr["Fecha_inicio"];
-
-						cmd.CommandText = "pa_PersonalMasivo_Upd";
 						cmd.Parameters.Add("@Id_Personal", SqlDbType.Int);
 						cmd.Parameters["@Id_Personal"].Value = dr["Id_Personal"];
+						cmd.CommandText = "pa_PersonalMasivo_Upd";
+				
 						cmd.CommandType = CommandType.StoredProcedure;
 						string strMensajeError = "";
 						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensajeError);
