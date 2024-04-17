@@ -1,30 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using dllConectorMysql;
 using dllLibreriaEvento;
 using dllLibreriaMysql;
 using System.Data.SqlClient;
-using System.Data.Sql;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
 using System.IO;
-using System.Configuration;
-using OpenXmlPowerTools;
-using System.Xml;
-using DocumentFormat.OpenXml.Wordprocessing;
-using System.IO.Packaging;
-using System.Diagnostics;
-using NPOI.SS.UserModel;
-using NPOI.XSSF.UserModel;
-using NPOI.HSSF.UserModel;
 
 namespace ControlDosimetro
 {
@@ -32,8 +14,8 @@ namespace ControlDosimetro
 	{
 		#region "Definicion variable"
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
+		clsConectorSqlServerV2 Conectar2 = new clsConectorSqlServerV2();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-		clsEventoControl ClaseEvento = new clsEventoControl();
 		Clases.ClassEvento clsEvento = new Clases.ClassEvento();
 
 		dllLibreriaMysql.clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
@@ -57,12 +39,10 @@ namespace ControlDosimetro
 				btn_Grabar.Text = "Grabar";
 				this.Text = "Agregar Cliente";
 				txt_id_cliente.Enabled = true;
-				cbx_id_estado.Enabled = false;
-				txt_Clave1.Enabled = true;
-				txt_Clave1.Visible = true;
+				ddl_id_estado.Enabled = false;
 				txt_Clave.Visible = true;
 				lbl_Clave.Visible = true;
-				dtp_FechaInicio.Text = cbx_id_periodo.Text;
+				dtp_FechaInicio.Text = ddl_id_periodo.Text;
 				btn_Excel.Visible = true;
 				//cargar_valor_maximo();
 				//
@@ -74,8 +54,9 @@ namespace ControlDosimetro
 				txt_id_cliente.Text = intCodigo.ToString();
 				txt_id_cliente.Tag = intCodigo.ToString();
 				txt_id_cliente.Enabled = false;
+				txt_Clave.Visible = false;
+				lbl_Clave.Visible = false;
 				txt_run.Text = Rut;
-				txt_Clave1.Enabled = false;
 				// SqlCommand cmd = new SqlCommand();
 				SqlCommand cmd = new SqlCommand();
 
@@ -95,19 +76,19 @@ namespace ControlDosimetro
 				txt_OPR_RUT.Text = dt.Tables[0].Rows[0]["OPR_RUT"].ToString();
 				try
 				{
-					cbx_Id_Sector.SelectedValue = dt.Tables[0].Rows[0]["Id_Sector"].ToString();
+					ddl_Id_Sector.SelectedValue = dt.Tables[0].Rows[0]["Id_Sector"].ToString();
 				}
 				catch
 				{
-					cbx_Id_Sector.SelectedIndex = -1;
+					ddl_Id_Sector.SelectedIndex = -1;
 				}
 				try
 				{
-					cbx_Id_TipoEntidad.SelectedValue = dt.Tables[0].Rows[0]["Id_TipoEntidad"].ToString();
+					ddl_Id_TipoEntidad.SelectedValue = dt.Tables[0].Rows[0]["Id_TipoEntidad"].ToString();
 				}
 				catch
 				{
-					cbx_Id_TipoEntidad.SelectedIndex = -1;
+					ddl_Id_TipoEntidad.SelectedIndex = -1;
 				}
 				try
 				{
@@ -119,11 +100,11 @@ namespace ControlDosimetro
 				}
 				try
 				{
-					cbx_id_Ministerio.SelectedValue = dt.Tables[0].Rows[0]["id_Ministerio"].ToString();
+					ddl_id_Ministerio.SelectedValue = dt.Tables[0].Rows[0]["id_Ministerio"].ToString();
 				}
 				catch
 				{
-					cbx_id_Ministerio.SelectedIndex = -1;
+					ddl_id_Ministerio.SelectedIndex = -1;
 				}
 
 				txt_run.Text = dt.Tables[0].Rows[0]["run"].ToString();
@@ -132,43 +113,32 @@ namespace ControlDosimetro
 				txt_Razon_Social.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
 				txt_direccion.Text = dt.Tables[0].Rows[0]["Direccion"].ToString();
 				txt_telefono.Text = dt.Tables[0].Rows[0]["Telefono"].ToString();
-				cbx_id_region.SelectedValue = dt.Tables[0].Rows[0]["Id_Region"].ToString();
+				ddl_id_region.SelectedValue = dt.Tables[0].Rows[0]["Id_Region"].ToString();
 				Cargar_Provincia();
-				cbx_id_provincia.SelectedValue = dt.Tables[0].Rows[0]["Id_Provincia"].ToString();
+				ddl_id_provincia.SelectedValue = dt.Tables[0].Rows[0]["Id_Provincia"].ToString();
 				Cargar_Comuna();
-				cbx_id_comuna.SelectedValue = dt.Tables[0].Rows[0]["Id_Comuna"].ToString();
+				ddl_id_comuna.SelectedValue = dt.Tables[0].Rows[0]["Id_Comuna"].ToString();
 				txt_Email.Text = dt.Tables[0].Rows[0]["Email"].ToString();
-				cbx_id_estado.SelectedValue = dt.Tables[0].Rows[0]["Id_estado"].ToString();
-				lbl_Estado_mod.Text = cbx_id_estado.Text;
+				txt_Emailfacturacion.Text = dt.Tables[0].Rows[0]["EmailFacturacion"].ToString(); 
+				ddl_id_estado.SelectedValue = dt.Tables[0].Rows[0]["Id_estado"].ToString();
+				lbl_Estado_mod.Text = ddl_id_estado.Text;
 				dtp_FechaInicio.Value = Convert.ToDateTime(dt.Tables[0].Rows[0]["Fechainicio"]);
 
-				cbx_id_periodo.Text = dt.Tables[0].Rows[0]["Fechainicio"].ToString();
+				ddl_id_periodo.Text = dt.Tables[0].Rows[0]["Fechainicio"].ToString();
 				txt_Clave.Text = dt.Tables[0].Rows[0]["clave"].ToString();
-				txt_Clave1.Visible = false;
 				txt_Clave.Visible = false;
 				lbl_Clave.Visible = false;
-				try
-				{
-					txt_Clave1.Text = clsUtiles1.DecryptTripleDES(dt.Tables[0].Rows[0]["clave"].ToString());
-				}
-				catch (Exception)
-				{
-
-					txt_Clave1.Text = dt.Tables[0].Rows[0]["clave"].ToString();
-					txt_Clave.Text = clsUtiles1.GenerateHashMD5(dt.Tables[0].Rows[0]["clave"].ToString());
-				}
-
 
 				txt_Servicio.Text = dt.Tables[0].Rows[0]["servicio"].ToString();
 				if (dt.Tables[0].Rows[0]["Id_estado"].ToString() == "1")
 				{
 					txt_run.Enabled = false;
-					cbx_id_periodo.Enabled = true;
+					ddl_id_periodo.Enabled = true;
 				}
 				else
 				{
 					txt_run.Enabled = true;
-					cbx_id_periodo.Enabled = false;
+					ddl_id_periodo.Enabled = false;
 				}
 
 			}
@@ -182,7 +152,7 @@ namespace ControlDosimetro
 
 		private void Cargar_Estado()
 		{
-			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_id_estado, ref cbx_id_estado);
+			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref ddl_id_estado, ref ddl_id_estado);
 		}
 
 		private void Cargar_parametro()
@@ -192,89 +162,52 @@ namespace ControlDosimetro
 
 		private void Cargar_tipoEntidad()
 		{
-			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref cbx_Id_TipoEntidad, 11);
+			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref ddl_Id_TipoEntidad, 11);
 		}
 
 		private void Cargar_Ministerio()
 		{
-			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref cbx_id_Ministerio, 15);
+			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref ddl_id_Ministerio, 15);
 		}
 
 		private void Cargar_Sector()
 		{
-			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref cbx_Id_Sector, 12);
+			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref ddl_Id_Sector, 12);
 		}
 
 		private void Cargar_Region()
 		{
-			ClaseComun.Listar_Region(Clases.clsBD.BD, ref cbx_id_region, ref cbx_id_region);
+			ClaseComun.Listar_Region(Clases.clsBD.BD, ref ddl_id_region, ref ddl_id_region);
 		}
 
 		private void Cargar_Provincia()
 		{
-			ClaseComun.Listar_Provincia(Clases.clsBD.BD, ref cbx_id_provincia, ref cbx_id_provincia, Convert.ToInt32(cbx_id_region.SelectedValue));
+			ClaseComun.Listar_Provincia(Clases.clsBD.BD, ref ddl_id_provincia, ref ddl_id_provincia, Convert.ToInt32(ddl_id_region.SelectedValue));
 		}
 
 		private void Cargar_Comuna()
 		{
-			ClaseComun.Listar_Comuna(Clases.clsBD.BD, ref cbx_id_comuna, ref cbx_id_comuna, Convert.ToInt32(cbx_id_region.SelectedValue), Convert.ToInt32(cbx_id_provincia.SelectedValue));
+			ClaseComun.Listar_Comuna(Clases.clsBD.BD, ref ddl_id_comuna, ref ddl_id_comuna, Convert.ToInt32(ddl_id_region.SelectedValue), Convert.ToInt32(ddl_id_provincia.SelectedValue));
 		}
 
 		private void AsignarEvento()
 		{
-			clsEvento.AsignarNumero(ref txt_id_cliente);
-			clsEvento.AsignarNumero(ref txt_N_Cliente_Ref);
-			clsEvento.AvanzarComboBox_KeyPress(ref cbx_id_region);
-			clsEvento.AvanzarComboBox_KeyPress(ref cbx_id_provincia);
-			clsEvento.AvanzarComboBox_KeyPress(ref cbx_id_comuna);
-			clsEvento.AvanzarComboBox_KeyPress(ref cbx_Id_TipoEntidad);
-			clsEvento.AvanzarComboBox_KeyPress(ref cbx_id_Ministerio);
-			clsEvento.AvanzarComboBox_KeyPress(ref cbx_Id_Sector);
-			clsEvento.AvanzarComboBox_KeyPress(ref cbx_id_estado);
-			clsEvento.AvanzarComboBox_KeyPress(ref cbx_id_periodo);
-			clsEvento.AsignarRut(ref txt_run);
-			clsEvento.AsignarRut(ref txt_OPR_RUT);
-			clsEvento.AsignarMailMultiple(ref txt_Email);
-			clsEvento.AsignarMailMultiple(ref txt_Emailfacturacion);
-			clsEvento.AsignarDireccion(ref txt_direccion);
-
-			//txt_Email.Validated += new EventHandler(ClaseEvento.validaEmail_Validated);
+			txt_id_cliente.EventoAsignarNumero(9);
+			txt_N_Cliente_Ref.EventoAsignarNumero(9);
+			clsEvento.AvanzarComboBox_KeyPress(ref ddl_id_region);
+			clsEvento.AvanzarComboBox_KeyPress(ref ddl_id_provincia);
+			clsEvento.AvanzarComboBox_KeyPress(ref ddl_id_comuna);
+			clsEvento.AvanzarComboBox_KeyPress(ref ddl_Id_TipoEntidad);
+			clsEvento.AvanzarComboBox_KeyPress(ref ddl_id_Ministerio);
+			clsEvento.AvanzarComboBox_KeyPress(ref ddl_Id_Sector);
+			clsEvento.AvanzarComboBox_KeyPress(ref ddl_id_estado);
+			clsEvento.AvanzarComboBox_KeyPress(ref ddl_id_periodo);
+			txt_run.EventoAsignarRut();
+			txt_OPR_RUT.EventoAsignarRut();
+			txt_Email.EventoAsignarValidarEmail();
+			txt_Emailfacturacion.EventoAsignarValidarEmail();
+			txt_direccion.EventoAsignarDireccion();
 		}
-
-		private bool valida_cliente(Int64 intCodigo)
-		{
-			//			  SqlCommand cmd = new SqlCommand();
-			SqlCommand cmd = new SqlCommand();
-
-			cmd.CommandText = "SELECT run,Razon_Social,N_Cliente_Ref,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
-							" FROM tbl_cliente WHERE Id_cliente= " + intCodigo.ToString();
-			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-			if (dt.Tables[0].Rows.Count > 0)
-				return true;
-			else
-				return false;
-
-		}
-
-		private bool valida_cliente_activo(Int64 intCodigo)
-		{
-			//			  SqlCommand cmd = new SqlCommand();
-			SqlCommand cmd = new SqlCommand();
-
-			cmd.CommandText = "SELECT run,Razon_Social,N_Cliente_Ref,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
-								 " FROM tbl_cliente WHERE Id_cliente= " + intCodigo.ToString() + " and id_estado=1";
-			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-
-			if (dt.Tables[0].Rows.Count > 0)
-				return true;
-			else
-				return false;
-
-		}
-
 		private void Cargar_Fecha()
 		{
 			SqlCommand cmd = new SqlCommand();
@@ -285,260 +218,148 @@ namespace ControlDosimetro
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
-			cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
-			cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
-			cbx_id_periodo.DataSource = dt.Tables[0];
-			dtp_FechaInicio.Text = cbx_id_periodo.Text;
+			ddl_id_periodo.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
+			ddl_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
+			ddl_id_periodo.DataSource = dt.Tables[0];
+			dtp_FechaInicio.Text = ddl_id_periodo.Text;
 		}
 
 		private void Grabar()
 		{
 
 			Boolean bolResult;
+			string strMensajeError = "";
 			bolResult = false;
-			//if (Convert.ToDateTime(cbx_id_periodo.Text.ToString()) > DateTime.Now.Date)
-			//{
-			//	Cursor = Cursors.Default;
-			//	MessageBox.Show("FEcha inicio control es mayor que la fecha actual", ControlDosimetro.Properties.Resources.msgCaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
-			//	return;
-			//}
-			//   if (MessageBox.Show("Desea grabar la información", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-			//  {
 			if (btn_Grabar.Text == "Modificar")
 			{
+				SqlCommand cmdMod = new SqlCommand();
+				cmdMod.Parameters.Clear();
+				cmdMod.Parameters.Add("@Id_cliente", SqlDbType.Int);
+				cmdMod.Parameters["@Id_cliente"].Value = txt_id_cliente.Text;
+				cmdMod.Parameters.Add("@N_Cliente_Ref", SqlDbType.Int);
+				cmdMod.Parameters["@N_Cliente_Ref"].Value = txt_N_Cliente_Ref.Text;
+				cmdMod.Parameters.Add("@run", SqlDbType.VarChar, 11);
+				cmdMod.Parameters["@run"].Value = txt_run.Text;
+				cmdMod.Parameters.Add("@Razon_Social", SqlDbType.VarChar, 60);
+				cmdMod.Parameters["@Razon_Social"].Value = txt_Razon_Social.Text;
+				cmdMod.Parameters.Add("@Direccion", SqlDbType.VarChar, 60);
+				cmdMod.Parameters["@Direccion"].Value = txt_direccion.Text;
+				cmdMod.Parameters.Add("@Id_Region", SqlDbType.Int);
+				cmdMod.Parameters["@Id_Region"].Value = ddl_id_region.SelectedValue;
+				cmdMod.Parameters.Add("@Id_Provincia", SqlDbType.Int);
+				cmdMod.Parameters["@Id_Provincia"].Value = ddl_id_provincia.SelectedValue;
+				cmdMod.Parameters.Add("@Id_Comuna", SqlDbType.Int);
+				cmdMod.Parameters["@Id_Comuna"].Value = ddl_id_comuna.SelectedValue;
+				cmdMod.Parameters.Add("@Telefono", SqlDbType.VarChar, 15);
+				cmdMod.Parameters["@Telefono"].Value = txt_telefono.Text;
+				cmdMod.Parameters.Add("@Id_TipoFuente", SqlDbType.Int);
+				cmdMod.Parameters["@Id_TipoFuente"].Value = null;
+				cmdMod.Parameters.Add("@Id_estado", SqlDbType.Int);
+				cmdMod.Parameters["@Id_estado"].Value = ddl_id_estado.SelectedValue;
+				cmdMod.Parameters.Add("@FechaInicio", SqlDbType.VarChar, 15);
+				cmdMod.Parameters["@FechaInicio"].Value = ddl_id_periodo.SelectedValue;
+				cmdMod.Parameters.Add("@Email", SqlDbType.VarChar, 200);
+				cmdMod.Parameters["@Email"].Value = txt_Email.Text;
+				cmdMod.Parameters.Add("@EmailFacturacion", SqlDbType.VarChar, 200);
+				cmdMod.Parameters["@EmailFacturacion"].Value = txt_Emailfacturacion.Text;
+				cmdMod.Parameters.Add("@Servicio", SqlDbType.VarChar, 100);
+				cmdMod.Parameters["@Servicio"].Value = txt_Servicio.Text;
+				cmdMod.Parameters.Add("@Id_TipoEntidad", SqlDbType.Int);
+				cmdMod.Parameters["@Id_TipoEntidad"].Value = ddl_Id_TipoEntidad.SelectedValue;
+				cmdMod.Parameters.Add("@Id_Sector", SqlDbType.Int);
+				cmdMod.Parameters["@Id_Sector"].Value = ddl_Id_Sector.SelectedValue;
+				cmdMod.Parameters.Add("@id_Ministerio", SqlDbType.Int);
+				cmdMod.Parameters["@id_Ministerio"].Value = ddl_id_Ministerio.SelectedValue;
+				cmdMod.Parameters.Add("@Director", SqlDbType.VarChar, 50);
+				cmdMod.Parameters["@Director"].Value = txt_Director.Text;
+				cmdMod.Parameters.Add("@Opr", SqlDbType.VarChar, 50);
+				cmdMod.Parameters["@Opr"].Value = txt_Opr.Text;
+				cmdMod.Parameters.Add("@nombre_fantasia", SqlDbType.VarChar, 100);
+				cmdMod.Parameters["@nombre_fantasia"].Value = txt_Nombre_fantasia.Text;
+				cmdMod.Parameters.Add("@OPR_RUT", SqlDbType.VarChar, 1);
+				cmdMod.Parameters["@OPR_RUT"].Value = txt_OPR_RUT.DevuelveCadenaNulo();
+				cmdMod.CommandText = "pa_Cliente_Upd";
 
-				ClaseComun.Modificar(Clases.clsBD.BD, tbl_cliente, ref bolResult);
-				if (bolResult == true)
+				cmdMod.CommandType = CommandType.StoredProcedure;
+				Conectar2.AgregarModificarEliminar(Clases.clsBD.BD, cmdMod, ref strMensajeError);
+
+				if (string.IsNullOrWhiteSpace(strMensajeError))
 				{
-					if (cbx_id_estado.SelectedValue.ToString() == "0")
+					if (ddl_id_estado.SelectedValue.ToString() == "0")
 					{
-						if (lbl_Estado_mod.Text != cbx_id_estado.Text)
+						if (lbl_Estado_mod.Text != ddl_id_estado.Text)
 						{
-							SqlCommand cmd1 = new SqlCommand();
-							cmd1.CommandText = "pa_ClienteHistorial_upd " + txt_id_cliente.Text + ",'" + dtp_FechaInicio.Value.ToShortDateString().Replace("-", "/") + "'";
-							cmd1.CommandType = CommandType.Text;
-							DataSet ds = Conectar.Listar(Clases.clsBD.BD, cmd1);
-
-							if ((int)ds.Tables[0].Rows[0]["Resultado"] == 0)
-								MessageBox.Show(ds.Tables[0].Rows[0]["Mensaje"].ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-
 							MessageBox.Show("Dato modificado,Debe ingresar una observación porque se dejo inactivo");
 							frmObservacionCliente frm1 = new frmObservacionCliente(txt_id_cliente.Text, dtp_FechaInicio.Text);
 							frm1.ShowDialog(this);
 							this.Close();
 						}
-						else
-						{
-							SqlCommand cmd1 = new SqlCommand();
-							cmd1.CommandText = "pa_ClienteHistorial_upd " + txt_id_cliente.Text + ",'" + dtp_FechaInicio.Value.ToShortDateString().Replace("-", "/") + "'";
-							cmd1.CommandType = CommandType.Text;
-							DataSet ds = Conectar.Listar(Clases.clsBD.BD, cmd1);
 
-							if ((int)ds.Tables[0].Rows[0]["Resultado"] == 0)
-								MessageBox.Show(ds.Tables[0].Rows[0]["Mensaje"].ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-							else
-								if ((int)ds.Tables[0].Rows[0]["Resultado"] == 1)
-								MessageBox.Show(ds.Tables[0].Rows[0]["Mensaje"].ToString(), "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
-						}
-
-					}
-					else
-					{
-
-						SqlCommand cmd1 = new SqlCommand();
-						cmd1.CommandText = "pa_ClienteHistorial_upd " + txt_id_cliente.Text + ",'" + dtp_FechaInicio.Value.ToShortDateString().Replace("-", "/") + "'";
-						cmd1.CommandType = CommandType.Text;
-						DataSet ds = Conectar.Listar(Clases.clsBD.BD, cmd1);
-
-						if ((int)ds.Tables[0].Rows[0]["Resultado"] == 0)
-							MessageBox.Show(ds.Tables[0].Rows[0]["Mensaje"].ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-						else
-							if ((int)ds.Tables[0].Rows[0]["Resultado"] == 1)
-							MessageBox.Show(ds.Tables[0].Rows[0]["Mensaje"].ToString(), "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						this.Close();
 					}
 
-
-					this.Close();
 				}
-
 			}
 			else
 			{
-				if (valida_cliente(Convert.ToInt64(txt_id_cliente.Text)) == false)
-				{
-					ClaseComun.Insertar(Clases.clsBD.BD, tbl_cliente, ref bolResult);
-					if (bolResult == true)
-					{
 
-
-
-						SqlCommand cmd = new SqlCommand();
-						cmd.CommandText = "pa_Cliente_ins " + txt_id_cliente.Text;
-						cmd.CommandType = CommandType.Text;
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-
-						//SqlCommand cmdArchivo = new SqlCommand();
-						//DataSet dtArchivo;
-						//cmdArchivo.CommandText = "" +
-						//	"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=6 order by orden ";
-						//cmdArchivo.CommandType = CommandType.Text;
-						//dtArchivo = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
-
-						//DataSet dtformato;
-						//cmdArchivo.CommandText = "" +
-						//	"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=5 order by orden ";
-						//cmdArchivo.CommandType = CommandType.Text;
-						//dtformato = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
-						//string targetPath = dtArchivo.Tables[0].Rows[0]["Glosa"].ToString() + "Cliente " + lbl_id_cliente.Text;
-
-						MessageBox.Show("Dato Guardado ");//y se va a generar documento de Certificado
-																							//if (!System.IO.Directory.Exists(targetPath))
-																							//{
-																							//    System.IO.Directory.CreateDirectory(targetPath);
-																							//}
-
-
-
-						//String strArchivo = "C://Formato//" + "CERT CON FIRMA INCLUIDA.docx";//dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "CERT CON FIRMA INCLUIDA.docx";
-						//String strArchivoCopiar = "C://Formato//" +  "Certificado Cliente" + lbl_id_cliente.Text + ".docx";
-
-						//#region Update Document Bookmarks Openxml
-						//String strcampoMarcador = "empresa";
-
-						//using (WordprocessingDocument doc = WordprocessingDocument.Open(strArchivoCopiar, true))
-						//{
-						//    string strSemetre1 = "";
-						//    int intMes = Convert.ToInt32(dtp_FechaInicio.MaxDate.Month) / 3;
-						//    if (intMes >= 1 && intMes <= 3)
-						//        strSemetre1 = "primer";
-						//    if (intMes >= 4 && intMes <= 6)
-						//        strSemetre1 = "segundo";
-						//    if (intMes >= 7 && intMes <= 9)
-						//        strSemetre1 = "tercer";
-						//    if (intMes >= 10 && intMes <= 12)
-						//        strSemetre1 = "cuarto";
-
-						//    strcampoMarcador = "Ciudad";
-						//    BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), cbx_id_provincia.Text);
-						//    strcampoMarcador = "Direccion";
-						//    BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), txt_direccion.Text);
-						//    strcampoMarcador = "Rut";
-						//    BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), txt_run.Text);
-						//    strcampoMarcador = "empresa";
-						//    BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), txt_Razon_Social.Text);
-						//    strcampoMarcador = "comuna";
-						//    BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), cbx_id_comuna.Text);
-						//    strcampoMarcador = "anno";
-						//    BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), dtp_FechaInicio.MaxDate.Year.ToString());
-						//    strcampoMarcador = "trimestre";
-						//    BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strSemetre1);
-
-
-
-
-						//}
-
-
-						//#endregion
-
-						//this.Close();
-					}
-					else
-						MessageBox.Show("El número de cliente ya existe, verificar");
-
-				}
+				SqlCommand cmd = new SqlCommand();
+				cmd.Parameters.Clear();
+				cmd.Parameters.Add("@Id_cliente", SqlDbType.Int);
+				cmd.Parameters["@Id_cliente"].Value = txt_id_cliente.Text;
+				cmd.Parameters.Add("@N_Cliente_Ref", SqlDbType.Int);
+				cmd.Parameters["@N_Cliente_Ref"].Value = txt_N_Cliente_Ref.Text;
+				cmd.Parameters.Add("@run", SqlDbType.VarChar, 11);
+				cmd.Parameters["@run"].Value = txt_run.Text;
+				cmd.Parameters.Add("@Razon_Social", SqlDbType.VarChar, 60);
+				cmd.Parameters["@Razon_Social"].Value = txt_Razon_Social.Text;
+				cmd.Parameters.Add("@Direccion", SqlDbType.VarChar, 60);
+				cmd.Parameters["@Direccion"].Value = txt_direccion.Text;
+				cmd.Parameters.Add("@Id_Region", SqlDbType.Int);
+				cmd.Parameters["@Id_Region"].Value = ddl_id_region.SelectedValue;
+				cmd.Parameters.Add("@Id_Provincia", SqlDbType.Int);
+				cmd.Parameters["@Id_Provincia"].Value = ddl_id_provincia.SelectedValue;
+				cmd.Parameters.Add("@Id_Comuna", SqlDbType.Int);
+				cmd.Parameters["@Id_Comuna"].Value = ddl_id_comuna.SelectedValue;
+				cmd.Parameters.Add("@Telefono", SqlDbType.VarChar, 15);
+				cmd.Parameters["@Telefono"].Value = txt_telefono.Text;
+				cmd.Parameters.Add("@Id_TipoFuente", SqlDbType.Int);
+				cmd.Parameters["@Id_TipoFuente"].Value = null;
+				cmd.Parameters.Add("@Id_estado", SqlDbType.Int);
+				cmd.Parameters["@Id_estado"].Value = ddl_id_estado.SelectedValue;
+				cmd.Parameters.Add("@FechaInicio", SqlDbType.VarChar, 15);
+				cmd.Parameters["@FechaInicio"].Value = ddl_id_periodo.SelectedValue;
+				cmd.Parameters.Add("@Email", SqlDbType.VarChar, 200);
+				cmd.Parameters["@Email"].Value = txt_Email.Text;
+				cmd.Parameters.Add("@EmailFacturacion", SqlDbType.VarChar, 200);
+				cmd.Parameters["@EmailFacturacion"].Value = txt_Emailfacturacion.Text;
+				cmd.Parameters.Add("@Clave", SqlDbType.VarChar, 100);
+				cmd.Parameters["@Clave"].Value = txt_Clave.Text.XGenerateHashMD5();
+				cmd.Parameters.Add("@Servicio", SqlDbType.VarChar, 100);
+				cmd.Parameters["@Servicio"].Value = txt_Servicio.Text;
+				cmd.Parameters.Add("@Id_TipoEntidad", SqlDbType.Int);
+				cmd.Parameters["@Id_TipoEntidad"].Value = ddl_Id_TipoEntidad.SelectedValue;
+				cmd.Parameters.Add("@Id_Sector", SqlDbType.Int);
+				cmd.Parameters["@Id_Sector"].Value = ddl_Id_Sector.SelectedValue;
+				cmd.Parameters.Add("@id_Ministerio", SqlDbType.Int);
+				cmd.Parameters["@id_Ministerio"].Value = ddl_id_Ministerio.SelectedValue;
+				cmd.Parameters.Add("@Director", SqlDbType.VarChar, 50);
+				cmd.Parameters["@Director"].Value = txt_Director.Text;
+				cmd.Parameters.Add("@Opr", SqlDbType.VarChar, 50);
+				cmd.Parameters["@Opr"].Value = txt_Opr.Text;
+				cmd.Parameters.Add("@nombre_fantasia", SqlDbType.VarChar, 100);
+				cmd.Parameters["@nombre_fantasia"].Value = txt_Nombre_fantasia.Text;
+				cmd.Parameters.Add("@OPR_RUT", SqlDbType.VarChar, 1);
+				cmd.Parameters["@OPR_RUT"].Value = txt_OPR_RUT.DevuelveCadenaNulo();
+				cmd.CommandText = "pa_Cliente_insNuevo";
+				cmd.CommandType = CommandType.StoredProcedure;
+				Conectar2.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensajeError);
+				if (string.IsNullOrWhiteSpace(strMensajeError))
+					"Cliente registrado".XMensajeProcesoOK();
 				else
-				{
-					if (valida_cliente_activo(Convert.ToInt64(txt_id_cliente.Text)) == true)
-						MessageBox.Show("El número de cliente ya existe, verificar");
-					else
-					{
-
-						ClaseComun.Modificar(Clases.clsBD.BD, tbl_cliente, ref bolResult);
-						if (bolResult == true)
-						{
-
-							MessageBox.Show("Dato Guardado");
-
-							SqlCommand cmd = new SqlCommand();
-							cmd.CommandText = "pa_Cliente_ins " + txt_id_cliente.Text;
-							cmd.CommandType = CommandType.Text;
-							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-
-							SqlCommand cmdArchivo = new SqlCommand();
-							//SqlCommand cmdcombo = new SqlCommand();
-							//DataSet dtArchivo;
-							//cmdArchivo.CommandText = "" +
-							//	"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=6 order by orden ";
-							//cmdArchivo.CommandType = CommandType.Text;
-							//dtArchivo = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
-
-							//DataSet dtformato;
-							//cmdArchivo.CommandText = "" +
-							//	"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=5 order by orden ";
-							//cmdArchivo.CommandType = CommandType.Text;
-							//dtformato = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
-
-							//string targetPath = dtArchivo.Tables[0].Rows[0]["Glosa"].ToString() + "Cliente " + lbl_id_cliente.Text;
-
-							//if (!System.IO.Directory.Exists(targetPath))
-							//{
-							//    System.IO.Directory.CreateDirectory(targetPath);
-							//}
-
-
-
-							//string strArchivo = dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "CERT CON FIRMA INCLUIDA.docx";
-							//String strArchivoCopiar = targetPath + "Certificado Cliente" + lbl_id_cliente.Text + ".docx";
-
-							//#region Update Document Bookmarks Openxml
-							//String strcampoMarcador = "empresa";
-
-							//using (WordprocessingDocument doc = WordprocessingDocument.Open(strArchivoCopiar, true))
-							//{
-							//    string strSemetre1 = "";
-							//    int intMes = Convert.ToInt32(dtp_FechaInicio.MaxDate.Month) / 3;
-							//    if (intMes >= 1 && intMes <= 3)
-							//        strSemetre1 = "primer";
-							//    if (intMes >= 4 && intMes <= 6)
-							//        strSemetre1 = "segundo";
-							//    if (intMes >= 7 && intMes <= 9)
-							//        strSemetre1 = "tercer";
-							//    if (intMes >= 10 && intMes <= 12)
-							//        strSemetre1 = "cuarto";
-
-							//    strcampoMarcador = "Ciudad";
-							//    BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), cbx_id_provincia.Text);
-							//    strcampoMarcador = "Direccion";
-							//    BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), txt_direccion.Text);
-							//    strcampoMarcador = "Rut";
-							//    BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), txt_run.Text);
-							//    strcampoMarcador = "empresa";
-							//    BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), txt_Razon_Social.Text);
-							//    strcampoMarcador = "comuna";
-							//    BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), cbx_id_comuna.Text);
-							//    strcampoMarcador = "anno";
-							//    BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), dtp_FechaInicio.MaxDate.Year.ToString());
-							//    strcampoMarcador = "trimestre";
-							//    BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strSemetre1);
-
-
-
-
-							//}
-
-
-							//#endregion
-
-							//this.Close();
-						}
-					}
-				}
+					strMensajeError.XMensajeError();
 
 			}
-
-			//  }
 
 			Cursor = Cursors.Default;
 		}
@@ -546,104 +367,20 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "button"
-
-		private void btn_cerrar_Click(object sender, EventArgs e)
-		{
-			Cursor = Cursors.WaitCursor;
-
-			this.Close();
-
-			Cursor = Cursors.Default;
-		}
-
-		private void btn_Grabar_Click(object sender, EventArgs e)
-		{
-			Cursor = Cursors.WaitCursor;
-			string strMensaje = "";
-			Boolean bolResult;
-			bolResult = false;
-			if (!ClaseComun.ValidarFormulario(Clases.clsBD.BD, tbl_cliente, ref bolResult, ref strMensaje))
-			{
-				Cursor = Cursors.Default;
-				classFuncionesGenerales.mensajes.MensajeError(strMensaje);
-			}
-			else
-				Grabar();
-			Cursor = Cursors.Default;
-		}
-		#endregion
-
-		#region "combobox"
-
-		private void cbx_id_region_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			Cargar_Provincia();
-
-		}
-
-		private void cbx_provincia_SelectedIndexChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void cbx_id_provincia_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			Cargar_Comuna();
-		}
-		#endregion
-
-		private void label12_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void cbx_id_estado_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			if (cbx_id_estado.Text == "1")
-				cbx_id_periodo.Enabled = true;
-			else
-				cbx_id_periodo.Enabled = false;
-
-		}
-
-		private void txt_Clave1_TextChanged(object sender, EventArgs e)
-		{
-			txt_Clave.Text = clsUtiles1.GenerateHashMD5(txt_Clave1.Text);
-		}
-
-		private void cbx_id_periodo_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			dtp_FechaInicio.Text = cbx_id_periodo.Text;
-		}
-
-		private void lbl_Id_TipoFuente_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void lbl_Servicio_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void lbl_id_estado_Click(object sender, EventArgs e)
-		{
-
-		}
 		private void LeerExcel(string archivo, string extension)
 		{
-			//	HSSFWorkbook hssfwb;
-			IWorkbook hssfwb = null;
-			string Sheet_name = "";
-			classFuncionesGenerales.ExcelNpoin ExcelNpoin = new classFuncionesGenerales.ExcelNpoin();
+			////	HSSFWorkbook hssfwb;
+			//IWorkbook hssfwb = null;
+			//string Sheet_name = "";
+			//classFuncionesGenerales.ExcelNpoin ExcelNpoin = new classFuncionesGenerales.ExcelNpoin();
 
-			ISheet sheet = ExcelNpoin.LeerExcel(archivo, extension, 0, ref Sheet_name);
-			txt_run.Text = sheet.GetRow(10).GetCell(1).StringCellValue;
-			txt_Razon_Social.Text = sheet.GetRow(8).GetCell(2).StringCellValue;
-			txt_Nombre_fantasia.Text = sheet.GetRow(9).GetCell(2).StringCellValue;
-			txt_direccion.Text = sheet.GetRow(13).GetCell(1).StringCellValue;
-			txt_Email.Text = sheet.GetRow(10).GetCell(5).StringCellValue;
-			txt_telefono.Text = sheet.GetRow(11).GetCell(5).ToString();
+			//ISheet sheet = ExcelNpoin.LeerExcel(archivo, extension, 0, ref Sheet_name);
+			//txt_run.Text = sheet.GetRow(10).GetCell(1).StringCellValue;
+			//txt_Razon_Social.Text = sheet.GetRow(8).GetCell(2).StringCellValue;
+			//txt_Nombre_fantasia.Text = sheet.GetRow(9).GetCell(2).StringCellValue;
+			//txt_direccion.Text = sheet.GetRow(13).GetCell(1).StringCellValue;
+			//txt_Email.Text = sheet.GetRow(10).GetCell(5).StringCellValue;
+			//txt_telefono.Text = sheet.GetRow(11).GetCell(5).ToString();
 		}
 
 		private void btn_Excel_Click(object sender, EventArgs e)
@@ -660,6 +397,53 @@ namespace ControlDosimetro
 				}
 			}
 		}
+		private void btn_cerrar_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+
+			this.Close();
+
+			Cursor = Cursors.Default;
+		}
+
+		private void btn_Grabar_Click(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+			StringBuilder strMensaje = new StringBuilder();
+			if (tbl_cliente.XValidarPanel(ref strMensaje))
+			{
+				Cursor = Cursors.Default;
+				classFuncionesGenerales.mensajes.MensajeError(strMensaje.ToString());
+			}
+			else
+				Grabar();
+			Cursor = Cursors.Default;
+		}
+		#endregion
+
+		#region "combobox"
+		private void cbx_id_estado_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (ddl_id_estado.Text == "1")
+				ddl_id_periodo.Enabled = true;
+			else
+				ddl_id_periodo.Enabled = false;
+
+		}
+		private void cbx_id_periodo_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			dtp_FechaInicio.Text = ddl_id_periodo.Text;
+		}
+		private void cbx_id_region_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			Cargar_Provincia();
+
+		}
+		private void cbx_id_provincia_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			Cargar_Comuna();
+		}
+		#endregion
 
 	}
 }

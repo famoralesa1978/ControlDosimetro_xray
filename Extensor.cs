@@ -256,6 +256,8 @@ namespace ControlDosimetro
 		/// Devuelve un true si hay errores y hay que definir  un StringBuilder stbError
 		/// </summary>
 		/// <param name="stbError">El nombre del control</param>
+		/// <param name="TextBox">se define el label  en el TAG y el prefijo txt</param>
+		/// <param name="ddl">se define el label  en el TAG y prefijo debe ser ddl</param>
 		public static bool XValidarPanel(this Control frm, ref StringBuilder stbError)
 		{
 			foreach (var label in frm.Controls.OfType<System.Windows.Forms.Label>())

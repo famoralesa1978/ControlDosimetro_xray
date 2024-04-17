@@ -188,7 +188,7 @@ namespace ControlDosimetro
 			cmd.Parameters.Add("@Email", SqlDbType.VarChar, 100);
 			cmd.Parameters["@Email"].Value = txtEmail.DevuelveCadenaNulo();
 			cmd.Parameters.Add("@Director", SqlDbType.VarChar, 50);
-			cmd.Parameters["@Director"].Value = txtDireccion.DevuelveCadenaNulo();
+			cmd.Parameters["@Director"].Value = txtDirector.DevuelveCadenaNulo();
 			cmd.Parameters.Add("@Opr", SqlDbType.VarChar, 50);
 			cmd.Parameters["@Opr"].Value = txtOpr.DevuelveCadenaNulo();
 			cmd.Parameters.Add("@OPR_RUT", SqlDbType.VarChar, 11);
@@ -239,7 +239,7 @@ namespace ControlDosimetro
 			cmd.Parameters.Add("@Email", SqlDbType.VarChar, 100);
 			cmd.Parameters["@Email"].Value = txtEmail.DevuelveCadenaNulo();
 			cmd.Parameters.Add("@Director", SqlDbType.VarChar, 50);
-			cmd.Parameters["@Director"].Value = txtDireccion.DevuelveCadenaNulo();
+			cmd.Parameters["@Director"].Value = txtDirector.DevuelveCadenaNulo();
 			cmd.Parameters.Add("@Opr", SqlDbType.VarChar, 50);
 			cmd.Parameters["@Opr"].Value = txtOpr.DevuelveCadenaNulo();
 			cmd.Parameters.Add("@OPR_RUT", SqlDbType.VarChar, 11);
