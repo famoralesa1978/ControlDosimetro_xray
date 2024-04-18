@@ -89,6 +89,12 @@ namespace ControlDosimetro
 				}
 				strMensajeError = ex.Message;
 			}
+			catch (Exception exc)
+			{
+				string msg = string.Format("{0};{1};{2};{3};{4};{5};{6}", ClaseGeneral.IP, ClaseGeneral.NombreEquipo, DateTime.Now, strSp, "SP", cmd.CommandText, exc.Message);
+				msg.XARCHEscribirArchivoLog(ClaseGeneral.RutaNombreArchivoLog);
+				exc.Message.XMensajeError();
+			}
 			finally
 			{
 
@@ -119,6 +125,12 @@ namespace ControlDosimetro
 				}
 				strMensajeError = ex.Message;
 			}
+			catch (Exception exc)
+			{
+				string msg = string.Format("{0};{1};{2};{3};{4};{5};{6}", ClaseGeneral.IP, ClaseGeneral.NombreEquipo, DateTime.Now, strSp, "SP", cmd.CommandText, exc.Message);
+				msg.XARCHEscribirArchivoLog(ClaseGeneral.RutaNombreArchivoLog);
+				exc.Message.XMensajeError();
+			}
 			finally
 			{
 
@@ -148,6 +160,12 @@ namespace ControlDosimetro
 				}
 
 				strMensajeError = ex.Message;
+			}
+			catch (Exception exc)
+			{
+				string msg = string.Format("{0};{1};{2};{3};{4};{5};{6}", ClaseGeneral.IP, ClaseGeneral.NombreEquipo, DateTime.Now, strSp, "SP", cmd.CommandText, exc.Message);
+				msg.XARCHEscribirArchivoLog(ClaseGeneral.RutaNombreArchivoLog);
+				exc.Message.XMensajeError();
 			}
 			finally
 			{
