@@ -351,7 +351,7 @@ namespace ControlDosimetro
 				cmd.Parameters["@nombre_fantasia"].Value = txt_Nombre_fantasia.Text;
 				cmd.Parameters.Add("@OPR_RUT", SqlDbType.VarChar, 1);
 				cmd.Parameters["@OPR_RUT"].Value = txt_OPR_RUT.DevuelveCadenaNulo();
-				cmd.CommandText = "pa_Cliente_insNuevo";
+				cmd.CommandText = "pa_Cliente_ins";
 				cmd.CommandType = CommandType.StoredProcedure;
 				Conectar2.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensajeError);
 				if (string.IsNullOrWhiteSpace(strMensajeError))
