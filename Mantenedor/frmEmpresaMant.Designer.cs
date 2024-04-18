@@ -696,6 +696,7 @@
 			this.Controls.Add(this.tbl_cliente);
 			this.Name = "frmEmpresaMant";
 			this.Text = "Cliente";
+			this.Load += new System.EventHandler(this.frmEmpresaMant_Load);
 			this.tbl_cliente.ResumeLayout(false);
 			this.tbl_cliente.PerformLayout();
 			this.ResumeLayout(false);

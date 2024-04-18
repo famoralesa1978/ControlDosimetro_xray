@@ -17,7 +17,8 @@ namespace ControlDosimetro
 		clsConectorSqlServerV2 Conectar2 = new clsConectorSqlServerV2();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		Clases.ClassEvento clsEvento = new Clases.ClassEvento();
-
+		public int intMenu;
+		private bool Lectura, Agregar, Modificar, Eliminar;
 		dllLibreriaMysql.clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
 		#endregion
 
@@ -144,12 +145,24 @@ namespace ControlDosimetro
 			}
 		}
 
-
+		private void frmEmpresaMant_Load(object sender, EventArgs e)
+		{
+			AsignarPermiso();
+		}
 		#endregion
 
 
 		#region "Llamada de carga"  
+		private void AsignarPermiso()
+		{
+			Cursor = Cursors.WaitCursor;
+			Conectar2.PermisoFormulario(intMenu, ref Lectura, ref Agregar, ref Modificar, ref Eliminar);
+			Cursor = Cursors.Default;
 
+			btn_Grabar.Enabled = ((Lectura == false && Modificar) || (Lectura == false && Agregar));
+
+			Cursor = Cursors.Default;
+		}
 		private void Cargar_Estado()
 		{
 			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref ddl_id_estado, ref ddl_id_estado);
@@ -445,5 +458,6 @@ namespace ControlDosimetro
 		}
 		#endregion
 
+	
 	}
 }
