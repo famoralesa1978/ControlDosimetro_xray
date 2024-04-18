@@ -72,7 +72,7 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "Llamada de carga"
-		private void Listar_Grilla(int intCliente,int intPeriodo,int intSucursal)
+		private void Listar_Grilla(int intCliente, int intPeriodo, int intSucursal)
 		{
 			SqlCommand cmd = new SqlCommand();
 
@@ -190,7 +190,7 @@ namespace ControlDosimetro
 					Cursor = Cursors.Default;
 					ClaseGeneral.GuardarLOG(this.Name, "pa_FilmicoDocumentoDel", "Delete");
 				}
-				
+
 			}
 		}
 		private void BtnIngresarDosisISP_Click(object sender, EventArgs e)
@@ -209,7 +209,7 @@ namespace ControlDosimetro
 
 			DataSet dt;
 
-			cmdvalidar.CommandText = "pa_ObtieneUltimoValornDocumento_sel " + txt_NDocumento.Text+","+ lbl_id_cliente.Text+","+ cbx_id_periodo.SelectedValue.ToString();
+			cmdvalidar.CommandText = "pa_ObtieneUltimoValornDocumento_sel " + txt_NDocumento.Text + "," + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue.ToString();
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmdvalidar);
 
@@ -525,12 +525,15 @@ namespace ControlDosimetro
 		}
 		private void btnFiltrar_Click(object sender, EventArgs e)
 		{
-			if(!desdeCodigo)
-				Listar_Grilla(Convert.ToUInt16(lbl_id_cliente.Text), (int)cbx_id_periodo.SelectedValue,(int)cbx_Sucursal.SelectedValue);
+			if (!desdeCodigo)
+			{
+				if (lbl_id_cliente.DevuelveCadenaNulo() == null) return;
+				Listar_Grilla(Convert.ToUInt16(lbl_id_cliente.Text), (int)cbx_id_periodo.SelectedValue, (int)cbx_Sucursal.SelectedValue);
+			}
 		}
 		private void btnRefrescarNDcto_Click(object sender, EventArgs e)
 		{
-			if(string.IsNullOrWhiteSpace(txt_NDocumento.Text))
+			if (string.IsNullOrWhiteSpace(txt_NDocumento.Text))
 			{
 				MessageBox.Show("Ingrese número de documento");
 				return;
