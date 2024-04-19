@@ -262,7 +262,7 @@ namespace ControlDosimetro
 		{
 			foreach (var label in frm.Controls.OfType<System.Windows.Forms.Label>())
 			{
-				if (label.Font.Underline)
+				if (label.Font.Underline==true)
 				{
 					if (label.Tag.ToString() == "TextBox")
 					{
