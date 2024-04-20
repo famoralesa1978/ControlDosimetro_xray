@@ -893,29 +893,34 @@ namespace ControlDosimetro
 																																									cbx_id_periodo.Text.ToString().Substring(0, 1),
 																																									strFecha
 																																							);
-			string strNombreArchivoLabotatorio = String.Format(targetPathLaboratorio + strPathslash + "Formulario Laboratorio{0}{1}{2}{3}Tri.xlsx",
+			string strNombreArchivoLabotatorio = String.Format(targetPathLaboratorio + strPathslash + "Formulario Laboratorio{0}{1}{2}{3}{4}Tri.xlsx",
 																																									lbl_id_cliente.Text + "_",
-																																									//	cbx_Sucursal.Text + "_",
+																																									cbx_Sucursal.Text + "_",
 																																									String.IsNullOrWhiteSpace(cbx_id_seccion.Text) ? "" : cbx_id_seccion.Text + "_",
 																																									cbx_anno.Text.ToString() + "_",
 																																									cbx_id_periodo.Text.ToString().Substring(0, 1)
 																																							);
-			string strNombreArchivoLabotatorioRespaldo = String.Format(targetPathLaboratorio + strPathslash + "Formulario Laboratorio{0}{1}{2}{3}{4}Tri.xlsx",
+			string strNombreArchivoLabotatorioRespaldo = String.Format(targetPathLaboratorio + strPathslash + "Formulario Laboratorio{0}{1}{2}{3}{4}{5}Tri.xlsx",
 																																									lbl_id_cliente.Text + "_",
-																																									//	cbx_Sucursal.Text + "_",
+																																									cbx_Sucursal.Text + "_",
 																																									String.IsNullOrWhiteSpace(cbx_id_seccion.Text) ? "" : cbx_id_seccion.Text + "_",
 																																									cbx_anno.Text.ToString() + "_",
 																																									cbx_id_periodo.Text.ToString().Substring(0, 1),
 																																									strFecha
 																																							);
 
-			string strNombreArchivoCodigoBarra = targetPathCodigoBarra + String.Format("{4}ET_Cliente{0}_{1}_{2}_{3}Tri.xlsx", lbl_id_cliente.Text, cbx_id_seccion.Text, cbx_anno.Text.ToString(), cbx_id_periodo.Text.ToString().Substring(0, 1), strPathslash);
-			string strNombreArchivoCodigoBarraRespaldo = targetPathCodigoBarra + String.Format("{5}ET_Cliente{0}_{1}_{2}_{3}_{4}Tri.xlsx", lbl_id_cliente.Text, cbx_id_seccion.Text, cbx_anno.Text.ToString(), cbx_id_periodo.Text.ToString().Substring(0, 1), strFecha, strPathslash);
+			string strNombreArchivoCodigoBarra = targetPathCodigoBarra + String.Format("{5}ET_Cliente{0}_{1}_{2}_{3}_{4}Tri.xlsx", lbl_id_cliente.Text, cbx_Sucursal.Text, cbx_id_seccion.Text, cbx_anno.Text.ToString(), cbx_id_periodo.Text.ToString().Substring(0, 1), strPathslash);
+			string strNombreArchivoCodigoBarraRespaldo = targetPathCodigoBarra + String.Format("{6}ET_Cliente{0}_{1}_{2}_{3}_{4}_{5}Tri.xlsx", lbl_id_cliente.Text, cbx_Sucursal.Text, cbx_id_seccion.Text, cbx_anno.Text.ToString(), cbx_id_periodo.Text.ToString().Substring(0, 1), strFecha, strPathslash);
 
 			//Crea el excel para imrpimir el laboratorio
 			if (File.Exists(strNombreArchivoLabotatorio))
 			{
-				File.Copy(strNombreArchivoLabotatorio, strNombreArchivoLabotatorioRespaldo, true);
+				try
+				{
+					File.Copy(targetPathFormatoFomratoLaboratorio, strNombreArchivoLabotatorio, true);
+				}
+				catch { }
+	
 				//	File.Delete(strNombreArchivoLabotatorio);
 			}
 			File.Copy(targetPathFormatoFomratoLaboratorio, strNombreArchivoLabotatorio, true);
@@ -923,7 +928,12 @@ namespace ControlDosimetro
 			//Crea el excel para imrpimir el codigo de barra
 			if (File.Exists(strNombreArchivoCodigoBarra))
 			{
-				File.Copy(strNombreArchivoCodigoBarra, strNombreArchivoCodigoBarraRespaldo, true);
+				try
+				{
+					File.Copy(strNombreArchivoCodigoBarra, strNombreArchivoCodigoBarraRespaldo, true);
+				}
+				catch { }
+				
 				//	File.Delete(strNombreArchivoCodigoBarra);
 			}
 			File.Copy(targetPathFormatoCodigoBarra, strNombreArchivoCodigoBarra, true);
@@ -932,7 +942,12 @@ namespace ControlDosimetro
 			//Crea el excel para imrpimir el cliente
 			if (File.Exists(strNombreArchivoCodigo))
 			{
-				File.Copy(strNombreArchivoCodigo, strNombreArchivoCodigoRespaldo, true);
+				try
+				{
+					File.Copy(strNombreArchivoCodigo, strNombreArchivoCodigoRespaldo, true);
+				}
+				catch { }
+				
 				//File.Delete(strNombreArchivoCodigo);
 			}
 			File.Copy(targetPathFormatoInfome, strNombreArchivoCodigo, true);

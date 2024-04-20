@@ -194,7 +194,7 @@ namespace ControlDosimetro
 			cmd.Parameters.Add("@OPR_RUT", SqlDbType.VarChar, 11);
 			cmd.Parameters["@OPR_RUT"].Value = txtOPRRUT.DevuelveCadenaNulo();
 			cmd.Parameters.Add("@Servicio", SqlDbType.VarChar, 100);
-			cmd.Parameters["@Servicio"].Value = txtOPRRUT.DevuelveCadenaNulo();
+			cmd.Parameters["@Servicio"].Value = txtServicio.DevuelveCadenaNulo();
 			cmd.Parameters.Add("@Estado", SqlDbType.Bit);
 			cmd.Parameters["@Estado"].Value =chkEstado.Checked;
 
@@ -245,7 +245,7 @@ namespace ControlDosimetro
 			cmd.Parameters.Add("@OPR_RUT", SqlDbType.VarChar, 11);
 			cmd.Parameters["@OPR_RUT"].Value = txtOPRRUT.DevuelveCadenaNulo();
 			cmd.Parameters.Add("@Servicio", SqlDbType.VarChar, 100);
-			cmd.Parameters["@Servicio"].Value = txtOPRRUT.DevuelveCadenaNulo();
+			cmd.Parameters["@Servicio"].Value = txtServicio.DevuelveCadenaNulo();
 			cmd.Parameters.Add("@Estado", SqlDbType.Bit);
 			cmd.Parameters["@Estado"].Value = chkEstado.Checked;
 
