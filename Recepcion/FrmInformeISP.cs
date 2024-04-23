@@ -720,7 +720,7 @@ namespace ControlDosimetro
 		}
 		private void GenerarPorSucursalNoDevueltoPorAño()
 		{
-			String RutaPlantilla = Path.Combine(ClaseGeneral.RutaArchivoPlantilla);
+			String RutaPlantilla = Path.Combine(ClaseGeneral.RutaArchivoPlantilla).Replace("\\\\", "\\");
 			string strArchivoCopiar = ("ClientePendiente" + lbl_id_cliente.Text + "_" + cbx_Sucursal.Text + cbx_anno.Text).Replace(".","") + ".docx";
 			SqlCommand cmdArchivo = new SqlCommand();
 			DataSet dtArchivo;
@@ -738,7 +738,7 @@ namespace ControlDosimetro
 			targetPath.XARCHCrearCarpeta();
 
 			RutaPlantilla.XARCHCopiarArchivo(targetPath, "Documento_NoDevuelto.docx", strArchivoCopiar);
-			string strArchivo = Path.Combine(targetPath, strArchivoCopiar);
+			string strArchivo =targetPath+ "\\" + strArchivoCopiar;
 
 			SqlCommand cmd = new SqlCommand();
 			DataSet dt;
@@ -805,23 +805,27 @@ namespace ControlDosimetro
 
 					FilaWord++;
 				}
-				using (WordprocessingDocument doc = WordprocessingDocument.Open(strArchivo, true))
-				{
-					strcampoMarcador = "Anno";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), cbx_anno.SelectedValue.ToString());
-					strcampoMarcador = "Direccion";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strDirCliente);
-					strcampoMarcador = "Empresa";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strCliente);
-					strcampoMarcador = "NCliente";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), intNCliente);
-					strcampoMarcador = "Rut";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), lbl_rut_cliente.Text);
-					strcampoMarcador = "Sucursal";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strDirSucursal);
-				}
+			
 				if (data1.Count() > 0)
-					WDAddTableNoDevueltoPorAño(strArchivo, data1, data2, data3, data4, data5, data6);
+				{
+					WDAddTableNoDevueltoPorAño(strArchivo, data1, data2, data3, data4, data5, data6, cbx_anno.SelectedValue.ToString());
+					using (var doc = WordprocessingDocument.Open(strArchivo, true))
+					{
+						strcampoMarcador = "Anno";
+						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), cbx_anno.SelectedValue.ToString());
+						strcampoMarcador = "Direccion";
+						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strDirCliente);
+						strcampoMarcador = "Empresa";
+						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strCliente);
+						strcampoMarcador = "NCliente";
+						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), intNCliente);
+						strcampoMarcador = "Rut";
+						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), lbl_rut_cliente.Text);
+						strcampoMarcador = "Sucursal";
+						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strDirSucursal);
+					}
+				}
+					
 			}
 
 			btnGenararPelNoDevuelto.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = false;
@@ -3075,7 +3079,6 @@ namespace ControlDosimetro
 			{
 
 				var doc = document.MainDocumentPart.Document;
-
 				DocumentFormat.OpenXml.Wordprocessing.Table table = doc.Body.Elements<DocumentFormat.OpenXml.Wordprocessing.Table>().ElementAtOrDefault(2);
 
 				TableProperties props = new TableProperties(

@@ -421,8 +421,7 @@ namespace ControlDosimetro
 				}
 				else
 				{
-					File.Delete(ArchivoDest);
-					File.Copy(ArchivoOri, ArchivoDest);
+					File.Copy(ArchivoOri, ArchivoDest,true);
 				}
 			}
 			catch (IOException copyError)
