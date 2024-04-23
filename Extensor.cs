@@ -49,7 +49,7 @@ namespace ControlDosimetro
 		{
 			//if (control is System.Windows.Forms.ComboBox)
 			//	ClaseEvento.AvanzarComboBox_KeyPress(control);
-				//(control as System.Windows.Forms.ComboBox).KeyPress += new KeyPressEventArgs(ref );
+			//(control as System.Windows.Forms.ComboBox).KeyPress += new KeyPressEventArgs(ref );
 			////if (control is System.Windows.Forms.DateTimePicker)
 			////	(control as System.Windows.Forms.DateTimePicker).KeyPress += new KeyPressEventHandler(ClaseEvento.AvanzarDateTimePicker_KeyPress);
 			////if (control is System.Windows.Forms.CheckBox)
@@ -262,7 +262,7 @@ namespace ControlDosimetro
 		{
 			foreach (var label in frm.Controls.OfType<System.Windows.Forms.Label>())
 			{
-				if (label.Font.Underline==true)
+				if (label.Font.Underline == true)
 				{
 					if (label.Tag.ToString() == "TextBox")
 					{
@@ -359,18 +359,77 @@ namespace ControlDosimetro
 		#region Tratatamiento de archivo y carpeta
 		public static void XARCHCrearCarpeta(this string cadena)
 		{
-			if (!Directory.Exists(cadena)) Directory.CreateDirectory(cadena);
+			try
+			{
+				if (!Directory.Exists(cadena)) Directory.CreateDirectory(cadena);
+			}
+			catch (Exception ex)
+			{
+				ex.Message.XMensajeError();
+			}
 		}
 		public static void XARCHCrearArchivo(this string cadena)
 		{
-			if (!File.Exists(cadena))
+			try
 			{
-				StreamWriter writer = File.CreateText(cadena);
-				writer.Close();
+				if (!File.Exists(cadena))
+				{
+					StreamWriter writer = File.CreateText(cadena);
+					writer.Close();
+				}
 			}
-
+			catch (Exception ex)
+			{
+				ex.Message.XMensajeError();
+			}
 		}
+		public static void XARCHCopiarArchivoPlantilla(this string RutaOriginal, string RutaCopiar, string Archivo)
+		{
+			string ArchivoOri = Path.Combine(RutaOriginal, Archivo);
+			string ArchivoDest = Path.Combine(RutaCopiar, Archivo);
+			try
+			{
+				if (!File.Exists(ArchivoDest))
+				{
 
+					File.Copy(ArchivoOri, ArchivoDest);
+
+				}
+				else
+				if (File.GetLastWriteTime(ArchivoOri) != File.GetLastWriteTime(ArchivoDest))
+				{
+					File.Delete(ArchivoDest);
+					File.Copy(ArchivoOri, ArchivoDest);
+				}
+			}
+			catch (IOException copyError)
+			{
+				copyError.Message.XMensajeError();
+			}
+		}
+		public static void XARCHCopiarArchivo(this string RutaOriginal, string RutaCopiar, string strArchivoOri,string StrArchivoDest)
+		{
+			string ArchivoOri = Path.Combine(RutaOriginal, strArchivoOri);
+			string ArchivoDest = Path.Combine(RutaCopiar, StrArchivoDest);
+			try
+			{
+				if (!File.Exists(ArchivoDest))
+				{
+
+					File.Copy(ArchivoOri, ArchivoDest);
+
+				}
+				else
+				{
+					File.Delete(ArchivoDest);
+					File.Copy(ArchivoOri, ArchivoDest);
+				}
+			}
+			catch (IOException copyError)
+			{
+				copyError.Message.XMensajeError();
+			}
+		}
 		public static void XARCHEscribirArchivoLog(this string Mensaje, string Archivo)
 		{
 			ClaseGeneral.CrearCarpetaSistema();

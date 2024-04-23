@@ -193,5 +193,17 @@ namespace ControlDosimetro.Properties {
                 return ((global::System.Drawing.Color)(this["ColorCeldaEliminado"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\Doc_Xray\\\\baseCliente\\\\Plantilla\\\\")]
+        public string RutaArchivoPlantilla {
+            get {
+                return ((string)(this["RutaArchivoPlantilla"]));
+            }
+            set {
+                this["RutaArchivoPlantilla"] = value;
+            }
+        }
     }
 }

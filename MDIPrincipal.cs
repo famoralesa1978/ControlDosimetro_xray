@@ -113,10 +113,11 @@ namespace ControlDosimetro
 		public MDIPrincipal()
 		{
 			InitializeComponent();
-
+			//carga datos iniciales del sistema
 			Clases.clsBD.ObtieneDatosSistema();
-
-
+			ClaseGeneral.RutaArchivoPlantilla.XARCHCrearCarpeta();
+			ClaseGeneral.RutaEjecutablePlantilla.XARCHCopiarArchivoPlantilla(ClaseGeneral.RutaArchivoPlantilla, "Documento_NoDevuelto.docx");
+			// fin************************
 			frmLogin frm = new frmLogin();
 			frm.ShowDialog();
 

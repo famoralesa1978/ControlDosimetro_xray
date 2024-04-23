@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Data;
 using ControlDosimetro.Properties;
+using System.Reflection;
 
 namespace ControlDosimetro
 {
@@ -26,7 +27,8 @@ namespace ControlDosimetro
 		public static string NombreEquipo = "".XCapturarNombreEquipo();
 		public static string MensajeAdministrador = Settings.Default.MensajeAdminstrador.ToString();
 		public const string MensajeAdministradorCorreo = "Envio archivo LOG";
-
+		public static string RutaArchivoPlantilla = Settings.Default.RutaArchivoPlantilla.ToString();
+		public static string RutaEjecutablePlantilla = AppDomain.CurrentDomain.BaseDirectory + "Archivo";
 		#endregion
 
 		#region Ddls

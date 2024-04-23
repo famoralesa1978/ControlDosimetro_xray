@@ -88,6 +88,7 @@
 			this.btnResfrescar = new System.Windows.Forms.Button();
 			this.btnGenerarArchivoNuevo = new System.Windows.Forms.Button();
 			this.btnGenararPelNoDevuelto = new System.Windows.Forms.Button();
+			this.button1 = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -525,7 +526,7 @@
 			// btn_Guardar
 			// 
 			this.btn_Guardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Guardar.Location = new System.Drawing.Point(815, 546);
+			this.btn_Guardar.Location = new System.Drawing.Point(731, 546);
 			this.btn_Guardar.Name = "btn_Guardar";
 			this.btn_Guardar.Size = new System.Drawing.Size(139, 23);
 			this.btn_Guardar.TabIndex = 7;
@@ -537,7 +538,7 @@
 			// btn_Cerrar
 			// 
 			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Cerrar.Location = new System.Drawing.Point(960, 547);
+			this.btn_Cerrar.Location = new System.Drawing.Point(876, 547);
 			this.btn_Cerrar.Name = "btn_Cerrar";
 			this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
 			this.btn_Cerrar.TabIndex = 8;
@@ -662,7 +663,7 @@
 			// btnGenerar
 			// 
 			this.btnGenerar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btnGenerar.Location = new System.Drawing.Point(437, 547);
+			this.btnGenerar.Location = new System.Drawing.Point(353, 547);
 			this.btnGenerar.Name = "btnGenerar";
 			this.btnGenerar.Size = new System.Drawing.Size(139, 23);
 			this.btnGenerar.TabIndex = 18;
@@ -683,7 +684,7 @@
 			// btnGenerarArchivoNuevo
 			// 
 			this.btnGenerarArchivoNuevo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btnGenerarArchivoNuevo.Location = new System.Drawing.Point(597, 547);
+			this.btnGenerarArchivoNuevo.Location = new System.Drawing.Point(513, 547);
 			this.btnGenerarArchivoNuevo.Name = "btnGenerarArchivoNuevo";
 			this.btnGenerarArchivoNuevo.Size = new System.Drawing.Size(212, 23);
 			this.btnGenerarArchivoNuevo.TabIndex = 21;
@@ -694,7 +695,7 @@
 			// btnGenararPelNoDevuelto
 			// 
 			this.btnGenararPelNoDevuelto.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btnGenararPelNoDevuelto.Location = new System.Drawing.Point(1075, 547);
+			this.btnGenararPelNoDevuelto.Location = new System.Drawing.Point(988, 547);
 			this.btnGenararPelNoDevuelto.Name = "btnGenararPelNoDevuelto";
 			this.btnGenararPelNoDevuelto.Size = new System.Drawing.Size(205, 23);
 			this.btnGenararPelNoDevuelto.TabIndex = 22;
@@ -702,11 +703,23 @@
 			this.btnGenararPelNoDevuelto.UseVisualStyleBackColor = true;
 			this.btnGenararPelNoDevuelto.Click += new System.EventHandler(this.btnGenararPelNoDevuelto_Click);
 			// 
+			// button1
+			// 
+			this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.button1.Location = new System.Drawing.Point(1199, 543);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(129, 23);
+			this.button1.TabIndex = 23;
+			this.button1.Text = "Demo";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
 			// FrmInformeISP
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1350, 578);
+			this.Controls.Add(this.button1);
 			this.Controls.Add(this.btnGenararPelNoDevuelto);
 			this.Controls.Add(this.btnGenerarArchivoNuevo);
 			this.Controls.Add(this.btnResfrescar);
@@ -804,5 +817,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn colSeccion;
 		private System.Windows.Forms.Button btnGenerarArchivoNuevo;
 		private System.Windows.Forms.Button btnGenararPelNoDevuelto;
+		private System.Windows.Forms.Button button1;
 	}
 }
