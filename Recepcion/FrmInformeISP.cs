@@ -808,7 +808,7 @@ namespace ControlDosimetro
 			
 				if (data1.Count() > 0)
 				{
-					WDAddTableNoDevueltoPorAño(strArchivo, data1, data2, data3, data4, data5, data6, cbx_anno.SelectedValue.ToString());
+					WDAddTableNoDevueltoPorAño(strArchivo, data1, data2, data3, data4, data5, data6);
 					using (var doc = WordprocessingDocument.Open(strArchivo, true))
 					{
 						strcampoMarcador = "Anno";
