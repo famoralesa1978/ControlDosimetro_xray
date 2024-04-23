@@ -396,7 +396,7 @@ namespace ControlDosimetro
 
 				}
 				else
-				if (File.GetLastWriteTime(ArchivoOri) != File.GetLastWriteTime(ArchivoDest))
+				if (File.GetLastWriteTime(ArchivoOri) > File.GetLastWriteTime(ArchivoDest))
 				{
 					File.Delete(ArchivoDest);
 					File.Copy(ArchivoOri, ArchivoDest);
