@@ -4,12 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using dllConectorMysql;
-using dllLibreriaEvento;
-using dllLibreriaMysql;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
@@ -17,7 +13,6 @@ using System.IO;
 using System.Data.SqlClient;
 using OpenXmlPowerTools;
 using DocumentFormat.OpenXml.Wordprocessing;
-using Clases;
 
 namespace ControlDosimetro
 {
@@ -26,10 +21,8 @@ namespace ControlDosimetro
 
 		#region "Definicion variable"
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
-		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-		clsEventoControl ClaseEvento = new clsEventoControl();
 		WorkbookPart wbPart = null;
-		SpreadsheetDocument document = null;
+		SpreadsheetDocument document = null
 		//		SpreadsheetDocument document2 = null;
 		object missing = System.Reflection.Missing.Value;
 		object strcampoMarcador;
@@ -45,6 +38,7 @@ namespace ControlDosimetro
 		bool DesdeLimpiar = false;
 		#endregion
 
+		#region inicio
 		public FrmInformeISP(Int64 intId_Cliente)
 		{
 			InitializeComponent();
@@ -79,6 +73,8 @@ namespace ControlDosimetro
 			lbl_Alternativa.Text = "C:/Doc_Xray/";
 			rbtOiginal.Checked = true;
 		}
+
+		#endregion
 
 		#region "Llamada de carga"
 
@@ -297,8 +293,7 @@ namespace ControlDosimetro
 
 		private void AsignarEvento()
 		{
-			lbl_id_cliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
-			lbl_id_cliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
+			lbl_id_cliente.EventoAsignarNumero(9);
 		}
 		private void Generar_Todos()
 		{
@@ -721,7 +716,7 @@ namespace ControlDosimetro
 		private void GenerarPorSucursalNoDevueltoPorAño()
 		{
 			String RutaPlantilla = Path.Combine(ClaseGeneral.RutaArchivoPlantilla).Replace("\\\\", "\\");
-			string strArchivoCopiar = ("ClientePendiente" + lbl_id_cliente.Text + "_" + cbx_Sucursal.Text + cbx_anno.Text).Replace(".","") + ".docx";
+			string strArchivoCopiar = ("ClientePendiente" + lbl_id_cliente.Text + "_" + cbx_Sucursal.Text + cbx_anno.Text).Replace(".", "") + ".docx";
 			SqlCommand cmdArchivo = new SqlCommand();
 			DataSet dtArchivo;
 			cmdArchivo.CommandText = "" +
@@ -738,7 +733,7 @@ namespace ControlDosimetro
 			targetPath.XARCHCrearCarpeta();
 
 			RutaPlantilla.XARCHCopiarArchivo(targetPath, "Documento_NoDevuelto.docx", strArchivoCopiar);
-			string strArchivo =targetPath+ "\\" + strArchivoCopiar;
+			string strArchivo = targetPath + "\\" + strArchivoCopiar;
 
 			SqlCommand cmd = new SqlCommand();
 			DataSet dt;
@@ -805,7 +800,7 @@ namespace ControlDosimetro
 
 					FilaWord++;
 				}
-			
+
 				if (data1.Count() > 0)
 				{
 					WDAddTableNoDevueltoPorAño(strArchivo, data1, data2, data3, data4, data5, data6);
@@ -825,11 +820,11 @@ namespace ControlDosimetro
 						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strDirSucursal);
 					}
 				}
-					
+
 			}
 
 			btnGenararPelNoDevuelto.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = false;
-			
+
 			MessageBox.Show("Informacion grabada y archivo generado \n Ubicación Archivo:" + targetPath);
 
 			btnGenararPelNoDevuelto.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
@@ -2659,7 +2654,12 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "combobox"
-
+		private void cbx_id_periodo_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+			Cargar_Sucursal();
+			Cursor = Cursors.Default;
+		}
 		private void Cbx_Sucursal_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			//if (!bolDesdeCodigo)
@@ -2924,6 +2924,7 @@ namespace ControlDosimetro
 
 		#endregion
 
+		#region Word
 		public static void WDAddTable(string fileName, string[] data1, string[] data2, string[] data3, string[] data4)
 		{
 			using (var document = WordprocessingDocument.Open(fileName, true))
@@ -3072,7 +3073,6 @@ namespace ControlDosimetro
 				doc.Save();
 			}
 		}
-	
 		public static void WDAddTableNoDevueltoPorAño(string fileName, string[] NTLD, string[] Trimestre, string[] Nombre, string[] Rut, string[] Estado, string[] Seccion)
 		{
 			using (var document = WordprocessingDocument.Open(fileName, true))
@@ -3251,7 +3251,6 @@ namespace ControlDosimetro
 				doc.Save();
 			}
 		}
-
 		public static void WDAddTableV2(string fileName, string[] Id, string[] Rut, string[] Nombre, string PerInicio, string PerFin, string FechaRecepcion, string[] Medicion, string[] UltimoAnno, string[] Ultimo5anno, string[] Estado)
 		{
 			using (var document = WordprocessingDocument.Open(fileName, true))
@@ -3505,12 +3504,10 @@ namespace ControlDosimetro
 				doc.Save();
 			}
 		}
-		private void cbx_id_periodo_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			Cursor = Cursors.WaitCursor;
-			Cargar_Sucursal();
-			Cursor = Cursors.Default;
-		}
+
+		#endregion
+
+
 
 		private void button1_Click(object sender, EventArgs e)
 		{
