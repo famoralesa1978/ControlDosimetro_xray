@@ -20,7 +20,7 @@ namespace ControlDosimetro
 	{
 
 		#region "Definicion variable"
-		clsConectorSqlServer Conectar = new clsConectorSqlServer();
+		clsConectorSqlServerV2 Conectar = new clsConectorSqlServerV2();
 		WorkbookPart wbPart = null;
 		SpreadsheetDocument document = null;
 		//		SpreadsheetDocument document2 = null;
@@ -99,17 +99,8 @@ namespace ControlDosimetro
 				if (dt != null)
 				{
 					dtPeriodo = new DataTable();
-					//if (dt.Tables[0].Rows.Count > 0)
-					//{
 					dtPeriodo = dt.Tables[3];
 					cbx_anno.DataSource = dt.Tables[1];
-
-					//if ((Convert.ToInt64(lbl_id_cliente.Text) < 1))
-					//	cbx_id_periodo.DataSource = dtPeriodo;
-
-					//cbx_Sucursal.DataSource = dt.Tables[2];
-
-					//Cargar_Seccion();
 					btn_CargarCli.Enabled = false;
 					LimpiarFormulario(1);
 				}
@@ -153,7 +144,6 @@ namespace ControlDosimetro
 			cbx_id_seccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_id_seccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
 			cbx_id_seccion.DataSource = dt.Tables[0];
-			//if (dtSeccion.DefaultView.ToTable().Rows.Count == 1)
 			Listar_Personal();
 		}
 		void LimpiarFormulario(int bolLimpiar)
@@ -245,7 +235,6 @@ namespace ControlDosimetro
 					btnGenerar.Visible = false;
 					LimpiarFormulario(3);
 					grdDatos.DataSource = dt.Tables[0];
-					//	MessageBox.Show("No se han cargado ningun personal");
 				}
 				else
 				{
@@ -255,12 +244,6 @@ namespace ControlDosimetro
 					grdDatos.DataSource = dt.Tables[0];
 				}
 			}
-			else
-			{
-				//	classFuncionesGenerales.mensajes.MensajeError("Debe tener una seccion  seleccionada");
-			}
-
-			//		}
 			btn_Corregir.Enabled = btnGenerar.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenararPelNoDevuelto.Enabled = grdDatos.Rows.Count > 0;
 
 		}
@@ -269,12 +252,8 @@ namespace ControlDosimetro
 		{
 			SqlCommand cmd = new SqlCommand
 			{
-
-				//  SqlCommand cmd = new SqlCommand();
-
 				CommandText = "SELECT distinct Anno FROM conf_periodo WHERE Id_TipoPeriodo=3"
 			};
-			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			DataSet dt;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
 
@@ -340,13 +319,8 @@ namespace ControlDosimetro
 		private void GenerarPorSucursalNoDevuelto()
 		{
 			SqlCommand cmd = new SqlCommand();
-			//	  SqlCommand cmd = new SqlCommand();
 			SqlCommand cmdpersonal = new SqlCommand();
-			//  SqlCommand cmdpersonal = new SqlCommand();
 			SqlCommand cmdperiodo = new SqlCommand();
-			//  SqlCommand cmdperiodo = new SqlCommand();
-
-			// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
 			DataGridViewCheckBoxCell checkGenerar;
 			DataGridViewCheckBoxCell checkCell;
 			DataGridViewCheckBoxCell chkcondosis;
@@ -376,7 +350,6 @@ namespace ControlDosimetro
 				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=5 order by orden ";
 			cmdArchivo.CommandType = CommandType.Text;
 			dtformato = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
-			//string targetPath = @ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text;
 			string targetPath = "";
 
 			if (rbtOiginal.Checked)
@@ -653,16 +626,6 @@ namespace ControlDosimetro
 
 					using (WordprocessingDocument doc = WordprocessingDocument.Open(strArchivoCopiar, true))
 					{
-						//string strSemetre1 = "";
-						//if (cbx_id_periodo.Text.Substring(0, 1) == "1")
-						//	strSemetre1 = "primer";
-						//if (cbx_id_periodo.Text.Substring(0, 1) == "2")
-						//	strSemetre1 = "segundo";
-						//if (cbx_id_periodo.Text.Substring(0, 1) == "3")
-						//	strSemetre1 = "tercer";
-						//if (cbx_id_periodo.Text.Substring(0, 1) == "4")
-						//	strSemetre1 = "cuarto";
-
 						strcampoMarcador = "Empresa";
 						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0} ({1})", lbl_nombreCliente.Text, lbl_id_cliente.Text));
 						strcampoMarcador = "Rut";
@@ -836,13 +799,8 @@ namespace ControlDosimetro
 		private void GenerarPorSucursalV2()
 		{
 			SqlCommand cmd = new SqlCommand();
-			//	  SqlCommand cmd = new SqlCommand();
 			SqlCommand cmdpersonal = new SqlCommand();
-			//  SqlCommand cmdpersonal = new SqlCommand();
 			SqlCommand cmdperiodo = new SqlCommand();
-			//  SqlCommand cmdperiodo = new SqlCommand();
-
-			// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
 			DataGridViewCheckBoxCell checkGenerar;
 			DataGridViewCheckBoxCell checkCell;
 			DataGridViewCheckBoxCell chkcondosis;
@@ -894,20 +852,11 @@ namespace ControlDosimetro
 					return;
 				}
 			}
-
-
-
-			//  targetPath = dtArchivo.Tables[0].Rows[0]["Glosa"].ToString();
-
-
-			// targetPath = ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text + "\\" + cbx_anno.Text;
 			targetPath = targetPath + "\\" + cbx_anno.Text;
 			if (!System.IO.Directory.Exists(targetPath))
 			{
 				System.IO.Directory.CreateDirectory(targetPath);
 			}
-
-			// targetPath = ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text + "\\" + cbx_anno.Text + "\\" + cbx_id_periodo.Text + "\\";
 			targetPath = targetPath + "\\" + cbx_id_periodo.Text + "\\";
 
 			if (!System.IO.Directory.Exists(targetPath))
@@ -945,9 +894,6 @@ namespace ControlDosimetro
 
 				CommandType = CommandType.Text
 			};
-
-			//clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(lbl_id_cliente.Text.ToString()), ref lbl_rut_cliente, ref lbl_nombreCliente);
-
 			DataSet dt;
 			DataSet dtCliente;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmdCliente);
@@ -1016,14 +962,7 @@ namespace ControlDosimetro
 				string strRunOPR = dt.Tables[0].Rows[idatos]["OPR_RUT"].ToString();
 				string strEmailOPR = dt.Tables[0].Rows[idatos]["EmailOPR"].ToString();
 				string strFechaDevolucion = dt.Tables[0].Rows[0]["FechaRecepcion"].ToString();
-				//string strN_Documento = dt.Tables[0].Rows[idatos]["N_Documento"].ToString();
-				//	string strId_sucursal = dt.Tables[0].Rows[idatos]["Id_sucursal"].ToString();
-				String strArchivoCopiar = "";
-				//strArchivoCopiar = targetPath + "Cliente" + lbl_id_cliente.Text + "_" + strDireccionEmpresaSucursal + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text + "_" + strSeccion + ".docx";
-
-
-				//strpathcopiar = targetPath + "cliente " + lbl_id_cliente.Text + "_" + strDireccionEmpresaSucursal + "_" + cbx_id_seccion.Text + ".xlsx";
-
+				string strArchivoCopiar = "";
 				strArchivoCopiar = targetPath + "Cliente" +
 									string.Format("{0}_{1}_{2}_{3}T_{4}.docx", lbl_id_cliente.Text, strSeccion, cbx_Sucursal.Text, cbx_id_periodo.Text.ToString().Substring(0, 1), cbx_anno.Text);
 
@@ -1066,15 +1005,6 @@ namespace ControlDosimetro
 				Array.Resize(ref data5, grdDatos.RowCount);
 				Array.Resize(ref data6, grdDatos.RowCount);
 				Array.Resize(ref data7, grdDatos.RowCount);
-				//Array.Resize(ref data1, 1);
-				//Array.Resize(ref data2, 1);
-				//Array.Resize(ref data3, 1);
-				//Array.Resize(ref data4, 1);
-
-				//data1[1] = "NOMBRE";
-				//data2[1] = cbx_id_periodo.Text;
-				//data3[1] = "N°DOSIMETROS";
-				//data4[1] = "RUT";
 
 				pnl_Progreso.Visible = true;
 				pgb_Barra.Minimum = 0;
@@ -1190,11 +1120,24 @@ namespace ControlDosimetro
 														" where id_dosimetro=" + strid_dosimetro;
 							cmd.CommandType = CommandType.Text;
 
-							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+							string strMensaje = "";
+							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensaje);
+							if (!string.IsNullOrWhiteSpace(strMensaje))
+							{
+								strMensaje.XMensajeError();
+								return;
+							}
 							string strParametro = String.Format("{0},{1},{2},'',{3}", txtnpeliculaoriginal.Value.ToString(), "5", Clases.clsUsuario.Usuario, cbx_id_seccion.SelectedValue);
 							cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + strParametro;
 							cmd.CommandType = CommandType.Text;
-							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+							strMensaje = "";
+							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd,ref strMensaje);
+							
+							if (!string.IsNullOrWhiteSpace(strMensaje))
+							{
+								strMensaje.XMensajeError();
+								return;
+							}
 						}
 
 
@@ -1324,13 +1267,8 @@ namespace ControlDosimetro
 		private void GenerarPorSucursal()
 		{
 			SqlCommand cmd = new SqlCommand();
-			//	  SqlCommand cmd = new SqlCommand();
 			SqlCommand cmdpersonal = new SqlCommand();
-			//  SqlCommand cmdpersonal = new SqlCommand();
 			SqlCommand cmdperiodo = new SqlCommand();
-			//  SqlCommand cmdperiodo = new SqlCommand();
-
-			// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
 			DataGridViewCheckBoxCell checkGenerar;
 			DataGridViewCheckBoxCell checkCell;
 			DataGridViewCheckBoxCell chkcondosis;
@@ -1373,28 +1311,17 @@ namespace ControlDosimetro
 			{
 				System.IO.Directory.CreateDirectory(targetPath);
 			}
-
-
-
-			//  targetPath = dtArchivo.Tables[0].Rows[0]["Glosa"].ToString();
-
-
-			// targetPath = ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text + "\\" + cbx_anno.Text;
 			targetPath = targetPath + "\\" + cbx_anno.Text;
 			if (!System.IO.Directory.Exists(targetPath))
 			{
 				System.IO.Directory.CreateDirectory(targetPath);
 			}
-
-			// targetPath = ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text + "\\" + cbx_anno.Text + "\\" + cbx_id_periodo.Text + "\\";
 			targetPath = targetPath + "\\" + cbx_id_periodo.Text + "\\";
 
 			if (!System.IO.Directory.Exists(targetPath))
 			{
 				System.IO.Directory.CreateDirectory(targetPath);
 			}
-			//Environment.CurrentDirectory = (targetPath);
-
 			if (rbtOiginal.Checked)
 				strpath = dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "cliente.xlsx";//Application.StartupPath.ToString(); 
 			else
@@ -1424,9 +1351,6 @@ namespace ControlDosimetro
 
 				CommandType = CommandType.Text
 			};
-
-			//clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(lbl_id_cliente.Text.ToString()), ref lbl_rut_cliente, ref lbl_nombreCliente);
-
 			DataSet dt;
 			DataSet dtCliente;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmdCliente);
@@ -1436,9 +1360,6 @@ namespace ControlDosimetro
 				strArchivo = dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "Plantillaword.docx";
 			else
 				strArchivo = @"C:\\Doc_Xray\\baseCliente\\Plantilla\\Plantillaword.docx";
-
-
-			//   string strArchivo = ConfigurationManager.AppSettings["Archivo"] + "Plantillaword.docx";
 
 			int intFilaword;
 			for (int idatos = 0; idatos <= dt.Tables[0].Rows.Count - 1; idatos++)
@@ -1453,9 +1374,7 @@ namespace ControlDosimetro
 				string strregionEmpresa = dt.Tables[0].Rows[idatos]["region"].ToString();
 				string strProvinciaEmpresa = dt.Tables[0].Rows[idatos]["Provincia"].ToString();
 				string strcomunaEmpresa = dt.Tables[0].Rows[idatos]["comuna"].ToString();
-				string strSeccion = (int)cbx_id_seccion.SelectedValue == 0 ? "" : cbx_id_seccion.Text;
-				//string strN_Documento = dt.Tables[0].Rows[idatos]["N_Documento"].ToString();
-				//	string strId_sucursal = dt.Tables[0].Rows[idatos]["Id_sucursal"].ToString();
+				string strSeccion = (int)cbx_id_seccion.SelectedValue == 0 ? "" : cbx_id_seccion.Text;				
 				String strArchivoCopiar = "";
 				strArchivoCopiar = targetPath + "Cliente" +
 									string.Format("{0}_{1}_{2}_{3}T_{4}.docx", lbl_id_cliente.Text, strSeccion, cbx_Sucursal.Text, cbx_id_periodo.Text.ToString().Substring(0, 1), cbx_anno.Text);
@@ -1546,35 +1465,8 @@ namespace ControlDosimetro
 							 "";
 					dtCliente = Conectar.Listar(Clases.clsBD.BD, cmdpersonal);
 
-					//if (strId_sucursal == txtid_sucursal.Value.ToString())
-					//{
-					//}
 					#region "Genera  word y excel"
-					//if (checkGenerar.Value.ToString() == "1")
-					//{
-					//	//cmd.CommandText = "update tbl_dosimetria " +
-					//	//                      "set enviado=0" +
-					//	//                  " where id_dosimetro=" + strid_dosimetro;
-					//	//cmd.CommandType = CommandType.Text;
-
-					//	//Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
-
-					//	//cmd.CommandText = "pa_DosimetroIngreso_upd " + txtnpelicula.Value.ToString() + ",12,'Clases.clsUsuario.Usuario',''";
-					//	//cmd.CommandType = CommandType.StoredProcedure;
-					//	//Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
-					//}
-					//else
-					//	 if ((txtndocumento.Value.ToString() == "") && (checkGenerar.Value.ToString() == "0"))
-					//{
-					//	// MessageBox.Show("Ingrese el n° de  Documento");						  
-					//	//grdDatos.Rows[i].DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Red;
-					//	//Selected=true ;
-					//	//i = grdDatos.RowCount;
-					//}
-					//else
-					//{
-					//grdDatos.Rows[i].DefaultCellStyle.SelectionBackColor = System.Drawing.Color.White;
-					if ((strid_dosimetro != "0")) //&& (checkGenerar.Value.ToString() == "1")					 
+					if ((strid_dosimetro != "0")) 		 
 					{
 
 						if (strEstado == "" || strEstado == "MNR")
@@ -1624,12 +1516,23 @@ namespace ControlDosimetro
 														" where id_dosimetro=" + strid_dosimetro;
 							cmd.CommandType = CommandType.Text;
 
-							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-
+							string strMensaje = "";
+							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd,ref strMensaje);
+							if (!string.IsNullOrWhiteSpace(strMensaje))
+							{
+								strMensaje.XMensajeError();
+								return;
+							}
 							string strParametro = String.Format("{0},{1},{2},''", txtnpeliculaoriginal.Value.ToString(), "5", Clases.clsUsuario.Usuario);
 							cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + strParametro;
 							cmd.CommandType = CommandType.Text;
-							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+							strMensaje = "";
+							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd,ref strMensaje);
+							if (!string.IsNullOrWhiteSpace(strMensaje))
+							{
+								strMensaje.XMensajeError();
+								return;
+							}
 						}
 
 
@@ -1740,7 +1643,6 @@ namespace ControlDosimetro
 				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=5 order by orden ";
 			cmdArchivo.CommandType = CommandType.Text;
 			dtformato = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
-			//string targetPath = @ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text;
 			string targetPath = "";
 
 			if (rbtOiginal.Checked)
@@ -1760,28 +1662,17 @@ namespace ControlDosimetro
 				MessageBox.Show(e.Message);
 				return;
 			}
-
-
-
-
-			//  targetPath = dtArchivo.Tables[0].Rows[0]["Glosa"].ToString();
-
-
-			// targetPath = ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text + "\\" + cbx_anno.Text;
 			targetPath = targetPath + "\\" + cbx_anno.Text;
 			if (!System.IO.Directory.Exists(targetPath))
 			{
 				System.IO.Directory.CreateDirectory(targetPath);
 			}
-
-			// targetPath = ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text + "\\" + cbx_anno.Text + "\\" + cbx_id_periodo.Text + "\\";
 			targetPath = targetPath + "\\" + cbx_id_periodo.Text + "\\";
 
 			if (!System.IO.Directory.Exists(targetPath))
 			{
 				System.IO.Directory.CreateDirectory(targetPath);
 			}
-			//Environment.CurrentDirectory = (targetPath);
 
 			if (rbtOiginal.Checked)
 				strpath = dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "cliente.xlsx";//Application.StartupPath.ToString(); 
@@ -1812,9 +1703,6 @@ namespace ControlDosimetro
 
 				CommandType = CommandType.Text
 			};
-
-			//clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(lbl_id_cliente.Text.ToString()), ref lbl_rut_cliente, ref lbl_nombreCliente);
-
 			DataSet dt;
 			DataSet dtCliente;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmdCliente);
@@ -1841,8 +1729,6 @@ namespace ControlDosimetro
 				string strProvinciaEmpresa = dt.Tables[0].Rows[idatos]["Provincia"].ToString();
 				string strcomunaEmpresa = dt.Tables[0].Rows[idatos]["comuna"].ToString();
 				string strSeccion = (int)cbx_id_seccion.SelectedValue == 0 ? "" : cbx_id_seccion.Text;
-				//string strN_Documento = dt.Tables[0].Rows[idatos]["N_Documento"].ToString();
-				//	string strId_sucursal = dt.Tables[0].Rows[idatos]["Id_sucursal"].ToString();
 				String strArchivoCopiar = "";
 				strArchivoCopiar = targetPath + "Cliente" + lbl_id_cliente.Text + "_" + cbx_Sucursal.Text + "_" + cbx_id_periodo.Text.ToString().Substring(0, 1) + "T_" + cbx_anno.Text + "_" + strSeccion + ".docx";
 
@@ -1928,35 +1814,7 @@ namespace ControlDosimetro
 							 " WHERE Id_Personal= " + strid_personal.ToString() + " and id_cliente=" + lbl_id_cliente.Text +
 							 "";
 					dtCliente = Conectar.Listar(Clases.clsBD.BD, cmdpersonal);
-
-					//if (strId_sucursal == txtid_sucursal.Value.ToString())
-					//{
-					//}
 					#region "Genera  word y excel"
-					//if (checkGenerar.Value.ToString() == "1")
-					//{
-					//	//cmd.CommandText = "update tbl_dosimetria " +
-					//	//                      "set enviado=0" +
-					//	//                  " where id_dosimetro=" + strid_dosimetro;
-					//	//cmd.CommandType = CommandType.Text;
-
-					//	//Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
-
-					//	//cmd.CommandText = "pa_DosimetroIngreso_upd " + txtnpelicula.Value.ToString() + ",12,'Clases.clsUsuario.Usuario',''";
-					//	//cmd.CommandType = CommandType.StoredProcedure;
-					//	//Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
-					//}
-					//else
-					//	 if ((txtndocumento.Value.ToString() == "") && (checkGenerar.Value.ToString() == "0"))
-					//{
-					//	// MessageBox.Show("Ingrese el n° de  Documento");						  
-					//	grdDatos.Rows[i].DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Red;
-					//	//Selected=true ;
-					//	i = grdDatos.RowCount;
-					//}
-					//else
-					//{
-					//grdDatos.Rows[i].DefaultCellStyle.SelectionBackColor = System.Drawing.Color.White;
 					if ((strid_dosimetro != "0")) //&& (checkGenerar.Value.ToString() == "1")					 
 					{
 						document = SpreadsheetDocument.Open(strpathcopiar, true);
@@ -1999,13 +1857,23 @@ namespace ControlDosimetro
 															"set enviado=1" +
 														" where id_dosimetro=" + strid_dosimetro;
 						cmd.CommandType = CommandType.Text;
-
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-
+						string strMensaje = "";
+						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd,ref strMensaje);
+						if (!string.IsNullOrWhiteSpace(strMensaje))
+						{
+							strMensaje.XMensajeError();
+							return;
+						}
+						strMensaje = "";
 						string strParametro = String.Format("{0},{1},{2},''", txtnpeliculaoriginal.Value.ToString(), "5", Clases.clsUsuario.Usuario);
 						cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + strParametro;
 						cmd.CommandType = CommandType.Text;
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd,ref strMensaje);
+						if (!string.IsNullOrWhiteSpace(strMensaje))
+						{
+							strMensaje.XMensajeError();
+							return;
+						}
 					}
 
 					data1[intFilaWord] = dtCliente.Tables[0].Rows[0]["Nombres"].ToString() + " " + dtCliente.Tables[0].Rows[0]["Paterno"].ToString() + " " + dtCliente.Tables[0].Rows[0]["Maternos"].ToString();
@@ -2143,22 +2011,12 @@ namespace ControlDosimetro
 
 		private void Btn_Filtro_Click(object sender, EventArgs e)
 		{
-			//txt_ref_cliente.ReadOnly = false;
-			//txt_Rut.ReadOnly = false;
-			//txt_ref_cliente.Text = "";
-			//txt_Rut.Text = "";
-			//txt_RazonSocial.Text = "";
-			//Listar_Cliente(0);
-			//Listar_Personal();
-			//txt_ref_cliente.Focus();
 		}
 
 		private void Btn_cargar_Click(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
 			bolDesdeCodigo = true;
-			//Cargar_Sucursal();
-			//Cargar_Seccion();
 			bolDesdeCodigo = false;
 			Listar_Personal();
 
@@ -2174,7 +2032,6 @@ namespace ControlDosimetro
 				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=6 order by orden ";
 			cmdArchivo.CommandType = CommandType.Text;
 			dtArchivo = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
-			//string targetPath = @ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text;
 			return dtArchivo.Tables[0].Rows[0]["Glosa"].ToString();
 		}
 
@@ -2199,13 +2056,8 @@ namespace ControlDosimetro
 		private void Btn_Guardar_Click(object sender, EventArgs e)
 		{
 			SqlCommand cmd = new SqlCommand();
-			//	  SqlCommand cmd = new SqlCommand();
 			SqlCommand cmdpersonal = new SqlCommand();
-			//  SqlCommand cmdpersonal = new SqlCommand();
 			SqlCommand cmdperiodo = new SqlCommand();
-			//  SqlCommand cmdperiodo = new SqlCommand();
-
-			// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
 			DataGridViewCheckBoxCell checkGenerar;
 			DataGridViewCheckBoxCell checkCell;
 			DataGridViewCheckBoxCell chkcondosis;
@@ -2247,20 +2099,11 @@ namespace ControlDosimetro
 			{
 				System.IO.Directory.CreateDirectory(targetPath);
 			}
-
-
-
-			//  targetPath = dtArchivo.Tables[0].Rows[0]["Glosa"].ToString();
-
-
-			// targetPath = ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text + "\\" + cbx_anno.Text;
 			targetPath = targetPath + "\\" + cbx_anno.Text;
 			if (!System.IO.Directory.Exists(targetPath))
 			{
 				System.IO.Directory.CreateDirectory(targetPath);
 			}
-
-			// targetPath = ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text + "\\" + cbx_anno.Text + "\\" + cbx_id_periodo.Text + "\\";
 			targetPath = targetPath + "\\" + cbx_id_periodo.Text + "\\";
 
 			if (!System.IO.Directory.Exists(targetPath))
@@ -2273,8 +2116,6 @@ namespace ControlDosimetro
 				strpath = dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "cliente.xlsx";//Application.StartupPath.ToString(); 
 			else
 				strpath = @"C:\\Doc_Xray\\baseCliente\\Plantilla\\cliente.xlsx";
-
-
 
 			//**************carga periodo
 			DataSet dtPeriodo;
@@ -2298,9 +2139,6 @@ namespace ControlDosimetro
 
 				CommandType = CommandType.Text
 			};
-
-			//clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(lbl_id_cliente.Text.ToString()), ref lbl_rut_cliente, ref lbl_nombreCliente);
-
 			DataSet dt;
 			DataSet dtCliente;
 			dt = Conectar.Listar(Clases.clsBD.BD, cmdCliente);
@@ -2333,10 +2171,7 @@ namespace ControlDosimetro
 
 
 				strpathcopiar = targetPath + "cliente " + lbl_id_cliente.Text + "_" + strDireccionEmpresa + "_" + cbx_id_seccion.Text + ".xlsx";
-
-				// process.Start("c:\Ejemplo de Carpeta con Espacios");
 				File.Copy(strpath, strpathcopiar, true);
-				//strRunEmpresa + "_" + cbx_id_periodo.Text + ".docx";
 				//*************************************
 
 
@@ -2418,16 +2253,6 @@ namespace ControlDosimetro
 						#region "Genera  word y excel"
 						if (checkGenerar.Value.ToString() == "1")
 						{
-							//cmd.CommandText = "update tbl_dosimetria " +
-							//                      "set enviado=0" +
-							//                  " where id_dosimetro=" + strid_dosimetro;
-							//cmd.CommandType = CommandType.Text;
-
-							//Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
-
-							//cmd.CommandText = "pa_DosimetroIngreso_upd " + txtnpelicula.Value.ToString() + ",12,'Clases.clsUsuario.Usuario',''";
-							//cmd.CommandType = CommandType.StoredProcedure;
-							//Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
 						}
 						else
 							 if ((txtndocumento.Value.ToString() == "") && (checkGenerar.Value.ToString() == "0"))
@@ -2482,14 +2307,23 @@ namespace ControlDosimetro
 																	"set enviado=1" +
 																" where id_dosimetro=" + strid_dosimetro;
 								cmd.CommandType = CommandType.Text;
-
-								Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-
+								string strMensaje = "";
+								Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd,ref strMensaje);
+								if (!string.IsNullOrWhiteSpace(strMensaje))
+								{
+									strMensaje.XMensajeError();
+									return;
+								}
 								string strParametro = String.Format("{0},{1},{2},''", txtnpelicula.Value.ToString(), "5", Clases.clsUsuario.Usuario);
 								cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + strParametro;
 								cmd.CommandType = CommandType.Text;
-								Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-
+								strMensaje = "";
+								Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd,ref strMensaje);
+								if (!string.IsNullOrWhiteSpace(strMensaje))
+								{
+									strMensaje.XMensajeError();
+									return;
+								}
 								Array.Resize(ref data1, i + 3);
 								Array.Resize(ref data2, i + 3);
 								Array.Resize(ref data3, i + 3);
@@ -2631,9 +2465,14 @@ namespace ControlDosimetro
 												"set enviado=0" +
 										 " where id_dosimetro=" + strid_dosimetro;
 					cmd.CommandType = CommandType.Text;
-
-					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-
+					string strMensaje = "";
+					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd,ref strMensaje);
+					if (!string.IsNullOrWhiteSpace(strMensaje))
+					{
+						strMensaje.XMensajeError();
+						return;
+					}
+					strMensaje = "";
 					if (checkTLD.Value.ToString() == "0")
 						cmd2.CommandText = "pa_DevolverEstado_upd " + txtnpelicula.Value.ToString() + "," + cbxEstado.Value + ",'" + Clases.clsUsuario.Usuario +
 																	"',''," + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;
@@ -2641,7 +2480,12 @@ namespace ControlDosimetro
 						cmd2.CommandText = "pa_DevolverEstadoTLDIngresarDosis_upd " + txtnpelicula.Value.ToString() + "," + cbxEstado.Value + ",'" + Clases.clsUsuario.Usuario +
 																	"',''," + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;
 					cmd2.CommandType = CommandType.Text;
-					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd2);
+					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd2, ref strMensaje);
+					if (!string.IsNullOrWhiteSpace(strMensaje))
+					{
+						strMensaje.XMensajeError();
+						return;
+					}
 				}
 			}
 			MessageBox.Show("Informacion esta listo para corregir su dosis.");
