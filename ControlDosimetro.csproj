@@ -32,7 +32,7 @@
     <TargetCulture>es-CL</TargetCulture>
     <ProductName>X-Ray Dosimetro</ProductName>
     <SuiteName>Sistema Dosimetro</SuiteName>
-    <MinimumRequiredVersion>9.0.2.46</MinimumRequiredVersion>
+    <MinimumRequiredVersion>9.0.2.47</MinimumRequiredVersion>
     <WebPage>instalacion.html</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
     <ApplicationRevision>47</ApplicationRevision>
@@ -1052,9 +1052,7 @@
     <EmbeddedResource Include="resplado\rptSobre.rdlc" />
     <EmbeddedResource Include="rptDosimetria.rdlc" />
     <EmbeddedResource Include="rptDosimetriaEnc.rdlc" />
-    <None Include="Archivo\Documento_NoDevuelto.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Content Include="Archivo\Documento_NoDevuelto.docx" />
     <None Include="Certificado.pfx" />
     <None Include="ControlDosimetro_1_TemporaryKey.pfx" />
     <None Include="ControlDosimetro_2_TemporaryKey.pfx" />

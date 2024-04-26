@@ -22,7 +22,7 @@ namespace ControlDosimetro
 		#region "Definicion variable"
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		WorkbookPart wbPart = null;
-		SpreadsheetDocument document = null
+		SpreadsheetDocument document = null;
 		//		SpreadsheetDocument document2 = null;
 		object missing = System.Reflection.Missing.Value;
 		object strcampoMarcador;
