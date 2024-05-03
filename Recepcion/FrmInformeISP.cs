@@ -36,6 +36,10 @@ namespace ControlDosimetro
 		DataTable dtPeriodo;
 		classFuncionesBD.ClsFunciones ClaseFunciones = new classFuncionesBD.ClsFunciones();
 		bool DesdeLimpiar = false;
+		#region Permiso
+		public int intMenu;
+		private bool Lectura, Agregar, Modificar, Eliminar;
+		#endregion
 		#endregion
 
 		#region inicio
@@ -73,11 +77,24 @@ namespace ControlDosimetro
 			lbl_Alternativa.Text = "C:/Doc_Xray/";
 			rbtOiginal.Checked = true;
 		}
+		private void FrmInformeISP_Load(object sender, EventArgs e)
+		{
+			AsignarPermiso();
+		}
 
 		#endregion
 
 		#region "Llamada de carga"
+		private void AsignarPermiso()
+		{
+			Cursor = Cursors.WaitCursor;
+			Conectar.PermisoFormulario(intMenu, ref Lectura, ref Agregar, ref Modificar, ref Eliminar);
+			Cursor = Cursors.Default;
 
+			grdDatos.ReadOnly = Lectura || !Modificar;
+			grdDatos.DefaultCellStyle.BackColor = !Lectura && (Modificar) ? SystemColors.Window : ClaseGeneral.ColorCeldaBloqueado;
+			Cursor = Cursors.Default;
+		}
 		private void Cargar_Cliente(Int64 intCodCliente)
 		{
 			Cursor = Cursors.WaitCursor;
@@ -159,7 +176,6 @@ namespace ControlDosimetro
 				groupBox2.Text = "Listado";
 				groupBox2.Enabled = false;
 				cbx_Sucursal.Enabled = true;
-				btn_Corregir.Enabled = false;
 			}
 			else if (bolLimpiar == 2)
 			{
@@ -175,7 +191,6 @@ namespace ControlDosimetro
 				groupBox2.Enabled = false;
 				lbl_id_cliente.Text = "";
 				cbx_Sucursal.Enabled = true;
-				btn_Corregir.Enabled = false;
 				DesdeLimpiar = true;
 				Cargar_Sucursal();
 				Cargar_Seccion();
@@ -186,7 +201,6 @@ namespace ControlDosimetro
 			else if (bolLimpiar == 3)
 			{
 				groupBox2.Enabled = false;
-				btn_Corregir.Enabled = false;
 			}
 			else if (bolLimpiar == 4)
 			{
@@ -244,7 +258,7 @@ namespace ControlDosimetro
 					grdDatos.DataSource = dt.Tables[0];
 				}
 			}
-			btn_Corregir.Enabled = btnGenerar.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenararPelNoDevuelto.Enabled = grdDatos.Rows.Count > 0;
+			btn_Guardar.Enabled = btn_Corregir.Enabled = btnGenerar.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenararPelNoDevuelto.Enabled = grdDatos.Rows.Count > 0 && !Lectura && Modificar;
 
 		}
 
@@ -1131,8 +1145,8 @@ namespace ControlDosimetro
 							cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + strParametro;
 							cmd.CommandType = CommandType.Text;
 							strMensaje = "";
-							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd,ref strMensaje);
-							
+							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensaje);
+
 							if (!string.IsNullOrWhiteSpace(strMensaje))
 							{
 								strMensaje.XMensajeError();
@@ -1374,7 +1388,7 @@ namespace ControlDosimetro
 				string strregionEmpresa = dt.Tables[0].Rows[idatos]["region"].ToString();
 				string strProvinciaEmpresa = dt.Tables[0].Rows[idatos]["Provincia"].ToString();
 				string strcomunaEmpresa = dt.Tables[0].Rows[idatos]["comuna"].ToString();
-				string strSeccion = (int)cbx_id_seccion.SelectedValue == 0 ? "" : cbx_id_seccion.Text;				
+				string strSeccion = (int)cbx_id_seccion.SelectedValue == 0 ? "" : cbx_id_seccion.Text;
 				String strArchivoCopiar = "";
 				strArchivoCopiar = targetPath + "Cliente" +
 									string.Format("{0}_{1}_{2}_{3}T_{4}.docx", lbl_id_cliente.Text, strSeccion, cbx_Sucursal.Text, cbx_id_periodo.Text.ToString().Substring(0, 1), cbx_anno.Text);
@@ -1466,7 +1480,7 @@ namespace ControlDosimetro
 					dtCliente = Conectar.Listar(Clases.clsBD.BD, cmdpersonal);
 
 					#region "Genera  word y excel"
-					if ((strid_dosimetro != "0")) 		 
+					if ((strid_dosimetro != "0"))
 					{
 
 						if (strEstado == "" || strEstado == "MNR")
@@ -1517,7 +1531,7 @@ namespace ControlDosimetro
 							cmd.CommandType = CommandType.Text;
 
 							string strMensaje = "";
-							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd,ref strMensaje);
+							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensaje);
 							if (!string.IsNullOrWhiteSpace(strMensaje))
 							{
 								strMensaje.XMensajeError();
@@ -1527,7 +1541,7 @@ namespace ControlDosimetro
 							cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + strParametro;
 							cmd.CommandType = CommandType.Text;
 							strMensaje = "";
-							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd,ref strMensaje);
+							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensaje);
 							if (!string.IsNullOrWhiteSpace(strMensaje))
 							{
 								strMensaje.XMensajeError();
@@ -1858,7 +1872,7 @@ namespace ControlDosimetro
 														" where id_dosimetro=" + strid_dosimetro;
 						cmd.CommandType = CommandType.Text;
 						string strMensaje = "";
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd,ref strMensaje);
+						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensaje);
 						if (!string.IsNullOrWhiteSpace(strMensaje))
 						{
 							strMensaje.XMensajeError();
@@ -1868,7 +1882,7 @@ namespace ControlDosimetro
 						string strParametro = String.Format("{0},{1},{2},''", txtnpeliculaoriginal.Value.ToString(), "5", Clases.clsUsuario.Usuario);
 						cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + strParametro;
 						cmd.CommandType = CommandType.Text;
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd,ref strMensaje);
+						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensaje);
 						if (!string.IsNullOrWhiteSpace(strMensaje))
 						{
 							strMensaje.XMensajeError();
@@ -2308,7 +2322,7 @@ namespace ControlDosimetro
 																" where id_dosimetro=" + strid_dosimetro;
 								cmd.CommandType = CommandType.Text;
 								string strMensaje = "";
-								Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd,ref strMensaje);
+								Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensaje);
 								if (!string.IsNullOrWhiteSpace(strMensaje))
 								{
 									strMensaje.XMensajeError();
@@ -2318,7 +2332,7 @@ namespace ControlDosimetro
 								cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + strParametro;
 								cmd.CommandType = CommandType.Text;
 								strMensaje = "";
-								Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd,ref strMensaje);
+								Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensaje);
 								if (!string.IsNullOrWhiteSpace(strMensaje))
 								{
 									strMensaje.XMensajeError();
@@ -2434,7 +2448,6 @@ namespace ControlDosimetro
 			string strn_cliente;
 			string strid_personal;
 			string strid_dosimetro;
-			btn_Corregir.Enabled = false;
 
 			pnl_Progreso.Visible = true;
 			pgb_Barra.Minimum = 0;
@@ -2466,7 +2479,7 @@ namespace ControlDosimetro
 										 " where id_dosimetro=" + strid_dosimetro;
 					cmd.CommandType = CommandType.Text;
 					string strMensaje = "";
-					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd,ref strMensaje);
+					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensaje);
 					if (!string.IsNullOrWhiteSpace(strMensaje))
 					{
 						strMensaje.XMensajeError();
@@ -2490,7 +2503,6 @@ namespace ControlDosimetro
 			}
 			MessageBox.Show("Informacion esta listo para corregir su dosis.");
 
-			btn_Corregir.Enabled = true;
 			pnl_Progreso.Visible = false;
 
 			Listar_Personal();
@@ -2917,6 +2929,8 @@ namespace ControlDosimetro
 				doc.Save();
 			}
 		}
+
+
 		public static void WDAddTableNoDevueltoPorAño(string fileName, string[] NTLD, string[] Trimestre, string[] Nombre, string[] Rut, string[] Estado, string[] Seccion)
 		{
 			using (var document = WordprocessingDocument.Open(fileName, true))
