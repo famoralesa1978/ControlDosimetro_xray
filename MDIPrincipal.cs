@@ -635,6 +635,7 @@ namespace ControlDosimetro
 					objFrm = new FrmInformeISP(-1)
 					{
 						ShowInTaskbar = false,
+						intMenu= (int)MENU.DosisISPTLD,
 						StartPosition = FormStartPosition.CenterScreen
 					};
 					Graba_log(objFrm.Text);
