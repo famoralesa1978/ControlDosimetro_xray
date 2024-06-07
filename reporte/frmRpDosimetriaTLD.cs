@@ -30,9 +30,6 @@ namespace ControlDosimetro
 		{
 			InitializeComponent();
 			cbx_Region.SelectedText = "1";
-			txt_Rut.KeyPress += new KeyPressEventHandler(ClaseEvento.Rut_KeyPress);
-			txt_Rut.KeyDown += new KeyEventHandler(ClaseEvento.Rut_KeyDown);
-			txt_Rut.Validated += new EventHandler(ClaseEvento.validarut_Validated);
 			txt_NumeroCliente.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
 			txt_NumeroCliente.KeyDown += new KeyEventHandler(ClaseEvento.Numero_KeyDown);
 			txt_NDosimetro.KeyPress += new KeyPressEventHandler(ClaseEvento.Numero_KeyPress);
