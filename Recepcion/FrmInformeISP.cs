@@ -1975,6 +1975,12 @@ namespace ControlDosimetro
 				btnGenararPelNoDevuelto.Enabled = btnGenerarArchivoNuevo.Enabled = btnGenerar.Enabled = true;
 			}
 		}
+		private void tsbAsignar_Click(object sender, EventArgs e)
+		{
+			if (lbl_id_cliente.DevuelveEnteroNulo() == null) return;
+			frmAsignarSeccionDireccion frm = new frmAsignarSeccionDireccion(Convert.ToInt32(lbl_id_cliente.Text), lbl_rut_cliente.Text);
+			frm.ShowDialog(this);
+		}
 		private void tsbAsignarSucursal_Click(object sender, EventArgs e)
 		{
 			if (!String.IsNullOrWhiteSpace(lbl_id_cliente.Text))
@@ -2929,6 +2935,7 @@ namespace ControlDosimetro
 				doc.Save();
 			}
 		}
+
 
 
 		public static void WDAddTableNoDevueltoPorAño(string fileName, string[] NTLD, string[] Trimestre, string[] Nombre, string[] Rut, string[] Estado, string[] Seccion)

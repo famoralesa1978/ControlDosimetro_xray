@@ -285,6 +285,12 @@ namespace ControlDosimetro
 			MDIPrincipal.LlamadaReporte(Convert.ToUInt16(((System.Windows.Forms.ToolStripItem)sender).Tag.ToString()));
 
 		}
+		private void tsbAsignar_Click(object sender, EventArgs e)
+		{
+			if (lbl_id_cliente.DevuelveEnteroNulo() == null) return;
+			frmAsignarSeccionDireccion frm = new frmAsignarSeccionDireccion(Convert.ToInt32(lbl_id_cliente.Text), lbl_rut_cliente.Text);
+			frm.ShowDialog(this);
+		}
 		private void tsbAsignarSucursal_Click(object sender, EventArgs e)
 		{
 			if (lbl_id_cliente.DevuelveEnteroNulo() == null) return;
@@ -1513,6 +1519,8 @@ namespace ControlDosimetro
 			//var command = service.Files.Create(driverFolder);
 			//var file = command.Execute();
 		}
+
+
 
 		//private static DriveService Getservice(string strClienteID,string strClienteSecret,string strAccesoToken, string strRefreshToken,string strApplicationName,string strUsername)
 		//{

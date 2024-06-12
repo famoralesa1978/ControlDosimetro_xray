@@ -94,6 +94,7 @@
 			this.txt_Servicio = new System.Windows.Forms.TextBox();
 			this.label10 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
+			this.tsbAsignar = new System.Windows.Forms.ToolStripButton();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -463,7 +464,8 @@
             this.tsdReporte,
             this.tsbGenerar,
             this.tsbAsignarSucursal,
-            this.tsbAsignarSeccion});
+            this.tsbAsignarSeccion,
+            this.tsbAsignar});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(1084, 27);
@@ -763,6 +765,17 @@
 			this.label7.TabIndex = 11;
 			this.label7.Text = "Número documento";
 			// 
+			// tsbAsignar
+			// 
+			this.tsbAsignar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbAsignar.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignar.Image")));
+			this.tsbAsignar.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbAsignar.Name = "tsbAsignar";
+			this.tsbAsignar.Size = new System.Drawing.Size(51, 24);
+			this.tsbAsignar.Text = "Asignar";
+			this.tsbAsignar.ToolTipText = "Asignar dirección o sección";
+			this.tsbAsignar.Click += new System.EventHandler(this.tsbAsignar_Click);
+			// 
 			// frmIngresoDosimetro
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -872,5 +885,6 @@
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.DateTimePicker dtp_Fecha_dev;
+		private System.Windows.Forms.ToolStripButton tsbAsignar;
 	}
 }

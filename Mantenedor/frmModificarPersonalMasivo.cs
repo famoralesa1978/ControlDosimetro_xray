@@ -530,6 +530,13 @@ namespace ControlDosimetro
 			}
 		}
 
+		private void tsbAsignar_Click(object sender, EventArgs e)
+		{
+			if (txt_N_cliente.DevuelveEnteroNulo() == null) return;
+			frmAsignarSeccionDireccion frm = new frmAsignarSeccionDireccion(Convert.ToInt32(txt_N_cliente.Text), txt_Rut.Text);
+			frm.ShowDialog(this);
+		}
+
 		private void tsbAsignarSeccion_Click(object sender, EventArgs e)
 		{
 			frmAsignarSeccionPersonal frm = new frmAsignarSeccionPersonal(Convert.ToInt32(txt_N_cliente.Text), txt_Rut.Text);

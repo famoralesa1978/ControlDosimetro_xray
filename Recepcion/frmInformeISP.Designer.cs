@@ -89,6 +89,7 @@
 			this.btnGenerarArchivoNuevo = new System.Windows.Forms.Button();
 			this.btnGenararPelNoDevuelto = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
+			this.tsbAsignar = new System.Windows.Forms.ToolStripButton();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -486,7 +487,8 @@
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btn_Sucursal,
             this.tsbAsignarSucursal,
-            this.tsbAsignarSeccion});
+            this.tsbAsignarSeccion,
+            this.tsbAsignar});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(1350, 25);
@@ -714,6 +716,17 @@
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
+			// tsbAsignar
+			// 
+			this.tsbAsignar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbAsignar.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignar.Image")));
+			this.tsbAsignar.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbAsignar.Name = "tsbAsignar";
+			this.tsbAsignar.Size = new System.Drawing.Size(51, 22);
+			this.tsbAsignar.Text = "Asignar";
+			this.tsbAsignar.ToolTipText = "Asignar dirección o sección";
+			this.tsbAsignar.Click += new System.EventHandler(this.tsbAsignar_Click);
+			// 
 			// FrmInformeISP
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -819,5 +832,6 @@
 		private System.Windows.Forms.Button btnGenerarArchivoNuevo;
 		private System.Windows.Forms.Button btnGenararPelNoDevuelto;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.ToolStripButton tsbAsignar;
 	}
 }

@@ -201,6 +201,12 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "button"
+		private void tsbAsignar_Click(object sender, EventArgs e)
+		{
+			if (lbl_id_cliente.DevuelveEnteroNulo() == null) return;
+			frmAsignarSeccionDireccion frm = new frmAsignarSeccionDireccion(Convert.ToInt32(lbl_id_cliente.Text), lbl_rut_cliente.Text);
+			frm.ShowDialog(this);
+		}
 		private void tsbAsignarSucursal_Click(object sender, EventArgs e)
 		{
 			frmAsignarDireccionPersonal frm = new frmAsignarDireccionPersonal(Convert.ToInt32(lbl_id_cliente.Text), lbl_rut_cliente.Text);
@@ -1319,10 +1325,10 @@ namespace ControlDosimetro
 			MDIPrincipal.LlamadaReporte(Convert.ToUInt16(((System.Windows.Forms.ToolStripItem)sender).Tag.ToString()));
 
 		}
+
 		#region Textbox
 
 		#endregion
-
 
 	}
 }

@@ -2039,6 +2039,12 @@ namespace ControlDosimetro
 			}
 
 		}
+		private void tsbAsignar_Click(object sender, EventArgs e)
+		{
+			if (lbl_id_cliente.DevuelveEnteroNulo() == null) return;
+			frmAsignarSeccionDireccion frm = new frmAsignarSeccionDireccion(Convert.ToInt32(lbl_id_cliente.Text), lbl_rut_cliente.Text);
+			frm.ShowDialog(this);
+		}
 		private void btnGenararPelNoDevuelto_Click(object sender, EventArgs e)
 		{
 			if ((int)cbx_id_seccion.SelectedValue != 0)

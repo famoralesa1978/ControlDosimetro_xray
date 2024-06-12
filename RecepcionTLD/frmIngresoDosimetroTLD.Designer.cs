@@ -105,6 +105,7 @@
 			this.rbtAlternativa = new System.Windows.Forms.RadioButton();
 			this.rbtOiginal = new System.Windows.Forms.RadioButton();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.tsbAsignar = new System.Windows.Forms.ToolStripButton();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picPeriodo)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -514,7 +515,8 @@
             this.tsdReporte,
             this.tsbGenerar,
             this.tsbAsignarSucursal,
-            this.tsbAsignarSeccion});
+            this.tsbAsignarSeccion,
+            this.tsbAsignar});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(1084, 27);
@@ -883,6 +885,17 @@
 			this.rbtOiginal.Text = "Original";
 			this.rbtOiginal.UseVisualStyleBackColor = true;
 			// 
+			// tsbAsignar
+			// 
+			this.tsbAsignar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbAsignar.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignar.Image")));
+			this.tsbAsignar.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbAsignar.Name = "tsbAsignar";
+			this.tsbAsignar.Size = new System.Drawing.Size(51, 24);
+			this.tsbAsignar.Text = "Asignar";
+			this.tsbAsignar.ToolTipText = "Asignar dirección o sección";
+			this.tsbAsignar.Click += new System.EventHandler(this.tsbAsignar_Click);
+			// 
 			// frmIngresoDosimetroTLD
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1011,5 +1024,6 @@
 		private System.Windows.Forms.RadioButton rbtOiginal;
 		private System.Windows.Forms.PictureBox picPeriodo;
 		private System.Windows.Forms.ToolTip toolTip1;
+		private System.Windows.Forms.ToolStripButton tsbAsignar;
 	}
 }
