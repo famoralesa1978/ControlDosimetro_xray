@@ -851,7 +851,7 @@ namespace ControlDosimetro
 			if (rbtOiginal.Checked)
 				targetPath = @dtArchivo.Tables[0].Rows[0]["Glosa"].ToString() + "Cliente " + lbl_id_cliente.Text;
 			else
-				targetPath = @"C:\\Doc_Xray\\" + "Cliente " + lbl_id_cliente.Text;
+				targetPath = @"C:\Doc_Xray\" + "Cliente " + lbl_id_cliente.Text;
 
 
 			if (!System.IO.Directory.Exists(targetPath))

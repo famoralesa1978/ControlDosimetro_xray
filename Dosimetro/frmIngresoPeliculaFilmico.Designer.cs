@@ -30,8 +30,8 @@
         {
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngresoPeliculaFilmico));
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.btnFiltrar = new System.Windows.Forms.Button();
 			this.label16 = new System.Windows.Forms.Label();
@@ -76,12 +76,6 @@
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
-			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.id_estadodosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.N_Pelicula = new GridExtension.IntegerGridColumn();
-			this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.N_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColFecha_ingreso = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cmsPopup = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -102,6 +96,13 @@
 			this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btn_Imprimir = new System.Windows.Forms.Button();
 			this.btn_Cerrar = new System.Windows.Forms.Button();
+			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.id_estadodosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.N_Pelicula = new GridExtension.IntegerGridColumn();
+			this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.N_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColFecha_ingreso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColObservacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			this.grp_Ingreso.SuspendLayout();
 			this.grpListado.SuspendLayout();
@@ -538,7 +539,7 @@
 			this.grpListado.Controls.Add(this.grdDatos);
 			this.grpListado.Location = new System.Drawing.Point(0, 414);
 			this.grpListado.Name = "grpListado";
-			this.grpListado.Size = new System.Drawing.Size(465, 270);
+			this.grpListado.Size = new System.Drawing.Size(662, 270);
 			this.grpListado.TabIndex = 18;
 			this.grpListado.TabStop = false;
 			this.grpListado.Text = "Listado";
@@ -574,69 +575,19 @@
             this.N_Pelicula,
             this.Descripcion,
             this.N_documento,
-            this.ColFecha_ingreso});
+            this.ColFecha_ingreso,
+            this.ColObservacion});
 			this.grdDatos.ContextMenuStrip = this.cmsPopup;
 			this.grdDatos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.grdDatos.Location = new System.Drawing.Point(3, 16);
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.grdDatos.Size = new System.Drawing.Size(459, 251);
+			this.grdDatos.Size = new System.Drawing.Size(656, 251);
 			this.grdDatos.TabIndex = 8;
 			this.grdDatos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdDatos_CellFormatting);
 			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
-			// 
-			// id
-			// 
-			this.id.DataPropertyName = "id";
-			this.id.HeaderText = "id";
-			this.id.Name = "id";
-			this.id.Visible = false;
-			this.id.Width = 40;
-			// 
-			// id_estadodosimetro
-			// 
-			this.id_estadodosimetro.DataPropertyName = "id_estadodosimetro";
-			this.id_estadodosimetro.HeaderText = "id_estadodosimetro";
-			this.id_estadodosimetro.Name = "id_estadodosimetro";
-			this.id_estadodosimetro.Visible = false;
-			this.id_estadodosimetro.Width = 123;
-			// 
-			// N_Pelicula
-			// 
-			this.N_Pelicula.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-			this.N_Pelicula.DataPropertyName = "n_dosimetro";
-			this.N_Pelicula.HeaderText = "Nº Pelicula";
-			this.N_Pelicula.Name = "N_Pelicula";
-			this.N_Pelicula.ReadOnly = true;
-			this.N_Pelicula.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.N_Pelicula.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.N_Pelicula.Width = 84;
-			// 
-			// Descripcion
-			// 
-			this.Descripcion.DataPropertyName = "Descripcion";
-			this.Descripcion.HeaderText = "Descripcion";
-			this.Descripcion.Name = "Descripcion";
-			this.Descripcion.ReadOnly = true;
-			this.Descripcion.Width = 88;
-			// 
-			// N_documento
-			// 
-			this.N_documento.DataPropertyName = "N_documento";
-			this.N_documento.HeaderText = "N° Documento";
-			this.N_documento.Name = "N_documento";
-			this.N_documento.ReadOnly = true;
-			this.N_documento.Width = 102;
-			// 
-			// ColFecha_ingreso
-			// 
-			this.ColFecha_ingreso.DataPropertyName = "Fecha_ingreso";
-			this.ColFecha_ingreso.HeaderText = "Fecha ingreso";
-			this.ColFecha_ingreso.Name = "ColFecha_ingreso";
-			this.ColFecha_ingreso.ReadOnly = true;
-			this.ColFecha_ingreso.Width = 99;
 			// 
 			// cmsPopup
 			// 
@@ -662,7 +613,7 @@
             this.tsdReporte});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(470, 39);
+			this.toolStrip1.Size = new System.Drawing.Size(667, 39);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -778,9 +729,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle3.Format = "N2";
-			dataGridViewCellStyle3.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle1.Format = "N2";
+			dataGridViewCellStyle1.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -798,9 +749,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle4.Format = "N2";
-			dataGridViewCellStyle4.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle2.Format = "N2";
+			dataGridViewCellStyle2.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -808,7 +759,7 @@
 			// btn_Imprimir
 			// 
 			this.btn_Imprimir.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Imprimir.Location = new System.Drawing.Point(101, 690);
+			this.btn_Imprimir.Location = new System.Drawing.Point(199, 690);
 			this.btn_Imprimir.Name = "btn_Imprimir";
 			this.btn_Imprimir.Size = new System.Drawing.Size(97, 23);
 			this.btn_Imprimir.TabIndex = 7;
@@ -819,7 +770,7 @@
 			// btn_Cerrar
 			// 
 			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Cerrar.Location = new System.Drawing.Point(371, 690);
+			this.btn_Cerrar.Location = new System.Drawing.Point(469, 690);
 			this.btn_Cerrar.Name = "btn_Cerrar";
 			this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
 			this.btn_Cerrar.TabIndex = 9;
@@ -827,11 +778,70 @@
 			this.btn_Cerrar.UseVisualStyleBackColor = true;
 			this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click);
 			// 
+			// id
+			// 
+			this.id.DataPropertyName = "id";
+			this.id.HeaderText = "id";
+			this.id.Name = "id";
+			this.id.Visible = false;
+			this.id.Width = 40;
+			// 
+			// id_estadodosimetro
+			// 
+			this.id_estadodosimetro.DataPropertyName = "id_estadodosimetro";
+			this.id_estadodosimetro.HeaderText = "id_estadodosimetro";
+			this.id_estadodosimetro.Name = "id_estadodosimetro";
+			this.id_estadodosimetro.Visible = false;
+			this.id_estadodosimetro.Width = 123;
+			// 
+			// N_Pelicula
+			// 
+			this.N_Pelicula.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+			this.N_Pelicula.DataPropertyName = "n_dosimetro";
+			this.N_Pelicula.HeaderText = "Nº Pelicula";
+			this.N_Pelicula.Name = "N_Pelicula";
+			this.N_Pelicula.ReadOnly = true;
+			this.N_Pelicula.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.N_Pelicula.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.N_Pelicula.Width = 84;
+			// 
+			// Descripcion
+			// 
+			this.Descripcion.DataPropertyName = "Descripcion";
+			this.Descripcion.HeaderText = "Descripcion";
+			this.Descripcion.Name = "Descripcion";
+			this.Descripcion.ReadOnly = true;
+			this.Descripcion.Width = 88;
+			// 
+			// N_documento
+			// 
+			this.N_documento.DataPropertyName = "N_documento";
+			this.N_documento.HeaderText = "N° Documento";
+			this.N_documento.Name = "N_documento";
+			this.N_documento.ReadOnly = true;
+			this.N_documento.Width = 102;
+			// 
+			// ColFecha_ingreso
+			// 
+			this.ColFecha_ingreso.DataPropertyName = "Fecha_ingreso";
+			this.ColFecha_ingreso.HeaderText = "Fecha ingreso";
+			this.ColFecha_ingreso.Name = "ColFecha_ingreso";
+			this.ColFecha_ingreso.ReadOnly = true;
+			this.ColFecha_ingreso.Width = 99;
+			// 
+			// ColObservacion
+			// 
+			this.ColObservacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.ColObservacion.DataPropertyName = "Observacion";
+			this.ColObservacion.HeaderText = "Observación";
+			this.ColObservacion.Name = "ColObservacion";
+			this.ColObservacion.ReadOnly = true;
+			// 
 			// frmIngresoPeliculaFilmico
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(470, 722);
+			this.ClientSize = new System.Drawing.Size(667, 722);
 			this.Controls.Add(this.btn_Cerrar);
 			this.Controls.Add(this.btn_Imprimir);
 			this.Controls.Add(this.toolStrip1);
@@ -921,14 +931,15 @@
                                 private System.Windows.Forms.ToolStripButton tsb_Imprimir;
 		private System.Windows.Forms.Label label16;
 		private System.Windows.Forms.ToolStripDropDownButton tsdReporte;
+		private System.Windows.Forms.Button btnFiltrar;
+		private System.Windows.Forms.Button btnRefrescarNDcto;
+		private System.Windows.Forms.ToolStripButton tsbEliminarDcto;
 		private System.Windows.Forms.DataGridViewTextBoxColumn id;
 		private System.Windows.Forms.DataGridViewTextBoxColumn id_estadodosimetro;
 		private GridExtension.IntegerGridColumn N_Pelicula;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
 		private System.Windows.Forms.DataGridViewTextBoxColumn N_documento;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColFecha_ingreso;
-		private System.Windows.Forms.Button btnFiltrar;
-		private System.Windows.Forms.Button btnRefrescarNDcto;
-		private System.Windows.Forms.ToolStripButton tsbEliminarDcto;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColObservacion;
 	}
 }

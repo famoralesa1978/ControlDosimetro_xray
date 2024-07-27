@@ -137,9 +137,9 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;
 
 			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
-			System.Data.DataColumn newColumn = new System.Data.DataColumn("Eliminar", typeof(System.Boolean));
-			newColumn.DefaultValue = false;
-			dt.Tables[0].Columns.Add(newColumn);
+			////System.Data.DataColumn newColumn = new System.Data.DataColumn("Eliminar", typeof(System.Boolean));
+			////newColumn.DefaultValue = false;
+			////dt.Tables[0].Columns.Add(newColumn);
 
 
 			string filterExp = "";
@@ -473,7 +473,7 @@ namespace ControlDosimetro
 				strid_personal = grdDatos.Rows[i].Cells["id_personal"].Value.ToString();
 
 
-				if ((checkGenerar.Value.ToString() == "1") && (checkCell.Value.ToString() == "0") && (txtid_estadodosimetro.Value.ToString() == "-1"))
+				if ((Convert.ToBoolean(checkGenerar.Value)== true) && (Convert.ToBoolean(checkCell.Value) == false) && (txtid_estadodosimetro.Value.ToString() == "-1"))
 				{
 					intN_Dos = DevolverNDosimetro(intN_Dos, dtNTld);
 
@@ -677,9 +677,9 @@ namespace ControlDosimetro
 				checkEliminar = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["ColEliminar"];
 				checkGenerado = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["chkGenerado"];
 				checkgenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["Generar"];
-				if ((bool)checkEliminar.Value == false && (int)checkGenerado.Value == 0)
+				if ((bool)checkEliminar.Value == false && (bool)checkGenerado.Value == false)
 				{
-					checkgenerar.Value = (int)checkgenerar.Value == 1 ? 0 : 1;
+					checkgenerar.Value = (bool)checkgenerar.Value == true ? false: true;
 				}
 
 			}
@@ -705,9 +705,15 @@ namespace ControlDosimetro
 
 		private void grdDatos_CurrentCellDirtyStateChanged(object sender, EventArgs e)
 		{
-			if (grdDatos.IsCurrentCellDirty)
+			DataGridView dgv = sender as DataGridView;
+			if (null == dgv || null == dgv.CurrentCell || !dgv.IsCurrentCellDirty)
 			{
-				grdDatos.CommitEdit(DataGridViewDataErrorContexts.Commit);
+				return;
+			}
+
+			if ((dgv.CurrentCell is DataGridViewComboBoxCell || dgv.CurrentCell is DataGridViewCheckBoxCell))
+			{
+				dgv.CommitEdit(DataGridViewDataErrorContexts.Commit);
 			}
 		}
 
@@ -747,21 +753,6 @@ namespace ControlDosimetro
 			}
 
 		}
-
-
-		private void grdDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}
-
-		private void grdDatos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-		{
-
-			//this.grdDatos.Columns["Dosis"].ValueType = typeof(Decimal);
-			//this.grdDatos.Columns["Dosis"].DefaultCellStyle.Format = "N2";
-		}
-
-
 		#endregion
 
 		#region "Excel"
@@ -1441,7 +1432,7 @@ namespace ControlDosimetro
 				Nombres = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Nombres"];
 				id_sucursal = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["id_sucursal"];
 				Id_Personal = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Id_Personal"];
-				if ((checkGenerar.Value.ToString() == "1") && (checkCell.Value.ToString() == "0") && (txtid_estadodosimetro.Value.ToString() == "-1"))
+				if ((Convert.ToBoolean(checkGenerar.Value) == true) && (Convert.ToBoolean(checkCell.Value) == false) && (txtid_estadodosimetro.Value.ToString() == "-1"))
 				{
 					if (Convert.ToInt64(txtnpelicula.Value.ToString()) > 0)
 					{
@@ -1465,7 +1456,7 @@ namespace ControlDosimetro
 
 					}
 				}
-				if ((checkGenerar.Value.ToString() == "1") && (checkCell.Value.ToString() == "0") && (txtid_estadodosimetro.Value.ToString() != "-1"))
+				if ((Convert.ToBoolean(checkGenerar.Value) == true) && (Convert.ToBoolean(checkCell.Value) == false) && (txtid_estadodosimetro.Value.ToString() != "-1"))
 				{
 					cmd.CommandText = "pa_DosimetroTLD_upd " +
 								Id_Personal.Value.ToString() + "," + // @Id_Personal int,
