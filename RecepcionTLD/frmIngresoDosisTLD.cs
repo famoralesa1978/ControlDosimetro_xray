@@ -172,13 +172,13 @@ namespace ControlDosimetro
 
 				if (txtvalor.Value.ToString() == "")
 					txtvalor.Value = "0";
-				if ((txtndocumento.Value.ToString() == "") && (checkCell.Value.ToString() == "1"))
+				if ((txtndocumento.Value.ToString() == "") && ( Convert.ToBoolean( checkCell.Value) == true))
 				{
 					txtndocumento.Value = "0";
 				}
 
-				if (((chkcondosis.Value.ToString() == "0") && (checkCell.Value.ToString() == "1") && (cbxEstado.Value.ToString() == "0")) ||
-							((checkCell.Value.ToString() == "1") && ((txtcristal1.Value.ToString() == "") || (txtcristal2.Value.ToString() == ""))))
+				if (((Convert.ToBoolean(chkcondosis.Value) == false) && (Convert.ToBoolean(checkCell.Value) == true) && (cbxEstado.Value.ToString() == "0")) ||
+							((Convert.ToBoolean(checkCell.Value) == true) && ((txtcristal1.Value.ToString() == "") || (txtcristal2.Value.ToString() == ""))))
 				{
 					MessageBox.Show("Ingrese un Estado Controlado en la fila " + (i + 1).ToString());
 					grdDatos.Rows[i].Selected = true;
@@ -198,9 +198,9 @@ namespace ControlDosimetro
 					cmd.Parameters.Add("@N_Documento", SqlDbType.Int);
 					cmd.Parameters["@N_Documento"].Value = txtndocumento.Value.ToString();
 					cmd.Parameters.Add("@Controlado", SqlDbType.Int);
-					cmd.Parameters["@Controlado"].Value = checkCell.Value.ToString();
+					cmd.Parameters["@Controlado"].Value = Convert.ToBoolean(checkCell.Value) ? 1 : 0;
 					cmd.Parameters.Add("@ConDosis", SqlDbType.Int);
-					cmd.Parameters["@ConDosis"].Value = chkcondosis.Value;
+					cmd.Parameters["@ConDosis"].Value = Convert.ToBoolean(chkcondosis.Value)?1:0;
 					cmd.Parameters.Add("@Id_EstadoDosis", SqlDbType.Int);
 					cmd.Parameters["@Id_EstadoDosis"].Value = cbxEstado.Value;
 					cmd.Parameters.Add("@Dosis", SqlDbType.Decimal, 9);
@@ -216,53 +216,6 @@ namespace ControlDosimetro
 					cmd.Parameters.Add("@usuario", SqlDbType.VarChar, 30);
 					cmd.Parameters["@usuario"].Value = Clases.clsUsuario.Usuario;
 					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-					//if ((strid_dosimetro == "0") && (Convert.ToInt64(checkCell.Value) == 1))
-					//{
-					//	cmd.CommandText = "INSERT INTO tbl_dosimetria(id_cliente,id_personal,N_Documento,Controlado, ConDosis,Id_EstadoDosis,Dosis,Id_Periodo,enviado,n_pelicula,[TLD],Cristal1,Cristal2)" +
-					//												 "VALUES (" + strn_cliente + "," + strid_personal + "," + txtndocumento.Value.ToString() + "," +
-					//																		 checkCell.Value.ToString() + "," + chkcondosis.Value.ToString() + "," + cbxEstado.Value.ToString() +
-					//																		 ",cast(" + txtvalor.Value.ToString().Replace(",", ".") + " as decimal(10,2)), " + strid_periodo + ", 0," + txtNPelicula.Value.ToString() +
-					//																			" , 1, cast(" + txtcristal1.Value.ToString().Replace(",", ".") + " as decimal(10,2)) " +
-					//																			",cast(" + txtcristal2.Value.ToString().Replace(",", ".") + " as decimal(10,2))) ";
-					//	cmd.CommandType = CommandType.Text;
-					//	Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-
-					//	cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "',''";
-					//	cmd.CommandType = CommandType.Text;
-					//	Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-					//}
-					//else
-					//{
-					//	if (Convert.ToInt64(checkCell.Value) == 1)
-					//	{
-					//		cmd.CommandText = "update tbl_dosimetria " +
-					//															 "set Controlado=" + checkCell.Value.ToString() + "," +
-					//															 "ConDosis=" + chkcondosis.Value.ToString() + "," +
-					//															 "Id_EstadoDosis=" + cbxEstado.Value.ToString() + "," +
-					//															 "Dosis=cast(" + txtvalor.Value.ToString().Replace(",", ".") + " as decimal(10,2))," +
-					//															 "Id_Periodo=" + strid_periodo + "," +
-					//															 "N_Documento=" + txtndocumento.Value.ToString() + "," +
-					//															 "n_pelicula=" + txtNPelicula.Value.ToString() + "," +
-					//															 "Cristal1=cast(" + txtcristal1.Value.ToString().Replace(",", ".") + " as decimal(10,2)) " + "," +
-					//															 "Cristal2=cast(" + txtcristal2.Value.ToString().Replace(",", ".") + " as decimal(10,2)) " +
-					//													 " where id_dosimetro=" + strid_dosimetro;
-					//		cmd.CommandType = CommandType.Text;
-					//		Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-
-					//		cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "',''";
-					//		cmd.CommandType = CommandType.Text;
-					//		Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-
-					//	}
-
-					//	if (Convert.ToInt64(checkCell.Value) == 0)
-					//	{
-					//		cmd.CommandText = "delete from tbl_dosimetria " +
-					//													 " where id_dosimetro=" + strid_dosimetro;
-					//		cmd.CommandType = CommandType.Text;
-					//		Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-					//}
-					//}
 				}
 
 				bolGrabar = true;
@@ -333,13 +286,13 @@ namespace ControlDosimetro
 				{
 
 					DataGridViewTextBoxCell txtvalor = (DataGridViewTextBoxCell)grdDatos.Rows[e.RowIndex].Cells["valor"];
-					if (Convert.ToInt64(checkCell.Value) == 1)
+					if (Convert.ToBoolean(checkCell.Value) == true)
 					{
 						chkcondosis.ReadOnly = false;
 						intContar++;
 						groupBox2.Text = "Listado       Registro:" + intContar.ToString();
 
-						if (Convert.ToInt64(chkcondosis.Value) == 1)
+						if (Convert.ToBoolean(chkcondosis.Value) == true)
 						{
 							txtvalor.ReadOnly = false;
 							cbxEstado.ReadOnly = true;
@@ -352,7 +305,7 @@ namespace ControlDosimetro
 							cbxEstado.ReadOnly = false;
 						}
 
-						if (Convert.ToInt64(chkcondosis.Value) == 0 && cbxEstado.Value.ToString() == "0")
+						if (Convert.ToBoolean(chkcondosis.Value) == false && cbxEstado.Value.ToString() == "0")
 						{
 							grdDatos.Rows[e.RowIndex].ErrorText = "Estado Control es Requerido" + System.Environment.NewLine;
 							bolValidarGrilla = true;
@@ -426,46 +379,6 @@ namespace ControlDosimetro
 			}
 
 		}
-
-		private void grdDatos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-		{
-			//if (e.ColumnIndex == 9) //Column ColB
-			//{
-			//    if (e.Value != null)
-			//    {
-			//        try
-			//        {
-			//            e.CellStyle.Format = "N2";
-			//        }
-			//        catch (Exception)
-			//        {
-
-			//            MessageBox.Show("Ingrese solo número");
-			//        }
-
-
-			//    }
-			//}
-
-			//              private void dataGridView1_CellValidating(object sender,
-			//    DataGridViewCellValidatingEventArgs e)
-			//{
-			//    dataGridView1.Rows[e.RowIndex].ErrorText = "";
-			//    int newInteger;
-
-			//    // Don't try to validate the 'new row' until finished 
-			//    // editing since there
-			//    // is not any point in validating its initial value.
-			//    if (dataGridView1.Rows[e.RowIndex].IsNewRow) { return; }
-			//    if (!int.TryParse(e.FormattedValue.ToString(),
-			//        out newInteger) || newInteger < 0)
-			//    {
-			//        e.Cancel = true;
-			//        dataGridView1.Rows[e.RowIndex].ErrorText = "the value must be a non-negative integer";
-			//    }
-			//}
-		}
-
 		private void grdDatos_RowValidated(object sender, DataGridViewCellEventArgs e)
 		{
 			if (e.RowIndex > -1)
@@ -479,9 +392,9 @@ namespace ControlDosimetro
 				var objValue = row.Cells["Cristal1"].Value;
 				var objEstado = row.Cells["Estado"].Value;
 
-				if (checkCell.ToString() == "1")
+				if (Convert.ToBoolean(checkCell) == true)
 				{
-					if (chkcondosis.ToString() == "0" && objEstado.ToString() == "0")
+					if (Convert.ToBoolean(chkcondosis) == false && objEstado.ToString() == "0")
 					{
 						grdDatos.Rows[e.RowIndex].ErrorText = "Estado Control es Requerido" + System.Environment.NewLine;
 						bolValidarGrilla = true;

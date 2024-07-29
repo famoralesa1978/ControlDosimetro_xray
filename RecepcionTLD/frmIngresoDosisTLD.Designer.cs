@@ -142,7 +142,6 @@
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
 			this.grdDatos.Size = new System.Drawing.Size(1595, 406);
 			this.grdDatos.TabIndex = 8;
-			this.grdDatos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdDatos_CellFormatting);
 			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
 			this.grdDatos.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_RowValidated);
@@ -505,21 +504,17 @@
 			// Controlado
 			// 
 			this.Controlado.DataPropertyName = "Controlado";
-			this.Controlado.FalseValue = "0";
 			this.Controlado.HeaderText = "Controlado";
 			this.Controlado.IndeterminateValue = "";
 			this.Controlado.Name = "Controlado";
-			this.Controlado.TrueValue = "1";
 			this.Controlado.Width = 64;
 			// 
 			// condosis
 			// 
 			this.condosis.DataPropertyName = "condosis";
-			this.condosis.FalseValue = "0";
 			this.condosis.HeaderText = "Con Dosis";
 			this.condosis.IndeterminateValue = "";
 			this.condosis.Name = "condosis";
-			this.condosis.TrueValue = "1";
 			this.condosis.Width = 61;
 			// 
 			// valor

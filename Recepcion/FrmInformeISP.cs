@@ -1205,7 +1205,6 @@ namespace ControlDosimetro
 				}
 				#region Update Document Bookmarks Openxml
 				strcampoMarcador = "empresa";
-
 				using (WordprocessingDocument doc = WordprocessingDocument.Open(strArchivoCopiar, true))
 				{
 					//string strSemetre1 = "";
@@ -1259,7 +1258,6 @@ namespace ControlDosimetro
 						strTecnica = String.IsNullOrEmpty(strTecnica) ? "TLD" : strTecnica + "/TLD";
 					strcampoMarcador = "TLDFILMICA";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strTecnica);
-
 				}
 				if (data1.Count() > 0)
 					WDAddTableV2(strArchivoCopiar, data1, data2, data3, strfecha_inicio, strfecha_termino, strFechaRecepcion, data4, data5, data6, data7);
