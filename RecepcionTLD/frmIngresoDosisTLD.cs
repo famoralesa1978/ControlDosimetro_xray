@@ -484,7 +484,7 @@ namespace ControlDosimetro
 			for (int i = 0; i <= grdDatos.RowCount - 1; i++)
 			{
 				checkMarca = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["condosis"];
-				if ((int)checkMarca.Value == 0)
+				if ((bool)checkMarca.Value == false)
 				{
 					EstDosis = (DataGridViewComboBoxCell)grdDatos.Rows[i].Cells["Estado"];//
 					EstDosis.Value = 5;

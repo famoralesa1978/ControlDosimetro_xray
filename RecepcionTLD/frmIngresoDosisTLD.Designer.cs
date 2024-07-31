@@ -505,7 +505,6 @@
 			// 
 			this.Controlado.DataPropertyName = "Controlado";
 			this.Controlado.HeaderText = "Controlado";
-			this.Controlado.IndeterminateValue = "";
 			this.Controlado.Name = "Controlado";
 			this.Controlado.Width = 64;
 			// 

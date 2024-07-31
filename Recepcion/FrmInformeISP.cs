@@ -217,15 +217,15 @@ namespace ControlDosimetro
 				SqlCommand cmd = new SqlCommand();
 				DataSet dt;
 				if (cbx_id_seccion.SelectedValue != null && cbx_Sucursal.SelectedValue != null)
-					cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel2 " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue + "," + cbx_id_seccion.SelectedValue + ",'" + lbl_rut_cliente.Text + "'";
+					cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue + "," + cbx_id_seccion.SelectedValue + ",'" + lbl_rut_cliente.Text + "'";
 				else
 				{
 					if (DesdeLimpiar)
 					{
-						cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel2 0,0,0,0,'1111'";
+						cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel 0,0,0,0,'1111'";
 					}
 					else
-						cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel2 " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + ",-2,-2,'" + lbl_rut_cliente.Text + "'";
+						cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + ",-2,-2,'" + lbl_rut_cliente.Text + "'";
 				}
 
 				cmd.CommandType = CommandType.Text;
@@ -1127,7 +1127,7 @@ namespace ControlDosimetro
 							intCantControlado += 1;
 						}
 
-						if (checkCell.Value.ToString() == "0")
+						if (checkCell.Value.ToString() =="0")
 						{
 							cmd.CommandText = "update tbl_dosimetria " +
 															"set enviado=1" +
@@ -1521,7 +1521,7 @@ namespace ControlDosimetro
 							document.Close();
 						}
 
-						if (checkCell.Value.ToString() == "0")
+						if ((bool)checkCell.Value == false)
 						{
 							cmd.CommandText = "update tbl_dosimetria " +
 															"set enviado=1" +
@@ -2269,11 +2269,11 @@ namespace ControlDosimetro
 					if (strId_sucursal == txtid_sucursal.Value.ToString())
 					{
 						#region "Genera  word y excel"
-						if (checkGenerar.Value.ToString() == "1")
+						if ((bool)checkGenerar.Value == true)
 						{
 						}
 						else
-							 if ((txtndocumento.Value.ToString() == "") && (checkGenerar.Value.ToString() == "0"))
+							 if ((txtndocumento.Value.ToString() == "") && ((bool)checkGenerar.Value == false))
 						{
 							// MessageBox.Show("Ingrese el n° de  Documento");						  
 							grdDatos.Rows[i].DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Red;
@@ -2568,11 +2568,11 @@ namespace ControlDosimetro
 				DataGridViewCheckBoxCell chkcondosis = (DataGridViewCheckBoxCell)grdDatos.Rows[e.RowIndex].Cells["condosis"];
 				DataGridViewTextBoxCell txtvalor = (DataGridViewTextBoxCell)grdDatos.Rows[e.RowIndex].Cells["valor"];
 				DataGridViewComboBoxCell cbxEstado = (DataGridViewComboBoxCell)grdDatos.Rows[e.RowIndex].Cells["Estado"];
-				if (Convert.ToInt64(checkCell.Value) == 1)
+				if (Convert.ToBoolean(checkCell.Value) == true)
 				{
 					chkcondosis.ReadOnly = false;
 
-					if (Convert.ToInt64(chkcondosis.Value) == 1)
+					if (Convert.ToInt16(chkcondosis.Value) == 0)
 					{
 						txtvalor.ReadOnly = false;
 						cbxEstado.ReadOnly = true;
