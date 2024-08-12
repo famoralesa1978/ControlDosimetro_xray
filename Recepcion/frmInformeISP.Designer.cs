@@ -663,12 +663,9 @@
 			// condosis
 			// 
 			this.condosis.DataPropertyName = "condosis";
-			this.condosis.FalseValue = "0";
 			this.condosis.HeaderText = "Con Dosis";
-			this.condosis.IndeterminateValue = "";
 			this.condosis.Name = "condosis";
 			this.condosis.ReadOnly = true;
-			this.condosis.TrueValue = "1";
 			this.condosis.Width = 61;
 			// 
 			// valor
@@ -748,7 +745,7 @@
 			this.MinimumSize = new System.Drawing.Size(776, 464);
 			this.Name = "FrmInformeISP";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Dosis ISP";
+			this.Text = "Informe ISP";
 			this.Load += new System.EventHandler(this.FrmInformeISP_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();

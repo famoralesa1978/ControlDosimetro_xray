@@ -217,15 +217,15 @@ namespace ControlDosimetro
 				SqlCommand cmd = new SqlCommand();
 				DataSet dt;
 				if (cbx_id_seccion.SelectedValue != null && cbx_Sucursal.SelectedValue != null)
-					cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue + "," + cbx_id_seccion.SelectedValue + ",'" + lbl_rut_cliente.Text + "'";
+					cmd.CommandText = "pa_InformeISPPersonal_ClienteSeccion_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue + "," + cbx_id_seccion.SelectedValue + ",'" + lbl_rut_cliente.Text + "'";
 				else
 				{
 					if (DesdeLimpiar)
 					{
-						cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel 0,0,0,0,'1111'";
+						cmd.CommandText = "pa_InformeISPPersonal_ClienteSeccion_sel 0,0,0,0,'1111'";
 					}
 					else
-						cmd.CommandText = "pa_DosimetroISP_ClienteSeccion_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + ",-2,-2,'" + lbl_rut_cliente.Text + "'";
+						cmd.CommandText = "pa_InformeISPPersonal_ClienteSeccion_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + ",-2,-2,'" + lbl_rut_cliente.Text + "'";
 				}
 
 				cmd.CommandType = CommandType.Text;
@@ -2424,7 +2424,7 @@ namespace ControlDosimetro
 
 		private void Btn_Corregir_Click(object sender, EventArgs e)
 		{
-			if (((DataTable)grdDatos.DataSource).Copy().AsEnumerable().Where(s => (int)s["generar"] == 1).Count() == 0)
+			if (((DataTable)grdDatos.DataSource).Copy().AsEnumerable().Where(s => (bool)s["generar"] == true).Count() == 0)
 			{
 				classFuncionesGenerales.mensajes.MensajeAdvertencia("No se he seleccionado ningun registro para corregir los datos");
 				return;
@@ -2453,63 +2453,98 @@ namespace ControlDosimetro
 			string strid_personal;
 			string strid_dosimetro;
 
+		
+
+			var dv = grdDatos.Vista().Table;
+			List<DataRow> ListaCorregir = dv.AsEnumerable().Where(s => Convert.ToBoolean(s["Generar"])==true).ToList();
 			pnl_Progreso.Visible = true;
 			pgb_Barra.Minimum = 0;
-			pgb_Barra.Maximum = grdDatos.RowCount;
+			pgb_Barra.Maximum = ListaCorregir.Count;
 			pnl_Progreso.Refresh();
-			for (int i = 0; i <= grdDatos.RowCount - 1; i++)
+
+			foreach (DataRow tb in ListaCorregir)
 			{
-				pgb_Barra.Value = i + 1;
+				pgb_Barra.Value = pgb_Barra.Value + 1;
 				pgb_Barra.Refresh();
-				checkCorregir = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["Generar"];
-				checkGenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["enviado"];
-				checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["enviado"];
-				chkcondosis = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["condosis"];
-				txtvalor = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["valor"];
-				txtndocumento = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["NDocumento"];
-				txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["n_pelicula"];
-				cbxEstado = (DataGridViewComboBoxCell)grdDatos.Rows[i].Cells["Estado"];
-
-				checkTLD = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["tld"];
-				strn_cliente = grdDatos.Rows[i].Cells["N_Cliente"].Value.ToString();
-				strid_personal = grdDatos.Rows[i].Cells["id_personal"].Value.ToString();
-				strid_dosimetro = grdDatos.Rows[i].Cells["id_dosimetro"].Value.ToString();
-
-
-				if (checkCorregir.Value.ToString() == "1")//&& checkGenerar.Value.ToString() == "1"
+				cmd.CommandText = "update tbl_dosimetria " +
+											"set enviado=0" +
+									 " where id_dosimetro=" + tb["id_dosimetro"].ToString();
+				cmd.CommandType = CommandType.Text;
+				string strMensaje = "";
+				Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensaje);
+				if (!string.IsNullOrWhiteSpace(strMensaje))
 				{
-					cmd.CommandText = "update tbl_dosimetria " +
-												"set enviado=0" +
-										 " where id_dosimetro=" + strid_dosimetro;
-					cmd.CommandType = CommandType.Text;
-					string strMensaje = "";
-					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensaje);
-					if (!string.IsNullOrWhiteSpace(strMensaje))
-					{
-						strMensaje.XMensajeError();
-						return;
-					}
-					strMensaje = "";
-					if (checkTLD.Value.ToString() == "0")
-						cmd2.CommandText = "pa_DevolverEstado_upd " + txtnpelicula.Value.ToString() + "," + cbxEstado.Value + ",'" + Clases.clsUsuario.Usuario +
-																	"',''," + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;
-					else
-						cmd2.CommandText = "pa_DevolverEstadoTLDIngresarDosis_upd " + txtnpelicula.Value.ToString() + "," + cbxEstado.Value + ",'" + Clases.clsUsuario.Usuario +
-																	"',''," + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;
-					cmd2.CommandType = CommandType.Text;
-					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd2, ref strMensaje);
-					if (!string.IsNullOrWhiteSpace(strMensaje))
-					{
-						strMensaje.XMensajeError();
-						return;
-					}
+					strMensaje.XMensajeError();
+					return;
+				}
+				strMensaje = "";
+				if (tb["tld"].ToString() == "0")
+					cmd2.CommandText = "pa_DevolverEstado_upd " + tb["n_pelicula"].ToString() + "," + tb["Estado"].ToString() + ",'" + Clases.clsUsuario.Usuario +
+																"',''," + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;
+				else
+					cmd2.CommandText = "pa_DevolverEstadoTLDIngresarDosis_upd " + tb["n_pelicula"].ToString() + "," + tb["Estado"].ToString() + ",'" + Clases.clsUsuario.Usuario +
+																"',''," + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;
+				cmd2.CommandType = CommandType.Text;
+				Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd2, ref strMensaje);
+				if (!string.IsNullOrWhiteSpace(strMensaje))
+				{
+					strMensaje.XMensajeError();
+					return;
 				}
 			}
-			MessageBox.Show("Informacion esta listo para corregir su dosis.");
-
+			classFuncionesGenerales.mensajes.MensajeProcesoOK("Los registros estan listo para corregir sus dosis.");
 			pnl_Progreso.Visible = false;
+			//for (int i = 0; i <= grdDatos.RowCount - 1; i++)
+			//{
+			//	pgb_Barra.Value = i + 1;
+			//	pgb_Barra.Refresh();
+			//	checkCorregir = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["Generar"];
+			//	checkGenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["enviado"];
+			//	checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["enviado"];
+			//	chkcondosis = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["condosis"];
+			//	txtvalor = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["valor"];
+			//	txtndocumento = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["NDocumento"];
+			//	txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["n_pelicula"];
+			//	cbxEstado = (DataGridViewComboBoxCell)grdDatos.Rows[i].Cells["Estado"];
 
-			Listar_Personal();
+			//	checkTLD = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["tld"];
+			//	strn_cliente = grdDatos.Rows[i].Cells["N_Cliente"].Value.ToString();
+			//	strid_personal = grdDatos.Rows[i].Cells["id_personal"].Value.ToString();
+			//	strid_dosimetro = grdDatos.Rows[i].Cells["id_dosimetro"].Value.ToString();
+
+
+			//	if ((bool)checkCorregir.Value== true)//&& checkGenerar.Value.ToString() == "1"
+			//	{
+			//		cmd.CommandText = "update tbl_dosimetria " +
+			//									"set enviado=0" +
+			//							 " where id_dosimetro=" + strid_dosimetro;
+			//		cmd.CommandType = CommandType.Text;
+			//		string strMensaje = "";
+			//		Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensaje);
+			//		if (!string.IsNullOrWhiteSpace(strMensaje))
+			//		{
+			//			strMensaje.XMensajeError();
+			//			return;
+			//		}
+			//		strMensaje = "";
+			//		if (checkTLD.Value.ToString() == "0")
+			//			cmd2.CommandText = "pa_DevolverEstado_upd " + txtnpelicula.Value.ToString() + "," + cbxEstado.Value + ",'" + Clases.clsUsuario.Usuario +
+			//														"',''," + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;
+			//		else
+			//			cmd2.CommandText = "pa_DevolverEstadoTLDIngresarDosis_upd " + txtnpelicula.Value.ToString() + "," + cbxEstado.Value + ",'" + Clases.clsUsuario.Usuario +
+			//														"',''," + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;
+			//		cmd2.CommandType = CommandType.Text;
+			//		Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd2, ref strMensaje);
+			//		if (!string.IsNullOrWhiteSpace(strMensaje))
+			//		{
+			//			strMensaje.XMensajeError();
+			//			return;
+			//		}
+			//	}
+			//}
+
+
+			//Listar_Personal();
 		}
 		#endregion
 
