@@ -1128,8 +1128,8 @@ namespace ControlDosimetro
 							cmd.CommandType = CommandType.Text;
 
 							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-							string strParametro = String.Format("{0},{1},{2},'',{3}", txtnpeliculaoriginal.Value.ToString(), "5", Clases.clsUsuario.Usuario, cbx_id_seccion.SelectedValue);
-							cmd.CommandText = "pa_DosimetroIngresoTLD_upd " + strParametro;
+							cmd.CommandText = "pa_DosimetroIngreso_upd " + txtnpelicula.Value.ToString() + ",5,'" + Clases.clsUsuario.Usuario +
+													"',''," + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;
 							cmd.CommandType = CommandType.Text;
 							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
 						}
