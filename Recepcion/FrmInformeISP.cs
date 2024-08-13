@@ -2440,20 +2440,6 @@ namespace ControlDosimetro
 			//  SqlCommand cmdperiodo = new SqlCommand();
 
 			// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
-			DataGridViewCheckBoxCell checkCorregir;
-			DataGridViewCheckBoxCell checkGenerar;
-			DataGridViewCheckBoxCell checkCell;
-			DataGridViewCheckBoxCell chkcondosis;
-			DataGridViewTextBoxCell txtvalor;
-			DataGridViewTextBoxCell txtndocumento;
-			DataGridViewTextBoxCell txtnpelicula;
-			DataGridViewComboBoxCell cbxEstado;
-			DataGridViewCheckBoxCell checkTLD;
-			string strn_cliente;
-			string strid_personal;
-			string strid_dosimetro;
-
-		
 
 			var dv = grdDatos.Vista().Table;
 			List<DataRow> ListaCorregir = dv.AsEnumerable().Where(s => Convert.ToBoolean(s["Generar"])==true).ToList();

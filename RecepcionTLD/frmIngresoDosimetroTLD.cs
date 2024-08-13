@@ -23,6 +23,7 @@ using System.Xml.Linq;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Drawing;
+using DocumentFormat.OpenXml.Office.Word;
 
 namespace ControlDosimetro
 {
@@ -31,6 +32,7 @@ namespace ControlDosimetro
 
 		#region "Definicion variable"
 		private bool bolInicio = false;
+		clsConectorSqlServerV2 Conectar2 = new clsConectorSqlServerV2();
 		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		clsEventoControl ClaseEvento = new clsEventoControl();
@@ -473,7 +475,7 @@ namespace ControlDosimetro
 				strid_personal = grdDatos.Rows[i].Cells["id_personal"].Value.ToString();
 
 
-				if ((Convert.ToBoolean(checkGenerar.Value)== true) && (Convert.ToBoolean(checkCell.Value) == false) && (txtid_estadodosimetro.Value.ToString() == "-1"))
+				if ((Convert.ToBoolean(checkGenerar.Value) == true) && (Convert.ToBoolean(checkCell.Value) == false) && (txtid_estadodosimetro.Value.ToString() == "-1"))
 				{
 					intN_Dos = DevolverNDosimetro(intN_Dos, dtNTld);
 
@@ -577,30 +579,49 @@ namespace ControlDosimetro
 		}
 		private void btn_Eliminar_Click(object sender, EventArgs e)
 		{
+			if (((DataTable)grdDatos.DataSource).Copy().AsEnumerable().Where(s => (bool)s["Eliminar"] == true).Count() == 0)
+			{
+				classFuncionesGenerales.mensajes.MensajeAdvertencia("No se he seleccionado ningun registro para eliminar los datos");
+				return;
+			}
+			SqlCommand cmd = new SqlCommand();
 			pnl_Progreso.Visible = true;
 			pgb_Barra.Minimum = 0;
-			pgb_Barra.Maximum = grdDatos.RowCount;
+			var dv = grdDatos.Vista().Table;
+			List<DataRow> ListaEliminar = dv.AsEnumerable().Where(s => Convert.ToBoolean(s["Eliminar"]) == true).ToList();
+			pgb_Barra.Maximum = ListaEliminar.Count;
 			pnl_Progreso.Refresh();
-			DataGridViewCheckBoxCell checkEliminar;
-			DataGridViewTextBoxCell txtnpelicula;
-
-			//N_Documento
-			for (int i = 0; i <= grdDatos.RowCount - 1; i++)
+			foreach (DataRow tb in ListaEliminar)
 			{
-				pgb_Barra.Value = i + 1;
+				pgb_Barra.Value = pgb_Barra.Value + 1;
 				pgb_Barra.Refresh();
-				checkEliminar = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["ColEliminar"];
-				txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["N_pelicula"];
-
-				if (Convert.ToBoolean(checkEliminar.Value) == true)
+				cmd.CommandText = "pa_DosimetroTLD_del " + tb["N_pelicula"] + ",'" + Clases.clsUsuario.Usuario + "'";
+				cmd.CommandType = CommandType.Text;
+				string strMensaje = "";
+				Conectar2.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensaje);
+				if (!string.IsNullOrWhiteSpace(strMensaje))
 				{
-					SqlCommand cmdValorMax = new SqlCommand();
-					DataSet dtValorMax;
-					cmdValorMax.CommandText = "pa_DosimetroTLD_del " + txtnpelicula.Value + ",'" + Clases.clsUsuario.Usuario + "'";
-					cmdValorMax.CommandType = CommandType.Text;
-					dtValorMax = Conectar.Listar(Clases.clsBD.BD, cmdValorMax);
+					strMensaje.XMensajeError();
+					return;
 				}
 			}
+			//N_Documento
+			//for (int i = 0; i <= grdDatos.RowCount - 1; i++)
+			//{
+			//	pgb_Barra.Value = i + 1;
+			//	pgb_Barra.Refresh();
+			//	checkEliminar = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["ColEliminar"];
+			//	txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["N_pelicula"];
+
+			//	if (Convert.ToBoolean(checkEliminar.Value) == true)
+			//	{
+			//		SqlCommand cmdValorMax = new SqlCommand();
+			//		DataSet dtValorMax;
+			//		cmdValorMax.CommandText = "pa_DosimetroTLD_del " + txtnpelicula.Value + ",'" + Clases.clsUsuario.Usuario + "'";
+			//		cmdValorMax.CommandType = CommandType.Text;
+			//		dtValorMax = Conectar.Listar(Clases.clsBD.BD, cmdValorMax);
+			//	}
+			//}
 			btn_cargar_Click(null, null);
 			MessageBox.Show("Informacion esta listo para generar el documento.");
 
@@ -669,24 +690,27 @@ namespace ControlDosimetro
 		private void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
-			DataGridViewCheckBoxCell checkEliminar;
-			DataGridViewCheckBoxCell checkGenerado;
-			DataGridViewCheckBoxCell checkgenerar;
-			for (int i = 0; i <= grdDatos.RowCount - 1; i++)
-			{
-				checkEliminar = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["ColEliminar"];
-				checkGenerado = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["chkGenerado"];
-				checkgenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["Generar"];
-				if ((bool)checkEliminar.Value == false && (bool)checkGenerado.Value == false)
-				{
-					checkgenerar.Value = (bool)checkgenerar.Value == true ? false: true;
-				}
 
-			}
-
+			var dv = grdDatos.Vista().Table;
+			dv.AsEnumerable().ToList().ForEach(s => { s["Generar"] = chkSeleccionar.Checked; });
 			Cursor = Cursors.Default;
 		}
+		private void chkElimnarTodos_CheckedChanged(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
 
+			var dv = grdDatos.Vista().Table;
+			dv.AsEnumerable().ToList().ForEach(s => { s["Eliminar"] = chkElimnarTodos.Checked; });
+			Cursor = Cursors.Default;
+		}
+		private void chkGenerados_CheckedChanged(object sender, EventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+
+			var dv = grdDatos.Vista().Table;
+			dv.AsEnumerable().ToList().ForEach(s => { s["Generado"] = chkGenerados.Checked; });
+			Cursor = Cursors.Default;
+		}
 		#endregion
 
 		#region "grilla"
@@ -1418,6 +1442,10 @@ namespace ControlDosimetro
 			//     int i;                
 			string fmt = "00000000";
 
+			var dv = grdDatos.Vista().Table;
+			List<DataRow> ListaCorregir = dv.AsEnumerable().Where(s => Convert.ToBoolean(s["Generar"]) == true).ToList();
+
+
 			for (int idatos = 0; idatos <= grdDatos.Rows.Count - 1; idatos++)
 			{
 				checkGenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[idatos].Cells["Generar"];
@@ -1510,8 +1538,6 @@ namespace ControlDosimetro
 			//var command = service.Files.Create(driverFolder);
 			//var file = command.Execute();
 		}
-
-
 
 		//private static DriveService Getservice(string strClienteID,string strClienteSecret,string strAccesoToken, string strRefreshToken,string strApplicationName,string strUsername)
 		//{

@@ -91,6 +91,7 @@
 			this.rbtAlternativa = new System.Windows.Forms.RadioButton();
 			this.rbtOiginal = new System.Windows.Forms.RadioButton();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.chkElimnarTodos = new System.Windows.Forms.CheckBox();
 			this.ColEliminar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.N_pelicula = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -106,6 +107,7 @@
 			this.Maternos = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.id_sucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.id_estadodosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.chkGenerados = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picPeriodo)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -289,8 +291,10 @@
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox2.Controls.Add(this.chkIncluirDosimetro);
+			this.groupBox2.Controls.Add(this.chkGenerados);
+			this.groupBox2.Controls.Add(this.chkElimnarTodos);
 			this.groupBox2.Controls.Add(this.chkSeleccionar);
+			this.groupBox2.Controls.Add(this.chkIncluirDosimetro);
 			this.groupBox2.Controls.Add(this.pnl_Progreso);
 			this.groupBox2.Controls.Add(this.grdDatos);
 			this.groupBox2.Location = new System.Drawing.Point(5, 291);
@@ -314,11 +318,11 @@
 			// chkSeleccionar
 			// 
 			this.chkSeleccionar.AutoSize = true;
-			this.chkSeleccionar.Location = new System.Drawing.Point(729, -1);
+			this.chkSeleccionar.Location = new System.Drawing.Point(241, 22);
 			this.chkSeleccionar.Name = "chkSeleccionar";
-			this.chkSeleccionar.Size = new System.Drawing.Size(111, 17);
+			this.chkSeleccionar.Size = new System.Drawing.Size(15, 14);
 			this.chkSeleccionar.TabIndex = 10;
-			this.chkSeleccionar.Text = "Seleccionar todos";
+			this.toolTip1.SetToolTip(this.chkSeleccionar, "Seleccciona todos los registros para asignar N° TLD");
 			this.chkSeleccionar.UseVisualStyleBackColor = true;
 			this.chkSeleccionar.CheckedChanged += new System.EventHandler(this.chkSeleccionar_CheckedChanged);
 			// 
@@ -765,6 +769,17 @@
 			this.rbtOiginal.Text = "Original";
 			this.rbtOiginal.UseVisualStyleBackColor = true;
 			// 
+			// chkElimnarTodos
+			// 
+			this.chkElimnarTodos.AutoSize = true;
+			this.chkElimnarTodos.Location = new System.Drawing.Point(74, 21);
+			this.chkElimnarTodos.Name = "chkElimnarTodos";
+			this.chkElimnarTodos.Size = new System.Drawing.Size(15, 14);
+			this.chkElimnarTodos.TabIndex = 22;
+			this.toolTip1.SetToolTip(this.chkElimnarTodos, "Seleccciona todos los registros para eliminar los N° TLD asignados");
+			this.chkElimnarTodos.UseVisualStyleBackColor = true;
+			this.chkElimnarTodos.CheckedChanged += new System.EventHandler(this.chkElimnarTodos_CheckedChanged);
+			// 
 			// ColEliminar
 			// 
 			this.ColEliminar.DataPropertyName = "Eliminar";
@@ -802,18 +817,19 @@
 			// 
 			// Generar
 			// 
-			this.Generar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+			this.Generar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
 			this.Generar.DataPropertyName = "Generar";
 			this.Generar.HeaderText = "Seleccionar";
 			this.Generar.Name = "Generar";
-			this.Generar.Width = 69;
+			this.Generar.Width = 80;
 			// 
 			// chkGenerado
 			// 
+			this.chkGenerado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
 			this.chkGenerado.DataPropertyName = "Generado";
 			this.chkGenerado.HeaderText = "Generado";
 			this.chkGenerado.Name = "chkGenerado";
-			this.chkGenerado.Width = 60;
+			this.chkGenerado.Width = 75;
 			// 
 			// N_Cliente
 			// 
@@ -890,6 +906,17 @@
 			this.id_estadodosimetro.Name = "id_estadodosimetro";
 			this.id_estadodosimetro.Visible = false;
 			this.id_estadodosimetro.Width = 123;
+			// 
+			// chkGenerados
+			// 
+			this.chkGenerados.AutoSize = true;
+			this.chkGenerados.Location = new System.Drawing.Point(315, 22);
+			this.chkGenerados.Name = "chkGenerados";
+			this.chkGenerados.Size = new System.Drawing.Size(15, 14);
+			this.chkGenerados.TabIndex = 23;
+			this.toolTip1.SetToolTip(this.chkGenerados, "Seleccciona todos los registros para asignar N° TLD");
+			this.chkGenerados.UseVisualStyleBackColor = true;
+			this.chkGenerados.CheckedChanged += new System.EventHandler(this.chkGenerados_CheckedChanged);
 			// 
 			// frmIngresoDosimetroTLD
 			// 
@@ -1005,6 +1032,8 @@
 		private System.Windows.Forms.PictureBox picPeriodo;
 		private System.Windows.Forms.ToolTip toolTip1;
 		private System.Windows.Forms.ToolStripButton tsbAsignar;
+		private System.Windows.Forms.CheckBox chkElimnarTodos;
+		private System.Windows.Forms.CheckBox chkGenerados;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn ColEliminar;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Id_Personal;
 		private System.Windows.Forms.DataGridViewTextBoxColumn N_pelicula;
