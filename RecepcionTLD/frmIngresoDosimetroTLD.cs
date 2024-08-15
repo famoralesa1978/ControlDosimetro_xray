@@ -325,7 +325,7 @@ namespace ControlDosimetro
 			//cbx_anno.Enabled = false;
 			//cbx_id_periodo.Enabled = false;
 			btn_cargar.Enabled = false;
-			btn_Corregir.Enabled = true;
+			btnAsignarTLD.Enabled = true;
 			btnAgregarRef.Enabled = btn_Guardar.Enabled = true;
 			grdDatos.Focus();
 			SqlCommand cmdValorMax = new SqlCommand();
@@ -346,7 +346,7 @@ namespace ControlDosimetro
 			//cbx_anno.Enabled = false;
 			//cbx_id_periodo.Enabled = false;
 			btn_cargar.Enabled = false;
-			btn_Corregir.Enabled = true;
+			btnAsignarTLD.Enabled = true;
 			btnAgregarRef.Enabled = btn_Guardar.Enabled = true;
 			grdDatos.Focus();
 			SqlCommand cmdValorMax = new SqlCommand();
@@ -361,7 +361,7 @@ namespace ControlDosimetro
 
 		private void btn_Guardar_Click(object sender, EventArgs e)
 		{
-			btnAgregarRef.Enabled = btn_Guardar.Enabled = btn_Corregir.Enabled = btn_Eliminar.Enabled = false;
+			btnAgregarRef.Enabled = btn_Guardar.Enabled = btnAsignarTLD.Enabled = btn_Eliminar.Enabled = false;
 			String strError = "";
 			String strCorrecto = "";
 			if (Grabar(ref strError, ref strCorrecto))
@@ -371,7 +371,7 @@ namespace ControlDosimetro
 				MessageBox.Show(strMensaje);
 			}
 
-			btnAgregarRef.Enabled = btn_Guardar.Enabled = btn_Corregir.Enabled = btn_Eliminar.Enabled = true;
+			btnAgregarRef.Enabled = btn_Guardar.Enabled = btnAsignarTLD.Enabled = btn_Eliminar.Enabled = true;
 
 		}
 
@@ -410,32 +410,9 @@ namespace ControlDosimetro
 				//MessageBox.Show("Debe asignar un número de TLD");
 				txt_N_TLD.Text = String.Format("{0}", Convert.ToInt64(lbl_ValorMax.Text) + 1);
 			}
+			btnAsignarTLD.Enabled = false;
 
-
-			SqlCommand cmd2 = new SqlCommand();
-			//	  SqlCommand cmd = new SqlCommand();
-			SqlCommand cmdpersonal = new SqlCommand();
-			//  SqlCommand cmdpersonal = new SqlCommand();
-			SqlCommand cmdperiodo = new SqlCommand();
-			//  SqlCommand cmdperiodo = new SqlCommand();
-
-			// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
-			DataGridViewCheckBoxCell checkGenerar;
-			DataGridViewCheckBoxCell checkCell;
-			//DataGridViewTextBoxCell txtvalor;
-			DataGridViewTextBoxCell txtndocumento;
-			DataGridViewTextBoxCell txtnpelicula;
-			DataGridViewTextBoxCell txtid_estadodosimetro;
-			//     DataGridViewComboBoxCell cbxEstado;
-			string strn_cliente;
-			string strid_personal;
-			//   string strid_dosimetro;
-			btn_Corregir.Enabled = false;
-
-			pnl_Progreso.Visible = true;
-			pgb_Barra.Minimum = 0;
-			pgb_Barra.Maximum = grdDatos.RowCount;
-			pnl_Progreso.Refresh();
+			
 			Int64 intN_Dos = 0;
 			SqlCommand cmd = new SqlCommand();
 			//   cmd.CommandText = "SELECT isnull(max([n_dosimetro]),0)n_dosimetro   FROM[dbo].[ges_dosimetro_estado_TLD]";
@@ -460,34 +437,36 @@ namespace ControlDosimetro
 			else
 				intN_Doc = 1;
 
-			//N_Documento
-			for (int i = 0; i <= grdDatos.RowCount - 1; i++)
+			var dv = grdDatos.Vista().Table;
+			List<DataRow> ListaAsignar = dv.AsEnumerable().Where(s => Convert.ToBoolean(s["Generar"]) == true && Convert.ToBoolean(s["Generado"]) == false &&
+																		Convert.ToInt16(s["id_estadodosimetro"]) == -1).ToList();
+
+			if (ListaAsignar.Count() == 0)
 			{
-				pgb_Barra.Value = i + 1;
-				pgb_Barra.Refresh();
-				checkGenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["Generar"];
-				checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["chkGenerado"];
-				txtndocumento = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["NDocumento"];
-				txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["N_pelicula"];
-				txtid_estadodosimetro = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["id_estadodosimetro"];
-
-				strn_cliente = grdDatos.Rows[i].Cells["N_Cliente"].Value.ToString();
-				strid_personal = grdDatos.Rows[i].Cells["id_personal"].Value.ToString();
-
-
-				if ((Convert.ToBoolean(checkGenerar.Value) == true) && (Convert.ToBoolean(checkCell.Value) == false) && (txtid_estadodosimetro.Value.ToString() == "-1"))
-				{
-					intN_Dos = DevolverNDosimetro(intN_Dos, dtNTld);
-
-					txtndocumento.Value = intN_Doc.ToString();
-					txtnpelicula.Value = intN_Dos.ToString();
-					intN_Dos = intN_Dos + 1;
-
-				}
+				classFuncionesGenerales.mensajes.MensajeAdvertencia("No se he seleccionado ningun registro para asignar los número TLD.");
+				btnAsignarTLD.Enabled = true;
+				return;
 			}
+
+			pnl_Progreso.Visible = true;
+			pgb_Barra.Minimum = 0;
+			pgb_Barra.Maximum = ListaAsignar.Count();
+			pnl_Progreso.Refresh();
+			foreach (DataRow tb in ListaAsignar)
+			{
+				pgb_Barra.Value = pgb_Barra.Value + 1;
+				pgb_Barra.Refresh();
+
+				intN_Dos = DevolverNDosimetro(intN_Dos, dtNTld);
+
+				tb["N_Documento"] = intN_Doc.ToString();
+				tb["N_pelicula"] = intN_Dos.ToString();
+				intN_Dos = intN_Dos + 1;
+			}
+			pnl_Progreso.Visible = false;
 			MessageBox.Show("Informacion esta listo para generar el documento.");
 
-			btn_Corregir.Enabled = true;
+			btnAsignarTLD.Enabled = true;
 			pnl_Progreso.Visible = false;
 		}
 
@@ -505,7 +484,7 @@ namespace ControlDosimetro
 
 		private void btn_Excel_Click(object sender, EventArgs e)
 		{
-			btnAgregarRef.Enabled = btn_Guardar.Enabled = btn_Corregir.Enabled = btn_Eliminar.Enabled = false;
+			btnAgregarRef.Enabled = btn_Guardar.Enabled = btnAsignarTLD.Enabled = btn_Eliminar.Enabled = false;
 			String strError = "";
 			String strCorrecto = "";
 			if (Grabar(ref strError, ref strCorrecto))
@@ -520,7 +499,7 @@ namespace ControlDosimetro
 				Listar_Personal();
 			}
 
-			btnAgregarRef.Enabled = btn_Guardar.Enabled = btn_Corregir.Enabled = btn_Eliminar.Enabled = true;
+			btnAgregarRef.Enabled = btn_Guardar.Enabled = btnAsignarTLD.Enabled = btn_Eliminar.Enabled = true;
 
 
 		}
@@ -605,27 +584,10 @@ namespace ControlDosimetro
 					return;
 				}
 			}
-			//N_Documento
-			//for (int i = 0; i <= grdDatos.RowCount - 1; i++)
-			//{
-			//	pgb_Barra.Value = i + 1;
-			//	pgb_Barra.Refresh();
-			//	checkEliminar = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["ColEliminar"];
-			//	txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["N_pelicula"];
-
-			//	if (Convert.ToBoolean(checkEliminar.Value) == true)
-			//	{
-			//		SqlCommand cmdValorMax = new SqlCommand();
-			//		DataSet dtValorMax;
-			//		cmdValorMax.CommandText = "pa_DosimetroTLD_del " + txtnpelicula.Value + ",'" + Clases.clsUsuario.Usuario + "'";
-			//		cmdValorMax.CommandType = CommandType.Text;
-			//		dtValorMax = Conectar.Listar(Clases.clsBD.BD, cmdValorMax);
-			//	}
-			//}
 			btn_cargar_Click(null, null);
 			MessageBox.Show("Informacion esta listo para generar el documento.");
 
-			btn_Corregir.Enabled = true;
+			btnAsignarTLD.Enabled = true;
 			pnl_Progreso.Visible = false;
 		}
 
@@ -665,10 +627,7 @@ namespace ControlDosimetro
 
 		private void cbx_id_seccion_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			//Cursor = Cursors.WaitCursor;
-			//if (!Inicializar)
-			//	Listar_Personal();
-			//Cursor = Cursors.Default;
+			btnResfrescar_Click(null,null);
 		}
 
 		private void cbx_Sucursal_SelectionChangeCommitted(object sender, EventArgs e)
@@ -1422,20 +1381,20 @@ namespace ControlDosimetro
 			string strTri = cbx_id_periodo.Text.ToString().Substring(0, 1) + "er Trim " + cbx_anno.Text;
 			//  From 01/01/19 to 31/03/19
 			//*****************
-			DataGridViewCheckBoxCell checkGenerar;
-			DataGridViewCheckBoxCell checkCell;
-			//DataGridViewTextBoxCell txtvalor;
-			DataGridViewTextBoxCell txtndocumento;
-			DataGridViewTextBoxCell txtnpelicula;
-			DataGridViewTextBoxCell txtid_estadodosimetro;
-			//    DataGridViewTextBoxCell N_Cliente;
-			DataGridViewTextBoxCell Rut;
-			DataGridViewTextBoxCell Paterno;
-			DataGridViewTextBoxCell Nombres;
-			DataGridViewTextBoxCell Maternos;
-			DataGridViewTextBoxCell id_sucursal;
-			DataGridViewTextBoxCell id_dosimetro;
-			DataGridViewTextBoxCell Id_Personal;
+			//DataGridViewCheckBoxCell checkGenerar;
+			//DataGridViewCheckBoxCell checkCell;
+			////DataGridViewTextBoxCell txtvalor;
+			//DataGridViewTextBoxCell txtndocumento;
+			//DataGridViewTextBoxCell txtnpelicula;
+			//DataGridViewTextBoxCell txtid_estadodosimetro;
+			////    DataGridViewTextBoxCell N_Cliente;
+			//DataGridViewTextBoxCell Rut;
+			//DataGridViewTextBoxCell Paterno;
+			//DataGridViewTextBoxCell Nombres;
+			//DataGridViewTextBoxCell Maternos;
+			//DataGridViewTextBoxCell id_sucursal;
+			//DataGridViewTextBoxCell id_dosimetro;
+			//DataGridViewTextBoxCell Id_Personal;
 
 			//*******************
 			//     string strArchivo = "";// dtformato.Tables[0].Rows[0]["Glosa"].ToString() + "Plantillaword.docx";
@@ -1443,65 +1402,113 @@ namespace ControlDosimetro
 			string fmt = "00000000";
 
 			var dv = grdDatos.Vista().Table;
-			List<DataRow> ListaCorregir = dv.AsEnumerable().Where(s => Convert.ToBoolean(s["Generar"]) == true).ToList();
-
-
-			for (int idatos = 0; idatos <= grdDatos.Rows.Count - 1; idatos++)
+			List<DataRow> ListaGrabar = dv.AsEnumerable().Where(s => Convert.ToBoolean(s["Generar"]) == true && Convert.ToInt16(s["N_pelicula"]) > 0).ToList();
+			pgb_Barra.Minimum = 0;
+			pgb_Barra.Maximum = ListaGrabar.Count();
+			pnl_Progreso.Refresh();
+			pnl_Progreso.Visible = true;
+			foreach (DataRow tb in ListaGrabar)
 			{
-				checkGenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[idatos].Cells["Generar"];
-				checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[idatos].Cells["chkGenerado"];
-				txtndocumento = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["NDocumento"];
-				txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["N_pelicula"];
-				txtid_estadodosimetro = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["id_estadodosimetro"];
-				Rut = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Rut"];
-				id_dosimetro = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["id_dosimetro"];
-				Paterno = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Paterno"];
-				Maternos = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Maternos"];
-				Nombres = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Nombres"];
-				id_sucursal = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["id_sucursal"];
-				Id_Personal = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Id_Personal"];
-				if ((Convert.ToBoolean(checkGenerar.Value) == true) && (Convert.ToBoolean(checkCell.Value) == false) && (txtid_estadodosimetro.Value.ToString() == "-1"))
+				pgb_Barra.Value = pgb_Barra.Value + 1;
+				pgb_Barra.Refresh();
+				string strMensaje = "";
+				if (Convert.ToBoolean(tb["Generado"]) == false && Convert.ToInt16(tb["id_estadodosimetro"]) == -1)
 				{
-					if (Convert.ToInt64(txtnpelicula.Value.ToString()) > 0)
-					{
-						cmd.CommandText = "pa_DosimetroTLD_ins " +
-									 Id_Personal.Value.ToString() + "," + // @Id_Personal int,
+					cmd.CommandText = "pa_DosimetroTLD_ins " +
+									tb["Id_Personal"]  + "," + // @Id_Personal int,
 									lbl_id_cliente.Text.ToString() + "," +//@Id_cliente int,
 																												//id_sucursal.Value.ToString() + "," + //@Id_sucursal int,
 									cbx_Sucursal.SelectedValue.ToString() + "," + //@Id_sucursal int,
 									cbx_id_periodo.SelectedValue + "," +//@id_periodo int,
-									txtndocumento.Value.ToString() + "," +//@N_Documento int,
-									txtnpelicula.Value.ToString() + ",-1,'" +//@n_dosimetro int,
+									tb["N_Documento"] + "," +//@N_Documento int, 
+									tb["N_pelicula"] + ",-1,'" +//@n_dosimetro int,
 									Clases.clsUsuario.Usuario + "'," +
 								cbx_id_seccion.SelectedValue;
-						cmd.CommandType = CommandType.Text;
-						DataSet ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+					cmd.CommandType = CommandType.Text;
 
-						if (Convert.ToInt16(ds.Tables[0].Rows[0]["Valor"].ToString()) == -1)//error
-							strError = strError + "," + txtnpelicula.Value.ToString();
-						else
-							strCorrecto = strCorrecto + "," + txtnpelicula.Value.ToString();
-
-					}
+					Conectar2.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensaje);
 				}
-				if ((Convert.ToBoolean(checkGenerar.Value) == true) && (Convert.ToBoolean(checkCell.Value) == false) && (txtid_estadodosimetro.Value.ToString() != "-1"))
+				if (Convert.ToBoolean(tb["Generado"]) == false && Convert.ToInt16(tb["id_estadodosimetro"]) != -1)
 				{
 					cmd.CommandText = "pa_DosimetroTLD_upd " +
-								Id_Personal.Value.ToString() + "," + // @Id_Personal int,
+								tb["Id_Personal"] + "," + // @Id_Personal int,
 								lbl_id_cliente.Text.ToString() + "," +//@Id_cliente int,
 								cbx_Sucursal.SelectedValue.ToString() + "," + //@Id_sucursal int,
 								cbx_id_periodo.SelectedValue + "," +//@id_periodo int,
-								txtndocumento.Value.ToString() + "," +//@N_Documento int,
-								txtnpelicula.Value.ToString() + ",-1,'" +//@n_dosimetro int,
+								tb["N_Documento"] + "," +//@N_Documento int,
+								tb["N_pelicula"] + ",-1,'" +//@n_dosimetro int,
 								Clases.clsUsuario.Usuario + "'," +
 								cbx_id_seccion.SelectedValue;
-					//@id_estadodosimetro int
 					cmd.CommandType = CommandType.Text;
-					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+
+					Conectar2.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensaje);
 				}
 
+				if (!string.IsNullOrWhiteSpace(strMensaje))
+				{
+					strMensaje.XMensajeError();
+					pnl_Progreso.Visible = false;
+					return false;
+				}
 			}
 
+
+			//for (int idatos = 0; idatos <= grdDatos.Rows.Count - 1; idatos++)
+			//{
+			//	checkGenerar = (DataGridViewCheckBoxCell)grdDatos.Rows[idatos].Cells["Generar"];
+			//	checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[idatos].Cells["chkGenerado"];
+			//	txtndocumento = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["NDocumento"];
+			//	txtnpelicula = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["N_pelicula"];
+			//	txtid_estadodosimetro = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["id_estadodosimetro"];
+			//	Rut = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Rut"];
+			//	id_dosimetro = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["id_dosimetro"];
+			//	Paterno = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Paterno"];
+			//	Maternos = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Maternos"];
+			//	Nombres = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Nombres"];
+			//	id_sucursal = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["id_sucursal"];
+			//	Id_Personal = (DataGridViewTextBoxCell)grdDatos.Rows[idatos].Cells["Id_Personal"];
+			//	if ((Convert.ToBoolean(checkGenerar.Value) == true) && (Convert.ToBoolean(checkCell.Value) == false) && (txtid_estadodosimetro.Value.ToString() == "-1"))
+			//	{
+			//		if (Convert.ToInt64(txtnpelicula.Value.ToString()) > 0)
+			//		{
+			//			cmd.CommandText = "pa_DosimetroTLD_ins " +
+			//						 Id_Personal.Value.ToString() + "," + // @Id_Personal int,
+			//						lbl_id_cliente.Text.ToString() + "," +//@Id_cliente int,
+			//																									//id_sucursal.Value.ToString() + "," + //@Id_sucursal int,
+			//						cbx_Sucursal.SelectedValue.ToString() + "," + //@Id_sucursal int,
+			//						cbx_id_periodo.SelectedValue + "," +//@id_periodo int,
+			//						txtndocumento.Value.ToString() + "," +//@N_Documento int,
+			//						txtnpelicula.Value.ToString() + ",-1,'" +//@n_dosimetro int,
+			//						Clases.clsUsuario.Usuario + "'," +
+			//					cbx_id_seccion.SelectedValue;
+			//			cmd.CommandType = CommandType.Text;
+			//			DataSet ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+
+			//			if (Convert.ToInt16(ds.Tables[0].Rows[0]["Valor"].ToString()) == -1)//error
+			//				strError = strError + "," + txtnpelicula.Value.ToString();
+			//			else
+			//				strCorrecto = strCorrecto + "," + txtnpelicula.Value.ToString();
+
+			//		}
+			//	}
+			//	if ((Convert.ToBoolean(checkGenerar.Value) == true) && (Convert.ToBoolean(checkCell.Value) == false) && (txtid_estadodosimetro.Value.ToString() != "-1"))
+			//	{
+			//		cmd.CommandText = "pa_DosimetroTLD_upd " +
+			//					Id_Personal.Value.ToString() + "," + // @Id_Personal int,
+			//					lbl_id_cliente.Text.ToString() + "," +//@Id_cliente int,
+			//					cbx_Sucursal.SelectedValue.ToString() + "," + //@Id_sucursal int,
+			//					cbx_id_periodo.SelectedValue + "," +//@id_periodo int,
+			//					txtndocumento.Value.ToString() + "," +//@N_Documento int,
+			//					txtnpelicula.Value.ToString() + ",-1,'" +//@n_dosimetro int,
+			//					Clases.clsUsuario.Usuario + "'," +
+			//					cbx_id_seccion.SelectedValue;
+			//		//@id_estadodosimetro int
+			//		cmd.CommandType = CommandType.Text;
+			//		Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+			//	}
+
+			//}
+			pnl_Progreso.Visible = false;
 			Cursor = Cursors.Default;
 			return bolReturn;
 		}

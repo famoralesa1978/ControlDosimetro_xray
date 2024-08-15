@@ -1127,7 +1127,7 @@ namespace ControlDosimetro
 							intCantControlado += 1;
 						}
 
-						if (checkCell.Value.ToString() =="0")
+						if ((bool)checkCell.Value ==false)
 						{
 							cmd.CommandText = "update tbl_dosimetria " +
 															"set enviado=1" +
