@@ -1167,13 +1167,9 @@ namespace ControlDosimetro
 			//this.grdDatos.Columns["Dosis"].DefaultCellStyle.Format = "N2";
 		}
 
-	
+		private void frmDosimetriaISP_Load(object sender, EventArgs e)
+		{
 
-		
-
-
-
-
-
+		}
 	}
 }
