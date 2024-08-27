@@ -449,13 +449,13 @@ namespace ControlDosimetro
 			}
 
 			pnl_Progreso.Visible = true;
-			pgb_Barra.Minimum = 0;
-			pgb_Barra.Maximum = ListaAsignar.Count();
+			//pgb_Barra.Minimum = 0;
+			//pgb_Barra.Maximum = ListaAsignar.Count();
 			pnl_Progreso.Refresh();
 			foreach (DataRow tb in ListaAsignar)
 			{
-				pgb_Barra.Value = pgb_Barra.Value + 1;
-				pgb_Barra.Refresh();
+				//pgb_Barra.Value = pgb_Barra.Value + 1;
+				//pgb_Barra.Refresh();
 
 				intN_Dos = DevolverNDosimetro(intN_Dos, dtNTld);
 
@@ -1402,15 +1402,15 @@ namespace ControlDosimetro
 			string fmt = "00000000";
 
 			var dv = grdDatos.Vista().Table;
-			List<DataRow> ListaGrabar = dv.AsEnumerable().Where(s => Convert.ToBoolean(s["Generar"]) == true && Convert.ToInt16(s["N_pelicula"]) > 0).ToList();
-			pgb_Barra.Minimum = 0;
-			pgb_Barra.Maximum = ListaGrabar.Count();
-			pnl_Progreso.Refresh();
+			List<DataRow> ListaGrabar = dv.AsEnumerable().Where(s => Convert.ToBoolean(s["Generar"]) == true && Convert.ToUInt64(s["N_pelicula"]) > 0).ToList();
+			//pgb_Barra.Minimum = 0;
+			//pgb_Barra.Maximum = ListaGrabar.Count();
+			//pnl_Progreso.Refresh();
 			pnl_Progreso.Visible = true;
 			foreach (DataRow tb in ListaGrabar)
 			{
-				pgb_Barra.Value = pgb_Barra.Value + 1;
-				pgb_Barra.Refresh();
+			//	pgb_Barra.Value = pgb_Barra.Value + 1;
+			//	pgb_Barra.Refresh();
 				string strMensaje = "";
 				if (Convert.ToBoolean(tb["Generado"]) == false && Convert.ToInt16(tb["id_estadodosimetro"]) == -1)
 				{

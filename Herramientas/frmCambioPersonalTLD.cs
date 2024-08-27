@@ -393,9 +393,9 @@ namespace ControlDosimetro
 			DataSet ds;
 			cmd.CommandText = "pa_CambiarPeriodoTLD_upd";
 			cmd.Parameters.Add("@N_Documento", SqlDbType.Int);
-			cmd.Parameters["@N_Documento"].Value = txtNDocumentoCambiarPeriodo;
+			cmd.Parameters["@N_Documento"].Value = txtNDocumentoCambiarPeriodo.Text;
 			cmd.Parameters.Add("@TLD", SqlDbType.VarChar,300);
-			cmd.Parameters["@TLD"].Value = txtListaTLD;
+			cmd.Parameters["@TLD"].Value = txtListaTLD.Text;
 			cmd.Parameters.Add("@IdPeriodoCambiar", SqlDbType.Int);
 			cmd.Parameters["@IdPeriodoCambiar"].Value =ddlPeriodoCambiarPeriodo.SelectedValue;
 			cmd.CommandType = CommandType.StoredProcedure;

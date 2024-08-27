@@ -3326,7 +3326,7 @@ namespace ControlDosimetro
 																new DocumentFormat.OpenXml.Wordprocessing.Run(
 																	new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
 																	new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
-																	new DocumentFormat.OpenXml.Wordprocessing.Text(PerFin.Substring(0, 6) + FechaRecepcion.Substring(FechaRecepcion.Length - 2, 2))))
+																	new DocumentFormat.OpenXml.Wordprocessing.Text(FechaRecepcion.Substring(0, 6) + FechaRecepcion.Substring(FechaRecepcion.Length - 2, 2))))
 															));
 
 					tr.Append(tc6);

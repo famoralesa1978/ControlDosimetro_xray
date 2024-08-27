@@ -66,6 +66,7 @@
 			this.tsbGuardar = new System.Windows.Forms.ToolStripButton();
 			this.tsbAsignarSucursal = new System.Windows.Forms.ToolStripButton();
 			this.tsbAsignarSeccion = new System.Windows.Forms.ToolStripButton();
+			this.tsbAsignar = new System.Windows.Forms.ToolStripButton();
 			this.grpPersonal = new System.Windows.Forms.GroupBox();
 			this.chkDireccion = new System.Windows.Forms.CheckBox();
 			this.cbx_Direccin = new System.Windows.Forms.ComboBox();
@@ -89,7 +90,6 @@
 			this.btnCambiar = new System.Windows.Forms.Button();
 			this.dtpCambioFecha = new System.Windows.Forms.DateTimePicker();
 			this.chkCambiarEstado = new System.Windows.Forms.CheckBox();
-			this.tsbAsignar = new System.Windows.Forms.ToolStripButton();
 			this.groupBox1.SuspendLayout();
 			this.grp_Grilla.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
@@ -470,6 +470,17 @@
 			this.tsbAsignarSeccion.Text = "Asignar Sección";
 			this.tsbAsignarSeccion.Click += new System.EventHandler(this.tsbAsignarSeccion_Click);
 			// 
+			// tsbAsignar
+			// 
+			this.tsbAsignar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbAsignar.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignar.Image")));
+			this.tsbAsignar.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbAsignar.Name = "tsbAsignar";
+			this.tsbAsignar.Size = new System.Drawing.Size(156, 36);
+			this.tsbAsignar.Text = "Asignar dirección o sección";
+			this.tsbAsignar.ToolTipText = "Asignar dirección o sección";
+			this.tsbAsignar.Click += new System.EventHandler(this.tsbAsignar_Click);
+			// 
 			// grpPersonal
 			// 
 			this.grpPersonal.Controls.Add(this.chkDireccion);
@@ -708,17 +719,6 @@
 			this.chkCambiarEstado.TabIndex = 0;
 			this.chkCambiarEstado.Text = "Activo";
 			this.chkCambiarEstado.UseVisualStyleBackColor = true;
-			// 
-			// tsbAsignar
-			// 
-			this.tsbAsignar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tsbAsignar.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignar.Image")));
-			this.tsbAsignar.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbAsignar.Name = "tsbAsignar";
-			this.tsbAsignar.Size = new System.Drawing.Size(51, 36);
-			this.tsbAsignar.Text = "Asignar";
-			this.tsbAsignar.ToolTipText = "Asignar dirección o sección";
-			this.tsbAsignar.Click += new System.EventHandler(this.tsbAsignar_Click);
 			// 
 			// frmModificarPersonalMasivo
 			// 

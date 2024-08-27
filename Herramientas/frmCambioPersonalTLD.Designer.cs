@@ -121,7 +121,7 @@
 			this.tabCambioPeriodo = new System.Windows.Forms.TabPage();
 			this.pnlCambiarPeriodo = new System.Windows.Forms.Panel();
 			this.ddlPeriodoCambiarPeriodo = new System.Windows.Forms.ComboBox();
-			this.label27 = new System.Windows.Forms.Label();
+			this.lblPeriodoCambiarPeriodo = new System.Windows.Forms.Label();
 			this.txtNDocumentoCambiarPeriodo = new System.Windows.Forms.TextBox();
 			this.lblNDocumentoCambiarPeriodo = new System.Windows.Forms.Label();
 			this.label25 = new System.Windows.Forms.Label();
@@ -1024,7 +1024,7 @@
 			// pnlCambiarPeriodo
 			// 
 			this.pnlCambiarPeriodo.Controls.Add(this.ddlPeriodoCambiarPeriodo);
-			this.pnlCambiarPeriodo.Controls.Add(this.label27);
+			this.pnlCambiarPeriodo.Controls.Add(this.lblPeriodoCambiarPeriodo);
 			this.pnlCambiarPeriodo.Controls.Add(this.txtNDocumentoCambiarPeriodo);
 			this.pnlCambiarPeriodo.Controls.Add(this.lblNDocumentoCambiarPeriodo);
 			this.pnlCambiarPeriodo.Controls.Add(this.label25);
@@ -1047,16 +1047,16 @@
 			this.ddlPeriodoCambiarPeriodo.TabIndex = 53;
 			this.ddlPeriodoCambiarPeriodo.ValueMember = "Id_Periodo";
 			// 
-			// label27
+			// lblPeriodoCambiarPeriodo
 			// 
-			this.label27.AutoSize = true;
-			this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label27.Location = new System.Drawing.Point(37, 78);
-			this.label27.Name = "label27";
-			this.label27.Size = new System.Drawing.Size(83, 13);
-			this.label27.TabIndex = 52;
-			this.label27.Tag = "ddl";
-			this.label27.Text = "Cambiar periodo";
+			this.lblPeriodoCambiarPeriodo.AutoSize = true;
+			this.lblPeriodoCambiarPeriodo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblPeriodoCambiarPeriodo.Location = new System.Drawing.Point(37, 78);
+			this.lblPeriodoCambiarPeriodo.Name = "lblPeriodoCambiarPeriodo";
+			this.lblPeriodoCambiarPeriodo.Size = new System.Drawing.Size(83, 13);
+			this.lblPeriodoCambiarPeriodo.TabIndex = 52;
+			this.lblPeriodoCambiarPeriodo.Tag = "ddl";
+			this.lblPeriodoCambiarPeriodo.Text = "Cambiar periodo";
 			// 
 			// txtNDocumentoCambiarPeriodo
 			// 
@@ -1284,7 +1284,7 @@
 		private System.Windows.Forms.Label lblNDocumentoCambiarPeriodo;
 		private System.Windows.Forms.Label label25;
 		private System.Windows.Forms.ComboBox ddlPeriodoCambiarPeriodo;
-		private System.Windows.Forms.Label label27;
+		private System.Windows.Forms.Label lblPeriodoCambiarPeriodo;
 		private System.Windows.Forms.Label label28;
 		private System.Windows.Forms.Label lblPeriodoActual;
 		private System.Windows.Forms.Panel pnlCambiarPeriodo;
