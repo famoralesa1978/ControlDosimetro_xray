@@ -647,11 +647,11 @@ namespace ControlDosimetro
 			if (String.IsNullOrWhiteSpace(strFiltro))
 				strMensaje += "Dirección es requerido. \n";
 
-			if (cbx_id_seccion.SelectedValue==null)
-				strMensaje += "Sección es requerido. \n";
-			else
-			if (string.IsNullOrWhiteSpace(cbx_id_seccion.Text))
-				strMensaje += "Sección es requerido. \n";
+			//if (cbx_id_seccion.SelectedValue==null)
+			//	strMensaje += "Sección es requerido. \n";
+			//else
+			//if (string.IsNullOrWhiteSpace(cbx_id_seccion.Text))
+			//	strMensaje += "Sección es requerido. \n";
 
 			if (!String.IsNullOrWhiteSpace(strMensaje))
 			{
