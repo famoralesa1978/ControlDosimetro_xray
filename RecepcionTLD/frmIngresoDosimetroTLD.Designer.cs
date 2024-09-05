@@ -307,7 +307,7 @@
 			// chkGenerados
 			// 
 			this.chkGenerados.AutoSize = true;
-			this.chkGenerados.Location = new System.Drawing.Point(320, 9);
+			this.chkGenerados.Location = new System.Drawing.Point(315, 23);
 			this.chkGenerados.Name = "chkGenerados";
 			this.chkGenerados.Size = new System.Drawing.Size(15, 14);
 			this.chkGenerados.TabIndex = 23;
@@ -318,7 +318,7 @@
 			// chkElimnarTodos
 			// 
 			this.chkElimnarTodos.AutoSize = true;
-			this.chkElimnarTodos.Location = new System.Drawing.Point(78, 8);
+			this.chkElimnarTodos.Location = new System.Drawing.Point(74, 21);
 			this.chkElimnarTodos.Name = "chkElimnarTodos";
 			this.chkElimnarTodos.Size = new System.Drawing.Size(15, 14);
 			this.chkElimnarTodos.TabIndex = 22;
@@ -329,7 +329,7 @@
 			// chkSeleccionar
 			// 
 			this.chkSeleccionar.AutoSize = true;
-			this.chkSeleccionar.Location = new System.Drawing.Point(241, 9);
+			this.chkSeleccionar.Location = new System.Drawing.Point(241, 23);
 			this.chkSeleccionar.Name = "chkSeleccionar";
 			this.chkSeleccionar.Size = new System.Drawing.Size(15, 14);
 			this.chkSeleccionar.TabIndex = 10;
