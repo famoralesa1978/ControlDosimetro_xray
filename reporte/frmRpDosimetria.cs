@@ -35,7 +35,6 @@ namespace ControlDosimetro
 			InitializeComponent();
 			cbx_Region.SelectedText = "1";
 
-			clsEvento.AsignarRut(ref txt_Rut);
 			clsEvento.AsignarNumero(ref txt_NumeroCliente);
 			clsEvento.AsignarNumero(ref txtNClienteAnual);
 			clsEvento.AsignarNumero(ref txt_NDosimetro);

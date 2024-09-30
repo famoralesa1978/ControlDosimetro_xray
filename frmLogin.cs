@@ -151,7 +151,7 @@ namespace ControlDosimetro
 
 					string strSp = cmd.XSQLObtieneDatosParametro();
 
-					ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+					ds = Conectar.Listar("qbz4h7qjqno6UDISeyxTagzP8WL2RI9VHfd/l56YcLkZ1UdzuJNuXq3s7y9ZY3eq6QrxfamnP0GH0FDdEHA6bAWJdHonailm8a5b3eyUw5vuWLyX+mBmFPxKLHFVjRtYm0sjwb1KdqM=", cmd);//Clases.clsBD.BD
 					Cursor = Cursors.Default;
 					if (ds != null)
 					{

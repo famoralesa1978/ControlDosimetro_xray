@@ -9,13 +9,13 @@ namespace Clases
 {
 
 	class clsBD
-    {
-        public static string strBD;
+	{
+		public static string strBD;
 		public static string strConexionBD;
-        public static string strConexionDes;
-        public static string strConexionProd;
-        public static string strSistema;
-        public static string BD { get => strBD; set => strBD = value; }
+		public static string strConexionDes;
+		public static string strConexionProd;
+		public static string strSistema;
+		public static string BD { get => strBD; set => strBD = value; }
 
 		public static string ConexionBD
 		{
@@ -29,27 +29,28 @@ namespace Clases
 			}
 		}
 
-        public static System.Data.DataSet ObtieneDatosSistema()
-        {
-            try
-            {
-                strSistema = ControlDosimetro.Properties.Settings.Default.Pk_Sistema;
-                LibAdmSistema.ClsConector libadm = new LibAdmSistema.ClsConector();
-                System.Data.DataSet _tabla = new System.Data.DataSet();
-                SqlCommand command = new SqlCommand("PA_CARGA_DATOS_SISTEMA " + ControlDosimetro.Properties.Settings.Default.Pk_Sistema, null);
+		public static System.Data.DataSet ObtieneDatosSistema()
+		{
+			try
+			{
+				strSistema = ControlDosimetro.Properties.Settings.Default.Pk_Sistema;
+				LibAdmSistema.ClsConector libadm = new LibAdmSistema.ClsConector();
+				System.Data.DataSet _tabla = new System.Data.DataSet();
+				SqlCommand command = new SqlCommand("PA_CARGA_DATOS_SISTEMA " + ControlDosimetro.Properties.Settings.Default.Pk_Sistema, null);
 
-                _tabla = libadm.Listar("", command);
-                BD = _tabla.Tables[0].Rows[0]["SIS_CON_DES"].ToString();
-                strConexionDes = _tabla.Tables[0].Rows[0]["SIS_CON_DES"].ToString();
-                strConexionProd = _tabla.Tables[0].Rows[0]["SIS_CON_PROD"].ToString();
+				_tabla = libadm.Listar("", command);
+				BD = ControlDosimetro.Properties.Settings.Default.ConfiguracionBD;//_tabla.Tables[0].Rows[0]["SIS_CON_DES"].ToString();
 
-                return _tabla;
-            }
-            catch (SqlException e)
-            {
-                return null;
-            }
-        }
+				strConexionDes = _tabla.Tables[0].Rows[0]["SIS_CON_DES"].ToString();
+				strConexionProd = _tabla.Tables[0].Rows[0]["SIS_CON_PROD"].ToString();
+
+				return _tabla;
+			}
+			catch (SqlException e)
+			{
+				return null;
+			}
+		}
 	}
 
 }

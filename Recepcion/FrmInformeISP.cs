@@ -1258,6 +1258,7 @@ namespace ControlDosimetro
 						strTecnica = String.IsNullOrEmpty(strTecnica) ? "TLD" : strTecnica + "/TLD";
 					strcampoMarcador = "TLDFILMICA";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strTecnica);
+					doc.Close();
 				}
 				if (data1.Count() > 0)
 					WDAddTableV2(strArchivoCopiar, data1, data2, data3, strfecha_inicio, strfecha_termino, strFechaRecepcion, data4, data5, data6, data7);
@@ -1959,7 +1960,7 @@ namespace ControlDosimetro
 		#region "button"
 		private void BtnGenerarArchivoNuevo_Click(object sender, EventArgs e)
 		{
-			if ((int)cbx_id_seccion.SelectedValue != 0)
+			if ((int)cbx_id_seccion.SelectedValue !=-1)
 			{
 				lblRuta.Visible = false;
 				GenerarPorSucursalV2();
