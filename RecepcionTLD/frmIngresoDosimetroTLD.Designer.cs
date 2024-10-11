@@ -616,6 +616,7 @@
 			this.tsbAsignarSucursal.Name = "tsbAsignarSucursal";
 			this.tsbAsignarSucursal.Size = new System.Drawing.Size(98, 24);
 			this.tsbAsignarSucursal.Text = "Asignar Sucursal";
+			this.tsbAsignarSucursal.Visible = false;
 			this.tsbAsignarSucursal.Click += new System.EventHandler(this.tsbAsignarSucursal_Click);
 			// 
 			// tsbAsignarSeccion
@@ -626,6 +627,7 @@
 			this.tsbAsignarSeccion.Name = "tsbAsignarSeccion";
 			this.tsbAsignarSeccion.Size = new System.Drawing.Size(95, 24);
 			this.tsbAsignarSeccion.Text = "Asignar Sección";
+			this.tsbAsignarSeccion.Visible = false;
 			this.tsbAsignarSeccion.Click += new System.EventHandler(this.tsbAsignarSeccion_Click);
 			// 
 			// tsbAsignar
@@ -637,6 +639,7 @@
 			this.tsbAsignar.Size = new System.Drawing.Size(51, 24);
 			this.tsbAsignar.Text = "Asignar";
 			this.tsbAsignar.ToolTipText = "Asignar dirección o sección";
+			this.tsbAsignar.Visible = false;
 			this.tsbAsignar.Click += new System.EventHandler(this.tsbAsignar_Click);
 			// 
 			// btn_Guardar

@@ -70,6 +70,7 @@
 			this.btn_Sucursal = new System.Windows.Forms.ToolStripButton();
 			this.tsbAsignarSucursal = new System.Windows.Forms.ToolStripButton();
 			this.tsbAsignarSeccion = new System.Windows.Forms.ToolStripButton();
+			this.tsbAsignar = new System.Windows.Forms.ToolStripButton();
 			this.btn_Guardar = new System.Windows.Forms.Button();
 			this.btn_Cerrar = new System.Windows.Forms.Button();
 			this.btn_Corregir = new System.Windows.Forms.Button();
@@ -88,7 +89,6 @@
 			this.btnResfrescar = new System.Windows.Forms.Button();
 			this.btnGenerarArchivoNuevo = new System.Windows.Forms.Button();
 			this.btnGenararPelNoDevuelto = new System.Windows.Forms.Button();
-			this.tsbAsignar = new System.Windows.Forms.ToolStripButton();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -514,6 +514,7 @@
 			this.tsbAsignarSucursal.Name = "tsbAsignarSucursal";
 			this.tsbAsignarSucursal.Size = new System.Drawing.Size(103, 22);
 			this.tsbAsignarSucursal.Text = "Asignar dirección";
+			this.tsbAsignarSucursal.Visible = false;
 			this.tsbAsignarSucursal.Click += new System.EventHandler(this.tsbAsignarSucursal_Click);
 			// 
 			// tsbAsignarSeccion
@@ -524,7 +525,20 @@
 			this.tsbAsignarSeccion.Name = "tsbAsignarSeccion";
 			this.tsbAsignarSeccion.Size = new System.Drawing.Size(95, 22);
 			this.tsbAsignarSeccion.Text = "Asignar Sección";
+			this.tsbAsignarSeccion.Visible = false;
 			this.tsbAsignarSeccion.Click += new System.EventHandler(this.tsbAsignarSeccion_Click);
+			// 
+			// tsbAsignar
+			// 
+			this.tsbAsignar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsbAsignar.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignar.Image")));
+			this.tsbAsignar.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbAsignar.Name = "tsbAsignar";
+			this.tsbAsignar.Size = new System.Drawing.Size(51, 22);
+			this.tsbAsignar.Text = "Asignar";
+			this.tsbAsignar.ToolTipText = "Asignar dirección o sección";
+			this.tsbAsignar.Visible = false;
+			this.tsbAsignar.Click += new System.EventHandler(this.tsbAsignar_Click);
 			// 
 			// btn_Guardar
 			// 
@@ -705,17 +719,6 @@
 			this.btnGenararPelNoDevuelto.Text = "Generar Archivo ISP no devuelto";
 			this.btnGenararPelNoDevuelto.UseVisualStyleBackColor = true;
 			this.btnGenararPelNoDevuelto.Click += new System.EventHandler(this.btnGenararPelNoDevuelto_Click);
-			// 
-			// tsbAsignar
-			// 
-			this.tsbAsignar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tsbAsignar.Image = ((System.Drawing.Image)(resources.GetObject("tsbAsignar.Image")));
-			this.tsbAsignar.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbAsignar.Name = "tsbAsignar";
-			this.tsbAsignar.Size = new System.Drawing.Size(51, 22);
-			this.tsbAsignar.Text = "Asignar";
-			this.tsbAsignar.ToolTipText = "Asignar dirección o sección";
-			this.tsbAsignar.Click += new System.EventHandler(this.tsbAsignar_Click);
 			// 
 			// FrmInformeISPFilmico
 			// 

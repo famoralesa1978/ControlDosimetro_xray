@@ -953,7 +953,7 @@ namespace ControlDosimetro
 
 					DataTable dtDD = dt.Tables[1].Copy();
 					dtDD.DefaultView.RowFilter = String.Format("id_observacion={0}", 11);//Fuera de palzo
-					cantNoDev = dtND.DefaultView.ToTable().Rows.Count > 0 ? dtND.DefaultView.ToTable().Rows[0]["Cantidad"].ToString() : "";
+					CantDevFP = dtND.DefaultView.ToTable().Rows.Count > 0 ? dtND.DefaultView.ToTable().Rows[0]["Cantidad"].ToString() : "";
 				}
 			}
 

@@ -914,23 +914,23 @@ namespace ControlDosimetro
 				{
 					DataTable dtDND = dt.Tables[1].Copy();
 					dtDND.DefaultView.RowFilter = String.Format("id_observacion={0}", 6);//DND
-					CantPerdido = dtDND.DefaultView.ToTable().Rows.Count > 0 ? dtDND.DefaultView.ToTable().Rows[0]["Cantidad"].ToString() : "";
+					CantPerdido = dtDND.DefaultView.ToTable().Rows.Count > 0 ? dtDND.DefaultView.ToTable().Rows[0]["Cantidad"].ToString() : "0";
 
 					DataTable dtSinUso = dt.Tables[1].Copy();
 					dtSinUso.DefaultView.RowFilter = String.Format("id_observacion={0}", 13);//DSU
-					CantSinUso = dtSinUso.DefaultView.ToTable().Rows.Count > 0 ? dtSinUso.DefaultView.ToTable().Rows[0]["Cantidad"].ToString() : "";
+					CantSinUso = dtSinUso.DefaultView.ToTable().Rows.Count > 0 ? dtSinUso.DefaultView.ToTable().Rows[0]["Cantidad"].ToString() : "0";
 
 					DataTable dtND = dt.Tables[1].Copy();
 					dtND.DefaultView.RowFilter = String.Format("id_observacion={0}", 10);//DE
-					cantNoDev = dtND.DefaultView.ToTable().Rows.Count > 0 ? dtND.DefaultView.ToTable().Rows[0]["Cantidad"].ToString() : "";
-
+					cantNoDev = dtND.DefaultView.ToTable().Rows.Count > 0 ? dtND.DefaultView.ToTable().Rows[0]["Cantidad"].ToString() : "0";
+					CantPerdido = (Convert.ToInt32(CantPerdido) + Convert.ToInt32(cantNoDev)).ToString();
 					DataTable dtNR = dt.Tables[1].Copy();
 					dtNR.DefaultView.RowFilter = String.Format("id_observacion={0}", 12);//NR
-					intCantNR = dtNR.DefaultView.ToTable().Rows.Count > 0 ? (int)dtNR.DefaultView.ToTable().Rows[0]["Cantidad"] : 0;
+					intCantNR = (dtNR.DefaultView.ToTable().Rows.Count > 0 ? (int)dtNR.DefaultView.ToTable().Rows[0]["Cantidad"] : 0);
 
 					DataTable dtDD = dt.Tables[1].Copy();
 					dtDD.DefaultView.RowFilter = String.Format("id_observacion={0}", 11);//Fuera de palzo
-					cantNoDev = dtND.DefaultView.ToTable().Rows.Count > 0 ? dtND.DefaultView.ToTable().Rows[0]["Cantidad"].ToString() : "";
+					CantDevFP = dtDD.DefaultView.ToTable().Rows.Count > 0 ? dtDD.DefaultView.ToTable().Rows[0]["Cantidad"].ToString() : "0";
 				}
 			}
 
@@ -2016,7 +2016,7 @@ namespace ControlDosimetro
 		#region "button"
 		private void BtnGenerarArchivoNuevo_Click(object sender, EventArgs e)
 		{
-			if ((int)cbx_id_seccion.SelectedValue != 0)
+			if ((int)cbx_id_seccion.SelectedValue >0)
 			{
 				lblRuta.Visible = false;
 				GenerarPorSucursalV2();
