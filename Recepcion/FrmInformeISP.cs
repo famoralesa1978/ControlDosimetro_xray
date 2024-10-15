@@ -1960,7 +1960,7 @@ namespace ControlDosimetro
 		#region "button"
 		private void BtnGenerarArchivoNuevo_Click(object sender, EventArgs e)
 		{
-			if ((int)cbx_id_seccion.SelectedValue !=-1)
+			if ((int)cbx_id_seccion.SelectedValue >0)
 			{
 				lblRuta.Visible = false;
 				GenerarPorSucursalV2();
