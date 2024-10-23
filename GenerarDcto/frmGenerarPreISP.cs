@@ -65,7 +65,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "SELECT distinct Anno FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			cbx_anno.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_anno.DataSource = dt.Tables[0];
@@ -80,7 +80,7 @@ namespace ControlDosimetro
 
 			cmd.CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ 'º TRI' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text;
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
 			cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -117,7 +117,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;
 
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			if (dt.Tables[0].Rows.Count > 0)
 			{//ENTIDADES,TOES,DOSIS
@@ -207,7 +207,7 @@ namespace ControlDosimetro
 
 			cmd2.CommandText = "pa_PreGenerarArchivoISP_sel " + cbx_id_periodo.SelectedValue.ToString();
 			cmd2.CommandType = CommandType.Text;
-			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd2);
+			Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd2);
 			MessageBox.Show("Los datos fueron generado y esta listo para que se genere el infome");
 
 			cbx_id_periodo_SelectedIndexChanged(null, null);
@@ -576,7 +576,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "rtpDosimetriaVerificar " + cbx_id_periodo.SelectedValue.ToString();
 			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			return dt;
 
@@ -590,7 +590,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "pa_Sel_ArchivoPreISP_sel " + cbx_id_periodo.SelectedValue.ToString();
 			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (dt != null)
 			{
 				lbl_Status.Text = dt.Tables[0].Rows.Count > 0 ? "Se ha generado los datos para descargar los archivos" : "No se ha generado los datos para este periodo";

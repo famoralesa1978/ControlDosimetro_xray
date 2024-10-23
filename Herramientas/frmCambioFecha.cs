@@ -57,7 +57,7 @@ namespace ControlDosimetro.Herramientas
                             "  FROM tbl_cliente WHERE Id_cliente= " + intCodCliente.ToString();
             DataSet dt;
 
-            dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+            dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
             if (dt.Tables[0].Rows.Count > 0)
             {
                 lbl_id_cliente.Text = intCodCliente.ToString();
@@ -92,7 +92,7 @@ namespace ControlDosimetro.Herramientas
 
             cmd.CommandText = "SELECT Fecha_Inicio FROM conf_periodo Order by id_periodo desc";
             DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+            dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
             cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
             cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -107,7 +107,7 @@ namespace ControlDosimetro.Herramientas
             cmd.CommandText = "Select FechaTermino FROM tbl_observacioncliente where id_cliente = " + intCodCliente.ToString() + "and FechaInicio = '" + dtp_FechaInicio.Text+"'";
             cmd.CommandType = CommandType.Text;
             DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+            dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
             if (dt.Tables[0].Rows.Count > 0)
             {
@@ -127,7 +127,7 @@ namespace ControlDosimetro.Herramientas
 
             cmd.CommandText = "pa_ListarPeriodoFechaTermino_sel";
             DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+            dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
             cbx_id_periodoTermino.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
             cbx_id_periodoTermino.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -224,7 +224,7 @@ namespace ControlDosimetro.Herramientas
             cmd.CommandType = CommandType.Text;
 
 
-            ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+            ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
             if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
             {
                 MessageBox.Show("Error en actualizar la información");
@@ -244,14 +244,14 @@ namespace ControlDosimetro.Herramientas
             //    if (MessageBox.Show("Desea modificar?", "mensaje", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
             //    {
 
-            //        ClaseComun.Insertar(Clases.clsBD.BD, tbl_observacioncliente, ref bolResult);
+            //        ClaseComun.Insertar(ClaseGeneral.Conexion, tbl_observacioncliente, ref bolResult);
             //        //    //if (bolResult == true)
             //        //    //{
             //        //    //    SqlCommand cmd = new SqlCommand();
             //        //    //    cmd.CommandText = "update tbl_cliente_Historial set FechaTermino=" + dtp_FechaTermino.Text + " where FechaTermino is null and id_cliente=" + lbl_Id_Cliente.Text + " and run='" + lbl_rut.Text + "'";
             //        //    //    cmd.CommandType = CommandType.Text;
 
-            //        //    //    Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+            //        //    //    Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
             //        //    //    MessageBox.Show("Observación  Ingresada");
             //        //    //    this.Close();
             //        //    //}
@@ -263,7 +263,7 @@ namespace ControlDosimetro.Herramientas
             cmd.CommandText = "Update tbl_observacioncliente set FechaTermino='" + dtp_FechaDestinoTermino.Text + "' where id_cliente = " + lbl_id_cliente.Text + "and FechaInicio = '" + dtp_FechaInicio.Text + "'";
             cmd.CommandType = CommandType.Text;
             DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+            dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
             MessageBox.Show("Fecha de Término modificada");
 

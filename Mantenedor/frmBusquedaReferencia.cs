@@ -51,14 +51,14 @@ namespace ControlDosimetro
 
 
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			grdDatos.DataSource = dt.Tables[0];
 		}
 
 		private void Cargar_Estado()
 		{
-			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_EstadoId, ref cbx_EstadoId);
+			ClaseComun.Listar_Estado(ClaseGeneral.Conexion, ref cbx_EstadoId, ref cbx_EstadoId);
 		}
 
 		private void Cargar_Cliente()
@@ -70,7 +70,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "SELECT run,Razon_Social,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente " +
 									" FROM tbl_cliente WHERE Id_cliente= " + lbl_Codigo.Text.ToString() + " and run='" + strRun +"'";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			lbl_nombre.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
 		}

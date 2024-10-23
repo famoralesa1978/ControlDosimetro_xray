@@ -49,7 +49,7 @@ namespace ControlDosimetro
 			};
 			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			cbxAnno.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbxAnno.DataSource = dt.Tables[0];
@@ -63,7 +63,7 @@ namespace ControlDosimetro
 				CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ '°T' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_annoCambio.Text
 			};
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			cbx_id_periodoCambio.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
 			cbx_id_periodoCambio.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -81,7 +81,7 @@ namespace ControlDosimetro
 				CommandText = String.Format("pa_ConsultaCorregirTrimestreo_sel {0},{1}", lbl_id_cliente.Text, cbx_anno.Text)
 			};
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			if (dt.Tables[0].Rows.Count > 0)
 			{
@@ -192,7 +192,7 @@ namespace ControlDosimetro
 
 				cmd.CommandText = "pa_CambiarNDocumentoTrimestre_upd " + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue + "," + cbx_id_periodoCambio.SelectedValue;
 				cmd.CommandType = CommandType.Text;
-				ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+				ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 
 				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
@@ -218,7 +218,7 @@ namespace ControlDosimetro
 
 				cmd.CommandText = "pa_CambiarNDocumentoTrimestreTLD_upd " + lbl_id_cliente.Text + "," + cbx_id_periodoTLD.SelectedValue + "," + cbx_id_periodoCambioTLD.SelectedValue;
 				cmd.CommandType = CommandType.Text;
-				ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+				ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 
 				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());

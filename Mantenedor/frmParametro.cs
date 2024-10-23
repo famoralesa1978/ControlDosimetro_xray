@@ -45,14 +45,14 @@ namespace ControlDosimetro
             cmd.CommandType = CommandType.Text ;
 
             DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+            dt = Conectar.Listar(ClaseGeneral.Conexion,cmd);
 
             grdDatos.DataSource = dt.Tables[0] ;            
         }
          
     private void Cargar_Estado()
     {
-        ClaseComun.Listar_Estado(Clases.clsBD.BD,ref cbx_Estado, ref cbx_EstadoId);           
+        ClaseComun.Listar_Estado(ClaseGeneral.Conexion,ref cbx_Estado, ref cbx_EstadoId);           
     }
 
 #endregion

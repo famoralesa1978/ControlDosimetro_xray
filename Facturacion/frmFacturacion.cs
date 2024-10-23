@@ -49,7 +49,7 @@ namespace ControlDosimetro
             };
             DataSet dt;
 
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+            dt = Conectar.Listar(ClaseGeneral.Conexion,cmd);
 
             txt_CodCliente.Text = intCodCliente.ToString();
             lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
@@ -67,7 +67,7 @@ namespace ControlDosimetro
             };
             //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
             DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+            dt = Conectar.Listar(ClaseGeneral.Conexion,cmd);
 
             cbx_anno.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
             cbx_anno.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -82,7 +82,7 @@ namespace ControlDosimetro
                 CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ '°T' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text
             };
             DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+            dt = Conectar.Listar(ClaseGeneral.Conexion,cmd);
 
             cbx_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
             cbx_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -127,7 +127,7 @@ namespace ControlDosimetro
             };
             sqlcmd.Parameters.Add("@Doc_Id", SqlDbType.Int).Value = iddoc;
 
-            DataTable dtt = Conectar.Listar(Clases.clsBD.BD,sqlcmd).Tables[0];
+            DataTable dtt = Conectar.Listar(ClaseGeneral.Conexion,sqlcmd).Tables[0];
 
             DataRow dr;
             if (dtt.Rows.Count == 1)
@@ -195,7 +195,7 @@ namespace ControlDosimetro
             cmd.CommandType = CommandType.Text;
 
             DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+            dt = Conectar.Listar(ClaseGeneral.Conexion,cmd);
         }
 
         private void BtnCargarCliente_Click(object sender, EventArgs e)
@@ -247,7 +247,7 @@ namespace ControlDosimetro
             //  }
             //cmd.CommandType = CommandType.StoredProcedure ;
 
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+            dt = Conectar.Listar(ClaseGeneral.Conexion,cmd);
 
             grdDatos.DataSource = dt.Tables[0];
 
@@ -291,7 +291,7 @@ namespace ControlDosimetro
             cmd.CommandType = CommandType.Text;
 
             DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+            dt = Conectar.Listar(ClaseGeneral.Conexion,cmd);
 
             if (dt.Tables.Count > 0)
             {

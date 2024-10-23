@@ -42,7 +42,7 @@ namespace ControlDosimetro
 
 			cmd.CommandText = "pa_ListarPeriodoFechaTermino_sel";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			cbx_id_periodo.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -57,7 +57,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "SELECT run,Razon_Social,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente " +
 									" FROM tbl_cliente WHERE Id_cliente= " + lbl_id_cliente.Text.ToString();
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			lbl_nombre.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
 			lbl_rut.Text = dt.Tables[0].Rows[0]["run"].ToString();
@@ -83,13 +83,13 @@ namespace ControlDosimetro
 				cmd.CommandText = String.Format("pa_ClienteObservacion_ins {0},'{1}','{2}','{3}'", lbl_id_cliente.Text, dtp_FechaInicio.Text, dtp_FechaTermino.Text, rtb_Observacion.Text);
 				cmd.CommandType = CommandType.Text;
 
-				Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+				Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 
 				cmd = new SqlCommand();
 				cmd.CommandText = "update tbl_cliente_Historial set FechaTermino=" + dtp_FechaTermino.Text + " where FechaTermino is null and id_cliente=" + lbl_id_cliente.Text + " and run='" + lbl_rut.Text + "'";
 				cmd.CommandType = CommandType.Text;
 
-				Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+				Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 				MessageBox.Show("Observación  Ingresada");
 				this.Close();
 			}

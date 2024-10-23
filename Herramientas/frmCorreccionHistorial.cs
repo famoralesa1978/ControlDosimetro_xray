@@ -45,7 +45,7 @@ namespace ControlDosimetro
 			// pa_OrdenTrabajo_sel
 			cmd.CommandType = CommandType.Text;
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			grdCliente.DataSource = dt.Tables[0];
 			dtgHistorial.DataSource = dt.Tables[1];
@@ -99,7 +99,7 @@ namespace ControlDosimetro
 
 				cmd.CommandText = String.Format("pa_ConsultaCorregirHistorial_ins {0}",lbl_id_cliente.Text);
 				cmd.CommandType = CommandType.Text;
-				ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+				ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 
 				MessageBox.Show(ds.Tables[0].Rows[0][0].ToString());

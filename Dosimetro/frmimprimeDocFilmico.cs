@@ -78,7 +78,7 @@ namespace ControlDosimetro
 			cmd.Parameters["@NDocumento"].Value = lbl_NDocumento.Text;
 			cmd.CommandType = CommandType.StoredProcedure;
 
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			return ds;
 		}

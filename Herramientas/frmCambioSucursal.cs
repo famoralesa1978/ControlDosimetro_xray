@@ -47,7 +47,7 @@ namespace ControlDosimetro
 								 "  FROM ges_DosimetriaPersonal P inner join tbl_cliente C on P.Id_cliente=C.Id_cliente WHERE N_Documento= " + intNDocumento.ToString();
 			DataSet dt;
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (dt.Tables[0].Rows.Count == 1)
 			{
 				lbl_NCliente.Text = dt.Tables[0].Rows[0]["Id_cliente"].ToString();
@@ -88,7 +88,7 @@ namespace ControlDosimetro
 								 "WHERE N_Documento= " + intNDocumento.ToString() + " and ges_dosimetro_estado.n_dosimetro="+ intNDosimetro.ToString();
 			DataSet dt;
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (dt.Tables[0].Rows.Count == 1)
 			{
 				lbl_nombrePorDos.Text = dt.Tables[0].Rows[0]["Id_cliente"].ToString();
@@ -130,7 +130,7 @@ namespace ControlDosimetro
 				 "inner join glo_comuna co on co.id_comuna=s.Id_Comuna " +
 				 "where run='" + rut + "' and Id_cliente=" + id_Cliente;
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			DataSet dtCopia;
 			dtCopia = dt.Copy();
 			ddlSucursalActualPorSuc.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
@@ -151,7 +151,7 @@ namespace ControlDosimetro
 				 "inner join glo_comuna co on co.id_comuna=s.Id_Comuna " +
 				 "where run='" + rut + "' and Id_cliente="+ id_Cliente;
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			DataSet dtCopia;
 			dtCopia = dt.Copy();
 			cbx_SucActual.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
@@ -186,7 +186,7 @@ namespace ControlDosimetro
 					CommandText = String.Format("CargarClientePorRun '{0}',{1}", lbl_rut_cliente.Text, lbl_id_cliente.Text)
 				};
 				DataSet dt;
-				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+				dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 				if (dt != null)
 				{
@@ -221,7 +221,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;
 
 
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
 			{
 				MessageBox.Show("Error en actualizar la información");
@@ -239,7 +239,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;
 
 
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
 			{
 				MessageBox.Show("Error en actualizar la información");
@@ -257,7 +257,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;
 
 
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
 			{
 				MessageBox.Show("Error en actualizar la información");

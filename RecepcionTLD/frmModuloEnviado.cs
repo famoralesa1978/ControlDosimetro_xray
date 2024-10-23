@@ -36,7 +36,7 @@ namespace ControlDosimetro
 			cmdcombo.CommandText = "select 0 as Id_DetParametro, 'Seleccione' as Glosa, 0 as orden union all " +
 				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 order by orden ";
 			cmdcombo.CommandType = CommandType.Text;
-			dtcombo = Conectar.Listar(Clases.clsBD.BD, cmdcombo);
+			dtcombo = Conectar.Listar(ClaseGeneral.Conexion, cmdcombo);
 
 
 			AsignarEvento();
@@ -58,7 +58,7 @@ namespace ControlDosimetro
 				CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "',' " + this.Text + "'",
 				CommandType = CommandType.Text
 			};
-			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+			Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 			Cargar_Anno();
 
 			rbtDosimetria.Visible = rbtDosimetria.Checked = !TLD;
@@ -83,7 +83,7 @@ namespace ControlDosimetro
 
 			cmd.CommandType = CommandType.Text;
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			grdDatos.DataSource = dt.Tables[0];
 		}
@@ -96,7 +96,7 @@ namespace ControlDosimetro
 
 			cmd.CommandType = CommandType.Text;
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			grdDatos.DataSource = dt.Tables[0];
 			groupBox2.Text = "Listado       Registro:";
@@ -114,7 +114,7 @@ namespace ControlDosimetro
 			};
 			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			//  cbx_anno.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			// cbx_anno.DataSource = dt.Tables[0];
@@ -125,7 +125,7 @@ namespace ControlDosimetro
 		{
 			SqlCommand cmd = new SqlCommand();
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 		}
 
 
@@ -144,7 +144,7 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			// SqlCommand cmd = new SqlCommand();
 
-			//// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
+			//// dtcombo = Conectar.Listar(ClaseGeneral.Conexion,cmdcombo);
 
 			DataGridViewCheckBoxCell checkMarca;
 			DataGridViewCheckBoxCell checkEnviado;
@@ -174,7 +174,7 @@ namespace ControlDosimetro
 						cmd.CommandText = "pa_DosimetroEstadoEnviadoTLD_upd " + intintId_Estado_temp.ToString() + ",'" + Clases.clsUsuario.Usuario + "'," + strIdCliente + "," + strid_periodo;
 
 					cmd.CommandType = CommandType.Text;
-					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+					Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 				}
 				else
 				{
@@ -186,7 +186,7 @@ namespace ControlDosimetro
 							cmd.CommandText = "pa_DosimetroDesvolverEstadoEnviadoTLD_upd 1,'" + Clases.clsUsuario.Usuario + "'," + strIdCliente + "," + strid_periodo;
 
 						cmd.CommandType = CommandType.Text;
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+						Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 					}
 				}//
 

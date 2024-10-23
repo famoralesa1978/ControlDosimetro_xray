@@ -49,7 +49,7 @@ namespace ControlDosimetro
 
 		private void Cargar_Estado()
 		{
-			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_id_estado, ref cbx_id_estado);
+			ClaseComun.Listar_Estado(ClaseGeneral.Conexion, ref cbx_id_estado, ref cbx_id_estado);
 		}
 
 		private void Cargar_Cliente(Int64 intCodCliente)
@@ -61,7 +61,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "SELECT run,Razon_Social,N_Cliente_Ref,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
 							" FROM tbl_cliente WHERE Id_cliente= " + intCodCliente.ToString();
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			lbl_id_cliente.Text = intCodCliente.ToString();
 			lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
@@ -89,7 +89,7 @@ namespace ControlDosimetro
 			Boolean bolResult;
 			bolResult = false;
 			String strMensaje = "";
-			ClaseComun.ValidarFormulario(Clases.clsBD.BD, tbl_seccion, ref bolResult, ref strMensaje);
+			ClaseComun.ValidarFormulario(ClaseGeneral.Conexion, tbl_seccion, ref bolResult, ref strMensaje);
 			if(!String.IsNullOrEmpty( strMensaje)){
 				classFuncionesGenerales.mensajes.MensajeError(strMensaje);
 				Cursor = Cursors.Default;
@@ -102,7 +102,7 @@ namespace ControlDosimetro
 				if (btn_Grabar.Text == "Modificar")
 				{
 
-					ClaseComun.Modificar(Clases.clsBD.BD, tbl_seccion, ref bolResult);
+					ClaseComun.Modificar(ClaseGeneral.Conexion, tbl_seccion, ref bolResult);
 					if (bolResult == true)
 					{
 
@@ -112,7 +112,7 @@ namespace ControlDosimetro
 				}
 				else
 				{
-					ClaseComun.Insertar(Clases.clsBD.BD, tbl_seccion, ref bolResult);
+					ClaseComun.Insertar(ClaseGeneral.Conexion, tbl_seccion, ref bolResult);
 					if (bolResult == true)
 					{
 						//  MessageBox.Show("Dato Guardado");

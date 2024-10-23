@@ -16,6 +16,7 @@ using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using NPOI.HSSF.UserModel;
 using DocumentFormat.OpenXml.Spreadsheet;
+using ControlDosimetro;
 
 
 namespace classFuncionesGenerales
@@ -307,7 +308,7 @@ namespace classFuncionesGenerales
 
 			cmd.CommandType = CommandType.StoredProcedure;
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			return dt;
 		}

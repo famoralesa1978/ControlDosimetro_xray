@@ -51,7 +51,7 @@ namespace ControlDosimetro
 			cmdArchivo.CommandText = "" +
 				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=7 order by orden ";
 			cmdArchivo.CommandType = CommandType.Text;
-			dtformato = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
+			dtformato = Conectar.Listar(ClaseGeneral.Conexion, cmdArchivo);
 			// string targetPath = @ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text;
 			string targetPath = @dtformato.Tables[0].Rows[0]["Glosa"].ToString();
 			reportViewer1.LocalReport.ReportEmbeddedResource = "ControlDosimetro.reporte." + NombreReporte;
@@ -77,7 +77,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "rtpClientePorPersonal '" + intCliente.ToString() + "'";
 			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			return dt;
 
@@ -94,7 +94,7 @@ namespace ControlDosimetro
 			cmd.Parameters.Add("@Id_Comuna", SqlDbType.Int);
 			cmd.Parameters["@Id_Comuna"].Value = string.IsNullOrWhiteSpace(cbxComuna.SelectedValue.ToString())?null: cbxComuna.SelectedValue;
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			return dt;
 
@@ -105,7 +105,7 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = "ddl_Comuna";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			return dt;
 

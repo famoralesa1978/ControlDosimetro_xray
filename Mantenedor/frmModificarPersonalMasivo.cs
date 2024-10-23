@@ -74,7 +74,7 @@ namespace ControlDosimetro
 			cmd.Parameters["@IdCliente"].Value = txt_N_cliente.Text;
 			cmd.Parameters.Add("@Rut", SqlDbType.VarChar, 11);
 			cmd.Parameters["@Rut"].Value = txt_Rut.Text;
-			dtPersonal = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dtPersonal = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (dtPersonal != null)
 				grdDatos.DataSource = dtPersonal.Tables[0].DefaultView;
 			btnDescargarExcel.Enabled = true;
@@ -102,7 +102,7 @@ namespace ControlDosimetro
 		private void Cargar_CodServicio()
 		{
 			ComboBox cb = new ComboBox();
-			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref cb, 16);
+			ClaseComun.Listar_Parametro(ClaseGeneral.Conexion, ref cb, 16);
 
 			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns[ColServicio.Index] as DataGridViewComboBoxColumn;
 
@@ -157,7 +157,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;
 
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			if (dt.Tables[0].Rows.Count > 0)
 			{
@@ -578,7 +578,7 @@ namespace ControlDosimetro
 				
 						cmd.CommandType = CommandType.StoredProcedure;
 						string strMensajeError = "";
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensajeError);
+						Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd, ref strMensajeError);
 					}
 
 				}

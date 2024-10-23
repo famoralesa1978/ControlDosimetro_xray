@@ -42,7 +42,7 @@ namespace ControlDosimetro.Herramientas
             //                "  FROM tbl_cliente WHERE Id_cliente= " + intCodCliente.ToString();
             //DataSet dt;
 
-            //dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+            //dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
             //if (dt.Tables[0].Rows.Count > 0)
             //{
             //    lbl_id_cliente.Text = intCodCliente.ToString();

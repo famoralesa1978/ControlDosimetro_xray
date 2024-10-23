@@ -80,7 +80,7 @@ namespace ControlDosimetro
 				SqlCommand cmd = new SqlCommand();
 				cmd.CommandText = "pa_Permiso_Del " + currentRow[ConfGrilla.id.ToString()].ToString();
 				cmd.CommandType = CommandType.Text;
-				Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+				Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 
 				//foreach (DataRow dr in ((DataTable)grdDatos.DataSource).GetChanges(DataRowState.Modified).Rows){
 
@@ -95,7 +95,7 @@ namespace ControlDosimetro
 					{
 						cmd.CommandText = "pa_Permiso_Ins " + currentRow[ConfGrilla.id.ToString()].ToString() + "," + row[(int)ConfGrillaDetalle.idmenu] + "," + row[(int)ConfGrillaDetalle.Acceso] + "," + row[(int)ConfGrillaDetalle.Lectura] + "," + row[(int)ConfGrillaDetalle.Nuevo] + "," + row[(int)ConfGrillaDetalle.Modificacion] + "," + row[(int)ConfGrillaDetalle.Eliminar];
 						cmd.CommandType = CommandType.Text;
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+						Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 					}
 				}
 
@@ -111,7 +111,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;
 
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			dgvGrilla.DataSource = dt.Tables[0];
 		}
@@ -126,7 +126,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;
 
 			DataSet dtDet;
-			dtDet = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dtDet = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			dgvDetalle.DataSource = dtDet.Tables[0];
 		}

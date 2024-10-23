@@ -76,7 +76,7 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = "pa_ListarReporte_Sel " + Id_Menu.ToString();
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (dt == null)
 				tsdReporte.Visible = false;
 			else
@@ -115,8 +115,8 @@ namespace ControlDosimetro
 
 		private void Cargar_Estado()
 		{
-			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_id_estado_Buscar, ref cbx_id_estado_Buscar);
-			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_id_estado, ref cbx_id_estado);
+			ClaseComun.Listar_Estado(ClaseGeneral.Conexion, ref cbx_id_estado_Buscar, ref cbx_id_estado_Buscar);
+			ClaseComun.Listar_Estado(ClaseGeneral.Conexion, ref cbx_id_estado, ref cbx_id_estado);
 		}
 
 		private void LimpiarFormulario()
@@ -133,7 +133,7 @@ namespace ControlDosimetro
 			bolResult = false;
 			string strMensaje = "";
 
-			ClaseComun.ValidarFormulario(Clases.clsBD.BD, tbl_seccion, ref bolResult, ref strMensaje);
+			ClaseComun.ValidarFormulario(ClaseGeneral.Conexion, tbl_seccion, ref bolResult, ref strMensaje);
 			if (!String.IsNullOrEmpty( strMensaje))
 			{
 				classFuncionesGenerales.mensajes.MensajeError(strMensaje);
@@ -144,7 +144,7 @@ namespace ControlDosimetro
 			{
 				if ((tssEstado.Text == "Nuevo") && (txt_id_seccion.Text == "0"))
 				{
-					ClaseComun.Insertar(Clases.clsBD.BD, tbl_seccion, ref bolResult);
+					ClaseComun.Insertar(ClaseGeneral.Conexion, tbl_seccion, ref bolResult);
 					if (bolResult == true)
 					{
 						CargarGrilla(Id_Cliente);
@@ -154,7 +154,7 @@ namespace ControlDosimetro
 				else
 				if (tssEstado.Text == "Modificar")
 				{
-					ClaseComun.Modificar(Clases.clsBD.BD, tbl_seccion, ref bolResult);
+					ClaseComun.Modificar(ClaseGeneral.Conexion, tbl_seccion, ref bolResult);
 					if (bolResult == true)
 					{
 						CargarGrilla(Id_Cliente);
@@ -172,7 +172,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;
 
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			dgvGrilla.DataSource = dt.Tables[0];
 
@@ -252,7 +252,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;
 
 			DataSet dt1;
-			dt1 = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt1 = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			if ((dt1.Tables[0].Rows.Count>0)&&((int)cbx_id_estado.SelectedValue==0))
 			{
@@ -305,7 +305,7 @@ namespace ControlDosimetro
 				cmd.CommandType = CommandType.Text;
 
 				DataSet dt1;
-				dt1 = Conectar.Listar(Clases.clsBD.BD, cmd);
+				dt1 = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 				MessageBox.Show(dt1.Tables[0].Rows[0][1].ToString());
 				if (dt1.Tables[0].Rows[0][0].ToString() == "0")

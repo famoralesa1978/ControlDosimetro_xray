@@ -51,7 +51,7 @@ namespace ControlDosimetro
                     cmd.CommandText = "SELECT  requerido, validacion " +
                                         " FROM glo_configuracioncampo WHERE campo= '" + strname.Replace("txt_", "") + "'";
 
-                    dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+                    dt = Conectar.Listar(ClaseGeneral.Conexion,cmd);
                     if (dt.Tables[0].Rows.Count == 0)
                         ((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
                     else
@@ -88,7 +88,7 @@ namespace ControlDosimetro
             //    {
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "pa_RestablecercontrasenaCliente_upd '" + txt_run.Text +"','" + txt_Clave.Text + "'";
-            DataSet ds=Conectar.Listar(Clases.clsBD.BD, cmd);
+            DataSet ds=Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
             if(ds != null)
             {
@@ -100,7 +100,7 @@ namespace ControlDosimetro
                     };
                     DataSet dt;
 
-                    dt = Conectar.Listar(Clases.clsBD.BD, cmd1);
+                    dt = Conectar.Listar(ClaseGeneral.Conexion, cmd1);
                     if (dt.Tables[0].Rows.Count > 0)
                     {
                         RichTextBox rtbCuerpo = new RichTextBox();
@@ -147,7 +147,7 @@ namespace ControlDosimetro
                            " SELECT run,Razon_Social,Email " +
                            " FROM tbl_cliente_Historial WHERE run= '" + txt_run.Text + "'";
                     DataSet dt;
-                    dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+                    dt = Conectar.Listar(ClaseGeneral.Conexion,cmd);
 
                     if (dt != null)
                     {

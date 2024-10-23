@@ -44,7 +44,7 @@ namespace ControlDosimetro
 			{
 				btn_Grabar.Text = "Grabar";
 				this.Text = "Agregar Personal";
-				cbx_id_estado.Enabled = false;
+				//cbx_id_estado.Enabled = false;
 				dtp_fecha_termino.Enabled = false;
 				dtp_fecha_termino.Text = "01/01/1900";
 				lbl_Id_Personal.Text = "0";
@@ -75,7 +75,7 @@ namespace ControlDosimetro
 
 		private void Cargar_Estado()
 		{
-			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_id_estado, ref cbx_id_estado);
+			ClaseComun.Listar_Estado(ClaseGeneral.Conexion, ref cbx_id_estado, ref cbx_id_estado);
 		}
 
 		private void Cargar_Cliente(Int64 intCodCliente)
@@ -86,7 +86,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "SELECT run,Razon_Social,N_Cliente_Ref,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
 							" FROM tbl_cliente WHERE Id_cliente= " + intCodCliente.ToString();
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			lbl_id_cliente.Text = intCodCliente.ToString();
 			lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
@@ -98,7 +98,7 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = String.Format("pa_ListarPersonalSucursal {0},'{1}',{2}", lbl_id_cliente.Text,run, idPersonal);
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			((ListBox)chkLista).DataSource = dt.Tables[0];
 			((ListBox)chkLista).DisplayMember = "Direccion";
@@ -122,7 +122,7 @@ namespace ControlDosimetro
 													"  fecha_nac, isnull(Id_CodServicio,8) as Id_CodServicio, isnull(Id_Practica,0) as Id_Practica, isnull(Id_Cargo,0) as Id_Cargo " +
 							" FROM tbl_personal WHERE Id_Personal= " + intCodpersonal.ToString() + " and rut_cliente='" + lbl_rut_cliente.Text + "'";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			cbx_Id_Cargo.SelectedValue = dt.Tables[0].Rows[0]["Id_Cargo"].ToString();
 			cbx_Id_Practica.SelectedValue = dt.Tables[0].Rows[0]["Id_Practica"].ToString();
@@ -161,7 +161,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "SELECT top 1 Id_Personal,id_cliente,Id_Cargo,Id_Practica,rut_cliente,Rut,Nombres,Paterno,Id_CodServicio,Fecha_Nac,Maternos,Id_Seccion,Id_profesion,Id_estado,Fecha_inicio,fecha_termino,Usuario,Fecha_agregado,GETDATE()as Fecha_Modificacion,id_sexo " +
 											" FROM tbl_personal WHERE  Rut='" + strRut + "'";//  and rut_cliente = '" + lbl_rut_cliente.Text + "' and id_cliente=" + lbl_id_cliente.Text + " and id_estado=1";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			if (dt.Tables[0].Rows.Count > 0)
 			{
@@ -274,7 +274,7 @@ namespace ControlDosimetro
 
 			cmd.CommandText = "select id_profesion, cast(orden as  varchar(max))+'-'+Profesion as Profesion,orden FROM glo_profesion order by Profesion";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			cbx_id_profesion.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
 			cbx_id_profesion.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_id_profesion.DataSource = dt.Tables[0];
@@ -289,19 +289,19 @@ namespace ControlDosimetro
 
 		private void Cargar_CodServicio()
 		{
-			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref cbx_Id_CodServicio, 16);
+			ClaseComun.Listar_Parametro(ClaseGeneral.Conexion, ref cbx_Id_CodServicio, 16);
 		}
 		private void Cargar_Practica()
 		{
-			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref cbx_Id_Practica, 17);
+			ClaseComun.Listar_Parametro(ClaseGeneral.Conexion, ref cbx_Id_Practica, 17);
 		}
 		private void Cargar_Cargo()
 		{
-			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref cbx_Id_Cargo, 18);
+			ClaseComun.Listar_Parametro(ClaseGeneral.Conexion, ref cbx_Id_Cargo, 18);
 		}
 		private void Cargar_sexo()
 		{
-			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref cbx_id_sexo, 4);
+			ClaseComun.Listar_Parametro(ClaseGeneral.Conexion, ref cbx_id_sexo, 4);
 
 
 		}
@@ -324,7 +324,7 @@ namespace ControlDosimetro
 					cmd.CommandText = "SELECT  requerido, validacion " +
 											" FROM glo_configuracioncampo WHERE campo= '" + strname.Replace("txt_", "") + "'";
 
-					dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+					dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 					if (dt.Tables[0].Rows.Count == 0)
 						((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 					else
@@ -414,7 +414,7 @@ namespace ControlDosimetro
 			if (btn_Grabar.Text == "Modificar")
 			{
 
-				ClaseComun.Modificar(Clases.clsBD.BD, tbl_personal, ref bolResult);
+				ClaseComun.Modificar(ClaseGeneral.Conexion, tbl_personal, ref bolResult);
 				if (bolResult == true)
 				{
 					GrabarSucursal();
@@ -442,7 +442,7 @@ namespace ControlDosimetro
 				SqlCommand cmd = new SqlCommand();
 				cmd.CommandText = String.Format("pa_ValidarPersonal '{0}','{1}',{2}", txt_rut.Text, run, lbl_id_cliente.Text);
 
-				DataSet dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+				DataSet dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 				if ((bool)dt.Tables[0].Rows[0]["Existe"])
 				{
@@ -451,7 +451,7 @@ namespace ControlDosimetro
 				}
 				
 
-				ClaseComun.Insertar(Clases.clsBD.BD, tbl_personal, ref bolResult);
+				ClaseComun.Insertar(ClaseGeneral.Conexion, tbl_personal, ref bolResult);
 				if (bolResult == true)
 				{
 					GrabarSucursal();
@@ -468,7 +468,7 @@ namespace ControlDosimetro
 			cmd.CommandText = String.Format("PersonalSucursalUpd {0},'{1}','{2}',{3},'{4}'", 
 																			lbl_id_cliente.Text,run, txt_rut.Text, lbl_Id_Personal.Text, xmlSucursal());
 			cmd.CommandType = CommandType.Text;
-			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+			Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 		}
 		private string xmlSucursal()
 		{
@@ -540,7 +540,7 @@ namespace ControlDosimetro
 
 			if(ValidacionFormulario())
 			{
-				if (!ClaseComun.ValidarFormulario(Clases.clsBD.BD, tbl_personal, ref bolResult, ref strMensaje))
+				if (!ClaseComun.ValidarFormulario(ClaseGeneral.Conexion, tbl_personal, ref bolResult, ref strMensaje))
 				{
 					Cursor = Cursors.Default;
 					classFuncionesGenerales.mensajes.MensajeError(strMensaje);

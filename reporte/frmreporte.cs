@@ -27,7 +27,7 @@ namespace ControlDosimetro
 		public frmreporte(DataSet ds, DataSet ds2, int caseSwitch)
 		{
 			InitializeComponent();
-			// dt = ClaseComun.RptDosimetria(Clases.clsBD.BD,Convert.ToInt64(txt_NumeroCliente.Text), 0, "0", intanno);
+			// dt = ClaseComun.RptDosimetria(ClaseGeneral.Conexion,Convert.ToInt64(txt_NumeroCliente.Text), 0, "0", intanno);
 			Llamado_reporte2Dataset(ds, ds2, caseSwitch);
 
 		}
@@ -52,7 +52,7 @@ namespace ControlDosimetro
 			cmdArchivo.CommandText = "" +
 			  "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=7 order by orden ";
 			cmdArchivo.CommandType = CommandType.Text;
-			dtformato = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
+			dtformato = Conectar.Listar(ClaseGeneral.Conexion, cmdArchivo);
 			// string targetPath = @ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text;
 			string targetPath = @dtformato.Tables[0].Rows[0]["Glosa"].ToString();
 			switch (caseSwitch)

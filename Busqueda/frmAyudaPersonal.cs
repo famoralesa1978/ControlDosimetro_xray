@@ -63,7 +63,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;
 
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			if (dt.Tables[0].Rows.Count == 0)
 			{
@@ -106,7 +106,7 @@ namespace ControlDosimetro
 						 " order by Nombres,Paterno,Maternos";
 			cmd.CommandType = CommandType.Text;
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			grdDatos.DataSource = dt.Tables[0];
 
 			if (dt.Tables[0].Rows.Count == 0)

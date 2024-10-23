@@ -58,7 +58,7 @@ namespace ControlDosimetro
 			cmdcombo.CommandText = "select 0 as Id_DetParametro, 'Seleccione' as Glosa, 0 as orden union all " +
 				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 order by orden ";
 			cmdcombo.CommandType = CommandType.Text;
-			dtcombo = Conectar.Listar(Clases.clsBD.BD, cmdcombo);
+			dtcombo = Conectar.Listar(ClaseGeneral.Conexion, cmdcombo);
 			AsignarPermiso();
 			Cargar_Reporte();
 			Cargar_Propiedades();
@@ -101,7 +101,7 @@ namespace ControlDosimetro
 											" WHERE Id_cliente= " + intCodCliente.ToString();
 			DataSet dt;
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (dt.Tables[0].Rows.Count > 0)
 			{
 				lbl_id_cliente.Text = intCodCliente.ToString();
@@ -132,7 +132,7 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = "pa_ListarReporte_Sel " + Id_Menu.ToString();
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (dt == null)
 				tsdReporte.Visible = false;
 			else
@@ -184,7 +184,7 @@ namespace ControlDosimetro
 				SqlCommand cmd = new SqlCommand();
 				cmd.CommandText = "CambiarDatosCliente " + intIdCliente.ToString() + ",'" + txt_rut_nvo.Text + "','" + txt_razsocial_nvo.Text + "'";
 				cmd.CommandType = CommandType.Text;
-				DataSet ds= Conectar.Listar(Clases.clsBD.BD, cmd);
+				DataSet ds= Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 				if(ds != null)
 				{

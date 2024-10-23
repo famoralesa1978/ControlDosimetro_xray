@@ -42,7 +42,7 @@ namespace ControlDosimetro
 
 		private void Cargar_Departamento()
 		{
-			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref cbx_Id_Depto, 19);
+			ClaseComun.Listar_Parametro(ClaseGeneral.Conexion, ref cbx_Id_Depto, 19);
 		}
 
 		private void Cargar()
@@ -52,7 +52,7 @@ namespace ControlDosimetro
 				CommandText = "  SELECT [Desde] , [Credencial],[Clave],[Host],[Port]  FROM [dbo].[conf_Correo] where Id_Depto=" + cbx_Id_Depto.SelectedValue
 			};
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			txt_Desde.Text = dt.Tables[0].Rows[0]["Desde"].ToString();
 			txt_Host.Text = dt.Tables[0].Rows[0]["Host"].ToString();
@@ -104,7 +104,7 @@ namespace ControlDosimetro
 			Boolean bolResult;
 			bolResult = false;
 
-			ClaseComun.Modificar(Clases.clsBD.BD, conf_Correo, ref bolResult);
+			ClaseComun.Modificar(ClaseGeneral.Conexion, conf_Correo, ref bolResult);
 			if (bolResult == true)
 			{
 

@@ -60,34 +60,34 @@ namespace Clases
             //new Libreria.ClsErrores(Error,menu ,n_errorm);
         }
 
-        ///// <summary>
-        ///// Creo archivos txt para gudardar los errores que provoque la App.
-        ///// </summary>
-        ///// <param name="err"></param>
-        //private void ErroresCreaArchivos(Err err)
-        //{
-        //    //Creo directorio para los errores
-        //    var Carpeta = Directorios.CreaDirectorios(0);
-        //    var Archivo = Carpeta + "\\" + err.Usuario + "_" + DateTime.Now.ToString("yyyyMMdd").ToString() + ".txt";
-        //    if (!File.Exists(Archivo)) File.Create(Archivo).Close();
-        //    File.AppendAllLines(Archivo, new String[] { err.Usuario + "; " + err.Menu.ToString() + "; " + err.VersionApp + "; " + err.Mensaje + "; " + err.Fecha });
-        //}
+		///// <summary>
+		///// Creo archivos txt para gudardar los errores que provoque la App.
+		///// </summary>
+		///// <param name="err"></param>
+		//private void ErroresCreaArchivos(Err err)
+		//{
+		//    //Creo directorio para los errores
+		//    var Carpeta = Directorios.CreaDirectorios(0);
+		//    var Archivo = Carpeta + "\\" + err.Usuario + "_" + DateTime.Now.ToString("yyyyMMdd").ToString() + ".txt";
+		//    if (!File.Exists(Archivo)) File.Create(Archivo).Close();
+		//    File.AppendAllLines(Archivo, new String[] { err.Usuario + "; " + err.Menu.ToString() + "; " + err.VersionApp + "; " + err.Mensaje + "; " + err.Fecha });
+		//}
 
-        ///// <summary>
-        ///// Guardo los errores en la BD.
-        ///// </summary>
-        ///// <param name="err"></param>
-        //private void ErroresGuardarEnBD(Err err)
-        //{
-        //    //SqlCommand cmd = new SqlCommand();
-        //    //cmd.CommandText = "PA_GES_ERRORES_INSERTAR '" + err.Usuario + "'," +
-        //    //                                    err.Menu + ",'" +
-        //    //                                    err.VersionApp + "','" +
-        //    //                                    err.Mensaje + "','" +
-        //    //                                    err.Fecha + "'";
-        //    //cmd.CommandType = CommandType.Text;
+		///// <summary>
+		///// Guardo los errores en la BD.
+		///// </summary>
+		///// <param name="err"></param>
+		//private void ErroresGuardarEnBD(Err err)
+		//{
+		//    //SqlCommand cmd = new SqlCommand();
+		//    //cmd.CommandText = "PA_GES_ERRORES_INSERTAR '" + err.Usuario + "'," +
+		//    //                                    err.Menu + ",'" +
+		//    //                                    err.VersionApp + "','" +
+		//    //                                    err.Mensaje + "','" +
+		//    //                                    err.Fecha + "'";
+		//    //cmd.CommandType = CommandType.Text;
 
-        //    //Conectar.Listar(Clases.clsBD.BD, cmd);
-        //}
-    }
+		//    //Conectar.Listar(ClaseGeneral.Conexion, cmd);
+		//}
+	}
 }

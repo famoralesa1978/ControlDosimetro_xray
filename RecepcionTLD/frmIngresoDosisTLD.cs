@@ -38,7 +38,7 @@ namespace ControlDosimetro
 			cmdcombo.CommandText = "select 0 as Id_DetParametro, 'Seleccione' as Glosa, 0 as orden union all " +
 				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 order by orden ";
 			cmdcombo.CommandType = CommandType.Text;
-			dtcombo = Conectar.Listar(Clases.clsBD.BD, cmdcombo);
+			dtcombo = Conectar.Listar(ClaseGeneral.Conexion, cmdcombo);
 
 			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns["Estado"] as DataGridViewComboBoxColumn;
 			//
@@ -65,7 +65,7 @@ namespace ControlDosimetro
 			cmd.CommandText = String.Format("pa_IngresoDosis_sel {0}", strcadena);//
 			cmd.CommandType = CommandType.Text;
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			grdDatos.DataSource = dt.Tables[0];
 
 			string filterExp = "controlado = 1";
@@ -124,7 +124,7 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			// SqlCommand cmd = new SqlCommand();
 
-			// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
+			// dtcombo = Conectar.Listar(ClaseGeneral.Conexion,cmdcombo);
 			DataGridViewCheckBoxCell checkCell;
 			DataGridViewCheckBoxCell chkcondosis;
 			DataGridViewTextBoxCell txtvalor;
@@ -215,7 +215,7 @@ namespace ControlDosimetro
 					cmd.Parameters["@Cristal2"].Value = txtcristal2.Value.ToString();
 					cmd.Parameters.Add("@usuario", SqlDbType.VarChar, 30);
 					cmd.Parameters["@usuario"].Value = Clases.clsUsuario.Usuario;
-					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+					Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 				}
 
 				bolGrabar = true;

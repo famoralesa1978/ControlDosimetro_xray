@@ -72,7 +72,7 @@ namespace ControlDosimetro
               //pa_OrdenTrabajoPorFecha_sel
               cmd.CommandType = CommandType.Text;
 
-              dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+              dt = Conectar.Listar(ClaseGeneral.Conexion,cmd);
 
               grdDatos.DataSource = dt.Tables[0];
 
@@ -115,7 +115,7 @@ namespace ControlDosimetro
             SqlCommand cmd = new SqlCommand();
             //// SqlCommand cmd = new SqlCommand();
 
-            ////// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
+            ////// dtcombo = Conectar.Listar(ClaseGeneral.Conexion,cmdcombo);
 
             DataGridViewCheckBoxCell checkMarca;
           //  string strId;
@@ -131,7 +131,7 @@ namespace ControlDosimetro
             cmd.CommandText = "select isnull(max(n_orden),0) as N_orden from ges_OrdenTrabajo";
             cmd.CommandType = CommandType.Text;
             DataSet ds1 = new DataSet();
-            ds1=Conectar.Listar(Clases.clsBD.BD,cmd);
+            ds1=Conectar.Listar(ClaseGeneral.Conexion,cmd);
 
             int intN_Orden;
             if (ds1.Tables[0].Rows.Count == 0)
@@ -159,12 +159,12 @@ namespace ControlDosimetro
                                         "values(" + intN_Orden.ToString()  + ",'" + txtRazon_Social.Value + "','" + txtFechaOrdenTrabajo.Value + "','" + txtperiodo.Value + "','" + txtN_Dosimetro.Value + "','" + txtid.Value + "')";
                    cmd.CommandType = CommandType.Text;
 
-                   Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
+                   Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion,cmd);
 
 
                    cmd.CommandText = "pa_DosimetroOrdenTrabajo_upd " + intintId_Estado_temp.ToString() + ",'" + Clases.clsUsuario.Usuario + "','" + txtFechaOrdenTrabajo.Value + "','" + txtid.Value + "'";
                    cmd.CommandType = CommandType.Text;
-                   Conectar.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
+                   Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion,cmd);
 
 
                 }        
@@ -174,7 +174,7 @@ namespace ControlDosimetro
 
             cmd.CommandType = CommandType.Text;
 
-            dsrpt = Conectar.Listar(Clases.clsBD.BD,cmd);
+            dsrpt = Conectar.Listar(ClaseGeneral.Conexion,cmd);
             //rptOrdenTrabajo
             frmreporte frm = new frmreporte(dsrpt, ds1, 4);
             frm.Show(this);

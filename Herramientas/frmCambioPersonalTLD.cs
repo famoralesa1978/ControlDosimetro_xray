@@ -48,7 +48,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "pa_ListarDatosTLD_sel " + intNTLD.ToString();
 			DataSet dt;
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (dt.Tables[0].Rows.Count == 1)
 			{
 				lbl_NCliente.Text = dt.Tables[0].Rows[0]["Id_cliente"].ToString();
@@ -120,7 +120,7 @@ namespace ControlDosimetro
 			cmd.CommandText = String.Format("select P.Nombres + ' ' + P.Paterno + ' ' + P.Maternos  as NombreCompleto,P.Id_Personal " +
 									 " from tbl_personal P where id_cliente={0} and rut_cliente='{1}' order by P.Nombres + ' ' + P.Paterno + ' ' + P.Maternos", Id_Cliente, rut);
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			DataSet dtCopia;
 			dtCopia = dt.Copy();
 			cbx_PersonalActual.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -162,7 +162,7 @@ namespace ControlDosimetro
 
 			cmd.CommandText = String.Format("pa_CargarSucursalPorRun_Sel {0},'{1}'", lbl_NCliente.Text, lblRut.Text);
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			DataSet dtCopia = dt.Copy();
 
 			cbxDireccionActual.DataSource = dt.Tables[0];
@@ -188,7 +188,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;//pa_ModificarSeccionTLD_upd
 
 
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
 			{
 				MessageBox.Show("Error en actualizar la información");
@@ -211,7 +211,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;//pa_ModificarSeccionTLD_upd
 
 
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
 			{
 				MessageBox.Show("Error en actualizar la información");
@@ -229,7 +229,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;//pa_ModificarSeccionTLD_upd
 
 
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
 			{
 				MessageBox.Show("Error en actualizar la información");
@@ -272,7 +272,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.StoredProcedure;//
 
 
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
 			{
 				MessageBox.Show("Error en actualizar la información");
@@ -295,7 +295,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.StoredProcedure;
 
 
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
 			{
 				MessageBox.Show("Error en actualizar la información");
@@ -333,7 +333,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.StoredProcedure;
 
 
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
 			{
 				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
@@ -352,7 +352,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.StoredProcedure;
 
 
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
 			{
 				MessageBox.Show("Error en actualizar la información");
@@ -372,7 +372,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.StoredProcedure;
 
 
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
 			{
 				MessageBox.Show("Error en actualizar la información");
@@ -401,7 +401,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.StoredProcedure;
 
 
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString()) != 0)
 			{
 				MessageBox.Show("Error en actualizar la información");

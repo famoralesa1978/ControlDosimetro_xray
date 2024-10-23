@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Data.Sql;
 using System.Data;
 using System.Windows.Forms;
+using ControlDosimetro;
 
 namespace classFuncionesBD
 {
@@ -26,7 +27,7 @@ namespace classFuncionesBD
 
 			cmd.CommandText = "pa_CambiarEstado_upd " + NDoc + "," + NDos;
 			cmd.CommandType = CommandType.Text;
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			mensaje = ds.Tables[0].Rows[0][1].ToString();
 			return Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString());
@@ -39,7 +40,7 @@ namespace classFuncionesBD
 
 			cmd.CommandText = "pa_LiberarDosimetro_upd " + NDoc + "," + NDos;
 			cmd.CommandType = CommandType.Text;
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			mensaje = ds.Tables[0].Rows[0][1].ToString();
 			return Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString());
@@ -52,7 +53,7 @@ namespace classFuncionesBD
 
 			cmd.CommandText = "pa_CambiarEstadoTLD_upd " + NDoc + "," + NDos;
 			cmd.CommandType = CommandType.Text;
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			mensaje = ds.Tables[0].Rows[0][1].ToString();
 			return Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString());
@@ -69,7 +70,7 @@ namespace classFuncionesBD
 											"  FROM tbl_cliente c inner join [dbo].[glo_region] r on c.Id_Region=r.Id_Region inner join glo_comuna co on co.id_comuna=c.id_comuna" +
 											" WHERE Id_cliente= " + intCodCliente.ToString()
 		};
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			if (ds.Tables[0].Rows.Count > 0)
 			{
@@ -94,7 +95,7 @@ namespace classFuncionesBD
 			{
 				CommandText = "pa_ObtieneCliente_sel  " + intPeriodo.ToString() + "," + intCodCliente.ToString()
 			};
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			if (ds.Tables[0].Rows.Count > 0)
 			{
@@ -116,7 +117,7 @@ namespace classFuncionesBD
 			{
 				CommandText = "pa_ObtieneCliente_sel  " + intPeriodo.ToString() + "," + intCodCliente.ToString()
 			};
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			if (ds.Tables[0].Rows.Count > 0)
 			{
@@ -143,7 +144,7 @@ namespace classFuncionesBD
 
 				CommandText = "pa_ObtieneCliente_sel  " + intPeriodo.ToString() + "," + intCodCliente.ToString()
 			};
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			if (ds.Tables[0].Rows.Count > 0)
 			{
@@ -171,7 +172,7 @@ namespace classFuncionesBD
 
 				CommandText = "pa_ObtieneTipoPeriodo_sel "
 			};
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			cbx.ValueMember = ds.Tables[0].Columns[0].Caption.ToString();
 			cbx.DisplayMember = ds.Tables[0].Columns[1].Caption.ToString();
@@ -187,7 +188,7 @@ namespace classFuncionesBD
 
 				CommandText = "pa_ObtieneAnno_sel " + intTipoPeriodo.ToString()
 			};
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			cbx.ValueMember = ds.Tables[0].Columns[0].Caption.ToString();
 			cbx.DisplayMember = ds.Tables[0].Columns[0].Caption.ToString();
 			cbx.DataSource = ds.Tables[0];
@@ -202,7 +203,7 @@ namespace classFuncionesBD
 
 				CommandText = "pa_ObtienePeriodo_sel " + intTipoPeriodo.ToString() + "," + intAnno.ToString()
 			};
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			cbx.ValueMember = ds.Tables[0].Columns[0].Caption.ToString();
 			cbx.DisplayMember = ds.Tables[0].Columns[2].Caption.ToString();
@@ -218,7 +219,7 @@ namespace classFuncionesBD
 
 				CommandText = "pa_ObtieneTipoDocumento_sel "
 			};
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			cbx.ValueMember = ds.Tables[0].Columns[1].Caption.ToString();
 			cbx.DisplayMember = ds.Tables[0].Columns[0].Caption.ToString();
@@ -234,7 +235,7 @@ namespace classFuncionesBD
 
 				CommandText = "select Id_Estado,descripcion from glo_estado order by orden"
 			};
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			cbx.ValueMember = ds.Tables[0].Columns[0].Caption.ToString();
 			cbx.DisplayMember = ds.Tables[0].Columns[1].Caption.ToString();
@@ -250,7 +251,7 @@ namespace classFuncionesBD
 							" FROM tbl_seccion  WHERE Id_cliente= " + intId_Cliente.ToString() + " and id_estado=1"+
 							" ";
 			
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 
 			return dt;
@@ -264,7 +265,7 @@ namespace classFuncionesBD
 							 "		SELECT seccion,id_seccion " +
 							" FROM tbl_seccion  WHERE Id_cliente= " + intId_Cliente.ToString() + " and Run='" + run + "' and id_estado=1";
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 
 			return dt;
@@ -279,7 +280,7 @@ namespace classFuncionesBD
 							" FROM tbl_seccion  WHERE Id_cliente= " + intId_Cliente.ToString() + " and Run='" + run + "' and id_estado=1" +
 							" Order by id_seccion";
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 
 			return dt;
@@ -291,7 +292,7 @@ namespace classFuncionesBD
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = String.Format("pa_CargarSeccionRunPorPeriodoTLD_Sel {0},{1},'{2}',{3}" , intIdPeriodo, intId_Cliente, run, idDireccion);
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 
 			return dt;
@@ -303,7 +304,7 @@ namespace classFuncionesBD
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = String.Format("pa_CargarSeccionRunPorPeriodoFilmico_Sel {0},{1},'{2}',{3}", intIdPeriodo, intId_Cliente, run, idDireccion);
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 
 			return dt;
@@ -316,7 +317,7 @@ namespace classFuncionesBD
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = "pa_CargarSeccionPorRun_Sel " + intId_Cliente.ToString() + ",'" + run + "'";
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 
 			return dt;
@@ -328,7 +329,7 @@ namespace classFuncionesBD
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = "pa_CargarSeccionPorRun_Buscar " + intId_Cliente.ToString() + ",'" + run + "'";
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 
 			return dt;
@@ -340,7 +341,7 @@ namespace classFuncionesBD
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = String.Format("ListarEstadoTLD {0}", intMostrarTodo);
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 
 			return dt;
@@ -353,7 +354,7 @@ namespace classFuncionesBD
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = "pa_CargarSeccion_Sel " + intId_Cliente.ToString() + "";
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 
 			return dt;
@@ -368,7 +369,7 @@ namespace classFuncionesBD
 
 				CommandText = "pa_DescargarDocumento " + Id.ToString()
 			};
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			Convert = (byte[])ds.Tables[0].Rows[0]["Archivo"];
 		}
@@ -384,7 +385,7 @@ namespace classFuncionesBD
 			{
 				CommandText = "pa_CargarPermiso_Listar " + id_Perfil.ToString() +"," +id_Menu.ToString()
 			};
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			if(ds.Tables[0].Rows.Count>0)
 			{
@@ -411,7 +412,7 @@ namespace classFuncionesBD
 			{
 				CommandText = "BusClienteSucursal '" + strRut.ToString() + "'," + intIdCliente.ToString()
 			};
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (intEstado != 0)
 				ds.Tables[0].DefaultView.RowFilter = "Id_estado=" + intEstado.ToString();
 			else

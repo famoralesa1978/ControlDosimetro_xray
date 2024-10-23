@@ -1,43 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using dllConectorMysql;
 using dllLibreriaEvento;
-using dllLibreriaMysql;
 using System.Data.SqlClient;
-using System.Data.Sql;
 using System.Data;
-using NPOI.OpenXmlFormats.Shared;
 
 
 namespace ControlDosimetro
 {
-	public partial class frmLogin : Form
+	public partial class FrmLogin : Form
 	{
 		#region "Definicion variable"
-		clsConectorSqlServerV2 Conectar = new clsConectorSqlServerV2();
-		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-		clsEventoControl ClaseEvento = new clsEventoControl();
-		Color coColor;
-		dllLibreriaMysql.clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
+		private readonly clsConectorSqlServerV2 Conectar;
+		private readonly dllLibreriaMysql.clsUtiles clsUtiles1;
 
 		#endregion
 
-		public frmLogin()
+		public FrmLogin()
 		{
 			InitializeComponent();
-			coColor = frmLogin.DefaultBackColor;
 			this.labelVersion.Text = String.Format("Versión {0}", AssemblyVersion);
-			labelBD.Text = ClaseGeneral.Ambiente;
+
 			labelBD_Click(null, null);
-
+			Conectar = new clsConectorSqlServerV2();
+			clsUtiles1 = new dllLibreriaMysql.clsUtiles();
 		}
-
+		private void FrmLogin_Load(object sender, EventArgs e)
+		{
+			labelBD.Text = ClaseGeneral.Ambiente;
+			this.BackColor = ClaseGeneral.ColorAmbiente;
+		}
 		#region Descriptores de acceso de atributos de ensamblado
 
 		public string AssemblyTitle
@@ -151,7 +144,7 @@ namespace ControlDosimetro
 
 					string strSp = cmd.XSQLObtieneDatosParametro();
 
-					ds = Conectar.Listar("qbz4h7qjqno6UDISeyxTagzP8WL2RI9VHfd/l56YcLkZ1UdzuJNuXq3s7y9ZY3eq6QrxfamnP0GH0FDdEHA6bAWJdHonailm8a5b3eyUw5vuWLyX+mBmFPxKLHFVjRtYm0sjwb1KdqM=", cmd);//Clases.clsBD.BD
+					ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 					Cursor = Cursors.Default;
 					if (ds != null)
 					{
@@ -199,12 +192,12 @@ namespace ControlDosimetro
 
 		private void labelBD_Click(object sender, EventArgs e)
 		{
-			labelBD.Text = labelBD.Text == "Producción" ? "Desarrollo" : "Producción";
-			this.BackColor = labelBD.Text == "Producción" ? coColor : Color.Green;
-			string strbd = labelBD.Text == "Producción" ? "" : "Desarrollo";
-			this.Text = "Sistema de control dosimetro " + strbd;
-			//Clases.clsBD.BD = labelBD.Text == "Producción" ? "Prod1" : "Desarrollo";
-			Clases.clsBD.BD = labelBD.Text == "Producción" ? Clases.clsBD.strConexionProd : Clases.clsBD.strConexionDes;
+			//labelBD.Text = labelBD.Text == "Producción" ? "Desarrollo" : "Producción";
+			//this.BackColor = labelBD.Text == "Producción" ? coColor : Color.Green;
+			//string strbd = labelBD.Text == "Producción" ? "" : "Desarrollo";
+			//this.Text = "Sistema de control dosimetro " + strbd;
+			////ClaseGeneral.Conexion = labelBD.Text == "Producción" ? "Prod1" : "Desarrollo";
+			//ClaseGeneral.Conexion = labelBD.Text == "Producción" ? Clases.clsBD.strConexionProd : Clases.clsBD.strConexionDes;
 		}
 		private void tsbEnviarLog_Click(object sender, EventArgs e)
 		{
@@ -212,6 +205,7 @@ namespace ControlDosimetro
 			ClaseGeneral.MensajeAdministradorCorreo.XCORREOEnviarCorreoAdministrador();
 			Cursor = Cursors.Default;
 		}
+
 
 		#endregion
 

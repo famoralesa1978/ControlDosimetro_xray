@@ -87,7 +87,7 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = "pa_ListarReporte_Sel " + Id_Menu.ToString();
 			DataSet dt;
-			dt = null; // Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = null; // Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (dt == null)
 				tsdReporte.Visible = false;
 			else
@@ -184,7 +184,7 @@ namespace ControlDosimetro
 			bolResult = false;
 			string strMensaje="";
 
-			ClaseComun.ValidarFormulario(Clases.clsBD.BD, GES_VERSIONES_SISTEMA, ref bolResult,ref strMensaje);
+			ClaseComun.ValidarFormulario(ClaseGeneral.Conexion, GES_VERSIONES_SISTEMA, ref bolResult,ref strMensaje);
 			if (!bolResult)
 			{
 				classFuncionesGenerales.mensajes.MensajeError(strMensaje);
@@ -195,7 +195,7 @@ namespace ControlDosimetro
 			{
 				if (tssEstado.Text == "Nuevo")
 				{
-					ClaseComun.Insertar(Clases.clsBD.BD, GES_VERSIONES_SISTEMA, ref bolResult);
+					ClaseComun.Insertar(ClaseGeneral.Conexion, GES_VERSIONES_SISTEMA, ref bolResult);
 					if (bolResult == true)
 					{
 						CargarGrilla();
@@ -205,7 +205,7 @@ namespace ControlDosimetro
 				else
 				if (tssEstado.Text == "Modificar")
 				{
-					ClaseComun.Modificar(Clases.clsBD.BD, GES_VERSIONES_SISTEMA, ref bolResult);
+					ClaseComun.Modificar(ClaseGeneral.Conexion, GES_VERSIONES_SISTEMA, ref bolResult);
 					if (bolResult == true)
 					{
 						CargarGrilla();
@@ -338,7 +338,7 @@ namespace ControlDosimetro
 			//	cmd.CommandType = CommandType.Text;
 			//
 			//	DataSet dt1;
-			//	dt1 = Conectar.Listar(Clases.clsBD.BD, cmd);
+			//	dt1 = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			//
 			//	MessageBox.Show(dt1.Tables[0].Rows[0][1].ToString());
 			//	if (dt1.Tables[0].Rows[0][0].ToString() == "0")

@@ -65,7 +65,7 @@ namespace ControlDosimetro
 			cmd.CommandText = String.Format("pa_ConsultaDatosTLD_sel {0}", String.IsNullOrEmpty(txt_NTLD.Text) ? "0" : txt_NTLD.Text);
 			DataSet dt;
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (dt.Tables[0].Rows.Count == 1)
 			{
 				lblDirección.Text = dt.Tables[0].Rows[0]["Direccion"].ToString();
@@ -116,7 +116,7 @@ namespace ControlDosimetro
 				cmd.CommandType = CommandType.Text;
 
 
-				ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+				ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 				if (Convert.ToInt16(ds.Tables[0].Rows[0][1].ToString()) == 0)
 				{
 					MessageBox.Show("Error en eliminar la información");

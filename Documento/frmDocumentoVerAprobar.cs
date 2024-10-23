@@ -87,7 +87,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "pa_ListadoPorDocumento " + cbx_Anno.SelectedValue + "," + strIdCliente;
 
 			cmd.CommandType = CommandType.Text;
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			dt = ds.Tables[0];
 
 		}
@@ -154,7 +154,7 @@ namespace ControlDosimetro
 
 			cmd.CommandText = "pa_DocumentoAprobarUpd '" + strMarcado + "','" + strDesmarcado + "'";
 			cmd.CommandType = CommandType.Text;
-			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+			Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 			Listar_Grilla();
 			Cursor = Cursors.Default;
 			MessageBox.Show("Informacion grabada");
@@ -239,7 +239,7 @@ namespace ControlDosimetro
 
 							cmd.CommandType = CommandType.Text;
 
-							Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+							Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 
 							CargarDt();
 							Listar_Grilla();

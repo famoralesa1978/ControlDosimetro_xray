@@ -39,7 +39,7 @@ namespace ControlDosimetro
 			cmdcombo.CommandText = "select 0 as Id_DetParametro, 'Seleccione' as Glosa, 0 as orden union all " +
 				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 order by orden ";
 			cmdcombo.CommandType = CommandType.Text;
-			dtcombo = Conectar.Listar(Clases.clsBD.BD, cmdcombo);
+			dtcombo = Conectar.Listar(ClaseGeneral.Conexion, cmdcombo);
 
 			DataGridViewComboBoxColumn comboboxColumn = grdDatos.Columns["Observación"] as DataGridViewComboBoxColumn;
 			//
@@ -65,7 +65,7 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "',' " + this.Text + "'";
 			cmd.CommandType = CommandType.Text;
-			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+			Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 
 			lbl_nombreCliente.Text = "";
 			txt_CodCliente.Focus();
@@ -95,7 +95,7 @@ namespace ControlDosimetro
 							" FROM tbl_cliente WHERE Id_cliente= " + txt_CodCliente.Text;
 			DataSet dt;
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (dt.Tables[0].Rows.Count > 0)
 				lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
 			else
@@ -121,7 +121,7 @@ namespace ControlDosimetro
 
 			cmd.CommandType = CommandType.Text;
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			grdDatos.DataSource = dt.Tables[0];
 			btn_Guardar.Enabled = dt.Tables[0].Rows.Count > 0 ? true : false;
 
@@ -151,7 +151,7 @@ namespace ControlDosimetro
 
 			cmd.CommandType = CommandType.Text;
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			grdDatos.DataSource = dt.Tables[0];
 
@@ -172,7 +172,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "SELECT distinct Anno FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			cbx_anno.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			cbx_anno.DataSource = dt.Tables[0];
@@ -224,7 +224,7 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			// SqlCommand cmd = new SqlCommand();
 
-			//// dtcombo = Conectar.Listar(Clases.clsBD.BD,cmdcombo);
+			//// dtcombo = Conectar.Listar(ClaseGeneral.Conexion,cmdcombo);
 
 			DataGridViewCheckBoxCell checkMarca;
 			string strId;
@@ -251,7 +251,7 @@ namespace ControlDosimetro
 						cmd.CommandText = "pa_DosimetroRecepcionTLD_upd " + strId + ",1,'" + Clases.clsUsuario.Usuario + "','" + txt_Observacion.Text + "'" + ",'" + txtFechaRecepcion.Value + "',0";
 
 					cmd.CommandType = CommandType.Text;
-					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+					Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 				}
 				else
 				{
@@ -263,7 +263,7 @@ namespace ControlDosimetro
 							cmd.CommandText = "pa_DosimetroNoRecepcionTLD_upd " + strId + ",'" + Clases.clsUsuario.Usuario + "','" + txtFechaRecepcion.Value + "','" + txt_Observacion.Text + "'," + txtObservacionid.Value.ToString() + "";
 
 						cmd.CommandType = CommandType.Text;
-						Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+						Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 					}
 				}//
 
@@ -458,7 +458,7 @@ namespace ControlDosimetro
 					CommandText = String.Format("CargarClientePorRun '{0}',{1}", (!bolDesdeLimpiar ? lbl_rut_cliente.Text : "0"), (!bolDesdeLimpiar ? txt_CodCliente.Text : "-1"))
 				};
 				DataSet dt;
-				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+				dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 				if (dt != null)
 				{
@@ -486,7 +486,7 @@ namespace ControlDosimetro
 						CommandText = String.Format("CargarClientePorRun '{0}',{1}", (!bolDesdeLimpiar ? lbl_rut_cliente.Text : "0"), (!bolDesdeLimpiar ? txt_CodCliente.Text : "-1"))
 					};
 					DataSet dt;
-					dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+					dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 					if (dt != null)
 					{

@@ -265,17 +265,17 @@ namespace ControlDosimetro
 		#region "Llamada de carga"  
 		private void Cargar_Region()
 		{
-			ClaseComun.Listar_Region(Clases.clsBD.BD, ref ddlIdRegion, ref ddlIdRegion);
+			ClaseComun.Listar_Region(ClaseGeneral.Conexion, ref ddlIdRegion, ref ddlIdRegion);
 		}
 
 		private void Cargar_Provincia()
 		{
-			ClaseComun.Listar_Provincia(Clases.clsBD.BD, ref ddlIdProvincia, ref ddlIdProvincia, Convert.ToInt16(ddlIdRegion.SelectedValue));
+			ClaseComun.Listar_Provincia(ClaseGeneral.Conexion, ref ddlIdProvincia, ref ddlIdProvincia, Convert.ToInt16(ddlIdRegion.SelectedValue));
 		}
 
 		private void Cargar_Comuna()
 		{
-			ClaseComun.Listar_Comuna(Clases.clsBD.BD, ref ddlIdComuna, ref ddlIdComuna, Convert.ToInt16(ddlIdRegion.SelectedValue), Convert.ToInt16(ddlIdProvincia.SelectedValue));
+			ClaseComun.Listar_Comuna(ClaseGeneral.Conexion, ref ddlIdComuna, ref ddlIdComuna, Convert.ToInt16(ddlIdRegion.SelectedValue), Convert.ToInt16(ddlIdProvincia.SelectedValue));
 		}
 
 		#endregion

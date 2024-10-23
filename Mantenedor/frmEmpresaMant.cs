@@ -70,7 +70,7 @@ namespace ControlDosimetro
 
 				cmd.CommandType = CommandType.StoredProcedure;
 				DataSet dt;
-				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+				dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 				txt_Director.Text = dt.Tables[0].Rows[0]["Director"].ToString();
 				txt_Opr.Text = dt.Tables[0].Rows[0]["Opr"].ToString();
@@ -165,42 +165,42 @@ namespace ControlDosimetro
 		}
 		private void Cargar_Estado()
 		{
-			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref ddl_id_estado, ref ddl_id_estado);
+			ClaseComun.Listar_Estado(ClaseGeneral.Conexion, ref ddl_id_estado, ref ddl_id_estado);
 		}
 
 		private void Cargar_parametro()
 		{
-			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref cbx_Id_TipoFuente, 3);
+			ClaseComun.Listar_Parametro(ClaseGeneral.Conexion, ref cbx_Id_TipoFuente, 3);
 		}
 
 		private void Cargar_tipoEntidad()
 		{
-			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref ddl_Id_TipoEntidad, 11);
+			ClaseComun.Listar_Parametro(ClaseGeneral.Conexion, ref ddl_Id_TipoEntidad, 11);
 		}
 
 		private void Cargar_Ministerio()
 		{
-			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref ddl_id_Ministerio, 15);
+			ClaseComun.Listar_Parametro(ClaseGeneral.Conexion, ref ddl_id_Ministerio, 15);
 		}
 
 		private void Cargar_Sector()
 		{
-			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref ddl_Id_Sector, 12);
+			ClaseComun.Listar_Parametro(ClaseGeneral.Conexion, ref ddl_Id_Sector, 12);
 		}
 
 		private void Cargar_Region()
 		{
-			ClaseComun.Listar_Region(Clases.clsBD.BD, ref ddl_id_region, ref ddl_id_region);
+			ClaseComun.Listar_Region(ClaseGeneral.Conexion, ref ddl_id_region, ref ddl_id_region);
 		}
 
 		private void Cargar_Provincia()
 		{
-			ClaseComun.Listar_Provincia(Clases.clsBD.BD, ref ddl_id_provincia, ref ddl_id_provincia, Convert.ToInt32(ddl_id_region.SelectedValue));
+			ClaseComun.Listar_Provincia(ClaseGeneral.Conexion, ref ddl_id_provincia, ref ddl_id_provincia, Convert.ToInt32(ddl_id_region.SelectedValue));
 		}
 
 		private void Cargar_Comuna()
 		{
-			ClaseComun.Listar_Comuna(Clases.clsBD.BD, ref ddl_id_comuna, ref ddl_id_comuna, Convert.ToInt32(ddl_id_region.SelectedValue), Convert.ToInt32(ddl_id_provincia.SelectedValue));
+			ClaseComun.Listar_Comuna(ClaseGeneral.Conexion, ref ddl_id_comuna, ref ddl_id_comuna, Convert.ToInt32(ddl_id_region.SelectedValue), Convert.ToInt32(ddl_id_provincia.SelectedValue));
 		}
 
 		private void AsignarEvento()
@@ -229,7 +229,7 @@ namespace ControlDosimetro
 
 			cmd.CommandText = "ListarPeriodo";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			ddl_id_periodo.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			ddl_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -294,7 +294,7 @@ namespace ControlDosimetro
 				cmdMod.CommandText = "pa_Cliente_Upd";
 
 				cmdMod.CommandType = CommandType.StoredProcedure;
-				Conectar2.AgregarModificarEliminar(Clases.clsBD.BD, cmdMod, ref strMensajeError);
+				Conectar2.AgregarModificarEliminar(ClaseGeneral.Conexion, cmdMod, ref strMensajeError);
 
 				if (string.IsNullOrWhiteSpace(strMensajeError))
 				{
@@ -366,7 +366,7 @@ namespace ControlDosimetro
 				cmd.Parameters["@OPR_RUT"].Value = txt_OPR_RUT.DevuelveCadenaNulo();
 				cmd.CommandText = "pa_Cliente_ins";
 				cmd.CommandType = CommandType.StoredProcedure;
-				Conectar2.AgregarModificarEliminar(Clases.clsBD.BD, cmd, ref strMensajeError);
+				Conectar2.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd, ref strMensajeError);
 				if (string.IsNullOrWhiteSpace(strMensajeError))
 					"Cliente registrado".XMensajeProcesoOK();
 				else

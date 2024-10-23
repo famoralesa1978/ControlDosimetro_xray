@@ -45,7 +45,7 @@ namespace ControlDosimetro
            
                 cmd.CommandText = "SELECT descripcion,orden,id_estado FROM conf_parametro where id_parametro= " + intCodigo.ToString() ;
                 DataSet dt;
-					 dt = clsConector.Listar(Clases.clsBD.BD,cmd);
+					 dt = clsConector.Listar(ClaseGeneral.Conexion,cmd);
 
                 txt_Descripcion.Text = dt.Tables[0].Rows[0][0].ToString();
                 txt_Orden.Text = dt.Tables[0].Rows[0][1].ToString();
@@ -75,14 +75,14 @@ namespace ControlDosimetro
      
 
             DataSet dt;
-				dt = clsConector.Listar(Clases.clsBD.BD,cmd);
+				dt = clsConector.Listar(ClaseGeneral.Conexion,cmd);
 
             txt_ID.Text = dt.Tables[0].Rows[0][0].ToString();    
         }
 
         private void Cargar_Estado()
         {
-            ClaseComun.Listar_Estado(Clases.clsBD.BD,ref cbx_Estado, ref cbx_EstadoId);
+            ClaseComun.Listar_Estado(ClaseGeneral.Conexion,ref cbx_Estado, ref cbx_EstadoId);
         }
 
         #endregion
@@ -116,7 +116,7 @@ namespace ControlDosimetro
 													", Id_Estado=" + cbx_EstadoId.Text.ToString() +
 													" where Id_Parametro=" + txt_ID.Text.ToString();
 
-								clsConector.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
+								clsConector.AgregarModificarEliminar(ClaseGeneral.Conexion,cmd);
 
                         MessageBox.Show("Dato Modificado"); 
                     }
@@ -125,7 +125,7 @@ namespace ControlDosimetro
 							  cmd.CommandText = "INSERT INTO conf_parametro (Id_Parametro, Descripcion, Orden,Id_Estado) " +
 													"VALUES (" + txt_ID.Text.ToString() + ",'" + txt_Descripcion.Text.ToString() + "', " + txt_Orden.Text.ToString() + ", " + cbx_EstadoId.Text.ToString() + ")";
 
-								clsConector.AgregarModificarEliminar(Clases.clsBD.BD,cmd);
+								clsConector.AgregarModificarEliminar(ClaseGeneral.Conexion,cmd);
 
                         MessageBox.Show("Dato Guardado"); 
 

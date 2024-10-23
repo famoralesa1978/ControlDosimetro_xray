@@ -70,7 +70,7 @@ namespace ControlDosimetro
 			cmdcombo.CommandText = "select 0 as Id_DetParametro, 'Seleccione' as Glosa, 0 as orden union all " +
 				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=2 order by orden ";
 			cmdcombo.CommandType = CommandType.Text;
-			dtcombo = Conectar.Listar(Clases.clsBD.BD, cmdcombo);
+			dtcombo = Conectar.Listar(ClaseGeneral.Conexion, cmdcombo);
 
 			pnl_Progreso.Visible = false;
 			grpFiltro.Enabled = false;
@@ -94,7 +94,7 @@ namespace ControlDosimetro
 
 			cmd.CommandType = CommandType.Text;
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			string filterExp = "";
 			string sortExp = "rut";
 			DataRow[] drarray;
@@ -149,7 +149,7 @@ namespace ControlDosimetro
 			else
 				cmd.CommandText = "BusClienteSucursal_TLD " + "'0',0,0";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			cbx_Sucursal.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
 			cbx_Sucursal.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -245,7 +245,7 @@ namespace ControlDosimetro
 						CommandText = String.Format("CargarClientePorRun '{0}',{1}", lbl_rut_cliente.Text, lbl_id_cliente.Text)
 					};
 					DataSet dt;
-					dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+					dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 					if (dt != null)
 					{
@@ -275,7 +275,7 @@ namespace ControlDosimetro
 					CommandText = String.Format("CargarClientePorRun '0',0")
 				};
 				DataSet dt;
-				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+				dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 				if (dt != null)
 				{
@@ -382,7 +382,7 @@ namespace ControlDosimetro
 					DataSet dtValorMax;
 					cmdValorMax.CommandText = "pa_DosimetroTLD_del " + grdDatos.Rows[grdDatos.CurrentRow.Index].Cells[2].Value.ToString() + ",'" + Clases.clsUsuario.Usuario + "'";
 					cmdValorMax.CommandType = CommandType.Text;
-					dtValorMax = Conectar.Listar(Clases.clsBD.BD, cmdValorMax);
+					dtValorMax = Conectar.Listar(ClaseGeneral.Conexion, cmdValorMax);
 					if (dtValorMax.Tables[0].Rows[0][0].ToString() == "-1")
 					{
 						btn_cargar_Click(null, null);

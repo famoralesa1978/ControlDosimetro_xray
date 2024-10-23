@@ -58,7 +58,7 @@ namespace ControlDosimetro
 				CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "',' " + this.Text + "'",
 				CommandType = CommandType.Text
 			};
-			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+			Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 
 			scPrincipal.Panel2Collapsed = true;
 			tsbGuardar.Enabled = false;
@@ -88,7 +88,7 @@ namespace ControlDosimetro
 			{
 				if ((tssEstado.Text == "Nuevo") && (txt_Id.Text == "0"))
 				{
-					ClaseComun.Insertar(Clases.clsBD.BD, tbl_cliente_Email, ref bolResult);
+					ClaseComun.Insertar(ClaseGeneral.Conexion, tbl_cliente_Email, ref bolResult);
 					if (bolResult == true)
 					{
 						CargarGrilla();
@@ -98,7 +98,7 @@ namespace ControlDosimetro
 				else
 				if (tssEstado.Text == "Modificar")
 				{
-					ClaseComun.Modificar(Clases.clsBD.BD, tbl_cliente_Email, ref bolResult);
+					ClaseComun.Modificar(ClaseGeneral.Conexion, tbl_cliente_Email, ref bolResult);
 					if (bolResult == true)
 					{
 						CargarGrilla();
@@ -116,7 +116,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;
 
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			dgvGrilla.DataSource = dt.Tables[0];
 		}
@@ -145,7 +145,7 @@ namespace ControlDosimetro
 
 		private void Cargar_Departamento()
 		{
-			ClaseComun.Listar_Parametro(Clases.clsBD.BD, ref cbx_Id_Depto, 19);
+			ClaseComun.Listar_Parametro(ClaseGeneral.Conexion, ref cbx_Id_Depto, 19);
 		}
 
 		#endregion
@@ -236,7 +236,7 @@ namespace ControlDosimetro
 				cmd.CommandType = CommandType.Text;
 
 				DataSet dt1;
-				dt1 = Conectar.Listar(Clases.clsBD.BD, cmd);
+				dt1 = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 				MessageBox.Show("Información eliminada", "mensaje", MessageBoxButtons.OK);
 				CargarGrilla();

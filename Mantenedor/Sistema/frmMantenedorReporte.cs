@@ -82,7 +82,7 @@ namespace ControlDosimetro
                     if (!String.IsNullOrEmpty(txt_Nombre.Text) && !String.IsNullOrEmpty(txt_NameMenu.Text))
                     {
 
-                        ClaseComun.Insertar(Clases.clsBD.BD, tbl_Reporte, ref bolResult);
+                        ClaseComun.Insertar(ClaseGeneral.Conexion, tbl_Reporte, ref bolResult);
                         if (bolResult == true)
                         {
                             CargarGrilla();
@@ -98,7 +98,7 @@ namespace ControlDosimetro
                 {
                     if (!String.IsNullOrEmpty(txt_Nombre.Text) && !String.IsNullOrEmpty(txt_NameMenu.Text))
                     {
-                        ClaseComun.Modificar(Clases.clsBD.BD, tbl_Reporte, ref bolResult);
+                        ClaseComun.Modificar(ClaseGeneral.Conexion, tbl_Reporte, ref bolResult);
                         if (bolResult == true)
                         {
                             CargarGrilla();
@@ -121,7 +121,7 @@ namespace ControlDosimetro
             cmd.CommandType = CommandType.Text;
 
             DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+            dt = Conectar.Listar(ClaseGeneral.Conexion,cmd);
 
             bs.DataSource = dt.Tables[0];
             dgvGrilla.DataSource = bs;

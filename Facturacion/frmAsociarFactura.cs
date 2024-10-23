@@ -58,7 +58,7 @@ namespace ControlDosimetro
             cmbTipoDocumento.DataSource = dtt;
 
 
-            //ClaseComun.Listar_Parametro(Clases.clsBD.BD,cmbTipoDocumento, 8);
+            //ClaseComun.Listar_Parametro(ClaseGeneral.Conexion,cmbTipoDocumento, 8);
         }
 
         private void btnExaminar_Click(object sender, EventArgs e)
@@ -107,7 +107,7 @@ namespace ControlDosimetro
                 sqlcmd.Parameters.Add("@Doc_Nombre", SqlDbType.VarChar, 200).Value = nombrearchivo;
                 sqlcmd.Parameters.Add("@Doc_Archivo", SqlDbType.Image).Value =  buffer;
 
-                Conectar.AgregarModificarEliminar(Clases.clsBD.BD,sqlcmd);
+                Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion,sqlcmd);
 
 
                 //MostrarArchivo(buffer, Path.GetFileName(txtRutaArchivo.Text));

@@ -47,7 +47,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "SELECT run,Razon_Social,N_Cliente_Ref,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio " +
 							" FROM tbl_cliente WHERE Id_cliente= " + intCodCliente.ToString();
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			lbl_id_cliente.Text = intCodCliente.ToString();
 			lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
@@ -59,7 +59,7 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = String.Format("pa_ListarPersonalPorSeccion {0},'{1}',{2}", lbl_id_cliente.Text, run, cbxSeccion.SelectedValue);
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			((ListBox)chkLista).DataSource = dt.Tables[0];
 			((ListBox)chkLista).DisplayMember = "Personal";
@@ -80,7 +80,7 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = String.Format("select id_seccion,Seccion from tbl_seccion where id_Cliente={0}  and Run='{1}'", lbl_id_cliente.Text, run);
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			cbxSeccion.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
 			cbxSeccion.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -96,7 +96,7 @@ namespace ControlDosimetro
 					"inner join glo_comuna co on co.id_comuna=s.Id_Comuna " +
 					"where run='" + (string.IsNullOrWhiteSpace(run) ? "" : run) + "'  and id_cliente= " + lbl_id_cliente.DevuelveEntero() + " and s.Estado=1";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			cbxDireccion.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
 			cbxDireccion.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -110,7 +110,7 @@ namespace ControlDosimetro
 			cmd.CommandText = String.Format("SeccionPersonalUpd {0},'{1}'",
 																			cbxSeccion.SelectedValue, xmlSeccion());
 			cmd.CommandType = CommandType.Text;
-			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+			Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 		}
 		void GrabarSucursal()
 		{
@@ -118,7 +118,7 @@ namespace ControlDosimetro
 			cmd.CommandText = String.Format("SucursalPersonalUpd {0},'{1}'",
 																			cbxDireccion.SelectedValue, xmlSucursal());
 			cmd.CommandType = CommandType.Text;
-			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+			Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 		}
 		private string xmlSeccion()
 		{

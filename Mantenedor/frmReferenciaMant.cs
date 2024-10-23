@@ -53,7 +53,7 @@ namespace ControlDosimetro
 				cmd.CommandText = string.Format("SELECT encargado,fono,email,id_estado  FROM tbl_encargado WHERE Id_referencia= {0} and (run='{1}' or run is null)" ,
 													intCodigo.ToString(), strRun);
 				DataSet dt;
-				dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+				dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 				//txt_run.Text = dt.Tables[0].Rows[0]["run"].ToString();
 				txt_Encargado.Text = dt.Tables[0].Rows[0]["encargado"].ToString();
@@ -68,7 +68,7 @@ namespace ControlDosimetro
 
 		private void Cargar_Estado()
 		{
-			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_id_Estado, ref cbx_id_Estado);
+			ClaseComun.Listar_Estado(ClaseGeneral.Conexion, ref cbx_id_Estado, ref cbx_id_Estado);
 		}
 
 		private void Cargar_Cliente()
@@ -80,7 +80,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "SELECT run,Razon_Social,Direccion,Id_Region,Id_Provincia,Id_Comuna,Telefono, Id_TipoFuente " +
 									" FROM tbl_cliente WHERE Id_cliente= " + lbl_Id_Cliente.Text.ToString();
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			lbl_nombre.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
 		}
@@ -104,7 +104,7 @@ namespace ControlDosimetro
 					cmd.CommandText = "SELECT  requerido, validacion " +
 							" FROM glo_configuracioncampo WHERE campo= '" + strname.Replace("txt_", "") + "'";
 
-					dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+					dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 					if (dt.Tables[0].Rows.Count == 0)
 						((TextBox)c).KeyPress += new KeyPressEventHandler(ClaseEvento.Avanzar_KeyPress);
 					else
@@ -161,7 +161,7 @@ namespace ControlDosimetro
 					cmd.CommandText = String.Format("pa_Referecia_upd {0},{1},'{2}','{3}','{4}',{5},'{6}'",
 										txt_id_referencia.Text,lbl_Id_Cliente.Text, txt_Encargado.Text, txt_Fono.Text, txt_Email.Text, cbx_id_Estado.SelectedValue,strRun);
 					cmd.CommandType = CommandType.Text;
-					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+					Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 
 					//if (bolResult == true)
 					//{
@@ -174,7 +174,7 @@ namespace ControlDosimetro
 					cmd.CommandText = String.Format("pa_Referecia_ins {0},'{1}','{2}','{3}',{4},'{5}'",
 											lbl_Id_Cliente.Text, txt_Encargado.Text, txt_Fono.Text, txt_Email.Text, cbx_id_Estado.SelectedValue, strRun);
 					cmd.CommandType = CommandType.Text;
-					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+					Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 					//if (bolResult == true)
 					//{
 					MessageBox.Show("Dato Guardado");

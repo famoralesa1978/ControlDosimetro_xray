@@ -64,7 +64,7 @@ namespace ControlDosimetro
 			cmd.Parameters.Add("@Id", SqlDbType.BigInt);
 			cmd.Parameters["@Id"].Direction = ParameterDirection.Output;
 			cmd.CommandType = CommandType.StoredProcedure;
-			String id = ConexionBD.Agregar(ClaseGeneral.Conexion, cmd, "Id", ref strMensajeError);
+			ConexionBD.Agregar(ClaseGeneral.Conexion, cmd, "Id", ref strMensajeError);
 		}
 
 		#endregion

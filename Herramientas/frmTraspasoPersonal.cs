@@ -65,7 +65,7 @@ namespace ControlDosimetro
 			};
 			DataSet dt;
 
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (dt.Tables[0].Rows.Count > 0)
 			{
 				if (bolOrigen == true)
@@ -87,7 +87,7 @@ namespace ControlDosimetro
 				};
 				DataSet dtPersonal;
 
-				dtPersonal = Conectar.Listar(Clases.clsBD.BD, cmdPersonal);
+				dtPersonal = Conectar.Listar(ClaseGeneral.Conexion, cmdPersonal);
 				if (bolOrigen == true)
 					dtgOrigen.DataSource = dtPersonal.Tables[0];
 				else
@@ -143,7 +143,7 @@ namespace ControlDosimetro
 				strRutPersonal = item.Cells[0].Value.ToString();
 				cmd = new SqlCommand();
 				cmd.CommandText = "pa_Traspasopersonal_ins '" + txt_Rut.Text + "','" + txt_RutDestino.Text + "','" + strRutPersonal + "'," + lbl_Id_cliente.Text + "," + lbl_Id_clienteDestino.Text;
-				ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+				ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			}
 
 

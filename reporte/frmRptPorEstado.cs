@@ -43,7 +43,7 @@ namespace ControlDosimetro
             cmd.CommandText = "SELECT distinct Anno FROM conf_periodo WHERE Id_TipoPeriodo=3";
             //cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
             DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+            dt = Conectar.Listar(ClaseGeneral.Conexion,cmd);
 
             cbx_anno.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
             cbx_anno.DataSource = dt.Tables[0];
@@ -58,7 +58,7 @@ namespace ControlDosimetro
 
             cmd.CommandText = "SELECT Id_Periodo,Mes, cast((mes/3) as varchar(10))+ '°T' FROM conf_periodo WHERE Id_TipoPeriodo=3 and Anno=" + cbx_anno.Text;
             DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+            dt = Conectar.Listar(ClaseGeneral.Conexion,cmd);
 
             cbx_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
             cbx_periodo.DisplayMember = dt.Tables[0].Columns[2].Caption.ToString();
@@ -74,7 +74,7 @@ namespace ControlDosimetro
 
             cmd.CommandText = "SELECT Id,Descripcion FROM glo_estadodosimetro";
             DataSet dt;
-            dt = Conectar.Listar(Clases.clsBD.BD,cmd);
+            dt = Conectar.Listar(ClaseGeneral.Conexion,cmd);
 
             cbx_Estado.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
             cbx_Estado.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
@@ -119,7 +119,7 @@ namespace ControlDosimetro
             //intanno = Convert.ToInt64(cbx_anno.Text);
             //if (txt_NumeroCliente.Text.Trim() != "")
             //{
-            //    dt = ClaseComun.RptDosimetria(Clases.clsBD.BD,Convert.ToInt64(txt_NumeroCliente.Text) ,0, "0", intanno);
+            //    dt = ClaseComun.RptDosimetria(ClaseGeneral.Conexion,Convert.ToInt64(txt_NumeroCliente.Text) ,0, "0", intanno);
             //    Llamado_reporte(dt);
             //}
             //else
@@ -158,7 +158,7 @@ namespace ControlDosimetro
              // "TABLE_NAME = '" + tabla.Name.ToString()    + "'";
              cmd.CommandType = CommandType.Text;
 
-             ds = Conectar.Listar(Clases.clsBD.BD,cmd);
+             ds = Conectar.Listar(ClaseGeneral.Conexion,cmd);
              return ds;
          }
         //public void Llamado_reporte(DataSet ds)
@@ -168,7 +168,7 @@ namespace ControlDosimetro
         //    cmdArchivo.CommandText = "" +
         //      "SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=7 order by orden ";
         //    cmdArchivo.CommandType = CommandType.Text;
-        //    dtformato = Conectar.Listar(Clases.clsBD.BD,cmdArchivo);
+        //    dtformato = Conectar.Listar(ClaseGeneral.Conexion,cmdArchivo);
         //    // string targetPath = @ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text;
         //    string targetPath = @dtformato.Tables[0].Rows[0]["Glosa"].ToString();
         //    reportViewer1.LocalReport.ReportEmbeddedResource = "ControlDosimetro.reporte.rptDosimetria.rdlc"; 
@@ -193,7 +193,7 @@ namespace ControlDosimetro
         //    intanno = Convert.ToInt64(cbx_anno.Text);
         //    if (cbx_Region.Text.Trim() != "")
         //    {
-        //        dt = ClaseComun.RptDosimetria(Clases.clsBD.BD,0, Convert.ToInt64(cbx_Region.Text), "0", intanno);
+        //        dt = ClaseComun.RptDosimetria(ClaseGeneral.Conexion,0, Convert.ToInt64(cbx_Region.Text), "0", intanno);
         //        Llamado_reporte(dt);
         //    }
         //    else

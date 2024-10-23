@@ -76,7 +76,7 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = "pa_ListarReporte_Sel " + Id_Menu.ToString();
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (dt == null)
 				tsdReporte.Visible = false;
 			else
@@ -139,7 +139,7 @@ namespace ControlDosimetro
 
 
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			grdDatos.DataSource = dt.Tables[0];
 
@@ -174,7 +174,7 @@ namespace ControlDosimetro
 
 		private void Cargar_Estado()
 		{
-			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_Estado, ref cbx_Estado);
+			ClaseComun.Listar_Estado(ClaseGeneral.Conexion, ref cbx_Estado, ref cbx_Estado);
 		}
 
 		private void Configurar_Grilla()
@@ -306,7 +306,7 @@ namespace ControlDosimetro
 					cmd.CommandText = "pa_EliminarCliente_del " + intIdPersonal.ToString();
 					cmd.CommandType = CommandType.Text;
 					DataSet dt;
-					dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+					dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 					if (dt.Tables[0].Rows.Count == 0)
 					{
 						MessageBox.Show("No se han cargado ningun cliente");
@@ -342,7 +342,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;
 			DataSet ds;
 
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (ds.Tables[0].Rows.Count > 0)
 			{
 

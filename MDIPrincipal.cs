@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using dllConectorMysql;
 using dllLibreriaEvento;
-using dllLibreriaMysql;
 using System.Data.SqlClient;
-using System.Data.Sql;
 
 namespace ControlDosimetro
 {
@@ -19,12 +11,8 @@ namespace ControlDosimetro
 	{
 		#region "Definicion variable"
 
-		clsConectorSqlServer Conectar = new clsConectorSqlServer();
-		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
-		clsEventoControl ClaseEvento = new clsEventoControl();
-
-		dllLibreriaMysql.clsUtiles clsUtiles1 = new dllLibreriaMysql.clsUtiles();
-
+		clsConectorSqlServerV2 Conectar = new clsConectorSqlServerV2();
+		string strMensajeError = "";
 		public enum MENU
 		{
 			MantConfiguracionParametro = 101,
@@ -114,43 +102,51 @@ namespace ControlDosimetro
 		{
 			InitializeComponent();
 			//carga datos iniciales del sistema
+			
 			Clases.clsBD.ObtieneDatosSistema();
 			ClaseGeneral.RutaArchivoPlantilla.XARCHCrearCarpeta();
 			ClaseGeneral.RutaEjecutablePlantilla.XARCHCopiarArchivoPlantilla(ClaseGeneral.RutaArchivoPlantilla, "Documento_NoDevuelto.docx");
 			// fin************************
-			frmLogin frm = new frmLogin();
+			FrmLogin frm = new FrmLogin();
 			frm.ShowDialog();
 
 			tstUsuario.Text = Clases.clsUsuario.Usuario;
 			tstNombre.Text = Clases.clsUsuario.Nombre;
 			tsbPerfil.Text = Clases.clsUsuario.Perfil;
-			SqlCommand cmd = new SqlCommand
-			{
-				CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "','Ingreso'",
-				CommandType = CommandType.Text
-			};
+			SqlCommand cmd = new SqlCommand();
 
-			HabiliarDesabilitarMenu(Clases.clsUsuario.Id_perfil);
+			cmd.CommandText = "pa_Log_usuario_ins";
+			cmd.Parameters.Clear();
+			cmd.Parameters.Add("@Usuario", SqlDbType.VarChar, 30);
+			cmd.Parameters["@Usuario"].Value = Clases.clsUsuario.Usuario;
+			cmd.Parameters.Add("@Modulo", SqlDbType.VarChar, 30);
+			cmd.Parameters["@Modulo"].Value = "Ingreso";
+			cmd.CommandType = CommandType.StoredProcedure;
 
-			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
-			if (Clases.clsBD.BD == "Desarrollo")
-			{
-				this.BackColor = Color.Green;
-				this.Text = this.Text + " Desarrollo";
-			}
+			HabiliarDesabilitarMenu();
+
+			strMensajeError = "";
+			Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd, ref strMensajeError);
+			//this.Text +=  " Desarrollo";
+			//this.BackColor = ClaseGeneral.ColorAmbiente;
 		}
 
 		private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
 		{
 			if (MessageBox.Show("¿Desea salir del programa?", "Mensaje de salida", MessageBoxButtons.YesNo) == DialogResult.Yes)
 			{
-				SqlCommand cmd = new SqlCommand
-				{
-					CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "','Finalizar'",
-					CommandType = CommandType.Text
-				};
+		
+				SqlCommand cmd = new SqlCommand();
 
-				Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+				cmd.CommandText = "pa_Log_usuario_ins";
+				cmd.Parameters.Clear();
+				cmd.Parameters.Add("@Usuario", SqlDbType.VarChar, 30);
+				cmd.Parameters["@Usuario"].Value = Clases.clsUsuario.Usuario;
+				cmd.Parameters.Add("@Modulo", SqlDbType.VarChar, 30);
+				cmd.Parameters["@Modulo"].Value = "Finalizar";
+				cmd.CommandType = CommandType.StoredProcedure;
+				strMensajeError = "";
+				Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd, ref strMensajeError);
 				Application.Exit();
 			}
 		}
@@ -260,7 +256,7 @@ namespace ControlDosimetro
 			frm.ShowDialog(this);
 		}
 
-		private void HabiliarDesabilitarMenu(int intPerfil)
+		private void HabiliarDesabilitarMenu()
 		{
 			ToolStripMenuItem tsiMenu;
 			SqlCommand cmd = new SqlCommand
@@ -268,7 +264,7 @@ namespace ControlDosimetro
 				CommandText = "pa_MenuPrivilegio_sel " + Clases.clsUsuario.Id_perfil.ToString(),
 				CommandType = CommandType.Text
 			};
-			DataSet ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			DataSet ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			if (ds == null)
 				menuStrip.Visible = false;
@@ -1319,7 +1315,7 @@ namespace ControlDosimetro
 			};
 			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			DataSet ds;
-			ds = Conectar.Listar(Clases.clsBD.BD, cmd);
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 
 			frmreporte frm3 = new frmreporte(ds, null, 9)
@@ -1336,12 +1332,18 @@ namespace ControlDosimetro
 
 		private void Graba_log(string strModulo)
 		{
-			SqlCommand cmd = new SqlCommand
-			{
-				CommandText = "pa_Log_usuario_ins '" + Clases.clsUsuario.Usuario + "',' " + strModulo + "'",
-				CommandType = CommandType.Text
-			};
-			Conectar.AgregarModificarEliminar(Clases.clsBD.BD, cmd);
+		
+			SqlCommand cmd = new SqlCommand();
+
+			cmd.CommandText = "pa_Log_usuario_ins";
+			cmd.Parameters.Clear();
+			cmd.Parameters.Add("@Usuario", SqlDbType.VarChar, 30);
+			cmd.Parameters["@Usuario"].Value = Clases.clsUsuario.Usuario;
+			cmd.Parameters.Add("@Modulo", SqlDbType.VarChar, 30);
+			cmd.Parameters["@Modulo"].Value = strModulo;
+			cmd.CommandType = CommandType.StoredProcedure;
+			strMensajeError = "";
+			Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd, ref strMensajeError);
 		}
 
 		private void TreeView1_Click(object sender, EventArgs e)

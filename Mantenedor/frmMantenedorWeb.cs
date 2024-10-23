@@ -68,8 +68,8 @@ namespace ControlDosimetro
 
         private void Cargar_Estado()
         {
-            ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_Id_Estado_Buscar, ref cbx_Id_Estado_Buscar);
-            ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_Id_Estado, ref cbx_Id_Estado);
+            ClaseComun.Listar_Estado(ClaseGeneral.Conexion, ref cbx_Id_Estado_Buscar, ref cbx_Id_Estado_Buscar);
+            ClaseComun.Listar_Estado(ClaseGeneral.Conexion, ref cbx_Id_Estado, ref cbx_Id_Estado);
         }
 
         private void Cargar_Menu()
@@ -82,7 +82,7 @@ namespace ControlDosimetro
                                    " union select -1 as Id_menuWeb, 'Seleccionar' as Menu " +
                                    "order by Id_menuWeb";
                 DataSet dt;
-                dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+                dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
                 cbx_Id_menuWeb_Buscar.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
                 cbx_Id_menuWeb_Buscar.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -92,7 +92,7 @@ namespace ControlDosimetro
                                                       " union select 0 as Id_menuWeb, 'Menu Padre' as Menu " +
                                                       "order by Id_menuWeb";
 
-                dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+                dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
                 cbx_Id_menu_Padre.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
                 cbx_Id_menu_Padre.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
                 cbx_Id_menu_Padre.DataSource = dt.Tables[0];
@@ -113,7 +113,7 @@ namespace ControlDosimetro
             {
                 cmd.CommandText = "SELECT [Id_Class],[Class],[Nombre] FROM [dbo].[glo_Class]";
                 DataSet dt;
-                dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+                dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
                 cbx_Class.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
                 cbx_Class.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -161,7 +161,7 @@ namespace ControlDosimetro
             {
                 if ((tssEstado.Text == "Nuevo") && (lbl_Id_menuWeb.Text == "0"))
                 {
-                    ClaseComun.Insertar(Clases.clsBD.BD, tbl_MenuWeb, ref bolResult);
+                    ClaseComun.Insertar(ClaseGeneral.Conexion, tbl_MenuWeb, ref bolResult);
                     if (bolResult == true)
                     {
                         CargarGrilla();
@@ -171,7 +171,7 @@ namespace ControlDosimetro
                 else
                 if (tssEstado.Text == "Modificar")
                 {
-                    ClaseComun.Modificar(Clases.clsBD.BD, tbl_MenuWeb, ref bolResult);
+                    ClaseComun.Modificar(ClaseGeneral.Conexion, tbl_MenuWeb, ref bolResult);
                     if (bolResult == true)
                     {
                         CargarGrilla();
@@ -192,7 +192,7 @@ namespace ControlDosimetro
                 cmd.CommandType = CommandType.Text;
 
                 DataSet dt;
-                dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+                dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
                 bs.DataSource = dt.Tables[0];
                 dgvGrilla.DataSource = bs;

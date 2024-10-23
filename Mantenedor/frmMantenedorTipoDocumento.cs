@@ -101,7 +101,7 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			cmd.CommandText = "pa_ListarReporte_Sel " + Id_Menu.ToString();
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (dt == null)
 				tsdReporte.Visible = false;
 			else
@@ -140,8 +140,8 @@ namespace ControlDosimetro
 
 		private void Cargar_Estado()
 		{
-			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_id_estado_Buscar, ref cbx_id_estado_Buscar);
-			ClaseComun.Listar_Estado(Clases.clsBD.BD, ref cbx_id_estado, ref cbx_id_estado);
+			ClaseComun.Listar_Estado(ClaseGeneral.Conexion, ref cbx_id_estado_Buscar, ref cbx_id_estado_Buscar);
+			ClaseComun.Listar_Estado(ClaseGeneral.Conexion, ref cbx_id_estado, ref cbx_id_estado);
 		}
 		private void LimpiarFormulario()
 		{
@@ -164,7 +164,7 @@ namespace ControlDosimetro
 					if (!String.IsNullOrEmpty(txt_detalle_tipo_documento.Text) && !String.IsNullOrEmpty(txt_orden.Text))
 					{
 
-						ClaseComun.Insertar(Clases.clsBD.BD, glo_TipoDocumentos, ref bolResult);
+						ClaseComun.Insertar(ClaseGeneral.Conexion, glo_TipoDocumentos, ref bolResult);
 						if (bolResult == true)
 						{
 							CargarGrilla();
@@ -181,7 +181,7 @@ namespace ControlDosimetro
 				{
 					if (!String.IsNullOrEmpty(txt_detalle_tipo_documento.Text) && !String.IsNullOrEmpty(txt_orden.Text))
 					{
-						ClaseComun.Modificar(Clases.clsBD.BD, glo_TipoDocumentos, ref bolResult);
+						ClaseComun.Modificar(ClaseGeneral.Conexion, glo_TipoDocumentos, ref bolResult);
 						if (bolResult == true)
 						{
 							CargarGrilla();
@@ -205,7 +205,7 @@ namespace ControlDosimetro
 			cmd.CommandType = CommandType.Text;
 
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			bs.DataSource = dt.Tables[0];
 			dgvGrilla.DataSource = bs;
@@ -348,7 +348,7 @@ namespace ControlDosimetro
 				cmd.CommandType = CommandType.Text;
 
 				DataSet dt1;
-				dt1 = Conectar.Listar(Clases.clsBD.BD, cmd);
+				dt1 = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 				MessageBox.Show(dt1.Tables[0].Rows[0][1].ToString());
 				if (dt1.Tables[0].Rows[0][0].ToString() == "0")

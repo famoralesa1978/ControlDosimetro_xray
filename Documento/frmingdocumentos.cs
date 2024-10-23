@@ -148,7 +148,7 @@ namespace ControlDosimetro
 					sqlcmd.Parameters.Add("@Id_Usuario", SqlDbType.Int).Value = Clases.clsUsuario.Id_Usuario;
 					sqlcmd.Parameters.Add("@Rut", SqlDbType.Int).Value = lbl_rut.Text;
 
-					Conectar.AgregarModificarEliminar(Clases.clsBD.BD, sqlcmd);
+					Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, sqlcmd);
 					// sqlcmd.CommandText = "" + "VALUES (" + Convert.ToInt32(lbl_id_cliente.Text) +""+ ;   
 
 					//MostrarArchivo(buffer, Path.GetFileName(txtRutaArchivo.Text));

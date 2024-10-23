@@ -78,7 +78,7 @@ namespace ControlDosimetro
 
 			//cmd.CommandType = CommandType.Text;
 
-			//dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			//dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			//string filterExp = "";
 			//string sortExp = "rut";
 			//DataRow[] drarray;

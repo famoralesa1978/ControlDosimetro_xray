@@ -65,7 +65,7 @@ namespace ControlDosimetro
 			intanno = Convert.ToInt64(cbx_anno.Text);
 			if (!String.IsNullOrWhiteSpace(txt_Rut.Text))
 			{
-				dt = ClaseComun.RptDosimetriaPa(Clases.clsBD.BD, 0, 0, txt_Rut.Text, intanno);
+				dt = ClaseComun.RptDosimetriaPa(ClaseGeneral.Conexion, 0, 0, txt_Rut.Text, intanno);
 				Llamado_reporte(dt, "rptDosimetria.rdlc");
 			}
 			else
@@ -85,7 +85,7 @@ namespace ControlDosimetro
 			intanno = Convert.ToInt64(cbx_anno.Text);
 			if (!String.IsNullOrWhiteSpace(txt_NumeroCliente.Text))
 			{
-				dt = ClaseComun.RptDosimetria(Clases.clsBD.BD, Convert.ToInt64(txt_NumeroCliente.Text), 0, "0", intanno);
+				dt = ClaseComun.RptDosimetria(ClaseGeneral.Conexion, Convert.ToInt64(txt_NumeroCliente.Text), 0, "0", intanno);
 				Llamado_reporte(dt, "rptDosimetria.rdlc");
 			}
 			else
@@ -103,7 +103,7 @@ namespace ControlDosimetro
 				"SELECT Id_DetParametro,Glosa,orden FROM conf_detparametro where id_estado=1 and Id_Parametro=7 order by orden ",
 				CommandType = CommandType.Text
 			};
-			dtformato = Conectar.Listar(Clases.clsBD.BD, cmdArchivo);
+			dtformato = Conectar.Listar(ClaseGeneral.Conexion, cmdArchivo);
 			// string targetPath = @ConfigurationManager.AppSettings["Archivo"] + "Cliente " + lbl_id_cliente.Text;
 			string targetPath = @dtformato.Tables[0].Rows[0]["Glosa"].ToString();
 			reportViewer1.LocalReport.ReportEmbeddedResource = "ControlDosimetro.reporte." + NombreReporte;
@@ -129,7 +129,7 @@ namespace ControlDosimetro
 			intanno = Convert.ToInt64(cbx_anno.Text);
 			if (!String.IsNullOrWhiteSpace(cbx_Region.Text))
 			{
-				dt = ClaseComun.RptDosimetria(Clases.clsBD.BD, 0, Convert.ToInt64(cbx_Region.Text), "0", intanno);
+				dt = ClaseComun.RptDosimetria(ClaseGeneral.Conexion, 0, Convert.ToInt64(cbx_Region.Text), "0", intanno);
 				Llamado_reporte(dt, "rptDosimetria.rdlc");
 			}
 			else
@@ -151,7 +151,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "rtpDosimetriaAnual " + intanno.ToString();
 			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			Cursor = Cursors.Default;
 
@@ -172,7 +172,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "rtpDosimetriaAnualPorSucursal " + intanno.ToString();
 			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			Cursor = Cursors.Default;
 
@@ -191,7 +191,7 @@ namespace ControlDosimetro
 			cmd.CommandText = "rtpListadoPorDosimetro " + intDosimetro.ToString();
 			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			DataSet dt;
-			dt = Conectar.Listar(Clases.clsBD.BD, cmd);
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
 			return dt;
 		}
