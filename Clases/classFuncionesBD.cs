@@ -407,11 +407,16 @@ namespace classFuncionesBD
 		/// <param name="intEstado"> 1- activo,2,Inactivo,0- todos</param>
 		public void Cargar_Sucursal(ref ComboBox cbx,string strRut, int intIdCliente, int intEstado)
 		{
-			DataSet ds;
-			SqlCommand cmd = new SqlCommand
-			{
-				CommandText = "BusClienteSucursal '" + strRut.ToString() + "'," + intIdCliente.ToString()
-			};
+	
+			SqlCommand cmd = new SqlCommand();
+			DataSet ds; // = new DataSet();
+			cmd.CommandText = "BusClienteSucursal";
+			cmd.Parameters.Clear();
+			cmd.Parameters.Add("@run", SqlDbType.VarChar, 20);
+			cmd.Parameters["@run"].Value = strRut;
+			cmd.Parameters.Add("@Id_Cliente", SqlDbType.Int);
+			cmd.Parameters["@Id_Cliente"].Value = intIdCliente;
+			cmd.CommandType = CommandType.StoredProcedure;
 			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			if (intEstado != 0)
 				ds.Tables[0].DefaultView.RowFilter = "Id_estado=" + intEstado.ToString();
