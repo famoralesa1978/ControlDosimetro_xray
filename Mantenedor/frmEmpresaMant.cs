@@ -2,8 +2,6 @@
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using dllConectorMysql;
-using dllLibreriaEvento;
 using dllLibreriaMysql;
 using System.Data.SqlClient;
 using System.IO;
@@ -13,7 +11,6 @@ namespace ControlDosimetro
 	public partial class frmEmpresaMant : Form
 	{
 		#region "Definicion variable"
-		clsConectorSqlServer Conectar = new clsConectorSqlServer();
 		clsConectorSqlServerV2 Conectar2 = new clsConectorSqlServerV2();
 		clsSqlComunSqlserver ClaseComun = new clsSqlComunSqlserver();
 		Clases.ClassEvento clsEvento = new Clases.ClassEvento();
@@ -70,7 +67,7 @@ namespace ControlDosimetro
 
 				cmd.CommandType = CommandType.StoredProcedure;
 				DataSet dt;
-				dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
+				dt = Conectar2.Listar(ClaseGeneral.Conexion, cmd);
 
 				txt_Director.Text = dt.Tables[0].Rows[0]["Director"].ToString();
 				txt_Opr.Text = dt.Tables[0].Rows[0]["Opr"].ToString();
@@ -229,7 +226,7 @@ namespace ControlDosimetro
 
 			cmd.CommandText = "ListarPeriodo";
 			DataSet dt;
-			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
+			dt = Conectar2.Listar(ClaseGeneral.Conexion, cmd);
 
 			ddl_id_periodo.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
 			ddl_id_periodo.ValueMember = dt.Tables[0].Columns[0].Caption.ToString();
@@ -375,6 +372,8 @@ namespace ControlDosimetro
 			}
 
 			Cursor = Cursors.Default;
+
+			//pa_ClienteVerificar
 		}
 
 		#endregion

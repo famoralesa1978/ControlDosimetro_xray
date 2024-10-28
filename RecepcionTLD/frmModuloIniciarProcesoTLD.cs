@@ -120,7 +120,7 @@ namespace ControlDosimetro
 			{
 				btn_Guardar.Visible = false;
 		//		btnIniciar.Visible = false;
-				MessageBox.Show("No se puede agregar mas TLD, el motivo es por que el proceso de lectura se inicio \n y no se terminado de registrar las dosis en el proceso anterior");
+				//MessageBox.Show("No se puede agregar mas TLD, el motivo es por que el proceso de lectura se inicio \n y no se terminado de registrar las dosis en el proceso anterior");
 			}
 			else
 			{
@@ -164,7 +164,7 @@ namespace ControlDosimetro
 			//cmd.CommandText = "SELECT Id_Periodo,Anno, Mes,Id_TipoPeriodo FROM conf_periodo WHERE Id_TipoPeriodo=3";
 			DataSet dt;
 			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
-			nudPosicion.Maximum = Convert.ToInt16(dt.Tables[0].Rows[0][0].ToString());
+			nudPosicion.Maximum = Convert.ToInt32(dt.Tables[0].Rows[0][0].ToString());
 
 		}
 
@@ -202,7 +202,7 @@ namespace ControlDosimetro
 			LimpiarPantalla();
 			Listar_Grilla();
 
-			MessageBox.Show("Se ha iniciado el proceso de lectura, espere 45 minutos para agregar nuevo proceso");
+			//MessageBox.Show("Se ha iniciado el proceso de lectura, espere 45 minutos para agregar nuevo proceso");
 		}
 
 
@@ -212,12 +212,12 @@ namespace ControlDosimetro
 			if (rbtSolo.Checked && ValidarSoloUno() == false)
 			{
 				btn_Guardar.Enabled = true;
-				Cargar_TLD(Convert.ToInt16(txt_TLD.Text));
+				Cargar_TLD(Convert.ToInt32(txt_TLD.Text));
 			}
 			else if (rbtVarios.Checked && ValidarVarios() == false)
 			{
 				btn_Guardar.Enabled = false;
-				for (int intTLD = Convert.ToInt16(txt_TLD.Text); intTLD <= Convert.ToInt16(txtHasta.Text); intTLD++){
+				for (int intTLD = Convert.ToInt32(txt_TLD.Text); intTLD <= Convert.ToInt32(txtHasta.Text); intTLD++){
 					nudPosicion.Value = 1;
 					Cargar_TLD(intTLD);
 					btn_Guardar_Click(null, null);
@@ -253,7 +253,7 @@ namespace ControlDosimetro
 			}
 			else
 			{
-				if (Convert.ToInt16(txt_TLD.Text) > Convert.ToInt16(txtHasta.Text))
+				if (Convert.ToInt32(txt_TLD.Text) > Convert.ToInt32(txtHasta.Text))
 				{
 					bolValidar = true;
 					classFuncionesGenerales.mensajes.MensajeError("El número hasta debe ser mayor que el desde(TLD)");
