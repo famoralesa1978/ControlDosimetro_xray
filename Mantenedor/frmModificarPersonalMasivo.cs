@@ -456,6 +456,12 @@ namespace ControlDosimetro
 					bs.DataSource = grdDatos.DataSource;
 					dt = (DataTable)(bs.DataSource);
 
+				
+					
+					if (dt.Rows[e.RowIndex]["Id_estado"].ToString()=="0")
+						dt.Rows[e.RowIndex]["fecha_termino"]=DateTime.Now.Date.ToString("dd/MM/yyyy").Replace("-", "/");
+					else
+						dt.Rows[e.RowIndex]["fecha_termino"] ="01/01/1900".Replace("-", "/");
 					dt.Rows[e.RowIndex].AcceptChanges();
 					dt.Rows[e.RowIndex].SetModified();
 				}

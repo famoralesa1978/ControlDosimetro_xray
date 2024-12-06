@@ -181,7 +181,7 @@ namespace ControlDosimetro
 			}
 			catch (Exception ex)
 			{
-				string msg = string.Format("{0};{1};{2};{3};{4};{5};{6}", ClaseGeneral.IP, ClaseGeneral.NombreEquipo, DateTime.Now, "pa_login_sel", this.Name, ((System.Windows.Forms.Control)sender).Name, ex.Message);
+				string msg = string.Format("{0};{1};{2};{3};{4};{5};{6}", ClaseGeneral.IP, ClaseGeneral.NombreEquipo, DateTime.Now, "pa_login_sel", this.Name, "Cargar_TLD", ex.Message);
 				msg.XARCHEscribirArchivoLog(ClaseGeneral.RutaNombreArchivoLog);
 			}
 			finally

@@ -12,6 +12,7 @@ using dllLibreriaEvento;
 using dllLibreriaMysql;
 using System.Data.SqlClient;
 using System.Data.Sql;
+using OpenXmlPowerTools;
 
 namespace ControlDosimetro
 {
@@ -75,32 +76,64 @@ namespace ControlDosimetro
 
 		private void Cargar_TLD(int intTld)
 		{
-			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "pa_ListadoDatosTLD " + intintId_Estado_temp.ToString() + "," + intTld.ToString();
-			DataSet dt;
+			try
+			{
+				SqlCommand cmd = new SqlCommand();
+				cmd.CommandText = "pa_ListadoDatosTLD ";
+				cmd.Parameters.Clear();
+				cmd.Parameters.Add("@id_estadodosimetro", SqlDbType.Int);
+				cmd.Parameters["@id_estadodosimetro"].Value = intintId_Estado_temp;
+				cmd.Parameters.Add("@n_dosimetro", SqlDbType.Int);
+				cmd.Parameters["@n_dosimetro"].Value = intTld;
+				cmd.CommandType = CommandType.StoredProcedure;
 
-			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
-			if (dt.Tables[0].Rows.Count > 0)
-			{
-				lbl_NCliente.Text = dt.Tables[0].Rows[0]["id_cliente"].ToString();
-				lbl_NombreCliente.Text = dt.Tables[0].Rows[0]["razon_social"].ToString();
-				lbl_Periodo.Text = dt.Tables[0].Rows[0]["tri"].ToString();
-				lbl_TLD.Text = dt.Tables[0].Rows[0]["n_dosimetro"].ToString();
-				nudPosicion.Value = Convert.ToInt32(dt.Tables[0].Rows[0]["PosDisco"].ToString());
-				lbl_NombrePersonal.Text = dt.Tables[0].Rows[0]["nombrecompleto"].ToString();
-				btn_Guardar.Visible = true;
-				txt_TLD.Text = "";
-				txtHasta.Text = "";
-				btn_Guardar.Enabled = true;
+				string strSp = cmd.XSQLObtieneDatosParametro();
+
+				DataSet ds;
+
+				ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
+				if (ds != null)
+				{
+					if (ds.Tables[0].Rows.Count > 0)
+					{
+						lbl_NCliente.Text = ds.Tables[0].Rows[0]["id_cliente"].ToString();
+						lbl_NombreCliente.Text = ds.Tables[0].Rows[0]["razon_social"].ToString();
+						lbl_Periodo.Text = ds.Tables[0].Rows[0]["tri"].ToString();
+						lbl_TLD.Text = ds.Tables[0].Rows[0]["n_dosimetro"].ToString();
+						nudPosicion.Value = Convert.ToInt32(ds.Tables[0].Rows[0]["PosDisco"].ToString());
+						lbl_NombrePersonal.Text = ds.Tables[0].Rows[0]["nombrecompleto"].ToString();
+						dtpFechaLectura.Value = (DateTime)ds.Tables[0].Rows[0]["FechaLectura"];
+						btn_Guardar.Visible = true;
+						txt_TLD.Text = "";
+						txtHasta.Text = "";
+						btn_Guardar.Enabled = true;
+					}
+					else
+					{
+						LimpiarPantalla();
+						txt_TLD.Text = "";
+						txtHasta.Text = "";
+						btn_Guardar.Enabled = false;
+						MessageBox.Show("No se puede ingresar a este proceso, verifique en que estado se encuentra.");
+					}
+				}
+				else
+				{
+					string msg = string.Format("{0};{1};{2};{3};{4};{5};{6}", ClaseGeneral.IP, ClaseGeneral.NombreEquipo, DateTime.Now, strSp, this.Name, "Cargar_TLD", "Error cargar la información.");
+					msg.XARCHEscribirArchivoLog(ClaseGeneral.RutaNombreArchivoLog);
+					"Error cargar la información.".XMensajeError();
+				}
 			}
-			else
+			catch (Exception ex)
 			{
-				LimpiarPantalla();
-				txt_TLD.Text = "";
-				txtHasta.Text = "";
-				btn_Guardar.Enabled = false;
-				MessageBox.Show("No se puede ingresar a este proceso, verifique en que estado se encuentra.");
+				string msg = string.Format("{0};{1};{2};{3};{4};{5};{6}", ClaseGeneral.IP, ClaseGeneral.NombreEquipo, DateTime.Now, "pa_login_sel", this.Name, "Cargar_TLD", ex.Message);
+				msg.XARCHEscribirArchivoLog(ClaseGeneral.RutaNombreArchivoLog);
 			}
+			finally
+			{
+				Cursor = Cursors.Default;
+			}
+			
 
 		}
 

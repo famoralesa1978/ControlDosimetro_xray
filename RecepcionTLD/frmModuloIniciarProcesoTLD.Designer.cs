@@ -28,10 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.btnCancelar = new System.Windows.Forms.Button();
+			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+			this.label7 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.lbl_NCliente = new System.Windows.Forms.Label();
+			this.lbl_NombreCliente = new System.Windows.Forms.Label();
+			this.lbl_NombrePersonal = new System.Windows.Forms.Label();
+			this.lbl_Periodo = new System.Windows.Forms.Label();
+			this.lbl_TLD = new System.Windows.Forms.Label();
+			this.nudPosicion = new System.Windows.Forms.NumericUpDown();
 			this.btn_Guardar = new System.Windows.Forms.Button();
 			this.txt_TLD = new System.Windows.Forms.TextBox();
 			this.btn_filtro = new System.Windows.Forms.Button();
@@ -51,19 +64,6 @@
 			this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btn_Cerrar = new System.Windows.Forms.Button();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
-			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.label7 = new System.Windows.Forms.Label();
-			this.label6 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.lbl_NCliente = new System.Windows.Forms.Label();
-			this.lbl_NombreCliente = new System.Windows.Forms.Label();
-			this.lbl_NombrePersonal = new System.Windows.Forms.Label();
-			this.lbl_Periodo = new System.Windows.Forms.Label();
-			this.lbl_TLD = new System.Windows.Forms.Label();
-			this.nudPosicion = new System.Windows.Forms.NumericUpDown();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
@@ -79,6 +79,8 @@
 			this.rbtVarios = new System.Windows.Forms.RadioButton();
 			this.lblHasta = new System.Windows.Forms.Label();
 			this.txtHasta = new System.Windows.Forms.TextBox();
+			this.label8 = new System.Windows.Forms.Label();
+			this.dtpFechaLectura = new System.Windows.Forms.DateTimePicker();
 			this.groupBox1.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudPosicion)).BeginInit();
@@ -96,7 +98,7 @@
 			this.groupBox1.Controls.Add(this.btn_Guardar);
 			this.groupBox1.Location = new System.Drawing.Point(12, 122);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(752, 219);
+			this.groupBox1.Size = new System.Drawing.Size(752, 269);
 			this.groupBox1.TabIndex = 3;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Dato Cliente";
@@ -104,7 +106,7 @@
 			// btnCancelar
 			// 
 			this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btnCancelar.Location = new System.Drawing.Point(383, 190);
+			this.btnCancelar.Location = new System.Drawing.Point(383, 240);
 			this.btnCancelar.Name = "btnCancelar";
 			this.btnCancelar.Size = new System.Drawing.Size(75, 23);
 			this.btnCancelar.TabIndex = 6;
@@ -112,10 +114,170 @@
 			this.btnCancelar.UseVisualStyleBackColor = true;
 			this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
 			// 
+			// tableLayoutPanel1
+			// 
+			this.tableLayoutPanel1.ColumnCount = 2;
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.63748F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85.36252F));
+			this.tableLayoutPanel1.Controls.Add(this.label8, 0, 6);
+			this.tableLayoutPanel1.Controls.Add(this.label7, 0, 5);
+			this.tableLayoutPanel1.Controls.Add(this.label6, 0, 4);
+			this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
+			this.tableLayoutPanel1.Controls.Add(this.label5, 0, 3);
+			this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
+			this.tableLayoutPanel1.Controls.Add(this.label4, 0, 2);
+			this.tableLayoutPanel1.Controls.Add(this.lbl_NCliente, 1, 0);
+			this.tableLayoutPanel1.Controls.Add(this.lbl_NombreCliente, 1, 1);
+			this.tableLayoutPanel1.Controls.Add(this.lbl_NombrePersonal, 1, 2);
+			this.tableLayoutPanel1.Controls.Add(this.lbl_Periodo, 1, 3);
+			this.tableLayoutPanel1.Controls.Add(this.lbl_TLD, 1, 4);
+			this.tableLayoutPanel1.Controls.Add(this.nudPosicion, 1, 5);
+			this.tableLayoutPanel1.Controls.Add(this.dtpFechaLectura, 1, 6);
+			this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 19);
+			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+			this.tableLayoutPanel1.RowCount = 7;
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 17F));
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(731, 199);
+			this.tableLayoutPanel1.TabIndex = 0;
+			this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(3, 132);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(47, 13);
+			this.label7.TabIndex = 35;
+			this.label7.Text = "Posición";
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(3, 105);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(43, 13);
+			this.label6.TabIndex = 35;
+			this.label6.Text = "N° TLD";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(3, 0);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(54, 13);
+			this.label3.TabIndex = 1;
+			this.label3.Text = "N° Cliente";
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(3, 78);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(43, 13);
+			this.label5.TabIndex = 3;
+			this.label5.Text = "Periodo";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(3, 25);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(78, 13);
+			this.label1.TabIndex = 0;
+			this.label1.Text = "Nombre cliente";
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(3, 49);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(88, 13);
+			this.label4.TabIndex = 2;
+			this.label4.Text = "Nombre Personal";
+			// 
+			// lbl_NCliente
+			// 
+			this.lbl_NCliente.AutoSize = true;
+			this.lbl_NCliente.Location = new System.Drawing.Point(109, 0);
+			this.lbl_NCliente.Name = "lbl_NCliente";
+			this.lbl_NCliente.Size = new System.Drawing.Size(63, 13);
+			this.lbl_NCliente.TabIndex = 36;
+			this.lbl_NCliente.Text = "lbl_NCliente";
+			// 
+			// lbl_NombreCliente
+			// 
+			this.lbl_NombreCliente.AutoSize = true;
+			this.lbl_NombreCliente.Location = new System.Drawing.Point(109, 25);
+			this.lbl_NombreCliente.Name = "lbl_NombreCliente";
+			this.lbl_NombreCliente.Size = new System.Drawing.Size(92, 13);
+			this.lbl_NombreCliente.TabIndex = 37;
+			this.lbl_NombreCliente.Text = "lbl_NombreCliente";
+			// 
+			// lbl_NombrePersonal
+			// 
+			this.lbl_NombrePersonal.AutoSize = true;
+			this.lbl_NombrePersonal.Location = new System.Drawing.Point(109, 49);
+			this.lbl_NombrePersonal.Name = "lbl_NombrePersonal";
+			this.lbl_NombrePersonal.Size = new System.Drawing.Size(101, 13);
+			this.lbl_NombrePersonal.TabIndex = 38;
+			this.lbl_NombrePersonal.Text = "lbl_NombrePersonal";
+			// 
+			// lbl_Periodo
+			// 
+			this.lbl_Periodo.AutoSize = true;
+			this.lbl_Periodo.Location = new System.Drawing.Point(109, 78);
+			this.lbl_Periodo.Name = "lbl_Periodo";
+			this.lbl_Periodo.Size = new System.Drawing.Size(59, 13);
+			this.lbl_Periodo.TabIndex = 39;
+			this.lbl_Periodo.Text = "lbl_Periodo";
+			// 
+			// lbl_TLD
+			// 
+			this.lbl_TLD.AutoSize = true;
+			this.lbl_TLD.Location = new System.Drawing.Point(109, 105);
+			this.lbl_TLD.Name = "lbl_TLD";
+			this.lbl_TLD.Size = new System.Drawing.Size(44, 13);
+			this.lbl_TLD.TabIndex = 40;
+			this.lbl_TLD.Text = "lbl_TLD";
+			// 
+			// nudPosicion
+			// 
+			this.nudPosicion.Increment = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+			this.nudPosicion.Location = new System.Drawing.Point(109, 135);
+			this.nudPosicion.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+			this.nudPosicion.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.nudPosicion.Name = "nudPosicion";
+			this.nudPosicion.ReadOnly = true;
+			this.nudPosicion.Size = new System.Drawing.Size(63, 20);
+			this.nudPosicion.TabIndex = 41;
+			this.nudPosicion.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			// 
 			// btn_Guardar
 			// 
 			this.btn_Guardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Guardar.Location = new System.Drawing.Point(232, 190);
+			this.btn_Guardar.Location = new System.Drawing.Point(232, 240);
 			this.btn_Guardar.Name = "btn_Guardar";
 			this.btn_Guardar.Size = new System.Drawing.Size(127, 23);
 			this.btn_Guardar.TabIndex = 5;
@@ -248,9 +410,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle3.Format = "N2";
-			dataGridViewCellStyle3.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle1.Format = "N2";
+			dataGridViewCellStyle1.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -268,9 +430,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle4.Format = "N2";
-			dataGridViewCellStyle4.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle2.Format = "N2";
+			dataGridViewCellStyle2.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -278,7 +440,7 @@
 			// btn_Cerrar
 			// 
 			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Cerrar.Location = new System.Drawing.Point(508, 594);
+			this.btn_Cerrar.Location = new System.Drawing.Point(504, 641);
 			this.btn_Cerrar.Name = "btn_Cerrar";
 			this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
 			this.btn_Cerrar.TabIndex = 10;
@@ -286,167 +448,10 @@
 			this.btn_Cerrar.UseVisualStyleBackColor = true;
 			this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click_1);
 			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(3, 25);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(78, 13);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "Nombre cliente";
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(3, 49);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(88, 13);
-			this.label4.TabIndex = 2;
-			this.label4.Text = "Nombre Personal";
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(3, 78);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(43, 13);
-			this.label5.TabIndex = 3;
-			this.label5.Text = "Periodo";
-			// 
-			// tableLayoutPanel1
-			// 
-			this.tableLayoutPanel1.ColumnCount = 2;
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.63748F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85.36252F));
-			this.tableLayoutPanel1.Controls.Add(this.label7, 0, 5);
-			this.tableLayoutPanel1.Controls.Add(this.label6, 0, 4);
-			this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
-			this.tableLayoutPanel1.Controls.Add(this.label5, 0, 3);
-			this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
-			this.tableLayoutPanel1.Controls.Add(this.label4, 0, 2);
-			this.tableLayoutPanel1.Controls.Add(this.lbl_NCliente, 1, 0);
-			this.tableLayoutPanel1.Controls.Add(this.lbl_NombreCliente, 1, 1);
-			this.tableLayoutPanel1.Controls.Add(this.lbl_NombrePersonal, 1, 2);
-			this.tableLayoutPanel1.Controls.Add(this.lbl_Periodo, 1, 3);
-			this.tableLayoutPanel1.Controls.Add(this.lbl_TLD, 1, 4);
-			this.tableLayoutPanel1.Controls.Add(this.nudPosicion, 1, 5);
-			this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 19);
-			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.RowCount = 6;
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(731, 168);
-			this.tableLayoutPanel1.TabIndex = 0;
-			this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(3, 132);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(47, 13);
-			this.label7.TabIndex = 35;
-			this.label7.Text = "Posición";
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(3, 105);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(43, 13);
-			this.label6.TabIndex = 35;
-			this.label6.Text = "N° TLD";
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(3, 0);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(54, 13);
-			this.label3.TabIndex = 1;
-			this.label3.Text = "N° Cliente";
-			// 
-			// lbl_NCliente
-			// 
-			this.lbl_NCliente.AutoSize = true;
-			this.lbl_NCliente.Location = new System.Drawing.Point(109, 0);
-			this.lbl_NCliente.Name = "lbl_NCliente";
-			this.lbl_NCliente.Size = new System.Drawing.Size(63, 13);
-			this.lbl_NCliente.TabIndex = 36;
-			this.lbl_NCliente.Text = "lbl_NCliente";
-			// 
-			// lbl_NombreCliente
-			// 
-			this.lbl_NombreCliente.AutoSize = true;
-			this.lbl_NombreCliente.Location = new System.Drawing.Point(109, 25);
-			this.lbl_NombreCliente.Name = "lbl_NombreCliente";
-			this.lbl_NombreCliente.Size = new System.Drawing.Size(92, 13);
-			this.lbl_NombreCliente.TabIndex = 37;
-			this.lbl_NombreCliente.Text = "lbl_NombreCliente";
-			// 
-			// lbl_NombrePersonal
-			// 
-			this.lbl_NombrePersonal.AutoSize = true;
-			this.lbl_NombrePersonal.Location = new System.Drawing.Point(109, 49);
-			this.lbl_NombrePersonal.Name = "lbl_NombrePersonal";
-			this.lbl_NombrePersonal.Size = new System.Drawing.Size(101, 13);
-			this.lbl_NombrePersonal.TabIndex = 38;
-			this.lbl_NombrePersonal.Text = "lbl_NombrePersonal";
-			// 
-			// lbl_Periodo
-			// 
-			this.lbl_Periodo.AutoSize = true;
-			this.lbl_Periodo.Location = new System.Drawing.Point(109, 78);
-			this.lbl_Periodo.Name = "lbl_Periodo";
-			this.lbl_Periodo.Size = new System.Drawing.Size(59, 13);
-			this.lbl_Periodo.TabIndex = 39;
-			this.lbl_Periodo.Text = "lbl_Periodo";
-			// 
-			// lbl_TLD
-			// 
-			this.lbl_TLD.AutoSize = true;
-			this.lbl_TLD.Location = new System.Drawing.Point(109, 105);
-			this.lbl_TLD.Name = "lbl_TLD";
-			this.lbl_TLD.Size = new System.Drawing.Size(44, 13);
-			this.lbl_TLD.TabIndex = 40;
-			this.lbl_TLD.Text = "lbl_TLD";
-			// 
-			// nudPosicion
-			// 
-			this.nudPosicion.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-			this.nudPosicion.Location = new System.Drawing.Point(109, 135);
-			this.nudPosicion.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-			this.nudPosicion.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.nudPosicion.Name = "nudPosicion";
-			this.nudPosicion.ReadOnly = true;
-			this.nudPosicion.Size = new System.Drawing.Size(63, 20);
-			this.nudPosicion.TabIndex = 41;
-			this.nudPosicion.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			// 
 			// groupBox2
 			// 
 			this.groupBox2.Controls.Add(this.tableLayoutPanel2);
-			this.groupBox2.Location = new System.Drawing.Point(12, 347);
+			this.groupBox2.Location = new System.Drawing.Point(12, 397);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(752, 241);
 			this.groupBox2.TabIndex = 35;
@@ -608,11 +613,28 @@
 			this.txtHasta.TabIndex = 39;
 			this.txtHasta.Visible = false;
 			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(3, 160);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(72, 13);
+			this.label8.TabIndex = 42;
+			this.label8.Text = "Fecha lectura";
+			// 
+			// dtpFechaLectura
+			// 
+			this.dtpFechaLectura.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.dtpFechaLectura.Location = new System.Drawing.Point(109, 163);
+			this.dtpFechaLectura.Name = "dtpFechaLectura";
+			this.dtpFechaLectura.Size = new System.Drawing.Size(101, 20);
+			this.dtpFechaLectura.TabIndex = 43;
+			// 
 			// frmModuloIniciarProcesoTLD
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(781, 627);
+			this.ClientSize = new System.Drawing.Size(781, 676);
 			this.Controls.Add(this.txtHasta);
 			this.Controls.Add(this.lblHasta);
 			this.Controls.Add(this.rbtVarios);
@@ -695,5 +717,7 @@
 		private System.Windows.Forms.RadioButton rbtVarios;
 		private System.Windows.Forms.Label lblHasta;
 		private System.Windows.Forms.TextBox txtHasta;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.DateTimePicker dtpFechaLectura;
 	}
 }
