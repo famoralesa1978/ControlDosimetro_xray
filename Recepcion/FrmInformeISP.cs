@@ -13,6 +13,8 @@ using System.IO;
 using System.Data.SqlClient;
 using OpenXmlPowerTools;
 using DocumentFormat.OpenXml.Wordprocessing;
+using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace ControlDosimetro
 {
@@ -640,6 +642,8 @@ namespace ControlDosimetro
 
 					using (WordprocessingDocument doc = WordprocessingDocument.Open(strArchivoCopiar, true))
 					{
+						var docTabla = doc.MainDocumentPart.Document;
+
 						strcampoMarcador = "Empresa";
 						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0} ({1})", lbl_nombreCliente.Text, lbl_id_cliente.Text));
 						strcampoMarcador = "Rut";
@@ -671,9 +675,251 @@ namespace ControlDosimetro
 						strcampoMarcador = "TLDFILMICA";
 						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strTecnica);
 
+						DocumentFormat.OpenXml.Wordprocessing.Table table = docTabla.Body.Elements<DocumentFormat.OpenXml.Wordprocessing.Table>().ElementAtOrDefault(2);
+
+						//    new DocumentFormat.OpenXml.Wordprocessing.Table().First() ;
+
+						//Table table =
+						//  doc.MainDocumentPart.Document.Body.Elements<Table>().First();
+
+						TableProperties props = new TableProperties(
+							new TableBorders(
+							 new DocumentFormat.OpenXml.Wordprocessing.TopBorder
+							 {
+								 Val = new EnumValue<BorderValues>(BorderValues.None),
+								 Size = 8
+							 },
+							 new DocumentFormat.OpenXml.Wordprocessing.BottomBorder
+							 {
+								 Val = new EnumValue<BorderValues>(BorderValues.None),
+
+								 Size = 8
+							 },
+							 new DocumentFormat.OpenXml.Wordprocessing.LeftBorder
+							 {
+								 Val = new EnumValue<BorderValues>(BorderValues.None),
+								 Size = 8
+							 },
+							 new DocumentFormat.OpenXml.Wordprocessing.RightBorder
+							 {
+								 Val = new EnumValue<BorderValues>(BorderValues.None),
+								 Size = 8
+							 },
+							 new InsideHorizontalBorder
+							 {
+								 Val = new EnumValue<BorderValues>(BorderValues.None),
+								 Size = 8
+							 },
+							 new InsideVerticalBorder
+							 {
+								 Val = new EnumValue<BorderValues>(BorderValues.None),
+								 Size = 8
+							 }));
+						table.AppendChild<TableProperties>(props);
+
+
+						for (var i = 0; i <= data1.GetUpperBound(0); i++)
+						{
+							var tr = new TableRow(new TableWidth { Type = TableWidthUnitValues.Auto });
+							var tc2 = new TableCell();
+							var tc3 = new TableCell();
+							var tc4 = new TableCell();
+							var tc5 = new TableCell();
+							var tc6 = new TableCell();
+							var tc7 = new TableCell();
+							var tc8 = new TableCell();
+							var tc9 = new TableCell();
+							var tc10 = new TableCell();
+							//for (var j = 0; j <= data.GetUpperBound(1); j++)
+							//{
+							var tc = new TableCell();
+
+
+							if (i == 0)
+							{
+
+
+								tc.Append(new TableCellProperties(
+																	 new TableCellWidth { Type = TableWidthUnitValues.Auto },
+																	 new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
+																	new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" },
+																	 new Paragraph(
+																					new DocumentFormat.OpenXml.Wordprocessing.Run(
+																					new DocumentFormat.OpenXml.Wordprocessing.Text(data1[i]))
+																				)
+																	 ));
+								tr.Append(tc);
+
+
+
+								tc2.Append(new TableCellProperties(
+							 new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "350" },
+																	 new DocumentFormat.OpenXml.Wordprocessing.Bold(),
+																	new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																	 new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" }
+																	 ));
+
+								tc3.Append(new TableCellProperties(
+							 new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "600" },
+							 new DocumentFormat.OpenXml.Wordprocessing.Bold(),
+																	 new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																	 new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" }
+																	 ));
+							}
+							else
+							{
+								tc.Append(new TableCellProperties(
+																	 new TableCellWidth { Type = TableWidthUnitValues.Auto },
+																	new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
+																	new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" },
+																	 new Paragraph(
+																					new DocumentFormat.OpenXml.Wordprocessing.Run(
+																					new DocumentFormat.OpenXml.Wordprocessing.Text(data1[i]))
+																				)
+																	 ));
+
+								tr.Append(tc);
+
+
+
+								tc2.Append(new TableCellProperties(
+							 new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "350" },
+																	 new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																	 new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" }
+																	 ));
+
+								tc3.Append(new TableCellProperties(
+							 new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "600" },
+																	 new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																	 new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" }
+																	 ));
+							}
+
+
+
+							tc2.Append(
+											new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
+
+											new Paragraph(
+													new DocumentFormat.OpenXml.Wordprocessing.Run(
+														new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																	new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "5" },
+														new DocumentFormat.OpenXml.Wordprocessing.Text(data2[i]))));
+							// Assume you want columns that are automatically sized.
+							tr.Append(tc2);
+
+
+							tc3.Append(
+										new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+											new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+										new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(
+												new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+												new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+												new DocumentFormat.OpenXml.Wordprocessing.Text(data3[i]))));
+							// Assume you want columns that are automatically sized.
+
+							tr.Append(tc3);
+
+							tc4.Append(new TableCellProperties(
+
+																	new DocumentFormat.OpenXml.Wordprocessing.Bold(),
+																	new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																	new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "5" },
+																	new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(
+																			new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																			new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "5" },
+																			new DocumentFormat.OpenXml.Wordprocessing.Text(strfecha_inicio.Substring(0, 6) + strfecha_inicio.Substring(strfecha_inicio.Length - 2, 2))))
+																	));
+
+							tr.Append(tc4);
+
+							tc5.Append(new TableCellProperties(
+																	new TableCellWidth { Type = TableWidthUnitValues.Auto },
+																	new DocumentFormat.OpenXml.Wordprocessing.Bold(),
+																	new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																	new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "5" },
+																	new Paragraph(
+																		new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																		new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "5" },
+																		new DocumentFormat.OpenXml.Wordprocessing.Run(
+																			new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+							new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "5" },
+							new DocumentFormat.OpenXml.Wordprocessing.Text(strfecha_termino.Substring(0, 6) + strfecha_termino.Substring(strfecha_termino.Length - 2, 2))))
+							));
+							tr.Append(tc5);//
+
+							tc6.Append(new TableCellProperties(
+							new TableCellWidth { Type = TableWidthUnitValues.Auto },
+																	new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																			new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																	new Paragraph(
+
+																		new DocumentFormat.OpenXml.Wordprocessing.Run(
+																			new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																			new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																			new DocumentFormat.OpenXml.Wordprocessing.Text(strFechaRecepcion.Substring(0, 6) + strFechaRecepcion.Substring(strFechaRecepcion.Length - 2, 2))))
+																	));
+
+							tr.Append(tc6);
+							tc7.Append(
+											new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																			new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+											new Paragraph(
+												new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+												new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+												new DocumentFormat.OpenXml.Wordprocessing.Run(
+													new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																					new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "5" },
+													new DocumentFormat.OpenXml.Wordprocessing.Text(data4[i]))));
+							tr.Append(tc7);
+
+							//string[] UltimoAnno, string[] Ultimo5anno
+							string strUltimoAnno = data5[i] == null ? "" : data5[i].ToString();
+							tc8.Append(new TableCellProperties(
+																new TableCellWidth { Type = TableWidthUnitValues.Auto },
+																new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																			new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(
+																	new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																	new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																	new DocumentFormat.OpenXml.Wordprocessing.Text(strUltimoAnno)))
+																));
+
+							tr.Append(tc8);
+							string strUltimoAnno5 = data6[i] == null ? "" : data6[i].ToString();
+							tc9.Append(new TableCellProperties(
+																new TableCellWidth { Type = TableWidthUnitValues.Auto },
+																new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																			new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(
+																	new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																	new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																	new DocumentFormat.OpenXml.Wordprocessing.Text(strUltimoAnno5))
+																)
+																));
+
+							tr.Append(tc9);
+							strEstado = data7[i] == null ? "" : data7[i].ToString();
+							tc10.Append(new TableCellProperties(
+																new TableCellWidth { Type = TableWidthUnitValues.Auto },
+																new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																			new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(
+																	new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																	new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																	new DocumentFormat.OpenXml.Wordprocessing.Text(strEstado))
+																)
+																));
+
+							tr.Append(tc10);
+
+							table.Append(tr);
+						}
+						//  doc.Body.Append(table);
+
 					}
-					if (data1.Count() > 0)
-						WDAddTableV2(strArchivoCopiar, data1, data2, data3, strfecha_inicio, strfecha_termino, strFechaRecepcion, data4, data5, data6, data7);
+					//if (data1.Count() > 0)
+					//	WDAddTableV2(strArchivoCopiar, data1, data2, data3, strfecha_inicio, strfecha_termino, strFechaRecepcion, data4, data5, data6, data7);
 
 					#endregion
 				}
@@ -1127,7 +1373,7 @@ namespace ControlDosimetro
 							intCantControlado += 1;
 						}
 
-						if ((bool)checkCell.Value ==false)
+						if ((bool)checkCell.Value == false)
 						{
 							cmd.CommandText = "update tbl_dosimetria " +
 															"set enviado=1" +
@@ -1216,6 +1462,7 @@ namespace ControlDosimetro
 					//	strSemetre1 = "tercer";
 					//if (cbx_id_periodo.Text.Substring(0, 1) == "4")
 					//	strSemetre1 = "cuarto";
+					var docTabla = doc.MainDocumentPart.Document;
 
 					strcampoMarcador = "Empresa";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0} ({1})", lbl_nombreCliente.Text, lbl_id_cliente.Text));
@@ -1258,10 +1505,254 @@ namespace ControlDosimetro
 						strTecnica = String.IsNullOrEmpty(strTecnica) ? "TLD" : strTecnica + "/TLD";
 					strcampoMarcador = "TLDFILMICA";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strTecnica);
+
+
+					DocumentFormat.OpenXml.Wordprocessing.Table table = docTabla.Body.Elements<DocumentFormat.OpenXml.Wordprocessing.Table>().ElementAtOrDefault(2);
+
+					//    new DocumentFormat.OpenXml.Wordprocessing.Table().First() ;
+
+					//Table table =
+					//  doc.MainDocumentPart.Document.Body.Elements<Table>().First();
+
+					TableProperties props = new TableProperties(
+							new TableBorders(
+							 new DocumentFormat.OpenXml.Wordprocessing.TopBorder
+							 {
+								 Val = new EnumValue<BorderValues>(BorderValues.None),
+								 Size = 8
+							 },
+							 new DocumentFormat.OpenXml.Wordprocessing.BottomBorder
+							 {
+								 Val = new EnumValue<BorderValues>(BorderValues.None),
+
+								 Size = 8
+							 },
+							 new DocumentFormat.OpenXml.Wordprocessing.LeftBorder
+							 {
+								 Val = new EnumValue<BorderValues>(BorderValues.None),
+								 Size = 8
+							 },
+							 new DocumentFormat.OpenXml.Wordprocessing.RightBorder
+							 {
+								 Val = new EnumValue<BorderValues>(BorderValues.None),
+								 Size = 8
+							 },
+							 new InsideHorizontalBorder
+							 {
+								 Val = new EnumValue<BorderValues>(BorderValues.None),
+								 Size = 8
+							 },
+							 new InsideVerticalBorder
+							 {
+								 Val = new EnumValue<BorderValues>(BorderValues.None),
+								 Size = 8
+							 }));
+					table.AppendChild<TableProperties>(props);
+
+
+					for (var i = 0; i <= data1.GetUpperBound(0); i++)
+					{
+						var tr = new TableRow(new TableWidth { Type = TableWidthUnitValues.Auto });
+						var tc2 = new TableCell();
+						var tc3 = new TableCell();
+						var tc4 = new TableCell();
+						var tc5 = new TableCell();
+						var tc6 = new TableCell();
+						var tc7 = new TableCell();
+						var tc8 = new TableCell();
+						var tc9 = new TableCell();
+						var tc10 = new TableCell();
+						//for (var j = 0; j <= data.GetUpperBound(1); j++)
+						//{
+						var tc = new TableCell();
+
+
+						if (i == 0)
+						{
+
+
+							tc.Append(new TableCellProperties(
+																			 new TableCellWidth { Type = TableWidthUnitValues.Auto },
+																			 new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
+																			new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" },
+																			 new Paragraph(
+																							new DocumentFormat.OpenXml.Wordprocessing.Run(
+																							new DocumentFormat.OpenXml.Wordprocessing.Text(data1[i]))
+																						)
+																			 ));
+							tr.Append(tc);
+
+
+
+							tc2.Append(new TableCellProperties(
+					 new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "350" },
+																			 new DocumentFormat.OpenXml.Wordprocessing.Bold(),
+																			new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																			 new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" }
+																			 ));
+
+							tc3.Append(new TableCellProperties(
+					 new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "600" },
+					 new DocumentFormat.OpenXml.Wordprocessing.Bold(),
+																			 new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																			 new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" }
+																			 ));
+						}
+						else
+						{
+							tc.Append(new TableCellProperties(
+																			 new TableCellWidth { Type = TableWidthUnitValues.Auto },
+																			new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
+																			new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "9" },
+																			 new Paragraph(
+																							new DocumentFormat.OpenXml.Wordprocessing.Run(
+																							new DocumentFormat.OpenXml.Wordprocessing.Text(data1[i]))
+																						)
+																			 ));
+
+							tr.Append(tc);
+
+
+
+							tc2.Append(new TableCellProperties(
+					 new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "350" },
+																			 new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																			 new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" }
+																			 ));
+
+							tc3.Append(new TableCellProperties(
+					 new TableCellWidth { Type = TableWidthUnitValues.Dxa, Width = "600" },
+																			 new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																			 new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" }
+																			 ));
+						}
+
+
+
+						tc2.Append(
+														new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial" },
+
+														new Paragraph(
+																new DocumentFormat.OpenXml.Wordprocessing.Run(
+																	new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																				new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "5" },
+																	new DocumentFormat.OpenXml.Wordprocessing.Text(data2[i]))));
+						// Assume you want columns that are automatically sized.
+						tr.Append(tc2);
+
+
+						tc3.Append(
+												new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+														new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+												new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(
+															new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+															new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+															new DocumentFormat.OpenXml.Wordprocessing.Text(data3[i]))));
+						// Assume you want columns that are automatically sized.
+
+						tr.Append(tc3);
+
+						tc4.Append(new TableCellProperties(
+
+																				new DocumentFormat.OpenXml.Wordprocessing.Bold(),
+																				new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																				new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "5" },
+																				new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(
+																						new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																						new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "5" },
+																						new DocumentFormat.OpenXml.Wordprocessing.Text(strfecha_inicio.Substring(0, 6) + strfecha_inicio.Substring(strfecha_inicio.Length - 2, 2))))
+																				));
+
+						tr.Append(tc4);
+
+						tc5.Append(new TableCellProperties(
+																				new TableCellWidth { Type = TableWidthUnitValues.Auto },
+																				new DocumentFormat.OpenXml.Wordprocessing.Bold(),
+																				new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																				new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "5" },
+																				new Paragraph(
+																					new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																					new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "5" },
+																					new DocumentFormat.OpenXml.Wordprocessing.Run(
+																						new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+						new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "5" },
+						new DocumentFormat.OpenXml.Wordprocessing.Text(strfecha_termino.Substring(0, 6) + strfecha_termino.Substring(strfecha_termino.Length - 2, 2))))
+						));
+						tr.Append(tc5);//
+
+						tc6.Append(new TableCellProperties(
+						new TableCellWidth { Type = TableWidthUnitValues.Auto },
+																				new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																						new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																				new Paragraph(
+
+																					new DocumentFormat.OpenXml.Wordprocessing.Run(
+																						new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																						new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																						new DocumentFormat.OpenXml.Wordprocessing.Text(strFechaRecepcion.Substring(0, 6) + strFechaRecepcion.Substring(strFechaRecepcion.Length - 2, 2))))
+																				));
+
+						tr.Append(tc6);
+						tc7.Append(
+														new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																						new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+														new Paragraph(
+															new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+															new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+															new DocumentFormat.OpenXml.Wordprocessing.Run(
+																new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																								new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "5" },
+																new DocumentFormat.OpenXml.Wordprocessing.Text(data4[i]))));
+						tr.Append(tc7);
+
+						//string[] UltimoAnno, string[] Ultimo5anno
+						string strUltimoAnno = data5[i] == null ? "" : data5[i].ToString();
+						tc8.Append(new TableCellProperties(
+																			new TableCellWidth { Type = TableWidthUnitValues.Auto },
+																			new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																						new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																			new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(
+																				new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																				new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																				new DocumentFormat.OpenXml.Wordprocessing.Text(strUltimoAnno)))
+																			));
+
+						tr.Append(tc8);
+						string strUltimoAnno5 = data6[i] == null ? "" : data6[i].ToString();
+						tc9.Append(new TableCellProperties(
+																			new TableCellWidth { Type = TableWidthUnitValues.Auto },
+																			new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																						new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																			new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(
+																				new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																				new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																				new DocumentFormat.OpenXml.Wordprocessing.Text(strUltimoAnno5))
+																			)
+																			));
+
+						tr.Append(tc9);
+						strEstado = data7[i] == null ? "" : data7[i].ToString();
+						tc10.Append(new TableCellProperties(
+																			new TableCellWidth { Type = TableWidthUnitValues.Auto },
+																			new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																						new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																			new Paragraph(new DocumentFormat.OpenXml.Wordprocessing.Run(
+																				new DocumentFormat.OpenXml.Wordprocessing.RunFonts() { Ascii = "Arial", HighAnsi = "Arial", ComplexScript = "Arial" },
+																				new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = "8" },
+																				new DocumentFormat.OpenXml.Wordprocessing.Text(strEstado))
+																			)
+																			));
+
+						tr.Append(tc10);
+
+						table.Append(tr);
+					}
+					//  doc.Body.Append(table);
+
 					doc.Close();
 				}
-				if (data1.Count() > 0)
-					WDAddTableV2(strArchivoCopiar, data1, data2, data3, strfecha_inicio, strfecha_termino, strFechaRecepcion, data4, data5, data6, data7);
+				//if (data1.Count() > 0)
+				//	WDAddTableV2(strArchivoCopiar, data1, data2, data3, strfecha_inicio, strfecha_termino, strFechaRecepcion, data4, data5, data6, data7);
 
 				#endregion
 				#endregion
@@ -1960,7 +2451,7 @@ namespace ControlDosimetro
 		#region "button"
 		private void BtnGenerarArchivoNuevo_Click(object sender, EventArgs e)
 		{
-			if ((int)cbx_id_seccion.SelectedValue >0)
+			if ((int)cbx_id_seccion.SelectedValue > 0)
 			{
 				lblRuta.Visible = false;
 				GenerarPorSucursalV2();
@@ -2443,7 +2934,7 @@ namespace ControlDosimetro
 			// dtcombo = Conectar.Listar(ClaseGeneral.Conexion,cmdcombo);
 
 			var dv = grdDatos.Vista().Table;
-			List<DataRow> ListaCorregir = dv.AsEnumerable().Where(s => Convert.ToBoolean(s["Generar"])==true).ToList();
+			List<DataRow> ListaCorregir = dv.AsEnumerable().Where(s => Convert.ToBoolean(s["Generar"]) == true).ToList();
 			pnl_Progreso.Visible = true;
 			pgb_Barra.Minimum = 0;
 			pgb_Barra.Maximum = ListaCorregir.Count;
