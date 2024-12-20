@@ -1462,7 +1462,6 @@ namespace ControlDosimetro
 					//	strSemetre1 = "tercer";
 					//if (cbx_id_periodo.Text.Substring(0, 1) == "4")
 					//	strSemetre1 = "cuarto";
-					var docTabla = doc.MainDocumentPart.Document;
 
 					strcampoMarcador = "Empresa";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0} ({1})", lbl_nombreCliente.Text, lbl_id_cliente.Text));
@@ -1505,8 +1504,8 @@ namespace ControlDosimetro
 						strTecnica = String.IsNullOrEmpty(strTecnica) ? "TLD" : strTecnica + "/TLD";
 					strcampoMarcador = "TLDFILMICA";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strTecnica);
-
-
+			
+					var docTabla = doc.MainDocumentPart.Document;
 					DocumentFormat.OpenXml.Wordprocessing.Table table = docTabla.Body.Elements<DocumentFormat.OpenXml.Wordprocessing.Table>().ElementAtOrDefault(2);
 
 					//    new DocumentFormat.OpenXml.Wordprocessing.Table().First() ;
@@ -1747,8 +1746,7 @@ namespace ControlDosimetro
 
 						table.Append(tr);
 					}
-					//  doc.Body.Append(table);
-
+					docTabla.Save();
 					doc.Close();
 				}
 				//if (data1.Count() > 0)
