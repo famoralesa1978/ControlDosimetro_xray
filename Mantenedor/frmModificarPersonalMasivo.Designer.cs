@@ -479,6 +479,7 @@
 			this.tsbAsignar.Size = new System.Drawing.Size(156, 36);
 			this.tsbAsignar.Text = "Asignar dirección o sección";
 			this.tsbAsignar.ToolTipText = "Asignar dirección o sección";
+			this.tsbAsignar.Visible = false;
 			this.tsbAsignar.Click += new System.EventHandler(this.tsbAsignar_Click);
 			// 
 			// grpPersonal

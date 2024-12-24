@@ -108,6 +108,7 @@
 			this.Maternos = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.id_sucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.id_estadodosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColSeccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picPeriodo)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -299,7 +300,7 @@
 			this.groupBox2.Controls.Add(this.grdDatos);
 			this.groupBox2.Location = new System.Drawing.Point(5, 291);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(1175, 357);
+			this.groupBox2.Size = new System.Drawing.Size(1234, 357);
 			this.groupBox2.TabIndex = 6;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Listado";
@@ -388,13 +389,14 @@
             this.Paterno,
             this.Maternos,
             this.id_sucursal,
-            this.id_estadodosimetro});
+            this.id_estadodosimetro,
+            this.ColSeccion});
 			this.grdDatos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.grdDatos.Location = new System.Drawing.Point(3, 16);
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-			this.grdDatos.Size = new System.Drawing.Size(1169, 338);
+			this.grdDatos.Size = new System.Drawing.Size(1228, 338);
 			this.grdDatos.TabIndex = 8;
 			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
@@ -414,7 +416,7 @@
             this.tsbAsignar});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(1180, 27);
+			this.toolStrip1.Size = new System.Drawing.Size(1239, 27);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -519,7 +521,7 @@
 			// btn_Guardar
 			// 
 			this.btn_Guardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Guardar.Location = new System.Drawing.Point(539, 655);
+			this.btn_Guardar.Location = new System.Drawing.Point(568, 655);
 			this.btn_Guardar.Name = "btn_Guardar";
 			this.btn_Guardar.Size = new System.Drawing.Size(139, 23);
 			this.btn_Guardar.TabIndex = 7;
@@ -530,7 +532,7 @@
 			// btn_Cerrar
 			// 
 			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Cerrar.Location = new System.Drawing.Point(863, 655);
+			this.btn_Cerrar.Location = new System.Drawing.Point(892, 655);
 			this.btn_Cerrar.Name = "btn_Cerrar";
 			this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
 			this.btn_Cerrar.TabIndex = 8;
@@ -541,7 +543,7 @@
 			// btnAsignarTLD
 			// 
 			this.btnAsignarTLD.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btnAsignarTLD.Location = new System.Drawing.Point(382, 654);
+			this.btnAsignarTLD.Location = new System.Drawing.Point(411, 654);
 			this.btnAsignarTLD.Name = "btnAsignarTLD";
 			this.btnAsignarTLD.Size = new System.Drawing.Size(126, 23);
 			this.btnAsignarTLD.TabIndex = 9;
@@ -681,7 +683,7 @@
 			// btn_Eliminar
 			// 
 			this.btn_Eliminar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Eliminar.Location = new System.Drawing.Point(698, 655);
+			this.btn_Eliminar.Location = new System.Drawing.Point(727, 655);
 			this.btn_Eliminar.Name = "btn_Eliminar";
 			this.btn_Eliminar.Size = new System.Drawing.Size(139, 23);
 			this.btn_Eliminar.TabIndex = 18;
@@ -692,7 +694,7 @@
 			// btnAgregarRef
 			// 
 			this.btnAgregarRef.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btnAgregarRef.Location = new System.Drawing.Point(215, 654);
+			this.btnAgregarRef.Location = new System.Drawing.Point(244, 654);
 			this.btnAgregarRef.Name = "btnAgregarRef";
 			this.btnAgregarRef.Size = new System.Drawing.Size(147, 23);
 			this.btnAgregarRef.TabIndex = 11;
@@ -899,12 +901,13 @@
 			// 
 			// Maternos
 			// 
-			this.Maternos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Maternos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.Maternos.DataPropertyName = "Maternos";
 			this.Maternos.HeaderText = "Maternos";
 			this.Maternos.MinimumWidth = 150;
 			this.Maternos.Name = "Maternos";
 			this.Maternos.ReadOnly = true;
+			this.Maternos.Width = 150;
 			// 
 			// id_sucursal
 			// 
@@ -922,11 +925,19 @@
 			this.id_estadodosimetro.Visible = false;
 			this.id_estadodosimetro.Width = 123;
 			// 
+			// ColSeccion
+			// 
+			this.ColSeccion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.ColSeccion.DataPropertyName = "Seccion";
+			this.ColSeccion.HeaderText = "Sección";
+			this.ColSeccion.Name = "ColSeccion";
+			this.ColSeccion.Width = 71;
+			// 
 			// frmIngresoDosimetroTLD
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1180, 686);
+			this.ClientSize = new System.Drawing.Size(1239, 686);
 			this.Controls.Add(this.groupBox4);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.cbx_Sucursal);
@@ -1053,5 +1064,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Maternos;
 		private System.Windows.Forms.DataGridViewTextBoxColumn id_sucursal;
 		private System.Windows.Forms.DataGridViewTextBoxColumn id_estadodosimetro;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColSeccion;
 	}
 }
