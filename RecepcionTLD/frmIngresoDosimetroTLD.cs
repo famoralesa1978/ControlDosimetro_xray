@@ -51,6 +51,8 @@ namespace ControlDosimetro
 		string strDireccion;
 		string strServicio;
 		string strRegion;
+		string strRut;
+		string strRazonSocial;
 		public string Id_Menu { get; private set; }
 		private bool Inicializar = true;
 		DataTable dtPeriodo;
@@ -107,9 +109,12 @@ namespace ControlDosimetro
 
 
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "select run,Razon_Social,N_Cliente_Ref, Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio,Servicio,r.region,co.Comuna " +
-											"  FROM tbl_cliente c inner join [dbo].[glo_region] r on c.Id_Region=r.Id_Region inner join glo_comuna co on co.id_comuna=c.id_comuna" +
-											" WHERE Id_cliente= " + lbl_id_cliente.Text.ToString() + " and run ='" + lbl_rut_cliente.Text + "'";//comuna +','+ region
+			cmd.CommandText = string.Format("TraerClienteSucursal '{0}',{1}", lbl_rut_cliente.Text, lbl_id_cliente.Text);
+				
+				
+				//select run,Razon_Social,N_Cliente_Ref, Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio,Servicio,r.region,co.Comuna " +
+				//							"  FROM tbl_cliente c inner join [dbo].[glo_region] r on c.Id_Region=r.Id_Region inner join glo_comuna co on co.id_comuna=c.id_comuna" +
+				//							" WHERE Id_cliente= " + lbl_id_cliente.Text.ToString() + " and run ='" + lbl_rut_cliente.Text + "'";//comuna +','+ region
 			DataSet dt;
 
 			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
@@ -118,6 +123,8 @@ namespace ControlDosimetro
 				strDireccion = dt.Tables[0].Rows[0]["Direccion"].ToString();
 				strServicio = dt.Tables[0].Rows[0]["Servicio"].ToString();
 				strRegion = dt.Tables[0].Rows[0]["region"].ToString();
+				strRut= dt.Tables[0].Rows[0]["run"].ToString();
+				strRazonSocial = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
 			}
 
 		}
@@ -484,6 +491,11 @@ namespace ControlDosimetro
 
 		private void btn_Excel_Click(object sender, EventArgs e)
 		{
+			if (cbx_id_seccion.Text == "Tdos") {
+				"Seleccione una sección para generar el informe".XMensajeError();
+				return;
+			}
+				
 			btnAgregarRef.Enabled = btn_Guardar.Enabled = btnAsignarTLD.Enabled = btn_Eliminar.Enabled = false;
 			String strError = "";
 			String strCorrecto = "";
@@ -1017,11 +1029,11 @@ namespace ControlDosimetro
 						UpdateValueInforme(wsName, "B9", strTitulo, 0, true);
 						UpdateValueInforme(wsName, "B16", strUsados, 0, true);
 						UpdateValueInforme(wsName, "C12", strDireccion, 0, true);
-						UpdateValueInforme(wsName, "C14", lbl_rut_cliente.Text.ToUpper(), 0, true);
+						UpdateValueInforme(wsName, "C14",strRut, 0, true);
 						UpdateValueInforme(wsName, "F14", cbx_id_seccion.Text.ToUpper(), 0, true);
 						//	UpdateValue(wsName, "M4", strRegion, 0, true);
 						UpdateValueInforme(wsName, "C13", strComuna.ToUpper() + ", " + strRegionSuc.ToUpper(), 0, true);
-						UpdateValueInforme(wsName, "C11", lbl_nombreCliente.Text.ToUpper(), 0, true);
+						UpdateValueInforme(wsName, "C11", strRazonSocial.ToUpper(), 0, true);
 						UpdateValueInforme(wsName, "G11", lbl_id_cliente.Text, 0, true);
 						DataRow dtr = ((DataRowView)cbx_id_periodo.SelectedItem).Row;
 						UpdateValueInforme(wsName, "B43", dtr["Glosa"].ToString(), 0, true);
@@ -1038,11 +1050,11 @@ namespace ControlDosimetro
 						UpdateValueLab(wsName, "B9", strTitulo, 0, true);
 						UpdateValueLab(wsName, "B16", strUsados, 0, true);
 						UpdateValueLab(wsName, "C12", strDireccion, 0, true);
-						UpdateValueLab(wsName, "C14", lbl_rut_cliente.Text.ToUpper(), 0, true);
+						UpdateValueLab(wsName, "C14", strRut.ToUpper(), 0, true);
 						UpdateValueLab(wsName, "F14", cbx_id_seccion.Text.ToUpper(), 0, true);
 						//	UpdateValue(wsName, "M4", strRegion, 0, true);
 						UpdateValueLab(wsName, "C13", strComuna.ToUpper() + ", " + strRegionSuc.ToUpper(), 0, true);
-						UpdateValueLab(wsName, "C11", lbl_nombreCliente.Text.ToUpper(), 0, true);
+						UpdateValueLab(wsName, "C11", strRazonSocial.ToUpper(), 0, true);
 						UpdateValueLab(wsName, "G11", lbl_id_cliente.Text, 0, true);
 
 						intFila = intFila + 1;
