@@ -303,7 +303,7 @@ namespace ControlDosimetro
 									 Id_Personal.Value.ToString() + "," + // @Id_Personal int,
 									lbl_id_cliente.Text.ToString() + "," +//@Id_cliente int,
 																												//id_sucursal.Value.ToString() + "," + //@Id_sucursal int,
-									cbx_Sucursal.SelectedValue.ToString() + "," + //@Id_sucursal int,
+									id_sucursal + "," + //@Id_sucursal int,
 									cbx_id_periodo.SelectedValue + "," +//@id_periodo int,
 									txtndocumento.Value.ToString() + "," +//@N_Documento int,
 									txtnpelicula.Value.ToString() + ",-1,'" +//@n_dosimetro int,
@@ -323,7 +323,7 @@ namespace ControlDosimetro
 					cmd.CommandText = "pa_DosimetroTLD_upd " +
 								Id_Personal.Value.ToString() + "," + // @Id_Personal int,
 								lbl_id_cliente.Text.ToString() + "," +//@Id_cliente int,
-								cbx_Sucursal.SelectedValue.ToString() + "," + //@Id_sucursal int,
+								id_sucursal + "," + //@Id_sucursal int,
 								cbx_id_periodo.SelectedValue + "," +//@id_periodo int,
 								txtndocumento.Value.ToString() + "," +//@N_Documento int,
 								txtnpelicula.Value.ToString() + ",-1,'" +//@n_dosimetro int,

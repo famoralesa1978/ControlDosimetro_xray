@@ -214,8 +214,19 @@ namespace ControlDosimetro
 		private void btn_Guardar_Click(object sender, EventArgs e)
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = "pa_DosimetroRecepcionProcesoTLD_upd " + lbl_TLD.Text + "," + intintId_Estado_temp.ToString() + ",'" + Clases.clsUsuario.Usuario + "'," + nudPosicion.Value.ToString() + "";
-			cmd.CommandType = CommandType.Text;
+			cmd.CommandText = "pa_DosimetroRecepcionProcesoTLD_upd";
+			cmd.Parameters.Clear();
+			cmd.Parameters.Add("@n_dosimetro", SqlDbType.Int);
+			cmd.Parameters["@n_dosimetro"].Value = lbl_TLD.Text;
+			cmd.Parameters.Add("@id_estado", SqlDbType.Int);
+			cmd.Parameters["@id_estado"].Value = intintId_Estado_temp;
+			cmd.Parameters.Add("@usuario", SqlDbType.VarChar,30);
+			cmd.Parameters["@usuario"].Value = Clases.clsUsuario.Usuario;
+			cmd.Parameters.Add("@PosicionDisco", SqlDbType.Int);
+			cmd.Parameters["@PosicionDisco"].Value = nudPosicion.Value;
+			cmd.Parameters.Add("@FechaLectura", SqlDbType.Date);
+			cmd.Parameters["@FechaLectura"].Value = dtpFechaLectura.Value;
+			cmd.CommandType = CommandType.StoredProcedure;
 			Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 			LimpiarPantalla();
 			Listar_Grilla();

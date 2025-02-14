@@ -104,12 +104,12 @@ namespace ControlDosimetro
 
 		#region "Llamada de carga"
 
-		private void Cargar_Cliente()
+		private void Cargar_Cliente(int intIdSucursal)
 		{
 
 
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = string.Format("TraerClienteSucursal '{0}',{1}", lbl_rut_cliente.Text, lbl_id_cliente.Text);
+			cmd.CommandText = string.Format("TraerClienteSucursal '{0}',{1}", lbl_rut_cliente.Text, lbl_id_cliente.Text, intIdSucursal);
 				
 				
 				//select run,Razon_Social,N_Cliente_Ref, Direccion as Direccion ,r.Id_Region,c.Id_Provincia,c.Id_Comuna,Telefono, Id_TipoFuente,Id_estado,Fechainicio,Servicio,r.region,co.Comuna " +
@@ -417,6 +417,12 @@ namespace ControlDosimetro
 				//MessageBox.Show("Debe asignar un número de TLD");
 				txt_N_TLD.Text = String.Format("{0}", Convert.ToInt64(lbl_ValorMax.Text) + 1);
 			}
+			if ((int)cbx_id_seccion.SelectedValue < 1)
+			{
+				"Debe Seleccionar una sección para asignar un TLD".XMensajeError();
+				return;
+			}
+
 			btnAsignarTLD.Enabled = false;
 
 			
@@ -840,7 +846,7 @@ namespace ControlDosimetro
 			dtPeriodo = Conectar.Listar(ClaseGeneral.Conexion, cmdPeriodo);
 			string strfecha_inicio = "From " + dtPeriodo.Tables[0].Rows[0]["fecha_inicio"].ToString().Substring(0, 6) + dtPeriodo.Tables[0].Rows[0]["fecha_inicio"].ToString().Substring(8, 2);
 			strfecha_inicio = strfecha_inicio + " to " + dtPeriodo.Tables[0].Rows[0]["fecha_termino"].ToString().Substring(0, 6) + dtPeriodo.Tables[0].Rows[0]["fecha_termino"].ToString().Substring(8, 2);
-			Cargar_Cliente();
+			Cargar_Cliente((int)cbx_Sucursal.SelectedValue);
 			string strfecha_Per = dtPeriodo.Tables[0].Rows[0]["Finicio"].ToString() + " al " + dtPeriodo.Tables[0].Rows[0]["FTermino"].ToString();
 
 			string strfecha_Fin = dtPeriodo.Tables[0].Rows[0]["FTermino"].ToString();
@@ -1430,7 +1436,7 @@ namespace ControlDosimetro
 									tb["Id_Personal"]  + "," + // @Id_Personal int,
 									lbl_id_cliente.Text.ToString() + "," +//@Id_cliente int,
 																												//id_sucursal.Value.ToString() + "," + //@Id_sucursal int,
-									cbx_Sucursal.SelectedValue.ToString() + "," + //@Id_sucursal int,
+									tb["Id_Seccion"]  + "," + //@Id_sucursal int,cbx_Sucursal.SelectedValue.ToString()
 									cbx_id_periodo.SelectedValue + "," +//@id_periodo int,
 									tb["N_Documento"] + "," +//@N_Documento int, 
 									tb["N_pelicula"] + ",-1,'" +//@n_dosimetro int,
@@ -1445,7 +1451,7 @@ namespace ControlDosimetro
 					cmd.CommandText = "pa_DosimetroTLD_upd " +
 								tb["Id_Personal"] + "," + // @Id_Personal int,
 								lbl_id_cliente.Text.ToString() + "," +//@Id_cliente int,
-								cbx_Sucursal.SelectedValue.ToString() + "," + //@Id_sucursal int,
+								cbx_id_seccion.SelectedValue + "," + //@Id_sucursal int,cbx_Sucursal.SelectedValue.ToString()
 								cbx_id_periodo.SelectedValue + "," +//@id_periodo int,
 								tb["N_Documento"] + "," +//@N_Documento int,
 								tb["N_pelicula"] + ",-1,'" +//@n_dosimetro int,
