@@ -286,7 +286,7 @@ namespace ControlDosimetro
 				cmdMod.Parameters["@Opr"].Value = txt_Opr.Text;
 				cmdMod.Parameters.Add("@nombre_fantasia", SqlDbType.VarChar, 100);
 				cmdMod.Parameters["@nombre_fantasia"].Value = txt_Nombre_fantasia.Text;
-				cmdMod.Parameters.Add("@OPR_RUT", SqlDbType.VarChar, 1);
+				cmdMod.Parameters.Add("@OPR_RUT", SqlDbType.VarChar, 12);
 				cmdMod.Parameters["@OPR_RUT"].Value = txt_OPR_RUT.DevuelveCadenaNulo();
 				cmdMod.CommandText = "pa_Cliente_Upd";
 
