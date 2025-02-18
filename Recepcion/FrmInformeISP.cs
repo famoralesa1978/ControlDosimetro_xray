@@ -476,6 +476,7 @@ namespace ControlDosimetro
 				string strRunOPR = dt.Tables[0].Rows[idatos]["OPR_RUT"].ToString();
 				string strEmailOPR = dt.Tables[0].Rows[idatos]["EmailOPR"].ToString();
 				string strFechaDevolucion = dt.Tables[0].Rows[0]["FechaRecepcion"].ToString();
+				string strFechaLectuta = dt.Tables[0].Rows[0].IsNull("FechaLectura")? strFechaDevolucion: ((DateTime)dt.Tables[0].Rows[0]["FechaLectura"]).Date.ToString("dd-MM-yyyy");
 				//string strN_Documento = dt.Tables[0].Rows[idatos]["N_Documento"].ToString();
 				//	string strId_sucursal = dt.Tables[0].Rows[idatos]["Id_sucursal"].ToString();
 				String strArchivoCopiar = "";
@@ -665,7 +666,7 @@ namespace ControlDosimetro
 						strcampoMarcador = "FechaDevolucion";
 						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strFechaDevolucion);
 						strcampoMarcador = "FechaLectura";
-						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strFechaDevolucion);
+						BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strFechaLectuta);
 
 
 						if (TieneFilmica)//TLD/FILMICA
@@ -1222,6 +1223,7 @@ namespace ControlDosimetro
 				string strRunOPR = dt.Tables[0].Rows[idatos]["OPR_RUT"].ToString();
 				string strEmailOPR = dt.Tables[0].Rows[idatos]["EmailOPR"].ToString();
 				string strFechaDevolucion = dt.Tables[0].Rows[0]["FechaRecepcion"].ToString();
+				string strFechaLectuta = dt.Tables[0].Rows[0].IsNull("FechaLectura") ? strFechaDevolucion : ((DateTime)dt.Tables[0].Rows[0]["FechaLectura"]).Date.ToString("dd-MM-yyyy");
 				string strArchivoCopiar = "";
 				strArchivoCopiar = targetPath + "Cliente" +
 									string.Format("{0}_{1}_{2}_{3}T_{4}.docx", lbl_id_cliente.Text, strSeccion, cbx_Sucursal.Text, cbx_id_periodo.Text.ToString().Substring(0, 1), cbx_anno.Text);
@@ -1484,7 +1486,7 @@ namespace ControlDosimetro
 					strcampoMarcador = "FechaDevolucion";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strFechaDevolucion);
 					strcampoMarcador = "FechaLectura";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strFechaDevolucion);
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strFechaLectuta);
 
 					strcampoMarcador = "CantToes";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), intCantControlado.ToString());
