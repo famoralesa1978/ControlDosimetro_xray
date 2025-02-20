@@ -1436,7 +1436,7 @@ namespace ControlDosimetro
 									tb["Id_Personal"]  + "," + // @Id_Personal int,
 									lbl_id_cliente.Text.ToString() + "," +//@Id_cliente int,
 																												//id_sucursal.Value.ToString() + "," + //@Id_sucursal int,
-									tb["Id_Seccion"]  + "," + //@Id_sucursal int,cbx_Sucursal.SelectedValue.ToString()
+									cbx_Sucursal.SelectedValue + "," + //@Id_sucursal int,cbx_Sucursal.SelectedValue.ToString()
 									cbx_id_periodo.SelectedValue + "," +//@id_periodo int,
 									tb["N_Documento"] + "," +//@N_Documento int, 
 									tb["N_pelicula"] + ",-1,'" +//@n_dosimetro int,
@@ -1451,7 +1451,7 @@ namespace ControlDosimetro
 					cmd.CommandText = "pa_DosimetroTLD_upd " +
 								tb["Id_Personal"] + "," + // @Id_Personal int,
 								lbl_id_cliente.Text.ToString() + "," +//@Id_cliente int,
-								cbx_id_seccion.SelectedValue + "," + //@Id_sucursal int,cbx_Sucursal.SelectedValue.ToString()
+								cbx_Sucursal.SelectedValue + "," + //@Id_sucursal int,cbx_Sucursal.SelectedValue.ToString()
 								cbx_id_periodo.SelectedValue + "," +//@id_periodo int,
 								tb["N_Documento"] + "," +//@N_Documento int,
 								tb["N_pelicula"] + ",-1,'" +//@n_dosimetro int,
