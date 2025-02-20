@@ -359,7 +359,7 @@ namespace ControlDosimetro
 				cmd.Parameters["@Opr"].Value = txt_Opr.Text;
 				cmd.Parameters.Add("@nombre_fantasia", SqlDbType.VarChar, 100);
 				cmd.Parameters["@nombre_fantasia"].Value = txt_Nombre_fantasia.Text;
-				cmd.Parameters.Add("@OPR_RUT", SqlDbType.VarChar, 1);
+				cmd.Parameters.Add("@OPR_RUT", SqlDbType.VarChar, 20);
 				cmd.Parameters["@OPR_RUT"].Value = txt_OPR_RUT.DevuelveCadenaNulo();
 				cmd.CommandText = "pa_Cliente_ins";
 				cmd.CommandType = CommandType.StoredProcedure;
