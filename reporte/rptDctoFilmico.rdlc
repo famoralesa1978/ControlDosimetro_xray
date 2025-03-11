@@ -1483,7 +1483,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>San Antonio 50 Of. 403 Santiago Centro</Value>
+                <Value>Paseo Bulnes 209, of. 83 Santiago Centro</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontWeight>Bold</FontWeight>
@@ -1806,7 +1806,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>San Antonio 50 of. 403 Santiago centro, Teléfonos +56962372048, 56226323485, email: xray@x-rayltda.cl</Value>
+                  <Value>Paseo bulnes 209, of. 83 Santiago centro, Teléfonos +56962372048, 56226323485, email: xray@x-rayltda.cl</Value>
                   <Style>
                     <FontStyle>Normal</FontStyle>
                     <FontFamily>Calibri</FontFamily>
