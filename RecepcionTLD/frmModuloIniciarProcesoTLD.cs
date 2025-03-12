@@ -56,6 +56,7 @@ namespace ControlDosimetro
 			LimpiarPantalla();
 			Listar_Grilla();
 			VerificaSihayProcesoIniciado();
+			dtpFechaLectura.Value = DateTime.Now;
 			//  btn_Guardar.Enabled = false;
 			// btnIniciar.Enabled = false;
 		}
@@ -102,7 +103,7 @@ namespace ControlDosimetro
 						lbl_TLD.Text = ds.Tables[0].Rows[0]["n_dosimetro"].ToString();
 						nudPosicion.Value = Convert.ToInt32(ds.Tables[0].Rows[0]["PosDisco"].ToString());
 						lbl_NombrePersonal.Text = ds.Tables[0].Rows[0]["nombrecompleto"].ToString();
-						dtpFechaLectura.Value = (DateTime)ds.Tables[0].Rows[0]["FechaLectura"];
+					//	dtpFechaLectura.Value = (DateTime)ds.Tables[0].Rows[0]["FechaLectura"];
 						btn_Guardar.Visible = true;
 						txt_TLD.Text = "";
 						txtHasta.Text = "";
