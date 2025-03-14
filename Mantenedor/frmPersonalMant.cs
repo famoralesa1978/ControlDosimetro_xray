@@ -272,7 +272,7 @@ namespace ControlDosimetro
 			SqlCommand cmd = new SqlCommand();
 			// SqlCommand cmd = new SqlCommand();
 
-			cmd.CommandText = "select id_profesion, cast(orden as  varchar(max))+'-'+Profesion as Profesion,orden FROM glo_profesion order by Profesion";
+			cmd.CommandText = "select id_profesion, cast(orden as  varchar(max))+'-'+Profesion as Profesion,orden FROM glo_profesion order by orden";
 			DataSet dt;
 			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 			cbx_id_profesion.DisplayMember = dt.Tables[0].Columns[1].Caption.ToString();
