@@ -938,8 +938,8 @@ namespace ControlDosimetro
 			{
 				#region "Proceso"
 				int FilaWord = 0;
-				string strRunEmpresa = lbl_rut_cliente.Text;
-				string strRazon_SocialEmpresa = lbl_nombreCliente.Text;
+				string strRunEmpresa = dt.Tables[0].Rows[idatos]["run"].ToString();//lbl_rut_cliente.Text;
+				string strRazon_SocialEmpresa = dt.Tables[0].Rows[idatos]["Razon_Social"].ToString(); //lbl_nombreCliente.Text;
 				string strDireccionEmpresa = dt.Tables[0].Rows[idatos]["DireccionCliente"].ToString();
 				string strDireccionEmpresaSucursal = strDireccionEmpresa;
 				string strTelefonoEmpresa = dt.Tables[0].Rows[idatos]["Telefono"].ToString();
@@ -1199,15 +1199,16 @@ namespace ControlDosimetro
 					//	strSemetre1 = "cuarto";
 
 					strcampoMarcador = "Empresa";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0} ({1})", lbl_nombreCliente.Text, lbl_id_cliente.Text));
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0} ({1})", strRazon_SocialEmpresa, lbl_id_cliente.Text));//lbl_nombreCliente.Text
 					strcampoMarcador = "Rut";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), lbl_rut_cliente.Text);//strRazon_SocialEmpresa
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strRunEmpresa);// lbl_rut_cliente.Text//strRazon_SocialEmpresa
 					strcampoMarcador = "Periodo";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0}T {1}", cbx_id_periodo.Text.Substring(0, 1), cbx_anno.Text));//
 					strcampoMarcador = "FechaInforme";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.Format("{0}/{1}/{2}", DateTime.Now.Day, DateTime.Now.Month.ToString("D2"), DateTime.Now.Year));
 					strcampoMarcador = "Sucursal";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strDireccionEmpresaSucursal);
+					string strTextoNuevo = strDireccionEmpresaSucursal.Replace("/", "").Replace((strDireccionEmpresa.Replace("/","") ), "");
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strTextoNuevo);
 					strcampoMarcador = "Direccion";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strDireccionEmpresa+", "+ strComunaCliente);
 					strcampoMarcador = "NombreOPR";
