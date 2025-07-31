@@ -2939,7 +2939,7 @@ namespace ControlDosimetro
 			pgb_Barra.Minimum = 0;
 			pgb_Barra.Maximum = ListaCorregir.Count;
 			pnl_Progreso.Refresh();
-
+			pgb_Barra.Value = 0;
 			foreach (DataRow tb in ListaCorregir)
 			{
 				pgb_Barra.Value = pgb_Barra.Value + 1;
