@@ -29,11 +29,14 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngresoDosimetria));
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.btnFiltrar = new System.Windows.Forms.Button();
+			this.ddlSeccion = new System.Windows.Forms.ComboBox();
+			this.label7 = new System.Windows.Forms.Label();
 			this.lbl_rut_cliente = new System.Windows.Forms.Label();
 			this.btn_filtro = new System.Windows.Forms.Button();
 			this.btn_cargar = new System.Windows.Forms.Button();
@@ -112,6 +115,9 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.btnFiltrar);
+			this.groupBox1.Controls.Add(this.ddlSeccion);
+			this.groupBox1.Controls.Add(this.label7);
 			this.groupBox1.Controls.Add(this.lbl_rut_cliente);
 			this.groupBox1.Controls.Add(this.btn_filtro);
 			this.groupBox1.Controls.Add(this.btn_cargar);
@@ -125,10 +131,40 @@
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Location = new System.Drawing.Point(5, 28);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(844, 199);
+			this.groupBox1.Size = new System.Drawing.Size(844, 235);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Dato Cliente";
+			// 
+			// btnFiltrar
+			// 
+			this.btnFiltrar.Location = new System.Drawing.Point(280, 117);
+			this.btnFiltrar.Name = "btnFiltrar";
+			this.btnFiltrar.Size = new System.Drawing.Size(75, 23);
+			this.btnFiltrar.TabIndex = 48;
+			this.btnFiltrar.Text = "Filtrar";
+			this.btnFiltrar.UseVisualStyleBackColor = true;
+			this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+			// 
+			// ddlSeccion
+			// 
+			this.ddlSeccion.DisplayMember = "Direccion";
+			this.ddlSeccion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.ddlSeccion.FormattingEnabled = true;
+			this.ddlSeccion.Location = new System.Drawing.Point(87, 117);
+			this.ddlSeccion.Name = "ddlSeccion";
+			this.ddlSeccion.Size = new System.Drawing.Size(174, 21);
+			this.ddlSeccion.TabIndex = 47;
+			this.ddlSeccion.ValueMember = "Id_sucursal";
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(12, 120);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(46, 13);
+			this.label7.TabIndex = 46;
+			this.label7.Text = "Sección";
 			// 
 			// lbl_rut_cliente
 			// 
@@ -196,7 +232,7 @@
 			this.groupBox3.Controls.Add(this.txt_rut);
 			this.groupBox3.Controls.Add(this.label5);
 			this.groupBox3.Controls.Add(this.label4);
-			this.groupBox3.Location = new System.Drawing.Point(7, 117);
+			this.groupBox3.Location = new System.Drawing.Point(7, 149);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(571, 73);
 			this.groupBox3.TabIndex = 38;
@@ -307,9 +343,9 @@
 			this.groupBox2.Controls.Add(this.grp_ingreso);
 			this.groupBox2.Controls.Add(this.pnl_Progreso);
 			this.groupBox2.Controls.Add(this.grdDatos);
-			this.groupBox2.Location = new System.Drawing.Point(5, 233);
+			this.groupBox2.Location = new System.Drawing.Point(5, 269);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(1179, 335);
+			this.groupBox2.Size = new System.Drawing.Size(1179, 379);
 			this.groupBox2.TabIndex = 6;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Listado";
@@ -460,7 +496,7 @@
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-			this.grdDatos.Size = new System.Drawing.Size(1173, 316);
+			this.grdDatos.Size = new System.Drawing.Size(1173, 360);
 			this.grdDatos.TabIndex = 8;
 			this.grdDatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellClick);
 			this.grdDatos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellDoubleClick);
@@ -575,9 +611,9 @@
 			// valor
 			// 
 			this.valor.DataPropertyName = "dosis";
-			dataGridViewCellStyle16.Format = "N2";
-			dataGridViewCellStyle16.NullValue = "0";
-			this.valor.DefaultCellStyle = dataGridViewCellStyle16;
+			dataGridViewCellStyle1.Format = "N2";
+			dataGridViewCellStyle1.NullValue = "0";
+			this.valor.DefaultCellStyle = dataGridViewCellStyle1;
 			this.valor.HeaderText = "Valor Ingresar";
 			this.valor.Name = "valor";
 			this.valor.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -658,7 +694,7 @@
 			// btn_Guardar
 			// 
 			this.btn_Guardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Guardar.Location = new System.Drawing.Point(350, 575);
+			this.btn_Guardar.Location = new System.Drawing.Point(350, 655);
 			this.btn_Guardar.Name = "btn_Guardar";
 			this.btn_Guardar.Size = new System.Drawing.Size(75, 23);
 			this.btn_Guardar.TabIndex = 7;
@@ -669,7 +705,7 @@
 			// btn_Cerrar
 			// 
 			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Cerrar.Location = new System.Drawing.Point(522, 574);
+			this.btn_Cerrar.Location = new System.Drawing.Point(522, 654);
 			this.btn_Cerrar.Name = "btn_Cerrar";
 			this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
 			this.btn_Cerrar.TabIndex = 8;
@@ -758,9 +794,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle17.Format = "N2";
-			dataGridViewCellStyle17.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle17;
+			dataGridViewCellStyle2.Format = "N2";
+			dataGridViewCellStyle2.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -778,9 +814,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle18.Format = "N2";
-			dataGridViewCellStyle18.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle18;
+			dataGridViewCellStyle3.Format = "N2";
+			dataGridViewCellStyle3.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle3;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -789,7 +825,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1184, 606);
+			this.ClientSize = new System.Drawing.Size(1184, 686);
 			this.Controls.Add(this.btn_Cerrar);
 			this.Controls.Add(this.btn_Guardar);
 			this.Controls.Add(this.toolStrip1);
@@ -887,5 +923,8 @@
                                 private System.Windows.Forms.ToolStripDropDownButton btn_reporte;
                                 private System.Windows.Forms.ToolStripMenuItem estadoDosimetroToolStripMenuItem;
                                 private System.Windows.Forms.ToolStripMenuItem tsmModificarPersonal;
-    }
+		private System.Windows.Forms.Button btnFiltrar;
+		private System.Windows.Forms.ComboBox ddlSeccion;
+		private System.Windows.Forms.Label label7;
+	}
 }

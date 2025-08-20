@@ -117,13 +117,13 @@ namespace ControlDosimetro
 
 			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 
-			if(dt.Tables[0].Rows.Count>0)
+			if (dt.Tables[0].Rows.Count > 0)
 			{
 				lbl_id_cliente.Text = intCodCliente.ToString();
 				lbl_nombreCliente.Text = dt.Tables[0].Rows[0]["Razon_Social"].ToString();
 				lbl_rut_cliente.Text = dt.Tables[0].Rows[0]["run"].ToString();
 			}
-		
+
 		}
 
 		private void Listar_Personal()
@@ -134,7 +134,7 @@ namespace ControlDosimetro
 			DataSet dt;
 
 
-			cmd.CommandText = String.Format("pa_ListarPersonalPorPeriodo_sel {0},'{1}',{2}", lbl_id_cliente.Text, lbl_rut_cliente.Text, cbx_id_periodo.SelectedValue);
+			cmd.CommandText = String.Format("pa_ListarPersonalPorPeriodo_sel2 {0},'{1}',{2},{3}", lbl_id_cliente.Text, lbl_rut_cliente.Text, cbx_id_periodo.SelectedValue,ddlSeccion.SelectedValue);
 
 			cmd.CommandType = CommandType.Text;
 
@@ -234,13 +234,29 @@ namespace ControlDosimetro
 
 		private void btn_cargar_Click(object sender, EventArgs e)
 		{
-			Listar_Personal();
+			Cargar_Seccion();
+			
 			cbx_anno.Enabled = false;
 			cbx_id_periodo.Enabled = false;
 			grdDatos.Focus();
+			btnFiltrar_Click(null, null);
 			intContar = 0;
 		}
+		private void Cargar_Seccion()
+		{
+			DataSet dt = clsFunc.Cargar_SeccionMasivoPorRun(Convert.ToInt16(lbl_id_cliente.Text.ToString()), lbl_rut_cliente.Text);
 
+			DataTable dt2 = dt.Tables[1];
+
+			dt2.DefaultView.RowFilter = "id_seccion >0";
+
+			ddlSeccion.DisplayMember = dt.Tables[1].Columns[0].Caption.ToString();
+			ddlSeccion.ValueMember = dt.Tables[1].Columns[1].Caption.ToString();
+			ddlSeccion.DataSource = dt.Tables[1];
+
+			if (dt.Tables[1].Rows.Count > 0)
+				ddlSeccion.SelectedIndex = 0;
+		}
 		private void btn_Guardar_Click(object sender, EventArgs e)
 		{
 			SqlCommand cmd = new SqlCommand();
@@ -300,8 +316,8 @@ namespace ControlDosimetro
 						cmd.CommandType = CommandType.Text;
 						Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 
-						cmd.CommandText = "pa_DosimetroIngreso_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "','',"
-													+ cbx_id_periodo.SelectedValue + "," + strn_cliente; ;
+						cmd.CommandText = "pa_DosimetroIngreso_upd2 " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "','',"
+													+ cbx_id_periodo.SelectedValue + "," + strn_cliente + "," + ddlSeccion.SelectedValue;
 						cmd.CommandType = CommandType.Text;
 						Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 					}
@@ -322,7 +338,7 @@ namespace ControlDosimetro
 							Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 
 
-							cmd.CommandText = "pa_DosimetroIngreso_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "',''," + cbx_id_periodo.SelectedValue + "," + strn_cliente;
+							cmd.CommandText = "pa_DosimetroIngreso_upd2 " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "',''," + cbx_id_periodo.SelectedValue + "," + strn_cliente + "," + ddlSeccion.SelectedValue;
 							cmd.CommandType = CommandType.Text;
 							Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 						}
@@ -336,8 +352,8 @@ namespace ControlDosimetro
 
 							if (txtNPelicula.Value.ToString() != "")
 							{
-								cmd.CommandText = "pa_DosimetroIngreso_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "','',"
-																		+ cbx_id_periodo.SelectedValue + "," + strn_cliente; ;
+								cmd.CommandText = "pa_DosimetroIngreso_upd2 " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "','',"
+																		+ cbx_id_periodo.SelectedValue + "," + strn_cliente + "," + ddlSeccion.SelectedValue;
 								cmd.CommandType = CommandType.Text;
 								Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 							}
@@ -651,6 +667,11 @@ namespace ControlDosimetro
 			bs.DataSource = grdDatos.DataSource;
 			bs.Filter = "(Nombres + ' ' + Paterno + ' '+ Maternos like '%" + txt_nombres.Text + "%')";
 			grdDatos.DataSource = bs;
+		}
+
+		private void btnFiltrar_Click(object sender, EventArgs e)
+		{
+			Listar_Personal();
 		}
 	}
 }

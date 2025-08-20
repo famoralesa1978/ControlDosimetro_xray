@@ -44,22 +44,6 @@
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
-			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.N_pelicula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.id_dosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Generar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.enviado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.N_Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.NDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Paterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Maternos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.condosis = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Estado = new System.Windows.Forms.DataGridViewComboBoxColumn();
-			this.id_sucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.tld = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.btn_Sucursal = new System.Windows.Forms.ToolStripButton();
 			this.btn_Guardar = new System.Windows.Forms.Button();
@@ -73,6 +57,23 @@
 			this.lbl_Original = new System.Windows.Forms.Label();
 			this.rbtAlternativa = new System.Windows.Forms.RadioButton();
 			this.rbtOiginal = new System.Windows.Forms.RadioButton();
+			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.N_pelicula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.id_dosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Generar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.enviado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.N_Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.NDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Seccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Paterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Maternos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.condosis = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Estado = new System.Windows.Forms.DataGridViewComboBoxColumn();
+			this.id_sucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.tld = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.pnl_Progreso.SuspendLayout();
@@ -205,9 +206,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.pnl_Progreso);
 			this.groupBox2.Controls.Add(this.grdDatos);
-			this.groupBox2.Location = new System.Drawing.Point(5, 170);
+			this.groupBox2.Location = new System.Drawing.Point(5, 163);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(1079, 370);
+			this.groupBox2.Size = new System.Drawing.Size(1149, 377);
 			this.groupBox2.TabIndex = 6;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Listado";
@@ -245,6 +246,7 @@
             this.enviado,
             this.N_Cliente,
             this.NDocumento,
+            this.Seccion,
             this.Rut,
             this.Nombres,
             this.Paterno,
@@ -259,153 +261,12 @@
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-			this.grdDatos.Size = new System.Drawing.Size(1073, 351);
+			this.grdDatos.Size = new System.Drawing.Size(1143, 358);
 			this.grdDatos.TabIndex = 8;
 			this.grdDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellContentClick);
 			this.grdDatos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdDatos_CellFormatting);
 			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
-			// 
-			// Id_Personal
-			// 
-			this.Id_Personal.DataPropertyName = "Id_Personal";
-			this.Id_Personal.HeaderText = "Id_Personal";
-			this.Id_Personal.Name = "Id_Personal";
-			this.Id_Personal.ReadOnly = true;
-			this.Id_Personal.Visible = false;
-			this.Id_Personal.Width = 88;
-			// 
-			// N_pelicula
-			// 
-			this.N_pelicula.DataPropertyName = "N_pelicula";
-			this.N_pelicula.HeaderText = "Nº Pelicula";
-			this.N_pelicula.Name = "N_pelicula";
-			this.N_pelicula.ReadOnly = true;
-			this.N_pelicula.Width = 84;
-			// 
-			// id_dosimetro
-			// 
-			this.id_dosimetro.DataPropertyName = "id_dosimetro";
-			this.id_dosimetro.HeaderText = "Id_dosimetro";
-			this.id_dosimetro.Name = "id_dosimetro";
-			this.id_dosimetro.Visible = false;
-			this.id_dosimetro.Width = 92;
-			// 
-			// Generar
-			// 
-			this.Generar.DataPropertyName = "generar";
-			this.Generar.FalseValue = "0";
-			this.Generar.HeaderText = "Corregir";
-			this.Generar.Name = "Generar";
-			this.Generar.TrueValue = "1";
-			this.Generar.Width = 49;
-			// 
-			// enviado
-			// 
-			this.enviado.DataPropertyName = "enviado";
-			this.enviado.FalseValue = "0";
-			this.enviado.HeaderText = "Generado";
-			this.enviado.IndeterminateValue = "";
-			this.enviado.Name = "enviado";
-			this.enviado.TrueValue = "1";
-			this.enviado.Width = 60;
-			// 
-			// N_Cliente
-			// 
-			this.N_Cliente.DataPropertyName = "Id_Cliente";
-			this.N_Cliente.HeaderText = "N° Cliente";
-			this.N_Cliente.Name = "N_Cliente";
-			this.N_Cliente.Width = 79;
-			// 
-			// NDocumento
-			// 
-			this.NDocumento.DataPropertyName = "N_Documento";
-			this.NDocumento.HeaderText = "N° Documento";
-			this.NDocumento.Name = "NDocumento";
-			this.NDocumento.ReadOnly = true;
-			this.NDocumento.Width = 102;
-			// 
-			// Rut
-			// 
-			this.Rut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-			this.Rut.DataPropertyName = "Rut";
-			this.Rut.HeaderText = "Rut";
-			this.Rut.Name = "Rut";
-			this.Rut.ReadOnly = true;
-			this.Rut.Width = 49;
-			// 
-			// Nombres
-			// 
-			this.Nombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-			this.Nombres.DataPropertyName = "Nombres";
-			this.Nombres.HeaderText = "Nombres";
-			this.Nombres.Name = "Nombres";
-			this.Nombres.ReadOnly = true;
-			this.Nombres.Width = 74;
-			// 
-			// Paterno
-			// 
-			this.Paterno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-			this.Paterno.DataPropertyName = "Paterno";
-			this.Paterno.FillWeight = 300F;
-			this.Paterno.HeaderText = "Paterno";
-			this.Paterno.Name = "Paterno";
-			this.Paterno.ReadOnly = true;
-			this.Paterno.Width = 69;
-			// 
-			// Maternos
-			// 
-			this.Maternos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-			this.Maternos.DataPropertyName = "Maternos";
-			this.Maternos.HeaderText = "Maternos";
-			this.Maternos.MinimumWidth = 150;
-			this.Maternos.Name = "Maternos";
-			this.Maternos.ReadOnly = true;
-			this.Maternos.Width = 150;
-			// 
-			// condosis
-			// 
-			this.condosis.DataPropertyName = "condosis";
-			this.condosis.FalseValue = "0";
-			this.condosis.HeaderText = "Con Dosis";
-			this.condosis.IndeterminateValue = "";
-			this.condosis.Name = "condosis";
-			this.condosis.ReadOnly = true;
-			this.condosis.TrueValue = "1";
-			this.condosis.Width = 61;
-			// 
-			// valor
-			// 
-			this.valor.DataPropertyName = "dosis";
-			this.valor.HeaderText = "Valor Ingresar";
-			this.valor.Name = "valor";
-			this.valor.ReadOnly = true;
-			this.valor.Width = 97;
-			// 
-			// Estado
-			// 
-			this.Estado.DataPropertyName = "estadodosis";
-			this.Estado.HeaderText = "Estado Controlado";
-			this.Estado.Name = "Estado";
-			this.Estado.ReadOnly = true;
-			// 
-			// id_sucursal
-			// 
-			this.id_sucursal.DataPropertyName = "id_sucursal";
-			this.id_sucursal.HeaderText = "id_sucursal";
-			this.id_sucursal.Name = "id_sucursal";
-			this.id_sucursal.Visible = false;
-			this.id_sucursal.Width = 85;
-			// 
-			// tld
-			// 
-			this.tld.DataPropertyName = "tld";
-			this.tld.HeaderText = "TLD";
-			this.tld.Name = "tld";
-			this.tld.ReadOnly = true;
-			this.tld.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.tld.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.tld.Width = 53;
 			// 
 			// toolStrip1
 			// 
@@ -413,7 +274,7 @@
             this.btn_Sucursal});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(1084, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(1154, 25);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -430,7 +291,7 @@
 			// btn_Guardar
 			// 
 			this.btn_Guardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Guardar.Location = new System.Drawing.Point(300, 547);
+			this.btn_Guardar.Location = new System.Drawing.Point(335, 547);
 			this.btn_Guardar.Name = "btn_Guardar";
 			this.btn_Guardar.Size = new System.Drawing.Size(139, 23);
 			this.btn_Guardar.TabIndex = 7;
@@ -441,7 +302,7 @@
 			// btn_Cerrar
 			// 
 			this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.btn_Cerrar.Location = new System.Drawing.Point(472, 546);
+			this.btn_Cerrar.Location = new System.Drawing.Point(507, 546);
 			this.btn_Cerrar.Name = "btn_Cerrar";
 			this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);
 			this.btn_Cerrar.TabIndex = 8;
@@ -542,11 +403,158 @@
 			this.rbtOiginal.Text = "Original";
 			this.rbtOiginal.UseVisualStyleBackColor = true;
 			// 
+			// Id_Personal
+			// 
+			this.Id_Personal.DataPropertyName = "Id_Personal";
+			this.Id_Personal.HeaderText = "Id_Personal";
+			this.Id_Personal.Name = "Id_Personal";
+			this.Id_Personal.ReadOnly = true;
+			this.Id_Personal.Visible = false;
+			this.Id_Personal.Width = 88;
+			// 
+			// N_pelicula
+			// 
+			this.N_pelicula.DataPropertyName = "N_pelicula";
+			this.N_pelicula.HeaderText = "Nº Pelicula";
+			this.N_pelicula.Name = "N_pelicula";
+			this.N_pelicula.ReadOnly = true;
+			this.N_pelicula.Width = 84;
+			// 
+			// id_dosimetro
+			// 
+			this.id_dosimetro.DataPropertyName = "id_dosimetro";
+			this.id_dosimetro.HeaderText = "Id_dosimetro";
+			this.id_dosimetro.Name = "id_dosimetro";
+			this.id_dosimetro.Visible = false;
+			this.id_dosimetro.Width = 92;
+			// 
+			// Generar
+			// 
+			this.Generar.DataPropertyName = "generar";
+			this.Generar.FalseValue = "0";
+			this.Generar.HeaderText = "Corregir";
+			this.Generar.Name = "Generar";
+			this.Generar.TrueValue = "1";
+			this.Generar.Width = 49;
+			// 
+			// enviado
+			// 
+			this.enviado.DataPropertyName = "enviado";
+			this.enviado.FalseValue = "0";
+			this.enviado.HeaderText = "Generado";
+			this.enviado.IndeterminateValue = "";
+			this.enviado.Name = "enviado";
+			this.enviado.TrueValue = "1";
+			this.enviado.Width = 60;
+			// 
+			// N_Cliente
+			// 
+			this.N_Cliente.DataPropertyName = "Id_Cliente";
+			this.N_Cliente.HeaderText = "N° Cliente";
+			this.N_Cliente.Name = "N_Cliente";
+			this.N_Cliente.Width = 79;
+			// 
+			// NDocumento
+			// 
+			this.NDocumento.DataPropertyName = "N_Documento";
+			this.NDocumento.HeaderText = "N° Documento";
+			this.NDocumento.Name = "NDocumento";
+			this.NDocumento.ReadOnly = true;
+			this.NDocumento.Width = 102;
+			// 
+			// Seccion
+			// 
+			this.Seccion.HeaderText = "Sección";
+			this.Seccion.Name = "Seccion";
+			this.Seccion.Width = 71;
+			// 
+			// Rut
+			// 
+			this.Rut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Rut.DataPropertyName = "Rut";
+			this.Rut.HeaderText = "Rut";
+			this.Rut.Name = "Rut";
+			this.Rut.ReadOnly = true;
+			this.Rut.Width = 49;
+			// 
+			// Nombres
+			// 
+			this.Nombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Nombres.DataPropertyName = "Nombres";
+			this.Nombres.HeaderText = "Nombres";
+			this.Nombres.Name = "Nombres";
+			this.Nombres.ReadOnly = true;
+			this.Nombres.Width = 74;
+			// 
+			// Paterno
+			// 
+			this.Paterno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Paterno.DataPropertyName = "Paterno";
+			this.Paterno.FillWeight = 300F;
+			this.Paterno.HeaderText = "Paterno";
+			this.Paterno.Name = "Paterno";
+			this.Paterno.ReadOnly = true;
+			this.Paterno.Width = 69;
+			// 
+			// Maternos
+			// 
+			this.Maternos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Maternos.DataPropertyName = "Maternos";
+			this.Maternos.HeaderText = "Maternos";
+			this.Maternos.MinimumWidth = 150;
+			this.Maternos.Name = "Maternos";
+			this.Maternos.ReadOnly = true;
+			this.Maternos.Width = 150;
+			// 
+			// condosis
+			// 
+			this.condosis.DataPropertyName = "condosis";
+			this.condosis.FalseValue = "0";
+			this.condosis.HeaderText = "Con Dosis";
+			this.condosis.IndeterminateValue = "";
+			this.condosis.Name = "condosis";
+			this.condosis.ReadOnly = true;
+			this.condosis.TrueValue = "1";
+			this.condosis.Width = 61;
+			// 
+			// valor
+			// 
+			this.valor.DataPropertyName = "dosis";
+			this.valor.HeaderText = "Valor Ingresar";
+			this.valor.Name = "valor";
+			this.valor.ReadOnly = true;
+			this.valor.Width = 97;
+			// 
+			// Estado
+			// 
+			this.Estado.DataPropertyName = "estadodosis";
+			this.Estado.HeaderText = "Estado Controlado";
+			this.Estado.Name = "Estado";
+			this.Estado.ReadOnly = true;
+			// 
+			// id_sucursal
+			// 
+			this.id_sucursal.DataPropertyName = "id_sucursal";
+			this.id_sucursal.HeaderText = "id_sucursal";
+			this.id_sucursal.Name = "id_sucursal";
+			this.id_sucursal.Visible = false;
+			this.id_sucursal.Width = 85;
+			// 
+			// tld
+			// 
+			this.tld.DataPropertyName = "tld";
+			this.tld.HeaderText = "TLD";
+			this.tld.Name = "tld";
+			this.tld.ReadOnly = true;
+			this.tld.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.tld.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.tld.Width = 53;
+			// 
 			// frmDosimetriaISP
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1084, 578);
+			this.ClientSize = new System.Drawing.Size(1154, 578);
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.cbx_Sucursal);
 			this.Controls.Add(this.label4);
@@ -601,27 +609,28 @@
                                 private System.Windows.Forms.ComboBox cbx_Sucursal;
                                 private System.Windows.Forms.ToolStripButton btn_Sucursal;
                                 private System.Windows.Forms.Label lbl_rut_cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id_Personal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn N_pelicula;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_dosimetro;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Generar;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn enviado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn N_Cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NDocumento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Rut;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Paterno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Maternos;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn condosis;
-        private System.Windows.Forms.DataGridViewTextBoxColumn valor;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_sucursal;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn tld;
 		private System.Windows.Forms.GroupBox groupBox3;
 		private System.Windows.Forms.Label lbl_Alternativa;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Label lbl_Original;
 		private System.Windows.Forms.RadioButton rbtAlternativa;
 		private System.Windows.Forms.RadioButton rbtOiginal;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Id_Personal;
+		private System.Windows.Forms.DataGridViewTextBoxColumn N_pelicula;
+		private System.Windows.Forms.DataGridViewTextBoxColumn id_dosimetro;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn Generar;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn enviado;
+		private System.Windows.Forms.DataGridViewTextBoxColumn N_Cliente;
+		private System.Windows.Forms.DataGridViewTextBoxColumn NDocumento;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Seccion;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Rut;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Paterno;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Maternos;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn condosis;
+		private System.Windows.Forms.DataGridViewTextBoxColumn valor;
+		private System.Windows.Forms.DataGridViewComboBoxColumn Estado;
+		private System.Windows.Forms.DataGridViewTextBoxColumn id_sucursal;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn tld;
 	}
 }

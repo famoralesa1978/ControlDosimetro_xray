@@ -1,27 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using classFuncionesBD;
 using dllConectorMysql;
 using dllLibreriaEvento;
 using dllLibreriaMysql;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using System.IO;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Data.Sql;
-using OpenXmlPowerTools;
-using System.Xml;
 using DocumentFormat.OpenXml.Wordprocessing;
-using System.IO.Packaging;
+using NPOI.OpenXmlFormats.Shared;
+using OpenXmlPowerTools;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Data.Sql;
+using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.IO.Packaging;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml;
 
 
 namespace ControlDosimetro
@@ -43,6 +45,7 @@ namespace ControlDosimetro
 		const string footerContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml";
 		//        XmlNamespaceManager nsManager;
 		DataTable dtPeriodo;
+		ClsFunciones clsFunc = new ClsFunciones();
 		#endregion
 
 		public frmDosimetriaISP(Int64 intId_Cliente)
@@ -1170,6 +1173,11 @@ namespace ControlDosimetro
 		private void frmDosimetriaISP_Load(object sender, EventArgs e)
 		{
 
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			Listar_Personal();
 		}
 	}
 }
