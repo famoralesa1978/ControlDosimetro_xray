@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.lblRut = new System.Windows.Forms.Label();
 			this.cbx_PersonalCambio = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
@@ -120,6 +120,7 @@
 			this.label24 = new System.Windows.Forms.Label();
 			this.tabCambioPeriodo = new System.Windows.Forms.TabPage();
 			this.pnlCambiarPeriodo = new System.Windows.Forms.Panel();
+			this.btnListarTld = new System.Windows.Forms.Button();
 			this.ddlPeriodoCambiarPeriodo = new System.Windows.Forms.ComboBox();
 			this.lblPeriodoCambiarPeriodo = new System.Windows.Forms.Label();
 			this.txtNDocumentoCambiarPeriodo = new System.Windows.Forms.TextBox();
@@ -390,9 +391,9 @@
 			// 
 			this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "Paterno";
-			dataGridViewCellStyle1.Format = "N2";
-			dataGridViewCellStyle1.NullValue = "0";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle3.Format = "N2";
+			dataGridViewCellStyle3.NullValue = "0";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle3;
 			this.dataGridViewTextBoxColumn8.FillWeight = 300F;
 			this.dataGridViewTextBoxColumn8.HeaderText = "Paterno";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -410,9 +411,9 @@
 			// dataGridViewTextBoxColumn10
 			// 
 			this.dataGridViewTextBoxColumn10.DataPropertyName = "dosis";
-			dataGridViewCellStyle2.Format = "N2";
-			dataGridViewCellStyle2.NullValue = "0";
-			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle4.Format = "N2";
+			dataGridViewCellStyle4.NullValue = "0";
+			this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle4;
 			this.dataGridViewTextBoxColumn10.HeaderText = "Valor Ingresar";
 			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			this.dataGridViewTextBoxColumn10.Width = 97;
@@ -1023,6 +1024,7 @@
 			// 
 			// pnlCambiarPeriodo
 			// 
+			this.pnlCambiarPeriodo.Controls.Add(this.btnListarTld);
 			this.pnlCambiarPeriodo.Controls.Add(this.ddlPeriodoCambiarPeriodo);
 			this.pnlCambiarPeriodo.Controls.Add(this.lblPeriodoCambiarPeriodo);
 			this.pnlCambiarPeriodo.Controls.Add(this.txtNDocumentoCambiarPeriodo);
@@ -1035,6 +1037,16 @@
 			this.pnlCambiarPeriodo.Name = "pnlCambiarPeriodo";
 			this.pnlCambiarPeriodo.Size = new System.Drawing.Size(875, 242);
 			this.pnlCambiarPeriodo.TabIndex = 54;
+			// 
+			// btnListarTld
+			// 
+			this.btnListarTld.Location = new System.Drawing.Point(269, 16);
+			this.btnListarTld.Name = "btnListarTld";
+			this.btnListarTld.Size = new System.Drawing.Size(156, 23);
+			this.btnListarTld.TabIndex = 54;
+			this.btnListarTld.Text = "Cargar TLD en el listado";
+			this.btnListarTld.UseVisualStyleBackColor = true;
+			this.btnListarTld.Click += new System.EventHandler(this.btnListarTld_Click);
 			// 
 			// ddlPeriodoCambiarPeriodo
 			// 
@@ -1060,7 +1072,7 @@
 			// 
 			// txtNDocumentoCambiarPeriodo
 			// 
-			this.txtNDocumentoCambiarPeriodo.Location = new System.Drawing.Point(124, 45);
+			this.txtNDocumentoCambiarPeriodo.Location = new System.Drawing.Point(124, 19);
 			this.txtNDocumentoCambiarPeriodo.Name = "txtNDocumentoCambiarPeriodo";
 			this.txtNDocumentoCambiarPeriodo.Size = new System.Drawing.Size(128, 20);
 			this.txtNDocumentoCambiarPeriodo.TabIndex = 51;
@@ -1069,7 +1081,7 @@
 			// 
 			this.lblNDocumentoCambiarPeriodo.AutoSize = true;
 			this.lblNDocumentoCambiarPeriodo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblNDocumentoCambiarPeriodo.Location = new System.Drawing.Point(37, 52);
+			this.lblNDocumentoCambiarPeriodo.Location = new System.Drawing.Point(37, 22);
 			this.lblNDocumentoCambiarPeriodo.Name = "lblNDocumentoCambiarPeriodo";
 			this.lblNDocumentoCambiarPeriodo.Size = new System.Drawing.Size(77, 13);
 			this.lblNDocumentoCambiarPeriodo.TabIndex = 50;
@@ -1079,7 +1091,7 @@
 			// label25
 			// 
 			this.label25.AutoSize = true;
-			this.label25.Location = new System.Drawing.Point(721, 16);
+			this.label25.Location = new System.Drawing.Point(721, 45);
 			this.label25.Name = "label25";
 			this.label25.Size = new System.Drawing.Size(140, 13);
 			this.label25.TabIndex = 49;
@@ -1087,7 +1099,7 @@
 			// 
 			// txtListaTLD
 			// 
-			this.txtListaTLD.Location = new System.Drawing.Point(124, 16);
+			this.txtListaTLD.Location = new System.Drawing.Point(124, 45);
 			this.txtListaTLD.Name = "txtListaTLD";
 			this.txtListaTLD.Size = new System.Drawing.Size(577, 20);
 			this.txtListaTLD.TabIndex = 48;
@@ -1096,7 +1108,7 @@
 			// 
 			this.lblListaTLD.AutoSize = true;
 			this.lblListaTLD.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblListaTLD.Location = new System.Drawing.Point(36, 19);
+			this.lblListaTLD.Location = new System.Drawing.Point(37, 48);
 			this.lblListaTLD.Name = "lblListaTLD";
 			this.lblListaTLD.Size = new System.Drawing.Size(68, 13);
 			this.lblListaTLD.TabIndex = 47;
@@ -1288,5 +1300,6 @@
 		private System.Windows.Forms.Label label28;
 		private System.Windows.Forms.Label lblPeriodoActual;
 		private System.Windows.Forms.Panel pnlCambiarPeriodo;
+		private System.Windows.Forms.Button btnListarTld;
 	}
 }

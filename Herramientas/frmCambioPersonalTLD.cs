@@ -179,6 +179,22 @@ namespace ControlDosimetro
 		#endregion
 
 		#region "button"
+		private void btnListarTld_Click(object sender, EventArgs e)
+		{
+			SqlCommand cmd = new SqlCommand();
+			DataSet ds;
+			string strParametro = String.Format("{0},{1}", lbl_NCliente.Text ,txtNDocumentoCambiarPeriodo.Text);
+			cmd.CommandText = "pa_CargarTLDPorDocumento_sel " + strParametro;
+			cmd.CommandType = CommandType.Text;//pa_ModificarSeccionTLD_upd
+
+
+			ds = Conectar.Listar(ClaseGeneral.Conexion, cmd);
+			if (ds.Tables[0].Rows.Count>0)
+			{
+				txtListaTLD.Text = ds.Tables[0].Rows[0]["TLD"].ToString();
+			}
+			
+		}
 		private void btnAsociarTLDConElOriginal_Click(object sender, EventArgs e)
 		{
 			SqlCommand cmd = new SqlCommand();
@@ -410,6 +426,7 @@ namespace ControlDosimetro
 			else
 				MessageBox.Show(ds.Tables[0].Rows[0][1].ToString());
 		}
+
 
 		#endregion
 

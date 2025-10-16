@@ -80,7 +80,7 @@ namespace ControlDosimetro
 			try
 			{
 				SqlCommand cmd = new SqlCommand();
-				cmd.CommandText = "pa_ListadoDatosTLD ";
+				cmd.CommandText = "pa_ListadoDatosTLD";
 				cmd.Parameters.Clear();
 				cmd.Parameters.Add("@id_estadodosimetro", SqlDbType.Int);
 				cmd.Parameters["@id_estadodosimetro"].Value = intintId_Estado_temp;
