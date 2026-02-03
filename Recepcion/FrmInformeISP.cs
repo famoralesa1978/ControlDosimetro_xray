@@ -1151,7 +1151,7 @@ namespace ControlDosimetro
 			//SqlCommand cmdCliente = new SqlCommand();
 			SqlCommand cmdCliente = new SqlCommand
 			{
-				CommandText = "pa_DosimetroISPGenerar_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue + ",'" + lbl_rut_cliente.Text + "'",
+				CommandText = "pa_DosimetroISPGenerar_sel " + cbx_id_periodo.SelectedValue + "," + lbl_id_cliente.Text + "," + cbx_Sucursal.SelectedValue + ",'" + lbl_rut_cliente.Text + "',"+ cbx_id_seccion.SelectedValue.ToString(),
 
 				CommandType = CommandType.Text
 			};
