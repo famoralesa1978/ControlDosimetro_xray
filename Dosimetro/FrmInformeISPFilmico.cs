@@ -543,6 +543,9 @@ namespace ControlDosimetro
 				string strRunOPR = dt.Tables[0].Rows[idatos]["OPR_RUT"].ToString();
 				string strEmailOPR = dt.Tables[0].Rows[idatos]["EmailOPR"].ToString();
 				string strFechaDevolucion = dt.Tables[0].Rows[0]["FechaRecepcion"].ToString();
+
+
+				strDireccionEmpresaSucursal = cbx_Sucursal.Text == strDireccionEmpresa ? cbx_id_seccion.Text : string.Format("{0} ({1})", cbx_Sucursal.Text, cbx_id_seccion.Text);
 				//string strN_Documento = dt.Tables[0].Rows[idatos]["N_Documento"].ToString();
 				//	string strId_sucursal = dt.Tables[0].Rows[idatos]["Id_sucursal"].ToString();
 				String strArchivoCopiar = "";
