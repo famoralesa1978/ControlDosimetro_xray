@@ -178,8 +178,8 @@ namespace ControlDosimetro
 
 			if (frm.ShowDialog() == DialogResult.OK)
 			{
-				lblRazonSocialTLD.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 1) ? Clases.ClsCliente.Nombres : "";
-				lbl_rut_cliente.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 1) ? Clases.ClsCliente.Rut : "";
+				lblRazonSocialTLD.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 0) ? Clases.ClsCliente.Nombres : "";
+				lbl_rut_cliente.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 0) ? Clases.ClsCliente.Rut : "";
 
 				SqlCommand cmd = new SqlCommand
 				{

@@ -106,8 +106,8 @@ namespace ControlDosimetro
 
 			if (frm.ShowDialog() == DialogResult.OK)
 			{
-				lbl_nombreCliente.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 1) ? Clases.ClsCliente.Nombres : "";
-				lbl_rut_cliente.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 1) ? Clases.ClsCliente.Rut : "";
+				lbl_nombreCliente.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 0) ? Clases.ClsCliente.Nombres : "";
+				lbl_rut_cliente.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 0) ? Clases.ClsCliente.Rut : "";
 				SqlCommand cmd = new SqlCommand
 				{
 					CommandText = String.Format("CargarClientePorRunInforme '{0}',{1}", lbl_rut_cliente.Text, lbl_id_cliente.Text)
@@ -983,7 +983,7 @@ namespace ControlDosimetro
 			{
 				string intNCliente = lbl_id_cliente.Text;
 				string strCliente = lbl_nombreCliente.Text;
-				string strDirCliente = (Convert.ToInt64(lbl_id_cliente.Text) > 1) ? Clases.ClsCliente.Direccion : "";
+				string strDirCliente = (Convert.ToInt64(lbl_id_cliente.Text) > 0) ? Clases.ClsCliente.Direccion : "";
 				string strDirSucursal = dt.Tables[0].Rows[0]["DirSucursal"].ToString();
 				string strcampoMarcador = "";
 				string[] data1;
@@ -1427,7 +1427,7 @@ namespace ControlDosimetro
 					data2[FilaWord] = dtCliente.Tables[0].Rows[0]["Rut"].ToString();
 
 					data3[FilaWord] = dtCliente.Tables[0].Rows[0]["Nombres"].ToString() + " " + dtCliente.Tables[0].Rows[0]["Paterno"].ToString() + " " + dtCliente.Tables[0].Rows[0]["Maternos"].ToString();
-					if (chkcondosis.Value.ToString() == "0")
+					if (chkcondosis.Value.ToString() == "0" || chkcondosis.Value.ToString() == "False")
 						data4[FilaWord] = !string.IsNullOrWhiteSpace(strEstado) && strEstado != "MNR" ? "" : strEstado == "MNR" ? "0" : "";
 					else
 						data4[FilaWord] = txtvalor.Value.ToString();
@@ -1488,16 +1488,27 @@ namespace ControlDosimetro
 					strcampoMarcador = "FechaLectura";
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strFechaLectuta);
 
+					//strcampoMarcador = "CantToes";
+					//BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), intCantControlado.ToString());
+					//strcampoMarcador = "CantPerdido";
+					//BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), CantPerdido);
+					//strcampoMarcador = "CantSinUso";
+					//BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), CantSinUso);
+					//strcampoMarcador = "cantNoDev";
+					//BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), intCantNR.ToString());
+					//strcampoMarcador = "CantDevFP";
+					//BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), CantDevFP);
+
 					strcampoMarcador = "CantToes";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), intCantControlado.ToString());
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.IsNullOrWhiteSpace(intCantControlado.ToString()) ? "0" : intCantControlado.ToString());
 					strcampoMarcador = "CantPerdido";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), CantPerdido);
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.IsNullOrWhiteSpace(CantPerdido.ToString()) ? "0" : CantPerdido.ToString());
 					strcampoMarcador = "CantSinUso";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), CantSinUso);
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.IsNullOrWhiteSpace(CantSinUso.ToString()) ? "0" : CantSinUso.ToString());
 					strcampoMarcador = "cantNoDev";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), intCantNR.ToString());
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.IsNullOrWhiteSpace(intCantNR.ToString()) ? "0" : intCantNR.ToString());
 					strcampoMarcador = "CantDevFP";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), CantDevFP);
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.IsNullOrWhiteSpace(CantDevFP.ToString()) ? "0" : CantDevFP.ToString());
 
 
 					if (TieneFilmica)//TLD/FILMICA

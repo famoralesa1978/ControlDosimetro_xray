@@ -77,7 +77,7 @@ namespace ControlDosimetro
 		private void Cargar_seccion()
 		{
 			SqlCommand cmd = new SqlCommand();
-			cmd.CommandText = String.Format("select id_seccion,Seccion from tbl_seccion where id_Cliente={0}  and Run='{1}'", lbl_id_cliente.Text, run);
+			cmd.CommandText = String.Format("select id_seccion,Seccion +case when id_estado=1 then '' else '(Elminado)' end  as Seccion from tbl_seccion where id_Cliente={0}  and Run='{1}'", lbl_id_cliente.Text, run);
 			DataSet dt;
 			dt = Conectar.Listar(ClaseGeneral.Conexion, cmd);
 

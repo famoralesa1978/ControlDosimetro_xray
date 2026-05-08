@@ -96,8 +96,8 @@ namespace ControlDosimetro
 
 			if (frm.ShowDialog() == DialogResult.OK)
 			{
-				lbl_nombreCliente.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 1) ? Clases.ClsCliente.Nombres : "";
-				lbl_rut_cliente.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 1) ? Clases.ClsCliente.Rut : "";
+				lbl_nombreCliente.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 0) ? Clases.ClsCliente.Nombres : "";
+				lbl_rut_cliente.Text = (Convert.ToInt64(lbl_id_cliente.Text) > 0) ? Clases.ClsCliente.Rut : "";
 
 				SqlCommand cmd = new SqlCommand
 				{
@@ -1226,15 +1226,15 @@ namespace ControlDosimetro
 					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), strFechaDevolucion);
 
 					strcampoMarcador = "CantToes";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), intCantControlado.ToString());
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(),string.IsNullOrWhiteSpace(intCantControlado.ToString()) ? "0" : intCantControlado.ToString());
 					strcampoMarcador = "CantPerdido";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), CantPerdido);
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.IsNullOrWhiteSpace(CantPerdido.ToString()) ? "0" : CantPerdido.ToString());
 					strcampoMarcador = "CantSinUso";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), CantSinUso);
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.IsNullOrWhiteSpace(CantSinUso.ToString()) ? "0" : CantSinUso.ToString());
 					strcampoMarcador = "cantNoDev";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), intCantNR.ToString());
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.IsNullOrWhiteSpace(intCantNR.ToString()) ? "0" : intCantNR.ToString());
 					strcampoMarcador = "CantDevFP";
-					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), CantDevFP);
+					BookmarkReplacer.ReplaceBookmarkText(doc, strcampoMarcador.ToString(), string.IsNullOrWhiteSpace(CantDevFP.ToString()) ? "0" : CantDevFP.ToString() );
 
 
 					if (TieneFilmica)//TLD/FILMICA
