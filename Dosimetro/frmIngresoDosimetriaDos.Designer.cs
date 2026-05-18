@@ -75,7 +75,12 @@
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
-			this.Id_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.cbx_NDocumento = new System.Windows.Forms.ComboBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+			this.label6 = new System.Windows.Forms.Label();
+			this.ddlSeccion = new System.Windows.Forms.ComboBox();
+			this.ColId_Personal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.id_dosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.N_Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.NDocumento = new GridExtension.IntegerGridColumn();
@@ -88,9 +93,9 @@
 			this.condosis = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.valor = new GridExtension.RealGridColumn();
 			this.Estado = new System.Windows.Forms.DataGridViewComboBoxColumn();
-			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-			this.cbx_NDocumento = new System.Windows.Forms.ComboBox();
-			this.label5 = new System.Windows.Forms.Label();
+			this.ColSeccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColIdSeccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColIdPersonal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			this.cmsPopup.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
@@ -246,7 +251,7 @@
 			// 
 			// btn_Agregar
 			// 
-			this.btn_Agregar.Location = new System.Drawing.Point(325, 3);
+			this.btn_Agregar.Location = new System.Drawing.Point(241, 3);
 			this.btn_Agregar.Name = "btn_Agregar";
 			this.btn_Agregar.Size = new System.Drawing.Size(106, 23);
 			this.btn_Agregar.TabIndex = 7;
@@ -472,6 +477,7 @@
 			this.tableLayoutPanel1.RowCount = 2;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.31746F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 89.68254F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(1170, 378);
 			this.tableLayoutPanel1.TabIndex = 0;
 			// 
@@ -482,9 +488,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.pnl_Progreso);
 			this.groupBox2.Controls.Add(this.grdDatos);
-			this.groupBox2.Location = new System.Drawing.Point(3, 41);
+			this.groupBox2.Location = new System.Drawing.Point(3, 42);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(1164, 334);
+			this.groupBox2.Size = new System.Drawing.Size(1164, 333);
 			this.groupBox2.TabIndex = 7;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Listado por documento";
@@ -515,7 +521,7 @@
 			this.grdDatos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.grdDatos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			this.grdDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id_Personal,
+            this.ColId_Personal,
             this.id_dosimetro,
             this.N_Cliente,
             this.NDocumento,
@@ -527,28 +533,96 @@
             this.Controlado,
             this.condosis,
             this.valor,
-            this.Estado});
+            this.Estado,
+            this.ColSeccion,
+            this.ColIdSeccion,
+            this.ColIdPersonal});
 			this.grdDatos.ContextMenuStrip = this.cmsPopup;
 			this.grdDatos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.grdDatos.Location = new System.Drawing.Point(3, 16);
 			this.grdDatos.Name = "grdDatos";
 			this.grdDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 			this.grdDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-			this.grdDatos.Size = new System.Drawing.Size(1158, 315);
+			this.grdDatos.Size = new System.Drawing.Size(1158, 314);
 			this.grdDatos.TabIndex = 8;
 			this.grdDatos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellDoubleClick);
 			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
 			this.grdDatos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdDatos_KeyDown);
 			// 
-			// Id_Personal
+			// cbx_NDocumento
 			// 
-			this.Id_Personal.DataPropertyName = "Id_Personal";
-			this.Id_Personal.HeaderText = "Id_Personal";
-			this.Id_Personal.Name = "Id_Personal";
-			this.Id_Personal.ReadOnly = true;
-			this.Id_Personal.Visible = false;
-			this.Id_Personal.Width = 88;
+			this.cbx_NDocumento.DisplayMember = "NDoc";
+			this.cbx_NDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbx_NDocumento.FormattingEnabled = true;
+			this.cbx_NDocumento.Location = new System.Drawing.Point(121, 3);
+			this.cbx_NDocumento.Name = "cbx_NDocumento";
+			this.cbx_NDocumento.Size = new System.Drawing.Size(114, 21);
+			this.cbx_NDocumento.TabIndex = 50;
+			this.cbx_NDocumento.ValueMember = "N_Documento";
+			this.cbx_NDocumento.SelectedValueChanged += new System.EventHandler(this.cbx_NDocumento_SelectedValueChanged);
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(3, 0);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(109, 13);
+			this.label5.TabIndex = 8;
+			this.label5.Text = "Buscar n° documento";
+			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// tableLayoutPanel2
+			// 
+			this.tableLayoutPanel2.ColumnCount = 6;
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.37759F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.62241F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 228F));
+			this.tableLayoutPanel2.Controls.Add(this.ddlSeccion, 4, 0);
+			this.tableLayoutPanel2.Controls.Add(this.label6, 3, 0);
+			this.tableLayoutPanel2.Controls.Add(this.cbx_NDocumento, 1, 0);
+			this.tableLayoutPanel2.Controls.Add(this.btn_Agregar, 2, 0);
+			this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
+			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+			this.tableLayoutPanel2.RowCount = 1;
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(865, 32);
+			this.tableLayoutPanel2.TabIndex = 8;
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(360, 0);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(103, 13);
+			this.label6.TabIndex = 51;
+			this.label6.Text = "Seleccionar sección";
+			this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// ddlSeccion
+			// 
+			this.ddlSeccion.DisplayMember = "NDoc";
+			this.ddlSeccion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.ddlSeccion.FormattingEnabled = true;
+			this.ddlSeccion.Location = new System.Drawing.Point(477, 3);
+			this.ddlSeccion.Name = "ddlSeccion";
+			this.ddlSeccion.Size = new System.Drawing.Size(151, 21);
+			this.ddlSeccion.TabIndex = 52;
+			this.ddlSeccion.ValueMember = "N_Documento";
+			// 
+			// ColId_Personal
+			// 
+			this.ColId_Personal.DataPropertyName = "Id_Personal";
+			this.ColId_Personal.HeaderText = "Id_Personal";
+			this.ColId_Personal.Name = "ColId_Personal";
+			this.ColId_Personal.ReadOnly = true;
+			this.ColId_Personal.Visible = false;
+			this.ColId_Personal.Width = 88;
 			// 
 			// id_dosimetro
 			// 
@@ -665,44 +739,28 @@
 			this.Estado.HeaderText = "Estado Controlado";
 			this.Estado.Name = "Estado";
 			// 
-			// tableLayoutPanel2
+			// ColSeccion
 			// 
-			this.tableLayoutPanel2.ColumnCount = 3;
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.39394F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.60606F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 341F));
-			this.tableLayoutPanel2.Controls.Add(this.cbx_NDocumento, 1, 0);
-			this.tableLayoutPanel2.Controls.Add(this.btn_Agregar, 2, 0);
-			this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
-			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-			this.tableLayoutPanel2.RowCount = 1;
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(664, 32);
-			this.tableLayoutPanel2.TabIndex = 8;
+			this.ColSeccion.DataPropertyName = "Seccion";
+			this.ColSeccion.HeaderText = "Sección";
+			this.ColSeccion.Name = "ColSeccion";
+			this.ColSeccion.ReadOnly = true;
+			this.ColSeccion.Width = 71;
 			// 
-			// cbx_NDocumento
+			// ColIdSeccion
 			// 
-			this.cbx_NDocumento.DisplayMember = "NDoc";
-			this.cbx_NDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbx_NDocumento.FormattingEnabled = true;
-			this.cbx_NDocumento.Location = new System.Drawing.Point(130, 3);
-			this.cbx_NDocumento.Name = "cbx_NDocumento";
-			this.cbx_NDocumento.Size = new System.Drawing.Size(170, 21);
-			this.cbx_NDocumento.TabIndex = 50;
-			this.cbx_NDocumento.ValueMember = "N_Documento";
-			this.cbx_NDocumento.SelectedValueChanged += new System.EventHandler(this.cbx_NDocumento_SelectedValueChanged);
+			this.ColIdSeccion.DataPropertyName = "Id_SeccionDos";
+			this.ColIdSeccion.HeaderText = "IdSeccion";
+			this.ColIdSeccion.Name = "ColIdSeccion";
+			this.ColIdSeccion.ReadOnly = true;
+			this.ColIdSeccion.Width = 80;
 			// 
-			// label5
+			// ColIdPersonal
 			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(3, 0);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(109, 13);
-			this.label5.TabIndex = 8;
-			this.label5.Text = "Buscar n° documento";
-			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.ColIdPersonal.DataPropertyName = "Id_Personal";
+			this.ColIdPersonal.HeaderText = "IdPersonal";
+			this.ColIdPersonal.Name = "ColIdPersonal";
+			this.ColIdPersonal.Width = 82;
 			// 
 			// frmIngresoDosimetriaDos
 			// 
@@ -781,10 +839,12 @@
 		private System.Windows.Forms.GroupBox pnl_Progreso;
 		private System.Windows.Forms.ProgressBar pgb_Barra;
 		private System.Windows.Forms.DataGridView grdDatos;
-		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
 		private System.Windows.Forms.ComboBox cbx_NDocumento;
 		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Id_Personal;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.ComboBox ddlSeccion;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColId_Personal;
 		private System.Windows.Forms.DataGridViewTextBoxColumn id_dosimetro;
 		private System.Windows.Forms.DataGridViewTextBoxColumn N_Cliente;
 		private GridExtension.IntegerGridColumn NDocumento;
@@ -797,5 +857,8 @@
 		private System.Windows.Forms.DataGridViewCheckBoxColumn condosis;
 		private GridExtension.RealGridColumn valor;
 		private System.Windows.Forms.DataGridViewComboBoxColumn Estado;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColSeccion;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColIdSeccion;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ColIdPersonal;
 	}
 }

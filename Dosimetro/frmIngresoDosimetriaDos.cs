@@ -61,11 +61,19 @@ namespace ControlDosimetro
 		}
 
 		#region "Llamada de carga"
-
+		private void Cargar_Seccion()
+		{
+			DataSet dt;
+			dt = clsFunc.Cargar_SeccionPorRun(Convert.ToInt16(txt_id_cliente.Text.ToString()), lbl_rut_cliente.Text);
+			ddlSeccion.DisplayMember = dt.Tables[0].Columns[0].Caption.ToString();
+			ddlSeccion.ValueMember = dt.Tables[0].Columns[1].Caption.ToString();
+			ddlSeccion.DataSource = dt.Tables[0];
+		}
 		private void Cargar_Datos()
 		{
 			Cursor = Cursors.WaitCursor;
 			clsFunc.Cargar_Cliente((int)cbx_id_periodo.SelectedValue, Convert.ToInt64(txt_id_cliente.Text.ToString()), ref lbl_rut_cliente, ref lbl_nombreCliente);
+			Cargar_Seccion();
 			SqlCommand cmdcombo = new SqlCommand();
 			DataSet dtcombo;
 			cmdcombo.CommandText = "pa_IngresoDosimetroPorDosimetro_sel " + cbx_id_periodo.SelectedValue + "," + txt_id_cliente.Text + ",12";
@@ -224,6 +232,7 @@ namespace ControlDosimetro
 			DataGridViewCheckBoxCell chkcondosis;
 			DataGridViewTextBoxCell txtvalor;
 			DataGridViewTextBoxCell txtNPelicula;
+			DataGridViewTextBoxCell txtId_SeccionDos;
 			DataGridViewTextBoxCell txtndocumento;
 			DataGridViewComboBoxCell cbxEstado;
 			string strn_cliente;
@@ -244,9 +253,10 @@ namespace ControlDosimetro
 				txtndocumento = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["NDocumento"];
 				txtNPelicula = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["N_Pelicula"];
 				cbxEstado = (DataGridViewComboBoxCell)grdDatos.Rows[i].Cells["Estado"];
-
+				txtvalor = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["valor"];
+				txtId_SeccionDos = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["ColIdSeccion"]; 
 				strn_cliente = grdDatos.Rows[i].Cells["N_Cliente"].Value.ToString();
-				strid_personal = grdDatos.Rows[i].Cells["id_personal"].Value.ToString();
+				strid_personal = grdDatos.Rows[i].Cells["ColId_Personal"].Value.ToString();
 				strid_dosimetro = grdDatos.Rows[i].Cells["id_dosimetro"].Value.ToString();
 				if (txtvalor.Value.ToString() == "")
 					txtvalor.Value = "0,00";
@@ -273,7 +283,7 @@ namespace ControlDosimetro
 						Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 
 						cmd.CommandText = "pa_DosimetroIngreso_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "','',"
-										  + cbx_id_periodo.SelectedValue + "," + strn_cliente; ;
+										  + cbx_id_periodo.SelectedValue + "," + strn_cliente+","+ txtId_SeccionDos.Value.ToString(); 
 						cmd.CommandType = CommandType.Text;
 						Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 					}
@@ -294,7 +304,7 @@ namespace ControlDosimetro
 							Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 
 
-							cmd.CommandText = "pa_DosimetroIngreso_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "',''," + cbx_id_periodo.SelectedValue + "," + strn_cliente;
+							cmd.CommandText = "pa_DosimetroIngreso_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "',''," + cbx_id_periodo.SelectedValue + "," + strn_cliente + "," + txtId_SeccionDos.Value.ToString();
 							cmd.CommandType = CommandType.Text;
 							Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 						}
@@ -309,7 +319,7 @@ namespace ControlDosimetro
 							if (txtNPelicula.Value.ToString() != "")
 							{
 								cmd.CommandText = "pa_DosimetroIngreso_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "','',"
-														  + cbx_id_periodo.SelectedValue + "," + strn_cliente; ;
+														  + cbx_id_periodo.SelectedValue + "," + strn_cliente + "," + txtId_SeccionDos.Value.ToString();
 								cmd.CommandType = CommandType.Text;
 								Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 							}
@@ -319,8 +329,8 @@ namespace ControlDosimetro
 				}
 
 			}
-			Listar_Personal();
 			MessageBox.Show("Informacion grabada");
+			cbx_NDocumento_SelectedValueChanged(null,null);
 			btn_Guardar.Enabled = true;
 			pnl_Progreso.Visible = false;
 		}
@@ -519,14 +529,22 @@ namespace ControlDosimetro
 			{
 				if (grdDatos.Columns[e.ColumnIndex].Name == colRut.Name) 
 				{
-					frmAyudaPersonal frm = new frmAyudaPersonal(Convert.ToInt64( txt_id_cliente.Text));
-					frm.ShowDialog();
-
-					grdDatos.Rows[e.RowIndex].Cells[0].Value= Clases.ClsPersonal.Id_Personal;
-					grdDatos.Rows[e.RowIndex].Cells[5].Value = Clases.ClsPersonal.Rut;
-					grdDatos.Rows[e.RowIndex].Cells[6].Value = Clases.ClsPersonal.Paterno;
-					grdDatos.Rows[e.RowIndex].Cells[7].Value = Clases.ClsPersonal.Materno;
-					grdDatos.Rows[e.RowIndex].Cells[8].Value = Clases.ClsPersonal.Nombres;
+					frmAyudaPersonalPorCliente frm = new frmAyudaPersonalPorCliente();
+					frm.txtSeccion.Text = ddlSeccion.Text;
+					frm.txtSeccion.Tag = ddlSeccion.SelectedValue;
+					frm.txt_RazonSocial.Text = lbl_nombreCliente.Text;
+					frm.txt_ref_cliente.Text = txt_id_cliente.Text;
+					frm.txt_Rut.Text = lbl_rut_cliente.Text;
+					if(frm.ShowDialog() == DialogResult.OK)
+					{
+						grdDatos.Rows[e.RowIndex].Cells[5].Value = Clases.ClsPersonal.Rut;
+						grdDatos.Rows[e.RowIndex].Cells[6].Value = Clases.ClsPersonal.Paterno;
+						grdDatos.Rows[e.RowIndex].Cells[7].Value = Clases.ClsPersonal.Materno;
+						grdDatos.Rows[e.RowIndex].Cells[8].Value = Clases.ClsPersonal.Nombres;
+						grdDatos.Rows[e.RowIndex].Cells[13].Value = ddlSeccion.Text;
+						grdDatos.Rows[e.RowIndex].Cells[14].Value = ddlSeccion.SelectedValue;
+						grdDatos.Rows[e.RowIndex].Cells[15].Value = Clases.ClsPersonal.Id_Personal;
+					}
 				}
 			}
 		}

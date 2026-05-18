@@ -208,6 +208,12 @@
     <Compile Include="Busqueda\frmAyudaCliente.Designer.cs">
       <DependentUpon>frmAyudaCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Busqueda\frmAyudaPersonalPorCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Busqueda\frmAyudaPersonalPorCliente.Designer.cs">
+      <DependentUpon>frmAyudaPersonalPorCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Busqueda\frmAyudaPersonal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -771,6 +777,9 @@
     <Compile Include="RevisionAccepter.cs" />
     <EmbeddedResource Include="Busqueda\frmAyudaCliente.resx">
       <DependentUpon>frmAyudaCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Busqueda\frmAyudaPersonalPorCliente.resx">
+      <DependentUpon>frmAyudaPersonalPorCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Busqueda\frmAyudaPersonal.resx">
       <DependentUpon>frmAyudaPersonal.cs</DependentUpon>

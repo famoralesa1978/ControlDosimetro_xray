@@ -155,7 +155,7 @@ namespace ControlDosimetro
 			if (!DesdeLimpiar)
 			//// dt = ClaseFunciones.Cargar_SeccionPorRun(Convert.ToInt16(lbl_id_cliente.Text.ToString()), lbl_rut_cliente.Text);
 			{
-				dtSeccion.DefaultView.RowFilter = String.Format("Id_sucursal={0} OR  Id_sucursal=0", cbx_Sucursal.SelectedValue == null ? 0 : (int?)cbx_Sucursal.SelectedValue);
+				dtSeccion.DefaultView.RowFilter = String.Format("Id_sucursal={0}", cbx_Sucursal.SelectedValue == null ? 0 : (int?)cbx_Sucursal.SelectedValue);
 				cbx_id_seccion.DisplayMember = dtSeccion.Columns[1].Caption.ToString();
 				cbx_id_seccion.ValueMember = dtSeccion.Columns[0].Caption.ToString();
 				cbx_id_seccion.DataSource = dtSeccion.DefaultView.ToTable();
@@ -1132,7 +1132,7 @@ namespace ControlDosimetro
 
 							Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 							cmd.CommandText = "pa_DosimetroIngreso_upd " + txtnpelicula.Value.ToString() + ",5,'" + Clases.clsUsuario.Usuario +
-													"',''," + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text;
+													"',''," + cbx_id_periodo.SelectedValue.ToString() + "," + lbl_id_cliente.Text + "," + cbx_id_seccion.SelectedValue.ToString();
 							cmd.CommandType = CommandType.Text;
 							Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 						}
