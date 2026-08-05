@@ -2613,7 +2613,7 @@ namespace ControlDosimetro
 		private void cbx_id_seccion_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			//if (!bolDesdeCodigo)
-			//	Listar_Personal();
+			Listar_Personal();
 		}
 
 		private void cbx_anno_SelectedValueChanged(object sender, EventArgs e)

@@ -318,8 +318,8 @@ namespace ControlDosimetro
 
 							if (txtNPelicula.Value.ToString() != "")
 							{
-								cmd.CommandText = "pa_DosimetroIngreso_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "','',"
-														  + cbx_id_periodo.SelectedValue + "," + strn_cliente + "," + txtId_SeccionDos.Value.ToString();
+								cmd.CommandText = "pa_DosimetroVolverAsignarDosis_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "','',"
+														  + cbx_id_periodo.SelectedValue + "," + strn_cliente;
 								cmd.CommandType = CommandType.Text;
 								Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 							}
