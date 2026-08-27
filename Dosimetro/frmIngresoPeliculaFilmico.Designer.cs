@@ -76,6 +76,13 @@
 			this.pnl_Progreso = new System.Windows.Forms.GroupBox();
 			this.pgb_Barra = new System.Windows.Forms.ProgressBar();
 			this.grdDatos = new System.Windows.Forms.DataGridView();
+			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.id_estadodosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.N_Pelicula = new GridExtension.IntegerGridColumn();
+			this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.N_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColFecha_ingreso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ColObservacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cmsPopup = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -96,13 +103,6 @@
 			this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btn_Imprimir = new System.Windows.Forms.Button();
 			this.btn_Cerrar = new System.Windows.Forms.Button();
-			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.id_estadodosimetro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.N_Pelicula = new GridExtension.IntegerGridColumn();
-			this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.N_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColFecha_ingreso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ColObservacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			this.grp_Ingreso.SuspendLayout();
 			this.grpListado.SuspendLayout();
@@ -589,6 +589,65 @@
 			this.grdDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellValueChanged);
 			this.grdDatos.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdDatos_CurrentCellDirtyStateChanged);
 			// 
+			// id
+			// 
+			this.id.DataPropertyName = "id";
+			this.id.HeaderText = "id";
+			this.id.Name = "id";
+			this.id.Visible = false;
+			this.id.Width = 40;
+			// 
+			// id_estadodosimetro
+			// 
+			this.id_estadodosimetro.DataPropertyName = "id_estadodosimetro";
+			this.id_estadodosimetro.HeaderText = "id_estadodosimetro";
+			this.id_estadodosimetro.Name = "id_estadodosimetro";
+			this.id_estadodosimetro.Visible = false;
+			this.id_estadodosimetro.Width = 123;
+			// 
+			// N_Pelicula
+			// 
+			this.N_Pelicula.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+			this.N_Pelicula.DataPropertyName = "n_dosimetro";
+			this.N_Pelicula.HeaderText = "Nº Pelicula";
+			this.N_Pelicula.Name = "N_Pelicula";
+			this.N_Pelicula.ReadOnly = true;
+			this.N_Pelicula.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.N_Pelicula.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.N_Pelicula.Width = 84;
+			// 
+			// Descripcion
+			// 
+			this.Descripcion.DataPropertyName = "Descripcion";
+			this.Descripcion.HeaderText = "Descripcion";
+			this.Descripcion.Name = "Descripcion";
+			this.Descripcion.ReadOnly = true;
+			this.Descripcion.Width = 88;
+			// 
+			// N_documento
+			// 
+			this.N_documento.DataPropertyName = "N_documento";
+			this.N_documento.HeaderText = "N° Documento";
+			this.N_documento.Name = "N_documento";
+			this.N_documento.ReadOnly = true;
+			this.N_documento.Width = 102;
+			// 
+			// ColFecha_ingreso
+			// 
+			this.ColFecha_ingreso.DataPropertyName = "Fecha_ingreso";
+			this.ColFecha_ingreso.HeaderText = "Fecha ingreso";
+			this.ColFecha_ingreso.Name = "ColFecha_ingreso";
+			this.ColFecha_ingreso.ReadOnly = true;
+			this.ColFecha_ingreso.Width = 99;
+			// 
+			// ColObservacion
+			// 
+			this.ColObservacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.ColObservacion.DataPropertyName = "Observacion";
+			this.ColObservacion.HeaderText = "Observación";
+			this.ColObservacion.Name = "ColObservacion";
+			this.ColObservacion.ReadOnly = true;
+			// 
 			// cmsPopup
 			// 
 			this.cmsPopup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -777,65 +836,6 @@
 			this.btn_Cerrar.Text = "Cerrar";
 			this.btn_Cerrar.UseVisualStyleBackColor = true;
 			this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click);
-			// 
-			// id
-			// 
-			this.id.DataPropertyName = "id";
-			this.id.HeaderText = "id";
-			this.id.Name = "id";
-			this.id.Visible = false;
-			this.id.Width = 40;
-			// 
-			// id_estadodosimetro
-			// 
-			this.id_estadodosimetro.DataPropertyName = "id_estadodosimetro";
-			this.id_estadodosimetro.HeaderText = "id_estadodosimetro";
-			this.id_estadodosimetro.Name = "id_estadodosimetro";
-			this.id_estadodosimetro.Visible = false;
-			this.id_estadodosimetro.Width = 123;
-			// 
-			// N_Pelicula
-			// 
-			this.N_Pelicula.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-			this.N_Pelicula.DataPropertyName = "n_dosimetro";
-			this.N_Pelicula.HeaderText = "Nº Pelicula";
-			this.N_Pelicula.Name = "N_Pelicula";
-			this.N_Pelicula.ReadOnly = true;
-			this.N_Pelicula.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.N_Pelicula.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.N_Pelicula.Width = 84;
-			// 
-			// Descripcion
-			// 
-			this.Descripcion.DataPropertyName = "Descripcion";
-			this.Descripcion.HeaderText = "Descripcion";
-			this.Descripcion.Name = "Descripcion";
-			this.Descripcion.ReadOnly = true;
-			this.Descripcion.Width = 88;
-			// 
-			// N_documento
-			// 
-			this.N_documento.DataPropertyName = "N_documento";
-			this.N_documento.HeaderText = "N° Documento";
-			this.N_documento.Name = "N_documento";
-			this.N_documento.ReadOnly = true;
-			this.N_documento.Width = 102;
-			// 
-			// ColFecha_ingreso
-			// 
-			this.ColFecha_ingreso.DataPropertyName = "Fecha_ingreso";
-			this.ColFecha_ingreso.HeaderText = "Fecha ingreso";
-			this.ColFecha_ingreso.Name = "ColFecha_ingreso";
-			this.ColFecha_ingreso.ReadOnly = true;
-			this.ColFecha_ingreso.Width = 99;
-			// 
-			// ColObservacion
-			// 
-			this.ColObservacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.ColObservacion.DataPropertyName = "Observacion";
-			this.ColObservacion.HeaderText = "Observación";
-			this.ColObservacion.Name = "ColObservacion";
-			this.ColObservacion.ReadOnly = true;
 			// 
 			// frmIngresoPeliculaFilmico
 			// 

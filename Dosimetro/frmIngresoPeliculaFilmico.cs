@@ -205,23 +205,6 @@ namespace ControlDosimetro
 				MessageBox.Show("Ingrese número de documento");
 				return;
 			}
-			SqlCommand cmdvalidar = new SqlCommand();
-
-			DataSet dt;
-
-			cmdvalidar.CommandText = "pa_ObtieneUltimoValornDocumento_sel " + txt_NDocumento.Text + "," + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue.ToString();
-
-			dt = Conectar.Listar(ClaseGeneral.Conexion, cmdvalidar);
-
-			if (dt.Tables[0].Rows.Count > 0)
-			{
-				MessageBox.Show("El número de documento ya existe");
-				return;
-			}
-
-			SqlCommand cmd = new SqlCommand();
-			DataSet ds;
-
 			Int64 intFinal;
 			Int64 intInicio;
 			Int64 intFinalref;
@@ -258,6 +241,40 @@ namespace ControlDosimetro
 				intFinal = 0;
 				intInicio = 0;
 			}
+
+			if(intInicio< intFinal)
+			{
+				string.Format("La pelicula desde {0} debe ser  menor o igual pelicula hasta {1}", intInicio, intFinal).XMensajeError();
+				return;
+			}
+			if (intInicioref < intFinalref)
+			{
+				string.Format("La pelicula referencia desde {0} debe ser  menor o igual pelicula referencia hasta {1}", intInicioref, intFinalref).XMensajeError();
+				return;
+			}
+
+			string strMensaje = string.Format("¿Esta seguro de ingresar cantidad de  {0} dosimetros, Desde {1} hasta {2}?", (intFinal-intInicio)+1, intInicio, intFinal);
+			if (!strMensaje.XMensajeConfirmacionSiNo())
+			{
+				return;
+			}
+
+			SqlCommand cmdvalidar = new SqlCommand();
+
+			DataSet dt;
+
+			cmdvalidar.CommandText = "pa_ObtieneUltimoValornDocumento_sel " + txt_NDocumento.Text + "," + lbl_id_cliente.Text + "," + cbx_id_periodo.SelectedValue.ToString();
+
+			dt = Conectar.Listar(ClaseGeneral.Conexion, cmdvalidar);
+
+			if (dt.Tables[0].Rows.Count > 0)
+			{
+				MessageBox.Show("El número de documento ya existe");
+				return;
+			}
+
+			SqlCommand cmd = new SqlCommand();
+			DataSet ds;
 
 			if (cbx_Sucursal.Text == "")
 			{

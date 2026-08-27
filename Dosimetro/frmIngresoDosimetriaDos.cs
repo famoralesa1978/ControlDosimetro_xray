@@ -247,87 +247,90 @@ namespace ControlDosimetro
 			{
 				pgb_Barra.Value = i + 1;
 				pgb_Barra.Refresh();
-				checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["Controlado"];
-				chkcondosis = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["condosis"];
-				txtvalor = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["valor"];
 				txtndocumento = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["NDocumento"];
-				txtNPelicula = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["N_Pelicula"];
-				cbxEstado = (DataGridViewComboBoxCell)grdDatos.Rows[i].Cells["Estado"];
-				txtvalor = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["valor"];
-				txtId_SeccionDos = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["ColIdSeccion"]; 
-				strn_cliente = grdDatos.Rows[i].Cells["N_Cliente"].Value.ToString();
-				strid_personal = grdDatos.Rows[i].Cells["ColId_Personal"].Value.ToString();
-				strid_dosimetro = grdDatos.Rows[i].Cells["id_dosimetro"].Value.ToString();
-				if (txtvalor.Value.ToString() == "")
-					txtvalor.Value = "0,00";
-				if ((txtndocumento.Value.ToString() == "") && (checkCell.Value.ToString() == "1"))
+				if((int)txtndocumento.Value== (int)cbx_NDocumento.SelectedValue)
 				{
-					txtndocumento.Value = "0";
-				}
+					checkCell = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["Controlado"];
+					chkcondosis = (DataGridViewCheckBoxCell)grdDatos.Rows[i].Cells["condosis"];
+					txtvalor = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["valor"];
 
-				if ((chkcondosis.Value.ToString() == "0") && (checkCell.Value.ToString() == "1") && (cbxEstado.Value.ToString() == "0"))
-				{
-					MessageBox.Show("Ingrese un Estado Controlado en la fila " + (i + 1).ToString());
-					grdDatos.Rows[i].Selected = true;
-					i = grdDatos.RowCount;
-				}
-				else
-				{
-					if ((strid_dosimetro == "0") && (Convert.ToInt64(checkCell.Value) == 1))
+					txtNPelicula = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["N_Pelicula"];
+					cbxEstado = (DataGridViewComboBoxCell)grdDatos.Rows[i].Cells["Estado"];
+					txtvalor = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["valor"];
+					txtId_SeccionDos = (DataGridViewTextBoxCell)grdDatos.Rows[i].Cells["ColIdSeccion"];
+					strn_cliente = grdDatos.Rows[i].Cells["N_Cliente"].Value.ToString();
+					strid_personal = grdDatos.Rows[i].Cells["ColId_Personal"].Value.ToString();
+					strid_dosimetro = grdDatos.Rows[i].Cells["id_dosimetro"].Value.ToString();
+					if (txtvalor.Value.ToString() == "")
+						txtvalor.Value = "0,00";
+					if ((txtndocumento.Value.ToString() == "") && (checkCell.Value.ToString() == "1"))
 					{
-						cmd.CommandText = "INSERT INTO tbl_dosimetria(id_cliente,id_personal,N_Documento,Controlado, ConDosis,Id_EstadoDosis,Dosis,Id_Periodo,enviado,n_pelicula)" +
-													  "VALUES (" + strn_cliente + "," + strid_personal + "," + txtndocumento.Value.ToString() + "," +
-																	  checkCell.Value.ToString() + "," + chkcondosis.Value.ToString() + "," + cbxEstado.Value.ToString() +
-																	  ",cast(" + txtvalor.Value.ToString().Replace(",", ".") + " as decimal(10,2)), " + cbx_id_periodo.SelectedValue + ", 0," + txtNPelicula.Value.ToString() + ") ";
-						cmd.CommandType = CommandType.Text;
-						Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
+						txtndocumento.Value = "0";
+					}
 
-						cmd.CommandText = "pa_DosimetroIngreso_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "','',"
-										  + cbx_id_periodo.SelectedValue + "," + strn_cliente+","+ txtId_SeccionDos.Value.ToString(); 
-						cmd.CommandType = CommandType.Text;
-						Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
+					if ((chkcondosis.Value.ToString() == "0") && (checkCell.Value.ToString() == "1") && (cbxEstado.Value.ToString() == "0"))
+					{
+						MessageBox.Show("Ingrese un Estado Controlado en la fila " + (i + 1).ToString());
+						grdDatos.Rows[i].Selected = true;
+						i = grdDatos.RowCount;
 					}
 					else
 					{
-						if (Convert.ToInt64(checkCell.Value) == 1)
+						if ((strid_dosimetro == "0") && (Convert.ToInt64(checkCell.Value) == 1))
 						{
-							cmd.CommandText = "update tbl_dosimetria " +
-																"set Controlado=" + checkCell.Value.ToString() + "," +
-																"ConDosis=" + chkcondosis.Value.ToString() + "," +
-																"Id_EstadoDosis=" + cbxEstado.Value.ToString() + "," +
-																"Dosis=cast(" + txtvalor.Value.ToString().Replace(",", ".") + " as decimal(10,2))," +
-																"Id_Periodo=" + cbx_id_periodo.SelectedValue + "," +
-																"N_Documento=" + txtndocumento.Value.ToString() + "," +
-																"n_pelicula=" + txtNPelicula.Value.ToString() +
-														  " where id_dosimetro=" + strid_dosimetro;
+							cmd.CommandText = "INSERT INTO tbl_dosimetria(id_cliente,id_personal,N_Documento,Controlado, ConDosis,Id_EstadoDosis,Dosis,Id_Periodo,enviado,n_pelicula)" +
+															"VALUES (" + strn_cliente + "," + strid_personal + "," + txtndocumento.Value.ToString() + "," +
+																			checkCell.Value.ToString() + "," + chkcondosis.Value.ToString() + "," + cbxEstado.Value.ToString() +
+																			",cast(" + txtvalor.Value.ToString().Replace(",", ".") + " as decimal(10,2)), " + cbx_id_periodo.SelectedValue + ", 0," + txtNPelicula.Value.ToString() + ") ";
 							cmd.CommandType = CommandType.Text;
 							Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 
-
-							cmd.CommandText = "pa_DosimetroIngreso_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "',''," + cbx_id_periodo.SelectedValue + "," + strn_cliente + "," + txtId_SeccionDos.Value.ToString();
+							cmd.CommandText = "pa_DosimetroIngreso_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "','',"
+												+ cbx_id_periodo.SelectedValue + "," + strn_cliente + "," + txtId_SeccionDos.Value.ToString();
 							cmd.CommandType = CommandType.Text;
 							Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 						}
-
-						if (Convert.ToInt64(checkCell.Value) == 0)
+						else
 						{
-							cmd.CommandText = "delete from tbl_dosimetria " +
-														  " where id_dosimetro=" + strid_dosimetro;
-							cmd.CommandType = CommandType.Text;
-							Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
-
-							if (txtNPelicula.Value.ToString() != "")
+							if (Convert.ToInt64(checkCell.Value) == 1)
 							{
-								cmd.CommandText = "pa_DosimetroVolverAsignarDosis_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "','',"
-														  + cbx_id_periodo.SelectedValue + "," + strn_cliente;
+								cmd.CommandText = "update tbl_dosimetria " +
+																	"set Controlado=" + checkCell.Value.ToString() + "," +
+																	"ConDosis=" + chkcondosis.Value.ToString() + "," +
+																	"Id_EstadoDosis=" + cbxEstado.Value.ToString() + "," +
+																	"Dosis=cast(" + txtvalor.Value.ToString().Replace(",", ".") + " as decimal(10,2))," +
+																	"Id_Periodo=" + cbx_id_periodo.SelectedValue + "," +
+																	"N_Documento=" + txtndocumento.Value.ToString() + "," +
+																	"n_pelicula=" + txtNPelicula.Value.ToString() +
+																" where id_dosimetro=" + strid_dosimetro;
+								cmd.CommandType = CommandType.Text;
+								Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
+
+
+								cmd.CommandText = "pa_DosimetroIngreso_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "',''," + cbx_id_periodo.SelectedValue + "," + strn_cliente + "," + txtId_SeccionDos.Value.ToString();
 								cmd.CommandType = CommandType.Text;
 								Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
 							}
 
+							if (Convert.ToInt64(checkCell.Value) == 0)
+							{
+								cmd.CommandText = "delete from tbl_dosimetria " +
+																" where id_dosimetro=" + strid_dosimetro;
+								cmd.CommandType = CommandType.Text;
+								Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
+
+								if (txtNPelicula.Value.ToString() != "")
+								{
+									cmd.CommandText = "pa_DosimetroVolverAsignarDosis_upd " + txtNPelicula.Value.ToString() + ",12,'" + Clases.clsUsuario.Usuario + "','',"
+																+ cbx_id_periodo.SelectedValue + "," + strn_cliente;
+									cmd.CommandType = CommandType.Text;
+									Conectar.AgregarModificarEliminar(ClaseGeneral.Conexion, cmd);
+								}
+
+							}
 						}
 					}
 				}
-
 			}
 			MessageBox.Show("Informacion grabada");
 			cbx_NDocumento_SelectedValueChanged(null,null);
